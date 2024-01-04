@@ -1,0 +1,20 @@
+﻿TS3 Dream Launcher
+1.0.0.0
+
+winexe
+C#
+.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\
+TS3_Dream_Launcher
+none
+false
+TRACE;RELEASE;NET;NET6_0;NETCOREAPP
+D:\Visual-Studio\TS3 Dream Launcher\App.xaml
+41674570483
+1-1096514308
+81167297167
+198278092399
+Controls\BeautyButton\BeautyButton.xaml;MainWindow.xaml;Resources\Languages\LangStrings-PT-BR.xaml;Resources\Languages\LangStrings.xaml;
+
+False
+

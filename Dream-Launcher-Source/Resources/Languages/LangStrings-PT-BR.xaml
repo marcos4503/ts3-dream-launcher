@@ -1,0 +1,73 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Screen 3: Checks -->
+    <system:String x:Key="screen3_checking">Verificando requisitos...</system:String>
+    <system:String x:Key="screen3_closeButton">FECHAR</system:String>
+    <system:String x:Key="screen3_checkError1">Ocorreu um erro! Parece que o Dream Launcher não está colocado no diretório do jogo. Por favor, coloque o executável e todos os arquivos deste Launcher, no diretório "&lt;jogo&gt;/Game/Bin".</system:String>
+    <system:String x:Key="screen3_checkError2">Ocorreu um erro! Esta não parece ser uma cópia do The Sims 3 instalada a partir da Steam! Somente cópias do The Sims 3 da Steam são suportadas!</system:String>
+    <system:String x:Key="screen3_checkError3">Ocorreu um erro! O Dream Launcher não suporta essa versão do The Sims 3. Somente a versão "1.67.2.024037" (Steam) é suportada.</system:String>
+
+    <!-- Screen 4: Translate -->
+    <system:String x:Key="screen4_dialogTitle">Gostaria de fazer o Patching de tradução de PT-PT para PT-BR? Se você não joga em usando o idioma Português, isso não deve lhe afetar em nada.</system:String>
+    <system:String x:Key="screen4_dialogY">SIM</system:String>
+    <system:String x:Key="screen4_dialogU">NÃO PERGUNTE DE NOVO</system:String>
+    <system:String x:Key="screen4_dialogN">NÃO</system:String>
+
+    <!-- Screen 5: Intel Fix -->
+    <system:String x:Key="screen5_dialogText">Parece que seu computador possui uma CPU "%CPU%". É provável que o jogo não inicie dessa CPU por causa da sua arquitetura "BIG.little" da Intel. Gostaria de aplicar o patch de correção para este problema, agora?</system:String>
+    <system:String x:Key="screen5_dialogY">SIM</system:String>
+    <system:String x:Key="screen5_dialogU">NÃO PERGUNTE DE NOVO</system:String>
+    <system:String x:Key="screen5_dialogN">NÃO</system:String>
+    <system:String x:Key="screen5_Loading">Verificando recursos...</system:String>
+
+    <!-- Screen 6: Launcher -->
+    <system:String x:Key="launcher_button_goPlay">ÍNICIO</system:String>
+    <system:String x:Key="launcher_button_goSaves">SAVES</system:String>
+    <system:String x:Key="launcher_button_goSims">SIMS</system:String>
+    <system:String x:Key="launcher_button_goCache">CACHE</system:String>
+    <system:String x:Key="launcher_button_goPatches">PATCHES</system:String>
+    <system:String x:Key="launcher_button_goMods">MODS</system:String>
+    <system:String x:Key="launcher_button_goTools">FERRAMENTAS</system:String>
+    <system:String x:Key="launcher_button_goSettings">CONFIGURAÇÕES</system:String>
+    <system:String x:Key="launcher_button_goAbout">CRÉDITOS</system:String>
+    <system:String x:Key="launcher_button_goExit">FECHAR</system:String>
+    <system:String x:Key="launcher_button_playButton">JOGAR!</system:String>
+    <system:String x:Key="launcher_taks_readyToPlay">Pronto para jogar!</system:String>
+    <system:String x:Key="launcher_taks_working">Trabalhando em %n% tarefas...</system:String>
+    <system:String x:Key="launcher_toast_dismiss">DISPENSAR</system:String>
+    <system:String x:Key="launcher_launchGameProblem">Não foi possível iniciar o jogo. Houve um problema ao inicia-lo. Por favor, tente novamente.</system:String>
+    <system:String x:Key="launcher_alderLakePatchProblem">Houve um problema ao fazer o patching de suporte a CPUs Intel Alder Lake+. O seu jogo pode não ser capaz de abrir por causa disso. O arquivo "TS3W.exe" já possui um backup de segurança.</system:String>
+    <system:String x:Key="launcher_alderLakePatchSuccess">O patching para CPUs Intel Alder Lake+ foi bem sucedido!</system:String>
+    <system:String x:Key="launcher_ptptToptbrTranslateProblem">Não foi possível aplicar o patching de tradução de pt-PT para pt-BR.</system:String>
+    <system:String x:Key="launcher_ptptToptbrTranslateSuccess">O patching de tradução de pt-PT para pt-BR foi aplicado com sucesso! Altere o idioma do jogo para "Português" na Steam e aqui nas Configurações do Launcher, para ver as mudanças!</system:String>
+    <system:String x:Key="launcher_toastsHistoryTitle">Histórico de Notificações</system:String>
+    <system:String x:Key="launcher_toastsHistoryAt">às</system:String>
+    <system:String x:Key="launcher_toastsHistoryEmpty">Nada por aqui ainda</system:String>
+    <system:String x:Key="launcher_taskCloseWarnTit">Um momento, amigo!</system:String>
+    <system:String x:Key="launcher_taskCloseWarnTxt">O Dream Launcher está executando uma ou mais tarefas de plano de fundo do jogo, agora. Encerrar o Launcher pode comprometer seriamente a integridade do Launcher ou do seu jogo! Você quer aguardar a conclusão das tarefas antes?</system:String>
+    <system:String x:Key="launcher_documentsNotFound">A pasta do The Sims 3 nos Documentos não foi encontrada. Execute o jogo e reinicie o Dream Launcher para que todas funções fiquem acessíveis.</system:String>
+    <system:String x:Key="launcher_dlc_ep1">EP1 - Volta ao Mundo</system:String>
+    <system:String x:Key="launcher_dlc_ep2">EP2 - Ambições</system:String>
+    <system:String x:Key="launcher_dlc_ep3">EP3 - Caindo na Noite</system:String>
+    <system:String x:Key="launcher_dlc_ep4">EP4 - Gerações</system:String>
+    <system:String x:Key="launcher_dlc_ep5">EP5 - Pets</system:String>
+    <system:String x:Key="launcher_dlc_ep6">EP6 - Hora do Show</system:String>
+    <system:String x:Key="launcher_dlc_ep7">EP7 - Sobrenatural</system:String>
+    <system:String x:Key="launcher_dlc_ep8">EP8 - Estações</system:String>
+    <system:String x:Key="launcher_dlc_ep9">EP9 - Vida Universitária</system:String>
+    <system:String x:Key="launcher_dlc_ep10">EP10 - Ilha Paradisíaca</system:String>
+    <system:String x:Key="launcher_dlc_ep11">EP11 - No Futuro</system:String>
+    <system:String x:Key="launcher_dlc_sp1">SP1 - Vida Em Alto Estilo</system:String>
+    <system:String x:Key="launcher_dlc_sp2">SP2 - Acelerando</system:String>
+    <system:String x:Key="launcher_dlc_sp3">SP3 - Vida Ao Ar Livre</system:String>
+    <system:String x:Key="launcher_dlc_sp4">SP4 - Vida Urbana</system:String>
+    <system:String x:Key="launcher_dlc_sp5">SP5 - Suíte de Luxo</system:String>
+    <system:String x:Key="launcher_dlc_sp6">SP6 - Katy Perry Mundo Doce</system:String>
+    <system:String x:Key="launcher_dlc_sp7">SP7 - Diesel</system:String>
+    <system:String x:Key="launcher_dlc_sp8">SP8 - Anos 70, 80 e 90</system:String>
+    <system:String x:Key="launcher_dlc_sp9">SP9 - Cinema</system:String>
+
+</ResourceDictionary>
