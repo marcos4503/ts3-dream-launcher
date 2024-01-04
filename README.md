@@ -32,14 +32,14 @@ And there are several other functions. Keep reading to find out how to install i
 
 # To use this Software
 
-I recommend uninstalling The Sims 3 and deleting the game folder in Documents on your computer, to make a clean and conflict-free installation. Keep in mind that this will erase your Saves.
+It is <b>MANDATORY</b> that you uninstall your The Sims 3, install it again from scratch, and then install the Dream Launcher following the procedures below. This is necessary to ensure a clean, functional and conflict-free installation for your game. <b>If you have mods installed</b> in your game, it is MANDATORY that you delete the "Mods" folder from your "The Sims 3" folder in "My Documents" on your computer. This is necessary because Dream Launcher will now control and format your game Mods! If you've already done all of this, then continue...
 
 To start, download this repository by cloning the "Dream-Launcher-Compiled" folder to your computer. After that, copy ALL the contents inside the folder. Go to your The Sims 3 installation directory and access the "Game/Bin" folder and paste all the copied content into this folder.
 
 Now, go to Steam, and open The Sims 3 page in your library. Now, go to Steam, and open The Sims 3 page in your library. Click the gear icon and then click "Properties". In the "General" tab, paste the following content into the launch options. Of course, editing where necessary.
 
 ```
-"<install-dir>\Game\Bin\TS3 Dream Launcher.exe" %command%
+"<the-sims-3-install-dir>\Game\Bin\TS3 Dream Launcher.exe" %command%
 ```
 
 That is all! If you did everything correctly, now, when you click play The Sims 3 on Steam, the Dream Launcher will open, instead of the standard EA Launcher. Just enjoy! :)
