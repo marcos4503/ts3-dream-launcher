@@ -59,3 +59,29 @@ You need to fulfill some requirements to be able to use this Software...
 Would you like to learn everything about this Launcher and The Sims 3, from the basics to how to modify your game, edit furniture, install mods, edit mods, optimization tips, best practices and many other things?
 
 Access <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3118587838" target="_blank">this Steam mega-guide</a> to learn all this and more! Unfortunately, the guide is currently only available in Portuguese (PT-BR), but you can use Google Translate to view it in your language!
+
+# How to edit this Software
+
+The source project of this Software is here in this repository as well. You can simply open the "Dream-Launcher-Source" folder with your Visual Studio IDE and edit the Software.
+
+# Special Thanks
+
+a
+
+# Support projects like this
+
+If you liked the Dream Launcher and found it useful for your, please consider making a donation (if possible). This would make it even more possible for me to create and continue to maintain projects like this, but if you cannot make a donation, it is still a pleasure for you to use it! Thanks! 😀
+
+<br>
+
+<p align="center">
+    <a href="https://www.paypal.com/donate/?hosted_button_id=MVDJY3AXLL8T2" target="_blank">
+        <img src="This-Repository/paypal-donate.png" alt="Donate" />
+    </a>
+</p>
+
+<br>
+
+<p align="center">
+Created with ❤ by Marcos Tomaz
+</p>
