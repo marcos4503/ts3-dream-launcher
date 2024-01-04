@@ -66,7 +66,11 @@ The source project of this Software is here in this repository as well. You can 
 
 # Special Thanks
 
-a
+I would like to thank the following people or entities for providing components that helped this Launcher get off the ground!
+
+- <a href="https://github.com/LazyDuchess" target="_blank">Lazy Duchess</a> - By Intel Alder Lake Patcher, Intel Fix and its amazing mods!
+- <a href="https://github.com/secana" target="_blank">Stefan Hausotte</a> - By the <a href="https://github.com/secana/PeNet" target="_blank">PeNET</a> library that allows patching of executables.
+- <a href="https://sourceforge.net/u/pljones/profile/" target="_blank">Peter L Jones</a> - By the <a href="https://sourceforge.net/projects/s3pi/files/" target="_blank">S3PI</a> library that allows to edit game files.
 
 # Support projects like this
 
