@@ -23,6 +23,8 @@ namespace TS3_Dream_Launcher.Scripts
             public string launcherLang = "undefined";
             public bool alreadyTranslated = false;
             public bool alreadyIntelFixed = false;
+
+            public SaveInfo[] saveInfo = new SaveInfo[0];
         }
 
         //Public variables
@@ -66,5 +68,18 @@ namespace TS3_Dream_Launcher.Scripts
             //Load the data to update loaded data
             Load();
         }
+    }
+
+    /*
+     * Auxiliar classes
+     * 
+     * Classes that are objects that will be used, only to organize data inside 
+     * "LoadedData" object in the saves.
+    */
+
+    public class SaveInfo
+    {
+        public string key = "";
+        public string value = "";
     }
 }

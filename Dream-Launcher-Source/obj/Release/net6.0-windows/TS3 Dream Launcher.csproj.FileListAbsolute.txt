@@ -32,3 +32,17 @@ D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\BeautyBu
 D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\GeneratedInternalTypeHelper.g.cs
 D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\App.baml
 D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.csproj.CopyComplete
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\IntelFix.dll
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\tray-busy.ico
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\tray-off.ico
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\tray-on.ico
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\PeNet.dll
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\PeNet.Asn1.dll
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\System.CodeDom.dll
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\System.Formats.Asn1.dll
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\System.Management.dll
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\System.Security.Cryptography.Pkcs.dll
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\runtimes\win\lib\net6.0\System.Management.dll
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowIconViewer.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowIconViewer.baml

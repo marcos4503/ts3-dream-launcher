@@ -89,6 +89,16 @@ namespace TS3_Dream_Launcher
             //Load the launcher preferences and get it
             launcherPrefs = new Preferences();
 
+            //Inform the save informations and save it
+            SaveInfo saveInfo1 = new SaveInfo();
+            saveInfo1.key = "launcherVersion";
+            saveInfo1.value = GetLauncherVersion();
+            SaveInfo saveInfo2 = new SaveInfo();
+            saveInfo2.key = "saveVersion";
+            saveInfo2.value = "1.0.0";
+            launcherPrefs.loadedData.saveInfo = new SaveInfo[] { saveInfo1, saveInfo2 };
+            launcherPrefs.Save();
+
             //Load all storyboards animations references
             LoadAllStoryboardsAnimationsReferences();
 
@@ -599,8 +609,7 @@ namespace TS3_Dream_Launcher
             animStoryboards["screen6FadeIn"].Begin();
 
             //Show the launcher version in header
-            string[] versionNumbers = Assembly.GetExecutingAssembly().GetName().Version.ToString().Split('.');
-            this.Title = (this.Title + " - " + versionNumbers[0] + "." + versionNumbers[1] + "." + versionNumbers[2]);
+            this.Title = (this.Title + " - " + GetLauncherVersion());
 
             //Show the game version
             gameVersion.Content = "-";
@@ -1412,6 +1421,21 @@ namespace TS3_Dream_Launcher
             currentOpenedIconViewer = new WindowIconViewer(titleToShow, imageUriToShow);
             currentOpenedIconViewer.Closed += (s, e) => { currentOpenedIconViewer = null; };
             currentOpenedIconViewer.Show();
+        }
+
+        //Launcher tools
+
+        private string GetLauncherVersion()
+        {
+            //Prepare te storage
+            string version = "";
+
+            //Get the version
+            string[] versionNumbers = Assembly.GetExecutingAssembly().GetName().Version.ToString().Split('.');
+            version = (versionNumbers[0] + "." + versionNumbers[1] + "." + versionNumbers[2]);
+
+            //Return the version
+            return version;
         }
 
         //Patches

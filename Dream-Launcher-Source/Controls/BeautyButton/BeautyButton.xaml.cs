@@ -15,22 +15,32 @@ using System.Windows.Shapes;
 
 namespace TS3_Dream_Launcher.Controls.BeautyButton
 {
-    /// <summary>
-    /// Interação lógica para BeautyButton.xam
-    /// </summary>
+    /* 
+     * This script is responsible by the function of the custom control of "BeautyButton"
+    */
+
     public partial class BeautyButton : Button
     {
-        //Private static variables
-        readonly static Brush defaultHoverBackgroundValue = new BrushConverter().ConvertFromString("#FFBEE6FD") as Brush;
-
         //Core methods
 
         public BeautyButton()
         {
+            //Initialize the component
             InitializeComponent();
+
+            //...
         }
 
-        //Addiction of "HoverBackground" color, custom property for the "Brush" tab of Button
+        //Custom Properties Registration
+
+        //*** HoverBackground Property ***/
+
+        public static readonly DependencyProperty HoverBackgroundProperty = DependencyProperty.Register(
+                nameof(HoverBackground),
+                typeof(Brush),
+                typeof(BeautyButton),
+                new PropertyMetadata((new BrushConverter().ConvertFromString("#FFBEE6FD") as Brush), new PropertyChangedCallback(OnChange_HoverBackgroundProperty))
+            );
 
         public Brush HoverBackground
         {
@@ -38,6 +48,9 @@ namespace TS3_Dream_Launcher.Controls.BeautyButton
             set { SetValue(HoverBackgroundProperty, value); }
         }
 
-        public static readonly DependencyProperty HoverBackgroundProperty = DependencyProperty.Register("HoverBackground", typeof(Brush), typeof(BeautyButton), new PropertyMetadata(defaultHoverBackgroundValue));
+        public static void OnChange_HoverBackgroundProperty(DependencyObject dpo, DependencyPropertyChangedEventArgs dpc)
+        {
+            //Callback called when property was changed
+        }
     }
 }

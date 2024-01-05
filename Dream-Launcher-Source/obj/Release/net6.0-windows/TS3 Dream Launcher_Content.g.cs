@@ -8,6 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/intelfix.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/intro.wmv")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/tray-busy.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/tray-off.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/tray-on.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/icon-32x.ico")]
 
 
