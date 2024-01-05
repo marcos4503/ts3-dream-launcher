@@ -44,6 +44,8 @@ Now, go to Steam, and open The Sims 3 page in your library. Now, go to Steam, an
 
 That is all! If you did everything correctly, now, when you click play The Sims 3 on Steam, the Dream Launcher will open, instead of the standard EA Launcher. Just enjoy! :)
 
+<b>NOTE:</b> After installing Dream Launcher you should no longer do ANYTHING on your game files. Whether installing patches, mods or anything similar. Leave these things to do ONLY through Dream Launcher!
+
 # Prerequisites to use this Software
 
 You need to fulfill some requirements to be able to use this Software...
