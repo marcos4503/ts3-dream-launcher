@@ -37,15 +37,16 @@ namespace TS3_Dream_Launcher
         }
         private enum LauncherPage
         {
-            play,
+            home,
             saves,
             sims,
+            worlds,
+            media,
             cache,
             patches,
             mods,
             tools,
-            settings,
-            about
+            settings
         }
 
         //Cache variables
@@ -732,19 +733,22 @@ namespace TS3_Dream_Launcher
             };
 
             //Setup the navigation buttons
-            goPlay.Click += (s, e) => { SwitchPage(LauncherPage.play); };
+            goHome.Click += (s, e) => { SwitchPage(LauncherPage.home); };
             goSaves.Click += (s, e) => { SwitchPage(LauncherPage.saves); };
             goSims.Click += (s, e) => { SwitchPage(LauncherPage.sims); };
+            goWorlds.Click += (s, e) => { SwitchPage(LauncherPage.worlds); };
+            goMedia.Click += (s, e) => { SwitchPage(LauncherPage.media); };
             goCache.Click += (s, e) => { SwitchPage(LauncherPage.cache); };
             goPatches.Click += (s, e) => { SwitchPage(LauncherPage.patches); };
             goMods.Click += (s, e) => { SwitchPage(LauncherPage.mods); };
             goTools.Click += (s, e) => { SwitchPage(LauncherPage.tools); };
             goSettings.Click += (s, e) => { SwitchPage(LauncherPage.settings); };
-            goAbout.Click += (s, e) => { SwitchPage(LauncherPage.about); };
+            goGithub.Click += (s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo {FileName = "https://github.com/marcos4503/ts3-dream-launcher", UseShellExecute = true }); };
+            goGuide.Click += (s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://steamcommunity.com/sharedfiles/filedetails/?id=3118587838", UseShellExecute = true }); };
             goExit.Click += (s, e) => { CheckToExitFromLauncherAndWarnIfHaveTasksRunning(); };
 
             //Auto switch to play page of the launcher
-            SwitchPage(LauncherPage.play);
+            SwitchPage(LauncherPage.home);
 
             //Check all available DLCs
             CheckAvailableDLCs();
@@ -763,12 +767,13 @@ namespace TS3_Dream_Launcher
                 //Disable all navigation buttons
                 goSaves.IsEnabled = false;
                 goSims.IsEnabled = false;
+                goWorlds.IsEnabled = false;
+                goMedia.IsEnabled = false;
                 goCache.IsEnabled = false;
                 goPatches.IsEnabled = false;
                 goMods.IsEnabled = false;
                 goTools.IsEnabled = false;
                 goSettings.IsEnabled = false;
-                goAbout.IsEnabled = false;
 
                 //Enable the warning
                 documentsNotFound.Visibility = Visibility.Visible;
@@ -944,239 +949,101 @@ namespace TS3_Dream_Launcher
             Color btSelectedColor = Color.FromArgb(255, 0, 40, 86);
             Color btUnselectedColor = Color.FromArgb(255, 44, 103, 169);
 
-            //If is desired play page
-            if (desiredPage == LauncherPage.play)
+            //Prepare the dictionary of pages
+            int pageIdToShow = -1;
+            switch (desiredPage)
             {
-                goPlay.Background = new SolidColorBrush(btSelectedColor);
-                goSaves.Background = new SolidColorBrush(btUnselectedColor);
-                goSims.Background = new SolidColorBrush(btUnselectedColor);
-                goCache.Background = new SolidColorBrush(btUnselectedColor);
-                goPatches.Background = new SolidColorBrush(btUnselectedColor);
-                goMods.Background = new SolidColorBrush(btUnselectedColor);
-                goTools.Background = new SolidColorBrush(btUnselectedColor);
-                goSettings.Background = new SolidColorBrush(btUnselectedColor);
-                goAbout.Background = new SolidColorBrush(btUnselectedColor);
-
-                pagePlay.Visibility = Visibility.Visible;
-                pageSaves.Visibility = Visibility.Collapsed;
-                pageSims.Visibility = Visibility.Collapsed;
-                pageCache.Visibility = Visibility.Collapsed;
-                pagePatches.Visibility = Visibility.Collapsed;
-                pageMods.Visibility = Visibility.Collapsed;
-                pageTools.Visibility = Visibility.Collapsed;
-                pageSettings.Visibility = Visibility.Collapsed;
-                pageAbout.Visibility = Visibility.Collapsed;
-
-                pageTitle.Content = (Application.Current.Resources["launcher_button_goPlay"] as string);
+                case LauncherPage.home:
+                    pageIdToShow = 0;
+                    break;
+                case LauncherPage.saves:
+                    pageIdToShow = 1;
+                    break;
+                case LauncherPage.sims:
+                    pageIdToShow = 2;
+                    break;
+                case LauncherPage.worlds:
+                    pageIdToShow = 3;
+                    break;
+                case LauncherPage.media:
+                    pageIdToShow = 4;
+                    break;
+                case LauncherPage.cache:
+                    pageIdToShow = 5;
+                    break;
+                case LauncherPage.patches:
+                    pageIdToShow = 6;
+                    break;
+                case LauncherPage.mods:
+                    pageIdToShow = 7;
+                    break;
+                case LauncherPage.tools:
+                    pageIdToShow = 8;
+                    break;
+                case LauncherPage.settings:
+                    pageIdToShow = 9;
+                    break;
             }
 
-            //If is desired saves page
-            if (desiredPage == LauncherPage.saves)
+            //Prepare the list of buttons
+            List<Controls.BeautyButton.BeautyButton> buttons = new List<Controls.BeautyButton.BeautyButton>();
+            buttons.Add(goHome);
+            buttons.Add(goSaves);
+            buttons.Add(goSims);
+            buttons.Add(goWorlds);
+            buttons.Add(goMedia);
+            buttons.Add(goCache);
+            buttons.Add(goPatches);
+            buttons.Add(goMods);
+            buttons.Add(goTools);
+            buttons.Add(goSettings);
+
+            //Prepare the list of pages
+            List<Grid> pages = new List<Grid>();
+            pages.Add(pageHome);
+            pages.Add(pageSaves);
+            pages.Add(pageSims);
+            pages.Add(pageWorlds);
+            pages.Add(pageMedia);
+            pages.Add(pageCache);
+            pages.Add(pagePatches);
+            pages.Add(pageMods);
+            pages.Add(pageTools);
+            pages.Add(pageSettings);
+
+            //Prepare the list of titles
+            List<string> titles = new List<string>();
+            titles.Add((Application.Current.Resources["launcher_button_goHome"] as string));
+            titles.Add((Application.Current.Resources["launcher_button_goSaves"] as string));
+            titles.Add((Application.Current.Resources["launcher_button_goSims"] as string));
+            titles.Add((Application.Current.Resources["launcher_button_goWorlds"] as string));
+            titles.Add((Application.Current.Resources["launcher_button_goMedia"] as string));
+            titles.Add((Application.Current.Resources["launcher_button_goCache"] as string));
+            titles.Add((Application.Current.Resources["launcher_button_goPatches"] as string));
+            titles.Add((Application.Current.Resources["launcher_button_goMods"] as string));
+            titles.Add((Application.Current.Resources["launcher_button_goTools"] as string));
+            titles.Add((Application.Current.Resources["launcher_button_goSettings"] as string));
+
+            //If was found a ID
+            if(pageIdToShow != -1)
             {
-                goPlay.Background = new SolidColorBrush(btUnselectedColor);
-                goSaves.Background = new SolidColorBrush(btSelectedColor);
-                goSims.Background = new SolidColorBrush(btUnselectedColor);
-                goCache.Background = new SolidColorBrush(btUnselectedColor);
-                goPatches.Background = new SolidColorBrush(btUnselectedColor);
-                goMods.Background = new SolidColorBrush(btUnselectedColor);
-                goTools.Background = new SolidColorBrush(btUnselectedColor);
-                goSettings.Background = new SolidColorBrush(btUnselectedColor);
-                goAbout.Background = new SolidColorBrush(btUnselectedColor);
+                //Disable all pages
+                for(int i = 0; i < buttons.Count; i++)
+                {
+                    buttons[i].Background = new SolidColorBrush(btUnselectedColor);
+                    pages[i].Visibility = Visibility.Collapsed;
+                }
 
-                pagePlay.Visibility = Visibility.Collapsed;
-                pageSaves.Visibility = Visibility.Visible;
-                pageSims.Visibility = Visibility.Collapsed;
-                pageCache.Visibility = Visibility.Collapsed;
-                pagePatches.Visibility = Visibility.Collapsed;
-                pageMods.Visibility = Visibility.Collapsed;
-                pageTools.Visibility = Visibility.Collapsed;
-                pageSettings.Visibility = Visibility.Collapsed;
-                pageAbout.Visibility = Visibility.Collapsed;
-
-                pageTitle.Content = (Application.Current.Resources["launcher_button_goSaves"] as string);
+                //Enable the desired page
+                buttons[pageIdToShow].Background = new SolidColorBrush(btSelectedColor);
+                pages[pageIdToShow].Visibility = Visibility.Visible;
+                pageTitle.Content = titles[pageIdToShow];
             }
 
-            //If is desired sims page
-            if (desiredPage == LauncherPage.sims)
-            {
-                goPlay.Background = new SolidColorBrush(btUnselectedColor);
-                goSaves.Background = new SolidColorBrush(btUnselectedColor);
-                goSims.Background = new SolidColorBrush(btSelectedColor);
-                goCache.Background = new SolidColorBrush(btUnselectedColor);
-                goPatches.Background = new SolidColorBrush(btUnselectedColor);
-                goMods.Background = new SolidColorBrush(btUnselectedColor);
-                goTools.Background = new SolidColorBrush(btUnselectedColor);
-                goSettings.Background = new SolidColorBrush(btUnselectedColor);
-                goAbout.Background = new SolidColorBrush(btUnselectedColor);
-
-                pagePlay.Visibility = Visibility.Collapsed;
-                pageSaves.Visibility = Visibility.Collapsed;
-                pageSims.Visibility = Visibility.Visible;
-                pageCache.Visibility = Visibility.Collapsed;
-                pagePatches.Visibility = Visibility.Collapsed;
-                pageMods.Visibility = Visibility.Collapsed;
-                pageTools.Visibility = Visibility.Collapsed;
-                pageSettings.Visibility = Visibility.Collapsed;
-                pageAbout.Visibility = Visibility.Collapsed;
-
-                pageTitle.Content = (Application.Current.Resources["launcher_button_goSims"] as string);
-            }
-
-            //If is desired cache page
-            if (desiredPage == LauncherPage.cache)
-            {
-                goPlay.Background = new SolidColorBrush(btUnselectedColor);
-                goSaves.Background = new SolidColorBrush(btUnselectedColor);
-                goSims.Background = new SolidColorBrush(btUnselectedColor);
-                goCache.Background = new SolidColorBrush(btSelectedColor);
-                goPatches.Background = new SolidColorBrush(btUnselectedColor);
-                goMods.Background = new SolidColorBrush(btUnselectedColor);
-                goTools.Background = new SolidColorBrush(btUnselectedColor);
-                goSettings.Background = new SolidColorBrush(btUnselectedColor);
-                goAbout.Background = new SolidColorBrush(btUnselectedColor);
-
-                pagePlay.Visibility = Visibility.Collapsed;
-                pageSaves.Visibility = Visibility.Collapsed;
-                pageSims.Visibility = Visibility.Collapsed;
-                pageCache.Visibility = Visibility.Visible;
-                pagePatches.Visibility = Visibility.Collapsed;
-                pageMods.Visibility = Visibility.Collapsed;
-                pageTools.Visibility = Visibility.Collapsed;
-                pageSettings.Visibility = Visibility.Collapsed;
-                pageAbout.Visibility = Visibility.Collapsed;
-
-                pageTitle.Content = (Application.Current.Resources["launcher_button_goCache"] as string);
-            }
-
-            //If is desired patches page
-            if (desiredPage == LauncherPage.patches)
-            {
-                goPlay.Background = new SolidColorBrush(btUnselectedColor);
-                goSaves.Background = new SolidColorBrush(btUnselectedColor);
-                goSims.Background = new SolidColorBrush(btUnselectedColor);
-                goCache.Background = new SolidColorBrush(btUnselectedColor);
-                goPatches.Background = new SolidColorBrush(btSelectedColor);
-                goMods.Background = new SolidColorBrush(btUnselectedColor);
-                goTools.Background = new SolidColorBrush(btUnselectedColor);
-                goSettings.Background = new SolidColorBrush(btUnselectedColor);
-                goAbout.Background = new SolidColorBrush(btUnselectedColor);
-
-                pagePlay.Visibility = Visibility.Collapsed;
-                pageSaves.Visibility = Visibility.Collapsed;
-                pageSims.Visibility = Visibility.Collapsed;
-                pageCache.Visibility = Visibility.Collapsed;
-                pagePatches.Visibility = Visibility.Visible;
-                pageMods.Visibility = Visibility.Collapsed;
-                pageTools.Visibility = Visibility.Collapsed;
-                pageSettings.Visibility = Visibility.Collapsed;
-                pageAbout.Visibility = Visibility.Collapsed;
-
-                pageTitle.Content = (Application.Current.Resources["launcher_button_goPatches"] as string);
-            }
-
-            //If is desired mods page
-            if (desiredPage == LauncherPage.mods)
-            {
-                goPlay.Background = new SolidColorBrush(btUnselectedColor);
-                goSaves.Background = new SolidColorBrush(btUnselectedColor);
-                goSims.Background = new SolidColorBrush(btUnselectedColor);
-                goCache.Background = new SolidColorBrush(btUnselectedColor);
-                goPatches.Background = new SolidColorBrush(btUnselectedColor);
-                goMods.Background = new SolidColorBrush(btSelectedColor);
-                goTools.Background = new SolidColorBrush(btUnselectedColor);
-                goSettings.Background = new SolidColorBrush(btUnselectedColor);
-                goAbout.Background = new SolidColorBrush(btUnselectedColor);
-
-                pagePlay.Visibility = Visibility.Collapsed;
-                pageSaves.Visibility = Visibility.Collapsed;
-                pageSims.Visibility = Visibility.Collapsed;
-                pageCache.Visibility = Visibility.Collapsed;
-                pagePatches.Visibility = Visibility.Collapsed;
-                pageMods.Visibility = Visibility.Visible;
-                pageTools.Visibility = Visibility.Collapsed;
-                pageSettings.Visibility = Visibility.Collapsed;
-                pageAbout.Visibility = Visibility.Collapsed;
-
-                pageTitle.Content = (Application.Current.Resources["launcher_button_goMods"] as string);
-            }
-
-            //If is desired tools page
-            if (desiredPage == LauncherPage.tools)
-            {
-                goPlay.Background = new SolidColorBrush(btUnselectedColor);
-                goSaves.Background = new SolidColorBrush(btUnselectedColor);
-                goSims.Background = new SolidColorBrush(btUnselectedColor);
-                goCache.Background = new SolidColorBrush(btUnselectedColor);
-                goPatches.Background = new SolidColorBrush(btUnselectedColor);
-                goMods.Background = new SolidColorBrush(btUnselectedColor);
-                goTools.Background = new SolidColorBrush(btSelectedColor);
-                goSettings.Background = new SolidColorBrush(btUnselectedColor);
-                goAbout.Background = new SolidColorBrush(btUnselectedColor);
-
-                pagePlay.Visibility = Visibility.Collapsed;
-                pageSaves.Visibility = Visibility.Collapsed;
-                pageSims.Visibility = Visibility.Collapsed;
-                pageCache.Visibility = Visibility.Collapsed;
-                pagePatches.Visibility = Visibility.Collapsed;
-                pageMods.Visibility = Visibility.Collapsed;
-                pageTools.Visibility = Visibility.Visible;
-                pageSettings.Visibility = Visibility.Collapsed;
-                pageAbout.Visibility = Visibility.Collapsed;
-
-                pageTitle.Content = (Application.Current.Resources["launcher_button_goTools"] as string);
-            }
-
-            //If is desired settings page
-            if (desiredPage == LauncherPage.settings)
-            {
-                goPlay.Background = new SolidColorBrush(btUnselectedColor);
-                goSaves.Background = new SolidColorBrush(btUnselectedColor);
-                goSims.Background = new SolidColorBrush(btUnselectedColor);
-                goCache.Background = new SolidColorBrush(btUnselectedColor);
-                goPatches.Background = new SolidColorBrush(btUnselectedColor);
-                goMods.Background = new SolidColorBrush(btUnselectedColor);
-                goTools.Background = new SolidColorBrush(btUnselectedColor);
-                goSettings.Background = new SolidColorBrush(btSelectedColor);
-                goAbout.Background = new SolidColorBrush(btUnselectedColor);
-
-                pagePlay.Visibility = Visibility.Collapsed;
-                pageSaves.Visibility = Visibility.Collapsed;
-                pageSims.Visibility = Visibility.Collapsed;
-                pageCache.Visibility = Visibility.Collapsed;
-                pagePatches.Visibility = Visibility.Collapsed;
-                pageMods.Visibility = Visibility.Collapsed;
-                pageTools.Visibility = Visibility.Collapsed;
-                pageSettings.Visibility = Visibility.Visible;
-                pageAbout.Visibility = Visibility.Collapsed;
-
-                pageTitle.Content = (Application.Current.Resources["launcher_button_goSettings"] as string);
-            }
-
-            //If is desired about page
-            if (desiredPage == LauncherPage.about)
-            {
-                goPlay.Background = new SolidColorBrush(btUnselectedColor);
-                goSaves.Background = new SolidColorBrush(btUnselectedColor);
-                goSims.Background = new SolidColorBrush(btUnselectedColor);
-                goCache.Background = new SolidColorBrush(btUnselectedColor);
-                goPatches.Background = new SolidColorBrush(btUnselectedColor);
-                goMods.Background = new SolidColorBrush(btUnselectedColor);
-                goTools.Background = new SolidColorBrush(btUnselectedColor);
-                goSettings.Background = new SolidColorBrush(btUnselectedColor);
-                goAbout.Background = new SolidColorBrush(btSelectedColor);
-
-                pagePlay.Visibility = Visibility.Collapsed;
-                pageSaves.Visibility = Visibility.Collapsed;
-                pageSims.Visibility = Visibility.Collapsed;
-                pageCache.Visibility = Visibility.Collapsed;
-                pagePatches.Visibility = Visibility.Collapsed;
-                pageMods.Visibility = Visibility.Collapsed;
-                pageTools.Visibility = Visibility.Collapsed;
-                pageSettings.Visibility = Visibility.Collapsed;
-                pageAbout.Visibility = Visibility.Visible;
-
-                pageTitle.Content = (Application.Current.Resources["launcher_button_goAbout"] as string);
-            }
+            //Clear the lists
+            buttons.Clear();
+            pages.Clear();
+            titles.Clear();
         }
 
         //Exit manager

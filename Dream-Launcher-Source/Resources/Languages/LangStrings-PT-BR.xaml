@@ -24,15 +24,16 @@
     <system:String x:Key="screen5_Loading">Verificando recursos...</system:String>
 
     <!-- Screen 6: Launcher -->
-    <system:String x:Key="launcher_button_goPlay">ÍNICIO</system:String>
+    <system:String x:Key="launcher_button_goHome">ÍNICIO</system:String>
     <system:String x:Key="launcher_button_goSaves">SAVES</system:String>
     <system:String x:Key="launcher_button_goSims">SIMS</system:String>
+    <system:String x:Key="launcher_button_goWorlds">MUNDOS</system:String>
+    <system:String x:Key="launcher_button_goMedia">MÍDIA</system:String>
     <system:String x:Key="launcher_button_goCache">CACHE</system:String>
     <system:String x:Key="launcher_button_goPatches">PATCHES</system:String>
     <system:String x:Key="launcher_button_goMods">MODS</system:String>
     <system:String x:Key="launcher_button_goTools">FERRAMENTAS</system:String>
     <system:String x:Key="launcher_button_goSettings">CONFIGURAÇÕES</system:String>
-    <system:String x:Key="launcher_button_goAbout">CRÉDITOS</system:String>
     <system:String x:Key="launcher_button_goExit">FECHAR</system:String>
     <system:String x:Key="launcher_button_playButton">JOGAR!</system:String>
     <system:String x:Key="launcher_taks_readyToPlay">Pronto para jogar!</system:String>

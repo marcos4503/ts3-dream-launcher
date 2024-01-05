@@ -75,6 +75,8 @@
     <None Remove="Resources\icon-64x.png" />
     <None Remove="Resources\lang-en-us.png" />
     <None Remove="Resources\lang-pt-br.png" />
+    <None Remove="Resources\link-github.png" />
+    <None Remove="Resources\link-steam.png" />
     <None Remove="Resources\load.gif" />
     <None Remove="Resources\logo.png" />
     <None Remove="Resources\neighborhood.png" />
@@ -167,6 +169,8 @@
     <Resource Include="Resources\icon-64x.png" />
     <Resource Include="Resources\lang-en-us.png" />
     <Resource Include="Resources\lang-pt-br.png" />
+    <Resource Include="Resources\link-github.png" />
+    <Resource Include="Resources\link-steam.png" />
     <Resource Include="Resources\load.gif" />
     <Resource Include="Resources\logo.png" />
     <Resource Include="Resources\neighborhood.png" />

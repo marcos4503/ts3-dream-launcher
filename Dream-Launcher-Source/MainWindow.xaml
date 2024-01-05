@@ -227,16 +227,25 @@
                             </Rectangle.Fill>
                         </Rectangle>
                         <StackPanel Margin="16,16,16,16">
-                            <Image Source="/Resources/logo.png" Stretch="Uniform" StretchDirection="Both" Height="250"/>
-                            <BeautyButton:BeautyButton x:Name="goPlay" Content="{DynamicResource launcher_button_goPlay}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White"/>
+                            <Image Source="/Resources/logo.png" Stretch="Uniform" StretchDirection="Both" Height="220"/>
+                            <BeautyButton:BeautyButton x:Name="goHome" Content="{DynamicResource launcher_button_goHome}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White"/>
                             <BeautyButton:BeautyButton x:Name="goSaves" Content="{DynamicResource launcher_button_goSaves}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
                             <BeautyButton:BeautyButton x:Name="goSims" Content="{DynamicResource launcher_button_goSims}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
+                            <BeautyButton:BeautyButton x:Name="goWorlds" Content="{DynamicResource launcher_button_goWorlds}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
+                            <BeautyButton:BeautyButton x:Name="goMedia" Content="{DynamicResource launcher_button_goMedia}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
                             <BeautyButton:BeautyButton x:Name="goCache" Content="{DynamicResource launcher_button_goCache}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
                             <BeautyButton:BeautyButton x:Name="goPatches" Content="{DynamicResource launcher_button_goPatches}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
                             <BeautyButton:BeautyButton x:Name="goMods" Content="{DynamicResource launcher_button_goMods}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
                             <BeautyButton:BeautyButton x:Name="goTools" Content="{DynamicResource launcher_button_goTools}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
                             <BeautyButton:BeautyButton x:Name="goSettings" Content="{DynamicResource launcher_button_goSettings}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
-                            <BeautyButton:BeautyButton x:Name="goAbout" Content="{DynamicResource launcher_button_goAbout}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
+                            <StackPanel Height="28" Margin="0,4,0,0" Orientation="Horizontal">
+                                <BeautyButton:BeautyButton x:Name="goGithub" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Width="109.5" Margin="0,0,4,0">
+                                    <Image Height="18" Width="18" Source="/Resources/link-github.png" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </BeautyButton:BeautyButton>
+                                <BeautyButton:BeautyButton x:Name="goGuide" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Width="109.5">
+                                    <Image Height="18" Width="18" Source="/Resources/link-steam.png" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </BeautyButton:BeautyButton>
+                            </StackPanel>
                             <BeautyButton:BeautyButton x:Name="goExit" Content="{DynamicResource launcher_button_goExit}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
                         </StackPanel>
                         <Label x:Name="gameVersion" Content="Game Version: 0.0.0.0.0000" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0,0,0,0" FontSize="10" Margin="0,0,0,8" VerticalAlignment="Bottom" Foreground="#FFF1F1F1"/>
@@ -256,7 +265,7 @@
                             <Label x:Name="pageTitle" Content="Place Holder" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="{DynamicResource TheSimsSansSc}" Foreground="White" FontSize="20" FontWeight="Bold"/>
                         </Border>
                         <Grid x:Name="pagesContent" Margin="4,36,4,4">
-                            <Grid x:Name="pagePlay" Margin="0,0,0,0" Visibility="Collapsed">
+                            <Grid x:Name="pageHome" Margin="0,0,0,0" Visibility="Collapsed">
                                 <Border x:Name="playWallpaper" BorderThickness="0,0,0,0" CornerRadius="0,0,8,8">
                                     <Border.Background>
                                         <ImageBrush Stretch="UniformToFill" ImageSource="/Resources/wallpaper-0.jpg">
@@ -283,12 +292,13 @@
                             </Grid>
                             <Grid x:Name="pageSaves" Visibility="Collapsed"/>
                             <Grid x:Name="pageSims" Visibility="Collapsed"/>
+                            <Grid x:Name="pageWorlds" Visibility="Collapsed"/>
+                            <Grid x:Name="pageMedia" Visibility="Collapsed"/>
                             <Grid x:Name="pageCache" Visibility="Collapsed"/>
                             <Grid x:Name="pagePatches" Visibility="Collapsed"/>
                             <Grid x:Name="pageMods" Visibility="Collapsed"/>
                             <Grid x:Name="pageTools" Visibility="Collapsed"/>
                             <Grid x:Name="pageSettings" Visibility="Collapsed"/>
-                            <Grid x:Name="pageAbout" Visibility="Collapsed"/>
                         </Grid>
                     </Grid>
                 </StackPanel>
