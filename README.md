@@ -36,9 +36,9 @@ It is <b>MANDATORY</b> that you uninstall your The Sims 3, install it again from
 
 <b>1.</b> To start, download this repository by cloning the "Dream-Launcher-Compiled" folder to your computer. After that, copy ALL the content inside the "Dream-Launcher-Compiled" folder. 
 
-<b>2.</b> Go to your The Sims 3 installation root directory and access the "Game/Bin" folder and rename the file "Sims3Launcher.exe" for "Sims3Launcher-backup.exe".
+<b>2.</b> Go to your The Sims 3 installation root directory and access the "Game/Bin" folder. Rename the file "Sims3Launcher.exe" to "Sims3Launcher-backup.exe".
 
-<b>3.</b> Paste ALL the copied content into this folder.
+<b>3.</b> Now, paste ALL the copied content into this folder.
 
 That is all! If you did everything correctly, now, when you click play The Sims 3 on Steam, the Dream Launcher will open, instead of the standard EA Launcher. The game hours should continue to be counted and everything should work normally. Just enjoy! :)
 
