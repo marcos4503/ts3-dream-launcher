@@ -34,17 +34,15 @@ And there are several other functions. Keep reading to find out how to install i
 
 It is <b>MANDATORY</b> that you uninstall your The Sims 3, install it again from scratch, and then install the Dream Launcher following the procedures below. This is necessary to ensure a clean, functional and conflict-free installation for your game. <b>If you have mods installed</b> in your game, it is MANDATORY that you delete the "Mods" folder from your "The Sims 3" folder in "My Documents" on your computer. This is necessary because Dream Launcher will now control and format your game Mods! If you've already done all of this, then continue...
 
-To start, download this repository by cloning the "Dream-Launcher-Compiled" folder to your computer. After that, copy ALL the contents inside the folder. Go to your The Sims 3 installation directory and access the "Game/Bin" folder and paste all the copied content into this folder.
+<b>1.</b> To start, download this repository by cloning the "Dream-Launcher-Compiled" folder to your computer. After that, copy ALL the content inside the "Dream-Launcher-Compiled" folder. 
 
-Now, go to Steam, and open The Sims 3 page in your library. Now, go to Steam, and open The Sims 3 page in your library. Click the gear icon and then click "Properties". In the "General" tab, paste the following content into the launch options. Of course, editing where necessary.
+<b>2.</b> Go to your The Sims 3 installation root directory and access the "Game/Bin" folder and rename the file "Sims3Launcher.exe" for "Sims3Launcher-backup.exe".
 
-```
-"<the-sims-3-install-dir>\Game\Bin\TS3 Dream Launcher.exe" %command%
-```
+<b>3.</b> Paste ALL the copied content into this folder.
 
-That is all! If you did everything correctly, now, when you click play The Sims 3 on Steam, the Dream Launcher will open, instead of the standard EA Launcher. Just enjoy! :)
+That is all! If you did everything correctly, now, when you click play The Sims 3 on Steam, the Dream Launcher will open, instead of the standard EA Launcher. The game hours should continue to be counted and everything should work normally. Just enjoy! :)
 
-<b>NOTE:</b> After installing Dream Launcher you should no longer do ANYTHING on your game files. Whether installing patches, mods or anything similar. Leave these things to do ONLY through Dream Launcher!
+<b>NOTE:</b> After installing Dream Launcher you should no longer do ANYTHING on your game files. Whether installing patches, mods or anything similar. NOTHING. Leave these things to do ONLY through Dream Launcher!
 
 # Prerequisites to use this Software
 
