@@ -52,6 +52,7 @@ You need to fulfill some requirements to be able to use this Software...
 - The computer must be 64-bit.
 - Your The Sims 3 must be of Steam and version "1.67.2.024037".
 - Your computer's operating system must be Windows 10 or newer.
+- Your monitor must be Widescreen or Ultrawide.
 - Not compatible with Launcher created by <a href="https://github.com/LazyDuchess" target="_blank">Lazy Duchess</a>.
 
 # Learn everything about this Launcher and The Sims 3!
