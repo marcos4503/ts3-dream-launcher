@@ -1,6 +1,7 @@
 ﻿using CoroutinesDotNet;
 using CoroutinesForWpf;
 using MarcosTomaz.ATS;
+using Microsoft.Win32;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Management;
 using System.Reflection;
+using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -48,6 +50,32 @@ namespace TS3_Dream_Launcher
             tools,
             settings
         }
+        private enum ExpansionPack
+        {
+            WorldAdventures,
+            Ambitions,
+            LateNight,
+            Generations,
+            Pets,
+            Showtime,
+            Supernatural,
+            Seasons,
+            UniversityLife,
+            IslandParadise,
+            IntoTheFuture
+        }
+        private enum StuffPack
+        {
+            HighEndLoft,
+            FastLane,
+            OutdoorLiving,
+            TownLife,
+            MasterSuite,
+            KatyPerry,
+            Diesel,
+            y70y80y90,
+            Movie
+        }
 
         //Cache variables
         private double thisWindowLeftPosition = 0;
@@ -57,6 +85,8 @@ namespace TS3_Dream_Launcher
         private int currentToastsInHistory = 0;
         private bool isPlayingTheGame = false;
         private string myDocumentsPath = "";
+        private bool[] availableExpansionPacks = new bool[12];
+        private bool[] availableStuffPacks = new bool[10];
 
         //Private variables
         private Preferences launcherPrefs = null;
@@ -76,6 +106,18 @@ namespace TS3_Dream_Launcher
             {
                 //Warn abou the problem
                 MessageBox.Show("There is already an instance of \"The Sims 3 Dream Launcher\" running!", "Error");
+
+                //Stop the execution of this instance
+                System.Windows.Application.Current.Shutdown();
+
+                //Cancel the execution
+                return;
+            }
+            //Check if was started without admin rights. If yes, cancel this...
+            if(isRunningWithAdminRights() == false)
+            {
+                //Warn abou the problem
+                MessageBox.Show("Error when starting! The Dream Launcher needs to be runned with Admin rights. There are some patching operations and features of Dream Launcher that require these rights.", "Error");
 
                 //Stop the execution of this instance
                 System.Windows.Application.Current.Shutdown();
@@ -209,17 +251,17 @@ namespace TS3_Dream_Launcher
             s6_launcher.Visibility = Visibility.Collapsed;
 
             //Load the correct language
-            ResourceDictionary dict = new ResourceDictionary();
+            ResourceDictionary resourceDictionary = new ResourceDictionary();
             switch (launcherPrefs.loadedData.launcherLang)
             {
                 case "en-us":
-                    dict.Source = new Uri("..\\Resources\\Languages\\LangStrings.xaml", UriKind.Relative);
+                    resourceDictionary.Source = new Uri("..\\Resources\\Languages\\LangStrings.xaml", UriKind.Relative);
                     break;
                 case "pt-br":
-                    dict.Source = new Uri("..\\Resources\\Languages\\LangStrings-PT-BR.xaml", UriKind.Relative);
+                    resourceDictionary.Source = new Uri("..\\Resources\\Languages\\LangStrings-PT-BR.xaml", UriKind.Relative);
                     break;
             }
-            this.Resources.MergedDictionaries.Add(dict);
+            this.Resources.MergedDictionaries.Add(resourceDictionary);
 
             //Play the EA The Sims 3 intro
             introVideoPlayer.Source = new Uri(@"Content/intro.wmv", UriKind.Relative);
@@ -333,7 +375,8 @@ namespace TS3_Dream_Launcher
                     //Show the error
                     checking.Visibility = Visibility.Collapsed;
                     checkError.Visibility = Visibility.Visible;
-                    checkErrorReason.Text = (Application.Current.Resources["screen3_checkError1"] as string);
+                    checkErrorReason.Text = GetStringApplicationResource("screen3_checkError1");
+
                     //Cancel the execution
                     return;
                 }
@@ -343,7 +386,7 @@ namespace TS3_Dream_Launcher
                     //Show the error
                     checking.Visibility = Visibility.Collapsed;
                     checkError.Visibility = Visibility.Visible;
-                    checkErrorReason.Text = (Application.Current.Resources["screen3_checkError2"] as string);
+                    checkErrorReason.Text = GetStringApplicationResource("screen3_checkError2");
                     //Cancel the execution
                     return;
                 }
@@ -353,7 +396,8 @@ namespace TS3_Dream_Launcher
                     //Show the error
                     checking.Visibility = Visibility.Collapsed;
                     checkError.Visibility = Visibility.Visible;
-                    checkErrorReason.Text = (Application.Current.Resources["screen3_checkError3"] as string);
+                    checkErrorReason.Text = GetStringApplicationResource("screen3_checkError3");
+
                     //Cancel the execution
                     return;
                 }
@@ -525,7 +569,8 @@ namespace TS3_Dream_Launcher
                     intelLoading.Visibility = Visibility.Collapsed;
                     intelDialog.Visibility = Visibility.Visible;
                     //Prepare the UI
-                    intelText.Text = (Application.Current.Resources["screen5_dialogText"] as string).Replace("%CPU%", backgroundResult[1]);
+                    intelText.Text = GetStringApplicationResource("screen5_dialogText").Replace("%CPU%", backgroundResult[1]);
+
                     noIntelFix.Click += (s, e) => 
                     {
                         //Disable all buttons
@@ -630,8 +675,17 @@ namespace TS3_Dream_Launcher
                 //Try to launch the game
                 try
                 {
-                    //Start the game and store a reference for the process
-                    currentGameProcess = System.Diagnostics.Process.Start(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "TS3W.exe"));
+                    //Get the correct working directory
+                    string workingDirectory = Directory.GetCurrentDirectory();
+
+                    //Create a new process of the game
+                    Process newProcess = new Process();
+                    newProcess.StartInfo.FileName = System.IO.Path.Combine(workingDirectory, "TS3W.exe");
+                    newProcess.StartInfo.WorkingDirectory = workingDirectory;
+                    newProcess.Start();
+
+                    //Store it
+                    currentGameProcess = newProcess;
 
                     //Add a task of playing
                     AddTask("playing", "Playing the game.");
@@ -679,7 +733,7 @@ namespace TS3_Dream_Launcher
                     };
                     asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
                 }
-                catch (Exception ex) { ShowToast(((Application.Current.Resources["launcher_launchGameProblem"] as string) + " \"" + ex.Message + "\""), ToastType.Error); }
+                catch (Exception ex) { ShowToast((GetStringApplicationResource("launcher_launchGameProblem") + " \"" + ex.Message + "\""), ToastType.Error); }
             };
 
             //Add a temporary task to wait for play
@@ -747,19 +801,14 @@ namespace TS3_Dream_Launcher
             goGuide.Click += (s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://steamcommunity.com/sharedfiles/filedetails/?id=3118587838", UseShellExecute = true }); };
             goExit.Click += (s, e) => { CheckToExitFromLauncherAndWarnIfHaveTasksRunning(); };
 
-            //Auto switch to play page of the launcher
+            //Auto switch to home page of the launcher
             SwitchPage(LauncherPage.home);
 
             //Check all available DLCs
             CheckAvailableDLCs();
 
             //Try to determine the my documents path
-            string ptTargetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/Os Sims 3");
-            if (File.Exists((ptTargetFolderPath + "/Options.ini")) == true)
-                myDocumentsPath = ptTargetFolderPath;
-            string enTargetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/The Sims 3");
-            if (File.Exists((enTargetFolderPath + "/Options.ini")) == true)
-                myDocumentsPath = enTargetFolderPath;
+            myDocumentsPath = TryToDetermineTheSims3FolderPathInComputerMyDocuments();
 
             //If not found the my documents path, stops here
             if(myDocumentsPath == "")
@@ -782,7 +831,31 @@ namespace TS3_Dream_Launcher
                 return;
             }
 
-            //...
+            //Get a copy of "Options.ini" as template for settings appy, if don't have one
+            LoadNewOptionsTemplateIfDontHaveOne();
+            //Setup the reset options template button
+            set_ResetOptTemplate.Click += (s, e) => 
+            {
+                //Clear the current template
+                if (File.Exists((Directory.GetCurrentDirectory() + @"/Content/options-template.ini")) == true)
+                    File.Delete((Directory.GetCurrentDirectory() + @"/Content/options-template.ini"));
+                //Load a new
+                LoadNewOptionsTemplateIfDontHaveOne();
+                //Warn that is done
+                MessageBox.Show(GetStringApplicationResource("launcher_settings_launcher_resetTemplate_dialogText"), 
+                                GetStringApplicationResource("launcher_settings_launcher_resetTemplate_dialogTitle"),
+                                MessageBoxButton.OK, MessageBoxImage.Information);
+            };
+            //Show the settings
+            ShowAllSettings();
+            //Prepare the save settings button to save, and apply the settings automatically
+            settingsSave.Click += (s, e) => 
+            { 
+                SaveAllSettings();
+                ApplyAllSettings(); 
+            };
+            //Apply all settings automatically
+            ApplyAllSettings();
         }
 
         //Tasks manager
@@ -815,7 +888,7 @@ namespace TS3_Dream_Launcher
             {
                 doingTasksGif.Visibility = Visibility.Collapsed;
                 doingTasksOk.Visibility = Visibility.Visible;
-                tasksStatus.Content = (Application.Current.Resources["launcher_taks_readyToPlay"] as string);
+                tasksStatus.Content = GetStringApplicationResource("launcher_taks_readyToPlay");
                 playGame.IsEnabled = true;
             }
 
@@ -824,7 +897,7 @@ namespace TS3_Dream_Launcher
             {
                 doingTasksGif.Visibility = Visibility.Visible;
                 doingTasksOk.Visibility = Visibility.Collapsed;
-                tasksStatus.Content = (Application.Current.Resources["launcher_taks_working"] as string).Replace("%n%", tasksQuantity.ToString());
+                tasksStatus.Content = GetStringApplicationResource("launcher_taks_working").Replace("%n%", tasksQuantity.ToString());
                 playGame.IsEnabled = false;
             }
 
@@ -906,7 +979,7 @@ namespace TS3_Dream_Launcher
             newToastTime.FontSize = 8;
             newToastTime.TextAlignment = TextAlignment.Right;
             newToastTime.Foreground = new SolidColorBrush(Color.FromArgb(255, 136, 136, 136));
-            newToastTime.Text = ((Application.Current.Resources["launcher_toastsHistoryAt"] as string) + " " + DateTime.Now.ToString("H:mm:ss"));
+            newToastTime.Text = (GetStringApplicationResource("launcher_toastsHistoryAt") + " " + DateTime.Now.ToString("H:mm:ss"));
             toastOrganizer.Children.Add(newToastTime);
 
             //Move the scrollview to end
@@ -1013,19 +1086,19 @@ namespace TS3_Dream_Launcher
 
             //Prepare the list of titles
             List<string> titles = new List<string>();
-            titles.Add((Application.Current.Resources["launcher_button_goHome"] as string));
-            titles.Add((Application.Current.Resources["launcher_button_goSaves"] as string));
-            titles.Add((Application.Current.Resources["launcher_button_goSims"] as string));
-            titles.Add((Application.Current.Resources["launcher_button_goWorlds"] as string));
-            titles.Add((Application.Current.Resources["launcher_button_goMedia"] as string));
-            titles.Add((Application.Current.Resources["launcher_button_goCache"] as string));
-            titles.Add((Application.Current.Resources["launcher_button_goPatches"] as string));
-            titles.Add((Application.Current.Resources["launcher_button_goMods"] as string));
-            titles.Add((Application.Current.Resources["launcher_button_goTools"] as string));
-            titles.Add((Application.Current.Resources["launcher_button_goSettings"] as string));
+            titles.Add(GetStringApplicationResource("launcher_button_goHome"));
+            titles.Add(GetStringApplicationResource("launcher_button_goSaves")); 
+            titles.Add(GetStringApplicationResource("launcher_button_goSims"));
+            titles.Add(GetStringApplicationResource("launcher_button_goWorlds"));
+            titles.Add(GetStringApplicationResource("launcher_button_goMedia"));
+            titles.Add(GetStringApplicationResource("launcher_button_goCache"));
+            titles.Add(GetStringApplicationResource("launcher_button_goPatches"));
+            titles.Add(GetStringApplicationResource("launcher_button_goMods")); 
+            titles.Add(GetStringApplicationResource("launcher_button_goTools"));
+            titles.Add(GetStringApplicationResource("launcher_button_goSettings"));
 
             //If was found a ID
-            if(pageIdToShow != -1)
+            if (pageIdToShow != -1)
             {
                 //Disable all pages
                 for(int i = 0; i < buttons.Count; i++)
@@ -1061,8 +1134,8 @@ namespace TS3_Dream_Launcher
             if(GetRunningTasksCount() > 0)
             {
                 //Display a dialog
-                MessageBoxResult dialogResult = MessageBox.Show((Application.Current.Resources["launcher_taskCloseWarnTxt"] as string),
-                                                                (Application.Current.Resources["launcher_taskCloseWarnTit"] as string), MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                MessageBoxResult dialogResult = MessageBox.Show(GetStringApplicationResource("launcher_taskCloseWarnTxt"),
+                                                                GetStringApplicationResource("launcher_taskCloseWarnTit"), MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 //If is desired to kill the launcher, do it
                 if(dialogResult == MessageBoxResult.No)
@@ -1128,17 +1201,17 @@ namespace TS3_Dream_Launcher
             //Prepare the list of EPs names
             List<string> epsNames = new List<string>();
             epsNames.Add("");
-            epsNames.Add((Application.Current.Resources["launcher_dlc_ep1"] as string));
-            epsNames.Add((Application.Current.Resources["launcher_dlc_ep2"] as string));
-            epsNames.Add((Application.Current.Resources["launcher_dlc_ep3"] as string));
-            epsNames.Add((Application.Current.Resources["launcher_dlc_ep4"] as string));
-            epsNames.Add((Application.Current.Resources["launcher_dlc_ep5"] as string));
-            epsNames.Add((Application.Current.Resources["launcher_dlc_ep6"] as string));
-            epsNames.Add((Application.Current.Resources["launcher_dlc_ep7"] as string));
-            epsNames.Add((Application.Current.Resources["launcher_dlc_ep8"] as string));
-            epsNames.Add((Application.Current.Resources["launcher_dlc_ep9"] as string));
-            epsNames.Add((Application.Current.Resources["launcher_dlc_ep10"] as string));
-            epsNames.Add((Application.Current.Resources["launcher_dlc_ep11"] as string));
+            epsNames.Add(GetStringApplicationResource("launcher_dlc_ep1"));
+            epsNames.Add(GetStringApplicationResource("launcher_dlc_ep2"));
+            epsNames.Add(GetStringApplicationResource("launcher_dlc_ep3"));
+            epsNames.Add(GetStringApplicationResource("launcher_dlc_ep4"));
+            epsNames.Add(GetStringApplicationResource("launcher_dlc_ep5"));
+            epsNames.Add(GetStringApplicationResource("launcher_dlc_ep6"));
+            epsNames.Add(GetStringApplicationResource("launcher_dlc_ep7"));
+            epsNames.Add(GetStringApplicationResource("launcher_dlc_ep8"));
+            epsNames.Add(GetStringApplicationResource("launcher_dlc_ep9"));
+            epsNames.Add(GetStringApplicationResource("launcher_dlc_ep10"));
+            epsNames.Add(GetStringApplicationResource("launcher_dlc_ep11"));
             //Prepare the list of EPs UI elements
             List<Image> epsIcons = new List<Image>();
             epsIcons.Add(null);
@@ -1165,6 +1238,7 @@ namespace TS3_Dream_Launcher
                 //Prepare the EP icon in the UI
                 if (File.Exists(dlcSkuInfoPath) == true)
                 {
+                    availableExpansionPacks[i] = true;
                     dlcIcon.ToolTip = (dlcName + " - v" + GetVersionBySkuContent(File.ReadAllLines(dlcSkuInfoPath)));
                     dlcIcon.Opacity = 0.8f;
                 }
@@ -1183,15 +1257,15 @@ namespace TS3_Dream_Launcher
             //Prepare the list of SPs names
             List<string> spsNames = new List<string>();
             spsNames.Add("");
-            spsNames.Add((Application.Current.Resources["launcher_dlc_sp1"] as string));
-            spsNames.Add((Application.Current.Resources["launcher_dlc_sp2"] as string));
-            spsNames.Add((Application.Current.Resources["launcher_dlc_sp3"] as string));
-            spsNames.Add((Application.Current.Resources["launcher_dlc_sp4"] as string));
-            spsNames.Add((Application.Current.Resources["launcher_dlc_sp5"] as string));
-            spsNames.Add((Application.Current.Resources["launcher_dlc_sp6"] as string));
-            spsNames.Add((Application.Current.Resources["launcher_dlc_sp7"] as string));
-            spsNames.Add((Application.Current.Resources["launcher_dlc_sp8"] as string));
-            spsNames.Add((Application.Current.Resources["launcher_dlc_sp9"] as string));
+            spsNames.Add(GetStringApplicationResource("launcher_dlc_sp1"));
+            spsNames.Add(GetStringApplicationResource("launcher_dlc_sp2"));
+            spsNames.Add(GetStringApplicationResource("launcher_dlc_sp3"));
+            spsNames.Add(GetStringApplicationResource("launcher_dlc_sp4"));
+            spsNames.Add(GetStringApplicationResource("launcher_dlc_sp5"));
+            spsNames.Add(GetStringApplicationResource("launcher_dlc_sp6"));
+            spsNames.Add(GetStringApplicationResource("launcher_dlc_sp7"));
+            spsNames.Add(GetStringApplicationResource("launcher_dlc_sp8"));
+            spsNames.Add(GetStringApplicationResource("launcher_dlc_sp9"));
             //Prepare the list of SPs UI elements
             List<Image> spsIcons = new List<Image>();
             spsIcons.Add(null);
@@ -1216,6 +1290,7 @@ namespace TS3_Dream_Launcher
                 //Prepare the SP icon in the UI
                 if (File.Exists(dlcSkuInfoPath) == true)
                 {
+                    availableStuffPacks[i] = true;
                     dlcIcon.ToolTip = (dlcName + " - v" + GetVersionBySkuContent(File.ReadAllLines(dlcSkuInfoPath)));
                     dlcIcon.Opacity = 0.8f;
                 }
@@ -1232,27 +1307,27 @@ namespace TS3_Dream_Launcher
 
 
             //Setup the icon viewer for each EP
-            dlc_ep1.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_ep1"] as string), "Resources/dlc_ep1.png"); };
-            dlc_ep2.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_ep2"] as string), "Resources/dlc_ep2.png"); };
-            dlc_ep3.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_ep3"] as string), "Resources/dlc_ep3.png"); };
-            dlc_ep4.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_ep4"] as string), "Resources/dlc_ep4.png"); };
-            dlc_ep5.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_ep5"] as string), "Resources/dlc_ep5.png"); };
-            dlc_ep6.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_ep6"] as string), "Resources/dlc_ep6.png"); };
-            dlc_ep7.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_ep7"] as string), "Resources/dlc_ep7.png"); };
-            dlc_ep8.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_ep8"] as string), "Resources/dlc_ep8.png"); };
-            dlc_ep9.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_ep9"] as string), "Resources/dlc_ep9.png"); };
-            dlc_ep10.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_ep10"] as string), "Resources/dlc_ep10.png"); };
-            dlc_ep11.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_ep11"] as string), "Resources/dlc_ep11.png"); };
+            dlc_ep1.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_ep1"), "Resources/dlc_ep1.png"); };
+            dlc_ep2.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_ep2"), "Resources/dlc_ep2.png"); };
+            dlc_ep3.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_ep3"), "Resources/dlc_ep3.png"); };
+            dlc_ep4.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_ep4"), "Resources/dlc_ep4.png"); };
+            dlc_ep5.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_ep5"), "Resources/dlc_ep5.png"); };
+            dlc_ep6.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_ep6"), "Resources/dlc_ep6.png"); };
+            dlc_ep7.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_ep7"), "Resources/dlc_ep7.png"); };
+            dlc_ep8.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_ep8"), "Resources/dlc_ep8.png"); };
+            dlc_ep9.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_ep9"), "Resources/dlc_ep9.png"); };
+            dlc_ep10.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_ep10"), "Resources/dlc_ep10.png"); };
+            dlc_ep11.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_ep11"), "Resources/dlc_ep11.png"); };
             //Setup the icon viewer for each SP
-            dlc_sp1.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_sp1"] as string), "Resources/dlc_sp1.png"); };
-            dlc_sp2.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_sp2"] as string), "Resources/dlc_sp2.png"); };
-            dlc_sp3.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_sp3"] as string), "Resources/dlc_sp3.png"); };
-            dlc_sp4.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_sp4"] as string), "Resources/dlc_sp4.png"); };
-            dlc_sp5.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_sp5"] as string), "Resources/dlc_sp5.png"); };
-            dlc_sp6.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_sp6"] as string), "Resources/dlc_sp6.png"); };
-            dlc_sp7.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_sp7"] as string), "Resources/dlc_sp7.png"); };
-            dlc_sp8.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_sp8"] as string), "Resources/dlc_sp8.png"); };
-            dlc_sp9.MouseDown += (o, e) => { OpenIconViewer((Application.Current.Resources["launcher_dlc_sp9"] as string), "Resources/dlc_sp9.png"); };
+            dlc_sp1.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_sp1"), "Resources/dlc_sp1.png"); };
+            dlc_sp2.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_sp2"), "Resources/dlc_sp2.png"); };
+            dlc_sp3.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_sp3"), "Resources/dlc_sp3.png"); };
+            dlc_sp4.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_sp4"), "Resources/dlc_sp4.png"); };
+            dlc_sp5.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_sp5"), "Resources/dlc_sp5.png"); };
+            dlc_sp6.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_sp6"), "Resources/dlc_sp6.png"); };
+            dlc_sp7.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_sp7"), "Resources/dlc_sp7.png"); };
+            dlc_sp8.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_sp8"), "Resources/dlc_sp8.png"); };
+            dlc_sp9.MouseDown += (o, e) => { OpenIconViewer(GetStringApplicationResource("launcher_dlc_sp9"), "Resources/dlc_sp9.png"); };
         }
 
         private string GetVersionBySkuContent(string[] skuFileLines)
@@ -1290,6 +1365,96 @@ namespace TS3_Dream_Launcher
             currentOpenedIconViewer.Show();
         }
 
+        private bool isExpansionPackInstalled(ExpansionPack expansionPack)
+        {
+            //Prepare to return
+            bool toReturn = false;
+
+            //Check if the desired expansion pack is installed...
+            if (expansionPack == ExpansionPack.WorldAdventures)
+                toReturn = isExpansionPackInstalled(1);
+            if (expansionPack == ExpansionPack.Ambitions)
+                toReturn = isExpansionPackInstalled(2);
+            if (expansionPack == ExpansionPack.LateNight)
+                toReturn = isExpansionPackInstalled(3);
+            if (expansionPack == ExpansionPack.Generations)
+                toReturn = isExpansionPackInstalled(4);
+            if (expansionPack == ExpansionPack.Pets)
+                toReturn = isExpansionPackInstalled(5);
+            if (expansionPack == ExpansionPack.Showtime)
+                toReturn = isExpansionPackInstalled(6);
+            if (expansionPack == ExpansionPack.Supernatural)
+                toReturn = isExpansionPackInstalled(7);
+            if (expansionPack == ExpansionPack.Seasons)
+                toReturn = isExpansionPackInstalled(8);
+            if (expansionPack == ExpansionPack.UniversityLife)
+                toReturn = isExpansionPackInstalled(9);
+            if (expansionPack == ExpansionPack.IslandParadise)
+                toReturn = isExpansionPackInstalled(10);
+            if (expansionPack == ExpansionPack.IntoTheFuture)
+                toReturn = isExpansionPackInstalled(11);
+
+            //Return the response
+            return toReturn;
+        }
+
+        private bool isExpansionPackInstalled(int expansionPackNumber)
+        {
+            //Prepare to return
+            bool toReturn = false;
+
+            //Check if the desired expansion pack is installed
+            if(expansionPackNumber >= 1 && expansionPackNumber < 12)
+                if (availableExpansionPacks[expansionPackNumber] == true)
+                    toReturn = true;
+
+            //Return the response
+            return toReturn;
+        }
+
+        private bool isStuffPackInstalled(StuffPack stuffPack)
+        {
+            //Prepare to return
+            bool toReturn = false;
+
+            //Check if the desired stuff pack is installed...
+            if (stuffPack == StuffPack.HighEndLoft)
+                toReturn = isStuffPackInstalled(1);
+            if (stuffPack == StuffPack.FastLane)
+                toReturn = isStuffPackInstalled(2);
+            if (stuffPack == StuffPack.OutdoorLiving)
+                toReturn = isStuffPackInstalled(3);
+            if (stuffPack == StuffPack.TownLife)
+                toReturn = isStuffPackInstalled(4);
+            if (stuffPack == StuffPack.MasterSuite)
+                toReturn = isStuffPackInstalled(5);
+            if (stuffPack == StuffPack.KatyPerry)
+                toReturn = isStuffPackInstalled(6);
+            if (stuffPack == StuffPack.Diesel)
+                toReturn = isStuffPackInstalled(7);
+            if (stuffPack == StuffPack.y70y80y90)
+                toReturn = isStuffPackInstalled(8);
+            if (stuffPack == StuffPack.Movie)
+                toReturn = isStuffPackInstalled(9);
+
+            //Return the response
+            return toReturn;
+        }
+
+        private bool isStuffPackInstalled(int stuffPackNumber)
+        {
+            //Prepare to return
+            bool toReturn = false;
+
+            //Check if the desired stuff pack is installed
+            if (stuffPackNumber >= 1 && stuffPackNumber < 10)
+                if (availableStuffPacks[stuffPackNumber] == true)
+                    toReturn = true;
+
+            //Return the response
+            return toReturn;
+        }
+
         //Launcher tools
 
         private string GetLauncherVersion()
@@ -1303,6 +1468,460 @@ namespace TS3_Dream_Launcher
 
             //Return the version
             return version;
+        }
+
+        private string TryToDetermineTheSims3FolderPathInComputerMyDocuments()
+        {
+            //Prepare the value to return
+            string path = "";
+
+            //If don't defined a game language
+            if(launcherPrefs.loadedData.gameLang == "undefined")
+            {
+                string ptTargetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/Os Sims 3");
+                if (File.Exists((ptTargetFolderPath + "/Options.ini")) == true)
+                    path = ptTargetFolderPath;
+                string enBrTargetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/The Sims 3");
+                if (File.Exists((enBrTargetFolderPath + "/Options.ini")) == true)
+                    path = enBrTargetFolderPath;
+            }
+            //If "da-DK"
+            if (launcherPrefs.loadedData.gameLang == "da-DK")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "nl-NL"
+            if (launcherPrefs.loadedData.gameLang == "nl-NL")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/De Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "en-GB"
+            if (launcherPrefs.loadedData.gameLang == "en-GB")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/The Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "en-US"
+            if (launcherPrefs.loadedData.gameLang == "en-US")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/The Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "fr-FR"
+            if (launcherPrefs.loadedData.gameLang == "fr-FR")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/Les Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "it-IT"
+            if (launcherPrefs.loadedData.gameLang == "it-IT")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/The Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "pt-PT"
+            if (launcherPrefs.loadedData.gameLang == "pt-PT")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/Os Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "pt-BR"
+            if (launcherPrefs.loadedData.gameLang == "pt-BR")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/The Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "es-ES"
+            if (launcherPrefs.loadedData.gameLang == "es-ES")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/Los Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "es-MX"
+            if (launcherPrefs.loadedData.gameLang == "es-MX")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/Los Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "sv-SE"
+            if (launcherPrefs.loadedData.gameLang == "sv-SE")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/The Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+
+            //Return the value
+            return path;
+        }
+
+        private string GetStringApplicationResource(string resourceKey)
+        {
+            //Prepare the string to return
+            string toReturn = "###";
+
+            //Get the resource
+            //string resourceGetted = (Application.Current.Resources[resourceKey] as string);
+            string resourceGetted = (this.Resources.MergedDictionaries[0][resourceKey] as string);
+            if (resourceGetted != null)
+                toReturn = resourceGetted;
+
+            //Return the string
+            return toReturn;
+        }
+
+        private bool isRunningWithAdminRights()
+        {
+            //Prepare the response to return
+            bool toReturn = false;
+
+            //Try to check
+            try
+            {
+                //Inform the response
+                using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
+                {
+                    toReturn = (new WindowsPrincipal(identity)).IsInRole(WindowsBuiltInRole.Administrator);
+                }
+            }
+            catch (Exception ex) { toReturn = false; }
+
+            //Return the response
+            return toReturn;
+        }
+
+        //Settings manager
+
+        private void LoadNewOptionsTemplateIfDontHaveOne()
+        {
+            //Prepare the options template path
+            string optionsTemplatePath = (Directory.GetCurrentDirectory() + @"/Content/options-template.ini");
+
+            //If already exists a options template, cancel
+            if (File.Exists(optionsTemplatePath) == true)
+                return;
+
+            //Copy the options.ini from my documents to be a options template
+            if (File.Exists((myDocumentsPath + "/Options.ini")) == true)
+                File.Copy((myDocumentsPath + "/Options.ini"), optionsTemplatePath);
+        }
+
+        private void ShowAllSettings()
+        {
+            //Show all defined settings
+
+            //Launcher tab
+            //*** set_LauncherLang
+            if (launcherPrefs.loadedData.launcherLang == "en-us")
+                set_LauncherLang.SelectedIndex = 0;
+            if (launcherPrefs.loadedData.launcherLang == "pt-br")
+                set_LauncherLang.SelectedIndex = 1;
+            //*** set_GameLang
+            if (launcherPrefs.loadedData.gameLang == "undefined")
+                set_GameLang.SelectedIndex = 0;
+            if (launcherPrefs.loadedData.gameLang == "da-DK")
+                set_GameLang.SelectedIndex = 1;
+            if (launcherPrefs.loadedData.gameLang == "nl-NL")
+                set_GameLang.SelectedIndex = 2;
+            if (launcherPrefs.loadedData.gameLang == "en-GB")
+                set_GameLang.SelectedIndex = 3;
+            if (launcherPrefs.loadedData.gameLang == "en-US")
+                set_GameLang.SelectedIndex = 4;
+            if (launcherPrefs.loadedData.gameLang == "fr-FR")
+                set_GameLang.SelectedIndex = 5;
+            if (launcherPrefs.loadedData.gameLang == "it-IT")
+                set_GameLang.SelectedIndex = 6;
+            if (launcherPrefs.loadedData.gameLang == "pt-PT")
+                set_GameLang.SelectedIndex = 7;
+            if (launcherPrefs.loadedData.gameLang == "pt-BR")
+                set_GameLang.SelectedIndex = 8;
+            if (launcherPrefs.loadedData.gameLang == "es-ES")
+                set_GameLang.SelectedIndex = 9;
+            if (launcherPrefs.loadedData.gameLang == "es-MX")
+                set_GameLang.SelectedIndex = 10;
+            if (launcherPrefs.loadedData.gameLang == "sv-SE")
+                set_GameLang.SelectedIndex = 11;
+
+            //Graphics tab
+            //*** set_Resolution
+            set_Resolution.SelectedIndex = launcherPrefs.loadedData.resolution;
+            set_Resolution.SelectionChanged += (s, e) => 
+            {
+                //Get the screen resolution of the windows, converted to pixels
+                System.Drawing.Rectangle windowsResolution = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
+                long windowsPixels = (windowsResolution.Width * windowsResolution.Height);
+
+                //Convert the selected resolution for pixels
+                string selectedResolution = set_Resolution.SelectedValue.ToString();
+                string resolutionRaw = selectedResolution.Split(" ")[1];
+                int resolutionWidth = int.Parse(resolutionRaw.Split("x")[0]);
+                int resolutionHeight = int.Parse(resolutionRaw.Split("x")[1]);
+                int selectedPixels = (resolutionWidth * resolutionHeight);
+
+                //If the selected resolution is greather than windows resolution, undo the selection
+                if(selectedPixels > windowsPixels)
+                {
+                    ShowToast(GetStringApplicationResource("launcher_settings_graphics_resolutionError"), ToastType.Error);
+                    set_Resolution.SelectedIndex = launcherPrefs.loadedData.resolution;
+                }
+            };
+            //*** set_RefreshRate
+            set_RefreshRate.SelectedIndex = launcherPrefs.loadedData.refreshRate;
+            set_RefreshRate.SelectionChanged += (s, e) => 
+            {
+                //Get displays informations
+                AboutDisplays.DisplayInfo[] allDisplaysInformations = new AboutDisplays(AboutDisplays.DisplaysMode.GetCurrentDisplaySettingsOnly).GetDisplaysInformations();
+
+                //Convert the selected resolution for integer
+                string selectedResolution = set_RefreshRate.SelectedValue.ToString();
+                string resolutionRaw = selectedResolution.Split(" ")[1];
+                int selectedRefreshRate = int.Parse(resolutionRaw.Replace("hz", ""));
+
+                //If the selected refresh rate is greather than windows refresh rate, undo the selection
+                if (selectedRefreshRate > allDisplaysInformations[0].dmDisplayFrequency)
+                {
+                    ShowToast(GetStringApplicationResource("launcher_settings_graphics_refreshRateError"), ToastType.Error);
+                    set_RefreshRate.SelectedIndex = launcherPrefs.loadedData.refreshRate;
+                }
+            };
+            //*** set_MaxFps
+            set_MaxFps.SelectedIndex = launcherPrefs.loadedData.maxFps;
+
+
+            //...
+        }
+
+        private void SaveAllSettings()
+        {
+            //Apply all settings to preferences
+
+            //Launcher tab
+            //*** set_LauncherLang
+            if (set_LauncherLang.SelectedIndex == 0)
+                launcherPrefs.loadedData.launcherLang = "en-us";
+            if (set_LauncherLang.SelectedIndex == 1)
+                launcherPrefs.loadedData.launcherLang = "pt-br";
+            //*** set_GameLang
+            if (set_GameLang.SelectedIndex == 0)
+                launcherPrefs.loadedData.gameLang = "undefined";
+            if (set_GameLang.SelectedIndex == 1)
+                launcherPrefs.loadedData.gameLang = "da-DK";
+            if (set_GameLang.SelectedIndex == 2)
+                launcherPrefs.loadedData.gameLang = "nl-NL";
+            if (set_GameLang.SelectedIndex == 3)
+                launcherPrefs.loadedData.gameLang = "en-GB";
+            if (set_GameLang.SelectedIndex == 4)
+                launcherPrefs.loadedData.gameLang = "en-US";
+            if (set_GameLang.SelectedIndex == 5)
+                launcherPrefs.loadedData.gameLang = "fr-FR";
+            if (set_GameLang.SelectedIndex == 6)
+                launcherPrefs.loadedData.gameLang = "it-IT";
+            if (set_GameLang.SelectedIndex == 7)
+                launcherPrefs.loadedData.gameLang = "pt-PT";
+            if (set_GameLang.SelectedIndex == 8)
+                launcherPrefs.loadedData.gameLang = "pt-BR";
+            if (set_GameLang.SelectedIndex == 9)
+                launcherPrefs.loadedData.gameLang = "es-ES";
+            if (set_GameLang.SelectedIndex == 10)
+                launcherPrefs.loadedData.gameLang = "es-MX";
+            if (set_GameLang.SelectedIndex == 11)
+                launcherPrefs.loadedData.gameLang = "sv-SE";
+
+            //Graphics tab
+            //*** set_Resolution
+            launcherPrefs.loadedData.resolution = set_Resolution.SelectedIndex;
+            //*** set_RefreshRate
+            launcherPrefs.loadedData.refreshRate = set_RefreshRate.SelectedIndex;
+            //*** set_MaxFps
+            launcherPrefs.loadedData.maxFps = set_MaxFps.SelectedIndex;
+
+            //Save to file
+            launcherPrefs.Save();
+        }
+
+        private void ApplyAllSettings()
+        {
+            //Create a thread to remove the temporary task
+            AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { });
+            asyncTask.onStartTask_RunMainThread += (Window sourceWindow, string[] startParameters) =>
+            {
+                //Add a task to signal that is applying the settings
+                AddTask("applySettings", "Applying all defined settings.");
+
+                //Block the save button
+                settingsSave.IsEnabled = false;
+                set_ResetOptTemplate.IsEnabled = false;
+            };
+            asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+            {
+                //Wait some time
+                threadTools.MakeThreadSleep(5000);
+
+                //Load all settings (read-only)
+                Preferences launcherSettings = new Preferences();
+
+                //---------------------- Locale In Regedit ----------------------//
+
+                //If the game language is not undefined
+                if(launcherSettings.loadedData.gameLang != "undefined")
+                {
+                    //Extract the locale and country
+                    string locale = launcherSettings.loadedData.gameLang;
+                    string country = launcherSettings.loadedData.gameLang.Split("-")[1];
+
+                    //Translate the Base Game, Expansion Packs and Stuff Packs
+                    if (true == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\The Sims 3", country, locale);
+                    if (isStuffPackInstalled(StuffPack.y70y80y90) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\The Sims 3 70s 80s & 90s Stuff", country, locale);
+                    if (isExpansionPackInstalled(ExpansionPack.Ambitions) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\The Sims 3 Ambitions", country, locale);
+                    if (isStuffPackInstalled(StuffPack.Diesel) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\the sims 3 diesel stuff", country, locale);
+                    if (isStuffPackInstalled(StuffPack.FastLane) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\The Sims 3 Fast Lane Stuff", country, locale);
+                    if (isExpansionPackInstalled(ExpansionPack.Generations) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\The Sims 3 Generations", country, locale);
+                    if (isStuffPackInstalled(StuffPack.HighEndLoft) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\The Sims 3 High End Loft Stuff", country, locale);
+                    if (isExpansionPackInstalled(ExpansionPack.IntoTheFuture) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\The Sims 3 Into the Future", country, locale);
+                    if (isExpansionPackInstalled(ExpansionPack.IslandParadise) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\The Sims 3 Island Paradise", country, locale);
+                    if (isExpansionPackInstalled(ExpansionPack.LateNight) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\The Sims 3 Late Night", country, locale);
+                    if (isStuffPackInstalled(StuffPack.MasterSuite) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\The Sims 3 Master Suite Stuff", country, locale);
+                    if (isStuffPackInstalled(StuffPack.Movie) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\the sims 3 movie stuff", country, locale);
+                    if (isStuffPackInstalled(StuffPack.OutdoorLiving) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\The Sims 3 Outdoor Living Stuff", country, locale);
+                    if (isExpansionPackInstalled(ExpansionPack.Pets) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\The Sims 3 Pets", country, locale);
+                    if (isExpansionPackInstalled(ExpansionPack.Seasons) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\the sims 3 seasons", country, locale);
+                    if (isExpansionPackInstalled(ExpansionPack.Showtime) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\The Sims 3 Showtime", country, locale);
+                    if (isExpansionPackInstalled(ExpansionPack.Supernatural) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\the sims 3 supernatural", country, locale);
+                    if (isStuffPackInstalled(StuffPack.TownLife) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\The Sims 3 Town Life Stuff", country, locale);
+                    if (isExpansionPackInstalled(ExpansionPack.UniversityLife) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\the sims 3 university life", country, locale);
+                    if (isExpansionPackInstalled(ExpansionPack.WorldAdventures) == true)
+                        UpdateLanguageOfKeyInRegistry(@"SOFTWARE\WOW6432Node\Sims(Steam)\The Sims 3 World Adventures", country, locale);
+                }
+
+                //---------------------- Game Settings and Preferences ----------------------//
+
+                //Copy the options template for my documents
+                if (File.Exists((myDocumentsPath + "/Options.ini")) == true)
+                    File.Delete((myDocumentsPath + "/Options.ini"));
+                File.Copy((Directory.GetCurrentDirectory() + @"/Content/options-template.ini"), (myDocumentsPath + "/Options.ini"));
+
+                //Read the Options.ini
+                IniReader optionsIni = new IniReader((myDocumentsPath + "/Options.ini"));
+
+                //**** Graphics
+
+                //*** set_Resolution and //*** set_RefreshRate
+                string resolutionString = "";
+                if (launcherSettings.loadedData.resolution == 0)
+                    resolutionString = "1280 720";
+                if (launcherSettings.loadedData.resolution == 1)
+                    resolutionString = "1366 768";
+                if (launcherSettings.loadedData.resolution == 2)
+                    resolutionString = "1600 900";
+                if (launcherSettings.loadedData.resolution == 3)
+                    resolutionString = "1920 1080";
+                if (launcherSettings.loadedData.resolution == 4)
+                    resolutionString = "2560 1080";
+                if (launcherSettings.loadedData.resolution == 5)
+                    resolutionString = "2560 1440";
+                if (launcherSettings.loadedData.resolution == 6)
+                    resolutionString = "3200 1800";
+                if (launcherSettings.loadedData.resolution == 7)
+                    resolutionString = "3440 1440";
+                if (launcherSettings.loadedData.resolution == 8)
+                    resolutionString = "3840 2160";
+                if (launcherSettings.loadedData.resolution == 9)
+                    resolutionString = "3840 1600";
+                if (launcherSettings.loadedData.resolution == 10)
+                    resolutionString = "5120 2160";
+                if (launcherSettings.loadedData.refreshRate == 0)
+                    resolutionString += " 50";
+                if (launcherSettings.loadedData.refreshRate == 1)
+                    resolutionString += " 60";
+                if (launcherSettings.loadedData.refreshRate == 2)
+                    resolutionString += " 75";
+                if (launcherSettings.loadedData.refreshRate == 3)
+                    resolutionString += " 90";
+                if (launcherSettings.loadedData.refreshRate == 4)
+                    resolutionString += " 100";
+                if (launcherSettings.loadedData.refreshRate == 5)
+                    resolutionString += " 120";
+                if (launcherSettings.loadedData.refreshRate == 6)
+                    resolutionString += " 144";
+                if (launcherSettings.loadedData.refreshRate == 7)
+                    resolutionString += " 165";
+                if (launcherSettings.loadedData.refreshRate == 8)
+                    resolutionString += " 180";
+                if (launcherSettings.loadedData.refreshRate == 9)
+                    resolutionString += " 200";
+                if (launcherSettings.loadedData.refreshRate == 10)
+                    resolutionString += " 240";
+                if (launcherSettings.loadedData.refreshRate == 11)
+                    resolutionString += " 360";
+                optionsIni.UpdateValue("resolution", resolutionString);
+
+             
+
+                //Save the updates
+                optionsIni.Save();
+
+                //Return empty response
+                return new string[] { };
+            };
+            asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+            {
+                //Remove the added task
+                RemoveTask("applySettings");
+
+                //Restore the save button
+                settingsSave.IsEnabled = true;
+                set_ResetOptTemplate.IsEnabled = true;
+            };
+            asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+        }
+
+        private void UpdateLanguageOfKeyInRegistry(string key, string country, string locale)
+        {
+            //Get reference for HKEY_LOCAL_MACHINE
+            RegistryKey hkeyLocalMachine = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+
+            //Find the key
+            RegistryKey targetKey = hkeyLocalMachine.OpenSubKey((@"" + key), true);
+
+            //If not found the key, ignore it
+            if (targetKey == null)
+                return;
+
+            //Update the key value and close it
+            targetKey.SetValue("country", country);
+            targetKey.SetValue("locale", locale);
+            targetKey.Close();
         }
 
         //Patches
@@ -1360,11 +1979,11 @@ namespace TS3_Dream_Launcher
                     //Inform that is patched
                     launcherPrefs.loadedData.alreadyIntelFixed = true;
                     launcherPrefs.Save();
-                    ShowToast((Application.Current.Resources["launcher_alderLakePatchSuccess"] as string), ToastType.Success);
+                    ShowToast(GetStringApplicationResource("launcher_alderLakePatchSuccess"), ToastType.Success);
                 }
                 //If have a error
                 if (backgroundResult[0] == "error")
-                    ShowToast(((Application.Current.Resources["launcher_alderLakePatchProblem"] as string) + " \"" + backgroundResult[1] + "\""), ToastType.Error);
+                    ShowToast((GetStringApplicationResource("launcher_alderLakePatchProblem") + " \"" + backgroundResult[1] + "\""), ToastType.Error);
 
                 //Remove the task
                 RemoveTask("alderLakePatching");
@@ -1427,11 +2046,11 @@ namespace TS3_Dream_Launcher
                     //Inform that is translated
                     launcherPrefs.loadedData.alreadyTranslated = true;
                     launcherPrefs.Save();
-                    ShowToast((Application.Current.Resources["launcher_ptptToptbrTranslateSuccess"] as string), ToastType.Success);
+                    ShowToast(GetStringApplicationResource("launcher_ptptToptbrTranslateSuccess"), ToastType.Success);
                 }
                 //If have a error
                 if (backgroundResult[0] == "error")
-                    ShowToast(((Application.Current.Resources["launcher_ptptToptbrTranslateProblem"] as string) + " \"" + backgroundResult[1] + "\""), ToastType.Error);
+                    ShowToast((GetStringApplicationResource("launcher_ptptToptbrTranslateProblem") + " \"" + backgroundResult[1] + "\""), ToastType.Error);
 
                 //Remove the task
                 RemoveTask("ptPtToPtBrTranslatePatching");

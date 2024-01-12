@@ -13,6 +13,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Add-Ons\**" />
+    <EmbeddedResource Remove="Add-Ons\**" />
+    <None Remove="Add-Ons\**" />
+    <Page Remove="Add-Ons\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Content\icon-32x.png" />
     <None Remove="Content\IntelFix.dll" />
     <None Remove="Content\intro-mp4.mp4" />
@@ -67,6 +74,7 @@
     <None Remove="Resources\dlc_sp9.png" />
     <None Remove="Resources\dlc_sp9s.png" />
     <None Remove="Resources\ghost.png" />
+    <None Remove="Resources\help.png" />
     <None Remove="Resources\icon-128x.png" />
     <None Remove="Resources\icon-256x.png" />
     <None Remove="Resources\icon-32x.ico" />
@@ -161,6 +169,7 @@
     <Resource Include="Resources\dlc_sp9.png" />
     <Resource Include="Resources\dlc_sp9s.png" />
     <Resource Include="Resources\ghost.png" />
+    <Resource Include="Resources\help.png" />
     <Resource Include="Resources\icon-128x.png" />
     <Resource Include="Resources\icon-256x.png" />
     <Resource Include="Resources\icon-32x.ico" />

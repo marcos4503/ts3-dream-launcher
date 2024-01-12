@@ -228,38 +228,30 @@
                         </Rectangle>
                         <StackPanel Margin="16,16,16,16">
                             <Image Source="/Resources/logo.png" Stretch="Uniform" StretchDirection="Both" Height="220"/>
-                            <BeautyButton:BeautyButton x:Name="goHome" Content="{DynamicResource launcher_button_goHome}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White"/>
-                            <BeautyButton:BeautyButton x:Name="goSaves" Content="{DynamicResource launcher_button_goSaves}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
-                            <BeautyButton:BeautyButton x:Name="goSims" Content="{DynamicResource launcher_button_goSims}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
-                            <BeautyButton:BeautyButton x:Name="goWorlds" Content="{DynamicResource launcher_button_goWorlds}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
-                            <BeautyButton:BeautyButton x:Name="goMedia" Content="{DynamicResource launcher_button_goMedia}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
-                            <BeautyButton:BeautyButton x:Name="goCache" Content="{DynamicResource launcher_button_goCache}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
-                            <BeautyButton:BeautyButton x:Name="goPatches" Content="{DynamicResource launcher_button_goPatches}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
-                            <BeautyButton:BeautyButton x:Name="goMods" Content="{DynamicResource launcher_button_goMods}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
-                            <BeautyButton:BeautyButton x:Name="goTools" Content="{DynamicResource launcher_button_goTools}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
-                            <BeautyButton:BeautyButton x:Name="goSettings" Content="{DynamicResource launcher_button_goSettings}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
+                            <BeautyButton:BeautyButton x:Name="goHome" Content="{DynamicResource launcher_button_goHome}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Cursor="Hand"/>
+                            <BeautyButton:BeautyButton x:Name="goSaves" Content="{DynamicResource launcher_button_goSaves}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0" Cursor="Hand"/>
+                            <BeautyButton:BeautyButton x:Name="goSims" Content="{DynamicResource launcher_button_goSims}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0" Cursor="Hand"/>
+                            <BeautyButton:BeautyButton x:Name="goWorlds" Content="{DynamicResource launcher_button_goWorlds}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0" Cursor="Hand"/>
+                            <BeautyButton:BeautyButton x:Name="goMedia" Content="{DynamicResource launcher_button_goMedia}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0" Cursor="Hand"/>
+                            <BeautyButton:BeautyButton x:Name="goCache" Content="{DynamicResource launcher_button_goCache}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0" Cursor="Hand"/>
+                            <BeautyButton:BeautyButton x:Name="goPatches" Content="{DynamicResource launcher_button_goPatches}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0" Cursor="Hand"/>
+                            <BeautyButton:BeautyButton x:Name="goMods" Content="{DynamicResource launcher_button_goMods}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0" Cursor="Hand"/>
+                            <BeautyButton:BeautyButton x:Name="goTools" Content="{DynamicResource launcher_button_goTools}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0" Cursor="Hand"/>
+                            <BeautyButton:BeautyButton x:Name="goSettings" Content="{DynamicResource launcher_button_goSettings}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0" Cursor="Hand"/>
                             <StackPanel Height="28" Margin="0,4,0,0" Orientation="Horizontal">
-                                <BeautyButton:BeautyButton x:Name="goGithub" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Width="109.5" Margin="0,0,4,0">
+                                <BeautyButton:BeautyButton x:Name="goGithub" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Width="109.5" Margin="0,0,4,0" Cursor="Hand">
                                     <Image Height="18" Width="18" Source="/Resources/link-github.png" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 </BeautyButton:BeautyButton>
-                                <BeautyButton:BeautyButton x:Name="goGuide" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Width="109.5">
+                                <BeautyButton:BeautyButton x:Name="goGuide" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Width="109.5" Cursor="Hand">
                                     <Image Height="18" Width="18" Source="/Resources/link-steam.png" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 </BeautyButton:BeautyButton>
                             </StackPanel>
-                            <BeautyButton:BeautyButton x:Name="goExit" Content="{DynamicResource launcher_button_goExit}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0"/>
+                            <BeautyButton:BeautyButton x:Name="goExit" Content="{DynamicResource launcher_button_goExit}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0" Cursor="Hand"/>
                         </StackPanel>
                         <Label x:Name="gameVersion" Content="Game Version: 0.0.0.0.0000" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0,0,0,0" FontSize="10" Margin="0,0,0,8" VerticalAlignment="Bottom" Foreground="#FFF1F1F1"/>
                     </Grid>
                     <Grid Width="952" HorizontalAlignment="Left">
-                        <Rectangle Margin="4,4,4,4" StrokeThickness="0" RadiusX="8" RadiusY="8">
-                            <Rectangle.Fill>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="#FFB2D8B2"/>
-                                    <GradientStop Color="#FFE9F3FF" Offset="1"/>
-                                    <GradientStop Color="#FFE9F3FF" Offset="0.25"/>
-                                </LinearGradientBrush>
-                            </Rectangle.Fill>
-                        </Rectangle>
+                        <Rectangle Margin="4,4,4,4" StrokeThickness="0" RadiusX="8" RadiusY="8" Fill="White"/>
                         <Border BorderThickness="0,0,0,0" Grid.Row="0" Grid.ColumnSpan="2"
                             CornerRadius="8,8,0,0" BorderBrush="Black" Background="#FF4B9C52" VerticalAlignment="Top" Height="32" Margin="4,4,4,0">
                             <Label x:Name="pageTitle" Content="Place Holder" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="{DynamicResource TheSimsSansSc}" Foreground="White" FontSize="20" FontWeight="Bold"/>
@@ -283,7 +275,7 @@
                                 <Border BorderThickness="0,0,0,0" VerticalAlignment="Bottom" Height="128" CornerRadius="0,0,8,8" Background="#B2000000" Margin="0,0,0,0">
                                     <Label x:Name="documentsNotFound" Content="{DynamicResource launcher_documentsNotFound}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,2,0,0" Height="28" FontWeight="Bold" Foreground="White" Visibility="Collapsed"/>
                                 </Border>
-                                <BeautyButton:BeautyButton x:Name="playGame" HoverBackground="#FF00BF0C" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="36" Background="#FF24C82E" BorderBrush="#FF0F5800" Foreground="White" Margin="0,0,0,32" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="64" Width="256">
+                                <BeautyButton:BeautyButton x:Name="playGame" HoverBackground="#FF00BF0C" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="36" Background="#FF24C82E" BorderBrush="#FF0F5800" Foreground="White" Margin="0,0,0,32" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="64" Width="256" Cursor="Hand">
                                     <StackPanel Orientation="Horizontal" Height="62">
                                         <Image IsHitTestVisible="False" Source="/Resources/play.png" Width="28" Height="28"/>
                                         <Label Content="{DynamicResource launcher_button_playButton}" FontFamily="{DynamicResource TheSimsSansSc}" FontWeight="Normal" Padding="0,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="12,0,0,0" Foreground="White"/>
@@ -298,18 +290,136 @@
                             <Grid x:Name="pagePatches" Visibility="Collapsed"/>
                             <Grid x:Name="pageMods" Visibility="Collapsed"/>
                             <Grid x:Name="pageTools" Visibility="Collapsed"/>
-                            <Grid x:Name="pageSettings" Visibility="Collapsed"/>
+                            <Grid x:Name="pageSettings" Visibility="Visible">
+                                <TabControl Margin="0,8,0,44" BorderThickness="0,1,0,1">
+                                    <TabItem Header="{DynamicResource launcher_settings_tab_launcher}">
+                                        <Grid Background="WhiteSmoke">
+                                            <ScrollViewer>
+                                                <StackPanel Margin="16,0,16,0">
+                                                    <DockPanel LastChildFill="False" Margin="0,16,0,0">
+                                                        <Label Content="{DynamicResource launcher_settings_launcher_launcherLang}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" VerticalContentAlignment="Center" Margin="0,0,0,0"/>
+                                                        <Image Width="24" DockPanel.Dock="Right" Margin="8,0,0,0" Height="24" Source="/Resources/help.png" Cursor="Help" VerticalAlignment="Center" ToolTip="{DynamicResource launcher_settings_launcher_launcherLangHelp}"/>
+                                                        <ComboBox x:Name="set_LauncherLang" Width="300" DockPanel.Dock="Right" Height="26" VerticalContentAlignment="Center" SelectedIndex="0">
+                                                            <ComboBoxItem Content="English"/>
+                                                            <ComboBoxItem Content="Português Brasileiro"/>
+                                                        </ComboBox>
+                                                    </DockPanel>
+                                                    <DockPanel LastChildFill="False" Margin="0,16,0,0">
+                                                        <Label Content="{DynamicResource launcher_settings_launcher_gameLang}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" VerticalContentAlignment="Center" Margin="0,0,0,0"/>
+                                                        <Image Width="24" DockPanel.Dock="Right" Margin="8,0,0,0" Height="24" Source="/Resources/help.png" Cursor="Help" VerticalAlignment="Center" ToolTip="{DynamicResource launcher_settings_launcher_gameLangHelp}"/>
+                                                        <ComboBox x:Name="set_GameLang" Width="300" DockPanel.Dock="Right" Height="26" VerticalContentAlignment="Center" SelectedIndex="0">
+                                                            <ComboBoxItem Content="-"/>
+                                                            <ComboBoxItem Content="Dansk"/>
+                                                            <ComboBoxItem Content="Nederlands"/>
+                                                            <ComboBoxItem Content="English - UK"/>
+                                                            <ComboBoxItem Content="English - US"/>
+                                                            <ComboBoxItem Content="Français"/>
+                                                            <ComboBoxItem Content="Italiano"/>
+                                                            <ComboBoxItem Content="Português - PT"/>
+                                                            <ComboBoxItem Content="Português - BR"/>
+                                                            <ComboBoxItem Content="Español - ES"/>
+                                                            <ComboBoxItem Content="Español - MX"/>
+                                                            <ComboBoxItem Content="Svenska"/>
+                                                        </ComboBox>
+                                                    </DockPanel>
+                                                    <DockPanel LastChildFill="False" Margin="0,16,0,0">
+                                                        <Label Content="{DynamicResource launcher_settings_launcher_resetTemplate}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" VerticalContentAlignment="Center" Margin="0,0,0,0"/>
+                                                        <Image Width="24" DockPanel.Dock="Right" Margin="8,0,0,0" Height="24" Source="/Resources/help.png" Cursor="Help" VerticalAlignment="Center" ToolTip="{DynamicResource launcher_settings_launcher_resetTemplateHelp}"/>
+                                                        <Button x:Name="set_ResetOptTemplate" Content="Reset" Width="300" Height="26" DockPanel.Dock="Right"/>
+                                                    </DockPanel>
+                                                </StackPanel>
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </TabItem>
+                                    <TabItem Header="{DynamicResource launcher_settings_tab_graphics}">
+                                        <Grid Background="#FFF5F5F5">
+                                            <ScrollViewer>
+                                                <StackPanel Margin="16,0,16,0">
+                                                    <DockPanel LastChildFill="False" Margin="0,16,0,0">
+                                                        <Label Content="{DynamicResource launcher_settings_graphics_resolution}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" VerticalContentAlignment="Center" Margin="0,0,0,0"/>
+                                                        <Image Width="24" DockPanel.Dock="Right" Margin="8,0,0,0" Height="24" Source="/Resources/help.png" Cursor="Help" VerticalAlignment="Center" ToolTip="{DynamicResource launcher_settings_graphics_resolutionHelp}"/>
+                                                        <ComboBox x:Name="set_Resolution" Width="300" DockPanel.Dock="Right" Height="26" VerticalContentAlignment="Center" SelectedIndex="0">
+                                                            <ComboBoxItem Content="1280x720 - 16:9"/>
+                                                            <ComboBoxItem Content="1366x768 - 16:9"/>
+                                                            <ComboBoxItem Content="1600x900 - 16:9"/>
+                                                            <ComboBoxItem Content="1920x1080 - 16:9"/>
+                                                            <ComboBoxItem Content="2560x1080 - 21:9"/>
+                                                            <ComboBoxItem Content="2560x1440 - 16:9"/>
+                                                            <ComboBoxItem Content="3200x1800 - 16:9"/>
+                                                            <ComboBoxItem Content="3440x1440 - 21:9"/>
+                                                            <ComboBoxItem Content="3840x2160 - 16:9"/>
+                                                            <ComboBoxItem Content="3840x1600 - 21:9"/>
+                                                            <ComboBoxItem Content="5120x2160 - 21:9"/>
+                                                        </ComboBox>
+                                                    </DockPanel>
+                                                    <DockPanel LastChildFill="False" Margin="0,16,0,0">
+                                                        <Label Content="{DynamicResource launcher_settings_graphics_refreshRate}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" VerticalContentAlignment="Center" Margin="0,0,0,0"/>
+                                                        <Image Width="24" DockPanel.Dock="Right" Margin="8,0,0,0" Height="24" Source="/Resources/help.png" Cursor="Help" VerticalAlignment="Center" ToolTip="{DynamicResource launcher_settings_graphics_refreshRateHelp}"/>
+                                                        <ComboBox x:Name="set_RefreshRate" Width="300" DockPanel.Dock="Right" Height="26" VerticalContentAlignment="Center" SelectedIndex="0">
+                                                            <ComboBoxItem Content="50hz"/>
+                                                            <ComboBoxItem Content="60hz"/>
+                                                            <ComboBoxItem Content="75hz"/>
+                                                            <ComboBoxItem Content="90hz"/>
+                                                            <ComboBoxItem Content="100hz"/>
+                                                            <ComboBoxItem Content="120hz"/>
+                                                            <ComboBoxItem Content="144hz"/>
+                                                            <ComboBoxItem Content="165hz"/>
+                                                            <ComboBoxItem Content="180hz"/>
+                                                            <ComboBoxItem Content="200hz"/>
+                                                            <ComboBoxItem Content="240hz"/>
+                                                            <ComboBoxItem Content="360hz"/>
+                                                        </ComboBox>
+                                                    </DockPanel>
+                                                    <DockPanel LastChildFill="False" Margin="0,16,0,0">
+                                                        <Label Content="{DynamicResource launcher_settings_graphics_maxFps}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" VerticalContentAlignment="Center" Margin="0,0,0,0"/>
+                                                        <Image Width="24" DockPanel.Dock="Right" Margin="8,0,0,0" Height="24" Source="/Resources/help.png" Cursor="Help" VerticalAlignment="Center" ToolTip="{DynamicResource launcher_settings_graphics_maxFpsHelp}"/>
+                                                        <ComboBox x:Name="set_MaxFps" Width="300" DockPanel.Dock="Right" Height="26" VerticalContentAlignment="Center" SelectedIndex="0">
+                                                            <ComboBoxItem Content="∞ FPS"/>
+                                                            <ComboBoxItem Content="60 FPS"/>
+                                                            <ComboBoxItem Content="75 FPS"/>
+                                                            <ComboBoxItem Content="90 FPS"/>
+                                                            <ComboBoxItem Content="120 FPS"/>
+                                                        </ComboBox>
+                                                    </DockPanel>
+                                                </StackPanel>
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </TabItem>
+                                    <TabItem Header="{DynamicResource launcher_settings_tab_sound}">
+                                        <Grid Background="#FFF5F5F5"/>
+                                    </TabItem>
+                                    <TabItem Header="{DynamicResource launcher_settings_tab_general}">
+                                        <Grid Background="#FFF5F5F5"/>
+                                    </TabItem>
+                                    <TabItem Header="{DynamicResource launcher_settings_tab_game}">
+                                        <Grid Background="#FFF5F5F5"/>
+                                    </TabItem>
+                                    <TabItem Header="{DynamicResource launcher_settings_tab_video}">
+                                        <Grid Background="#FFF5F5F5"/>
+                                    </TabItem>
+                                    <TabItem Header="{DynamicResource launcher_settings_tab_online}">
+                                        <Grid Background="#FFF5F5F5"/>
+                                    </TabItem>
+                                    <TabItem Header="{DynamicResource launcher_settings_tab_environment}">
+                                        <Grid Background="#FFF5F5F5"/>
+                                    </TabItem>
+                                    <TabItem Header="{DynamicResource launcher_settings_tab_demography}">
+                                        <Grid Background="#FFF5F5F5"/>
+                                    </TabItem>
+                                </TabControl>
+                                <BeautyButton:BeautyButton x:Name="settingsSave" Content="{DynamicResource launcher_settings_save}" HoverBackground="#FF5D90C8" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Cursor="Hand" Margin="0,0,0,8" Height="28" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="200"/>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </StackPanel>
                 <Grid Height="32">
                     <Rectangle Margin="4,0,4,0" Fill="#FF94C6FF" StrokeThickness="0" RadiusX="8" RadiusY="8"/>
                     <StackPanel HorizontalAlignment="Left" Margin="16,0,0,0" Orientation="Horizontal">
-                        <Grid Width="32" Height="32" Margin="0,0,16,0">
-                            <Rectangle x:Name="toastsCounterBg" Height="16" Width="16" HorizontalAlignment="Right" VerticalAlignment="Top" RadiusX="8" RadiusY="8" StrokeThickness="0" Fill="Red" Panel.ZIndex="4" Margin="0,4,0,0" Visibility="Collapsed"/>
-                            <Label x:Name="toastsCounterT" Content="0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="16" Height="16" Margin="0,3.5,0,0" FontSize="10" Padding="0,0,0,0" Panel.ZIndex="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Visibility="Collapsed"/>
-                            <Button x:Name="toggleToastsHistory" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" Width="26" Height="26">
-                                <Image Source="/Resources/bell.png" />
+                        <Grid Height="32" Margin="0,0,16,0">
+                            <Rectangle x:Name="toastsCounterBg" Height="16" Width="16" HorizontalAlignment="Left" VerticalAlignment="Top" RadiusX="8" RadiusY="8" StrokeThickness="0" Fill="Red" Panel.ZIndex="4" Margin="14,4,0,0" Visibility="Collapsed"/>
+                            <Label x:Name="toastsCounterT" Content="0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16" Height="16" Margin="14,3.5,0,0" FontSize="10" Padding="0,0,0,0" Panel.ZIndex="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Visibility="Collapsed"/>
+                            <Button x:Name="toggleToastsHistory" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" Height="26" Cursor="Hand" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0,0,0,0" Width="26">
+                                <Image Source="/Resources/bell.png" Margin="-2,0,0,0" />
                             </Button>
                         </Grid>
                         <Image x:Name="doingTasksGif" gif:ImageBehavior.AnimatedSource="/Resources/task-run.gif" gif:ImageBehavior.AnimationSpeedRatio="1.5" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Stretch" Visibility="Visible" />
@@ -317,26 +427,26 @@
                         <Label x:Name="tasksStatus" Content="Place Holder" Height="28" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="14" Padding="0,0,0,0" Margin="8,0,0,0" Foreground="White" VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Height="32" Margin="0,0,16,0" Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Image x:Name="dlc_ep1" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep1s.png" />
-                        <Image x:Name="dlc_ep2" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep2s.png" Margin="5,0,0,0" />
-                        <Image x:Name="dlc_ep3" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep3s.png" Margin="5,0,0,0" />
-                        <Image x:Name="dlc_ep4" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep4s.png" Margin="5,0,0,0" />
-                        <Image x:Name="dlc_ep5" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep5s.png" Margin="5,0,0,0" />
-                        <Image x:Name="dlc_ep6" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep6s.png" Margin="5,0,0,0" />
-                        <Image x:Name="dlc_ep7" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep7s.png" Margin="5,0,0,0" />
-                        <Image x:Name="dlc_ep8" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep8s.png" Margin="5,0,0,0" />
-                        <Image x:Name="dlc_ep9" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep9s.png" Margin="5,0,0,0" />
-                        <Image x:Name="dlc_ep10" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep10s.png" Margin="5,0,0,0" />
-                        <Image x:Name="dlc_ep11" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep11s.png" Margin="5,0,0,0" />
-                        <Image x:Name="dlc_sp1" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp1s.png" Margin="19,0,0,0" />
-                        <Image x:Name="dlc_sp2" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp2s.png" Margin="5,0,0,0" />
-                        <Image x:Name="dlc_sp3" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp3s.png" Margin="5,0,0,0" />
-                        <Image x:Name="dlc_sp4" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp4s.png" Margin="5,0,0,0" />
-                        <Image x:Name="dlc_sp5" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp5s.png" Margin="5,0,0,0" />
-                        <Image x:Name="dlc_sp6" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp6s.png" Margin="5,0,0,0" />
-                        <Image x:Name="dlc_sp7" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp7s.png" Margin="5,0,0,0" />
-                        <Image x:Name="dlc_sp8" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp8s.png" Margin="5,0,0,0" />
-                        <Image x:Name="dlc_sp9" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp9s.png" Margin="5,0,0,0" />
+                        <Image x:Name="dlc_ep1" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep1s.png" Cursor="Hand" />
+                        <Image x:Name="dlc_ep2" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep2s.png" Margin="5,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_ep3" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep3s.png" Margin="5,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_ep4" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep4s.png" Margin="5,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_ep5" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep5s.png" Margin="5,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_ep6" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep6s.png" Margin="5,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_ep7" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep7s.png" Margin="5,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_ep8" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep8s.png" Margin="5,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_ep9" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep9s.png" Margin="5,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_ep10" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep10s.png" Margin="5,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_ep11" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep11s.png" Margin="5,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_sp1" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp1s.png" Margin="19,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_sp2" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp2s.png" Margin="5,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_sp3" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp3s.png" Margin="5,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_sp4" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp4s.png" Margin="5,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_sp5" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp5s.png" Margin="5,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_sp6" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp6s.png" Margin="5,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_sp7" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp7s.png" Margin="5,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_sp8" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp8s.png" Margin="5,0,0,0" Cursor="Hand" />
+                        <Image x:Name="dlc_sp9" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_sp9s.png" Margin="5,0,0,0" Cursor="Hand" />
                     </StackPanel>
                 </Grid>
             </StackPanel>

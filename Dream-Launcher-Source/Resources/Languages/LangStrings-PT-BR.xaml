@@ -44,7 +44,7 @@
     <system:String x:Key="launcher_alderLakePatchSuccess">O patching para CPUs Intel Alder Lake+ foi bem sucedido!</system:String>
     <system:String x:Key="launcher_ptptToptbrTranslateProblem">Não foi possível aplicar o patching de tradução de pt-PT para pt-BR.</system:String>
     <system:String x:Key="launcher_ptptToptbrTranslateSuccess">O patching de tradução de pt-PT para pt-BR foi aplicado com sucesso! Altere o idioma do jogo para "Português" na Steam e aqui nas Configurações do Launcher, para ver as mudanças!</system:String>
-    <system:String x:Key="launcher_toastsHistoryTitle">Histórico de Notificações</system:String>
+    <system:String x:Key="launcher_toastsHistoryTitle">Notificações Anteriores</system:String>
     <system:String x:Key="launcher_toastsHistoryAt">às</system:String>
     <system:String x:Key="launcher_toastsHistoryEmpty">Nada por aqui ainda</system:String>
     <system:String x:Key="launcher_taskCloseWarnTit">Um momento, amigo!</system:String>
@@ -70,5 +70,52 @@
     <system:String x:Key="launcher_dlc_sp7">SP7 - Diesel</system:String>
     <system:String x:Key="launcher_dlc_sp8">SP8 - Anos 70, 80 e 90</system:String>
     <system:String x:Key="launcher_dlc_sp9">SP9 - Cinema</system:String>
+    <system:String x:Key="launcher_settings_save">SALVAR</system:String>
+    <system:String x:Key="launcher_settings_tab_launcher">Launcher</system:String>
+    <system:String x:Key="launcher_settings_tab_graphics">Gráficos</system:String>
+    <system:String x:Key="launcher_settings_tab_sound">Som</system:String>
+    <system:String x:Key="launcher_settings_tab_general">Geral</system:String>
+    <system:String x:Key="launcher_settings_tab_game">Jogo</system:String>
+    <system:String x:Key="launcher_settings_tab_video">Video</system:String>
+    <system:String x:Key="launcher_settings_tab_online">Online</system:String>
+    <system:String x:Key="launcher_settings_tab_environment">Ambiente</system:String>
+    <system:String x:Key="launcher_settings_tab_demography">Demografia</system:String>
+    <system:String x:Key="launcher_settings_launcher_launcherLang">Idioma do Launcher</system:String>
+    <system:String x:Key="launcher_settings_launcher_launcherLangHelp" xml:space="preserve">
+Define o idioma de exibição do Launcher apenas.
+(Necessário reiniciar o Dream Launcher para surtir efeito)
+    </system:String>
+    <system:String x:Key="launcher_settings_launcher_gameLang">Idioma do Jogo</system:String>
+    <system:String x:Key="launcher_settings_launcher_gameLangHelp" xml:space="preserve">
+Define o idioma de exibição do Jogo apenas. Além disso, o idioma definido aqui pode fazer com que a
+pasta do The Sims 3 nos Documentos do seu computador tenha um nome diferente. Somente os idiomas
+suportados pelo Dream Launcher aparecem nessa lista.
+    </system:String>
+    <system:String x:Key="launcher_settings_launcher_resetTemplate">Redefinir Template de Opções</system:String>
+    <system:String x:Key="launcher_settings_launcher_resetTemplateHelp" xml:space="preserve">
+Se você atualizou seu Hardware recentemente (por exemplo, trocando sua CPU ou GPU), e agora ao entrar
+no The Sims 3, as configurações do jogo não correspondem mais as configurações do Launcher, fazer
+o reset do template de configurações pode ajudar.
+
+Antes de tentar essa opção, certifique-se de ter iniciado o jogo ao menos uma vez.
+    </system:String>
+    <system:String x:Key="launcher_settings_launcher_resetTemplate_dialogTitle">Pronto</system:String>
+    <system:String x:Key="launcher_settings_launcher_resetTemplate_dialogText">A redefinição do template de opções foi concluída. Agora, salve as configurações para aplica-las novamente ao jogo.</system:String>
+    <system:String x:Key="launcher_settings_graphics_resolution">Resolução da Tela</system:String>
+    <system:String x:Key="launcher_settings_graphics_resolutionHelp" xml:space="preserve">
+Define a resolução de tela do jogo.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_resolutionError">Impossível definir essa resolução. Ela não é compatível com o sistema.</system:String>
+    <system:String x:Key="launcher_settings_graphics_refreshRate">Taxa de Atualização da Tela</system:String>
+    <system:String x:Key="launcher_settings_graphics_refreshRateHelp" xml:space="preserve">
+Define a taxa de atualização do jogo.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_refreshRateError">Impossível definir essa taxa de atualização. Ela não é compatível com o sistema.</system:String>
+    <system:String x:Key="launcher_settings_graphics_maxFps">Limite de FPS</system:String>
+    <system:String x:Key="launcher_settings_graphics_maxFpsHelp" xml:space="preserve">
+Define a taxa máxima de quadros por segundo que o jogo pode rodar. Isso ajuda o jogo em questão
+de otimização, reduzindo engasgos, frame skips, cortes de tela ou congelamentos repentinos. Em
+adição, também faz com que menos processamento da sua GPU seja usado.
+    </system:String>
 
 </ResourceDictionary>

@@ -70,5 +70,52 @@
     <system:String x:Key="launcher_dlc_sp7">SP7 - Diesel</system:String>
     <system:String x:Key="launcher_dlc_sp8">SP8 - 70's, 80's, and 90's</system:String>
     <system:String x:Key="launcher_dlc_sp9">SP9 - Movie</system:String>
+    <system:String x:Key="launcher_settings_save">SAVE</system:String>
+    <system:String x:Key="launcher_settings_tab_launcher">Launcher</system:String>
+    <system:String x:Key="launcher_settings_tab_graphics">Graphics</system:String>
+    <system:String x:Key="launcher_settings_tab_sound">Sound</system:String>
+    <system:String x:Key="launcher_settings_tab_general">General</system:String>
+    <system:String x:Key="launcher_settings_tab_game">Game</system:String>
+    <system:String x:Key="launcher_settings_tab_video">Video</system:String>
+    <system:String x:Key="launcher_settings_tab_online">Online</system:String>
+    <system:String x:Key="launcher_settings_tab_environment">Environment</system:String>
+    <system:String x:Key="launcher_settings_tab_demography">Demography</system:String>
+    <system:String x:Key="launcher_settings_launcher_launcherLang">Launcher Language</system:String>
+    <system:String x:Key="launcher_settings_launcher_launcherLangHelp" xml:space="preserve">
+Sets the Launcher display language only.
+(You need to restart Dream Launcher to take effect)
+    </system:String>
+    <system:String x:Key="launcher_settings_launcher_gameLang">Game Language</system:String>
+    <system:String x:Key="launcher_settings_launcher_gameLangHelp" xml:space="preserve">
+Sets the Game display language only. Additionally, the language you set here may cause
+The Sims 3 folder in Documents on your computer to have a different name. Only languages
+supported by Dream Launcher appear in this list.
+    </system:String>
+    <system:String x:Key="launcher_settings_launcher_resetTemplate">Reset Options Template</system:String>
+    <system:String x:Key="launcher_settings_launcher_resetTemplateHelp" xml:space="preserve">
+If you recently updated your hardware (for example, changing your CPU or GPU), and now when
+you enter The Sims 3, the game settings no longer match the Launcher settings, resetting
+the settings template may help.
+
+Before trying this option, make sure you have started the game at least once.
+    </system:String>
+    <system:String x:Key="launcher_settings_launcher_resetTemplate_dialogTitle">Done</system:String>
+    <system:String x:Key="launcher_settings_launcher_resetTemplate_dialogText">The options template reset is complete. Now, save the settings to apply them to the game again.</system:String>
+    <system:String x:Key="launcher_settings_graphics_resolution">Screen Resolution</system:String>
+    <system:String x:Key="launcher_settings_graphics_resolutionHelp" xml:space="preserve">
+Sets the game's screen resolution.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_resolutionError">It is impossible to define this resolution. It is not compatible with the system.</system:String>
+    <system:String x:Key="launcher_settings_graphics_refreshRate">Screen Refresh Rate</system:String>
+    <system:String x:Key="launcher_settings_graphics_refreshRateHelp" xml:space="preserve">
+Sets the game's refresh rate.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_refreshRateError">It is impossible to define this refresh rate. It is not compatible with the system.</system:String>
+    <system:String x:Key="launcher_settings_graphics_maxFps">Maximum Frame Rate</system:String>
+    <system:String x:Key="launcher_settings_graphics_maxFpsHelp" xml:space="preserve">
+Sets the maximum Frames Per Second that the game can run. This helps the game in terms of
+optimization, reducing stutters, frame skips, screen cuts or sudden freezes. In addition,
+it also causes less of your GPU's processing to be used.
+    </system:String>
 
 </ResourceDictionary>

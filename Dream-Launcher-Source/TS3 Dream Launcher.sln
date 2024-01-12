@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32203.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TS3 Dream Launcher", "TS3 Dream Launcher.csproj", "{BCF0C6C2-5C05-4503-8B9E-5D730A76ADC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TS3 Dream Launcher", "TS3 Dream Launcher.csproj", "{BCF0C6C2-5C05-4503-8B9E-5D730A76ADC3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sims3Launcher", "Add-Ons\Sims3Launcher\Sims3Launcher.csproj", "{2A04FCDD-3D32-4116-AEA2-5C3AFFFC6AD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BCF0C6C2-5C05-4503-8B9E-5D730A76ADC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCF0C6C2-5C05-4503-8B9E-5D730A76ADC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCF0C6C2-5C05-4503-8B9E-5D730A76ADC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A04FCDD-3D32-4116-AEA2-5C3AFFFC6AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A04FCDD-3D32-4116-AEA2-5C3AFFFC6AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A04FCDD-3D32-4116-AEA2-5C3AFFFC6AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A04FCDD-3D32-4116-AEA2-5C3AFFFC6AD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

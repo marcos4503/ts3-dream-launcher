@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\icon-32x.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\icon-32x.ico" />
+    <None Remove="Resources\icon-32x.png" />
+    <None Remove="Resources\name.png" />
+    <None Remove="Resources\plumbot-decoration-double.png" />
+    <None Remove="Resources\plumbot-decoration.png" />
+    <None Remove="Resources\shined-logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\icon-32x.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\icon-32x.ico" />
+    <Resource Include="Resources\icon-32x.png" />
+    <Resource Include="Resources\name.png" />
+    <Resource Include="Resources\plumbot-decoration-double.png" />
+    <Resource Include="Resources\plumbot-decoration.png" />
+    <Resource Include="Resources\shined-logo.png" />
+  </ItemGroup>
+
+</Project>

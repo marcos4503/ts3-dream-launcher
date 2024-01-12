@@ -5,33 +5,21 @@
       "CoroutinesForWpf/0.3.0": {
         "type": "package",
         "compile": {
-          "lib/netcoreapp3.0/CoroutinesDotNet.Wpf.dll": {
-            "related": ".deps.json;.pdb"
-          },
-          "lib/netcoreapp3.0/CoroutinesDotNet.dll": {
-            "related": ".pdb;.Wpf.deps.json;.Wpf.pdb"
-          }
+          "lib/netcoreapp3.0/CoroutinesDotNet.Wpf.dll": {},
+          "lib/netcoreapp3.0/CoroutinesDotNet.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.0/CoroutinesDotNet.Wpf.dll": {
-            "related": ".deps.json;.pdb"
-          },
-          "lib/netcoreapp3.0/CoroutinesDotNet.dll": {
-            "related": ".pdb;.Wpf.deps.json;.Wpf.pdb"
-          }
+          "lib/netcoreapp3.0/CoroutinesDotNet.Wpf.dll": {},
+          "lib/netcoreapp3.0/CoroutinesDotNet.dll": {}
         }
       },
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Newtonsoft.Json.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Newtonsoft.Json.dll": {}
         }
       },
       "PeNet/4.0.4": {
@@ -59,14 +47,10 @@
       "System.CodeDom/8.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/System.CodeDom.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.CodeDom.dll": {}
         },
         "runtime": {
-          "lib/net6.0/System.CodeDom.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.CodeDom.dll": {}
         },
         "build": {
           "buildTransitive/net6.0/_._": {}
@@ -75,14 +59,10 @@
       "System.Formats.Asn1/8.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/System.Formats.Asn1.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Formats.Asn1.dll": {}
         },
         "runtime": {
-          "lib/net6.0/System.Formats.Asn1.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Formats.Asn1.dll": {}
         },
         "build": {
           "buildTransitive/net6.0/_._": {}
@@ -94,14 +74,10 @@
           "System.CodeDom": "8.0.0"
         },
         "compile": {
-          "lib/net6.0/System.Management.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Management.dll": {}
         },
         "runtime": {
-          "lib/net6.0/System.Management.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Management.dll": {}
         },
         "build": {
           "buildTransitive/net6.0/_._": {}
@@ -119,14 +95,10 @@
           "System.Formats.Asn1": "8.0.0"
         },
         "compile": {
-          "lib/net6.0/System.Security.Cryptography.Pkcs.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Security.Cryptography.Pkcs.dll": {}
         },
         "runtime": {
-          "lib/net6.0/System.Security.Cryptography.Pkcs.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/System.Security.Cryptography.Pkcs.dll": {}
         },
         "build": {
           "buildTransitive/net6.0/_._": {}
@@ -141,14 +113,10 @@
       "WpfAnimatedGif/2.0.2": {
         "type": "package",
         "compile": {
-          "lib/netcoreapp3.0/WpfAnimatedGif.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.0/WpfAnimatedGif.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.0/WpfAnimatedGif.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.0/WpfAnimatedGif.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App.WPF"
@@ -410,11 +378,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\!GitHub-Repo\\ts3-dream-launcher\\Dream-Launcher-Source\\TS3 Dream Launcher.csproj",
+      "projectUniqueName": "D:\\Visual-Studio\\TS3 Dream Launcher\\TS3 Dream Launcher.csproj",
       "projectName": "TS3 Dream Launcher",
-      "projectPath": "D:\\!GitHub-Repo\\ts3-dream-launcher\\Dream-Launcher-Source\\TS3 Dream Launcher.csproj",
+      "projectPath": "D:\\Visual-Studio\\TS3 Dream Launcher\\TS3 Dream Launcher.csproj",
       "packagesPath": "C:\\Users\\junio\\.nuget\\packages\\",
-      "outputPath": "D:\\!GitHub-Repo\\ts3-dream-launcher\\Dream-Launcher-Source\\obj\\",
+      "outputPath": "D:\\Visual-Studio\\TS3 Dream Launcher\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -425,7 +393,7 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0-windows"
+        "net6.0-windows7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},

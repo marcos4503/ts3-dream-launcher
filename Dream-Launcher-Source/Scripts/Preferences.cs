@@ -20,11 +20,16 @@ namespace TS3_Dream_Launcher.Scripts
         {
             //*** Data to be saved ***//
 
+            public SaveInfo[] saveInfo = new SaveInfo[0];
+
             public string launcherLang = "undefined";
+            public string gameLang = "undefined";
             public bool alreadyTranslated = false;
             public bool alreadyIntelFixed = false;
 
-            public SaveInfo[] saveInfo = new SaveInfo[0];
+            public int resolution = 0;
+            public int refreshRate = 1;
+            public int maxFps = 0;
         }
 
         //Public variables
