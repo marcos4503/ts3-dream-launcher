@@ -1,0 +1,27 @@
+{
+    "modsList": [
+        {
+            "name": "Test Mod",
+            "category": "OTHERS",
+            "author": "marcos4503",
+            "description": "Some example description.",
+            "requiredEps": [
+                1,
+                2
+            ],
+            "requiredRecommendedModFiles": [],
+            "downloadUrl": ""
+        },
+        {
+            "name": "Test Mod 2",
+            "category": "CONTENTS",
+            "author": "marcos4503",
+            "description": "Some example description 2.",
+            "requiredEps": [
+                7
+            ],
+            "requiredRecommendedModFiles": [],
+            "downloadUrl": ""
+        }
+    ]
+}
