@@ -15,6 +15,20 @@
             "downloadUrl": ""
         },
         {
+            "name": "Test Mod - UNVAILABLE",
+            "category": "SOUNDS",
+            "author": "marcos4503",
+            "description_enUS": "Sen.",
+            "description_ptBR": "Sbr.",
+            "requiredEps": [
+                0,
+                7
+            ],
+            "requiredRecommendedModFiles": [],
+            "pageUrl": "https://google.com",
+            "downloadUrl": ""
+        },
+        {
             "name": "Test Mod 2",
             "category": "CONTENTS",
             "author": "marcos4503",
