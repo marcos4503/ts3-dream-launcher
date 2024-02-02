@@ -4,23 +4,27 @@
             "name": "Test Mod",
             "category": "OTHERS",
             "author": "marcos4503",
-            "description": "Some example description.",
+            "description_enUS": "Some example description.",
+            "description_ptBR": "Descrição de Exemplo.",
             "requiredEps": [
                 1,
                 2
             ],
             "requiredRecommendedModFiles": [],
+            "pageUrl": "",
             "downloadUrl": ""
         },
         {
             "name": "Test Mod 2",
             "category": "CONTENTS",
             "author": "marcos4503",
-            "description": "Some example description 2.",
+            "description_enUS": "Some example description 2.",
+            "description_ptBR": "Descrição de Exemplo 2.",
             "requiredEps": [
                 7
             ],
             "requiredRecommendedModFiles": [],
+            "pageUrl": "",
             "downloadUrl": ""
         }
     ]
