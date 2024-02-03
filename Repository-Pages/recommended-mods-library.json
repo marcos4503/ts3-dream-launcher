@@ -11,6 +11,7 @@
                 2
             ],
             "requiredRecommendedModFiles": [],
+            "requiredPatchModFiles": [],
             "pageUrl": "https://google.com",
             "downloadUrl": ""
         },
@@ -25,6 +26,7 @@
                 7
             ],
             "requiredRecommendedModFiles": [],
+            "requiredPatchModFiles": [],
             "pageUrl": "https://google.com",
             "downloadUrl": ""
         },
@@ -38,6 +40,7 @@
                 7
             ],
             "requiredRecommendedModFiles": [],
+            "requiredPatchModFiles": [],
             "pageUrl": "https://yahoo.com",
             "downloadUrl": ""
         }
