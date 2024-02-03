@@ -25,7 +25,9 @@
                 0,
                 7
             ],
-            "requiredRecommendedModFiles": [],
+            "requiredRecommendedModFiles": [
+                "OTHERS --- test.package"
+            ],
             "requiredPatchModFiles": [],
             "pageUrl": "https://google.com",
             "downloadUrl": ""
