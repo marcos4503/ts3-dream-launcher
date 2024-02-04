@@ -7,7 +7,7 @@
             "description_enUS": "Adds a smaller version of the Epiphancy Fence to the game.",
             "description_ptBR": "Adiciona uma versão menor da Epiphancy Fence no jogo.",
             "requiredEps": [
-                5
+                4
             ],
             "requiredRecommendedModFiles": [],
             "requiredPatchModFiles": [],
