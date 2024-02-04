@@ -1,50 +1,18 @@
 {
     "modsList": [
         {
-            "name": "Test Mod",
-            "category": "OTHERS",
-            "author": "marcos4503",
-            "description_enUS": "Some example description.",
-            "description_ptBR": "Descrição de Exemplo.",
-            "requiredEps": [
-                1,
-                2
-            ],
-            "requiredRecommendedModFiles": [],
-            "requiredPatchModFiles": [],
-            "pageUrl": "https://google.com",
-            "downloadUrl": ""
-        },
-        {
-            "name": "Test Mod - UNVAILABLE",
-            "category": "SOUNDS",
-            "author": "marcos4503",
-            "description_enUS": "Sen.",
-            "description_ptBR": "Sbr.",
-            "requiredEps": [
-                0,
-                7
-            ],
-            "requiredRecommendedModFiles": [
-                "OTHERS --- marcos4503 - test.package"
-            ],
-            "requiredPatchModFiles": [],
-            "pageUrl": "https://google.com",
-            "downloadUrl": ""
-        },
-        {
-            "name": "Test Mod 2",
+            "name": "Shorter Epiphany Fence",
             "category": "CONTENTS",
-            "author": "marcos4503",
-            "description_enUS": "Some example description 2.",
-            "description_ptBR": "Descrição de Exemplo 2.",
+            "author": "SimRivers",
+            "description_enUS": "Adds a smaller version of the Epiphancy Fence to the game.",
+            "description_ptBR": "Adiciona uma versão menor da Epiphancy Fence no jogo.",
             "requiredEps": [
-                7
+                5
             ],
             "requiredRecommendedModFiles": [],
             "requiredPatchModFiles": [],
-            "pageUrl": "https://yahoo.com",
-            "downloadUrl": ""
+            "pageUrl": "https://modthesims.info/d/551475/your-wish-is-granted-a-short-chain-fence.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-shorter-epiphany-fencing.zip"
         }
     ]
 }
