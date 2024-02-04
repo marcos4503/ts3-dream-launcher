@@ -13,6 +13,18 @@
             "requiredPatchModFiles": [],
             "pageUrl": "https://modthesims.info/d/551475/your-wish-is-granted-a-short-chain-fence.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-shorter-epiphany-fencing.zip"
+        },
+        {
+            "name": "CAS Room Recolored",
+            "category": "CONTENTS",
+            "author": "Boring Bones",
+            "description_enUS": "Adds a new color palette and makes the CAS room more beautiful.",
+            "description_ptBR": "Adiciona uma nova paleta de cores e deixa a sala do CAS mais bonita.",
+            "requiredEps": [],
+            "requiredRecommendedModFiles": [],
+            "requiredPatchModFiles": [],
+            "pageUrl": "https://www.patreon.com/posts/cas-room-boring-64637478",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-create-sim-room-recolor.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-create-sim-room-recolor.zip.002"
         }
     ]
 }
