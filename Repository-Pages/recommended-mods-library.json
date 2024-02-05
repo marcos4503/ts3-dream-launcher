@@ -157,6 +157,18 @@
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-default-replace-eyelid.zip"
         },
         {
+            "name": "Default Replacement Faceshadow",
+            "category": "CONTENTS",
+            "author": "Simple Life",
+            "description_enUS": "Replaces the game default faceshadow with prettier, more realistic versions.",
+            "description_ptBR": "Substitui as sombras faciais do jogo por versões mais bonitas e realistas.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://simplelife.chagasi.com/sims3.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-default-replace-faceshadow.zip"
+        },
+        {
             "name": "CAS Room Recolored",
             "category": "CONTENTS",
             "author": "Boring Bones",
