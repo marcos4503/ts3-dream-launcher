@@ -61,6 +61,18 @@
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-default-replace-lipstick.zip"
         },
         {
+            "name": "Default Replacement Face Fix",
+            "category": "CONTENTS",
+            "author": "Simple Life",
+            "description_enUS": "Makes some corrections to texture positioning and effects in Eyes, Lips, Eyelashes and Mouth.",
+            "description_ptBR": "Faz algumas correções no posicionamento de textura e efeitos em Olhos, Lábios, Cilios e Boca.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://simplelife.chagasi.com/sims3.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-default-replace-facefix.zip"
+        },
+        {
             "name": "CAS Room Recolored",
             "category": "CONTENTS",
             "author": "Boring Bones",
