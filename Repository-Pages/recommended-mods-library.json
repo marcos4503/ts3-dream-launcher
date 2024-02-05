@@ -191,6 +191,30 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://www.patreon.com/posts/cas-room-boring-64637478",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-create-sim-room-recolor.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-create-sim-room-recolor.zip.002"
+        },
+        {
+            "name": "More Beards Pack 1",
+            "category": "CONTENTS",
+            "author": "Simple Life",
+            "description_enUS": "Adds 7 new beards for men.",
+            "description_ptBR": "Adiciona 7 novas barbas para os homens.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://simplelife.chagasi.com/sims3.html#Beard",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-beards-pack1.zip"
+        },
+        {
+            "name": "More Beards Pack 2",
+            "category": "CONTENTS",
+            "author": "Arisuka",
+            "description_enUS": "Add some more eyebrows and beards for men, like Tony Stark's beard.",
+            "description_ptBR": "Adiciona mais algumas sobrancelhas e barbas para os homens, como a barba do Tony Stark.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/394183/male-facial-hair-first-aid-pack-from-stubble-to-lashes-and-brows.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-beards-pack2.zip"
         }
     ]
 }
