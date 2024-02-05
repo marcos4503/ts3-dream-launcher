@@ -13,6 +13,18 @@
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-shorter-epiphany-fencing.zip"
         },
         {
+            "name": "Default Replacement Brows",
+            "category": "CONTENTS",
+            "author": "Simple Life",
+            "description_enUS": "Replaces the game default eyebrows with prettier, more realistic versions.",
+            "description_ptBR": "Substitui as sombracelhas padrões do jogo por versões mais bonitas e realistas.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://simplelife.chagasi.com/sims3.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-default-replace-brows.zip"
+        },
+        {
             "name": "CAS Room Recolored",
             "category": "CONTENTS",
             "author": "Boring Bones",
