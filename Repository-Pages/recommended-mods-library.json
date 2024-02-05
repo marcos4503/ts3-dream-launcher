@@ -133,6 +133,18 @@
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-default-replace-blush.zip"
         },
         {
+            "name": "Default Replacement Eyeshadow",
+            "category": "CONTENTS",
+            "author": "Simple Life",
+            "description_enUS": "Replaces the game default eyeshadow with prettier, more realistic versions.",
+            "description_ptBR": "Substitui o sombreamento de olhos padrões do jogo por versões mais bonitas e realistas.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://simplelife.chagasi.com/sims3.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-default-replace-eyeshadow.zip"
+        },
+        {
             "name": "CAS Room Recolored",
             "category": "CONTENTS",
             "author": "Boring Bones",
