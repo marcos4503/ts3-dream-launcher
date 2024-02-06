@@ -55,7 +55,7 @@ You need to fulfill some requirements to be able to use this Software...
 - Your monitor must be Widescreen or Ultrawide.
 - Your computer must have at least 50GB free on drive C and on the drive where The Sims 3 is installed.
 - Not compatible with Launcher created by <a href="https://github.com/LazyDuchess" target="_blank">Lazy Duchess</a>.
-- Not compatible with use of CCMagic tool.
+- Not compatible with use of CCMagic tool or The Sims Resource CC Manager.
 
 # Learn everything about this Launcher and The Sims 3!
 
