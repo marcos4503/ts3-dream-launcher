@@ -227,6 +227,18 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/hair-packs-page.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-hairs-pack1.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-hairs-pack1.zip.002 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-hairs-pack1.zip.003 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-hairs-pack1.zip.004 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-hairs-pack1.zip.005 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-hairs-pack1.zip.006 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-hairs-pack1.zip.007 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-hairs-pack1.zip.008 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-hairs-pack1.zip.009 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-hairs-pack1.zip.010 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-hairs-pack1.zip.011 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-hairs-pack1.zip.012"
+        },
+        {
+            "name": "More Clothes Pack 1",
+            "category": "CONTENTS",
+            "author": "Various",
+            "description_enUS": "Adds over 120 clothing items to your game. The items range from shoes, shirts with prints to dresses. There are items for all ages!",
+            "description_ptBR": "Adiciona mais de 120 itens de vestuário para o seu jogo. Os itens vão desde sapatos, camisas com estampas até vestidos. Há itens para todas as idades!",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ "MasterController.package", "MasterController_Cheats.package", "MasterController_Integration.package" ],
+            "pageUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/cloth-packs-page.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.002 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.003"
         }
     ]
 }
