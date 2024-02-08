@@ -236,9 +236,21 @@
             "description_ptBR": "Adiciona mais de 120 itens de vestuário para o seu jogo. Os itens vão desde sapatos, camisas com estampas até vestidos. Há itens para todas as idades!",
             "requiredEps": [ ],
             "requiredRecommendedModFiles": [ ],
-            "requiredPatchModFiles": [ "MasterController.package", "MasterController_Cheats.package", "MasterController_Integration.package" ],
+            "requiredPatchModFiles": [ "MasterController2.package", "MasterController_Cheats.package", "MasterController_Integration.package" ],
             "pageUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/cloth-packs-page.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.002 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.003"
+        },
+        {
+            "name": "More Floors Pack 1",
+            "category": "CONTENTS",
+            "author": "Various",
+            "description_enUS": "Adds 45 new floors to the game. From Japanese floors, asphalt and sidewalks, to tiles of different types and colors.",
+            "description_ptBR": "Adiciona 45 novos pisos ao jogo. Desde pisos Japonêses, asfalto e calçada, até ladrilhos de diferentes tipos e cores.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/floors-packs-page.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-floors-pack1.zip"
         }
     ]
 }
