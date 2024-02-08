@@ -236,7 +236,7 @@
             "description_ptBR": "Adiciona mais de 120 itens de vestuário para o seu jogo. Os itens vão desde sapatos, camisas com estampas até vestidos. Há itens para todas as idades!",
             "requiredEps": [ ],
             "requiredRecommendedModFiles": [ ],
-            "requiredPatchModFiles": [ "MasterController2.package", "MasterController_Cheats.package", "MasterController_Integration.package" ],
+            "requiredPatchModFiles": [ "MasterController.package", "MasterController_Cheats.package", "MasterController_Integration.package" ],
             "pageUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/cloth-packs-page.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.002 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.003"
         },
