@@ -241,6 +241,18 @@
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.002 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.003"
         },
         {
+            "name": "More Accessories Pack 1",
+            "category": "CONTENTS",
+            "author": "Various",
+            "description_enUS": "Adds over 75 new accessories to the game. Accessories range from earrings and piercings, to headphones and socks!",
+            "description_ptBR": "Adiciona mais de 75 novos acessórios para o jogo. Os acessorios vão desde brincos e piercings, até fones e meias!",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/accessories-packs-page.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-accessories-pack1.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-accessories-pack1.zip.002 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-accessories-pack1.zip.003"
+        },
+        {
             "name": "More Floors Pack 1",
             "category": "CONTENTS",
             "author": "Various",
