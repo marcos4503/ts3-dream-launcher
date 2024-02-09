@@ -275,6 +275,18 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/floors-packs-page.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-floors-pack1.zip"
+        },
+        {
+            "name": "More Terrain Paints Pack 1",
+            "category": "CONTENTS",
+            "author": "Various",
+            "description_enUS": "Adds over 25 new terrain paintings. The new items range from sand and cement to blocks and asphalt.",
+            "description_ptBR": "Adiciona mais de 25 novas pinturas de terreno. Os novos itens vão desde areia e cimento, até blocos e asfalto.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/terrain-packs-page.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-terrains-pack1.zip"
         }
     ]
 }
