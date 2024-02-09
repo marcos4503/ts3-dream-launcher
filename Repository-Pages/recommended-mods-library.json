@@ -287,6 +287,18 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/terrain-packs-page.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-terrains-pack1.zip"
+        },
+        {
+            "name": "More Walls Pack 1",
+            "category": "CONTENTS",
+            "author": "Various",
+            "description_enUS": "Adds more than 150 new wall paintings of the most varied styles and other wall-related objects.",
+            "description_ptBR": "Adiciona mais de 150 novas pinturas de parede dos mais variados estilos e outros objetos relacionados a paredes.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/walls-packs-page.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-walls-pack1.zip"
         }
     ]
 }
