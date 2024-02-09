@@ -253,6 +253,18 @@
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-accessories-pack1.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-accessories-pack1.zip.002 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-accessories-pack1.zip.003"
         },
         {
+            "name": "More Makeups Pack 1",
+            "category": "CONTENTS",
+            "author": "Various",
+            "description_enUS": "Adds over 25 new makeup styles and face effects.",
+            "description_ptBR": "Adiciona mais de 25 novos estilos de maquiagem e efeitos de rosto.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/makeup-packs-page.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-makeups-pack1.zip"
+        },
+        {
             "name": "More Floors Pack 1",
             "category": "CONTENTS",
             "author": "Various",
