@@ -1,0 +1,19 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TS3_Dream_Launcher.Controls.ListItems"
+             xmlns:BeautyButton="clr-namespace:TS3_Dream_Launcher.Controls.BeautyButton" x:Class="TS3_Dream_Launcher.Controls.ListItems.S3PkModItem"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Border x:Name="background" BorderThickness="0,0,0,0" VerticalAlignment="Top" CornerRadius="8,8,8,8" Background="White">
+            <DockPanel LastChildFill="False">
+                <TextBlock x:Name="name" TextWrapping="Wrap" Text="Place Holder" Margin="8,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <BeautyButton:BeautyButton x:Name="installButton" Content="{DynamicResource launcher_patches_install}" HoverBackground="#FF3AA42B" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF348828" BorderBrush="#FF071F04" Foreground="White" Cursor="Hand" DockPanel.Dock="Right" Height="24" Width="80" Margin="0,8,8,8"/>
+            </DockPanel>
+        </Border>
+
+    </Grid>
+</UserControl>

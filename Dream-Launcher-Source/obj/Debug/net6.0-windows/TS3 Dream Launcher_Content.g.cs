@@ -8,8 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/antilag-template.cfg")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/intelfix.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/intro.wmv")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/smooth-patch-template.txt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/tray-busy.ico")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/tray-off.ico")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/tray-on.ico")]

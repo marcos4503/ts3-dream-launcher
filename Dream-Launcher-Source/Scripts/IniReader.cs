@@ -34,7 +34,7 @@ namespace TS3_Dream_Launcher.Scripts
         {
             //Try to find the key and edit his value, if found the key
             for(int i = 0; i < targetIniLoadedLines.Length; i++)
-                if (targetIniLoadedLines[i].Contains(key) == true)
+                if (targetIniLoadedLines[i].Split("=")[0].Replace(" ", "").ToLower() == key.ToLower())
                 {
                     //Get the value
                     string rawValue = targetIniLoadedLines[i];
@@ -61,10 +61,10 @@ namespace TS3_Dream_Launcher.Scripts
 
             //Try to get the value from the loaded INI file
             for (int i = 0; i < targetIniLoadedLines.Length; i++)
-                if (targetIniLoadedLines[i].Contains(key) == true)
+                if (targetIniLoadedLines[i].Split("=")[0].Replace(" ", "").ToLower() == key.ToLower())
                 {
                     //Get the value
-                    toReturn = targetIniLoadedLines[i];
+                    toReturn = targetIniLoadedLines[i].Replace(" ", "").Replace("=", "").Replace(key, "");
 
                     //Stop the loop
                     break;

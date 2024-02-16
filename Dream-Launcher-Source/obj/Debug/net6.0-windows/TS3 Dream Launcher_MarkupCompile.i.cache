@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\Visual-Studio\TS3 Dream Launcher\App.xaml
-5-1615283326
-6-1424043412
-11-51530956
-210-693669753
-Controls\BeautyButton\BeautyButton.xaml;MainWindow.xaml;Resources\Languages\LangStrings-PT-BR.xaml;Resources\Languages\LangStrings.xaml;WindowIconViewer.xaml;
+17-1859318822
+8-1598785695
+25-791531872
+243-1636183496
+Controls\BeautyButton\BeautyButton.xaml;Controls\ListItems\CacheItem.xaml;Controls\ListItems\ConflictItem.xaml;Controls\ListItems\InstalledModItem.xaml;Controls\ListItems\LogItem.xaml;Controls\ListItems\PatchItem.xaml;Controls\ListItems\S3PkModItem.xaml;Controls\ListItems\StoreModItem.xaml;Controls\ListItems\ToolItem.xaml;Controls\ValidableTextBox\ValidableTextBox.xaml;MainWindow.xaml;Resources\Languages\LangStrings-PT-BR.xaml;Resources\Languages\LangStrings.xaml;WindowIconViewer.xaml;WindowModInstaller.xaml;WindowModRename.xaml;WindowS3PkgPreModInstaller.xaml;
 
-False
+True
 

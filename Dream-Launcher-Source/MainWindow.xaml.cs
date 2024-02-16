@@ -1,5 +1,6 @@
 ﻿using CoroutinesDotNet;
 using CoroutinesForWpf;
+using Ionic.Zip;
 using MarcosTomaz.ATS;
 using Microsoft.Win32;
 using System;
@@ -9,6 +10,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Management;
+using System.Net.Http;
 using System.Reflection;
 using System.Security.Principal;
 using System.Text;
@@ -25,19 +27,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using TS3_Dream_Launcher.Controls.ListItems;
 using TS3_Dream_Launcher.Scripts;
+using NetFwTypeLib;
+using System.Xml;
 
 namespace TS3_Dream_Launcher
 {
     public partial class MainWindow : Window
     {
         //Enums of script
-        private enum ToastType
+        public enum ToastType
         {
             Error,
             Success
         }
-        private enum LauncherPage
+        public enum LauncherPage
         {
             home,
             saves,
@@ -76,6 +81,28 @@ namespace TS3_Dream_Launcher
             y70y80y90,
             Movie
         }
+        private enum PatchMode
+        {
+            CheckIntegrity,
+            Install
+        }
+        private enum ModCategory
+        {
+            All,
+            Contents,
+            Graphics,
+            Sounds,
+            Fixes,
+            Gameplay,
+            Sliders,
+            Others,
+            FromPatches
+        }
+        private enum ModScreen
+        {
+            Recommended,
+            Custom
+        }
 
         //Cache variables
         private double thisWindowLeftPosition = 0;
@@ -84,16 +111,33 @@ namespace TS3_Dream_Launcher
         private bool isToastHistoryToggled = false;
         private int currentToastsInHistory = 0;
         private bool isPlayingTheGame = false;
-        private string myDocumentsPath = "";
         private bool[] availableExpansionPacks = new bool[12];
         private bool[] availableStuffPacks = new bool[10];
+        private LauncherPage currentLauncherPageViewing = LauncherPage.home;
+        private IDisposable logsViewerOpenRoutine = null;
+        private IDisposable installedModsUpdateRoutine = null;
+        private IDisposable installedModsFilterRoutine = null;
+        private ModCategory currentSeeingModsCategory = ModCategory.All;
+        private bool isDownloadingRecommendedLibrary = false;
+        private IDisposable recommendedModsUpdateRoutine = null;
+        private ModCategory currentSeeingRecModsCategory = ModCategory.All;
+        private IDisposable recommendedModsFilterRoutine = null;
 
         //Private variables
-        private Preferences launcherPrefs = null;
         private IDictionary<string, Storyboard> animStoryboards = new Dictionary<string, Storyboard>();
         private System.Windows.Forms.NotifyIcon launcherTrayIcon = null;
         private IDictionary<string, string> runningTasks = new Dictionary<string, string>();
         private Process currentGameProcess = null;
+
+        //Public variables
+        public string myDocumentsPath = "";
+        public Preferences launcherPrefs = null;
+        public List<PatchItem> instantiatedPatchItems = new List<PatchItem>();
+        public List<CacheItem> instantiatedCacheItems = new List<CacheItem>();
+        public List<LogItem> instantiatedLogItems = new List<LogItem>();
+        public List<ToolItem> instantiatedToolItems = new List<ToolItem>();
+        public List<InstalledModItem> instantiatedModsItems = new List<InstalledModItem>();
+        public List<StoreModItem> instantiatedRecModItems = new List<StoreModItem>();
 
         //Core methods
 
@@ -181,6 +225,9 @@ namespace TS3_Dream_Launcher
             animStoryboards.Add("toastExit", (FindResource("toastExit") as Storyboard));
             animStoryboards.Add("toastHistoryEnter", (FindResource("toastHistoryEnter") as Storyboard));
             animStoryboards.Add("toastHistoryExit", (FindResource("toastHistoryExit") as Storyboard));
+            animStoryboards.Add("logsViewerEntry", (FindResource("logsViewerEntry") as Storyboard));
+            animStoryboards.Add("logsViewerExit", (FindResource("logsViewerExit") as Storyboard));
+            animStoryboards.Add("installedModsLoadExit", (FindResource("installedModsLoadExit") as Storyboard));
         }
 
         private void PrepareAndShowScreen1_Language()
@@ -651,6 +698,9 @@ namespace TS3_Dream_Launcher
             s5_intelFix.Visibility = Visibility.Collapsed;
             s6_launcher.Visibility = Visibility.Visible;
 
+            //Disable all red dots notifications
+            DisableAllRedDotsNotifications();
+
             //Play the fade-in animation
             animStoryboards["screen6FadeIn"].Begin();
 
@@ -665,7 +715,7 @@ namespace TS3_Dream_Launcher
                     gameVersion.Content = ("Game Version: " + line.Replace(" ", "").Replace("GameVersion=", ""));
 
             //Show a random wallpaper
-            ImageBrush wallpaperBrush = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/Resources/wallpaper-" + (new Random().Next(0, 4)) + ".jpg")));
+            ImageBrush wallpaperBrush = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/Resources/wallpaper-" + (new Random().Next(0, 10)) + ".png")));
             wallpaperBrush.Stretch = Stretch.UniformToFill;
             playWallpaper.Background = wallpaperBrush;
 
@@ -683,6 +733,11 @@ namespace TS3_Dream_Launcher
                     newProcess.StartInfo.FileName = System.IO.Path.Combine(workingDirectory, "TS3W.exe");
                     newProcess.StartInfo.WorkingDirectory = workingDirectory;
                     newProcess.Start();
+                    //Set the process cpu priority
+                    if (launcherPrefs.loadedData.gamePriority == 0)
+                        newProcess.PriorityClass = ProcessPriorityClass.Normal;
+                    if (launcherPrefs.loadedData.gamePriority == 1)
+                        newProcess.PriorityClass = ProcessPriorityClass.High;
 
                     //Store it
                     currentGameProcess = newProcess;
@@ -692,8 +747,11 @@ namespace TS3_Dream_Launcher
                     //Store the current window position
                     thisWindowLeftPosition = this.Left;
                     thisWindowTopPosition = this.Top;
-                    //Hide this window
-                    this.Visibility = Visibility.Collapsed;
+                    //Hide this window (if is allowed)
+                    if(launcherPrefs.loadedData.launcherBehaviour == 0)
+                        this.Visibility = Visibility.Collapsed;
+                    //Block the UI
+                    BlockLauncherUiExceptHomePage(true);
                     //Inform that is playing
                     isPlayingTheGame = true;
                     //Update the tray icon
@@ -726,34 +784,22 @@ namespace TS3_Dream_Launcher
                         //Restore the current window position
                         this.Left = thisWindowLeftPosition;
                         this.Top = thisWindowTopPosition;
+                        //Unlock the UI
+                        BlockLauncherUiExceptHomePage(false);
                         //Inform that is not playing
                         isPlayingTheGame = false;
                         //Update the tray icon
                         UpdateLauncherSystemTray();
+
+                        //Post-game tasks...
+
+                        //Recalculate all cache types sizes
+                        RecalculateAllCacheTypesSizes();
                     };
                     asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
                 }
                 catch (Exception ex) { ShowToast((GetStringApplicationResource("launcher_launchGameProblem") + " \"" + ex.Message + "\""), ToastType.Error); }
             };
-
-            //Add a temporary task to wait for play
-            AddTask("prepareLauncher", "Preparing the Launcher to play!");
-            //Create a thread to remove the temporary task
-            AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { });
-            asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
-            {
-                //Wait some time
-                threadTools.MakeThreadSleep(3000);
-
-                //Return empty response
-                return new string[] { };
-            };
-            asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) => 
-            {
-                //Remove the task
-                RemoveTask("prepareLauncher");
-            };
-            asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
 
             //Prepare the toast history caller button
             toggleToastsHistory.Click += (s, e) =>
@@ -798,6 +844,7 @@ namespace TS3_Dream_Launcher
             goTools.Click += (s, e) => { SwitchPage(LauncherPage.tools); };
             goSettings.Click += (s, e) => { SwitchPage(LauncherPage.settings); };
             goGithub.Click += (s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo {FileName = "https://github.com/marcos4503/ts3-dream-launcher", UseShellExecute = true }); };
+            goDonate.Click += (s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo {FileName = "https://www.paypal.com/donate/?hosted_button_id=MVDJY3AXLL8T2", UseShellExecute = true }); };
             goGuide.Click += (s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://steamcommunity.com/sharedfiles/filedetails/?id=3118587838", UseShellExecute = true }); };
             goExit.Click += (s, e) => { CheckToExitFromLauncherAndWarnIfHaveTasksRunning(); };
 
@@ -831,7 +878,10 @@ namespace TS3_Dream_Launcher
                 return;
             }
 
-            //Get a copy of "Options.ini" as template for settings appy, if don't have one
+            //Create the folder of cache of the Dream Launcher in my documents
+            Directory.CreateDirectory((myDocumentsPath + "/!DL-TmpCache"));
+
+            //Get a copy of "Options.ini" as template for settings apply, if don't have one
             LoadNewOptionsTemplateIfDontHaveOne();
             //Setup the reset options template button
             set_ResetOptTemplate.Click += (s, e) => 
@@ -846,21 +896,32 @@ namespace TS3_Dream_Launcher
                                 GetStringApplicationResource("launcher_settings_launcher_resetTemplate_dialogTitle"),
                                 MessageBoxButton.OK, MessageBoxImage.Information);
             };
-            //Show the settings
+            //Show the saved settings and automatically apply all defined settings
             ShowAllSettings();
+            ApplyAllSettings();
             //Prepare the save settings button to save, and apply the settings automatically
             settingsSave.Click += (s, e) => 
             { 
                 SaveAllSettings();
-                ApplyAllSettings(); 
+                ApplyAllSettings();
             };
-            //Apply all settings automatically
-            ApplyAllSettings();
+
+            //Prepare the patch system
+            BuildPatchesListAndPreparePatchSystem();
+
+            //Prepare the cache system
+            BuildAndPrepareCacheCleanListSystem();
+
+            //Prepare the tools system
+            BuildAndPrepareToolsListSystem();
+
+            //Prepare the mods system
+            BuildAndPrepareModsListSystem();
         }
 
         //Tasks manager
 
-        private void AddTask(string id, string description)
+        public void AddTask(string id, string description)
         {
             //Add the task for the queue
             runningTasks.Add(id, description);
@@ -869,7 +930,7 @@ namespace TS3_Dream_Launcher
             UpdateTasksDisplay();
         }
 
-        private void RemoveTask(string id)
+        public void RemoveTask(string id)
         {
             //Remove the task from the queue
             runningTasks.Remove(id);
@@ -905,7 +966,7 @@ namespace TS3_Dream_Launcher
             UpdateLauncherSystemTray();
         }
 
-        private int GetRunningTasksCount()
+        public int GetRunningTasksCount()
         {
             //Return the running tasks count
             return runningTasks.Keys.Count;
@@ -913,7 +974,7 @@ namespace TS3_Dream_Launcher
 
         //Toast manager
 
-        private void ShowToast(string message, ToastType toastType)
+        public void ShowToast(string message, ToastType toastType)
         {
             //Show the message
             toastMessage.Text = message;
@@ -1018,6 +1079,17 @@ namespace TS3_Dream_Launcher
 
         private void SwitchPage(LauncherPage desiredPage)
         {
+            //----- Start of notifications disablers... -----//
+            if (desiredPage == LauncherPage.saves)
+                savesWarn.Visibility = Visibility.Collapsed;
+            if (desiredPage == LauncherPage.media)
+                mediaWarn.Visibility = Visibility.Collapsed;
+            if (desiredPage == LauncherPage.cache)
+                cacheWarn.Visibility = Visibility.Collapsed;
+            if (desiredPage == LauncherPage.patches)
+                patchesWarn.Visibility = Visibility.Collapsed;
+            //-----  End of notifications disablers...  -----//
+
             //Prepare the data
             Color btSelectedColor = Color.FromArgb(255, 0, 40, 86);
             Color btUnselectedColor = Color.FromArgb(255, 44, 103, 169);
@@ -1117,6 +1189,2158 @@ namespace TS3_Dream_Launcher
             buttons.Clear();
             pages.Clear();
             titles.Clear();
+
+            //Inform the current viewing page
+            currentLauncherPageViewing = desiredPage;
+        }
+
+        public void EnablePageRedDotNotification(LauncherPage desiredPage)
+        {
+            //If the page to show red dot is the same that is being viewed, cancel
+            if (desiredPage == currentLauncherPageViewing)
+                return;
+
+            //Show the red dot...
+            if(desiredPage == LauncherPage.saves)
+                savesWarn.Visibility = Visibility.Visible;
+            if (desiredPage == LauncherPage.media)
+                mediaWarn.Visibility = Visibility.Visible;
+            if (desiredPage == LauncherPage.cache)
+                cacheWarn.Visibility = Visibility.Visible;
+            if (desiredPage == LauncherPage.patches)
+                patchesWarn.Visibility = Visibility.Visible;
+        }
+
+        private void DisableAllRedDotsNotifications()
+        {
+            //Disable all red dots notifications
+            savesWarn.Visibility = Visibility.Collapsed;
+            mediaWarn.Visibility = Visibility.Collapsed;
+            cacheWarn.Visibility = Visibility.Collapsed;
+            patchesWarn.Visibility = Visibility.Collapsed;
+        }
+
+        //Patches manager
+
+        private void BuildPatchesListAndPreparePatchSystem()
+        {
+            //Prepare the restart button
+            patchRestartButton.Click += (s, e) => { CheckToExitFromLauncherAndWarnIfHaveTasksRunning(); };
+
+            //Instantiate all patch items
+            InstantiateEachPatchItemAndCheckIntegrityOfInstalleds();
+        }
+
+        private void InstantiateEachPatchItemAndCheckIntegrityOfInstalleds()
+        {
+            //Alder Lake+ Support
+            if(true == true)
+            {
+                //Instantiate and store reference for it
+                PatchItem newPatchItem = new PatchItem(this, -1);
+                patchesList.Children.Add(newPatchItem);
+                instantiatedPatchItems.Add(newPatchItem);
+                //Set it up
+                newPatchItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newPatchItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newPatchItem.Width = double.NaN;
+                newPatchItem.Height = double.NaN;
+                newPatchItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this patch item
+                newPatchItem.SetPatchIcon("Resources/patch-0.png");
+                newPatchItem.SetPatchTitle(GetStringApplicationResource("launcher_patch0_title"));
+                newPatchItem.SetPatchDescription(GetStringApplicationResource("launcher_patch0_description"));
+                //Show if is installed
+                bool patchResultExists = File.Exists((Directory.GetCurrentDirectory() + @"/TS3W-backup.exe"));
+                if (patchResultExists == true)
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.InstalledWithNoActions);
+                if (patchResultExists == false)
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.NotInstalledWithNoActions);
+            }
+
+            //PT-PT to PT-BR better support
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                PatchItem newPatchItem = new PatchItem(this, -1);
+                patchesList.Children.Add(newPatchItem);
+                instantiatedPatchItems.Add(newPatchItem);
+                //Set it up
+                newPatchItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newPatchItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newPatchItem.Width = double.NaN;
+                newPatchItem.Height = double.NaN;
+                newPatchItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this patch item
+                newPatchItem.SetPatchIcon("Resources/patch-1.png");
+                newPatchItem.SetPatchTitle(GetStringApplicationResource("launcher_patch1_title"));
+                newPatchItem.SetPatchDescription(GetStringApplicationResource("launcher_patch1_description"));
+                //Show if is installed
+                bool patchResultExists = File.Exists(((new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent).FullName + "/47890_install-backup.vdf"));
+                if (patchResultExists == true)
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.InstalledWithNoActions);
+                if (patchResultExists == false)
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.NotInstalledWithNoActions);
+            }
+
+            //Mods Support
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                PatchItem newPatchItem = new PatchItem(this, instantiatedPatchItems.Count);
+                patchesList.Children.Add(newPatchItem);
+                instantiatedPatchItems.Add(newPatchItem);
+                //Set it up
+                newPatchItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newPatchItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newPatchItem.Width = double.NaN;
+                newPatchItem.Height = double.NaN;
+                newPatchItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this patch item
+                newPatchItem.SetPatchIcon("Resources/patch-2.png");
+                newPatchItem.SetPatchTitle(GetStringApplicationResource("launcher_patch2_title"));
+                newPatchItem.SetPatchDescription(GetStringApplicationResource("launcher_patch2_description"));
+                //Show if is installed
+                if (launcherPrefs.loadedData.patchModsSupport == true)
+                {
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    DoPatch_ModsSupport(PatchMode.CheckIntegrity, newPatchItem.thisInstantiationIdInList);
+                }
+                if (launcherPrefs.loadedData.patchModsSupport == false)
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+                //Add callbacks for buttons
+                newPatchItem.RegisterOnClickInstallCallback((thisPatchItem) => { DoPatch_ModsSupport(PatchMode.Install, thisPatchItem.thisInstantiationIdInList); });
+            }
+
+            //Basic Optimization
+            if(true == true)
+            {
+                //Instantiate and store reference for it
+                PatchItem newPatchItem = new PatchItem(this, instantiatedPatchItems.Count);
+                patchesList.Children.Add(newPatchItem);
+                instantiatedPatchItems.Add(newPatchItem);
+                //Disable the interaction, if don't have requiremenet patches installed
+                if(launcherPrefs.loadedData.patchModsSupport == false)
+                {
+                    newPatchItem.IsHitTestVisible = false;
+                    newPatchItem.Opacity = 0.30f;
+                }
+                //Set it up
+                newPatchItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newPatchItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newPatchItem.Width = double.NaN;
+                newPatchItem.Height = double.NaN;
+                newPatchItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this patch item
+                newPatchItem.SetPatchIcon("Resources/patch-3.png");
+                newPatchItem.SetPatchTitle(GetStringApplicationResource("launcher_patch3_title"));
+                newPatchItem.SetPatchDescription(GetStringApplicationResource("launcher_patch3_description"));
+                //Show if is installed
+                if (launcherPrefs.loadedData.patchBasicOptimization == true)
+                {
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    DoPatch_BasicOptimization(PatchMode.CheckIntegrity, newPatchItem.thisInstantiationIdInList);
+                }
+                if (launcherPrefs.loadedData.patchBasicOptimization == false)
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+                //Add callbacks for buttons
+                newPatchItem.RegisterOnClickInstallCallback((thisPatchItem) => { DoPatch_BasicOptimization(PatchMode.Install, thisPatchItem.thisInstantiationIdInList); });
+            }
+
+            //FPS Limiter
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                PatchItem newPatchItem = new PatchItem(this, instantiatedPatchItems.Count);
+                patchesList.Children.Add(newPatchItem);
+                instantiatedPatchItems.Add(newPatchItem);
+                //Set it up
+                newPatchItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newPatchItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newPatchItem.Width = double.NaN;
+                newPatchItem.Height = double.NaN;
+                newPatchItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this patch item
+                newPatchItem.SetPatchIcon("Resources/patch-4.png");
+                newPatchItem.SetPatchTitle(GetStringApplicationResource("launcher_patch4_title"));
+                newPatchItem.SetPatchDescription(GetStringApplicationResource("launcher_patch4_description"));
+                //Show if is installed
+                if (launcherPrefs.loadedData.patchFpsLimiter == true)
+                {
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    DoPatch_FpsLimiter(PatchMode.CheckIntegrity, newPatchItem.thisInstantiationIdInList);
+                }
+                if (launcherPrefs.loadedData.patchFpsLimiter == false)
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+                //Add callbacks for buttons
+                newPatchItem.RegisterOnClickInstallCallback((thisPatchItem) => { DoPatch_FpsLimiter(PatchMode.Install, thisPatchItem.thisInstantiationIdInList); });
+            }
+
+            //GPU and CPU update
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                PatchItem newPatchItem = new PatchItem(this, instantiatedPatchItems.Count);
+                patchesList.Children.Add(newPatchItem);
+                instantiatedPatchItems.Add(newPatchItem);
+                //Set it up
+                newPatchItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newPatchItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newPatchItem.Width = double.NaN;
+                newPatchItem.Height = double.NaN;
+                newPatchItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this patch item
+                newPatchItem.SetPatchIcon("Resources/patch-5.png");
+                newPatchItem.SetPatchTitle(GetStringApplicationResource("launcher_patch5_title"));
+                newPatchItem.SetPatchDescription(GetStringApplicationResource("launcher_patch5_description"));
+                //Show if is installed
+                if (launcherPrefs.loadedData.patchCpuGpuUpdate == true)
+                {
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    DoPatch_GpuCpuUpdate(PatchMode.CheckIntegrity, newPatchItem.thisInstantiationIdInList);
+                }
+                if (launcherPrefs.loadedData.patchCpuGpuUpdate == false)
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+                //Add callbacks for buttons
+                newPatchItem.RegisterOnClickInstallCallback((thisPatchItem) => { DoPatch_GpuCpuUpdate(PatchMode.Install, thisPatchItem.thisInstantiationIdInList); });
+            }
+
+            //Better Global Illumination
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                PatchItem newPatchItem = new PatchItem(this, instantiatedPatchItems.Count);
+                patchesList.Children.Add(newPatchItem);
+                instantiatedPatchItems.Add(newPatchItem);
+                //Disable the interaction, if don't have requiremenet patches installed
+                if (launcherPrefs.loadedData.patchModsSupport == false)
+                {
+                    newPatchItem.IsHitTestVisible = false;
+                    newPatchItem.Opacity = 0.30f;
+                }
+                //Set it up
+                newPatchItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newPatchItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newPatchItem.Width = double.NaN;
+                newPatchItem.Height = double.NaN;
+                newPatchItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this patch item
+                newPatchItem.SetPatchIcon("Resources/patch-6.png");
+                newPatchItem.SetPatchTitle(GetStringApplicationResource("launcher_patch6_title"));
+                newPatchItem.SetPatchDescription(GetStringApplicationResource("launcher_patch6_description"));
+                //Show if is installed
+                if (launcherPrefs.loadedData.patchBetterGlobalIllumination == true)
+                {
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    DoPatch_BetterGlobalIllumination(PatchMode.CheckIntegrity, newPatchItem.thisInstantiationIdInList);
+                }
+                if (launcherPrefs.loadedData.patchBetterGlobalIllumination == false)
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+                //Add callbacks for buttons
+                newPatchItem.RegisterOnClickInstallCallback((thisPatchItem) => { DoPatch_BetterGlobalIllumination(PatchMode.Install, thisPatchItem.thisInstantiationIdInList); });
+            }
+
+            //Improved Shading
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                PatchItem newPatchItem = new PatchItem(this, instantiatedPatchItems.Count);
+                patchesList.Children.Add(newPatchItem);
+                instantiatedPatchItems.Add(newPatchItem);
+                //Set it up
+                newPatchItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newPatchItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newPatchItem.Width = double.NaN;
+                newPatchItem.Height = double.NaN;
+                newPatchItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this patch item
+                newPatchItem.SetPatchIcon("Resources/patch-7.png");
+                newPatchItem.SetPatchTitle(GetStringApplicationResource("launcher_patch7_title"));
+                newPatchItem.SetPatchDescription(GetStringApplicationResource("launcher_patch7_description"));
+                //Show if is installed
+                if (launcherPrefs.loadedData.patchImprovedShaders == true)
+                {
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    DoPatch_ImprovedShaders(PatchMode.CheckIntegrity, newPatchItem.thisInstantiationIdInList);
+                }
+                if (launcherPrefs.loadedData.patchImprovedShaders == false)
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+                //Add callbacks for buttons
+                newPatchItem.RegisterOnClickInstallCallback((thisPatchItem) => { DoPatch_ImprovedShaders(PatchMode.Install, thisPatchItem.thisInstantiationIdInList); });
+            }
+
+            //Shadow Extender
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                PatchItem newPatchItem = new PatchItem(this, instantiatedPatchItems.Count);
+                patchesList.Children.Add(newPatchItem);
+                instantiatedPatchItems.Add(newPatchItem);
+                //Set it up
+                newPatchItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newPatchItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newPatchItem.Width = double.NaN;
+                newPatchItem.Height = double.NaN;
+                newPatchItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this patch item
+                newPatchItem.SetPatchIcon("Resources/patch-8.png");
+                newPatchItem.SetPatchTitle(GetStringApplicationResource("launcher_patch8_title"));
+                newPatchItem.SetPatchDescription(GetStringApplicationResource("launcher_patch8_description"));
+                //Show if is installed
+                if (launcherPrefs.loadedData.patchShadowExtender == true)
+                {
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    DoPatch_ShadowExtender(PatchMode.CheckIntegrity, newPatchItem.thisInstantiationIdInList);
+                }
+                if (launcherPrefs.loadedData.patchShadowExtender == false)
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+                //Add callbacks for buttons
+                newPatchItem.RegisterOnClickInstallCallback((thisPatchItem) => { DoPatch_ShadowExtender(PatchMode.Install, thisPatchItem.thisInstantiationIdInList); });
+            }
+
+            //Routing optimization
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                PatchItem newPatchItem = new PatchItem(this, instantiatedPatchItems.Count);
+                patchesList.Children.Add(newPatchItem);
+                instantiatedPatchItems.Add(newPatchItem);
+                //Disable the interaction, if don't have requiremenet patches installed
+                if (launcherPrefs.loadedData.patchModsSupport == false)
+                {
+                    newPatchItem.IsHitTestVisible = false;
+                    newPatchItem.Opacity = 0.30f;
+                }
+                //Set it up
+                newPatchItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newPatchItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newPatchItem.Width = double.NaN;
+                newPatchItem.Height = double.NaN;
+                newPatchItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this patch item
+                newPatchItem.SetPatchIcon("Resources/patch-9.png");
+                newPatchItem.SetPatchTitle(GetStringApplicationResource("launcher_patch9_title"));
+                newPatchItem.SetPatchDescription(GetStringApplicationResource("launcher_patch9_description"));
+                //Show if is installed
+                if (launcherPrefs.loadedData.patchRoutingOptimizations == true)
+                {
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    DoPatch_RoutingOptimizations(PatchMode.CheckIntegrity, newPatchItem.thisInstantiationIdInList);
+                }
+                if (launcherPrefs.loadedData.patchRoutingOptimizations == false)
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+                //Add callbacks for buttons
+                newPatchItem.RegisterOnClickInstallCallback((thisPatchItem) => { DoPatch_RoutingOptimizations(PatchMode.Install, thisPatchItem.thisInstantiationIdInList); });
+            }
+
+            //Internet removal
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                PatchItem newPatchItem = new PatchItem(this, instantiatedPatchItems.Count);
+                patchesList.Children.Add(newPatchItem);
+                instantiatedPatchItems.Add(newPatchItem);
+                //Set it up
+                newPatchItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newPatchItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newPatchItem.Width = double.NaN;
+                newPatchItem.Height = double.NaN;
+                newPatchItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this patch item
+                newPatchItem.SetPatchIcon("Resources/patch-10.png");
+                newPatchItem.SetPatchTitle(GetStringApplicationResource("launcher_patch10_title"));
+                newPatchItem.SetPatchDescription(GetStringApplicationResource("launcher_patch10_description"));
+                //Show if is installed
+                if (launcherPrefs.loadedData.patchInternetRemoval == true)
+                {
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    DoPatch_InternetRemoval(PatchMode.CheckIntegrity, newPatchItem.thisInstantiationIdInList);
+                }
+                if (launcherPrefs.loadedData.patchInternetRemoval == false)
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+                //Add callbacks for buttons
+                newPatchItem.RegisterOnClickInstallCallback((thisPatchItem) => { DoPatch_InternetRemoval(PatchMode.Install, thisPatchItem.thisInstantiationIdInList); });
+            }
+
+            //Add the final spacer
+            Grid finalSpacer = new Grid();
+            patchesList.Children.Add(finalSpacer);
+            //Set it up
+            finalSpacer.HorizontalAlignment = HorizontalAlignment.Stretch;
+            finalSpacer.VerticalAlignment = VerticalAlignment.Top;
+            finalSpacer.Width = double.NaN;
+            finalSpacer.Height = 16.0f;
+        }
+
+        private void DoPatch_AlderLakePatch()
+        {
+            //Add the task
+            AddTask("alderLakePatching", "Do the patch for Alder Lake CPUs.");
+
+            //Create a thread to make the patch
+            AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { });
+            asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+            {
+                //Wait some time
+                threadTools.MakeThreadSleep(3000);
+
+                //Try to make the patch
+                try
+                {
+                    //If have a backup, restore the backup
+                    if (File.Exists((Directory.GetCurrentDirectory() + @"/TS3W-backup.exe")) == true)
+                    {
+                        File.Delete((Directory.GetCurrentDirectory() + @"/TS3W.exe"));
+                        File.Copy((Directory.GetCurrentDirectory() + @"/TS3W-backup.exe"), (Directory.GetCurrentDirectory() + @"/TS3W.exe"));
+                    }
+                    //If was never made a backup, do a backup of "TS3W.exe" file...
+                    if (File.Exists((Directory.GetCurrentDirectory() + @"/TS3W-backup.exe")) == false)
+                        File.Copy((Directory.GetCurrentDirectory() + @"/TS3W.exe"), (Directory.GetCurrentDirectory() + @"/TS3W-backup.exe"));
+
+                    //Do the patching
+                    PeNet.PeFile peFile = new PeNet.PeFile((Directory.GetCurrentDirectory() + @"/TS3W.exe"));
+                    peFile.AddImport("IntelFix.dll", "_DllMain@12");
+                    File.WriteAllBytes((Directory.GetCurrentDirectory() + @"/TS3W.exe"), peFile.RawFile.ToArray());
+                    if (File.Exists((Directory.GetCurrentDirectory() + @"/IntelFix.dll")) == true)
+                        File.Delete((Directory.GetCurrentDirectory() + @"/IntelFix.dll"));
+                    File.Copy((Directory.GetCurrentDirectory() + @"/Content/IntelFix.dll"), (Directory.GetCurrentDirectory() + @"/IntelFix.dll"));
+
+                    //Return a success response
+                    return new string[] { "success" };
+                }
+                catch (Exception ex)
+                {
+                    //Return a error response
+                    return new string[] { "error", ex.Message };
+                }
+
+                //Return a default result
+                return new string[] { "none" };
+            };
+            asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+            {
+                //If have a success
+                if (backgroundResult[0] == "success")
+                {
+                    //Inform that is patched
+                    launcherPrefs.loadedData.alreadyIntelFixed = true;
+                    launcherPrefs.Save();
+                    ShowToast(GetStringApplicationResource("launcher_alderLakePatchSuccess"), ToastType.Success);
+                }
+                //If have a error
+                if (backgroundResult[0] == "error")
+                {
+                    ShowToast((GetStringApplicationResource("launcher_alderLakePatchProblem") + " \"" + backgroundResult[1] + "\""), ToastType.Error);
+                    EnablePageRedDotNotification(LauncherPage.patches);
+                }
+
+                //Remove the task
+                RemoveTask("alderLakePatching");
+            };
+            asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+        }
+
+        private void DoPatch_PtPtToPtBrTranslate()
+        {
+            //Add the task
+            AddTask("ptPtToPtBrTranslatePatching", "Do the pt-PT to pt-BR translation of game.");
+
+            //Create a thread to make the patch
+            AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { });
+            asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+            {
+                //Wait some time
+                threadTools.MakeThreadSleep(5000);
+
+                //Try to make the patch
+                try
+                {
+                    //Get the path do two folders up
+                    string localeFileDirectory = (new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent).FullName;
+
+                    //If have a backup, restore the backup
+                    if (File.Exists((localeFileDirectory + "/47890_install-backup.vdf")) == true)
+                    {
+                        File.Delete((localeFileDirectory + "/47890_install.vdf"));
+                        File.Copy((localeFileDirectory + "/47890_install-backup.vdf"), (localeFileDirectory + "/47890_install.vdf"));
+                    }
+                    //If was never made a backup, do a backup of "47890_install.vdf" file...
+                    if (File.Exists((localeFileDirectory + "/47890_install-backup.vdf")) == false)
+                        File.Copy((localeFileDirectory + "/47890_install.vdf"), (localeFileDirectory + "/47890_install-backup.vdf"));
+
+                    //Translate the file from pt-PT to pt-BR
+                    string localeContent = File.ReadAllText((localeFileDirectory + "/47890_install.vdf"));
+                    string localeContent0 = localeContent.Replace("\"https://pt.thesims3.com/register.html\"", "\"https://br.thesims3.com/register.html\"");
+                    string localeContent1 = localeContent0.Replace("\"pt-pt\"", "\"pt-BR\"");
+                    string localeContent2 = localeContent1.Replace("\"PT\"", "\"BR\"");
+                    File.WriteAllText((localeFileDirectory + "/47890_install.vdf"), localeContent2);
+
+                    //Return a success response
+                    return new string[] { "success" };
+                }
+                catch (Exception ex)
+                {
+                    //Return a error response
+                    return new string[] { "error", ex.Message };
+                }
+
+                //Return a default result
+                return new string[] { "none" };
+            };
+            asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+            {
+                //If have a success
+                if (backgroundResult[0] == "success")
+                {
+                    //Inform that is translated
+                    launcherPrefs.loadedData.alreadyTranslated = true;
+                    launcherPrefs.Save();
+                    ShowToast(GetStringApplicationResource("launcher_ptptToptbrTranslateSuccess"), ToastType.Success);
+                }
+                //If have a error
+                if (backgroundResult[0] == "error") 
+                {
+                    ShowToast((GetStringApplicationResource("launcher_ptptToptbrTranslateProblem") + " \"" + backgroundResult[1] + "\""), ToastType.Error);
+                    EnablePageRedDotNotification(LauncherPage.patches);
+                }
+
+                //Remove the task
+                RemoveTask("ptPtToPtBrTranslatePatching");
+            };
+            asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+        }
+
+        private void DoPatch_ModsSupport(PatchMode doPatchMode, int instantiatedPatchItemInList)
+        {
+            //
+            //
+            //
+            //INTEGRITY CHECK...
+            //
+            //
+            //
+
+            //If is desired to only check integrity
+            if (doPatchMode == PatchMode.CheckIntegrity)
+            {
+                //Add the task to queue
+                AddTask("patch_modsSupport_integrity", "Checking patch.");
+
+                //--- Start a thread to check patch integrity ---//
+                AsyncTaskSimplified aTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                aTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(1000);
+                    //Prepare the response to return
+                    string toReturn = "ok";
+
+                    //Check integrity of this patch...
+                    if (Directory.Exists((myDocumentsPath + "/Mods")) == false)
+                        toReturn = "problemFound";
+                    if (File.Exists((myDocumentsPath + "/Mods/DreamLauncher.dl3")) == false)
+                        toReturn = "problemFound";
+
+                    //Finish the thread...
+                    return new string[] { toReturn, (startParams[0]) };
+                };
+                aTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of problem, inform it
+                    if (threadTaskResponse == "problemFound")
+                    {
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.InstalledWithProblem);
+                        ShowToast(GetStringApplicationResource("launcher_patches_problemFound"), ToastType.Error);
+                        EnablePageRedDotNotification(LauncherPage.patches);
+                    }
+
+                    //Remove the task from queue
+                    RemoveTask("patch_modsSupport_integrity");
+                };
+                aTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+
+            //
+            //
+            //
+            //INSTALLING...
+            //
+            //
+            //
+
+            //If is desired to install
+            if (doPatchMode == PatchMode.Install)
+            {
+                //--- Start a thread to do the patching ---//
+                AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                asyncTask.onStartTask_RunMainThread += (callerWindow, startParams) =>
+                {
+                    //Get the instantiated patch item in list
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(startParams[0]))];
+                    //Change the UI
+                    instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installing);
+                    //Add the task to queue
+                    AddTask("patch_modsSupport", "Installing patch.");
+                };
+                asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(5000);
+
+                    //Try to do the task
+                    try
+                    {
+                        //If "Mods" folder exists, and file "DreamLauncher.dl3" don't exists inside "Mods" folder, delete the "Mods" folder
+                        if (Directory.Exists((myDocumentsPath + "/Mods")) == true)
+                            if (File.Exists((myDocumentsPath + "/Mods/DreamLauncher.dl3")) == false)
+                                Directory.Delete((myDocumentsPath + "/Mods"), true);
+
+                        //If "Mods" folder don't exists, download it and install
+                        if (Directory.Exists((myDocumentsPath + "/Mods")) == false)
+                        {
+                            //Prepare the target download URL
+                            string downloadUrl = @"https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/patch-mods-support.zip";
+                            string saveAsPath = (myDocumentsPath + @"/!DL-TmpCache/patch-mods-support.zip");
+                            //Download the "Mods" folder sync
+                            HttpClient httpClient = new HttpClient();
+                            HttpResponseMessage httpRequestResult = httpClient.GetAsync(downloadUrl).Result;
+                            httpRequestResult.EnsureSuccessStatusCode();
+                            Stream downloadStream = httpRequestResult.Content.ReadAsStreamAsync().Result;
+                            FileStream fileStream = new FileStream(saveAsPath, FileMode.Create, FileAccess.Write, FileShare.None);
+                            downloadStream.CopyTo(fileStream);
+                            httpClient.Dispose();
+                            fileStream.Dispose();
+                            fileStream.Close();
+                            downloadStream.Dispose();
+                            downloadStream.Close();
+
+                            //Extract the downloaded patch
+                            ZipFile zipFile = ZipFile.Read(saveAsPath);
+                            foreach (ZipEntry entry in zipFile)
+                                entry.Extract((myDocumentsPath + @"/!DL-TmpCache"), ExtractExistingFileAction.OverwriteSilently);
+                            zipFile.Dispose();
+
+                            //Put the downloaded mods folder into the place
+                            Directory.Move((myDocumentsPath + @"/!DL-TmpCache/Mods"), (myDocumentsPath + @"/Mods"));
+                        }
+
+                        //Return a success response
+                        return new string[] { "success", (startParams[0]) };
+                    }
+                    catch (Exception ex)
+                    {
+                        //Return a error response
+                        return new string[] { "error", (startParams[0]) };
+                    }
+
+                    //Finish the thread...
+                    return new string[] { "none", (startParams[0]) };
+                };
+                asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of success, inform it
+                    if (threadTaskResponse == "success")
+                    {
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallSuccess").Replace("%name%", GetStringApplicationResource("launcher_patch2_title"))), ToastType.Success);
+                        launcherPrefs.loadedData.patchModsSupport = true;
+                        launcherPrefs.Save();
+
+                        //Request the restart
+                        restartPopUp.Visibility = Visibility.Visible;
+                    }
+                    //If have a response different from success, inform error
+                    if (threadTaskResponse != "success")
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallError").Replace("%name%", GetStringApplicationResource("launcher_patch2_title"))), ToastType.Error);
+
+                    //Update the UI
+                    if (launcherPrefs.loadedData.patchModsSupport == true)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    if (launcherPrefs.loadedData.patchModsSupport == false)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+
+                    //Remove the task from queue
+                    RemoveTask("patch_modsSupport");
+                };
+                asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+        }
+
+        private void DoPatch_BasicOptimization(PatchMode doPatchMode, int instantiatedPatchItemInList)
+        {
+            //
+            //
+            //
+            //INTEGRITY CHECK...
+            //
+            //
+            //
+
+            //If is desired to only check integrity
+            if (doPatchMode == PatchMode.CheckIntegrity)
+            {
+                //Add the task to queue
+                AddTask("patch_basicOptimization_integrity", "Checking patch.");
+
+                //--- Start a thread to check patch integrity ---//
+                AsyncTaskSimplified aTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                aTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(1000);
+                    //Prepare the response to return
+                    string toReturn = "ok";
+
+                    //Prepare a list of files
+                    List<string> filesToCheck = new List<string>();
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/ErrorTrap.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/HideExpansionPacksGameIcons.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/MasterController.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/MasterController_Cheats.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/MasterController_Integration.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/MemoriesDisabled.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/Overwatch.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/Overwatch_Tuning.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/Register.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/Register_Tuning.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/SmoothPatch.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/SmoothPatch_MasterController.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/Traffic.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/Traffic_Tuning.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/Traveler.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/Traveler_Tuning.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/GoHere.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/GoHere_Tuning.package"));
+                    filesToCheck.Add((Directory.GetCurrentDirectory() + @"/ddraw.dll"));
+                    filesToCheck.Add((Directory.GetCurrentDirectory() + @"/TS3Patch.asi"));
+                    filesToCheck.Add((Directory.GetCurrentDirectory() + @"/TS3Patch.txt"));
+
+                    //Check integrity of this patch...
+                    foreach(string filePath in filesToCheck)
+                        if(File.Exists(filePath) == false)
+                        {
+                            toReturn = "problemFound";
+                            break;
+                        }
+
+                    //Finish the thread...
+                    return new string[] { toReturn, (startParams[0]) };
+                };
+                aTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of problem, inform it
+                    if (threadTaskResponse == "problemFound")
+                    {
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.InstalledWithProblem);
+                        ShowToast(GetStringApplicationResource("launcher_patches_problemFound"), ToastType.Error);
+                        EnablePageRedDotNotification(LauncherPage.patches);
+                    }
+
+                    //Remove the task from queue
+                    RemoveTask("patch_basicOptimization_integrity");
+                };
+                aTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+
+            //
+            //
+            //
+            //INSTALLING...
+            //
+            //
+            //
+
+            //If is desired to install
+            if (doPatchMode == PatchMode.Install)
+            {
+                //--- Start a thread to do the patching ---//
+                AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                asyncTask.onStartTask_RunMainThread += (callerWindow, startParams) =>
+                {
+                    //Get the instantiated patch item in list
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(startParams[0]))];
+                    //Change the UI
+                    instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installing);
+                    //Add the task to queue
+                    AddTask("patch_basicOptimization", "Installing patch.");
+                };
+                asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(5000);
+
+                    //Try to do the task
+                    try
+                    {
+                        //Prepare a list of files
+                        List<string> filesToCheck = new List<string>();
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/ErrorTrap.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/HideExpansionPacksGameIcons.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/MasterController.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/MasterController_Cheats.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/MasterController_Integration.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/MemoriesDisabled.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/Overwatch.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/Overwatch_Tuning.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/Register.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/Register_Tuning.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/SmoothPatch.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/SmoothPatch_MasterController.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/Traffic.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/Traffic_Tuning.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/Traveler.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/Traveler_Tuning.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/GoHere.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/GoHere_Tuning.package"));
+                        filesToCheck.Add((Directory.GetCurrentDirectory() + @"/ddraw.dll"));
+                        filesToCheck.Add((Directory.GetCurrentDirectory() + @"/TS3Patch.asi"));
+                        filesToCheck.Add((Directory.GetCurrentDirectory() + @"/TS3Patch.txt"));
+                        //Remove all files, if exists
+                        foreach (string filePath in filesToCheck)
+                            if (File.Exists(filePath) == true)
+                                File.Delete(filePath);
+
+                        //Download the patch files...
+                        //Prepare the target download URL
+                        string downloadUrl = @"https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/patch-basic-optimization.zip";
+                        string saveAsPath = (myDocumentsPath + @"/!DL-TmpCache/patch-basic-optimization.zip");
+                        //Download the "Mods" folder sync
+                        HttpClient httpClient = new HttpClient();
+                        HttpResponseMessage httpRequestResult = httpClient.GetAsync(downloadUrl).Result;
+                        httpRequestResult.EnsureSuccessStatusCode();
+                        Stream downloadStream = httpRequestResult.Content.ReadAsStreamAsync().Result;
+                        FileStream fileStream = new FileStream(saveAsPath, FileMode.Create, FileAccess.Write, FileShare.None);
+                        downloadStream.CopyTo(fileStream);
+                        httpClient.Dispose();
+                        fileStream.Dispose();
+                        fileStream.Close();
+                        downloadStream.Dispose();
+                        downloadStream.Close();
+
+                        //Extract the downloaded patch files
+                        ZipFile zipFile = ZipFile.Read(saveAsPath);
+                        foreach (ZipEntry entry in zipFile)
+                            entry.Extract((myDocumentsPath + @"/!DL-TmpCache"), ExtractExistingFileAction.OverwriteSilently);
+                        zipFile.Dispose();
+
+                        //Put the files in the right place
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/ErrorTrap.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/ErrorTrap.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/HideExpansionPacksGameIcons.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/HideExpansionPacksGameIcons.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/MasterController.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/MasterController.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/MasterController_Cheats.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/MasterController_Cheats.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/MasterController_Integration.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/MasterController_Integration.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/MemoriesDisabled.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/MemoriesDisabled.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/Overwatch.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/Overwatch.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/Overwatch_Tuning.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/Overwatch_Tuning.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/Register.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/Register.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/Register_Tuning.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/Register_Tuning.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/SmoothPatch.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/SmoothPatch.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/SmoothPatch_MasterController.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/SmoothPatch_MasterController.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/Traffic.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/Traffic.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/Traffic_Tuning.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/Traffic_Tuning.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/Traveler.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/Traveler.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/Traveler_Tuning.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/Traveler_Tuning.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/GoHere.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/GoHere.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Pkgs/GoHere_Tuning.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/GoHere_Tuning.package"));
+                        Directory.Delete((myDocumentsPath + "/!DL-TmpCache/Pkgs"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Root/ddraw.dll"), (Directory.GetCurrentDirectory() + @"/ddraw.dll"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Root/TS3Patch.asi"), (Directory.GetCurrentDirectory() + @"/TS3Patch.asi"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/Root/TS3Patch.txt"), (Directory.GetCurrentDirectory() + @"/TS3Patch.txt"));
+                        Directory.Delete((myDocumentsPath + "/!DL-TmpCache/Root"));
+
+                        //Return a success response
+                        return new string[] { "success", (startParams[0]) };
+                    }
+                    catch (Exception ex)
+                    {
+                        //Return a error response
+                        return new string[] { "error", (startParams[0]) };
+                    }
+
+                    //Finish the thread...
+                    return new string[] { "none", (startParams[0]) };
+                };
+                asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of success, inform it
+                    if (threadTaskResponse == "success")
+                    {
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallSuccess").Replace("%name%", GetStringApplicationResource("launcher_patch3_title"))), ToastType.Success);
+                        launcherPrefs.loadedData.patchBasicOptimization = true;
+                        launcherPrefs.Save();
+
+                        //Request the restart
+                        restartPopUp.Visibility = Visibility.Visible;
+                    }
+                    //If have a response different from success, inform error
+                    if (threadTaskResponse != "success")
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallError").Replace("%name%", GetStringApplicationResource("launcher_patch3_title"))), ToastType.Error);
+
+                    //Update the UI
+                    if (launcherPrefs.loadedData.patchBasicOptimization == true)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    if (launcherPrefs.loadedData.patchBasicOptimization == false)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+
+                    //Remove the task from queue
+                    RemoveTask("patch_basicOptimization");
+                };
+                asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+        }
+
+        private void DoPatch_FpsLimiter(PatchMode doPatchMode, int instantiatedPatchItemInList)
+        {
+            //
+            //
+            //
+            //INTEGRITY CHECK...
+            //
+            //
+            //
+
+            //If is desired to only check integrity
+            if (doPatchMode == PatchMode.CheckIntegrity)
+            {
+                //Add the task to queue
+                AddTask("patch_fpsLimiter_integrity", "Checking patch.");
+
+                //--- Start a thread to check patch integrity ---//
+                AsyncTaskSimplified aTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                aTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(1000);
+                    //Prepare the response to return
+                    string toReturn = "ok";
+
+                    //Prepare a list of files
+                    List<string> filesToCheck = new List<string>();
+                    filesToCheck.Add((Directory.GetCurrentDirectory() + @"/antilag.cfg"));
+                    filesToCheck.Add((Directory.GetCurrentDirectory() + @"/d3d9.dll"));
+
+                    //Check integrity of this patch...
+                    foreach (string filePath in filesToCheck)
+                        if (File.Exists(filePath) == false)
+                        {
+                            toReturn = "problemFound";
+                            break;
+                        }
+
+                    //Finish the thread...
+                    return new string[] { toReturn, (startParams[0]) };
+                };
+                aTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of problem, inform it
+                    if (threadTaskResponse == "problemFound")
+                    {
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.InstalledWithProblem);
+                        ShowToast(GetStringApplicationResource("launcher_patches_problemFound"), ToastType.Error);
+                        EnablePageRedDotNotification(LauncherPage.patches);
+                    }
+
+                    //Remove the task from queue
+                    RemoveTask("patch_fpsLimiter_integrity");
+                };
+                aTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+
+            //
+            //
+            //
+            //INSTALLING...
+            //
+            //
+            //
+
+            //If is desired to install
+            if (doPatchMode == PatchMode.Install)
+            {
+                //--- Start a thread to do the patching ---//
+                AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                asyncTask.onStartTask_RunMainThread += (callerWindow, startParams) =>
+                {
+                    //Get the instantiated patch item in list
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(startParams[0]))];
+                    //Change the UI
+                    instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installing);
+                    //Add the task to queue
+                    AddTask("patch_fpsLimiter", "Installing patch.");
+                };
+                asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(5000);
+
+                    //Try to do the task
+                    try
+                    {
+                        //Prepare a list of files
+                        List<string> filesToCheck = new List<string>();
+                        filesToCheck.Add((Directory.GetCurrentDirectory() + @"/antilag.cfg"));
+                        filesToCheck.Add((Directory.GetCurrentDirectory() + @"/d3d9.dll"));
+                        //Remove all files, if exists
+                        foreach (string filePath in filesToCheck)
+                            if (File.Exists(filePath) == true)
+                                File.Delete(filePath);
+
+                        //Download the patch files...
+                        //Prepare the target download URL
+                        string downloadUrl = @"https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/patch-fps-limiter.zip";
+                        string saveAsPath = (myDocumentsPath + @"/!DL-TmpCache/patch-fps-limiter.zip");
+                        //Download the "Mods" folder sync
+                        HttpClient httpClient = new HttpClient();
+                        HttpResponseMessage httpRequestResult = httpClient.GetAsync(downloadUrl).Result;
+                        httpRequestResult.EnsureSuccessStatusCode();
+                        Stream downloadStream = httpRequestResult.Content.ReadAsStreamAsync().Result;
+                        FileStream fileStream = new FileStream(saveAsPath, FileMode.Create, FileAccess.Write, FileShare.None);
+                        downloadStream.CopyTo(fileStream);
+                        httpClient.Dispose();
+                        fileStream.Dispose();
+                        fileStream.Close();
+                        downloadStream.Dispose();
+                        downloadStream.Close();
+
+                        //Extract the downloaded patch files
+                        ZipFile zipFile = ZipFile.Read(saveAsPath);
+                        foreach (ZipEntry entry in zipFile)
+                            entry.Extract((myDocumentsPath + @"/!DL-TmpCache"), ExtractExistingFileAction.OverwriteSilently);
+                        zipFile.Dispose();
+
+                        //Put the files in the right place
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/antilag.cfg"), (Directory.GetCurrentDirectory() + @"/antilag.cfg"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/d3d9.dll"), (Directory.GetCurrentDirectory() + @"/d3d9.dll"));
+
+                        //Return a success response
+                        return new string[] { "success", (startParams[0]) };
+                    }
+                    catch (Exception ex)
+                    {
+                        //Return a error response
+                        return new string[] { "error", (startParams[0]) };
+                    }
+
+                    //Finish the thread...
+                    return new string[] { "none", (startParams[0]) };
+                };
+                asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of success, inform it
+                    if (threadTaskResponse == "success")
+                    {
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallSuccess").Replace("%name%", GetStringApplicationResource("launcher_patch4_title"))), ToastType.Success);
+                        launcherPrefs.loadedData.patchFpsLimiter = true;
+                        launcherPrefs.Save();
+
+                        //Request the restart
+                        restartPopUp.Visibility = Visibility.Visible;
+                    }
+                    //If have a response different from success, inform error
+                    if (threadTaskResponse != "success")
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallError").Replace("%name%", GetStringApplicationResource("launcher_patch4_title"))), ToastType.Error);
+
+                    //Update the UI
+                    if (launcherPrefs.loadedData.patchFpsLimiter == true)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    if (launcherPrefs.loadedData.patchFpsLimiter == false)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+
+                    //Remove the task from queue
+                    RemoveTask("patch_fpsLimiter");
+                };
+                asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+        }
+
+        private void DoPatch_GpuCpuUpdate(PatchMode doPatchMode, int instantiatedPatchItemInList)
+        {
+            //
+            //
+            //
+            //INTEGRITY CHECK...
+            //
+            //
+            //
+
+            //If is desired to only check integrity
+            if (doPatchMode == PatchMode.CheckIntegrity)
+            {
+                //Add the task to queue
+                AddTask("patch_cpuGpuUpdate_integrity", "Checking patch.");
+
+                //--- Start a thread to check patch integrity ---//
+                AsyncTaskSimplified aTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                aTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(1000);
+                    //Prepare the response to return
+                    string toReturn = "ok";
+
+                    //If files exists...
+                    if (File.Exists((Directory.GetCurrentDirectory() + @"/GraphicsCards.sgr")) == true && File.Exists((Directory.GetCurrentDirectory() + @"/GraphicsRules.sgr")) == true)
+                    {
+                        //Read "GraphicsCards.sgr" file..
+                        string graphicsCardsSgr = File.ReadAllText((Directory.GetCurrentDirectory() + @"/GraphicsCards.sgr"));
+                        if(graphicsCardsSgr.Contains("GeForce RTX 3060 Ti") == false)
+                            toReturn = "problemFound";
+
+                        //Read "GraphicsRules.sgr" file...
+                        string graphicsRulesSgr = File.ReadAllText((Directory.GetCurrentDirectory() + @"/GraphicsRules.sgr"));
+                        if(graphicsRulesSgr.Contains("seti cpuLevelLow        3") == false)
+                            toReturn = "problemFound";
+                    }
+                    //If files don't exists, inform error
+                    if (File.Exists((Directory.GetCurrentDirectory() + @"/GraphicsCards.sgr")) == false || File.Exists((Directory.GetCurrentDirectory() + @"/GraphicsRules.sgr")) == false)
+                        toReturn = "problemFound";
+
+                    //Finish the thread...
+                    return new string[] { toReturn, (startParams[0]) };
+                };
+                aTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of problem, inform it
+                    if (threadTaskResponse == "problemFound")
+                    {
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.InstalledWithProblem);
+                        ShowToast(GetStringApplicationResource("launcher_patches_problemFound"), ToastType.Error);
+                        EnablePageRedDotNotification(LauncherPage.patches);
+                    }
+
+                    //Remove the task from queue
+                    RemoveTask("patch_cpuGpuUpdate_integrity");
+                };
+                aTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+
+            //
+            //
+            //
+            //INSTALLING...
+            //
+            //
+            //
+
+            //If is desired to install
+            if (doPatchMode == PatchMode.Install)
+            {
+                //--- Start a thread to do the patching ---//
+                AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                asyncTask.onStartTask_RunMainThread += (callerWindow, startParams) =>
+                {
+                    //Get the instantiated patch item in list
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(startParams[0]))];
+                    //Change the UI
+                    instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installing);
+                    //Add the task to queue
+                    AddTask("patch_cpuGpuUpdate", "Installing patch.");
+                };
+                asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(5000);
+
+                    //Try to do the task
+                    try
+                    {
+                        //If don't have backup files, create it
+                        if (File.Exists((Directory.GetCurrentDirectory() + @"/GraphicsCards-backup.sgr")) == false)
+                            File.Copy((Directory.GetCurrentDirectory() + @"/GraphicsCards.sgr"), (Directory.GetCurrentDirectory() + @"/GraphicsCards-backup.sgr"));
+                        if (File.Exists((Directory.GetCurrentDirectory() + @"/GraphicsRules-backup.sgr")) == false)
+                            File.Copy((Directory.GetCurrentDirectory() + @"/GraphicsRules.sgr"), (Directory.GetCurrentDirectory() + @"/GraphicsRules-backup.sgr"));
+
+                        //Prepare a list of files
+                        List<string> filesToCheck = new List<string>();
+                        filesToCheck.Add((Directory.GetCurrentDirectory() + @"/GraphicsCards.sgr"));
+                        filesToCheck.Add((Directory.GetCurrentDirectory() + @"/GraphicsRules.sgr"));
+                        //Remove all files, if exists
+                        foreach (string filePath in filesToCheck)
+                            if (File.Exists(filePath) == true)
+                                File.Delete(filePath);
+
+                        //Download the patch files...
+                        //Prepare the target download URL
+                        string downloadUrl = @"https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/patch-gpu-cpu-update.zip";
+                        string saveAsPath = (myDocumentsPath + @"/!DL-TmpCache/patch-gpu-cpu-update.zip");
+                        //Download the "Mods" folder sync
+                        HttpClient httpClient = new HttpClient();
+                        HttpResponseMessage httpRequestResult = httpClient.GetAsync(downloadUrl).Result;
+                        httpRequestResult.EnsureSuccessStatusCode();
+                        Stream downloadStream = httpRequestResult.Content.ReadAsStreamAsync().Result;
+                        FileStream fileStream = new FileStream(saveAsPath, FileMode.Create, FileAccess.Write, FileShare.None);
+                        downloadStream.CopyTo(fileStream);
+                        httpClient.Dispose();
+                        fileStream.Dispose();
+                        fileStream.Close();
+                        downloadStream.Dispose();
+                        downloadStream.Close();
+
+                        //Extract the downloaded patch files
+                        ZipFile zipFile = ZipFile.Read(saveAsPath);
+                        foreach (ZipEntry entry in zipFile)
+                            entry.Extract((myDocumentsPath + @"/!DL-TmpCache"), ExtractExistingFileAction.OverwriteSilently);
+                        zipFile.Dispose();
+
+                        //Put the files in the right place
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/GraphicsCards.sgr"), (Directory.GetCurrentDirectory() + @"/GraphicsCards.sgr"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/GraphicsRules.sgr"), (Directory.GetCurrentDirectory() + @"/GraphicsRules.sgr"));
+
+                        //Delete the "DeviceConfig.log" file if exists
+                        if (File.Exists((myDocumentsPath + "/DeviceConfig.log")) == true)
+                            File.Delete((myDocumentsPath + "/DeviceConfig.log"));
+
+                        //Return a success response
+                        return new string[] { "success", (startParams[0]) };
+                    }
+                    catch (Exception ex)
+                    {
+                        //Return a error response
+                        return new string[] { "error", (startParams[0]) };
+                    }
+
+                    //Finish the thread...
+                    return new string[] { "none", (startParams[0]) };
+                };
+                asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of success, inform it
+                    if (threadTaskResponse == "success")
+                    {
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallSuccess").Replace("%name%", GetStringApplicationResource("launcher_patch5_title"))), ToastType.Success);
+                        launcherPrefs.loadedData.patchCpuGpuUpdate = true;
+                        launcherPrefs.Save();
+                    }
+                    //If have a response different from success, inform error
+                    if (threadTaskResponse != "success")
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallError").Replace("%name%", GetStringApplicationResource("launcher_patch5_title"))), ToastType.Error);
+
+                    //Update the UI
+                    if (launcherPrefs.loadedData.patchCpuGpuUpdate == true)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    if (launcherPrefs.loadedData.patchCpuGpuUpdate == false)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+
+                    //Remove the task from queue
+                    RemoveTask("patch_cpuGpuUpdate");
+                };
+                asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+        }
+
+        private void DoPatch_BetterGlobalIllumination(PatchMode doPatchMode, int instantiatedPatchItemInList)
+        {
+            //
+            //
+            //
+            //INTEGRITY CHECK...
+            //
+            //
+            //
+
+            //If is desired to only check integrity
+            if (doPatchMode == PatchMode.CheckIntegrity)
+            {
+                //Add the task to queue
+                AddTask("patch_betterGlobalIllumination_integrity", "Checking patch.");
+
+                //--- Start a thread to check patch integrity ---//
+                AsyncTaskSimplified aTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                aTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(1000);
+                    //Prepare the response to return
+                    string toReturn = "ok";
+
+                    //Prepare a list of files
+                    List<string> filesToCheck = new List<string>();
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/AutoLightsOverhaul.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/AutoLightsOverhaulCommon.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/BoringBonesFixedLightning.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/ImprovedEnvironmentalShadows.package"));
+
+                    //Check integrity of this patch...
+                    foreach (string filePath in filesToCheck)
+                        if (File.Exists(filePath) == false)
+                        {
+                            toReturn = "problemFound";
+                            break;
+                        }
+
+                    //Finish the thread...
+                    return new string[] { toReturn, (startParams[0]) };
+                };
+                aTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of problem, inform it
+                    if (threadTaskResponse == "problemFound")
+                    {
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.InstalledWithProblem);
+                        ShowToast(GetStringApplicationResource("launcher_patches_problemFound"), ToastType.Error);
+                        EnablePageRedDotNotification(LauncherPage.patches);
+                    }
+
+                    //Remove the task from queue
+                    RemoveTask("patch_betterGlobalIllumination_integrity");
+                };
+                aTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+
+            //
+            //
+            //
+            //INSTALLING...
+            //
+            //
+            //
+
+            //If is desired to install
+            if (doPatchMode == PatchMode.Install)
+            {
+                //--- Start a thread to do the patching ---//
+                AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                asyncTask.onStartTask_RunMainThread += (callerWindow, startParams) =>
+                {
+                    //Get the instantiated patch item in list
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(startParams[0]))];
+                    //Change the UI
+                    instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installing);
+                    //Add the task to queue
+                    AddTask("patch_betterGlobalIllumination", "Installing patch.");
+                };
+                asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(5000);
+
+                    //Try to do the task
+                    try
+                    {
+                        //Prepare a list of files
+                        List<string> filesToCheck = new List<string>();
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/AutoLightsOverhaul.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/AutoLightsOverhaulCommon.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/BoringBonesFixedLightning.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/ImprovedEnvironmentalShadows.package"));
+                        //Remove all files, if exists
+                        foreach (string filePath in filesToCheck)
+                            if (File.Exists(filePath) == true)
+                                File.Delete(filePath);
+
+                        //Download the patch files...
+                        //Prepare the target download URL
+                        string downloadUrl = @"https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/patch-better-global-ilumination.zip";
+                        string saveAsPath = (myDocumentsPath + @"/!DL-TmpCache/patch-better-global-ilumination.zip");
+                        //Download the "Mods" folder sync
+                        HttpClient httpClient = new HttpClient();
+                        HttpResponseMessage httpRequestResult = httpClient.GetAsync(downloadUrl).Result;
+                        httpRequestResult.EnsureSuccessStatusCode();
+                        Stream downloadStream = httpRequestResult.Content.ReadAsStreamAsync().Result;
+                        FileStream fileStream = new FileStream(saveAsPath, FileMode.Create, FileAccess.Write, FileShare.None);
+                        downloadStream.CopyTo(fileStream);
+                        httpClient.Dispose();
+                        fileStream.Dispose();
+                        fileStream.Close();
+                        downloadStream.Dispose();
+                        downloadStream.Close();
+
+                        //Extract the downloaded patch files
+                        ZipFile zipFile = ZipFile.Read(saveAsPath);
+                        foreach (ZipEntry entry in zipFile)
+                            entry.Extract((myDocumentsPath + @"/!DL-TmpCache"), ExtractExistingFileAction.OverwriteSilently);
+                        zipFile.Dispose();
+
+                        //Put the files in the right place
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/AutoLightsOverhaul.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/AutoLightsOverhaul.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/AutoLightsOverhaulCommon.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/AutoLightsOverhaulCommon.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/BoringBonesFixedLightning.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/BoringBonesFixedLightning.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/ImprovedEnvironmentalShadows.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/ImprovedEnvironmentalShadows.package"));
+
+                        //Return a success response
+                        return new string[] { "success", (startParams[0]) };
+                    }
+                    catch (Exception ex)
+                    {
+                        //Return a error response
+                        return new string[] { "error", (startParams[0]) };
+                    }
+
+                    //Finish the thread...
+                    return new string[] { "none", (startParams[0]) };
+                };
+                asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of success, inform it
+                    if (threadTaskResponse == "success")
+                    {
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallSuccess").Replace("%name%", GetStringApplicationResource("launcher_patch6_title"))), ToastType.Success);
+                        launcherPrefs.loadedData.patchBetterGlobalIllumination = true;
+                        launcherPrefs.Save();
+                    }
+                    //If have a response different from success, inform error
+                    if (threadTaskResponse != "success")
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallError").Replace("%name%", GetStringApplicationResource("launcher_patch6_title"))), ToastType.Error);
+
+                    //Update the UI
+                    if (launcherPrefs.loadedData.patchBetterGlobalIllumination == true)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    if (launcherPrefs.loadedData.patchBetterGlobalIllumination == false)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+
+                    //Remove the task from queue
+                    RemoveTask("patch_betterGlobalIllumination");
+                };
+                asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+        }
+
+        private void DoPatch_ImprovedShaders(PatchMode doPatchMode, int instantiatedPatchItemInList)
+        {
+            //
+            //
+            //
+            //INTEGRITY CHECK...
+            //
+            //
+            //
+
+            //If is desired to only check integrity
+            if (doPatchMode == PatchMode.CheckIntegrity)
+            {
+                //Add the task to queue
+                AddTask("patch_improvedShader_integrity", "Checking patch.");
+
+                //--- Start a thread to check patch integrity ---//
+                AsyncTaskSimplified aTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                aTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(1000);
+                    //Prepare the response to return
+                    string toReturn = "ok";
+
+                    //Prepare a list of files
+                    List<string> filesToCheck = new List<string>();
+                    filesToCheck.Add((Directory.GetCurrentDirectory() + @"/D3DShaderReplacer.asi"));
+                    filesToCheck.Add((Directory.GetCurrentDirectory() + @"/D3DShaderReplacer.cfg"));
+                    filesToCheck.Add((Directory.GetCurrentDirectory() + @"/ddraw.dll"));
+                    //Check integrity of this patch...
+                    foreach (string filePath in filesToCheck)
+                        if (File.Exists(filePath) == false)
+                        {
+                            toReturn = "problemFound";
+                            break;
+                        }
+
+                    //Prepare a list of folders
+                    List<string> foldersToCheck = new List<string>();
+                    foldersToCheck.Add((Directory.GetCurrentDirectory() + @"/shader_replace"));
+                    foldersToCheck.Add((Directory.GetCurrentDirectory() + @"/shader_textures"));
+                    //Check integrity of this patch...
+                    foreach (string folderPath in foldersToCheck)
+                        if (Directory.Exists(folderPath) == false)
+                        {
+                            toReturn = "problemFound";
+                            break;
+                        }
+
+                    //Finish the thread...
+                    return new string[] { toReturn, (startParams[0]) };
+                };
+                aTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of problem, inform it
+                    if (threadTaskResponse == "problemFound")
+                    {
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.InstalledWithProblem);
+                        ShowToast(GetStringApplicationResource("launcher_patches_problemFound"), ToastType.Error);
+                        EnablePageRedDotNotification(LauncherPage.patches);
+                    }
+
+                    //Remove the task from queue
+                    RemoveTask("patch_improvedShader_integrity");
+                };
+                aTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+
+            //
+            //
+            //
+            //INSTALLING...
+            //
+            //
+            //
+
+            //If is desired to install
+            if (doPatchMode == PatchMode.Install)
+            {
+                //--- Start a thread to do the patching ---//
+                AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                asyncTask.onStartTask_RunMainThread += (callerWindow, startParams) =>
+                {
+                    //Get the instantiated patch item in list
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(startParams[0]))];
+                    //Change the UI
+                    instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installing);
+                    //Add the task to queue
+                    AddTask("patch_improvedShader", "Installing patch.");
+                };
+                asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(5000);
+
+                    //Try to do the task
+                    try
+                    {
+                        //Prepare a list of files
+                        List<string> filesToCheck = new List<string>();
+                        filesToCheck.Add((Directory.GetCurrentDirectory() + @"/D3DShaderReplacer.asi"));
+                        filesToCheck.Add((Directory.GetCurrentDirectory() + @"/D3DShaderReplacer.cfg"));
+                        foreach (string filePath in filesToCheck)
+                            if (File.Exists(filePath) == true)
+                                File.Delete(filePath);
+                        //Prepare a list of folders
+                        List<string> foldersToCheck = new List<string>();
+                        foldersToCheck.Add((Directory.GetCurrentDirectory() + @"/shader_replace"));
+                        foldersToCheck.Add((Directory.GetCurrentDirectory() + @"/shader_textures"));
+                        foreach (string folderPath in foldersToCheck)
+                            if (Directory.Exists(folderPath) == true)
+                                Directory.Delete(folderPath, true);
+
+                        //Download the patch files...
+                        //Prepare the target download URL
+                        string downloadUrl = @"https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/patch-pixel-and-shader-tweaks.zip";
+                        string saveAsPath = (myDocumentsPath + @"/!DL-TmpCache/patch-pixel-and-shader-tweaks.zip");
+                        //Download the "Mods" folder sync
+                        HttpClient httpClient = new HttpClient();
+                        HttpResponseMessage httpRequestResult = httpClient.GetAsync(downloadUrl).Result;
+                        httpRequestResult.EnsureSuccessStatusCode();
+                        Stream downloadStream = httpRequestResult.Content.ReadAsStreamAsync().Result;
+                        FileStream fileStream = new FileStream(saveAsPath, FileMode.Create, FileAccess.Write, FileShare.None);
+                        downloadStream.CopyTo(fileStream);
+                        httpClient.Dispose();
+                        fileStream.Dispose();
+                        fileStream.Close();
+                        downloadStream.Dispose();
+                        downloadStream.Close();
+
+                        //Extract the downloaded patch files
+                        ZipFile zipFile = ZipFile.Read(saveAsPath);
+                        foreach (ZipEntry entry in zipFile)
+                            entry.Extract((myDocumentsPath + @"/!DL-TmpCache"), ExtractExistingFileAction.OverwriteSilently);
+                        zipFile.Dispose();
+
+                        //Put the files in the right place
+                        if (File.Exists((Directory.GetCurrentDirectory() + @"/ddraw.dll")) == false)
+                            File.Move((myDocumentsPath + "/!DL-TmpCache/ddraw.dll"), (Directory.GetCurrentDirectory() + @"/ddraw.dll"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/D3DShaderReplacer.asi"), (Directory.GetCurrentDirectory() + @"/D3DShaderReplacer.asi"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/D3DShaderReplacer.cfg"), (Directory.GetCurrentDirectory() + @"/D3DShaderReplacer.cfg"));
+                        Directory.CreateDirectory((Directory.GetCurrentDirectory() + @"/shader_replace"));
+                        foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/!DL-TmpCache/shader_replace")).GetFiles()))
+                            File.Copy(file.FullName, (Directory.GetCurrentDirectory() + @"/shader_replace/" + file.Name));
+                        Directory.Delete((myDocumentsPath + "/!DL-TmpCache/shader_replace"), true);
+                        Directory.CreateDirectory((Directory.GetCurrentDirectory() + @"/shader_textures"));
+                        foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/!DL-TmpCache/shader_textures")).GetFiles()))
+                            File.Copy(file.FullName, (Directory.GetCurrentDirectory() + @"/shader_textures/" + file.Name));
+                        Directory.Delete((myDocumentsPath + "/!DL-TmpCache/shader_textures"), true);
+
+                        //Return a success response
+                        return new string[] { "success", (startParams[0]) };
+                    }
+                    catch (Exception ex)
+                    {
+                        //Return a error response
+                        return new string[] { "error", (startParams[0]) };
+                    }
+
+                    //Finish the thread...
+                    return new string[] { "none", (startParams[0]) };
+                };
+                asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of success, inform it
+                    if (threadTaskResponse == "success")
+                    {
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallSuccess").Replace("%name%", GetStringApplicationResource("launcher_patch7_title"))), ToastType.Success);
+                        launcherPrefs.loadedData.patchImprovedShaders = true;
+                        launcherPrefs.Save();
+                    }
+                    //If have a response different from success, inform error
+                    if (threadTaskResponse != "success")
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallError").Replace("%name%", GetStringApplicationResource("launcher_patch7_title"))), ToastType.Error);
+
+                    //Update the UI
+                    if (launcherPrefs.loadedData.patchImprovedShaders == true)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    if (launcherPrefs.loadedData.patchImprovedShaders == false)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+
+                    //Remove the task from queue
+                    RemoveTask("patch_improvedShader");
+                };
+                asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+        }
+
+        private void DoPatch_ShadowExtender(PatchMode doPatchMode, int instantiatedPatchItemInList)
+        {
+            //
+            //
+            //
+            //INTEGRITY CHECK...
+            //
+            //
+            //
+
+            //If is desired to only check integrity
+            if (doPatchMode == PatchMode.CheckIntegrity)
+            {
+                //Add the task to queue
+                AddTask("patch_shadowExtender_integrity", "Checking patch.");
+
+                //--- Start a thread to check patch integrity ---//
+                AsyncTaskSimplified aTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                aTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(1000);
+                    //Prepare the response to return
+                    string toReturn = "ok";
+
+                    //Prepare a list of files
+                    List<string> filesToCheck = new List<string>();
+                    filesToCheck.Add((Directory.GetCurrentDirectory() + @"/ShadowExtender.cfg"));
+                    filesToCheck.Add((Directory.GetCurrentDirectory() + @"/TS3ShadowExtender.asi"));
+                    filesToCheck.Add((Directory.GetCurrentDirectory() + @"/ddraw.dll"));
+                    //Check integrity of this patch...
+                    foreach (string filePath in filesToCheck)
+                        if (File.Exists(filePath) == false)
+                        {
+                            toReturn = "problemFound";
+                            break;
+                        }
+
+                    //Finish the thread...
+                    return new string[] { toReturn, (startParams[0]) };
+                };
+                aTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of problem, inform it
+                    if (threadTaskResponse == "problemFound")
+                    {
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.InstalledWithProblem);
+                        ShowToast(GetStringApplicationResource("launcher_patches_problemFound"), ToastType.Error);
+                        EnablePageRedDotNotification(LauncherPage.patches);
+                    }
+
+                    //Remove the task from queue
+                    RemoveTask("patch_shadowExtender_integrity");
+                };
+                aTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+
+            //
+            //
+            //
+            //INSTALLING...
+            //
+            //
+            //
+
+            //If is desired to install
+            if (doPatchMode == PatchMode.Install)
+            {
+                //--- Start a thread to do the patching ---//
+                AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                asyncTask.onStartTask_RunMainThread += (callerWindow, startParams) =>
+                {
+                    //Get the instantiated patch item in list
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(startParams[0]))];
+                    //Change the UI
+                    instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installing);
+                    //Add the task to queue
+                    AddTask("patch_shadowExtender", "Installing patch.");
+                };
+                asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(5000);
+
+                    //Try to do the task
+                    try
+                    {
+                        //Prepare a list of files
+                        List<string> filesToCheck = new List<string>();
+                        filesToCheck.Add((Directory.GetCurrentDirectory() + @"/ShadowExtender.cfg"));
+                        filesToCheck.Add((Directory.GetCurrentDirectory() + @"/TS3ShadowExtender.asi"));
+                        foreach (string filePath in filesToCheck)
+                            if (File.Exists(filePath) == true)
+                                File.Delete(filePath);
+
+                        //Download the patch files...
+                        //Prepare the target download URL
+                        string downloadUrl = @"https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/patch-shadow-extender.zip";
+                        string saveAsPath = (myDocumentsPath + @"/!DL-TmpCache/patch-shadow-extender.zip");
+                        //Download the "Mods" folder sync
+                        HttpClient httpClient = new HttpClient();
+                        HttpResponseMessage httpRequestResult = httpClient.GetAsync(downloadUrl).Result;
+                        httpRequestResult.EnsureSuccessStatusCode();
+                        Stream downloadStream = httpRequestResult.Content.ReadAsStreamAsync().Result;
+                        FileStream fileStream = new FileStream(saveAsPath, FileMode.Create, FileAccess.Write, FileShare.None);
+                        downloadStream.CopyTo(fileStream);
+                        httpClient.Dispose();
+                        fileStream.Dispose();
+                        fileStream.Close();
+                        downloadStream.Dispose();
+                        downloadStream.Close();
+
+                        //Extract the downloaded patch files
+                        ZipFile zipFile = ZipFile.Read(saveAsPath);
+                        foreach (ZipEntry entry in zipFile)
+                            entry.Extract((myDocumentsPath + @"/!DL-TmpCache"), ExtractExistingFileAction.OverwriteSilently);
+                        zipFile.Dispose();
+
+                        //Put the files in the right place
+                        if (File.Exists((Directory.GetCurrentDirectory() + @"/ddraw.dll")) == false)
+                            File.Move((myDocumentsPath + "/!DL-TmpCache/ddraw.dll"), (Directory.GetCurrentDirectory() + @"/ddraw.dll"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/ShadowExtender.cfg"), (Directory.GetCurrentDirectory() + @"/ShadowExtender.cfg"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/TS3ShadowExtender.asi"), (Directory.GetCurrentDirectory() + @"/TS3ShadowExtender.asi"));
+
+                        //Return a success response
+                        return new string[] { "success", (startParams[0]) };
+                    }
+                    catch (Exception ex)
+                    {
+                        //Return a error response
+                        return new string[] { "error", (startParams[0]) };
+                    }
+
+                    //Finish the thread...
+                    return new string[] { "none", (startParams[0]) };
+                };
+                asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of success, inform it
+                    if (threadTaskResponse == "success")
+                    {
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallSuccess").Replace("%name%", GetStringApplicationResource("launcher_patch8_title"))), ToastType.Success);
+                        launcherPrefs.loadedData.patchShadowExtender = true;
+                        launcherPrefs.Save();
+                    }
+                    //If have a response different from success, inform error
+                    if (threadTaskResponse != "success")
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallError").Replace("%name%", GetStringApplicationResource("launcher_patch8_title"))), ToastType.Error);
+
+                    //Update the UI
+                    if (launcherPrefs.loadedData.patchShadowExtender == true)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    if (launcherPrefs.loadedData.patchShadowExtender == false)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+
+                    //Remove the task from queue
+                    RemoveTask("patch_shadowExtender");
+                };
+                asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+        }
+
+        private void DoPatch_RoutingOptimizations(PatchMode doPatchMode, int instantiatedPatchItemInList)
+        {
+            //
+            //
+            //
+            //INTEGRITY CHECK...
+            //
+            //
+            //
+
+            //If is desired to only check integrity
+            if (doPatchMode == PatchMode.CheckIntegrity)
+            {
+                //Add the task to queue
+                AddTask("patch_routesOptimization_integrity", "Checking patch.");
+
+                //--- Start a thread to check patch integrity ---//
+                AsyncTaskSimplified aTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                aTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(1000);
+                    //Prepare the response to return
+                    string toReturn = "ok";
+
+                    //Prepare a list of files
+                    List<string> filesToCheck = new List<string>();
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/BetterRoutingForGameObjects.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/NoFootTapping.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/NoWhiningMotives.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/RouteFixF4V9.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/NoRouteFailAnimation.package"));
+
+                    //Check integrity of this patch...
+                    foreach (string filePath in filesToCheck)
+                        if (File.Exists(filePath) == false)
+                        {
+                            toReturn = "problemFound";
+                            break;
+                        }
+
+                    //Finish the thread...
+                    return new string[] { toReturn, (startParams[0]) };
+                };
+                aTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of problem, inform it
+                    if (threadTaskResponse == "problemFound")
+                    {
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.InstalledWithProblem);
+                        ShowToast(GetStringApplicationResource("launcher_patches_problemFound"), ToastType.Error);
+                        EnablePageRedDotNotification(LauncherPage.patches);
+                    }
+
+                    //Remove the task from queue
+                    RemoveTask("patch_routesOptimization_integrity");
+                };
+                aTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+
+            //
+            //
+            //
+            //INSTALLING...
+            //
+            //
+            //
+
+            //If is desired to install
+            if (doPatchMode == PatchMode.Install)
+            {
+                //--- Start a thread to do the patching ---//
+                AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                asyncTask.onStartTask_RunMainThread += (callerWindow, startParams) =>
+                {
+                    //Get the instantiated patch item in list
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(startParams[0]))];
+                    //Change the UI
+                    instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installing);
+                    //Add the task to queue
+                    AddTask("patch_routesOptimizations", "Installing patch.");
+                };
+                asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(5000);
+
+                    //Try to do the task
+                    try
+                    {
+                        //Prepare a list of files
+                        List<string> filesToCheck = new List<string>();
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/BetterRoutingForGameObjects.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/FasterElevatorMoving.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/FasterElevatorMoving.package.disabled"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/NoFootTapping.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/NoWhiningMotives.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/RouteFixF4V9.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/NoRouteFailAnimation.package"));
+                        //Remove all files, if exists
+                        foreach (string filePath in filesToCheck)
+                            if (File.Exists(filePath) == true)
+                                File.Delete(filePath);
+
+                        //Download the patch files...
+                        //Prepare the target download URL
+                        string downloadUrl = @"https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/patch-routes-optimizations.zip";
+                        string saveAsPath = (myDocumentsPath + @"/!DL-TmpCache/patch-routes-optimizations.zip");
+                        //Download the "Mods" folder sync
+                        HttpClient httpClient = new HttpClient();
+                        HttpResponseMessage httpRequestResult = httpClient.GetAsync(downloadUrl).Result;
+                        httpRequestResult.EnsureSuccessStatusCode();
+                        Stream downloadStream = httpRequestResult.Content.ReadAsStreamAsync().Result;
+                        FileStream fileStream = new FileStream(saveAsPath, FileMode.Create, FileAccess.Write, FileShare.None);
+                        downloadStream.CopyTo(fileStream);
+                        httpClient.Dispose();
+                        fileStream.Dispose();
+                        fileStream.Close();
+                        downloadStream.Dispose();
+                        downloadStream.Close();
+
+                        //Extract the downloaded patch files
+                        ZipFile zipFile = ZipFile.Read(saveAsPath);
+                        foreach (ZipEntry entry in zipFile)
+                            entry.Extract((myDocumentsPath + @"/!DL-TmpCache"), ExtractExistingFileAction.OverwriteSilently);
+                        zipFile.Dispose();
+
+                        //Put the files in the right place
+                        if (Directory.Exists(((new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent).FullName + "/EP3")) == true)
+                            File.Move((myDocumentsPath + "/!DL-TmpCache/FasterElevatorMoving.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/FasterElevatorMoving.package"));
+                        if (Directory.Exists(((new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent).FullName + "/EP3")) == false)
+                            File.Move((myDocumentsPath + "/!DL-TmpCache/FasterElevatorMoving.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/FasterElevatorMoving.package.disabled"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/BetterRoutingForGameObjects.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/BetterRoutingForGameObjects.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/NoFootTapping.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/NoFootTapping.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/NoWhiningMotives.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/NoWhiningMotives.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/RouteFixF4V9.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/RouteFixF4V9.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/NoRouteFailAnimation.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/NoRouteFailAnimation.package"));
+
+                        //Return a success response
+                        return new string[] { "success", (startParams[0]) };
+                    }
+                    catch (Exception ex)
+                    {
+                        //Return a error response
+                        return new string[] { "error", (startParams[0]) };
+                    }
+
+                    //Finish the thread...
+                    return new string[] { "none", (startParams[0]) };
+                };
+                asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of success, inform it
+                    if (threadTaskResponse == "success")
+                    {
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallSuccess").Replace("%name%", GetStringApplicationResource("launcher_patch9_title"))), ToastType.Success);
+                        launcherPrefs.loadedData.patchRoutingOptimizations = true;
+                        launcherPrefs.Save();
+                    }
+                    //If have a response different from success, inform error
+                    if (threadTaskResponse != "success")
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallError").Replace("%name%", GetStringApplicationResource("launcher_patch9_title"))), ToastType.Error);
+
+                    //Update the UI
+                    if (launcherPrefs.loadedData.patchRoutingOptimizations == true)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    if (launcherPrefs.loadedData.patchRoutingOptimizations == false)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+
+                    //Remove the task from queue
+                    RemoveTask("patch_routesOptimizations");
+                };
+                asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+        }
+
+        private void DoPatch_InternetRemoval(PatchMode doPatchMode, int instantiatedPatchItemInList)
+        {
+            //
+            //
+            //
+            //INTEGRITY CHECK...
+            //
+            //
+            //
+
+            //If is desired to only check integrity
+            if (doPatchMode == PatchMode.CheckIntegrity)
+            {
+                //Add the task to queue
+                AddTask("patch_internetRemoval_integrity", "Checking patch.");
+
+                //--- Start a thread to check patch integrity ---//
+                AsyncTaskSimplified aTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                aTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(1000);
+                    //Prepare the response to return
+                    string toReturn = "ok";
+
+                    //Check if have the rule "The Sims 3 - DL3 Block Patch"
+                    bool haveRule = false;
+                    //Check all rules
+                    INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
+                    foreach (INetFwRule rule in firewallPolicy.Rules)
+                        if (rule.Name == "The Sims 3 - DL3 Block Patch")
+                        {
+                            haveRule = true;
+                            break;
+                        }
+                    //If don't have the rule, inform error
+                    if(haveRule == false)
+                        toReturn = "problemFound";
+
+                    //Finish the thread...
+                    return new string[] { toReturn, (startParams[0]) };
+                };
+                aTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of problem, inform it
+                    if (threadTaskResponse == "problemFound")
+                    {
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.InstalledWithProblem);
+                        ShowToast(GetStringApplicationResource("launcher_patches_problemFound"), ToastType.Error);
+                        EnablePageRedDotNotification(LauncherPage.patches);
+                    }
+
+                    //Remove the task from queue
+                    RemoveTask("patch_internetRemoval_integrity");
+                };
+                aTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+
+            //
+            //
+            //
+            //INSTALLING...
+            //
+            //
+            //
+
+            //If is desired to install
+            if (doPatchMode == PatchMode.Install)
+            {
+                //--- Start a thread to do the patching ---//
+                AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                asyncTask.onStartTask_RunMainThread += (callerWindow, startParams) =>
+                {
+                    //Get the instantiated patch item in list
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(startParams[0]))];
+                    //Change the UI
+                    instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installing);
+                    //Add the task to queue
+                    AddTask("patch_internetRemoval", "Installing patch.");
+                };
+                asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(1500);
+
+                    //Try to do the task
+                    try
+                    {
+                        //Check if have the rule "The Sims 3 - DL3 Block Patch"
+                        bool haveRule = false;
+                        //Check all rules
+                        INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
+                        foreach (INetFwRule rule in firewallPolicy.Rules)
+                            if (rule.Name == "The Sims 3 - DL3 Block Patch")
+                            {
+                                haveRule = true;
+                                break;
+                            }
+                        //If the rule already exists, remove it
+                        firewallPolicy.Rules.Remove("The Sims 3 - DL3 Block Patch");
+
+                        //Prepare the new rule
+                        INetFwRule newFirewallRule = (INetFwRule)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FWRule"));
+                        newFirewallRule.Name = "The Sims 3 - DL3 Block Patch";
+                        newFirewallRule.InterfaceTypes = "All";
+                        newFirewallRule.Enabled = true;
+                        newFirewallRule.Action = NET_FW_ACTION_.NET_FW_ACTION_BLOCK;
+                        newFirewallRule.ApplicationName = (Directory.GetCurrentDirectory() + @"\TS3W.exe");
+                        newFirewallRule.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_OUT;
+                        //Add the block rule for the windows firewall
+                        firewallPolicy.Rules.Add(newFirewallRule);
+
+                        //Return a success response
+                        return new string[] { "success", (startParams[0]) };
+                    }
+                    catch (Exception ex)
+                    {
+                        //Return a error response
+                        return new string[] { "error", (startParams[0]) };
+                    }
+
+                    //Finish the thread...
+                    return new string[] { "none", (startParams[0]) };
+                };
+                asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of success, inform it
+                    if (threadTaskResponse == "success")
+                    {
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallSuccess").Replace("%name%", GetStringApplicationResource("launcher_patch10_title"))), ToastType.Success);
+                        launcherPrefs.loadedData.patchInternetRemoval = true;
+                        launcherPrefs.Save();
+                    }
+                    //If have a response different from success, inform error
+                    if (threadTaskResponse != "success")
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallError").Replace("%name%", GetStringApplicationResource("launcher_patch10_title"))), ToastType.Error);
+
+                    //Update the UI
+                    if (launcherPrefs.loadedData.patchInternetRemoval == true)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    if (launcherPrefs.loadedData.patchInternetRemoval == false)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+
+                    //Remove the task from queue
+                    RemoveTask("patch_internetRemoval");
+                };
+                asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
         }
 
         //Exit manager
@@ -1138,7 +3362,7 @@ namespace TS3_Dream_Launcher
                                                                 GetStringApplicationResource("launcher_taskCloseWarnTit"), MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 //If is desired to kill the launcher, do it
-                if(dialogResult == MessageBoxResult.No)
+                if(dialogResult == MessageBoxResult.Yes)
                     System.Windows.Application.Current.Shutdown();
             }
         }
@@ -1567,7 +3791,7 @@ namespace TS3_Dream_Launcher
             return path;
         }
 
-        private string GetStringApplicationResource(string resourceKey)
+        public string GetStringApplicationResource(string resourceKey)
         {
             //Prepare the string to return
             string toReturn = "###";
@@ -1600,6 +3824,94 @@ namespace TS3_Dream_Launcher
 
             //Return the response
             return toReturn;
+        }
+
+        private void CloneDirectory(string root, string dest)
+        {
+            foreach (var directory in Directory.GetDirectories(root))
+            {
+                //Get the path of the new directory
+                var newDirectory = System.IO.Path.Combine(dest, System.IO.Path.GetFileName(directory));
+                //Create the directory if it doesn't already exist
+                Directory.CreateDirectory(newDirectory);
+                //Recursively clone the directory
+                CloneDirectory(directory, newDirectory);
+            }
+
+            foreach (var file in Directory.GetFiles(root))
+            {
+                File.Copy(file, System.IO.Path.Combine(dest, System.IO.Path.GetFileName(file)));
+            }
+        }
+
+        private long GetDirectorySize(DirectoryInfo d)
+        {
+            long size = 0;
+            // Add file sizes.
+            FileInfo[] fis = d.GetFiles();
+            foreach (FileInfo fi in fis)
+            {
+                size += fi.Length;
+            }
+            // Add subdirectory sizes.
+            DirectoryInfo[] dis = d.GetDirectories();
+            foreach (DirectoryInfo di in dis)
+            {
+                size += GetDirectorySize(di);
+            }
+            return size;
+        }
+
+        private void BlockLauncherUiExceptHomePage(bool lockNow)
+        {
+            //If is desired to lock the UI..
+            if(lockNow == true)
+            {
+                playBtText.Content = GetStringApplicationResource("launcher_button_playingButton");
+                goSaves.IsEnabled = false;
+                goSims.IsEnabled = false;
+                goWorlds.IsEnabled = false;
+                goMedia.IsEnabled = false;
+                goCache.IsEnabled = false;
+                goPatches.IsEnabled = false;
+                goMods.IsEnabled = false;
+                goTools.IsEnabled = false;
+                goSettings.IsEnabled = false;
+                goGithub.IsEnabled = false;
+                goDonate.IsEnabled = false;
+                goGuide.IsEnabled = false;
+                goExit.IsEnabled = false;
+            }
+
+            //If is desired to unlock the UI..
+            if (lockNow == false)
+            {
+                playBtText.Content = GetStringApplicationResource("launcher_button_playButton");
+                goSaves.IsEnabled = true;
+                goSims.IsEnabled = true;
+                goWorlds.IsEnabled = true;
+                goMedia.IsEnabled = true;
+                goCache.IsEnabled = true;
+                goPatches.IsEnabled = true;
+                goMods.IsEnabled = true;
+                goTools.IsEnabled = true;
+                goSettings.IsEnabled = true;
+                goGithub.IsEnabled = true;
+                goDonate.IsEnabled = true;
+                goGuide.IsEnabled = true;
+                goExit.IsEnabled = true;
+            }
+        }
+
+        public void SetInteractionBlockerEnabled(bool enabled)
+        {
+            //If is desired to activate it
+            if (enabled == true)
+                interactionBlocker.Visibility = Visibility.Visible;
+
+            //If is desired to disable it
+            if (enabled == false)
+                interactionBlocker.Visibility = Visibility.Collapsed;
         }
 
         //Settings manager
@@ -1653,6 +3965,10 @@ namespace TS3_Dream_Launcher
                 set_GameLang.SelectedIndex = 10;
             if (launcherPrefs.loadedData.gameLang == "sv-SE")
                 set_GameLang.SelectedIndex = 11;
+            //*** set_priority
+            set_priority.SelectedIndex = launcherPrefs.loadedData.gamePriority;
+            //*** set_launcherBehaviour
+            set_launcherBehaviour.SelectedIndex = launcherPrefs.loadedData.launcherBehaviour;
 
             //Graphics tab
             //*** set_Resolution
@@ -1698,7 +4014,132 @@ namespace TS3_Dream_Launcher
             };
             //*** set_MaxFps
             set_MaxFps.SelectedIndex = launcherPrefs.loadedData.maxFps;
+            //*** set_Fullscreen
+            set_Fullscreen.SelectedIndex = launcherPrefs.loadedData.displayMode;
+            //*** set_Tps
+            set_Tps.SelectedIndex = launcherPrefs.loadedData.maxTps;
+            //*** set_ensureSp
+            set_ensureSp.IsChecked = launcherPrefs.loadedData.debugSmoothPatch;
+            //*** set_objectHiding
+            set_objectHiding.IsChecked = launcherPrefs.loadedData.objectHiding;
+            //*** set_animSmooth
+            set_animSmooth.IsChecked = launcherPrefs.loadedData.animationSmoothing;
+            //*** set_advancedRender
+            set_advancedRender.IsChecked = launcherPrefs.loadedData.advancedRendering;
+            //*** set_highDetailLots
+            set_highDetailLots.SelectedIndex = launcherPrefs.loadedData.highDetailLots;
+            //*** set_reflections
+            set_reflections.SelectedIndex = launcherPrefs.loadedData.reflectionQuality;
+            //*** set_antiAliasing
+            set_antiAliasing.SelectedIndex = launcherPrefs.loadedData.antiAliasing;
+            //*** set_drawDistance
+            set_drawDistance.SelectedIndex = launcherPrefs.loadedData.drawDistance;
+            //*** set_visualEffects
+            set_visualEffects.SelectedIndex = launcherPrefs.loadedData.visualEffects;
+            //*** set_lightShadows
+            set_lightShadows.SelectedIndex = launcherPrefs.loadedData.lightShadows;
+            //*** set_textureQuality
+            set_textureQuality.SelectedIndex = launcherPrefs.loadedData.texturesQuality;
+            //*** set_treeDetails
+            set_treeDetails.SelectedIndex = launcherPrefs.loadedData.treeDetails;
+            //*** set_simsDetails
+            set_simsDetails.SelectedIndex = launcherPrefs.loadedData.simsDetails;
 
+            //Sound tab
+            //*** set_speakerSetup
+            set_speakerSetup.SelectedIndex = launcherPrefs.loadedData.speakerSetup;
+            //*** set_focusMute
+            set_focusMute.IsChecked = launcherPrefs.loadedData.defocusMute;
+            //*** set_voicesVolume
+            set_voicesVolume.Value = launcherPrefs.loadedData.voicesVolume;
+            //*** set_fxVolume
+            set_fxVolume.Value = launcherPrefs.loadedData.fxVolume;
+            //*** set_musicVolume
+            set_musicVolume.Value = launcherPrefs.loadedData.musicVolume;
+            //*** set_ambientVolume
+            set_ambientVolume.Value = launcherPrefs.loadedData.ambientVolume;
+            //*** set_audioQuality
+            set_audioQuality.SelectedIndex = launcherPrefs.loadedData.audioQuality;
+
+            //General tab
+            //*** set_edgeScrolling
+            set_edgeScrolling.IsChecked = launcherPrefs.loadedData.edgeScrolling;
+            //*** set_clockFormat
+            set_clockFormat.SelectedIndex = launcherPrefs.loadedData.clockFormat;
+            //*** set_enableLessons
+            set_enableLessons.IsChecked = launcherPrefs.loadedData.lessons;
+            //*** set_interactLoad
+            set_interactLoad.IsChecked = launcherPrefs.loadedData.interactiveLoading;
+            //*** set_invertH
+            set_invertH.IsChecked = launcherPrefs.loadedData.invertCamH;
+            //*** set_invertV
+            set_invertV.IsChecked = launcherPrefs.loadedData.invertCamV;
+            //*** set_memories
+            set_memories.SelectedIndex = launcherPrefs.loadedData.memories;
+
+            //Game tab
+            //*** set_simsLifespan
+            set_simsLifespan.SelectedIndex = launcherPrefs.loadedData.simsLifespan;
+            set_simsLifespan.SelectionChanged += (s, e) => { RenderSimLifespan(set_simsLifespan.SelectedIndex); };
+            RenderSimLifespan(set_simsLifespan.SelectedIndex);
+            //*** set_aging
+            set_aging.IsChecked = launcherPrefs.loadedData.aging;
+            //*** set_suppressOpportunities
+            set_suppressOpportunities.IsChecked = launcherPrefs.loadedData.suppressOpportunities;
+            //*** set_disableAutonomy
+            set_disableAutonomy.IsChecked = launcherPrefs.loadedData.noAutonomyActiveSim;
+            //*** set_simsAutonomy
+            set_simsAutonomy.SelectedIndex = launcherPrefs.loadedData.simsAutonomyLevel;
+            //*** set_petsAutonomy
+            set_petsAutonomy.SelectedIndex = launcherPrefs.loadedData.petsAutonomyLevel;
+
+            //Environment tab
+            //*** set_summerSeason
+            set_summerSeason.SelectedIndex = launcherPrefs.loadedData.summerSeason;
+            //*** set_fallSeason
+            set_fallSeason.SelectedIndex = launcherPrefs.loadedData.fallSeason;
+            //*** set_springSeason
+            set_springSeason.SelectedIndex = launcherPrefs.loadedData.springSeason;
+            //*** set_winterSeason
+            set_winterSeason.SelectedIndex = launcherPrefs.loadedData.winterSeason;
+            //*** set_tempUnit
+            set_tempUnit.SelectedIndex = launcherPrefs.loadedData.temperatureUnit;
+            //*** set_weatHail
+            set_weatHail.IsChecked = launcherPrefs.loadedData.hailWeather;
+            //*** set_weatRain
+            set_weatRain.IsChecked = launcherPrefs.loadedData.rainWeather;
+            //*** set_weatSnow
+            set_weatSnow.IsChecked = launcherPrefs.loadedData.snowWeather;
+            //*** set_weatFog
+            set_weatFog.IsChecked = launcherPrefs.loadedData.fogWeather;
+            //*** set_lunarCycle
+            set_lunarCycle.SelectedIndex = launcherPrefs.loadedData.lunarCycle;
+
+            //Demography tab
+            //*** set_storyProgression
+            set_storyProgression.SelectedIndex = launcherPrefs.loadedData.storyProgression;
+            //** set_vampires
+            set_vampires.IsChecked = launcherPrefs.loadedData.allowVampires;
+            //** set_werewolves
+            set_werewolves.IsChecked = launcherPrefs.loadedData.allowWerewolves;
+            //** set_pets
+            set_pets.IsChecked = launcherPrefs.loadedData.allowPets;
+            //** set_celebrities
+            set_celebrities.IsChecked = launcherPrefs.loadedData.allowCelebrities;
+            //** set_fairies
+            set_fairies.IsChecked = launcherPrefs.loadedData.allowFairies;
+            //** set_witches
+            set_witches.IsChecked = launcherPrefs.loadedData.allowWitches;
+            //** set_horses
+            set_horses.IsChecked = launcherPrefs.loadedData.allowHorses;
+            //** set_celebritiesSystem
+            set_celebritiesSystem.SelectedIndex = launcherPrefs.loadedData.disableCelebritiesSystem;
+
+            //Online tab
+            //*** set_onlineNotify
+            set_onlineNotify.SelectedIndex = launcherPrefs.loadedData.onlineNotifications;
+            //*** set_shopMode
+            set_shopMode.SelectedIndex = launcherPrefs.loadedData.shopMode;
 
             //...
         }
@@ -1738,6 +4179,10 @@ namespace TS3_Dream_Launcher
                 launcherPrefs.loadedData.gameLang = "es-MX";
             if (set_GameLang.SelectedIndex == 11)
                 launcherPrefs.loadedData.gameLang = "sv-SE";
+            //*** set_priority
+            launcherPrefs.loadedData.gamePriority = set_priority.SelectedIndex;
+            //*** set_launcherBehaviour
+            launcherPrefs.loadedData.launcherBehaviour = set_launcherBehaviour.SelectedIndex;
 
             //Graphics tab
             //*** set_Resolution
@@ -1746,6 +4191,130 @@ namespace TS3_Dream_Launcher
             launcherPrefs.loadedData.refreshRate = set_RefreshRate.SelectedIndex;
             //*** set_MaxFps
             launcherPrefs.loadedData.maxFps = set_MaxFps.SelectedIndex;
+            //*** set_Fullscreen
+            launcherPrefs.loadedData.displayMode = set_Fullscreen.SelectedIndex;
+            //*** set_Tps
+            launcherPrefs.loadedData.maxTps = set_Tps.SelectedIndex;
+            //*** set_ensureSp
+            launcherPrefs.loadedData.debugSmoothPatch = ((bool)set_ensureSp.IsChecked);
+            //*** set_objectHiding
+            launcherPrefs.loadedData.objectHiding = ((bool)set_objectHiding.IsChecked);
+            //*** set_animSmooth
+            launcherPrefs.loadedData.animationSmoothing = ((bool)set_animSmooth.IsChecked);
+            //*** set_advancedRender
+            launcherPrefs.loadedData.advancedRendering = ((bool)set_advancedRender.IsChecked);
+            //*** set_highDetailLots
+            launcherPrefs.loadedData.highDetailLots = set_highDetailLots.SelectedIndex;
+            //*** set_reflections
+            launcherPrefs.loadedData.reflectionQuality = set_reflections.SelectedIndex;
+            //*** set_antiAliasing
+            launcherPrefs.loadedData.antiAliasing = set_antiAliasing.SelectedIndex;
+            //*** set_drawDistance
+            launcherPrefs.loadedData.drawDistance = set_drawDistance.SelectedIndex;
+            //*** set_visualEffects
+            launcherPrefs.loadedData.visualEffects = set_visualEffects.SelectedIndex;
+            //*** set_lightShadows
+            launcherPrefs.loadedData.lightShadows = set_lightShadows.SelectedIndex;
+            //*** set_textureQuality
+            launcherPrefs.loadedData.texturesQuality = set_textureQuality.SelectedIndex;
+            //*** set_treeDetails
+            launcherPrefs.loadedData.treeDetails = set_treeDetails.SelectedIndex;
+            //*** set_simsDetails
+            launcherPrefs.loadedData.simsDetails = set_simsDetails.SelectedIndex;
+
+            //Sounds tab
+            //*** set_speakerSetup
+            launcherPrefs.loadedData.speakerSetup = set_speakerSetup.SelectedIndex;
+            //*** set_focusMute
+            launcherPrefs.loadedData.defocusMute = ((bool)set_focusMute.IsChecked);
+            //*** set_voicesVolume
+            launcherPrefs.loadedData.voicesVolume = ((float)set_voicesVolume.Value);
+            //*** set_fxVolume
+            launcherPrefs.loadedData.fxVolume = ((float)set_fxVolume.Value);
+            //*** set_musicVolume
+            launcherPrefs.loadedData.musicVolume = ((float)set_musicVolume.Value);
+            //*** set_ambientVolume
+            launcherPrefs.loadedData.ambientVolume = ((float)set_ambientVolume.Value);
+            //*** set_audioQuality
+            launcherPrefs.loadedData.audioQuality = set_audioQuality.SelectedIndex;
+
+            //General tab
+            //*** set_edgeScrolling
+            launcherPrefs.loadedData.edgeScrolling = ((bool)set_edgeScrolling.IsChecked);
+            //*** set_clockFormat
+            launcherPrefs.loadedData.clockFormat = set_clockFormat.SelectedIndex;
+            //*** set_enableLessons
+            launcherPrefs.loadedData.lessons = ((bool)set_enableLessons.IsChecked);
+            //*** set_interactLoad
+            launcherPrefs.loadedData.interactiveLoading = ((bool)set_interactLoad.IsChecked);
+            //*** set_invertH
+            launcherPrefs.loadedData.invertCamH = ((bool)set_invertH.IsChecked);
+            //*** set_invertV
+            launcherPrefs.loadedData.invertCamV = ((bool)set_invertV.IsChecked);
+            //*** set_memories
+            launcherPrefs.loadedData.memories = set_memories.SelectedIndex;
+
+            //Game tab
+            //*** set_simsLifespan
+            launcherPrefs.loadedData.simsLifespan = set_simsLifespan.SelectedIndex;
+            //*** set_aging
+            launcherPrefs.loadedData.aging = ((bool)set_aging.IsChecked);
+            //*** set_suppressOpportunities
+            launcherPrefs.loadedData.suppressOpportunities = ((bool)set_suppressOpportunities.IsChecked);
+            //*** set_disableAutonomy
+            launcherPrefs.loadedData.noAutonomyActiveSim = ((bool)set_disableAutonomy.IsChecked);
+            //*** set_simsAutonomy
+            launcherPrefs.loadedData.simsAutonomyLevel = set_simsAutonomy.SelectedIndex;
+            //*** set_petsAutonomy
+            launcherPrefs.loadedData.petsAutonomyLevel = set_petsAutonomy.SelectedIndex;
+
+            //Environment tab
+            //*** set_summerSeason
+            launcherPrefs.loadedData.summerSeason = set_summerSeason.SelectedIndex;
+            //*** set_springSeason
+            launcherPrefs.loadedData.springSeason = set_springSeason.SelectedIndex;
+            //*** set_fallSeason
+            launcherPrefs.loadedData.fallSeason = set_fallSeason.SelectedIndex;
+            //*** set_winterSeason
+            launcherPrefs.loadedData.winterSeason = set_winterSeason.SelectedIndex;
+            //*** set_tempUnit
+            launcherPrefs.loadedData.temperatureUnit = set_tempUnit.SelectedIndex;
+            //*** set_weatHail
+            launcherPrefs.loadedData.hailWeather = ((bool)set_weatHail.IsChecked);
+            //*** set_weatRain
+            launcherPrefs.loadedData.rainWeather = ((bool)set_weatRain.IsChecked);
+            //*** set_weatSnow
+            launcherPrefs.loadedData.snowWeather = ((bool)set_weatSnow.IsChecked);
+            //*** set_weatFog
+            launcherPrefs.loadedData.fogWeather = ((bool)set_weatFog.IsChecked);
+            //*** set_lunarCycle
+            launcherPrefs.loadedData.lunarCycle = set_lunarCycle.SelectedIndex;
+
+            //Online tab
+            //*** set_onlineNotify
+            launcherPrefs.loadedData.onlineNotifications = set_onlineNotify.SelectedIndex;
+            //*** set_shopMode
+            launcherPrefs.loadedData.shopMode = set_shopMode.SelectedIndex;
+
+            //Demography tab
+            //*** 
+            launcherPrefs.loadedData.storyProgression = set_storyProgression.SelectedIndex;
+            //*** 
+            launcherPrefs.loadedData.allowVampires = ((bool)set_vampires.IsChecked);
+            //*** 
+            launcherPrefs.loadedData.allowWerewolves = ((bool)set_werewolves.IsChecked);
+            //*** 
+            launcherPrefs.loadedData.allowPets = ((bool)set_pets.IsChecked);
+            //*** 
+            launcherPrefs.loadedData.allowCelebrities = ((bool)set_celebrities.IsChecked);
+            //*** 
+            launcherPrefs.loadedData.allowFairies = ((bool)set_fairies.IsChecked);
+            //*** 
+            launcherPrefs.loadedData.allowWitches = ((bool)set_witches.IsChecked);
+            //*** 
+            launcherPrefs.loadedData.allowHorses = ((bool)set_horses.IsChecked);
+            //*** 
+            launcherPrefs.loadedData.disableCelebritiesSystem = set_celebritiesSystem.SelectedIndex;
 
             //Save to file
             launcherPrefs.Save();
@@ -1767,7 +4336,7 @@ namespace TS3_Dream_Launcher
             asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
             {
                 //Wait some time
-                threadTools.MakeThreadSleep(5000);
+                threadTools.MakeThreadSleep(1000);
 
                 //Load all settings (read-only)
                 Preferences launcherSettings = new Preferences();
@@ -1826,13 +4395,29 @@ namespace TS3_Dream_Launcher
 
                 //---------------------- Game Settings and Preferences ----------------------//
 
+                //Produce the DxDiag relatory and get driver version number (this can demand some time...)
+                string currentMainDisplayDriverVersion = GetMainDisplayDriverVersion();
+
+                //Search by new keys existing in Options.ini of MyDocuments and add all new keys to options template...
+                AddNewOptionsKeysToExistingOptionsTemplate();
+
                 //Copy the options template for my documents
                 if (File.Exists((myDocumentsPath + "/Options.ini")) == true)
                     File.Delete((myDocumentsPath + "/Options.ini"));
                 File.Copy((Directory.GetCurrentDirectory() + @"/Content/options-template.ini"), (myDocumentsPath + "/Options.ini"));
+                //Copy the options template for root of ts3 (smooth patcher)
+                if (File.Exists((Directory.GetCurrentDirectory() + @"/TS3Patch.txt")) == true)
+                    File.Delete((Directory.GetCurrentDirectory() + @"/TS3Patch.txt"));
+                File.Copy((Directory.GetCurrentDirectory() + @"/Content/smooth-patch-template.txt"), (Directory.GetCurrentDirectory() + @"/TS3Patch.txt"));
+                //Copy the options template for antilag (anti lag)
+                if (File.Exists((Directory.GetCurrentDirectory() + @"/antilag.cfg")) == true)
+                    File.Delete((Directory.GetCurrentDirectory() + @"/antilag.cfg"));
+                File.Copy((Directory.GetCurrentDirectory() + @"/Content/antilag-template.cfg"), (Directory.GetCurrentDirectory() + @"/antilag.cfg"));
 
                 //Read the Options.ini
                 IniReader optionsIni = new IniReader((myDocumentsPath + "/Options.ini"));
+                TxtReader smoothPatchOptionsTxt = new TxtReader((Directory.GetCurrentDirectory() + @"/TS3Patch.txt"));
+                TxtReader antiLagOptionsTxt = new TxtReader((Directory.GetCurrentDirectory() + @"/antilag.cfg"));
 
                 //**** Graphics
 
@@ -1885,11 +4470,635 @@ namespace TS3_Dream_Launcher
                 if (launcherSettings.loadedData.refreshRate == 11)
                     resolutionString += " 360";
                 optionsIni.UpdateValue("resolution", resolutionString);
+                //*** set_Fullscreen
+                if (launcherSettings.loadedData.displayMode == 0)
+                {
+                    optionsIni.UpdateValue("fullscreen", "0");
+                    smoothPatchOptionsTxt.UpdateValue(12, "Borderless", "0");
+                }
+                if (launcherSettings.loadedData.displayMode == 1)
+                {
+                    optionsIni.UpdateValue("fullscreen", "0");
+                    smoothPatchOptionsTxt.UpdateValue(12, "Borderless", "1");
+                }
+                if (launcherSettings.loadedData.displayMode == 2)
+                {
+                    optionsIni.UpdateValue("fullscreen", "1");
+                    smoothPatchOptionsTxt.UpdateValue(12, "Borderless", "0");
+                }
+                //*** set_MaxFps
+                if (launcherSettings.loadedData.maxFps == 0)
+                    antiLagOptionsTxt.UpdateValue(8, "FPSlimit", "0");
+                if (launcherSettings.loadedData.maxFps == 1)
+                    antiLagOptionsTxt.UpdateValue(8, "FPSlimit", "60");
+                if (launcherSettings.loadedData.maxFps == 2)
+                    antiLagOptionsTxt.UpdateValue(8, "FPSlimit", "75");
+                if (launcherSettings.loadedData.maxFps == 3)
+                    antiLagOptionsTxt.UpdateValue(8, "FPSlimit", "90");
+                if (launcherSettings.loadedData.maxFps == 4)
+                    antiLagOptionsTxt.UpdateValue(8, "FPSlimit", "120");
+                //*** set_Tps
+                if (launcherSettings.loadedData.maxTps == 0)
+                    smoothPatchOptionsTxt.UpdateValue(6, "TPS", "500");
+                if (launcherSettings.loadedData.maxTps == 1)
+                    smoothPatchOptionsTxt.UpdateValue(6, "TPS", "1000");
+                //*** set_ensureSp
+                if (launcherSettings.loadedData.debugSmoothPatch == false)
+                    smoothPatchOptionsTxt.UpdateValue(15, "Debug", "0");
+                if (launcherSettings.loadedData.debugSmoothPatch == true)
+                    smoothPatchOptionsTxt.UpdateValue(15, "Debug", "1");
+                //*** set_objectHiding
+                if (launcherSettings.loadedData.objectHiding == false)
+                    optionsIni.UpdateValue("objecthiding", "0");
+                if (launcherSettings.loadedData.objectHiding == true)
+                    optionsIni.UpdateValue("objecthiding", "1");
+                //*** set_animSmooth
+                if (launcherSettings.loadedData.animationSmoothing == false)
+                    optionsIni.UpdateValue("animationsmoothing", "0");
+                if (launcherSettings.loadedData.animationSmoothing == true)
+                    optionsIni.UpdateValue("animationsmoothing", "1");
+                //*** set_advancedRender
+                if (launcherSettings.loadedData.advancedRendering == false)
+                    optionsIni.UpdateValue("advancedrendering", "0");
+                if (launcherSettings.loadedData.advancedRendering == true)
+                    optionsIni.UpdateValue("advancedrendering", "1");
+                //*** set_highDetailLots
+                if (launcherSettings.loadedData.highDetailLots == 0)
+                    optionsIni.UpdateValue("maxactivelots", "1");
+                if (launcherSettings.loadedData.highDetailLots == 1)
+                    optionsIni.UpdateValue("maxactivelots", "2");
+                if (launcherSettings.loadedData.highDetailLots == 2)
+                    optionsIni.UpdateValue("maxactivelots", "3");
+                if (launcherSettings.loadedData.highDetailLots == 3)
+                    optionsIni.UpdateValue("maxactivelots", "4");
+                //*** set_reflections
+                if (launcherSettings.loadedData.reflectionQuality == 0)
+                    optionsIni.UpdateValue("generalreflections", "0");
+                if (launcherSettings.loadedData.reflectionQuality == 1)
+                    optionsIni.UpdateValue("generalreflections", "1");
+                if (launcherSettings.loadedData.reflectionQuality == 2)
+                    optionsIni.UpdateValue("generalreflections", "2");
+                if (launcherSettings.loadedData.reflectionQuality == 3)
+                    optionsIni.UpdateValue("generalreflections", "3");
+                //*** set_antiAliasing
+                if (launcherSettings.loadedData.antiAliasing == 0)
+                    optionsIni.UpdateValue("edgesmoothing", "0");
+                if (launcherSettings.loadedData.antiAliasing == 1)
+                    optionsIni.UpdateValue("edgesmoothing", "1");
+                if (launcherSettings.loadedData.antiAliasing == 2)
+                    optionsIni.UpdateValue("edgesmoothing", "2");
+                if (launcherSettings.loadedData.antiAliasing == 3)
+                    optionsIni.UpdateValue("edgesmoothing", "3");
+                //*** set_drawDistance
+                if (launcherSettings.loadedData.drawDistance == 0)
+                    optionsIni.UpdateValue("drawdistance", "1");
+                if (launcherSettings.loadedData.drawDistance == 1)
+                    optionsIni.UpdateValue("drawdistance", "2");
+                if (launcherSettings.loadedData.drawDistance == 2)
+                    optionsIni.UpdateValue("drawdistance", "3");
+                //*** set_visualEffects
+                if (launcherSettings.loadedData.visualEffects == 0)
+                    optionsIni.UpdateValue("visualeffects", "1");
+                if (launcherSettings.loadedData.visualEffects == 1)
+                    optionsIni.UpdateValue("visualeffects", "2");
+                if (launcherSettings.loadedData.visualEffects == 2)
+                    optionsIni.UpdateValue("visualeffects", "3");
+                //*** set_lighShadows
+                if (launcherSettings.loadedData.lightShadows == 0)
+                    optionsIni.UpdateValue("lightingquality", "1");
+                if (launcherSettings.loadedData.lightShadows == 1)
+                    optionsIni.UpdateValue("lightingquality", "2");
+                if (launcherSettings.loadedData.lightShadows == 2)
+                    optionsIni.UpdateValue("lightingquality", "3");
+                //*** set_textureQuality
+                if (launcherSettings.loadedData.texturesQuality == 0)
+                    optionsIni.UpdateValue("texturequality", "1");
+                if (launcherSettings.loadedData.texturesQuality == 1)
+                    optionsIni.UpdateValue("texturequality", "2");
+                if (launcherSettings.loadedData.texturesQuality == 2)
+                    optionsIni.UpdateValue("texturequality", "3");
+                //*** set_treeDetails
+                if (launcherSettings.loadedData.treeDetails == 0)
+                    optionsIni.UpdateValue("treequality", "1");
+                if (launcherSettings.loadedData.treeDetails == 1)
+                    optionsIni.UpdateValue("treequality", "2");
+                if (launcherSettings.loadedData.treeDetails == 2)
+                    optionsIni.UpdateValue("treequality", "3");
+                if (launcherSettings.loadedData.treeDetails == 3)
+                    optionsIni.UpdateValue("treequality", "4");
+                //*** set_simsQuality
+                if (launcherSettings.loadedData.simsDetails == 0)
+                    optionsIni.UpdateValue("simquality", "1");
+                if (launcherSettings.loadedData.simsDetails == 1)
+                    optionsIni.UpdateValue("simquality", "2");
+                if (launcherSettings.loadedData.simsDetails == 2)
+                    optionsIni.UpdateValue("simquality", "3");
+                if (launcherSettings.loadedData.simsDetails == 3)
+                    optionsIni.UpdateValue("simquality", "4");
 
-             
+                //**** Sounds
+
+                //*** set_speakerSetup
+                if (launcherSettings.loadedData.speakerSetup == 0)
+                    optionsIni.UpdateValue("audiooutputmode", "1");
+                if (launcherSettings.loadedData.speakerSetup == 1)
+                    optionsIni.UpdateValue("audiooutputmode", "2");
+                if (launcherSettings.loadedData.speakerSetup == 2)
+                    optionsIni.UpdateValue("audiooutputmode", "3");
+                //*** set_focusMute
+                if (launcherSettings.loadedData.defocusMute == false)
+                    optionsIni.UpdateValue("focusmute", "0");
+                if (launcherSettings.loadedData.defocusMute == true)
+                    optionsIni.UpdateValue("focusmute", "1");
+                //*** set_voicesVolume
+                optionsIni.UpdateValue("voicelevel", ((int)(launcherSettings.loadedData.voicesVolume * 255.0f)).ToString("F0"));
+                optionsIni.UpdateValue("voicemute", "0");
+                //*** set_fxVolume
+                optionsIni.UpdateValue("soundfxlevel", ((int)(launcherSettings.loadedData.fxVolume * 255.0f)).ToString("F0"));
+                optionsIni.UpdateValue("soundfxmute", "0");
+                //*** set_musicVolume
+                optionsIni.UpdateValue("musiclevel", ((int)(launcherSettings.loadedData.musicVolume * 255.0f)).ToString("F0"));
+                optionsIni.UpdateValue("musicmute", "0");
+                //*** set_ambientVolume
+                optionsIni.UpdateValue("ambientlevel", ((int)(launcherSettings.loadedData.ambientVolume * 255.0f)).ToString("F0"));
+                optionsIni.UpdateValue("ambientmute", "0");
+                //*** set_audioQuality
+                if (launcherSettings.loadedData.audioQuality == 0)
+                    optionsIni.UpdateValue("audioquality", "1");
+                if (launcherSettings.loadedData.audioQuality == 1)
+                    optionsIni.UpdateValue("audioquality", "2");
+                if (launcherSettings.loadedData.audioQuality == 2)
+                    optionsIni.UpdateValue("audioquality", "3");
+
+                //**** General
+
+                //*** set_edgeScrolling
+                if (launcherSettings.loadedData.edgeScrolling == false)
+                    optionsIni.UpdateValue("edgescrolling", "0");
+                if (launcherSettings.loadedData.edgeScrolling == true)
+                    optionsIni.UpdateValue("edgescrolling", "1");
+                //*** set_clockFormat
+                if (launcherSettings.loadedData.clockFormat == 0)
+                    optionsIni.UpdateValue("twelvehourclock", "0");
+                if (launcherSettings.loadedData.clockFormat == 1)
+                    optionsIni.UpdateValue("twelvehourclock", "1");
+                //*** set_enableLessons
+                if (launcherSettings.loadedData.lessons == false)
+                    optionsIni.UpdateValue("enabletutorial", "0");
+                if (launcherSettings.loadedData.lessons == true)
+                    optionsIni.UpdateValue("enabletutorial", "1");
+                //*** set_interactLoad
+                if (launcherSettings.loadedData.interactiveLoading == false)
+                    optionsIni.UpdateValue("enableinteractiveloading", "0");
+                if (launcherSettings.loadedData.interactiveLoading == true)
+                    optionsIni.UpdateValue("enableinteractiveloading", "1");
+                //*** set_invertH
+                if (launcherSettings.loadedData.invertCamH == false)
+                    optionsIni.UpdateValue("inverthorizontalrotation", "0");
+                if (launcherSettings.loadedData.invertCamH == true)
+                    optionsIni.UpdateValue("inverthorizontalrotation", "1");
+                //*** set_invertV
+                if (launcherSettings.loadedData.invertCamV == false)
+                    optionsIni.UpdateValue("invertverticalrotation", "0");
+                if (launcherSettings.loadedData.invertCamV == true)
+                    optionsIni.UpdateValue("invertverticalrotation", "1");
+                //*** set_memories
+                if (launcherSettings.loadedData.memories == 0)
+                    optionsIni.UpdateValue("enablememories", "1");
+                if (launcherSettings.loadedData.memories == 1)
+                    optionsIni.UpdateValue("enablememories", "2");
+                if (launcherSettings.loadedData.memories == 2)
+                    optionsIni.UpdateValue("enablememories", "3");
+                //Disable the information usage share
+                optionsIni.UpdateValue("enabletelemetry", "0");
+
+                //**** Game
+
+                //*** set_simsLifespan
+                if (launcherSettings.loadedData.simsLifespan == 0)
+                {
+                    //Short
+                    optionsIni.UpdateValue("aginginterval", "0");
+                    //Sim
+                    optionsIni.UpdateValue("agingstagelengthbaby", "2");
+                    optionsIni.UpdateValue("agingstagelengthtoddler", "2");
+                    optionsIni.UpdateValue("agingstagelengthchild", "4");
+                    optionsIni.UpdateValue("agingstagelengthteen", "6");
+                    optionsIni.UpdateValue("agingstagelengthyoungadult", "8");
+                    optionsIni.UpdateValue("agingstagelengthadult", "8");
+                    optionsIni.UpdateValue("agingstagelengthelder", "6");
+                    //Dog
+                    optionsIni.UpdateValue("agingstagelengthpuppy", "3");
+                    optionsIni.UpdateValue("agingstagelengthdogadult", "10");
+                    optionsIni.UpdateValue("agingstagelengthdogelder", "4");
+                    //Cat
+                    optionsIni.UpdateValue("agingstagelengthkitten", "3");
+                    optionsIni.UpdateValue("agingstagelengthcatadult", "10");
+                    optionsIni.UpdateValue("agingstagelengthcatelder", "4");
+                    //Horse
+                    optionsIni.UpdateValue("agingstagelengthfoal", "2");
+                    optionsIni.UpdateValue("agingstagelengthhorseadult", "13");
+                    optionsIni.UpdateValue("agingstagelengthhorseelder", "6");
+                }
+                if (launcherSettings.loadedData.simsLifespan == 1)
+                {
+                    //Medium
+                    optionsIni.UpdateValue("aginginterval", "1");
+                    //Sim
+                    optionsIni.UpdateValue("agingstagelengthbaby", "3");
+                    optionsIni.UpdateValue("agingstagelengthtoddler", "6");
+                    optionsIni.UpdateValue("agingstagelengthchild", "8");
+                    optionsIni.UpdateValue("agingstagelengthteen", "12");
+                    optionsIni.UpdateValue("agingstagelengthyoungadult", "15");
+                    optionsIni.UpdateValue("agingstagelengthadult", "15");
+                    optionsIni.UpdateValue("agingstagelengthelder", "10");
+                    //Dog
+                    optionsIni.UpdateValue("agingstagelengthpuppy", "5");
+                    optionsIni.UpdateValue("agingstagelengthdogadult", "20");
+                    optionsIni.UpdateValue("agingstagelengthdogelder", "8");
+                    //Cat
+                    optionsIni.UpdateValue("agingstagelengthkitten", "5");
+                    optionsIni.UpdateValue("agingstagelengthcatadult", "22");
+                    optionsIni.UpdateValue("agingstagelengthcatelder", "10");
+                    //Horse
+                    optionsIni.UpdateValue("agingstagelengthfoal", "4");
+                    optionsIni.UpdateValue("agingstagelengthhorseadult", "27");
+                    optionsIni.UpdateValue("agingstagelengthhorseelder", "14");
+                }
+                if (launcherSettings.loadedData.simsLifespan == 2)
+                {
+                    //Normal
+                    optionsIni.UpdateValue("aginginterval", "2");
+                    //Sim
+                    optionsIni.UpdateValue("agingstagelengthbaby", "5");
+                    optionsIni.UpdateValue("agingstagelengthtoddler", "9");
+                    optionsIni.UpdateValue("agingstagelengthchild", "14");
+                    optionsIni.UpdateValue("agingstagelengthteen", "20");
+                    optionsIni.UpdateValue("agingstagelengthyoungadult", "25");
+                    optionsIni.UpdateValue("agingstagelengthadult", "25");
+                    optionsIni.UpdateValue("agingstagelengthelder", "20");
+                    //Dog
+                    optionsIni.UpdateValue("agingstagelengthpuppy", "8");
+                    optionsIni.UpdateValue("agingstagelengthdogadult", "32");
+                    optionsIni.UpdateValue("agingstagelengthdogelder", "14");
+                    //Cat
+                    optionsIni.UpdateValue("agingstagelengthkitten", "8");
+                    optionsIni.UpdateValue("agingstagelengthcatadult", "36");
+                    optionsIni.UpdateValue("agingstagelengthcatelder", "15");
+                    //Horse
+                    optionsIni.UpdateValue("agingstagelengthfoal", "10");
+                    optionsIni.UpdateValue("agingstagelengthhorseadult", "40");
+                    optionsIni.UpdateValue("agingstagelengthhorseelder", "18");
+                }
+                if (launcherSettings.loadedData.simsLifespan == 3)
+                {
+                    //Long
+                    optionsIni.UpdateValue("aginginterval", "3");
+                    //Sim
+                    optionsIni.UpdateValue("agingstagelengthbaby", "8");
+                    optionsIni.UpdateValue("agingstagelengthtoddler", "16");
+                    optionsIni.UpdateValue("agingstagelengthchild", "28");
+                    optionsIni.UpdateValue("agingstagelengthteen", "50");
+                    optionsIni.UpdateValue("agingstagelengthyoungadult", "90");
+                    optionsIni.UpdateValue("agingstagelengthadult", "90");
+                    optionsIni.UpdateValue("agingstagelengthelder", "25");
+                    //Dog
+                    optionsIni.UpdateValue("agingstagelengthpuppy", "26");
+                    optionsIni.UpdateValue("agingstagelengthdogadult", "108");
+                    optionsIni.UpdateValue("agingstagelengthdogelder", "26");
+                    //Cat
+                    optionsIni.UpdateValue("agingstagelengthkitten", "28");
+                    optionsIni.UpdateValue("agingstagelengthcatadult", "120");
+                    optionsIni.UpdateValue("agingstagelengthcatelder", "26");
+                    //Horse
+                    optionsIni.UpdateValue("agingstagelengthfoal", "20");
+                    optionsIni.UpdateValue("agingstagelengthhorseadult", "150");
+                    optionsIni.UpdateValue("agingstagelengthhorseelder", "26");
+                }
+                if (launcherSettings.loadedData.simsLifespan == 4)
+                {
+                    //Epic
+                    optionsIni.UpdateValue("aginginterval", "4");
+                    //Sim
+                    optionsIni.UpdateValue("agingstagelengthbaby", "40");
+                    optionsIni.UpdateValue("agingstagelengthtoddler", "100");
+                    optionsIni.UpdateValue("agingstagelengthchild", "115");
+                    optionsIni.UpdateValue("agingstagelengthteen", "160");
+                    optionsIni.UpdateValue("agingstagelengthyoungadult", "230");
+                    optionsIni.UpdateValue("agingstagelengthadult", "230");
+                    optionsIni.UpdateValue("agingstagelengthelder", "120");
+                    //Dog
+                    optionsIni.UpdateValue("agingstagelengthpuppy", "90");
+                    optionsIni.UpdateValue("agingstagelengthdogadult", "382");
+                    optionsIni.UpdateValue("agingstagelengthdogelder", "120");
+                    //Cat
+                    optionsIni.UpdateValue("agingstagelengthkitten", "98");
+                    optionsIni.UpdateValue("agingstagelengthcatadult", "398");
+                    optionsIni.UpdateValue("agingstagelengthcatelder", "128");
+                    //Horse
+                    optionsIni.UpdateValue("agingstagelengthfoal", "98");
+                    optionsIni.UpdateValue("agingstagelengthhorseadult", "450");
+                    optionsIni.UpdateValue("agingstagelengthhorseelder", "158");
+                }
+                //*** set_aging
+                if (launcherSettings.loadedData.aging == false)
+                    optionsIni.UpdateValue("enableaging", "0");
+                if (launcherSettings.loadedData.aging == true)
+                    optionsIni.UpdateValue("enableaging", "1");
+                //*** set_suppressOpportunities
+                if (launcherSettings.loadedData.suppressOpportunities == false)
+                    optionsIni.UpdateValue("supressopportunitydialogs", "0");
+                if (launcherSettings.loadedData.suppressOpportunities == true)
+                    optionsIni.UpdateValue("supressopportunitydialogs", "1");
+                //*** set_disableAutonomy
+                if (launcherSettings.loadedData.noAutonomyActiveSim == false)
+                    optionsIni.UpdateValue("disableautonomyforselectedsim", "0");
+                if (launcherSettings.loadedData.noAutonomyActiveSim == true)
+                    optionsIni.UpdateValue("disableautonomyforselectedsim", "1");
+                //*** set_simsAutonomy
+                if (launcherSettings.loadedData.simsAutonomyLevel == 0)
+                    optionsIni.UpdateValue("autonomylevel", "0");
+                if (launcherSettings.loadedData.simsAutonomyLevel == 1)
+                    optionsIni.UpdateValue("autonomylevel", "1");
+                if (launcherSettings.loadedData.simsAutonomyLevel == 2)
+                    optionsIni.UpdateValue("autonomylevel", "2");
+                //*** set_petsAutonomy
+                if (launcherSettings.loadedData.petsAutonomyLevel == 0)
+                    optionsIni.UpdateValue("petautonomylevel", "0");
+                if (launcherSettings.loadedData.petsAutonomyLevel == 1)
+                    optionsIni.UpdateValue("petautonomylevel", "1");
+                if (launcherSettings.loadedData.petsAutonomyLevel == 2)
+                    optionsIni.UpdateValue("petautonomylevel", "2");
+
+                //**** Recording
+
+                //Set default settings
+                optionsIni.UpdateValue("videocapturesize", "2");
+                optionsIni.UpdateValue("videocapturesound", "1");
+                optionsIni.UpdateValue("videocapturehideui", "1");
+                optionsIni.UpdateValue("videocapturequality", "3");
+                optionsIni.UpdateValue("videocapturetime", "5");
+
+                //**** Online
+
+                //*** set_onlineNotify
+                if (launcherSettings.loadedData.onlineNotifications == 0)
+                    optionsIni.UpdateValue("receiveconnecttns", "0");
+                if (launcherSettings.loadedData.onlineNotifications == 1)
+                    optionsIni.UpdateValue("receiveconnecttns", "1");
+                //*** set_shopMode
+                if (launcherSettings.loadedData.shopMode == 0)
+                    optionsIni.UpdateValue("enableingamestore", "0");
+                if (launcherSettings.loadedData.shopMode == 1)
+                    optionsIni.UpdateValue("enableingamestore", "1");
+
+                //*** Environment
+
+                //*** set_summerSeason
+                if (launcherSettings.loadedData.summerSeason == 0)
+                {
+                    optionsIni.UpdateValue("summerenabled", "0");
+                    optionsIni.UpdateValue("summerlength", "28");
+                }
+                if (launcherSettings.loadedData.summerSeason == 1)
+                {
+                    optionsIni.UpdateValue("summerenabled", "1");
+                    optionsIni.UpdateValue("summerlength", "7");
+                }
+                if (launcherSettings.loadedData.summerSeason == 2)
+                {
+                    optionsIni.UpdateValue("summerenabled", "1");
+                    optionsIni.UpdateValue("summerlength", "14");
+                }
+                //*** set_winterSeason
+                if (launcherSettings.loadedData.winterSeason == 0)
+                {
+                    optionsIni.UpdateValue("winterenabled", "0");
+                    optionsIni.UpdateValue("winterlength", "28");
+                }
+                if (launcherSettings.loadedData.winterSeason == 1)
+                {
+                    optionsIni.UpdateValue("winterenabled", "1");
+                    optionsIni.UpdateValue("winterlength", "7");
+                }
+                if (launcherSettings.loadedData.winterSeason == 2)
+                {
+                    optionsIni.UpdateValue("winterenabled", "1");
+                    optionsIni.UpdateValue("winterlength", "14");
+                }
+                //*** set_fallSeason
+                if (launcherSettings.loadedData.fallSeason == 0)
+                {
+                    optionsIni.UpdateValue("fallenabled", "0");
+                    optionsIni.UpdateValue("falllength", "28");
+                }
+                if (launcherSettings.loadedData.fallSeason == 1)
+                {
+                    optionsIni.UpdateValue("fallenabled", "1");
+                    optionsIni.UpdateValue("falllength", "7");
+                }
+                if (launcherSettings.loadedData.fallSeason == 2)
+                {
+                    optionsIni.UpdateValue("fallenabled", "1");
+                    optionsIni.UpdateValue("falllength", "14");
+                }
+                //*** set_springSeason
+                if (launcherSettings.loadedData.springSeason == 0)
+                {
+                    optionsIni.UpdateValue("springenabled", "0");
+                    optionsIni.UpdateValue("springlength", "28");
+                }
+                if (launcherSettings.loadedData.springSeason == 1)
+                {
+                    optionsIni.UpdateValue("springenabled", "1");
+                    optionsIni.UpdateValue("springlength", "7");
+                }
+                if (launcherSettings.loadedData.springSeason == 2)
+                {
+                    optionsIni.UpdateValue("springenabled", "1");
+                    optionsIni.UpdateValue("springlength", "14");
+                }
+                //*** set_tempUnit
+                if (launcherSettings.loadedData.temperatureUnit == 0)
+                    optionsIni.UpdateValue("iscelcius", "0");
+                if (launcherSettings.loadedData.temperatureUnit == 1)
+                    optionsIni.UpdateValue("iscelcius", "1");
+                //*** set_weatHail
+                if (launcherSettings.loadedData.hailWeather == false)
+                    optionsIni.UpdateValue("hailenabled", "0");
+                if (launcherSettings.loadedData.hailWeather == true)
+                    optionsIni.UpdateValue("hailenabled", "1");
+                //*** set_weatRain
+                if (launcherSettings.loadedData.rainWeather == false)
+                    optionsIni.UpdateValue("rainenabled", "0");
+                if (launcherSettings.loadedData.rainWeather == true)
+                    optionsIni.UpdateValue("rainenabled", "1");
+                //*** set_weatSnow
+                if (launcherSettings.loadedData.snowWeather == false)
+                    optionsIni.UpdateValue("snowenabled", "0");
+                if (launcherSettings.loadedData.snowWeather == true)
+                    optionsIni.UpdateValue("snowenabled", "1");
+                //*** set_weatFog
+                if (launcherSettings.loadedData.fogWeather == false)
+                    optionsIni.UpdateValue("fogenabled", "0");
+                if (launcherSettings.loadedData.fogWeather == true)
+                    optionsIni.UpdateValue("fogenabled", "1");
+                //*** set_lunarCycle
+                if (launcherSettings.loadedData.lunarCycle == 0) //<- Normal - 2 Days
+                {
+                    optionsIni.UpdateValue("enablelunarcycle", "1");
+                    optionsIni.UpdateValue("lunarcyclelength", "1");
+                    optionsIni.UpdateValue("enablelunarphase", "0");
+                    optionsIni.UpdateValue("lunarphaselength", "0");
+                }
+                if (launcherSettings.loadedData.lunarCycle == 1) //<- Normal - 4 Days
+                {
+                    optionsIni.UpdateValue("enablelunarcycle", "1");
+                    optionsIni.UpdateValue("lunarcyclelength", "2");
+                    optionsIni.UpdateValue("enablelunarphase", "0");
+                    optionsIni.UpdateValue("lunarphaselength", "0");
+                }
+                if (launcherSettings.loadedData.lunarCycle == 2) //<- Normal - 6 Days
+                {
+                    optionsIni.UpdateValue("enablelunarcycle", "1");
+                    optionsIni.UpdateValue("lunarcyclelength", "3");
+                    optionsIni.UpdateValue("enablelunarphase", "0");
+                    optionsIni.UpdateValue("lunarphaselength", "0");
+                }
+                if (launcherSettings.loadedData.lunarCycle == 3) //<- Normal - 8 Days
+                {
+                    optionsIni.UpdateValue("enablelunarcycle", "1");
+                    optionsIni.UpdateValue("lunarcyclelength", "4");
+                    optionsIni.UpdateValue("enablelunarphase", "0");
+                    optionsIni.UpdateValue("lunarphaselength", "0");
+                }
+                if (launcherSettings.loadedData.lunarCycle == 4) //<- Normal - 10 Days
+                {
+                    optionsIni.UpdateValue("enablelunarcycle", "1");
+                    optionsIni.UpdateValue("lunarcyclelength", "5");
+                    optionsIni.UpdateValue("enablelunarphase", "0");
+                    optionsIni.UpdateValue("lunarphaselength", "0");
+                }
+                if (launcherSettings.loadedData.lunarCycle == 5) //<- Fixed - Full Moon
+                {
+                    optionsIni.UpdateValue("enablelunarcycle", "0");
+                    optionsIni.UpdateValue("lunarcyclelength", "1");
+                    optionsIni.UpdateValue("enablelunarphase", "1");
+                    optionsIni.UpdateValue("lunarphaselength", "0");
+                }
+                if (launcherSettings.loadedData.lunarCycle == 6) //<- Fixed - First Crescent
+                {
+                    optionsIni.UpdateValue("enablelunarcycle", "0");
+                    optionsIni.UpdateValue("lunarcyclelength", "1");
+                    optionsIni.UpdateValue("enablelunarphase", "1");
+                    optionsIni.UpdateValue("lunarphaselength", "1");
+                }
+                if (launcherSettings.loadedData.lunarCycle == 7) //<- Fixed - Crescent
+                {
+                    optionsIni.UpdateValue("enablelunarcycle", "0");
+                    optionsIni.UpdateValue("lunarcyclelength", "1");
+                    optionsIni.UpdateValue("enablelunarphase", "1");
+                    optionsIni.UpdateValue("lunarphaselength", "2");
+                }
+                if (launcherSettings.loadedData.lunarCycle == 8) //<- Fixed - Second Crescent
+                {
+                    optionsIni.UpdateValue("enablelunarcycle", "0");
+                    optionsIni.UpdateValue("lunarcyclelength", "1");
+                    optionsIni.UpdateValue("enablelunarphase", "1");
+                    optionsIni.UpdateValue("lunarphaselength", "3");
+                }
+                if (launcherSettings.loadedData.lunarCycle == 9) //<- Fixed - New Moon
+                {
+                    optionsIni.UpdateValue("enablelunarcycle", "0");
+                    optionsIni.UpdateValue("lunarcyclelength", "1");
+                    optionsIni.UpdateValue("enablelunarphase", "1");
+                    optionsIni.UpdateValue("lunarphaselength", "4");
+                }
+                if (launcherSettings.loadedData.lunarCycle == 10) //<- Fixed - First Waning
+                {
+                    optionsIni.UpdateValue("enablelunarcycle", "0");
+                    optionsIni.UpdateValue("lunarcyclelength", "1");
+                    optionsIni.UpdateValue("enablelunarphase", "1");
+                    optionsIni.UpdateValue("lunarphaselength", "5");
+                }
+                if (launcherSettings.loadedData.lunarCycle == 11) //<- Fixed - Waning
+                {
+                    optionsIni.UpdateValue("enablelunarcycle", "0");
+                    optionsIni.UpdateValue("lunarcyclelength", "1");
+                    optionsIni.UpdateValue("enablelunarphase", "1");
+                    optionsIni.UpdateValue("lunarphaselength", "6");
+                }
+                if (launcherSettings.loadedData.lunarCycle == 12) //<- Fixed - Second Waning
+                {
+                    optionsIni.UpdateValue("enablelunarcycle", "0");
+                    optionsIni.UpdateValue("lunarcyclelength", "1");
+                    optionsIni.UpdateValue("enablelunarphase", "1");
+                    optionsIni.UpdateValue("lunarphaselength", "7");
+                }
+
+                //**** Demography
+
+                //*** set_storyProgression
+                if (launcherSettings.loadedData.storyProgression == 0)
+                    optionsIni.UpdateValue("enablestoryprogression", "0");
+                if (launcherSettings.loadedData.storyProgression == 1)
+                    optionsIni.UpdateValue("enablestoryprogression", "1");
+                //*** set_vampire
+                if (launcherSettings.loadedData.allowVampires == false)
+                    optionsIni.UpdateValue("enablevampires", "0");
+                if (launcherSettings.loadedData.allowVampires == true)
+                    optionsIni.UpdateValue("enablevampires", "1");
+                //*** set_werewolves
+                if (launcherSettings.loadedData.allowWerewolves == false)
+                    optionsIni.UpdateValue("enablewerewolves", "0");
+                if (launcherSettings.loadedData.allowWerewolves == true)
+                    optionsIni.UpdateValue("enablewerewolves", "1");
+                //*** set_pets
+                if (launcherSettings.loadedData.allowPets == false)
+                    optionsIni.UpdateValue("enablepets", "0");
+                if (launcherSettings.loadedData.allowPets == true)
+                    optionsIni.UpdateValue("enablepets", "1");
+                //*** set_celebrities
+                if (launcherSettings.loadedData.allowCelebrities == false)
+                    optionsIni.UpdateValue("enablecelebrities", "0");
+                if (launcherSettings.loadedData.allowCelebrities == true)
+                    optionsIni.UpdateValue("enablecelebrities", "1");
+                //*** set_fairies
+                if (launcherSettings.loadedData.allowFairies == false)
+                    optionsIni.UpdateValue("enablefairies", "0");
+                if (launcherSettings.loadedData.allowFairies == true)
+                    optionsIni.UpdateValue("enablefairies", "1");
+                //*** set_witches
+                if (launcherSettings.loadedData.allowWitches == false)
+                    optionsIni.UpdateValue("enablewitches", "0");
+                if (launcherSettings.loadedData.allowWitches == true)
+                    optionsIni.UpdateValue("enablewitches", "1");
+                //*** set_horses
+                if (launcherSettings.loadedData.allowHorses == false)
+                    optionsIni.UpdateValue("enablehorses", "0");
+                if (launcherSettings.loadedData.allowHorses == true)
+                    optionsIni.UpdateValue("enablehorses", "1");
+                //*** set_celebritiesSystem
+                if (launcherSettings.loadedData.disableCelebritiesSystem == 0)
+                    optionsIni.UpdateValue("enableoptoutceleb", "0");
+                if (launcherSettings.loadedData.disableCelebritiesSystem == 1)
+                    optionsIni.UpdateValue("enableoptoutceleb", "1");
+
+                //**** Constant
+
+                //*** Inform current last device (driver version of main display) to avoid reset of settings on update gpu driver
+                string[] currentLastDeviceInfo = optionsIni.GetValue("lastdevice").Split(";");
+                string[] currentDriverVersionInfo = currentMainDisplayDriverVersion.Split(".");
+                optionsIni.UpdateValue("lastdevice", (currentLastDeviceInfo[0] + ";" + currentLastDeviceInfo[1] + ";" + currentLastDeviceInfo[2] + ";" + currentDriverVersionInfo.Last()));
+                //**** Inform to don't show login warning if is not logged in
+                optionsIni.UpdateValue("requireloginbeforeload", "1");
+
+
 
                 //Save the updates
                 optionsIni.Save();
+                smoothPatchOptionsTxt.Save();
+                antiLagOptionsTxt.Save();
 
                 //Return empty response
                 return new string[] { };
@@ -1923,139 +5132,2331 @@ namespace TS3_Dream_Launcher
             targetKey.SetValue("locale", locale);
             targetKey.Close();
         }
-
-        //Patches
-
-        private void DoPatch_AlderLakePatch()
+    
+        private string GetMainDisplayDriverVersion()
         {
-            //Add the task
-            AddTask("alderLakePatching", "Do the patch for Alder Lake CPUs.");
+            //Prepare to return
+            string toReturn = "0";
 
-            //Create a thread to make the patch
-            AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { });
-            asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+            //Start the DxDiag to get a relatory of all details about Directx on this machine
+            Process process = new Process();
+            process.StartInfo.FileName = System.IO.Path.Combine(Environment.SystemDirectory, "dxdiag.exe");
+            process.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
+            process.StartInfo.Arguments = "/x DxDiagRelatory.xml";
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.Start();
+
+            //Wait process finishes
+            process.WaitForExit();
+
+            //Read the relatory output
+            XmlDocument dxDiagRelatory = new XmlDocument();
+            dxDiagRelatory.Load((Directory.GetCurrentDirectory() + "/DxDiagRelatory.xml"));
+            //Get display devices node
+            XmlNode displayDevices = dxDiagRelatory.DocumentElement.SelectSingleNode("/DxDiag/DisplayDevices");
+            //Get main display driver version
+            foreach (XmlNode node in displayDevices.ChildNodes[0].ChildNodes)
+                if (node.Name.ToLower() == "driverversion")
+                    toReturn = node.InnerText;
+
+            //Return the result
+            return toReturn;
+        }
+    
+        private void AddNewOptionsKeysToExistingOptionsTemplate()
+        {
+            //If options template don't exists, cancel
+            if (File.Exists((Directory.GetCurrentDirectory() + @"/Content/options-template.ini")) == false)
+                return;
+            //If options don't exists in mydocuments, cancel
+            if (File.Exists((myDocumentsPath + "/Options.ini")) == false)
+                return;
+
+            //Read all lines of both options ini
+            List<string> optionsTemplateLines = new List<string>();
+            foreach (string line in File.ReadAllLines((Directory.GetCurrentDirectory() + @"/Content/options-template.ini")))
+                optionsTemplateLines.Add(line);
+            string[] optionsMyDocuments = File.ReadAllLines((myDocumentsPath + "/Options.ini"));
+
+            //Check each line of options in my documents...
+            for(int i = 0; i < optionsMyDocuments.Length; i++)
             {
-                //Wait some time
-                threadTools.MakeThreadSleep(3000);
+                //If is title line, ignore it
+                if (optionsMyDocuments[i].Contains("[options]") == true)
+                    continue;
 
-                //Try to make the patch
-                try
-                {
-                    //If have a backup, restore the backup
-                    if (File.Exists((Directory.GetCurrentDirectory() + @"/TS3W-backup.exe")) == true)
+                //Get the current line key
+                string currentKey = optionsMyDocuments[i].Split("=")[0].Replace(" ", "");
+
+                //Prepare the result of this line exists
+                bool thisKeyExistsInTemplate = false;
+                //Check if this key exists in the options template
+                for(int x = 0; x < optionsTemplateLines.Count; x++)
+                    if(optionsTemplateLines[x].Contains(currentKey) == true)
                     {
-                        File.Delete((Directory.GetCurrentDirectory() + @"/TS3W.exe"));
-                        File.Copy((Directory.GetCurrentDirectory() + @"/TS3W-backup.exe"), (Directory.GetCurrentDirectory() + @"/TS3W.exe"));
+                        thisKeyExistsInTemplate = true;
+                        break;
                     }
-                    //If was never made a backup, do a backup of "TS3W.exe" file...
-                    if (File.Exists((Directory.GetCurrentDirectory() + @"/TS3W-backup.exe")) == false)
-                        File.Copy((Directory.GetCurrentDirectory() + @"/TS3W.exe"), (Directory.GetCurrentDirectory() + @"/TS3W-backup.exe"));
-
-                    //Do the patching
-                    PeNet.PeFile peFile = new PeNet.PeFile((Directory.GetCurrentDirectory() + @"/TS3W.exe"));
-                    peFile.AddImport("IntelFix.dll", "_DllMain@12");
-                    File.WriteAllBytes((Directory.GetCurrentDirectory() + @"/TS3W.exe"), peFile.RawFile.ToArray());
-                    if (File.Exists((Directory.GetCurrentDirectory() + @"/IntelFix.dll")) == true)
-                        File.Delete((Directory.GetCurrentDirectory() + @"/IntelFix.dll"));
-                    File.Copy((Directory.GetCurrentDirectory() + @"/Content/IntelFix.dll"), (Directory.GetCurrentDirectory() + @"/IntelFix.dll"));
-
-                    //Return a success response
-                    return new string[] { "success" };
-                }
-                catch (Exception ex)
+                //If this key don't exists in the template, add it
+                if(thisKeyExistsInTemplate == false)
                 {
-                    //Return a error response
-                    return new string[] { "error", ex.Message };
+                    optionsTemplateLines.Add(optionsMyDocuments[i]);
+                    optionsTemplateLines.Add("");
                 }
+            }
 
-                //Return a default result
-                return new string[] { "none" };
-            };
-            asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+            //Save the updated options template
+            File.WriteAllLines((Directory.GetCurrentDirectory() + @"/Content/options-template.ini"), optionsTemplateLines.ToArray());
+        }
+    
+        private void RenderSimLifespan(int lifespanSelected)
+        {
+            //Render sim life time...
+
+            //Prepare the variables
+            string simBaby = "-";
+            string simToddler = "-";
+            string simChild = "-";
+            string simTeen = "-";
+            string simYoungAdult = "-";
+            string simAdult = "-";
+            string simElder = "-";
+            string catKitten = "-";
+            string catAdult = "-";
+            string catElder = "-";
+            string dogPuppy = "-";
+            string dogAdult = "-";
+            string dogElder = "-";
+            string horseFoal = "-";
+            string horseAdult = "-";
+            string horseElder = "-";
+
+            //Short
+            if(lifespanSelected == 0)
             {
-                //If have a success
-                if (backgroundResult[0] == "success")
-                {
-                    //Inform that is patched
-                    launcherPrefs.loadedData.alreadyIntelFixed = true;
-                    launcherPrefs.Save();
-                    ShowToast(GetStringApplicationResource("launcher_alderLakePatchSuccess"), ToastType.Success);
-                }
-                //If have a error
-                if (backgroundResult[0] == "error")
-                    ShowToast((GetStringApplicationResource("launcher_alderLakePatchProblem") + " \"" + backgroundResult[1] + "\""), ToastType.Error);
+                //Sim
+                simBaby = "2";
+                simToddler = "2";
+                simChild = "4";
+                simTeen = "6";
+                simYoungAdult = "8";
+                simAdult = "8";
+                simElder = "6";
+                //Dog
+                dogPuppy = "3";
+                dogAdult = "10";
+                dogElder = "4";
+                //Cat
+                catKitten = "3";
+                catAdult = "10";
+                catElder = "4";
+                //Horse
+                horseFoal = "2";
+                horseAdult = "13";
+                horseElder = "6";
+            }
 
-                //Remove the task
-                RemoveTask("alderLakePatching");
-            };
-            asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            //Medium
+            if (lifespanSelected == 1)
+            {
+                //Sim
+                simBaby = "3";
+                simToddler = "6";
+                simChild = "8";
+                simTeen = "12";
+                simYoungAdult = "15";
+                simAdult = "15";
+                simElder = "10";
+                //Dog
+                dogPuppy = "5";
+                dogAdult = "20";
+                dogElder = "8";
+                //Cat
+                catKitten = "5";
+                catAdult = "22";
+                catElder = "10";
+                //Horse
+                horseFoal = "4";
+                horseAdult = "27";
+                horseElder = "14";
+            }
+
+            //Normal
+            if (lifespanSelected == 2)
+            {
+                //Sim
+                simBaby = "5";
+                simToddler = "9";
+                simChild = "14";
+                simTeen = "20";
+                simYoungAdult = "25";
+                simAdult = "25";
+                simElder = "20";
+                //Dog
+                dogPuppy = "8";
+                dogAdult = "32";
+                dogElder = "14";
+                //Cat
+                catKitten = "8";
+                catAdult = "36";
+                catElder = "15";
+                //Horse
+                horseFoal = "10";
+                horseAdult = "40";
+                horseElder = "18";
+            }
+
+            //Long
+            if (lifespanSelected == 3)
+            {
+                //Sim
+                simBaby = "8";
+                simToddler = "16";
+                simChild = "28";
+                simTeen = "50";
+                simYoungAdult = "90";
+                simAdult = "90";
+                simElder = "25";
+                //Dog
+                dogPuppy = "26";
+                dogAdult = "108";
+                dogElder = "26";
+                //Cat
+                catKitten = "28";
+                catAdult = "120";
+                catElder = "26";
+                //Horse
+                horseFoal = "20";
+                horseAdult = "150";
+                horseElder = "26";
+            }
+
+            //Epic
+            if (lifespanSelected == 4)
+            {
+                //Sim
+                simBaby = "40";
+                simToddler = "100";
+                simChild = "115";
+                simTeen = "160";
+                simYoungAdult = "230";
+                simAdult = "230";
+                simElder = "120";
+                //Dog
+                dogPuppy = "90";
+                dogAdult = "382";
+                dogElder = "120";
+                //Cat
+                catKitten = "98";
+                catAdult = "398";
+                catElder = "128";
+                //Horse
+                horseFoal = "98";
+                horseAdult = "450";
+                horseElder = "158";
+            }
+
+            //Show it on texts...
+
+            //Sim
+            StringBuilder simLifespanTxt = new StringBuilder();
+            simLifespanTxt.AppendLine(GetStringApplicationResource("launcher_settings_graphics_lifespanSimBaby").Replace("%d%", simBaby));
+            simLifespanTxt.AppendLine(GetStringApplicationResource("launcher_settings_graphics_lifespanSimToddler").Replace("%d%", simToddler));
+            simLifespanTxt.AppendLine(GetStringApplicationResource("launcher_settings_graphics_lifespanSimChild").Replace("%d%", simChild));
+            simLifespanTxt.AppendLine(GetStringApplicationResource("launcher_settings_graphics_lifespanSimTeen").Replace("%d%", simTeen));
+            simLifespanTxt.AppendLine(GetStringApplicationResource("launcher_settings_graphics_lifespanSimYoungAdult").Replace("%d%", simYoungAdult));
+            simLifespanTxt.AppendLine(GetStringApplicationResource("launcher_settings_graphics_lifespanSimAdult").Replace("%d%", simAdult));
+            simLifespanTxt.AppendLine(GetStringApplicationResource("launcher_settings_graphics_lifespanSimElder").Replace("%d%", simElder));
+            simLifespan.Text = simLifespanTxt.ToString();
+            //Cat
+            StringBuilder catLifespanTxt = new StringBuilder();
+            catLifespanTxt.AppendLine(GetStringApplicationResource("launcher_settings_graphics_lifespanCatKitten").Replace("%d%", catKitten));
+            catLifespanTxt.AppendLine(GetStringApplicationResource("launcher_settings_graphics_lifespanCatAdult").Replace("%d%", catAdult));
+            catLifespanTxt.AppendLine(GetStringApplicationResource("launcher_settings_graphics_lifespanCatElder").Replace("%d%", catElder));
+            catLifespan.Text = catLifespanTxt.ToString();
+            //Dog
+            StringBuilder dogLifespanTxt = new StringBuilder();
+            dogLifespanTxt.AppendLine(GetStringApplicationResource("launcher_settings_graphics_lifespanDogPuppy").Replace("%d%", dogPuppy));
+            dogLifespanTxt.AppendLine(GetStringApplicationResource("launcher_settings_graphics_lifespanDogAdult").Replace("%d%", dogAdult));
+            dogLifespanTxt.AppendLine(GetStringApplicationResource("launcher_settings_graphics_lifespanDogElder").Replace("%d%", dogElder));
+            dogLifespan.Text = dogLifespanTxt.ToString();
+            //Horse
+            StringBuilder horseLifespanTxt = new StringBuilder();
+            horseLifespanTxt.AppendLine(GetStringApplicationResource("launcher_settings_graphics_lifespanHorseFoal").Replace("%d%", horseFoal));
+            horseLifespanTxt.AppendLine(GetStringApplicationResource("launcher_settings_graphics_lifespanHorseAdult").Replace("%d%", horseAdult));
+            horseLifespanTxt.AppendLine(GetStringApplicationResource("launcher_settings_graphics_lifespanHorseElder").Replace("%d%", horseElder));
+            horseLifespan.Text = horseLifespanTxt.ToString();
+        }
+    
+        //Cache manager
+
+        private void BuildAndPrepareCacheCleanListSystem()
+        {
+            //Prepare the close button of logs viewer popup
+            logsViewerClose.Click += (s, e) => { CloseErrorTrapLogsViewerPopUp(); };
+
+            //---------------// Error Trap Logs //---------------//
+            if (launcherPrefs.loadedData.patchBasicOptimization == true)
+            {
+                //Instantiate and store reference for it
+                CacheItem newCacheItem = new CacheItem(this);
+                cacheList.Children.Add(newCacheItem);
+                instantiatedCacheItems.Add(newCacheItem);
+                //Set it up
+                newCacheItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newCacheItem.VerticalAlignment = VerticalAlignment.Top;
+                newCacheItem.Width = double.NaN;
+                newCacheItem.Height = double.NaN;
+                newCacheItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this item
+                newCacheItem.SetTasksID("errorTrapCache");
+                newCacheItem.SetIcon("Resources/cache-0a.png");
+                newCacheItem.SetTitle(GetStringApplicationResource("launcher_cache_item0atitle"));
+                newCacheItem.SetDescription(GetStringApplicationResource("launcher_cache_item0adescription"));
+                newCacheItem.SetMyDocumentsPath(myDocumentsPath);
+                //Set the garbage size checker code
+                newCacheItem.RegisterOnCalculateGarbageCallback((myDocumentsPath, mainWindow) =>
+                {
+                    //Prepare the cache size
+                    int currentLogsCount = 0;
+
+                    //Count log quantity
+                    foreach (FileInfo file in (new DirectoryInfo(myDocumentsPath).GetFiles()))
+                        if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".xml")
+                            if (file.Name.Contains("ScriptError_") == true)
+                                currentLogsCount += 1;
+
+                    //Run on UI
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        //Get the last errors count
+                        int lastErrorsCount = mainWindow.launcherPrefs.loadedData.lastErrorLogsCount;
+
+                        //If the current logs count is not zero, check if was increased
+                        if(currentLogsCount > 0)
+                            if(currentLogsCount > lastErrorsCount)
+                            {
+                                //Warn about this
+                                mainWindow.ShowToast(mainWindow.GetStringApplicationResource("launcher_cache_newErrorLogMsg"), ToastType.Error);
+                                mainWindow.EnablePageRedDotNotification(LauncherPage.cache);
+                            }
+
+                        //Save the errors count
+                        mainWindow.launcherPrefs.loadedData.lastErrorLogsCount = currentLogsCount;
+                        mainWindow.launcherPrefs.Save();
+                    }));
+
+                    //Return the cache size
+                    return (currentLogsCount + " Logs");
+                });
+                //Set the clean code
+                newCacheItem.RegisterOnClickClearCallback((myDocumentsPath) =>
+                {
+                    //Prepare the list of files to delete
+                    List<string> toDelete = new List<string>();
+
+                    //Delete all logs
+                    foreach (FileInfo file in (new DirectoryInfo(myDocumentsPath).GetFiles()))
+                        if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".xml")
+                            if (file.Name.Contains("ScriptError_") == true)
+                                toDelete.Add(file.FullName);
+
+                    //Delete files
+                    foreach (string file in toDelete)
+                        File.Delete(file);
+                });
+                //Set the additional button
+                newCacheItem.SetAdditionalButton(GetStringApplicationResource("launcher_cache_seeLogsButton"), () => { OpenErrorTrapLogsViewerPopUp(); });
+                //Do the first garbage calc
+                newCacheItem.CalculateThisCacheSize();
+            }
+
+            //---------------// Launcher Cache //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                CacheItem newCacheItem = new CacheItem(this);
+                cacheList.Children.Add(newCacheItem);
+                instantiatedCacheItems.Add(newCacheItem);
+                //Set it up
+                newCacheItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newCacheItem.VerticalAlignment = VerticalAlignment.Top;
+                newCacheItem.Width = double.NaN;
+                newCacheItem.Height = double.NaN;
+                newCacheItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this item
+                newCacheItem.SetTasksID("dreamLauncherCache");
+                newCacheItem.SetIcon("Resources/icon-64x.png");
+                newCacheItem.SetTitle(GetStringApplicationResource("launcher_cache_item0title"));
+                newCacheItem.SetDescription(GetStringApplicationResource("launcher_cache_item0description"));
+                newCacheItem.SetMyDocumentsPath(myDocumentsPath);
+                //Set the garbage size checker code
+                newCacheItem.RegisterOnCalculateGarbageCallback((myDocumentsPath, mainWindow) => 
+                {
+                    //Prepare the cache size
+                    double cacheSize = 0;
+
+                    //Calculate all cache size
+                    foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/!DL-TmpCache")).GetFiles()))
+                        cacheSize += file.Length;
+
+                    //Return the cache size
+                    return GetFormattedCacheSize(cacheSize);
+                });
+                //Set the clean code
+                newCacheItem.RegisterOnClickClearCallback((myDocumentsPath) => 
+                {
+                    //Prepare a list of files to be cleaned
+                    List<string> filesToBeRemoved = new List<string>();
+                    //Search by files to remove
+                    foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/!DL-TmpCache")).GetFiles()))
+                        filesToBeRemoved.Add(file.FullName);
+                    //Remove all files
+                    foreach (string filePath in filesToBeRemoved)
+                        if (File.Exists(filePath) == true)
+                            File.Delete(filePath);
+
+                    //Prepare a list of folders to be cleaned
+                    List<string> foldersToBeRemoved = new List<string>();
+                    //Search by folders to remove
+                    foreach (DirectoryInfo dir in (new DirectoryInfo((myDocumentsPath + "/!DL-TmpCache")).GetDirectories()))
+                        foldersToBeRemoved.Add(dir.FullName);
+                    //Remove all directories
+                    foreach (string dirPath in foldersToBeRemoved)
+                        if (Directory.Exists(dirPath) == true)
+                            Directory.Delete(dirPath, true);
+                });
+                //Do the first garbage calc
+                newCacheItem.CalculateThisCacheSize();
+            }
+
+            //---------------// CAS Parts //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                CacheItem newCacheItem = new CacheItem(this);
+                cacheList.Children.Add(newCacheItem);
+                instantiatedCacheItems.Add(newCacheItem);
+                //Set it up
+                newCacheItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newCacheItem.VerticalAlignment = VerticalAlignment.Top;
+                newCacheItem.Width = double.NaN;
+                newCacheItem.Height = double.NaN;
+                newCacheItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this item
+                newCacheItem.SetTasksID("casPartsCache");
+                newCacheItem.SetIcon("Resources/cache-1.png");
+                newCacheItem.SetTitle(GetStringApplicationResource("launcher_cache_item1title"));
+                newCacheItem.SetDescription(GetStringApplicationResource("launcher_cache_item1description"));
+                newCacheItem.SetMyDocumentsPath(myDocumentsPath);
+                //Set the garbage size checker code
+                newCacheItem.RegisterOnCalculateGarbageCallback((myDocumentsPath, mainWindow) =>
+                {
+                    //Prepare the cache size
+                    double cacheSize = 0;
+
+                    //Calculate all cache size
+                    if (File.Exists((myDocumentsPath + "/CASPartCache.package")) == true)
+                        cacheSize += (new FileInfo((myDocumentsPath + "/CASPartCache.package"))).Length;
+
+                    //Return the cache size
+                    return GetFormattedCacheSize(cacheSize);
+                });
+                //Set the clean code
+                newCacheItem.RegisterOnClickClearCallback((myDocumentsPath) =>
+                {
+                    //Delete the file
+                    if (File.Exists((myDocumentsPath + "/CASPartCache.package")) == true)
+                        File.Delete((myDocumentsPath + "/CASPartCache.package"));
+                });
+                //Do the first garbage calc
+                newCacheItem.CalculateThisCacheSize();
+            }
+
+            //---------------// Compositor //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                CacheItem newCacheItem = new CacheItem(this);
+                cacheList.Children.Add(newCacheItem);
+                instantiatedCacheItems.Add(newCacheItem);
+                //Set it up
+                newCacheItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newCacheItem.VerticalAlignment = VerticalAlignment.Top;
+                newCacheItem.Width = double.NaN;
+                newCacheItem.Height = double.NaN;
+                newCacheItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this item
+                newCacheItem.SetTasksID("compositorCache");
+                newCacheItem.SetIcon("Resources/cache-2.png");
+                newCacheItem.SetTitle(GetStringApplicationResource("launcher_cache_item2title"));
+                newCacheItem.SetDescription(GetStringApplicationResource("launcher_cache_item2description"));
+                newCacheItem.SetMyDocumentsPath(myDocumentsPath);
+                //Set the garbage size checker code
+                newCacheItem.RegisterOnCalculateGarbageCallback((myDocumentsPath, mainWindow) =>
+                {
+                    //Prepare the cache size
+                    double cacheSize = 0;
+
+                    //Calculate all cache size
+                    if (File.Exists((myDocumentsPath + "/compositorCache.package")) == true)
+                        cacheSize += (new FileInfo((myDocumentsPath + "/compositorCache.package"))).Length;
+
+                    //Return the cache size
+                    return GetFormattedCacheSize(cacheSize);
+                });
+                //Set the clean code
+                newCacheItem.RegisterOnClickClearCallback((myDocumentsPath) =>
+                {
+                    //Delete the file
+                    if (File.Exists((myDocumentsPath + "/compositorCache.package")) == true)
+                        File.Delete((myDocumentsPath + "/compositorCache.package"));
+                });
+                //Do the first garbage calc
+                newCacheItem.CalculateThisCacheSize();
+            }
+
+            //---------------// Script //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                CacheItem newCacheItem = new CacheItem(this);
+                cacheList.Children.Add(newCacheItem);
+                instantiatedCacheItems.Add(newCacheItem);
+                //Set it up
+                newCacheItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newCacheItem.VerticalAlignment = VerticalAlignment.Top;
+                newCacheItem.Width = double.NaN;
+                newCacheItem.Height = double.NaN;
+                newCacheItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this item
+                newCacheItem.SetTasksID("scriptCache");
+                newCacheItem.SetIcon("Resources/cache-3.png");
+                newCacheItem.SetTitle(GetStringApplicationResource("launcher_cache_item3title"));
+                newCacheItem.SetDescription(GetStringApplicationResource("launcher_cache_item3description"));
+                newCacheItem.SetMyDocumentsPath(myDocumentsPath);
+                //Set the garbage size checker code
+                newCacheItem.RegisterOnCalculateGarbageCallback((myDocumentsPath, mainWindow) =>
+                {
+                    //Prepare the cache size
+                    double cacheSize = 0;
+
+                    //Calculate all cache size
+                    if (File.Exists((myDocumentsPath + "/scriptCache.package")) == true)
+                        cacheSize += (new FileInfo((myDocumentsPath + "/scriptCache.package"))).Length;
+
+                    //Return the cache size
+                    return GetFormattedCacheSize(cacheSize);
+                });
+                //Set the clean code
+                newCacheItem.RegisterOnClickClearCallback((myDocumentsPath) =>
+                {
+                    //Delete the file
+                    if (File.Exists((myDocumentsPath + "/scriptCache.package")) == true)
+                        File.Delete((myDocumentsPath + "/scriptCache.package"));
+                });
+                //Do the first garbage calc
+                newCacheItem.CalculateThisCacheSize();
+            }
+
+            //---------------// Sim Compositor //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                CacheItem newCacheItem = new CacheItem(this);
+                cacheList.Children.Add(newCacheItem);
+                instantiatedCacheItems.Add(newCacheItem);
+                //Set it up
+                newCacheItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newCacheItem.VerticalAlignment = VerticalAlignment.Top;
+                newCacheItem.Width = double.NaN;
+                newCacheItem.Height = double.NaN;
+                newCacheItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this item
+                newCacheItem.SetTasksID("simCompositorCache");
+                newCacheItem.SetIcon("Resources/cache-4.png");
+                newCacheItem.SetTitle(GetStringApplicationResource("launcher_cache_item4title"));
+                newCacheItem.SetDescription(GetStringApplicationResource("launcher_cache_item4description"));
+                newCacheItem.SetMyDocumentsPath(myDocumentsPath);
+                //Set the garbage size checker code
+                newCacheItem.RegisterOnCalculateGarbageCallback((myDocumentsPath, mainWindow) =>
+                {
+                    //Prepare the cache size
+                    double cacheSize = 0;
+
+                    //Calculate all cache size
+                    if (File.Exists((myDocumentsPath + "/simCompositorCache.package")) == true)
+                        cacheSize += (new FileInfo((myDocumentsPath + "/simCompositorCache.package"))).Length;
+
+                    //Return the cache size
+                    return GetFormattedCacheSize(cacheSize);
+                });
+                //Set the clean code
+                newCacheItem.RegisterOnClickClearCallback((myDocumentsPath) =>
+                {
+                    //Delete the file
+                    if (File.Exists((myDocumentsPath + "/simCompositorCache.package")) == true)
+                        File.Delete((myDocumentsPath + "/simCompositorCache.package"));
+                });
+                //Do the first garbage calc
+                newCacheItem.CalculateThisCacheSize();
+            }
+
+            //---------------// Social //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                CacheItem newCacheItem = new CacheItem(this);
+                cacheList.Children.Add(newCacheItem);
+                instantiatedCacheItems.Add(newCacheItem);
+                //Set it up
+                newCacheItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newCacheItem.VerticalAlignment = VerticalAlignment.Top;
+                newCacheItem.Width = double.NaN;
+                newCacheItem.Height = double.NaN;
+                newCacheItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this item
+                newCacheItem.SetTasksID("socialCache");
+                newCacheItem.SetIcon("Resources/cache-5.png");
+                newCacheItem.SetTitle(GetStringApplicationResource("launcher_cache_item5title"));
+                newCacheItem.SetDescription(GetStringApplicationResource("launcher_cache_item5description"));
+                newCacheItem.SetMyDocumentsPath(myDocumentsPath);
+                //Set the garbage size checker code
+                newCacheItem.RegisterOnCalculateGarbageCallback((myDocumentsPath, mainWindow) =>
+                {
+                    //Prepare the cache size
+                    double cacheSize = 0;
+
+                    //Calculate all cache size
+                    if (File.Exists((myDocumentsPath + "/socialCache.package")) == true)
+                        cacheSize += (new FileInfo((myDocumentsPath + "/socialCache.package"))).Length;
+
+                    //Return the cache size
+                    return GetFormattedCacheSize(cacheSize);
+                });
+                //Set the clean code
+                newCacheItem.RegisterOnClickClearCallback((myDocumentsPath) =>
+                {
+                    //Delete the file
+                    if (File.Exists((myDocumentsPath + "/socialCache.package")) == true)
+                        File.Delete((myDocumentsPath + "/socialCache.package"));
+                });
+                //Do the first garbage calc
+                newCacheItem.CalculateThisCacheSize();
+            }
+
+            //---------------// Repository Index Cache //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                CacheItem newCacheItem = new CacheItem(this);
+                cacheList.Children.Add(newCacheItem);
+                instantiatedCacheItems.Add(newCacheItem);
+                //Set it up
+                newCacheItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newCacheItem.VerticalAlignment = VerticalAlignment.Top;
+                newCacheItem.Width = double.NaN;
+                newCacheItem.Height = double.NaN;
+                newCacheItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this item
+                newCacheItem.SetTasksID("repoIndexCache");
+                newCacheItem.SetIcon("Resources/cache-6.png");
+                newCacheItem.SetTitle(GetStringApplicationResource("launcher_cache_item6title"));
+                newCacheItem.SetDescription(GetStringApplicationResource("launcher_cache_item6description"));
+                newCacheItem.SetMyDocumentsPath(myDocumentsPath);
+                //Set the garbage size checker code
+                newCacheItem.RegisterOnCalculateGarbageCallback((myDocumentsPath, mainWindow) =>
+                {
+                    //Prepare the cache size
+                    double cacheSize = 0;
+
+                    //Calculate all cache size
+                    //missingdeps.idx
+                    if (File.Exists((myDocumentsPath + "/DCCache/missingdeps.idx")) == true)
+                        cacheSize += (new FileInfo((myDocumentsPath + "/DCCache/missingdeps.idx"))).Length;
+                    //dcc.ent
+                    if (File.Exists((myDocumentsPath + "/DCCache/dcc.ent")) == true)
+                        cacheSize += (new FileInfo((myDocumentsPath + "/DCCache/dcc.ent"))).Length;
+                    //Downloads/*.bin
+                    foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/Downloads")).GetFiles()))
+                        if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".bin")
+                            cacheSize += file.Length;
+                    //SigsCache/*.bin
+                    foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/SigsCache")).GetFiles()))
+                        if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".bin")
+                            cacheSize += file.Length;
+                    //SavedSims/Downloadedsims.index
+                    if (Directory.Exists((myDocumentsPath + "/SavedSims")) == true)
+                        if (File.Exists((myDocumentsPath + "/SavedSims/Downloadedsims.index")) == true)
+                            cacheSize += (new FileInfo((myDocumentsPath + "/SavedSims/Downloadedsims.index"))).Length;
+                    //IGACache/*.*
+                    foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/IGACache")).GetFiles()))
+                        cacheSize += file.Length;
+
+                    //Return the cache size
+                    return GetFormattedCacheSize(cacheSize);
+                });
+                //Set the clean code
+                newCacheItem.RegisterOnClickClearCallback((myDocumentsPath) =>
+                {
+                    //Prepare the list of files to delete
+                    List<string> toDelete = new List<string>();
+
+                    //Delete all cache
+                    //missingdeps.idx
+                    if (File.Exists((myDocumentsPath + "/DCCache/missingdeps.idx")) == true)
+                        toDelete.Add((myDocumentsPath + "/DCCache/missingdeps.idx"));
+                    //dcc.ent
+                    if (File.Exists((myDocumentsPath + "/DCCache/dcc.ent")) == true)
+                        toDelete.Add((myDocumentsPath + "/DCCache/dcc.ent"));
+                    //Downloads/*.bin
+                    foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/Downloads")).GetFiles()))
+                        if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".bin")
+                            toDelete.Add(file.FullName);
+                    //SigsCache/*.bin
+                    foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/SigsCache")).GetFiles()))
+                        if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".bin")
+                            toDelete.Add(file.FullName);
+                    //SavedSims/Downloadedsims.index
+                    if (File.Exists((myDocumentsPath + "/SavedSims/Downloadedsims.index")) == true)
+                        toDelete.Add((myDocumentsPath + "/SavedSims/Downloadedsims.index"));
+                    //IGACache/*.*
+                    foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/IGACache")).GetFiles()))
+                        toDelete.Add(file.FullName);
+
+                    //Delete all marked files
+                    foreach (string filePath in toDelete)
+                        File.Delete(filePath);
+                });
+                //Do the first garbage calc
+                newCacheItem.CalculateThisCacheSize();
+            }
+
+            //---------------// Thumbnails //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                CacheItem newCacheItem = new CacheItem(this);
+                cacheList.Children.Add(newCacheItem);
+                instantiatedCacheItems.Add(newCacheItem);
+                //Set it up
+                newCacheItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newCacheItem.VerticalAlignment = VerticalAlignment.Top;
+                newCacheItem.Width = double.NaN;
+                newCacheItem.Height = double.NaN;
+                newCacheItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this item
+                newCacheItem.SetTasksID("thumbsCache");
+                newCacheItem.SetIcon("Resources/cache-7.png");
+                newCacheItem.SetTitle(GetStringApplicationResource("launcher_cache_item7title"));
+                newCacheItem.SetDescription(GetStringApplicationResource("launcher_cache_item7description"));
+                newCacheItem.SetMyDocumentsPath(myDocumentsPath);
+                //Set the garbage size checker code
+                newCacheItem.RegisterOnCalculateGarbageCallback((myDocumentsPath, mainWindow) =>
+                {
+                    //Prepare the cache size
+                    double cacheSize = 0;
+
+                    //Calculate all cache size
+                    //Thumbnails/*.package
+                    foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/Thumbnails")).GetFiles()))
+                        if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".package")
+                            cacheSize += file.Length;
+                    //FeaturedItems/thumb_*.png
+                    foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/FeaturedItems")).GetFiles()))
+                        if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".png")
+                            if(file.Name.Contains("thumb_") == true)
+                                cacheSize += file.Length;
+
+                    //Return the cache size
+                    return GetFormattedCacheSize(cacheSize);
+                });
+                //Set the clean code
+                newCacheItem.RegisterOnClickClearCallback((myDocumentsPath) =>
+                {
+                    //Prepare the list of files to delete
+                    List<string> toDelete = new List<string>();
+
+                    //Thumbnails/*.package
+                    foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/Thumbnails")).GetFiles()))
+                        if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".package")
+                            toDelete.Add(file.FullName);
+                    //FeaturedItems/thumb_*.png
+                    foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/FeaturedItems")).GetFiles()))
+                        if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".png")
+                            if (file.Name.Contains("thumb_") == true)
+                                toDelete.Add(file.FullName);
+
+                    //Delete all marked files
+                    foreach (string filePath in toDelete)
+                        File.Delete(filePath);
+                });
+                //Do the first garbage calc
+                newCacheItem.CalculateThisCacheSize();
+            }
+
+            //---------------// Worldcache //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                CacheItem newCacheItem = new CacheItem(this);
+                cacheList.Children.Add(newCacheItem);
+                instantiatedCacheItems.Add(newCacheItem);
+                //Set it up
+                newCacheItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newCacheItem.VerticalAlignment = VerticalAlignment.Top;
+                newCacheItem.Width = double.NaN;
+                newCacheItem.Height = double.NaN;
+                newCacheItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this item
+                newCacheItem.SetTasksID("worldCache");
+                newCacheItem.SetIcon("Resources/cache-8.png");
+                newCacheItem.SetTitle(GetStringApplicationResource("launcher_cache_item8title"));
+                newCacheItem.SetDescription(GetStringApplicationResource("launcher_cache_item8description"));
+                newCacheItem.SetMyDocumentsPath(myDocumentsPath);
+                //Set the garbage size checker code
+                newCacheItem.RegisterOnCalculateGarbageCallback((myDocumentsPath, mainWindow) =>
+                {
+                    //Prepare the cache size
+                    double cacheSize = 0;
+
+                    //Calculate all cache size
+                    if (Directory.Exists((myDocumentsPath + "/WorldCaches")) == true)
+                        cacheSize += GetDirectorySize(new DirectoryInfo((myDocumentsPath + "/WorldCaches")));
+
+                    //Return the cache size
+                    return GetFormattedCacheSize(cacheSize);
+                });
+                //Set the clean code
+                newCacheItem.RegisterOnClickClearCallback((myDocumentsPath) =>
+                {
+                    //Clear the cache
+                    if (Directory.Exists((myDocumentsPath + "/WorldCaches")) == true)
+                        Directory.Delete((myDocumentsPath + "/WorldCaches"), true);
+                });
+                //Do the first garbage calc
+                newCacheItem.CalculateThisCacheSize();
+            }
+
+
+            //Add the final spacer
+            Grid finalSpacer = new Grid();
+            cacheList.Children.Add(finalSpacer);
+            //Set it up
+            finalSpacer.HorizontalAlignment = HorizontalAlignment.Stretch;
+            finalSpacer.VerticalAlignment = VerticalAlignment.Top;
+            finalSpacer.Width = double.NaN;
+            finalSpacer.Height = 16.0f;
         }
 
-        private void DoPatch_PtPtToPtBrTranslate()
+        private string GetFormattedCacheSize(double bytesSize)
         {
-            //Add the task
-            AddTask("ptPtToPtBrTranslatePatching", "Do the pt-PT to pt-BR translation of game.");
+            //Calculate to MB, KB and GB
+            float gbSize = (float)(((bytesSize / 1000.0f) / 1000.0f) / 1000.0f);
+            float mbSize = (float)((bytesSize / 1000.0f) / 1000.0f);
+            float kbSize = (float)(bytesSize / 1000.0f);
 
-            //Create a thread to make the patch
-            AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { });
-            asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+            //Fix the KB size
+            if (kbSize > 0.0f && kbSize < 1.0f)
+                kbSize = 1.0f;
+            //Calculate the pre size prefix
+            string prefix = ((kbSize > 0.0f) ? "~": "");
+
+            //Prepare the final size
+            string formattedSize = "";
+
+            //Select the correct unit
+            if (mbSize < 1)
+                formattedSize = (prefix + kbSize.ToString("F0") + " KB");
+            if (mbSize >= 1 && mbSize < 1000)
+                formattedSize = (prefix + mbSize.ToString("F1") + " MB");
+            if (mbSize >= 1000)
+                formattedSize = (prefix + gbSize.ToString("F1") + " GB");
+
+            //Return the cache size
+            return formattedSize;
+        }
+
+        private void RecalculateAllCacheTypesSizes()
+        {
+            //Recalculate all cache types sizes
+            foreach (CacheItem item in instantiatedCacheItems)
+                item.CalculateThisCacheSize();
+        }
+    
+        private void OpenErrorTrapLogsViewerPopUp()
+        {
+            //If the routine is already running, stop it
+            if (logsViewerOpenRoutine != null)
             {
-                //Wait some time
-                threadTools.MakeThreadSleep(5000);
+                logsViewerOpenRoutine.Dispose();
+                logsViewerOpenRoutine = null;
+            }
 
-                //Try to make the patch
-                try
-                {
-                    //Get the path do two folders up
-                    string localeFileDirectory = (new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent).FullName;
+            //Start the logs viewer open routine
+            logsViewerOpenRoutine = Coroutine.Start(LogsViewerOpenRoutine());
+        }
 
-                    //If have a backup, restore the backup
-                    if (File.Exists((localeFileDirectory + "/47890_install-backup.vdf")) == true)
+        private IEnumerator LogsViewerOpenRoutine()
+        {
+            //Show the title
+            logsViewerTitle.Content = (GetStringApplicationResource("launcher_cache_logsViewerTitle") + " - " + GetStringApplicationResource("launcher_cache_logsViewerLoad"));
+            //Hide no logs warn
+            logsViewerEmpty.Visibility = Visibility.Collapsed;
+
+            //Open the popup running animation
+            logsViewerPopUp.Visibility = Visibility.Visible;
+            animStoryboards["logsViewerEntry"].Begin();
+
+            //Wait end of animation
+            yield return new WaitForSeconds(0.5);
+
+            //Stop the animation
+            animStoryboards["logsViewerEntry"].Stop();
+
+            //Prepare the logs count
+            int logsCount = 0;
+            bool alreadyInstantiatedTheFirst = false;
+            //Instatiate each log file
+            foreach (FileInfo file in (new DirectoryInfo(myDocumentsPath).GetFiles()))
+                if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".xml")
+                    if (file.Name.Contains("ScriptError_") == true)
                     {
-                        File.Delete((localeFileDirectory + "/47890_install.vdf"));
-                        File.Copy((localeFileDirectory + "/47890_install-backup.vdf"), (localeFileDirectory + "/47890_install.vdf"));
+                        //Create the log item to display
+                        LogItem newLogItem = new LogItem(this);
+                        logsViewerList.Children.Add(newLogItem);
+                        instantiatedLogItems.Add(newLogItem);
+
+                        //Configure it
+                        newLogItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                        newLogItem.VerticalAlignment = VerticalAlignment.Top;
+                        newLogItem.Width = double.NaN;
+                        newLogItem.Height = double.NaN;
+                        if (alreadyInstantiatedTheFirst == false)
+                            newLogItem.Margin = new Thickness(0, 8, 0, 8);
+                        if (alreadyInstantiatedTheFirst == true)
+                            newLogItem.Margin = new Thickness(0, 0, 0, 8);
+
+                        //Inform the data about the log
+                        newLogItem.SetTitle(file.Name);
+                        newLogItem.SetNppPath((Directory.GetCurrentDirectory() + @"/Content/tool-npp"), (Directory.GetCurrentDirectory() + @"/Content/tool-npp/notepad++.exe"));
+                        newLogItem.SetLogPath(file.FullName);
+                        newLogItem.Prepare();
+
+                        //Increase the log count
+                        logsCount += 1;
+                        alreadyInstantiatedTheFirst = true;
+
+                        //Wait some time, before instantiate the next item, to avoid UI freezing
+                        yield return new WaitForSeconds(0.05f);
                     }
-                    //If was never made a backup, do a backup of "47890_install.vdf" file...
-                    if (File.Exists((localeFileDirectory + "/47890_install-backup.vdf")) == false)
-                        File.Copy((localeFileDirectory + "/47890_install.vdf"), (localeFileDirectory + "/47890_install-backup.vdf"));
 
-                    //Translate the file from pt-PT to pt-BR
-                    string localeContent = File.ReadAllText((localeFileDirectory + "/47890_install.vdf"));
-                    string localeContent0 = localeContent.Replace("\"https://pt.thesims3.com/register.html\"", "\"https://br.thesims3.com/register.html\"");
-                    string localeContent1 = localeContent0.Replace("\"pt-pt\"", "\"pt-BR\"");
-                    string localeContent2 = localeContent1.Replace("\"PT\"", "\"BR\"");
-                    File.WriteAllText((localeFileDirectory + "/47890_install.vdf"), localeContent2);
+            //Update the title
+            logsViewerTitle.Content = (GetStringApplicationResource("launcher_cache_logsViewerTitle") + " - " + GetStringApplicationResource("launcher_cache_logsViewerCounter").Replace("%n%", logsCount.ToString()));
 
-                    //Return a success response
-                    return new string[] { "success" };
-                }
-                catch (Exception ex)
-                {
-                    //Return a error response
-                    return new string[] { "error", ex.Message };
-                }
+            //Prepare the no logs warn
+            if (logsCount == 0)
+                logsViewerEmpty.Visibility = Visibility.Visible;
+            if (logsCount >= 1)
+                logsViewerEmpty.Visibility = Visibility.Collapsed;
 
-                //Return a default result
-                return new string[] { "none" };
-            };
-            asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+            //Clear this routine reference
+            logsViewerOpenRoutine = null;
+        }
+
+        private void CloseErrorTrapLogsViewerPopUp()
+        {
+            //Start the logs viewer close routine
+            IDisposable logsViewerCloseRoutine = Coroutine.Start(LogsViewerCloseRoutine());
+        }
+
+        private IEnumerator LogsViewerCloseRoutine()
+        {
+            //Close the popup running animation
+            animStoryboards["logsViewerExit"].Begin();
+
+            //Wait end of animation
+            yield return new WaitForSeconds(0.5);
+
+            //Close the popup
+            logsViewerPopUp.Visibility = Visibility.Collapsed;
+            //Stop the animation
+            animStoryboards["logsViewerExit"].Stop();
+
+            //Clear all instantiated logs
+            foreach (LogItem item in instantiatedLogItems)
+                logsViewerList.Children.Remove(item);
+            instantiatedLogItems.Clear();
+        }
+    
+        //Tools manager
+
+        private void BuildAndPrepareToolsListSystem()
+        {
+            //---------------// Notepad++ //---------------//
+            if (true == true)
             {
-                //If have a success
-                if (backgroundResult[0] == "success")
-                {
-                    //Inform that is translated
-                    launcherPrefs.loadedData.alreadyTranslated = true;
-                    launcherPrefs.Save();
-                    ShowToast(GetStringApplicationResource("launcher_ptptToptbrTranslateSuccess"), ToastType.Success);
-                }
-                //If have a error
-                if (backgroundResult[0] == "error")
-                    ShowToast((GetStringApplicationResource("launcher_ptptToptbrTranslateProblem") + " \"" + backgroundResult[1] + "\""), ToastType.Error);
+                //Instantiate and store reference for it
+                ToolItem newToolItem = new ToolItem(this);
+                toolsList.Children.Add(newToolItem);
+                instantiatedToolItems.Add(newToolItem);
+                //Set it up
+                newToolItem.HorizontalAlignment = HorizontalAlignment.Left;
+                newToolItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newToolItem.Width = double.NaN;
+                newToolItem.Height = double.NaN;
+                newToolItem.Margin = new Thickness(4, 4, 4, 4);
+                //Fill this item
+                newToolItem.SetIcon("Resources/tool-npp.png");
+                newToolItem.SetInformation(GetStringApplicationResource("launcher_tools_nppInformation"));
+                newToolItem.SetTitle(GetStringApplicationResource("launcher_tools_nppTitle"));
+                newToolItem.SetDescription(GetStringApplicationResource("launcher_tools_nppDescription"));
+                newToolItem.SetCreator("Don Ho");
+                newToolItem.SetContentsFolderPath((Directory.GetCurrentDirectory() + @"/Content"));
+                newToolItem.SetToolFolderName("tool-npp");
+                newToolItem.SetToolExePathInsideFolder("notepad++.exe");
+                newToolItem.SetMyDocumentsPath(myDocumentsPath);
+                newToolItem.SetToolDownloadURL("https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/tool-notepadpp.zip");
+                //Prepare the tool
+                newToolItem.Prepare();
+            }
 
-                //Remove the task
-                RemoveTask("ptPtToPtBrTranslatePatching");
+            //---------------// S3PE //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                ToolItem newToolItem = new ToolItem(this);
+                toolsList.Children.Add(newToolItem);
+                instantiatedToolItems.Add(newToolItem);
+                //Set it up
+                newToolItem.HorizontalAlignment = HorizontalAlignment.Left;
+                newToolItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newToolItem.Width = double.NaN;
+                newToolItem.Height = double.NaN;
+                newToolItem.Margin = new Thickness(4, 4, 4, 4);
+                //Fill this item
+                newToolItem.SetIcon("Resources/tool-s3pe.png");
+                newToolItem.SetInformation(GetStringApplicationResource("launcher_tools_s3peInformation"));
+                newToolItem.SetTitle(GetStringApplicationResource("launcher_tools_s3peTitle"));
+                newToolItem.SetDescription(GetStringApplicationResource("launcher_tools_s3peDescription"));
+                newToolItem.SetCreator("Peter L Jones");
+                newToolItem.SetContentsFolderPath((Directory.GetCurrentDirectory() + @"/Content"));
+                newToolItem.SetToolFolderName("tool-s3pe");
+                newToolItem.SetToolExePathInsideFolder("s3pe.exe");
+                newToolItem.SetMyDocumentsPath(myDocumentsPath);
+                newToolItem.SetToolDownloadURL("https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/tool-s3pe.zip");
+                //Prepare the tool
+                newToolItem.Prepare();
+            }
+
+            //---------------// S3OC //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                ToolItem newToolItem = new ToolItem(this);
+                toolsList.Children.Add(newToolItem);
+                instantiatedToolItems.Add(newToolItem);
+                //Set it up
+                newToolItem.HorizontalAlignment = HorizontalAlignment.Left;
+                newToolItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newToolItem.Width = double.NaN;
+                newToolItem.Height = double.NaN;
+                newToolItem.Margin = new Thickness(4, 4, 4, 4);
+                //Fill this item
+                newToolItem.SetIcon("Resources/tool-s3oc.png");
+                newToolItem.SetInformation(GetStringApplicationResource("launcher_tools_s3ocInformation"));
+                newToolItem.SetTitle(GetStringApplicationResource("launcher_tools_s3ocTitle"));
+                newToolItem.SetDescription(GetStringApplicationResource("launcher_tools_s3ocDescription"));
+                newToolItem.SetCreator("Peter L Jones");
+                newToolItem.SetContentsFolderPath((Directory.GetCurrentDirectory() + @"/Content"));
+                newToolItem.SetToolFolderName("tool-s3oc");
+                newToolItem.SetToolExePathInsideFolder("s3oc.exe");
+                newToolItem.SetMyDocumentsPath(myDocumentsPath);
+                newToolItem.SetToolDownloadURL("https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/tool-s3oc.zip");
+                //Prepare the tool
+                newToolItem.Prepare();
+            }
+
+            //---------------// Dashboard //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                ToolItem newToolItem = new ToolItem(this);
+                toolsList.Children.Add(newToolItem);
+                instantiatedToolItems.Add(newToolItem);
+                //Set it up
+                newToolItem.HorizontalAlignment = HorizontalAlignment.Left;
+                newToolItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newToolItem.Width = double.NaN;
+                newToolItem.Height = double.NaN;
+                newToolItem.Margin = new Thickness(4, 4, 4, 4);
+                //Fill this item
+                newToolItem.SetIcon("Resources/tool-dashboard.png");
+                newToolItem.SetInformation(GetStringApplicationResource("launcher_tools_dshInformation"));
+                newToolItem.SetTitle(GetStringApplicationResource("launcher_tools_dshTitle"));
+                newToolItem.SetDescription(GetStringApplicationResource("launcher_tools_dshDescription"));
+                newToolItem.SetCreator("Tashiketh");
+                newToolItem.SetContentsFolderPath((Directory.GetCurrentDirectory() + @"/Content"));
+                newToolItem.SetToolFolderName("tool-dashboard");
+                newToolItem.SetToolExePathInsideFolder("Sims3Dashboard.exe");
+                newToolItem.SetMyDocumentsPath(myDocumentsPath);
+                newToolItem.SetToolDownloadURL("https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/tool-dashboard.zip");
+                //Prepare the tool
+                newToolItem.Prepare();
+            }
+
+            //---------------// Easy STBL Manager //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                ToolItem newToolItem = new ToolItem(this);
+                toolsList.Children.Add(newToolItem);
+                instantiatedToolItems.Add(newToolItem);
+                //Set it up
+                newToolItem.HorizontalAlignment = HorizontalAlignment.Left;
+                newToolItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newToolItem.Width = double.NaN;
+                newToolItem.Height = double.NaN;
+                newToolItem.Margin = new Thickness(4, 4, 4, 4);
+                //Fill this item
+                newToolItem.SetIcon("Resources/tool-ese.png");
+                newToolItem.SetInformation(GetStringApplicationResource("launcher_tools_eseInformation"));
+                newToolItem.SetTitle(GetStringApplicationResource("launcher_tools_eseTitle"));
+                newToolItem.SetDescription(GetStringApplicationResource("launcher_tools_eseDescription"));
+                newToolItem.SetCreator("CmarNYC");
+                newToolItem.SetContentsFolderPath((Directory.GetCurrentDirectory() + @"/Content"));
+                newToolItem.SetToolFolderName("tool-ese");
+                newToolItem.SetToolExePathInsideFolder("EasySTBLmanager.exe");
+                newToolItem.SetMyDocumentsPath(myDocumentsPath);
+                newToolItem.SetToolDownloadURL("https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/tool-ese.zip");
+                //Prepare the tool
+                newToolItem.Prepare();
+            }
+
+            //---------------// Package Viewer //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                ToolItem newToolItem = new ToolItem(this);
+                toolsList.Children.Add(newToolItem);
+                instantiatedToolItems.Add(newToolItem);
+                //Set it up
+                newToolItem.HorizontalAlignment = HorizontalAlignment.Left;
+                newToolItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newToolItem.Width = double.NaN;
+                newToolItem.Height = double.NaN;
+                newToolItem.Margin = new Thickness(4, 4, 4, 4);
+                //Fill this item
+                newToolItem.SetIcon("Resources/tool-pkgv.png");
+                newToolItem.SetInformation(GetStringApplicationResource("launcher_tools_pkgInformation"));
+                newToolItem.SetTitle(GetStringApplicationResource("launcher_tools_pkgTitle"));
+                newToolItem.SetDescription(GetStringApplicationResource("launcher_tools_pkgDescription"));
+                newToolItem.SetCreator("Kuree");
+                newToolItem.SetContentsFolderPath((Directory.GetCurrentDirectory() + @"/Content"));
+                newToolItem.SetToolFolderName("tool-pkgv");
+                newToolItem.SetToolExePathInsideFolder("PackageViewer.exe");
+                newToolItem.SetMyDocumentsPath(myDocumentsPath);
+                newToolItem.SetToolDownloadURL("https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/tool-pkgv.zip");
+                //Prepare the tool
+                newToolItem.Prepare();
+            }
+
+            //---------------// Sims3Pack Multi Installer //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                ToolItem newToolItem = new ToolItem(this);
+                toolsList.Children.Add(newToolItem);
+                instantiatedToolItems.Add(newToolItem);
+                //Set it up
+                newToolItem.HorizontalAlignment = HorizontalAlignment.Left;
+                newToolItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newToolItem.Width = double.NaN;
+                newToolItem.Height = double.NaN;
+                newToolItem.Margin = new Thickness(4, 4, 4, 4);
+                //Fill this item
+                newToolItem.SetIcon("Resources/tool-s3mi.png");
+                newToolItem.SetInformation(GetStringApplicationResource("launcher_tools_s3miInformation"));
+                newToolItem.SetTitle(GetStringApplicationResource("launcher_tools_s3miTitle"));
+                newToolItem.SetDescription(GetStringApplicationResource("launcher_tools_s3miDescription"));
+                newToolItem.SetCreator("Tashiketh");
+                newToolItem.SetContentsFolderPath((Directory.GetCurrentDirectory() + @"/Content"));
+                newToolItem.SetToolFolderName("tool-s3mi");
+                newToolItem.SetToolExePathInsideFolder("Sims3PackMultiInstaller.exe");
+                newToolItem.SetMyDocumentsPath(myDocumentsPath);
+                newToolItem.SetToolDownloadURL("https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/tool-s3mi.zip");
+                //Prepare the tool
+                newToolItem.Prepare();
+            }
+
+            //---------------// 7zip //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                ToolItem newToolItem = new ToolItem(this);
+                toolsList.Children.Add(newToolItem);
+                instantiatedToolItems.Add(newToolItem);
+                //Set it up
+                newToolItem.HorizontalAlignment = HorizontalAlignment.Left;
+                newToolItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newToolItem.Width = double.NaN;
+                newToolItem.Height = double.NaN;
+                newToolItem.Margin = new Thickness(4, 4, 4, 4);
+                //Fill this item
+                newToolItem.SetIcon("Resources/tool-szip.png");
+                newToolItem.SetInformation(GetStringApplicationResource("launcher_tools_szipInformation"));
+                newToolItem.SetTitle(GetStringApplicationResource("launcher_tools_szipTitle"));
+                newToolItem.SetDescription(GetStringApplicationResource("launcher_tools_szipDescription"));
+                newToolItem.SetCreator("Igor Pavlov");
+                newToolItem.SetContentsFolderPath((Directory.GetCurrentDirectory() + @"/Content"));
+                newToolItem.SetToolFolderName("tool-szip");
+                newToolItem.SetToolExePathInsideFolder("7zFM.exe");
+                newToolItem.SetMyDocumentsPath(myDocumentsPath);
+                newToolItem.SetToolDownloadURL("https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/tool-szip.zip");
+                //Prepare the tool
+                newToolItem.Prepare();
+            }
+
+            //---------------// Sims3Pack Command Line Interface Extractor //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                ToolItem newToolItem = new ToolItem(this);
+                toolsList.Children.Add(newToolItem);
+                instantiatedToolItems.Add(newToolItem);
+                //Set it up
+                newToolItem.HorizontalAlignment = HorizontalAlignment.Left;
+                newToolItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newToolItem.Width = double.NaN;
+                newToolItem.Height = double.NaN;
+                newToolItem.Margin = new Thickness(4, 4, 4, 4);
+                //Fill this item
+                newToolItem.SetIcon("Resources/tool-s3ce.png");
+                newToolItem.SetInformation(GetStringApplicationResource("launcher_tools_s3ceInformation"));
+                newToolItem.SetTitle(GetStringApplicationResource("launcher_tools_s3ceTitle"));
+                newToolItem.SetDescription(GetStringApplicationResource("launcher_tools_s3ceDescription"));
+                newToolItem.SetCreator("MarkJS");
+                newToolItem.SetContentsFolderPath((Directory.GetCurrentDirectory() + @"/Content"));
+                newToolItem.SetToolFolderName("tool-s3ce");
+                newToolItem.SetToolExePathInsideFolder("s3ce.exe");
+                newToolItem.SetMyDocumentsPath(myDocumentsPath);
+                newToolItem.SetToolDownloadURL("https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/tool-s3ce.zip");
+                //Prepare the tool
+                newToolItem.Prepare();
+            }
+        }
+    
+        //Mods Manager
+
+        private void BuildAndPrepareModsListSystem()
+        {
+            //Disable the mods button. Will be enabled after the first installed mods update
+            goMods.IsEnabled = false;
+
+            //If don't have mods support patch installed, hide the mods button
+            if(launcherPrefs.loadedData.patchModsSupport == false)
+            {
+                goMods.IsEnabled = false;
+                return;
+            }
+
+            //Scan the mods folder and warn if found unrecognized files or directories inside
+            ScanModsFolderAndRemoveAllUnrecognizedFilesAndFolders();
+
+            //Setup the updates in the mods tabs
+            modsTabs.SelectionChanged += (s, e) => 
+            {
+                //If this event is not being fired by the mods tabs, cancel
+                if (e.OriginalSource != modsTabs)
+                    return;
+
+                //Update the recommended mods list, if is changed to add tab
+                if (modsTabs.SelectedIndex == 1)
+                {
+                    UpdateRecommendedModsList();
+                    SetModInstallScreen(ModScreen.Recommended);
+                }
+
+                //Update the installed mods list, if is changed to installed tab
+                if (modsTabs.SelectedIndex == 0)
+                    UpdateInstalledMods();
             };
-            asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+
+            //Prepare the search box
+            instModsSearchBar.TextChanged += (s, e) => { ApplySearchAndCategoryFilters(); };
+            instModsSearchBar.LostFocus += (s, e) =>
+            {
+                if (instModsSearchBar.Text == "")
+                    instModsSearchHint.Visibility = Visibility.Visible;
+            };
+            instModsSearchBar.GotFocus += (s, e) => { instModsSearchHint.Visibility = Visibility.Collapsed; };
+
+            //Prepare the category buttons
+            instModsAll.Click += (s, e) => { SetInstalledModsCategoryFilter(ModCategory.All); };
+            instModsContents.Click += (s, e) => { SetInstalledModsCategoryFilter(ModCategory.Contents); };
+            instModsGraphics.Click += (s, e) => { SetInstalledModsCategoryFilter(ModCategory.Graphics); };
+            instModsSounds.Click += (s, e) => { SetInstalledModsCategoryFilter(ModCategory.Sounds); };
+            instModsFixes.Click += (s, e) => { SetInstalledModsCategoryFilter(ModCategory.Fixes); };
+            instModsGameplay.Click += (s, e) => { SetInstalledModsCategoryFilter(ModCategory.Gameplay); };
+            instModsSliders.Click += (s, e) => { SetInstalledModsCategoryFilter(ModCategory.Sliders); };
+            instModsOthers.Click += (s, e) => { SetInstalledModsCategoryFilter(ModCategory.Others); };
+            instModsPatches.Click += (s, e) => { SetInstalledModsCategoryFilter(ModCategory.FromPatches); };
+
+            //Update the installed mods and show the "All" category automatically
+            UpdateInstalledMods();
+
+            //Prepare the add mod screens buttons
+            installRecommended.Click += (s, e) => { SetModInstallScreen(ModScreen.Recommended); };
+            installCustom.Click += (s, e) => { SetModInstallScreen(ModScreen.Custom); };
+
+            //Auto change the Add tab to see Recommended screen
+            SetModInstallScreen(ModScreen.Recommended);
+
+            //Prepare the recommended category buttons
+            recModsAll.Click += (s, e) => { SetRecommendedModsCategoryFilter(ModCategory.All); };
+            recModsContents.Click += (s, e) => { SetRecommendedModsCategoryFilter(ModCategory.Contents); };
+            recModsGraphics.Click += (s, e) => { SetRecommendedModsCategoryFilter(ModCategory.Graphics); };
+            recModsSounds.Click += (s, e) => { SetRecommendedModsCategoryFilter(ModCategory.Sounds); };
+            recModsFixes.Click += (s, e) => { SetRecommendedModsCategoryFilter(ModCategory.Fixes); };
+            recModsGameplay.Click += (s, e) => { SetRecommendedModsCategoryFilter(ModCategory.Gameplay); };
+            recModsSliders.Click += (s, e) => { SetRecommendedModsCategoryFilter(ModCategory.Sliders); };
+            recModsOthers.Click += (s, e) => { SetRecommendedModsCategoryFilter(ModCategory.Others); };
+
+            //Prepare the button picker
+            instCustomButton.Click += (s, e) => { OpenCustomPackageModPicker(); };
+        }
+
+        public void UpdateInstalledMods()
+        {
+            //If the routine is already running, stop it
+            if (installedModsUpdateRoutine != null)
+            {
+                installedModsUpdateRoutine.Dispose();
+                installedModsUpdateRoutine = null;
+            }
+
+            //Start the installed mods update routine
+            installedModsUpdateRoutine = Coroutine.Start(UpdateInstalledModsRoutine());
+        }
+
+        private IEnumerator UpdateInstalledModsRoutine()
+        {
+            //Show the loading indicator
+            instModsLoading.Visibility = Visibility.Visible;
+            animStoryboards["installedModsLoadExit"].Stop();
+            //Wait end of animation
+            yield return new WaitForSeconds(0.2f);
+            
+            //Clear all mods previously rendered
+            foreach (InstalledModItem item in instantiatedModsItems)
+                instModsList.Children.Remove(item);
+            instantiatedModsItems.Clear();
+
+            //Prepare the mods counters
+            int contentsCounter = 0;
+            int graphicsCounter = 0;
+            int soundsCounter = 0;
+            int fixesCounter = 0;
+            int gameplayCounter = 0;
+            int slidersCounter = 0;
+            int othersCounter = 0;
+            int patchesCounter = 0;
+
+            //Query all mods of all categories
+            List<string> allModsList = new List<string>();
+            QueryAllModsOfCategoryInFolder(ref allModsList, ref contentsCounter, "Packages/DL3-Recommended", "CONTENTS --- ");
+            QueryAllModsOfCategoryInFolder(ref allModsList, ref contentsCounter, "Packages/DL3-Custom", "CONTENTS --- ");
+            QueryAllModsOfCategoryInFolder(ref allModsList, ref graphicsCounter, "Packages/DL3-Recommended", "GRAPHICS --- ");
+            QueryAllModsOfCategoryInFolder(ref allModsList, ref graphicsCounter, "Packages/DL3-Custom", "GRAPHICS --- ");
+            QueryAllModsOfCategoryInFolder(ref allModsList, ref soundsCounter, "Packages/DL3-Recommended", "SOUNDS --- ");
+            QueryAllModsOfCategoryInFolder(ref allModsList, ref soundsCounter, "Packages/DL3-Custom", "SOUNDS --- ");
+            QueryAllModsOfCategoryInFolder(ref allModsList, ref fixesCounter, "Packages/DL3-Recommended", "FIXES --- ");
+            QueryAllModsOfCategoryInFolder(ref allModsList, ref fixesCounter, "Packages/DL3-Custom", "FIXES --- ");
+            QueryAllModsOfCategoryInFolder(ref allModsList, ref gameplayCounter, "Packages/DL3-Recommended", "GAMEPLAY --- ");
+            QueryAllModsOfCategoryInFolder(ref allModsList, ref gameplayCounter, "Packages/DL3-Custom", "GAMEPLAY --- ");
+            QueryAllModsOfCategoryInFolder(ref allModsList, ref slidersCounter, "Packages/DL3-Recommended", "SLIDERS --- ");
+            QueryAllModsOfCategoryInFolder(ref allModsList, ref slidersCounter, "Packages/DL3-Custom", "SLIDERS --- ");
+            QueryAllModsOfCategoryInFolder(ref allModsList, ref othersCounter, "Packages/DL3-Recommended", "OTHERS --- ");
+            QueryAllModsOfCategoryInFolder(ref allModsList, ref othersCounter, "Packages/DL3-Custom", "OTHERS --- ");
+            QueryAllModsOfCategoryInFolder(ref allModsList, ref patchesCounter, "Packages/DL3-Patches", "");
+            QueryAllModsOfCategoryInFolder(ref allModsList, ref patchesCounter, "Packages", "");
+
+            //Render all mods...
+            foreach(string item in allModsList)
+            {
+                //Create the item to display
+                InstalledModItem newItem = new InstalledModItem(this);
+                instModsList.Children.Add(newItem);
+                instantiatedModsItems.Add(newItem);
+
+                //Configure it
+                newItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newItem.VerticalAlignment = VerticalAlignment.Top;
+                newItem.Width = double.NaN;
+                newItem.Height = double.NaN;
+                newItem.Margin = new Thickness(0, 0, 0, 4);
+
+                //Inform the data about the mod
+                newItem.SetModPath(item);
+                newItem.SetContentsPath((Directory.GetCurrentDirectory() + @"/Content"));
+                newItem.Prepare();
+
+                //Wait before render next to avoid UI freezing
+                yield return new WaitForSeconds(0.01f);
+            }
+
+            //Show counters in all categories
+            int allModsCount = (contentsCounter + graphicsCounter + soundsCounter + fixesCounter + gameplayCounter + slidersCounter + othersCounter + patchesCounter);
+            instModsAll.Content = (GetStringApplicationResource("launcher_mods_installedTab_cat_all") + " - " + (allModsCount));
+            instModsContents.Content = (GetStringApplicationResource("launcher_mods_installedTab_cat_contents") + " - " + (contentsCounter));
+            instModsGraphics.Content = (GetStringApplicationResource("launcher_mods_installedTab_cat_graphics") + " - " + (graphicsCounter));
+            instModsSounds.Content = (GetStringApplicationResource("launcher_mods_installedTab_cat_sounds") + " - " + (soundsCounter));
+            instModsFixes.Content = (GetStringApplicationResource("launcher_mods_installedTab_cat_fixes") + " - " + (fixesCounter));
+            instModsGameplay.Content = (GetStringApplicationResource("launcher_mods_installedTab_cat_gameplay") + " - " + (gameplayCounter));
+            instModsSliders.Content = (GetStringApplicationResource("launcher_mods_installedTab_cat_sliders") + " - " + (slidersCounter));
+            instModsOthers.Content = (GetStringApplicationResource("launcher_mods_installedTab_cat_others") + " - " + (othersCounter));
+            instModsPatches.Content = ("FP - " + (patchesCounter));
+
+            //Count the total size of mods folder
+            long totalSizeInBytes = 0;
+            foreach (string modPath in allModsList)
+                if (File.Exists(modPath) == true)
+                    totalSizeInBytes += (new FileInfo(modPath)).Length;
+            //Render the mods folder size
+            modsFolderSize.Text = GetFormattedCacheSize(totalSizeInBytes).Replace("~", "");
+
+            //Auto change to category to all
+            SetInstalledModsCategoryFilter(ModCategory.All);
+
+            //Run the animation of loading exit
+            animStoryboards["installedModsLoadExit"].Begin();
+            //Wait end of animation
+            yield return new WaitForSeconds(0.5f);
+            //Hide the loading indicator
+            instModsLoading.Visibility = Visibility.Collapsed;
+
+            //Make the mods button available again, if is not available
+            if(goMods.IsEnabled == false)
+                goMods.IsEnabled = true;
+
+            //Auto clear routine reference
+            installedModsUpdateRoutine = null;
+        }
+
+        private void QueryAllModsOfCategoryInFolder(ref List<string> filesListToAdd, ref int counterToIncrease, string folderPathToQuery, string categoryCheckerPrefix)
+        {
+            //Query all mods
+            foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/Mods/" + folderPathToQuery)).GetFiles()))
+                if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".package" || System.IO.Path.GetExtension(file.FullName).ToLower() == ".disabled")
+                    if (System.IO.Path.GetFileNameWithoutExtension(file.FullName).Contains(categoryCheckerPrefix) == true)
+                    {
+                        filesListToAdd.Add(file.FullName);
+                        counterToIncrease += 1;
+                    }    
+        }
+
+        private void SetInstalledModsCategoryFilter(ModCategory category)
+        {
+            //Prepare the data
+            Color btSelectedColor = Color.FromArgb(255, 44, 103, 169);
+            Color btUnselectedColor = Color.FromArgb(255, 168, 171, 175);
+
+            //Prepare the dictionary of categories
+            int categoryIdToShow = -1;
+            switch (category)
+            {
+                case ModCategory.All:
+                    categoryIdToShow = 0;
+                    break;
+                case ModCategory.Contents:
+                    categoryIdToShow = 1;
+                    break;
+                case ModCategory.Graphics:
+                    categoryIdToShow = 2;
+                    break;
+                case ModCategory.Sounds:
+                    categoryIdToShow = 3;
+                    break;
+                case ModCategory.Fixes:
+                    categoryIdToShow = 4;
+                    break;
+                case ModCategory.Gameplay:
+                    categoryIdToShow = 5;
+                    break;
+                case ModCategory.Sliders:
+                    categoryIdToShow = 6;
+                    break;
+                case ModCategory.Others:
+                    categoryIdToShow = 7;
+                    break;
+                case ModCategory.FromPatches:
+                    categoryIdToShow = 8;
+                    break;
+            }
+
+            //Prepare the list of buttons
+            List<Controls.BeautyButton.BeautyButton> buttons = new List<Controls.BeautyButton.BeautyButton>();
+            buttons.Add(instModsAll);
+            buttons.Add(instModsContents);
+            buttons.Add(instModsGraphics);
+            buttons.Add(instModsSounds);
+            buttons.Add(instModsFixes);
+            buttons.Add(instModsGameplay);
+            buttons.Add(instModsSliders);
+            buttons.Add(instModsOthers);
+            buttons.Add(instModsPatches);
+
+            //If was found a ID
+            if (categoryIdToShow != -1)
+            {
+                //Unhighlight all buttons
+                for (int i = 0; i < buttons.Count; i++)
+                    buttons[i].Background = new SolidColorBrush(btUnselectedColor);
+
+                //Highlight the desired button
+                buttons[categoryIdToShow].Background = new SolidColorBrush(btSelectedColor);
+            }
+
+            //Clear the lists
+            buttons.Clear();
+
+            //Inform the current viewing category
+            currentSeeingModsCategory = category;
+
+            //If category is different from all, disable the search
+            if(category != ModCategory.All)
+            {
+                instModsSearch.Opacity = 0.25f;
+                instModsSearch.IsHitTestVisible = false;
+                instModsSearchBar.Text = "";
+                instModsSearchHint.Visibility = Visibility.Visible;
+            }
+            //If category is all, enable the search
+            if (category == ModCategory.All)
+            {
+                instModsSearch.Opacity = 1.0f;
+                instModsSearch.IsHitTestVisible = true;
+                instModsSearchBar.Text = "";
+            }
+
+            //Auto apply the filter
+            ApplySearchAndCategoryFilters();
+        }
+
+        private void ApplySearchAndCategoryFilters()
+        {
+            //If the routine is already running, stop it
+            if (installedModsFilterRoutine != null)
+            {
+                installedModsFilterRoutine.Dispose();
+                installedModsFilterRoutine = null;
+            }
+
+            //Start the installed mods filter routine
+            installedModsFilterRoutine = Coroutine.Start(ApplyFilterOnInstalledModsRoutine());
+        }
+
+        private IEnumerator ApplyFilterOnInstalledModsRoutine()
+        {
+            //Show the loading indicator
+            instModsFiltering.Visibility = Visibility.Visible;
+            //Wait some time before apply filter
+            yield return new WaitForSeconds(0.15f);
+
+            //Hide the empty mods warning
+            instModsEmpty.Visibility = Visibility.Collapsed;
+            //Hide search results warning
+            instModsSearchResults.Visibility = Visibility.Collapsed;
+
+            //If have something typed in the search bar, change the color
+            if (instModsSearchBar.Text != "")
+                instModsSearchBar.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 255, 176, 1));
+            if (instModsSearchBar.Text == "")
+                instModsSearchBar.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 171, 173, 179));
+
+            //Hide all items
+            foreach (InstalledModItem item in instantiatedModsItems)
+            {
+                //Hide
+                item.Visibility = Visibility.Collapsed;
+
+                //Wait before render next to avoid UI freezing
+                yield return new WaitForSeconds(0.0025f);
+            }
+
+            //Enable only that corresponds with the filter...
+
+            //Enable the items that corresponds with category
+            foreach (InstalledModItem item in instantiatedModsItems)
+            {
+                //If is not seeing all, enable only mods that corresponds with desired category
+                if (currentSeeingModsCategory != ModCategory.All)
+                {
+                    if (currentSeeingModsCategory == ModCategory.Contents && item.modCategory == InstalledModItem.ModCategory.Contents)
+                        item.Visibility = Visibility.Visible;
+                    if (currentSeeingModsCategory == ModCategory.Graphics && item.modCategory == InstalledModItem.ModCategory.Graphics)
+                        item.Visibility = Visibility.Visible;
+                    if (currentSeeingModsCategory == ModCategory.Sounds && item.modCategory == InstalledModItem.ModCategory.Sounds)
+                        item.Visibility = Visibility.Visible;
+                    if (currentSeeingModsCategory == ModCategory.Fixes && item.modCategory == InstalledModItem.ModCategory.Fixes)
+                        item.Visibility = Visibility.Visible;
+                    if (currentSeeingModsCategory == ModCategory.Gameplay && item.modCategory == InstalledModItem.ModCategory.Gameplay)
+                        item.Visibility = Visibility.Visible;
+                    if (currentSeeingModsCategory == ModCategory.Sliders && item.modCategory == InstalledModItem.ModCategory.Sliders)
+                        item.Visibility = Visibility.Visible;
+                    if (currentSeeingModsCategory == ModCategory.Others && item.modCategory == InstalledModItem.ModCategory.Others)
+                        item.Visibility = Visibility.Visible;
+                    if (currentSeeingModsCategory == ModCategory.FromPatches && item.modCategory == InstalledModItem.ModCategory.Patches)
+                        item.Visibility = Visibility.Visible;
+                }
+                //If is seeing all, enable it
+                if (currentSeeingModsCategory == ModCategory.All)
+                {
+                    //Enable it
+                    item.Visibility = Visibility.Visible;
+
+                    //If have something typed in search, disable if don't have the searched terms
+                    if (instModsSearchBar.Text != "")
+                        if (item.title.Text.ToLower().Contains(instModsSearchBar.Text.ToLower()) == false)
+                            item.Visibility = Visibility.Collapsed;
+                }
+
+                //Wait before render next to avoid UI freezing
+                yield return new WaitForSeconds(0.0025f);
+            }
+
+            //Count visible mods and show empty warning if necessary
+            int visibleModsCount = 0;
+            //Count
+            foreach (InstalledModItem item in instantiatedModsItems)
+                if (item.Visibility == Visibility.Visible)
+                    visibleModsCount += 1;
+            //If don't have visible mods, warn
+            if (visibleModsCount == 0)
+                instModsEmpty.Visibility = Visibility.Visible;
+            //If have more than zero visible mods, and is in "All" category, with searche terms typed, show result quantity
+            if(visibleModsCount > 0 && currentSeeingModsCategory == ModCategory.All && instModsSearchBar.Text != "")
+            {
+                instModsSearchResults.Content = GetStringApplicationResource("launcher_mods_installedTab_modsSearchResult").Replace("%n%", visibleModsCount.ToString());
+                instModsSearchResults.Visibility = Visibility.Visible;
+            }
+
+            //Hide the loading indicator
+            instModsFiltering.Visibility = Visibility.Collapsed;
+
+            //Auto clear routine reference
+            installedModsFilterRoutine = null;
+        }
+    
+        private void ScanModsFolderAndRemoveAllUnrecognizedFilesAndFolders()
+        {
+            //Get the mydocuments fixed path
+            string fixedMyDocumentsPath = myDocumentsPath.Replace("/", "\\");
+
+            //------------------------------------------------------------------------//
+            //------------------------------ Check Mods ------------------------------//
+            //------------------------------------------------------------------------//
+            if (true == true)
+            {
+                //Query all files
+                List<string> filesList = new List<string>();
+                foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/Mods")).GetFiles()))
+                    filesList.Add(file.FullName);
+                //Query all directories
+                List<string> foldersList = new List<string>();
+                foreach (DirectoryInfo dir in (new DirectoryInfo((myDocumentsPath + "/Mods")).GetDirectories()))
+                    foldersList.Add(dir.FullName);
+
+                //Delete unrecognized files
+                foreach(string filePath in filesList)
+                {
+                    //Prepare information
+                    bool deleteThis = false;
+
+                    //Get the file name
+                    string fileName = System.IO.Path.GetFileName(filePath);
+
+                    //If is not a valid file
+                    if (fileName != "!DON'T-Touch-Nothing-Here!" && fileName != "!NAO-Toque-Em-Nada-Aqui!" && fileName != "DreamLauncher.dl3" && fileName != "Resource.cfg")
+                        deleteThis = true;
+
+                    //If is not desired to delete this, continues
+                    if (deleteThis == false)
+                        continue;
+
+                    //Delete it
+                    File.Delete(filePath);
+                    //Warn
+                    ShowToast(GetStringApplicationResource("launcher_mods_deleteUnrecognized").Replace("%file%", (filePath.Replace((fixedMyDocumentsPath + "\\"), "")) ), ToastType.Error);
+                }
+
+                //Delete unrecognized folders
+                foreach (string folderPath in foldersList)
+                {
+                    //Prepare information
+                    bool deleteThis = false;
+
+                    //Get the folder name
+                    string dirName = new System.IO.DirectoryInfo(folderPath).Name;
+
+                    //If is not a valid folder
+                    if (dirName != "Cache" && dirName != "Overrides" && dirName != "Packages")
+                        deleteThis = true;
+
+                    //If is not desired to delete this, continues
+                    if (deleteThis == false)
+                        continue;
+
+                    //Delete it
+                    Directory.Delete(folderPath, true);
+                    //Warn
+                    ShowToast(GetStringApplicationResource("launcher_mods_deleteUnrecognized").Replace("%file%", (folderPath.Replace((fixedMyDocumentsPath + "\\"), ""))), ToastType.Error);
+                }
+            }
+
+            //---------------------------------------------------------------------------------//
+            //------------------------------ Check Mods/Packages ------------------------------//
+            //---------------------------------------------------------------------------------//
+            if (true == true)
+            {
+                //Query all files
+                List<string> filesList = new List<string>();
+                foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/Mods/Packages")).GetFiles()))
+                    filesList.Add(file.FullName);
+                //Query all directories
+                List<string> foldersList = new List<string>();
+                foreach (DirectoryInfo dir in (new DirectoryInfo((myDocumentsPath + "/Mods/Packages")).GetDirectories()))
+                    foldersList.Add(dir.FullName);
+
+                //Delete unrecognized files
+                foreach (string filePath in filesList)
+                {
+                    //Prepare information
+                    bool deleteThis = false;
+
+                    //Get the file name
+                    string fileName = System.IO.Path.GetFileName(filePath);
+
+                    //If is not a valid file
+                    if (fileName != "!DON'T-Touch-Nothing-Here!" && fileName != "!NAO-Toque-Em-Nada-Aqui!" && fileName != "NoIntro.package" && fileName != "NoModInfo.package" && fileName != "ZoomInCAS.package")
+                        deleteThis = true;
+
+                    //If is not desired to delete this, continues
+                    if (deleteThis == false)
+                        continue;
+
+                    //Delete it
+                    File.Delete(filePath);
+                    //Warn
+                    ShowToast(GetStringApplicationResource("launcher_mods_deleteUnrecognized").Replace("%file%", (filePath.Replace((fixedMyDocumentsPath + "\\"), ""))), ToastType.Error);
+                }
+
+                //Delete unrecognized folders
+                foreach (string folderPath in foldersList)
+                {
+                    //Prepare information
+                    bool deleteThis = false;
+
+                    //Get the folder name
+                    string dirName = new System.IO.DirectoryInfo(folderPath).Name;
+
+                    //If is not a valid folder
+                    if (dirName != "DL3-Custom" && dirName != "DL3-Patches" && dirName != "DL3-Recommended")
+                        deleteThis = true;
+
+                    //If is not desired to delete this, continues
+                    if (deleteThis == false)
+                        continue;
+
+                    //Delete it
+                    Directory.Delete(folderPath, true);
+                    //Warn
+                    ShowToast(GetStringApplicationResource("launcher_mods_deleteUnrecognized").Replace("%file%", (folderPath.Replace((fixedMyDocumentsPath + "\\"), ""))), ToastType.Error);
+                }
+            }
+
+            //---------------------------------------------------------------------------------------------//
+            //------------------------------ Check Mods/Packages/DL3-Patches ------------------------------//
+            //---------------------------------------------------------------------------------------------//
+            if (true == true)
+            {
+                //Query all files
+                List<string> filesList = new List<string>();
+                foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/Mods/Packages/DL3-Patches")).GetFiles()))
+                    filesList.Add(file.FullName);
+                //Query all directories
+                List<string> foldersList = new List<string>();
+                foreach (DirectoryInfo dir in (new DirectoryInfo((myDocumentsPath + "/Mods/Packages/DL3-Patches")).GetDirectories()))
+                    foldersList.Add(dir.FullName);
+
+                //Delete unrecognized files
+                foreach (string filePath in filesList)
+                {
+                    //Prepare information
+                    bool deleteThis = false;
+
+                    //Get the file name
+                    string fileExtension = System.IO.Path.GetExtension(filePath).Replace(".", "").ToLower();
+
+                    //If is not a valid file
+                    if (fileExtension != "package")
+                        deleteThis = true;
+
+                    //If is not desired to delete this, continues
+                    if (deleteThis == false)
+                        continue;
+
+                    //Delete it
+                    File.Delete(filePath);
+                    //Warn
+                    ShowToast(GetStringApplicationResource("launcher_mods_deleteUnrecognized").Replace("%file%", (filePath.Replace((fixedMyDocumentsPath + "\\"), ""))), ToastType.Error);
+                }
+
+                //Delete unrecognized folders
+                foreach (string folderPath in foldersList)
+                {
+                    //Prepare information
+                    bool deleteThis = false;
+
+                    //Delete any folder
+                    deleteThis = true;
+
+                    //If is not desired to delete this, continues
+                    if (deleteThis == false)
+                        continue;
+
+                    //Delete it
+                    Directory.Delete(folderPath, true);
+                    //Warn
+                    ShowToast(GetStringApplicationResource("launcher_mods_deleteUnrecognized").Replace("%file%", (folderPath.Replace((fixedMyDocumentsPath + "\\"), ""))), ToastType.Error);
+                }
+            }
+
+            //--------------------------------------------------------------------------------------------//
+            //------------------------------ Check Mods/Packages/DL3-Custom ------------------------------//
+            //--------------------------------------------------------------------------------------------//
+            if (true == true)
+            {
+                //Query all files
+                List<string> filesList = new List<string>();
+                foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/Mods/Packages/DL3-Custom")).GetFiles()))
+                    filesList.Add(file.FullName);
+                //Query all directories
+                List<string> foldersList = new List<string>();
+                foreach (DirectoryInfo dir in (new DirectoryInfo((myDocumentsPath + "/Mods/Packages/DL3-Custom")).GetDirectories()))
+                    foldersList.Add(dir.FullName);
+
+                //Delete unrecognized files
+                foreach (string filePath in filesList)
+                {
+                    //Prepare information
+                    bool deleteThis = false;
+
+                    //Get the file name and extension
+                    string fileExtension = System.IO.Path.GetExtension(filePath).Replace(".", "").ToLower();
+                    string[] filePrefixAndName = System.IO.Path.GetFileNameWithoutExtension(filePath).Split(" --- ");
+
+                    //If is not a valid file extension
+                    if (fileExtension != "package" && fileExtension != "disabled")
+                        deleteThis = true;
+                    //Check the prefix
+                    if(filePrefixAndName.Length == 2)
+                    {
+                        if (filePrefixAndName[0] != "CONTENTS" && filePrefixAndName[0] != "GRAPHICS" && filePrefixAndName[0] != "SOUNDS" && filePrefixAndName[0] != "FIXES" && filePrefixAndName[0] != "GAMEPLAY" &&
+                            filePrefixAndName[0] != "SLIDERS" && filePrefixAndName[0] != "OTHERS")
+                            deleteThis = true;
+                    }
+                    //If don't have a prefix
+                    if (filePrefixAndName.Length != 2)
+                        deleteThis = true;
+
+                    //If is not desired to delete this, continues
+                    if (deleteThis == false)
+                        continue;
+
+                    //Delete it
+                    File.Delete(filePath);
+                    //Warn
+                    ShowToast(GetStringApplicationResource("launcher_mods_deleteUnrecognized").Replace("%file%", (filePath.Replace((fixedMyDocumentsPath + "\\"), ""))), ToastType.Error);
+                }
+
+                //Delete unrecognized folders
+                foreach (string folderPath in foldersList)
+                {
+                    //Prepare information
+                    bool deleteThis = false;
+
+                    //Delete any folder
+                    deleteThis = true;
+
+                    //If is not desired to delete this, continues
+                    if (deleteThis == false)
+                        continue;
+
+                    //Delete it
+                    Directory.Delete(folderPath, true);
+                    //Warn
+                    ShowToast(GetStringApplicationResource("launcher_mods_deleteUnrecognized").Replace("%file%", (folderPath.Replace((fixedMyDocumentsPath + "\\"), ""))), ToastType.Error);
+                }
+            }
+
+            //-------------------------------------------------------------------------------------------------//
+            //------------------------------ Check Mods/Packages/DL3-Recommended ------------------------------//
+            //-------------------------------------------------------------------------------------------------//
+            if (true == true)
+            {
+                //Query all files
+                List<string> filesList = new List<string>();
+                foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/Mods/Packages/DL3-Recommended")).GetFiles()))
+                    filesList.Add(file.FullName);
+                //Query all directories
+                List<string> foldersList = new List<string>();
+                foreach (DirectoryInfo dir in (new DirectoryInfo((myDocumentsPath + "/Mods/Packages/DL3-Recommended")).GetDirectories()))
+                    foldersList.Add(dir.FullName);
+
+                //Delete unrecognized files
+                foreach (string filePath in filesList)
+                {
+                    //Prepare information
+                    bool deleteThis = false;
+
+                    //Get the file name and extension
+                    string fileExtension = System.IO.Path.GetExtension(filePath).Replace(".", "").ToLower();
+                    string[] filePrefixAndName = System.IO.Path.GetFileNameWithoutExtension(filePath).Split(" --- ");
+
+                    //If is not a valid file extension
+                    if (fileExtension != "package" && fileExtension != "disabled")
+                        deleteThis = true;
+                    //Check the prefix
+                    if (filePrefixAndName.Length == 2)
+                    {
+                        if (filePrefixAndName[0] != "CONTENTS" && filePrefixAndName[0] != "GRAPHICS" && filePrefixAndName[0] != "SOUNDS" && filePrefixAndName[0] != "FIXES" && filePrefixAndName[0] != "GAMEPLAY" &&
+                            filePrefixAndName[0] != "SLIDERS" && filePrefixAndName[0] != "OTHERS")
+                            deleteThis = true;
+                    }
+                    //If don't have a prefix
+                    if (filePrefixAndName.Length != 2)
+                        deleteThis = true;
+
+                    //If is not desired to delete this, continues
+                    if (deleteThis == false)
+                        continue;
+
+                    //Delete it
+                    File.Delete(filePath);
+                    //Warn
+                    ShowToast(GetStringApplicationResource("launcher_mods_deleteUnrecognized").Replace("%file%", (filePath.Replace((fixedMyDocumentsPath + "\\"), ""))), ToastType.Error);
+                }
+
+                //Delete unrecognized folders
+                foreach (string folderPath in foldersList)
+                {
+                    //Prepare information
+                    bool deleteThis = false;
+
+                    //Delete any folder
+                    deleteThis = true;
+
+                    //If is not desired to delete this, continues
+                    if (deleteThis == false)
+                        continue;
+
+                    //Delete it
+                    Directory.Delete(folderPath, true);
+                    //Warn
+                    ShowToast(GetStringApplicationResource("launcher_mods_deleteUnrecognized").Replace("%file%", (folderPath.Replace((fixedMyDocumentsPath + "\\"), ""))), ToastType.Error);
+                }
+            }
+        }
+    
+        private void SetModInstallScreen(ModScreen screen)
+        {
+            //Prepare the data
+            Color btSelectedColor = Color.FromArgb(255, 44, 103, 169);
+            Color btUnselectedColor = Color.FromArgb(255, 168, 171, 175);
+
+            //If is desired to see recommended mods
+            if (screen == ModScreen.Recommended)
+            {
+                //Change button colors
+                installRecommended.Background = new SolidColorBrush(btSelectedColor);
+                installCustom.Background = new SolidColorBrush(btUnselectedColor);
+                //Show the correct screen
+                modsRecommended.Visibility = Visibility.Visible;
+                modsCustom.Visibility = Visibility.Collapsed;
+            }
+
+            //If is desired to see custom mods
+            if (screen == ModScreen.Custom)
+            {
+                //Change button colors
+                installRecommended.Background = new SolidColorBrush(btUnselectedColor);
+                installCustom.Background = new SolidColorBrush(btSelectedColor);
+                //Show the correct screen
+                modsRecommended.Visibility = Visibility.Collapsed;
+                modsCustom.Visibility = Visibility.Visible;
+            }
+        }
+
+        public void UpdateRecommendedModsList()
+        {
+            //If is already downloading the recommended library, cancel
+            if (isDownloadingRecommendedLibrary == true)
+                return;
+
+            //If the library file don't exists in cache, download it
+            if(File.Exists((myDocumentsPath + "/!DL-TmpCache/recommended-mods-library.json")) == false)
+            {
+                //Start a thread to download the mod library
+                AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { });
+                asyncTask.onStartTask_RunMainThread += (callerWindow, startParams) =>
+                {
+                    //Show loading screen
+                    recModsLoading.Visibility = Visibility.Visible;
+                    recModsLoadError.Visibility = Visibility.Collapsed;
+                    //Inform that is downloading the library
+                    isDownloadingRecommendedLibrary = true;
+                    //Add the task to queue
+                    AddTask("loadingRecommendedModsLibrary", "Downloading Recommended Mods library for installation.");
+                };
+                asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(1000);
+
+                    //Try to do the task
+                    try
+                    {
+                        //Prepare the target download URL
+                        string downloadUrl = @"https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/recommended-mods-library.json";
+                        string saveAsPath = (myDocumentsPath + @"/!DL-TmpCache/recommended-mods-library.json");
+                        //Download the "Mods" folder sync
+                        HttpClient httpClient = new HttpClient();
+                        HttpResponseMessage httpRequestResult = httpClient.GetAsync(downloadUrl).Result;
+                        httpRequestResult.EnsureSuccessStatusCode();
+                        Stream downloadStream = httpRequestResult.Content.ReadAsStreamAsync().Result;
+                        FileStream fileStream = new FileStream(saveAsPath, FileMode.Create, FileAccess.Write, FileShare.None);
+                        downloadStream.CopyTo(fileStream);
+                        httpClient.Dispose();
+                        fileStream.Dispose();
+                        fileStream.Close();
+                        downloadStream.Dispose();
+                        downloadStream.Close();
+
+                        //Return a success response
+                        return new string[] { "success" };
+                    }
+                    catch (Exception ex)
+                    {
+                        //Return a error response
+                        return new string[] { "error" };
+                    }
+
+                    //Finish the thread...
+                    return new string[] { "none" };
+                };
+                asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the thread response
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //Hide loading screen
+                    recModsLoading.Visibility = Visibility.Collapsed;
+                    //Inform that is not downloading the library
+                    isDownloadingRecommendedLibrary = false;
+                    //Remove the task from queue
+                    RemoveTask("loadingRecommendedModsLibrary");
+
+                    //If have a response different from success, inform error
+                    if (threadTaskResponse != "success")
+                        recModsLoadError.Visibility = Visibility.Visible;
+
+                    //If have a response of success, recall this method to start rendering recommended mods
+                    if (threadTaskResponse == "success")
+                        UpdateRecommendedModsList();
+                };
+                asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+
+                //Cancel the current operation
+                return;
+            }
+
+            //If the routine is already running, stop it
+            if (recommendedModsUpdateRoutine != null)
+            {
+                recommendedModsUpdateRoutine.Dispose();
+                recommendedModsUpdateRoutine = null;
+            }
+
+            //Start the recommended mods update routine
+            recommendedModsUpdateRoutine = Coroutine.Start(RenderRecommendedModsRoutine());
+        }
+
+        private IEnumerator RenderRecommendedModsRoutine()
+        {
+            //Show the loading indicator
+            recModsLoading.Visibility = Visibility.Visible;
+            //Wait end of animation
+            yield return new WaitForSeconds(0.5);
+
+            //Clear all mods previously rendered
+            foreach (StoreModItem item in instantiatedRecModItems)
+                recModsList.Children.Remove(item);
+            instantiatedRecModItems.Clear();
+
+            //Read the recommended mods list file
+            RecommendedListReader library = new RecommendedListReader((myDocumentsPath + @"/!DL-TmpCache/recommended-mods-library.json"));
+
+            //Render all mods...
+            foreach (Mod modItem in library.loadedData.modsList)
+            {
+                //Create the item to display
+                StoreModItem newItem = new StoreModItem(this);
+                recModsList.Children.Add(newItem);
+                instantiatedRecModItems.Add(newItem);
+
+                //Configure it
+                newItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newItem.VerticalAlignment = VerticalAlignment.Top;
+                newItem.Width = double.NaN;
+                newItem.Height = double.NaN;
+                newItem.Margin = new Thickness(0, 0, 0, 4);
+
+                //Inform the data about the mod
+                newItem.SetGameInstallPath((new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent).FullName);
+                newItem.SetRecommendedModsPath((myDocumentsPath + @"/Mods/Packages/DL3-Recommended"));
+                newItem.SetPatchModsPath((myDocumentsPath + @"/Mods/Packages/DL3-Patches"));
+                newItem.SetTitle(modItem.name);
+                newItem.SetModCategory(modItem.category);
+                newItem.SetAuthor(modItem.author);
+                newItem.SetDescription(modItem.description_enUS, modItem.description_ptBR);
+                newItem.SetRequiredEPs(modItem.requiredEps);
+                newItem.SetRequiredRecommendedModsFiles(modItem.requiredRecommendedModFiles);
+                newItem.SetRequiredPatchModsFiles(modItem.requiredPatchModFiles);
+                newItem.SetModPageURL(modItem.pageUrl);
+                newItem.SetModDownloadURL(modItem.downloadUrl);
+                newItem.Prepare();
+
+                //Wait before render next to avoid UI freezing
+                yield return new WaitForSeconds(0.02f);
+            }
+
+            //Auto change to category of all
+            SetRecommendedModsCategoryFilter(ModCategory.All);
+
+            //Wait end of animation
+            yield return new WaitForSeconds(0.5);
+            //Hide the loading indicator
+            recModsLoading.Visibility = Visibility.Collapsed;
+
+            //Auto clear routine reference
+            recommendedModsUpdateRoutine = null;
+        }
+
+        private void SetRecommendedModsCategoryFilter(ModCategory category)
+        {
+            //Prepare the data
+            Color btSelectedColor = Color.FromArgb(255, 44, 103, 169);
+            Color btUnselectedColor = Color.FromArgb(255, 168, 171, 175);
+
+            //Prepare the dictionary of categories
+            int categoryIdToShow = -1;
+            switch (category)
+            {
+                case ModCategory.All:
+                    categoryIdToShow = 0;
+                    break;
+                case ModCategory.Contents:
+                    categoryIdToShow = 1;
+                    break;
+                case ModCategory.Graphics:
+                    categoryIdToShow = 2;
+                    break;
+                case ModCategory.Sounds:
+                    categoryIdToShow = 3;
+                    break;
+                case ModCategory.Fixes:
+                    categoryIdToShow = 4;
+                    break;
+                case ModCategory.Gameplay:
+                    categoryIdToShow = 5;
+                    break;
+                case ModCategory.Sliders:
+                    categoryIdToShow = 6;
+                    break;
+                case ModCategory.Others:
+                    categoryIdToShow = 7;
+                    break;
+            }
+
+            //Prepare the list of buttons
+            List<Controls.BeautyButton.BeautyButton> buttons = new List<Controls.BeautyButton.BeautyButton>();
+            buttons.Add(recModsAll);
+            buttons.Add(recModsContents);
+            buttons.Add(recModsGraphics);
+            buttons.Add(recModsSounds);
+            buttons.Add(recModsFixes);
+            buttons.Add(recModsGameplay);
+            buttons.Add(recModsSliders);
+            buttons.Add(recModsOthers);
+
+            //If was found a ID
+            if (categoryIdToShow != -1)
+            {
+                //Unhighlight all buttons
+                for (int i = 0; i < buttons.Count; i++)
+                    buttons[i].Background = new SolidColorBrush(btUnselectedColor);
+
+                //Highlight the desired button
+                buttons[categoryIdToShow].Background = new SolidColorBrush(btSelectedColor);
+            }
+
+            //Clear the lists
+            buttons.Clear();
+
+            //Inform the current viewing category
+            currentSeeingRecModsCategory = category;
+
+            //Auto apply the filter
+            ApplyRecommendedCategoryFilters();
+        }
+
+        private void ApplyRecommendedCategoryFilters()
+        {
+            //If the routine is already running, stop it
+            if (recommendedModsFilterRoutine != null)
+            {
+                recommendedModsFilterRoutine.Dispose();
+                recommendedModsFilterRoutine = null;
+            }
+
+            //Start the recommended mods filter routine
+            recommendedModsFilterRoutine = Coroutine.Start(ApplyFilterOnRecommendedModsRoutine());
+        }
+
+        private IEnumerator ApplyFilterOnRecommendedModsRoutine()
+        {
+            //Show the loading indicator
+            recModsFiltering.Visibility = Visibility.Visible;
+            //Wait some time before apply filter
+            yield return new WaitForSeconds(0.3f);
+
+            //Hide all items
+            foreach (StoreModItem item in instantiatedRecModItems)
+            {
+                //Hide
+                item.Visibility = Visibility.Collapsed;
+
+                //Wait before render next to avoid UI freezing
+                yield return new WaitForSeconds(0.005f);
+            }
+
+            //Enable only that corresponds with the filter...
+
+            //Enable the items that corresponds with category
+            foreach (StoreModItem item in instantiatedRecModItems)
+            {
+                //If is not seeing all, enable only mods that corresponds with desired category
+                if (currentSeeingRecModsCategory != ModCategory.All)
+                {
+                    if (currentSeeingRecModsCategory == ModCategory.Contents && item.modCategory == StoreModItem.ModCategory.Contents)
+                        item.Visibility = Visibility.Visible;
+                    if (currentSeeingRecModsCategory == ModCategory.Graphics && item.modCategory == StoreModItem.ModCategory.Graphics)
+                        item.Visibility = Visibility.Visible;
+                    if (currentSeeingRecModsCategory == ModCategory.Sounds && item.modCategory == StoreModItem.ModCategory.Sounds)
+                        item.Visibility = Visibility.Visible;
+                    if (currentSeeingRecModsCategory == ModCategory.Fixes && item.modCategory == StoreModItem.ModCategory.Fixes)
+                        item.Visibility = Visibility.Visible;
+                    if (currentSeeingRecModsCategory == ModCategory.Gameplay && item.modCategory == StoreModItem.ModCategory.Gameplay)
+                        item.Visibility = Visibility.Visible;
+                    if (currentSeeingRecModsCategory == ModCategory.Sliders && item.modCategory == StoreModItem.ModCategory.Sliders)
+                        item.Visibility = Visibility.Visible;
+                    if (currentSeeingRecModsCategory == ModCategory.Others && item.modCategory == StoreModItem.ModCategory.Others)
+                        item.Visibility = Visibility.Visible;
+                }
+                //If is seeing all, enable it
+                if (currentSeeingRecModsCategory == ModCategory.All)
+                    item.Visibility = Visibility.Visible;
+
+                //Wait before render next to avoid UI freezing
+                yield return new WaitForSeconds(0.005f);
+            }
+
+            //Hide the loading indicator
+            recModsFiltering.Visibility = Visibility.Collapsed;
+
+            //Auto clear routine reference
+            recommendedModsFilterRoutine = null;
+        }
+    
+        private void OpenCustomPackageModPicker()
+        {
+            //If don't have S3CLI Extractor, cancel
+            if (File.Exists((Directory.GetCurrentDirectory() + @"/Content/tool-s3ce/s3ce.exe")) == false)
+            {
+                ShowToast(GetStringApplicationResource("launcher_mods_addNewTab_customAddError"), MainWindow.ToastType.Error);
+                return;
+            }
+
+            //Open the file picker 
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "TS3 Mod File|*.package;*.sims3pack";
+            bool? result = fileDialog.ShowDialog();
+
+            //If don't have picker file, cancel
+            if (result == false || fileDialog.FileName == "")
+                return;
+
+            //Get the extension of the mod to be installed
+            string modExtension = System.IO.Path.GetExtension(fileDialog.FileName).ToLower().Replace(".", "");
+
+            //Get the target category prefix
+            string categoryPrefix = "";
+            if (instCustomCategory.SelectedIndex == 0)
+                categoryPrefix = "CONTENTS";
+            if (instCustomCategory.SelectedIndex == 1)
+                categoryPrefix = "GRAPHICS";
+            if (instCustomCategory.SelectedIndex == 2)
+                categoryPrefix = "SOUNDS";
+            if (instCustomCategory.SelectedIndex == 3)
+                categoryPrefix = "FIXES";
+            if (instCustomCategory.SelectedIndex == 4)
+                categoryPrefix = "GAMEPLAY";
+            if (instCustomCategory.SelectedIndex == 5)
+                categoryPrefix = "SLIDERS";
+            if (instCustomCategory.SelectedIndex == 6)
+                categoryPrefix = "OTHERS";
+
+            //Start the mod installer or pre mod installer, according to the extension of selected mod file...
+            if(modExtension == "package")     //<--- If is a "package" mod
+            {
+                //Open the window of mod installer
+                WindowModInstaller modInstaller = new WindowModInstaller(this, WindowModInstaller.InstallType.Custom, fileDialog.FileName, (myDocumentsPath + @"/Mods/Packages/DL3-Custom"),
+                                                                        (categoryPrefix + " --- " + System.IO.Path.GetFileNameWithoutExtension(fileDialog.FileName) + ".package"));
+                modInstaller.Closed += (s, e) =>
+                {
+                    SetInteractionBlockerEnabled(false);
+                    RemoveTask("modInstalling");
+                };
+                modInstaller.Show();
+            }
+            if(modExtension == "sims3pack")   //<--- If is a "sims3pack" mod
+            {
+                //Open the window of sims3pack pre mod installer
+                WindowS3PkgPreModInstaller modInstaller = new WindowS3PkgPreModInstaller(this, fileDialog.FileName, (myDocumentsPath + @"/Mods/Packages/DL3-Custom"), categoryPrefix);
+                modInstaller.Closed += (s, e) =>
+                {
+                    SetInteractionBlockerEnabled(false);
+                    RemoveTask("modInstalling");
+                };
+                modInstaller.Show();
+            }
+
+            //Block the UI
+            SetInteractionBlockerEnabled(true);
+            //Add the task to queue
+            AddTask("modInstalling", "Running Mod installer.");
         }
     }
 }

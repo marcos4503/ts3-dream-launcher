@@ -10,12 +10,72 @@
     <Compile Update="Controls\BeautyButton\BeautyButton.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\ListItems\CacheItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\ListItems\ConflictItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\ListItems\InstalledModItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\ListItems\LogItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\ListItems\PatchItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\ListItems\S3PkModItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\ListItems\StoreModItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\ListItems\ToolItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WindowIconViewer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WindowModInstaller.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WindowModRename.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WindowS3PkgPreModInstaller.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Controls\BeautyButton\BeautyButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\ListItems\CacheItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\ListItems\ConflictItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\ListItems\InstalledModItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\ListItems\LogItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\ListItems\PatchItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\ListItems\S3PkModItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\ListItems\StoreModItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\ListItems\ToolItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\ValidableTextBox\ValidableTextBox.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
@@ -28,6 +88,15 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WindowIconViewer.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WindowModInstaller.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WindowModRename.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WindowS3PkgPreModInstaller.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

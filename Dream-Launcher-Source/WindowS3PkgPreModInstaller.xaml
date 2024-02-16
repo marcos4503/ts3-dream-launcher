@@ -1,0 +1,27 @@
+﻿<Window x:Class="TS3_Dream_Launcher.WindowS3PkgPreModInstaller"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TS3_Dream_Launcher"
+        mc:Ignorable="d"
+        Title="Place Holder" WindowStyle="ToolWindow" Icon="/Resources/icon-32x.png" ResizeMode="NoResize" ShowInTaskbar="False" SizeToContent="WidthAndHeight" Topmost="True" WindowStartupLocation="CenterScreen">
+    <Grid Width="480" Height="400">
+        <Grid x:Name="extractionUi" Visibility="Collapsed">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock x:Name="extractTitle" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                <ProgressBar Height="12" Width="128" VerticalAlignment="Top" Margin="0,8,0,0" IsIndeterminate="True"/>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="packageList" Visibility="Visible">
+            <ScrollViewer Margin="0,0,0,42" Background="WhiteSmoke">
+                <StackPanel x:Name="pkgList" VerticalAlignment="Top" Margin="8,8,8,0">
+                    <TextBlock x:Name="pkgListEmpty" TextWrapping="Wrap" Text="TextBlock" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FF9E9E9E"/>
+                </StackPanel>
+            </ScrollViewer>
+            <Rectangle Height="0.5" StrokeThickness="0" Fill="Black" Margin="0,0,0,42" VerticalAlignment="Bottom" Opacity="0.5"/>
+            <TextBlock x:Name="pkgListTip" TextWrapping="Wrap" Text=" dwhjwid qwiydvbwqyi dqwydwqbvyidwqvbd qwdyqw biywqbv dyiqw dyiqwbvdqwybdvqwuyd qwyd qwyid uqyiwd qwuyid vqwuyidwquyid qwuyiqw yiud qwi" VerticalAlignment="Bottom" Margin="32,0,32,8" HorizontalAlignment="Center" FontSize="10" TextAlignment="Center"/>
+        </Grid>
+
+    </Grid>
+</Window>

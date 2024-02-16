@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "f5/cQaDXPICuQFNvDfo+1l9kxUq28ksOxUV9NDegSql2+nNJd2ACA11ARH75KWYrApaAtAYy4EVhEoohaYxQew==",
+  "success": true,
+  "projectFilePath": "D:\\Visual-Studio\\TS3 Dream Launcher\\Add-Ons\\Dl3DxOverlay\\Dl3DxOverlay.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\junio\\.nuget\\packages\\microsoft.diagnostics.tracing.traceevent\\3.1.8\\microsoft.diagnostics.tracing.traceevent.3.1.8.nupkg.sha512",
+    "C:\\Users\\junio\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "C:\\Users\\junio\\.nuget\\packages\\microsoft.win32.registry\\4.4.0\\microsoft.win32.registry.4.4.0.nupkg.sha512",
+    "C:\\Users\\junio\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "C:\\Users\\junio\\.nuget\\packages\\system.security.accesscontrol\\4.4.0\\system.security.accesscontrol.4.4.0.nupkg.sha512",
+    "C:\\Users\\junio\\.nuget\\packages\\system.security.principal.windows\\4.4.0\\system.security.principal.windows.4.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}

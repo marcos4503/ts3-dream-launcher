@@ -1,0 +1,5 @@
+- Sims 3 Package Interface
+https://s3pi.sourceforge.net/
+
+- Sims 3 Wiki Advanced Coding Tutorials
+https://simswiki.info/wiki.php?title=Tutorials:TS3_Advanced_Coding_Tutorials

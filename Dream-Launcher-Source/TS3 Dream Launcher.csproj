@@ -14,25 +14,43 @@
 
   <ItemGroup>
     <Compile Remove="Add-Ons\**" />
+    <Compile Remove="Libraries\S3PI\**" />
     <EmbeddedResource Remove="Add-Ons\**" />
+    <EmbeddedResource Remove="Libraries\S3PI\**" />
     <None Remove="Add-Ons\**" />
+    <None Remove="Libraries\S3PI\**" />
     <Page Remove="Add-Ons\**" />
+    <Page Remove="Libraries\S3PI\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Content\antilag-template.cfg" />
     <None Remove="Content\icon-32x.png" />
     <None Remove="Content\IntelFix.dll" />
     <None Remove="Content\intro-mp4.mp4" />
     <None Remove="Content\intro-wmv.wmv" />
     <None Remove="Content\intro.wmv" />
+    <None Remove="Content\smooth-patch-template.txt" />
     <None Remove="Content\tray-busy.ico" />
     <None Remove="Content\tray-busy.png" />
     <None Remove="Content\tray-off.ico" />
     <None Remove="Content\tray-off.png" />
     <None Remove="Content\tray-on.ico" />
     <None Remove="Content\tray-on.png" />
+    <None Remove="Resources\add-mod.png" />
+    <None Remove="Resources\add-package.png" />
     <None Remove="Resources\bell.png" />
+    <None Remove="Resources\cache-0a.png" />
+    <None Remove="Resources\cache-1.png" />
+    <None Remove="Resources\cache-2.png" />
+    <None Remove="Resources\cache-3.png" />
+    <None Remove="Resources\cache-4.png" />
+    <None Remove="Resources\cache-5.png" />
+    <None Remove="Resources\cache-6.png" />
+    <None Remove="Resources\cache-7.png" />
+    <None Remove="Resources\cache-8.png" />
     <None Remove="Resources\check.png" />
+    <None Remove="Resources\close-popup.png" />
     <None Remove="Resources\dlc_ep1.png" />
     <None Remove="Resources\dlc_ep10.png" />
     <None Remove="Resources\dlc_ep10s.png" />
@@ -81,28 +99,93 @@
     <None Remove="Resources\icon-32x.png" />
     <None Remove="Resources\icon-48x.png" />
     <None Remove="Resources\icon-64x.png" />
+    <None Remove="Resources\info-icon.png" />
     <None Remove="Resources\lang-en-us.png" />
     <None Remove="Resources\lang-pt-br.png" />
+    <None Remove="Resources\link-donate.png" />
     <None Remove="Resources\link-github.png" />
     <None Remove="Resources\link-steam.png" />
+    <None Remove="Resources\load-spinner-0.gif" />
     <None Remove="Resources\load.gif" />
     <None Remove="Resources\logo.png" />
+    <None Remove="Resources\logs-icon.png" />
+    <None Remove="Resources\mod-install-busy.png" />
+    <None Remove="Resources\mod-install-done.png" />
+    <None Remove="Resources\mod-install-error.png" />
+    <None Remove="Resources\mod-install-fail.png" />
+    <None Remove="Resources\mod-install-ok.png" />
+    <None Remove="Resources\mod-install-pending.png" />
+    <None Remove="Resources\mod-problem.png" />
     <None Remove="Resources\neighborhood.png" />
+    <None Remove="Resources\no-network-error.png" />
+    <None Remove="Resources\patch-0.png" />
+    <None Remove="Resources\patch-1.png" />
+    <None Remove="Resources\patch-10.png" />
+    <None Remove="Resources\patch-2.png" />
+    <None Remove="Resources\patch-3.png" />
+    <None Remove="Resources\patch-4.png" />
+    <None Remove="Resources\patch-5.png" />
+    <None Remove="Resources\patch-6.png" />
+    <None Remove="Resources\patch-7.png" />
+    <None Remove="Resources\patch-8.png" />
+    <None Remove="Resources\patch-9.png" />
+    <None Remove="Resources\patch-gear-icon.png" />
     <None Remove="Resources\play.png" />
+    <None Remove="Resources\recommended-star.png" />
     <None Remove="Resources\sim-think.png" />
     <None Remove="Resources\task-ok.png" />
     <None Remove="Resources\task-run.gif" />
+    <None Remove="Resources\three-dots-icon.png" />
+    <None Remove="Resources\tool-dashboard.png" />
+    <None Remove="Resources\tool-ese.png" />
+    <None Remove="Resources\tool-npp.png" />
+    <None Remove="Resources\tool-pkgv.png" />
+    <None Remove="Resources\tool-s3ce.png" />
+    <None Remove="Resources\tool-s3mi.png" />
+    <None Remove="Resources\tool-s3oc.png" />
+    <None Remove="Resources\tool-s3pe.png" />
+    <None Remove="Resources\tool-szip.png" />
+    <None Remove="Resources\trash-icon.png" />
+    <None Remove="Resources\validation-error.png" />
     <None Remove="Resources\wallpaper-0.jpg" />
+    <None Remove="Resources\wallpaper-0.png" />
     <None Remove="Resources\wallpaper-1.jpg" />
+    <None Remove="Resources\wallpaper-1.png" />
     <None Remove="Resources\wallpaper-2.jpg" />
+    <None Remove="Resources\wallpaper-2.png" />
     <None Remove="Resources\wallpaper-3.jpg" />
+    <None Remove="Resources\wallpaper-3.png" />
+    <None Remove="Resources\wallpaper-4.png" />
+    <None Remove="Resources\wallpaper-5.png" />
+    <None Remove="Resources\wallpaper-6.png" />
+    <None Remove="Resources\wallpaper-7.png" />
+    <None Remove="Resources\wallpaper-8.png" />
+    <None Remove="Resources\wallpaper-9.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <COMReference Include="NetFwTypeLib">
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>58fbcf7c-e7a9-467c-80b3-fc65e8fcca08</Guid>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>false</Isolated>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Content\antilag-template.cfg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\IntelFix.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\intro.wmv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\smooth-patch-template.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\tray-busy.ico">
@@ -119,6 +202,7 @@
 
   <ItemGroup>
     <PackageReference Include="CoroutinesForWpf" Version="0.3.0" />
+    <PackageReference Include="DotNetZip" Version="1.16.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="PeNet" Version="4.0.4" />
     <PackageReference Include="System.Management" Version="8.0.0" />
@@ -126,8 +210,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\add-mod.png" />
+    <Resource Include="Resources\add-package.png" />
     <Resource Include="Resources\bell.png" />
+    <Resource Include="Resources\cache-0a.png" />
+    <Resource Include="Resources\cache-1.png" />
+    <Resource Include="Resources\cache-2.png" />
+    <Resource Include="Resources\cache-3.png" />
+    <Resource Include="Resources\cache-4.png" />
+    <Resource Include="Resources\cache-5.png" />
+    <Resource Include="Resources\cache-6.png" />
+    <Resource Include="Resources\cache-7.png" />
+    <Resource Include="Resources\cache-8.png" />
     <Resource Include="Resources\check.png" />
+    <Resource Include="Resources\close-popup.png" />
     <Resource Include="Resources\dlc_ep1.png" />
     <Resource Include="Resources\dlc_ep10.png" />
     <Resource Include="Resources\dlc_ep10s.png" />
@@ -176,14 +272,39 @@
     <Resource Include="Resources\icon-32x.png" />
     <Resource Include="Resources\icon-48x.png" />
     <Resource Include="Resources\icon-64x.png" />
+    <Resource Include="Resources\info-icon.png" />
     <Resource Include="Resources\lang-en-us.png" />
     <Resource Include="Resources\lang-pt-br.png" />
+    <Resource Include="Resources\link-donate.png" />
     <Resource Include="Resources\link-github.png" />
     <Resource Include="Resources\link-steam.png" />
+    <Resource Include="Resources\load-spinner-0.gif" />
     <Resource Include="Resources\load.gif" />
     <Resource Include="Resources\logo.png" />
+    <Resource Include="Resources\logs-icon.png" />
+    <Resource Include="Resources\mod-install-busy.png" />
+    <Resource Include="Resources\mod-install-done.png" />
+    <Resource Include="Resources\mod-install-error.png" />
+    <Resource Include="Resources\mod-install-fail.png" />
+    <Resource Include="Resources\mod-install-ok.png" />
+    <Resource Include="Resources\mod-install-pending.png" />
+    <Resource Include="Resources\mod-problem.png" />
     <Resource Include="Resources\neighborhood.png" />
+    <Resource Include="Resources\no-network-error.png" />
+    <Resource Include="Resources\patch-0.png" />
+    <Resource Include="Resources\patch-1.png" />
+    <Resource Include="Resources\patch-10.png" />
+    <Resource Include="Resources\patch-2.png" />
+    <Resource Include="Resources\patch-3.png" />
+    <Resource Include="Resources\patch-4.png" />
+    <Resource Include="Resources\patch-5.png" />
+    <Resource Include="Resources\patch-6.png" />
+    <Resource Include="Resources\patch-7.png" />
+    <Resource Include="Resources\patch-8.png" />
+    <Resource Include="Resources\patch-9.png" />
+    <Resource Include="Resources\patch-gear-icon.png" />
     <Resource Include="Resources\play.png" />
+    <Resource Include="Resources\recommended-star.png" />
     <Resource Include="Resources\sim-think.png" />
     <Resource Include="Resources\sims-bold-sc.otf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -193,10 +314,28 @@
     </Resource>
     <Resource Include="Resources\task-ok.png" />
     <Resource Include="Resources\task-run.gif" />
-    <Resource Include="Resources\wallpaper-0.jpg" />
-    <Resource Include="Resources\wallpaper-1.jpg" />
-    <Resource Include="Resources\wallpaper-2.jpg" />
-    <Resource Include="Resources\wallpaper-3.jpg" />
+    <Resource Include="Resources\three-dots-icon.png" />
+    <Resource Include="Resources\tool-dashboard.png" />
+    <Resource Include="Resources\tool-ese.png" />
+    <Resource Include="Resources\tool-npp.png" />
+    <Resource Include="Resources\tool-pkgv.png" />
+    <Resource Include="Resources\tool-s3ce.png" />
+    <Resource Include="Resources\tool-s3mi.png" />
+    <Resource Include="Resources\tool-s3oc.png" />
+    <Resource Include="Resources\tool-s3pe.png" />
+    <Resource Include="Resources\tool-szip.png" />
+    <Resource Include="Resources\trash-icon.png" />
+    <Resource Include="Resources\validation-error.png" />
+    <Resource Include="Resources\wallpaper-0.png" />
+    <Resource Include="Resources\wallpaper-1.png" />
+    <Resource Include="Resources\wallpaper-2.png" />
+    <Resource Include="Resources\wallpaper-3.png" />
+    <Resource Include="Resources\wallpaper-4.png" />
+    <Resource Include="Resources\wallpaper-5.png" />
+    <Resource Include="Resources\wallpaper-6.png" />
+    <Resource Include="Resources\wallpaper-7.png" />
+    <Resource Include="Resources\wallpaper-8.png" />
+    <Resource Include="Resources\wallpaper-9.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -204,6 +343,102 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CreateAssemblyVersion">
+      <HintPath>Libraries\S3PI\CreateAssemblyVersion.exe</HintPath>
+    </Reference>
+    <Reference Include="DDSPanel">
+      <HintPath>Libraries\S3PI\DDSPanel.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.CASPartResource">
+      <HintPath>Libraries\S3PI\s3pi.CASPartResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.CatalogResource">
+      <HintPath>Libraries\S3PI\s3pi.CatalogResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.ComplateResource">
+      <HintPath>Libraries\S3PI\s3pi.ComplateResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.Controls">
+      <HintPath>Libraries\S3PI\s3pi.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.CustomForms">
+      <HintPath>Libraries\S3PI\s3pi.CustomForms.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.DefaultResource">
+      <HintPath>Libraries\S3PI\s3pi.DefaultResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.Extensions">
+      <HintPath>Libraries\S3PI\s3pi.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.Filetable">
+      <HintPath>Libraries\S3PI\s3pi.Filetable.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.GenericRCOLResource">
+      <HintPath>Libraries\S3PI\s3pi.GenericRCOLResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.Helpers">
+      <HintPath>Libraries\S3PI\s3pi.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.ImageResource">
+      <HintPath>Libraries\S3PI\s3pi.ImageResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.Interfaces">
+      <HintPath>Libraries\S3PI\s3pi.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.JazzResource">
+      <HintPath>Libraries\S3PI\s3pi.JazzResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.MeshChunks">
+      <HintPath>Libraries\S3PI\s3pi.MeshChunks.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.ModularResource">
+      <HintPath>Libraries\S3PI\s3pi.ModularResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.NameMapResource">
+      <HintPath>Libraries\S3PI\s3pi.NameMapResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.NGMPHashMapResource">
+      <HintPath>Libraries\S3PI\s3pi.NGMPHashMapResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.ObjKeyResource">
+      <HintPath>Libraries\S3PI\s3pi.ObjKeyResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.Package">
+      <HintPath>Libraries\S3PI\s3pi.Package.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.RCOLChunks">
+      <HintPath>Libraries\S3PI\s3pi.RCOLChunks.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.RigResource">
+      <HintPath>Libraries\S3PI\s3pi.RigResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.ScriptResource">
+      <HintPath>Libraries\S3PI\s3pi.ScriptResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.Settings">
+      <HintPath>Libraries\S3PI\s3pi.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.StblResource">
+      <HintPath>Libraries\S3PI\s3pi.StblResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.TextResource">
+      <HintPath>Libraries\S3PI\s3pi.TextResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.TxtcResource">
+      <HintPath>Libraries\S3PI\s3pi.TxtcResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.UserCAStPreset">
+      <HintPath>Libraries\S3PI\s3pi.UserCAStPreset.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.WrapperDealer">
+      <HintPath>Libraries\S3PI\s3pi.WrapperDealer.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Custom">
+      <HintPath>Libraries\S3PI\System.Custom.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

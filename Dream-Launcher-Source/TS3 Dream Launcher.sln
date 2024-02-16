@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TS3 Dream Launcher", "TS3 D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sims3Launcher", "Add-Ons\Sims3Launcher\Sims3Launcher.csproj", "{2A04FCDD-3D32-4116-AEA2-5C3AFFFC6AD1}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dl3DxOverlay", "Add-Ons\Dl3DxOverlay\Dl3DxOverlay.csproj", "{9A5450A5-2244-433B-962D-865CB3F57559}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2A04FCDD-3D32-4116-AEA2-5C3AFFFC6AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A04FCDD-3D32-4116-AEA2-5C3AFFFC6AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A04FCDD-3D32-4116-AEA2-5C3AFFFC6AD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A5450A5-2244-433B-962D-865CB3F57559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A5450A5-2244-433B-962D-865CB3F57559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A5450A5-2244-433B-962D-865CB3F57559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A5450A5-2244-433B-962D-865CB3F57559}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

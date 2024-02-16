@@ -36,6 +36,7 @@
     <system:String x:Key="launcher_button_goSettings">CONFIGURAÇÕES</system:String>
     <system:String x:Key="launcher_button_goExit">FECHAR</system:String>
     <system:String x:Key="launcher_button_playButton">JOGAR!</system:String>
+    <system:String x:Key="launcher_button_playingButton">JOGANDO</system:String>
     <system:String x:Key="launcher_taks_readyToPlay">Pronto para jogar!</system:String>
     <system:String x:Key="launcher_taks_working">Trabalhando em %n% tarefas...</system:String>
     <system:String x:Key="launcher_toast_dismiss">DISPENSAR</system:String>
@@ -48,7 +49,7 @@
     <system:String x:Key="launcher_toastsHistoryAt">às</system:String>
     <system:String x:Key="launcher_toastsHistoryEmpty">Nada por aqui ainda</system:String>
     <system:String x:Key="launcher_taskCloseWarnTit">Um momento, amigo!</system:String>
-    <system:String x:Key="launcher_taskCloseWarnTxt">O Dream Launcher está executando uma ou mais tarefas de plano de fundo do jogo, agora. Encerrar o Launcher pode comprometer seriamente a integridade do Launcher ou do seu jogo! Você quer aguardar a conclusão das tarefas antes?</system:String>
+    <system:String x:Key="launcher_taskCloseWarnTxt">O Dream Launcher está executando uma ou mais tarefas de plano de fundo do jogo, agora. Encerrar o Launcher pode comprometer seriamente a integridade do Launcher ou do seu jogo! Você ainda quer fechar o Launcher?</system:String>
     <system:String x:Key="launcher_documentsNotFound">A pasta do The Sims 3 nos Documentos não foi encontrada. Execute o jogo e reinicie o Dream Launcher para que todas funções fiquem acessíveis.</system:String>
     <system:String x:Key="launcher_dlc_ep1">EP1 - Volta ao Mundo</system:String>
     <system:String x:Key="launcher_dlc_ep2">EP2 - Ambições</system:String>
@@ -70,6 +71,48 @@
     <system:String x:Key="launcher_dlc_sp7">SP7 - Diesel</system:String>
     <system:String x:Key="launcher_dlc_sp8">SP8 - Anos 70, 80 e 90</system:String>
     <system:String x:Key="launcher_dlc_sp9">SP9 - Cinema</system:String>
+    <system:String x:Key="launcher_linkDonate">Faça uma Doação e ajude a manter o Dream Launcher!</system:String>
+    <system:String x:Key="launcher_linkGithub">Acessar o repositório do Dream Launcher no GitHub</system:String>
+    <system:String x:Key="launcher_linkSteam">Acessar mega-guia com diversas dicas e tutoriais na Steam (Português Apenas)</system:String>
+
+    <!-- Screen 6: Launcher - Patches -->
+    <system:String x:Key="launcher_patches_intro">Aqui você encontra todos os melhores Patches/Ajustes para o jogo. Todos esses Patches podem ser aplicados com poucos cliques. Sempre que um Patch é aplicado ao jogo, o Dream Launcher irá verificar sua integridade automaticamente para garantir o melhor estado de tudo!</system:String>
+    <system:String x:Key="launcher_patches_install">INSTALAR</system:String>
+    <system:String x:Key="launcher_patches_reInstall">RE-INSTALAR</system:String>
+    <system:String x:Key="launcher_patches_noActions">SEM AÇÕES</system:String>
+    <system:String x:Key="launcher_patches_statusInstalled">Instalado</system:String>
+    <system:String x:Key="launcher_patches_statusInstalledWithProblem">Instalado Com Problema</system:String>
+    <system:String x:Key="launcher_patches_statusNotInstalled">Não Instalado</system:String>
+    <system:String x:Key="launcher_patches_statusInstalling">Instalando...</system:String>
+    <system:String x:Key="launcher_patches_statusInstallError">Houve um problema ao instalar o Patch "%name%". Por favor, verifique sua conexão com a Internet e se o Dream Launcher foi instalado corretamente. Também certifique-se de não ter modificado nenhum arquivo do seu jogo ou da pasta do The Sims 3 nos Documentos do seu computador.</system:String>
+    <system:String x:Key="launcher_patches_statusInstallSuccess">O Patch "%name%" já foi instalado com sucesso!</system:String>
+    <system:String x:Key="launcher_patches_restartRequired">Um Patch núcleo acabou de ser instalado no seu jogo. Este Patch requer que o Dream Launcher seja reiniciado. Por favor, aguarde a conclusão de todas Tasks atualmente em andamento (se houver), então, clique no botão abaixo para fechar o Dream Launcher.</system:String>
+    <system:String x:Key="launcher_patches_restartRequiredButton">FECHAR LAUNCHER</system:String>
+    <system:String x:Key="launcher_patches_problemFound">Foi encontrado um Patch já instalado que pode estar com algum problema. Acesse a guia "Patches" e verifique. Talvez, re-instalar o Patch defeituoso e reiniciar o Dream Launcher corrija o problema.</system:String>
+    <system:String x:Key="launcher_patch0_title">Suporte Para Alder Laker+</system:String>
+    <system:String x:Key="launcher_patch0_description">Este Patch atualiza o arquivo "TS3W.exe" para suportar processadores com a nova arquitetura BIG.little da Intel. Ou seja, os processadores da 12ª geração ou mais recentes. Este patch só pode ser aplicado caso você aceite o dialogo do patch, no início do Launcher.</system:String>
+    <system:String x:Key="launcher_patch1_title">Suporte Aprimorado de PT-PT pra PT-BR</system:String>
+    <system:String x:Key="launcher_patch1_description">Este Patch aprimora o suporte do The Sims 3 para quem pretende jogar o jogo em PT-BR mas o jogo ainda continua iniciando em PT-PT. Este Patch não afeta nenhuma outra linguagem de jogo, exceto PT-PT e PT-BR. Este patch só pode ser aplicado caso você aceite o dialogo do patch, no início do Launcher.</system:String>
+    <system:String x:Key="launcher_patch2_title">Suporte Para Mods</system:String>
+    <system:String x:Key="launcher_patch2_description">Este Patch adiciona suporte pronto e garantido para mods ao seu The Sims 3. Este Patch também é requerido por alguns outros Patches. Com este Patch instalado, você também poderá instalar seus mods ou mods recomendados através da guia "Mods" do Dream Launcher.</system:String>
+    <system:String x:Key="launcher_patch3_title">Patch de Otimização Básica</system:String>
+    <system:String x:Key="launcher_patch3_description">Este Patch faz a alteração de alguns dos arquivos do jogo e adiciona alguns mods de otimização no seu jogo. Os mods adicionados são os seguintes... O "NRaas - Master Controller". Este mod não faz nada de automático no jogo, porém, adiciona ifinitas interações de controle no jogo, como resetar, editar ou concertar objetos ou Sims. Adiciona melhor suporte para mods de Slider e adiciona diversas interações de otimização para o jogo. Este mod pode ser usado para Cheat, mas cabe a você, escolher como usa-lo. O "Lazy Duchess - Smooth Patch". Este mod adiciona diversas camadas de otimização ao jogo e melhora a velocidade de carregamento das coisas no jogo. O "NRaas - GoHere" que adiciona melhoras ao sistema de roteamento de Sims do jogo. O "Shimrod101 - Memories Disabled". Esse mod desativa todas as memórias (automáticas e manuais) do jogo, que são uma consistente fonte de problemas de performance no jogo e inchaço de Save. O "tuzlakserif232 - Hide EPs Game Icons". Este mod oculta o ícone da expansão no catalogo de mobílias e roupas. O "NRaas - Error Trap". Este mod captura e corrige diversos erros técnicos que podem surgir durante sua gameplay. O "NRaas - Overwatch". Este mod faz limpezas automáticas e periodicas na sua cidade, removendo coisas inúteis e deixando o jogo mais fluído. O "NRaas - Traffic". Este mod tem a habilidade de configurar a quantidade de veículos e roteamento pela cidade, otimizando tudo isso. O "NRaas - Register". Este mod adiciona a capacidade de limitar tipos de animais, sims, e roles de spawnarem, para dessa forma otimizar a população. E por fim o "NRaas - Traveler". Este mod substitui o código de viagem do jogo, o deixando mais otimizado. TODOS os mods desse Patch já vem pré configurados para a melhor performance.</system:String>
+    <system:String x:Key="launcher_patch4_title">Patch Limitador de FPS</system:String>
+    <system:String x:Key="launcher_patch4_description">Adiciona o Patching limitador de FPS desenvolvido por "GriefReaper" ao seu jogo. Após instalar esse Patch, a opção de limitação de FPS das configurações do Dream Launcher funcionará. Em jogo, use o cheat "fps on" para acompanhar o FPS do jogo.</system:String>
+    <system:String x:Key="launcher_patch5_title">Patch de Atualização de GPU e CPU</system:String>
+    <system:String x:Key="launcher_patch5_description">Esse Patch atualiza o Banco de Dados de Hardware do jogo para que ele possa reconhecer GPUs e CPUs mais recentes, fabricadas depois de 2013/2014. Além disso, esse Patch também atualiza as regras do jogo para que ele possa usar o máximo de hardware possível, além de ter acesso a mais poder de processamento em todos os momentos, independentes das configurações. Esse Patch também evita que o jogo limite seu uso de hardware, devido ao fato de não conhecer a atual CPU ou GPU. Após instalar esse Patch, execute o jogo e vá até a pasta do "The Sims 3" nos Documentos do seu computador, então abra o arquivo "DeviceConfig.log" para saber se o jogo agora reconhece seu hardware.</system:String>
+    <system:String x:Key="launcher_patch6_title">Patch de Iluminação Global Melhorada</system:String>
+    <system:String x:Key="launcher_patch6_description">Este Patch adiciona os mods "Lazy Duchess - Auto Lights Overhaul", "Boring Bones - Fixed Lightning" e "simsi45 - Improved Enviromental Shadows". Juntos, esses mods adicionam uma camada de melhoria a iluminação gloabal e local do jogo. As sombras ficam mais bonitas, a coloração do ambiente fica mais viva e as luzes dos cômodos agora são desligadas automaticamente se nenhum Sim estiver no local. Somando-se todos esses mods, há uma melhora no gráfico do jogo o tornando visualmente mais suave e bonito.</system:String>
+    <system:String x:Key="launcher_patch7_title">Patch de Shading Aprimorado</system:String>
+    <system:String x:Key="launcher_patch7_description">Este Patch adiciona o "Lazy Duchess - Pixel Shader Framework" ao jogo, e também adiciona o "Lazy Duchess - Shader Tweaks" ao jogo. Com esses Patches adicionados, o Sombreamento do jogo parece melhor como um todo. Vidros terão uma melhor transparência, os pixelizados de censura parecerão melhores, a iluminação interna dos cômodos, iluminação facial, pelos corporais dos Sims e várias outras coisas, parecerão melhores.</system:String>
+    <system:String x:Key="launcher_patch8_title">Patch de Extensão das Sombras</system:String>
+    <system:String x:Key="launcher_patch8_description">Este Patch adiciona o "Lazy Duchess - Shadow Extender" ao jogo. Esse patch faz com que as sombras do jogo continuem sendo renderizadas mesmo enquanto se está no modo de visão da cidade. Para que as sombras sejam exibidas, é necessário aumentar a qualidade das sombras aqui nas configurações do Launcher.</system:String>
+    <system:String x:Key="launcher_patch9_title">Patch de Otimização de Roteamento</system:String>
+    <system:String x:Key="launcher_patch9_description">Este Patch adiciona um kit de mods que fazem a otimização de roteamento dos Sims no jogo, reduzindo problemas de roteamento, aprimorando a velocidade na qual as rotas são calculadas etc. Os mods adicionados são... "bluegenjutsu - Faster Loading and Moving of the Elevators" que reduz o tempo de espera por elevadores em Late Night EP. O "bluegenjutsu - Better Routing for Game Objects" que aprimora o roteamento para objetos sendo disputados por Sims. O "Twoftmama - Route Fix v9" que aprimora os roteamentos num geral. O "Nukael - No Motive Fail Tantrum or Whining" que remove as animações de birra enquanto o Sim passa necessidades, porém, as crianças ainda continuam fazendo birra. O "stevebo77 - No Route Fail Tantrum" que remove as animações de birra ao não encontrar uma rota para o destino. E por fim o "stevebo77 - No Foot Tapping" que remove a animação do Sim batendo o pé enquanto espera por uma rota.</system:String>
+    <system:String x:Key="launcher_patch10_title">Patch de Remoção de Internet</system:String>
+    <system:String x:Key="launcher_patch10_description">Este Patch proíbe que o The Sims 3 se conecte a internet. Isso evita atrasos no jogo por causa de requisições a Web, downloa de centenas de arquivos não desejados e até aumenta a performance do jogo e reduz o consumo de RAM em muitos casos. Este patch funcionará ainda melhor caso você desative as "Notificações Online" e o "Modo Loja". REQUER o Firewall do Windows ativado para funcionar.</system:String>
+
+    <!-- Screen 6: Launcher - Settings -->
     <system:String x:Key="launcher_settings_save">SALVAR</system:String>
     <system:String x:Key="launcher_settings_tab_launcher">Launcher</system:String>
     <system:String x:Key="launcher_settings_tab_graphics">Gráficos</system:String>
@@ -91,6 +134,20 @@ Define o idioma de exibição do Jogo apenas. Além disso, o idioma definido aqu
 pasta do The Sims 3 nos Documentos do seu computador tenha um nome diferente. Somente os idiomas
 suportados pelo Dream Launcher aparecem nessa lista.
     </system:String>
+    <system:String x:Key="launcher_settings_launcher_gamePriority">Prioridade de Execução do Jogo</system:String>
+    <system:String x:Key="launcher_settings_launcher_gamePriorityHelp" xml:space="preserve">
+Define a prioridade de execução do processo do The Sims 3. Uma prioridade acima do Normal, faz
+com que o processo do jogo tenha maior preferência sobre os recursos de CPU, porém, pode causar
+problemas de desempenho em alguns casos. Faça testes com o jogo antes de permanecer com a prioridade
+do jogo mais alta para sempre.
+        
+- Esta opção pode funcionar bem em CPUs como muitos núcleos como os Alder Lake+, já que mesmo que
+o jogo tenha total preferência sobre os recursos, ainda haverá recursos para o resto do sistema.
+    </system:String>
+    <system:String x:Key="launcher_settings_launcher_launcherBehaviour">Comportamento Enquanto Joga</system:String>
+    <system:String x:Key="launcher_settings_launcher_launcherBehaviourHelp" xml:space="preserve">
+Determina o que o Launcher deve fazer enquanto o The Sims 3 está rodando.
+    </system:String>
     <system:String x:Key="launcher_settings_launcher_resetTemplate">Redefinir Template de Opções</system:String>
     <system:String x:Key="launcher_settings_launcher_resetTemplateHelp" xml:space="preserve">
 Se você atualizou seu Hardware recentemente (por exemplo, trocando sua CPU ou GPU), e agora ao entrar
@@ -109,6 +166,8 @@ Define a resolução de tela do jogo.
     <system:String x:Key="launcher_settings_graphics_refreshRate">Taxa de Atualização da Tela</system:String>
     <system:String x:Key="launcher_settings_graphics_refreshRateHelp" xml:space="preserve">
 Define a taxa de atualização do jogo.
+
+- Esta configuração só tem efeito caso o jogo esteja em Fullscreen.
     </system:String>
     <system:String x:Key="launcher_settings_graphics_refreshRateError">Impossível definir essa taxa de atualização. Ela não é compatível com o sistema.</system:String>
     <system:String x:Key="launcher_settings_graphics_maxFps">Limite de FPS</system:String>
@@ -116,6 +175,520 @@ Define a taxa de atualização do jogo.
 Define a taxa máxima de quadros por segundo que o jogo pode rodar. Isso ajuda o jogo em questão
 de otimização, reduzindo engasgos, frame skips, cortes de tela ou congelamentos repentinos. Em
 adição, também faz com que menos processamento da sua GPU seja usado.
+        
+- Requer que o patch "Limitador de FPS" esteja instalado para que esta opção funcione.
+        
+        
+RECOMENDADO: Limite para algum valor.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_fullscreen">Modo de Exibição</system:String>
+    <system:String x:Key="launcher_settings_graphics_fullscreenHelp" xml:space="preserve">
+Determina o modo de exibição do jogo.
+        
+- Requer o patch "Otimização Básica" para que o modo "Borderless Windowed" funcione.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_maxTps">Limite de Ticks Por Segundo</system:String>
+    <system:String x:Key="launcher_settings_graphics_maxTpsHelp" xml:space="preserve">
+Determina a velocidade da lógica de processamento do jogo. Quanto mais TPS por segundo melhor,
+porém, mais do sistema é exigido. Para valores maiores do que 500, é recomendado um computador
+com uma performance acima da média para melhor resultado.
+        
+- Requer que o patch "Otimização Básica" esteja instalado para que esta opção funcione.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_debugSp">Depurar Smooth Patch</system:String>
+    <system:String x:Key="launcher_settings_graphics_debugSpHelp" xml:space="preserve">
+Caso esta opção esteja ativada, o Smooth Patch irá exibir uma caixa de diálogo de aviso, sempre
+que o Patching tiver sido feito com sucesso.
+        
+- Requer que o patch "Otimização Básica" esteja instalado para que esta opção funcione.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_objectHiding">Ativar Ocultação de Objetos</system:String>
+    <system:String x:Key="launcher_settings_graphics_objectHidingHelp" xml:space="preserve">
+Ativar esta opção fará com que o jogo oculte objetos que não estejam visíveis dentro de casas
+ou obstruídos por outros objetos, fazendo com que o consumo de processamento seja reduzido.
+
+
+RECOMENDADO: Deixe ligado.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_animSmooth">Ativar Suavização de Animações</system:String>
+    <system:String x:Key="launcher_settings_graphics_animSmoothHelp" xml:space="preserve">
+Faz com que as animações do jogo rodem de maneira mais suave.
+
+
+RECOMENDADO: Deixe ligado.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_advanceRender">Ativar Renderização Avançada</system:String>
+    <system:String x:Key="launcher_settings_graphics_advanceRenderHelp" xml:space="preserve">
+Faz com que o jogo utilize os Shaders v2.0 ou superior, o que lhe permite utilizar efeitos gráficos mais
+avançados e mais eficientes em termos de desempenho, reduzindo o uso de processamento e deixando
+o jogo mais belo.
+
+
+RECOMENDADO: Como hoje em dia todas as placas suportam esses Shaders, não há por que deixar
+essa opção desligada. Deixe-a ligada.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_highDetailLots">High Detail Lots</system:String>
+    <system:String x:Key="launcher_settings_graphics_highDetailLotsHelp" xml:space="preserve">
+Esta opção define quantos Lotes ao redor do seu Sim terão um alto detalhe de renderização. Com
+maiores valores nesta opção, seu jogo exibirá mais casas em alto detalhe (como se seu Sim
+estivesse próximo a elas), porém, ele consumirá mais recursos, inclusive RAM.
+
+
+RECOMENDADO: Como durante a Gameplay, você passará 95% do tempo concentrado em um lote de
+cada vez (mesmo que seus Sims estejam espalhados pela cidade) é recomendado deixar essa opção
+em 1 Lote.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_reflections">Qualidade dos Reflexos</system:String>
+    <system:String x:Key="launcher_settings_graphics_reflectionsHelp" xml:space="preserve">
+Determina a qualidade dos reflexos de água, objetos, espelhos e outras coisas no jogo. Maiores qualidades
+irão exigir mais desempenho de sua GPU.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_antiAliasing">Anti-Aliasing</system:String>
+    <system:String x:Key="launcher_settings_graphics_antiAlliasingHelp" xml:space="preserve">
+Determina se técnicas de Anti-Aliasing serão usadas pelo jogo para reduzir o serrilhamento
+visual de bordas dos objetos 3D do jogo.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_drawDist">Distância de Renderização</system:String>
+    <system:String x:Key="launcher_settings_graphics_drawDistHelp" xml:space="preserve">
+Determina a distância máxima na qual os objetos 3D do mundo serão renderizados. Quanto maior
+a distância, mais objetos aparecerão na tela no modo de visão da cidade, ou em jogabilidade normal
+quando se olha para o horizonte.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_visualEffects">Efeitos Visuais</system:String>
+    <system:String x:Key="launcher_settings_graphics_visualEffectsHelp" xml:space="preserve">
+Define a qualidade de efeitos visuais do jogo como explosões, chuva, fumaça, fogo, dentre outros. Maiores
+qualidades farão com que haja mais partículas, mais efeitos de pós processamento e outras coisas, por isso
+será exigido mais poder de processamento gráfico.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_lightShadows">Luzes e Sombras</system:String>
+    <system:String x:Key="launcher_settings_graphics_lightShadowsHelp" xml:space="preserve">
+Define a qualidade da iluminação do jogo, além da qualidade das sombras do jogo. As sombras em tempo
+real exigem mais poder de processamento gráfico, por isso, se você tem uma hardware mais antigo, teste
+como ficará o desempenho do jogo com definições mais elevadas neste parâmetro.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_textureQuality">Qualidade das Texturas</system:String>
+    <system:String x:Key="launcher_settings_graphics_textureQualityHelp" xml:space="preserve">
+Define a qualidade das texturas do jogo. Maiores níveis deste parâmetro garantirão texturas em maior
+definição, porém, isso irá consumir mais VRAM de sua GPU, e caso ela não tenha o suficiente, o desempenho
+do jogo pode ser negativamente afetado.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_treeDetails">Detalhes das Árvores</system:String>
+    <system:String x:Key="launcher_settings_graphics_treeDetailsHelp" xml:space="preserve">
+Define a qualidade gráfica das árvores do jogo. Maiores níveis neste parâmetro farão com que as árvores
+ainda sejam renderizadas em maior detalhe, mesmo que estejam mais longe, se traduzindo em maior beleza
+para esses elementos.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_simsDetails">Detalhes dos Sims</system:String>
+    <system:String x:Key="launcher_settings_graphics_simsDetailsHelp" xml:space="preserve">
+Define a qualidade gráfica dos Sims. Maiores níveis neste parâmetro farão com que os Sims sejam renderizados
+com mais detalhes, mesmo que estejam mais distântes da câmera, além de terem mais detalhes visuais e efeitos gráficos.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_speakerType">Setup de Caixas de Som</system:String>
+    <system:String x:Key="launcher_settings_graphics_speakerTypeHelp" xml:space="preserve">
+Define os canais de som a serem usados de acordo com as caixas de som do seu computador. O formato
+mais comum é o Stereo de 2.0 canais.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_focusMute">Mutar Quando Fora de Foco</system:String>
+    <system:String x:Key="launcher_settings_graphics_focusMuteHelp" xml:space="preserve">
+Caso esta opção esteja ativada, o jogo ficará mutado caso esteja fora de foco ou minimizado.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_voicesVolume">Volume das Vozes</system:String>
+    <system:String x:Key="launcher_settings_graphics_voicesVolumeHelp" xml:space="preserve">
+Define o volume das vozes durante o jogo.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_fxVolume">Volume dos Efeitos Sonoros</system:String>
+    <system:String x:Key="launcher_settings_graphics_fxVolumeHelp" xml:space="preserve">
+Define o volume dos efeitos sonoros do jogo.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_musicVolume">Volume da Música</system:String>
+    <system:String x:Key="launcher_settings_graphics_musicVolumeHelp" xml:space="preserve">
+Define o volume das músicas tocadas no jogo.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_ambientVolume">Volume do Ambiente</system:String>
+    <system:String x:Key="launcher_settings_graphics_ambientVolumeHelp" xml:space="preserve">
+Define o volume do ambiente do jogo, como chuvas, aves, passos etc.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_audioQuality">Qualidade do Áudio</system:String>
+    <system:String x:Key="launcher_settings_graphics_audioQualityHelp" xml:space="preserve">
+Define a qualidade do áudio do jogo. Quanto maior o valor definido aqui, mais processamento é usado,
+porém, não deve gerar impactos negativos no jogo, indepenedente do valor definido aqui.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_onlineNotifications">Notificações Online</system:String>
+    <system:String x:Key="launcher_settings_graphics_onlineNotificationsHelp" xml:space="preserve">
+Define se as notificações sociais devem ser exibidas no seu jogo, se você estiver logado com uma
+conta do The Sims 3.
+
+- RECOMENDADO: Não mantenha esta configuração ativada para poupar processamento. Inclusive, não é
+recomendado jogar com sua conta logada para poupar recursos do jogo.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_shopMode">Modo Loja</system:String>
+    <system:String x:Key="launcher_settings_graphics_shopModeHelp" xml:space="preserve">
+Define se o modo loja do jogo estará ativado. O modo loja faz com que itens da loja online do
+The Sims 3 sejam exibidos no meio do catálogo padrão do jogo durante a Gameplay.
+
+- RECOMENDADO: Mantenha esta opção desativada para poupar recursos do jogo e reduzir a
+poluição visual gerada pela EA.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_edgeScrolling">Rolagem de Borda</system:String>
+    <system:String x:Key="launcher_settings_graphics_edgeScrollingHelp" xml:space="preserve">
+Caso esta opção esteja ativada, a Câmera do jogo irá se mover na direção do canto da tela em
+que seu cursor está tocando.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_clockFormat">Formato do Relógio</system:String>
+    <system:String x:Key="launcher_settings_graphics_clockFormatHelp" xml:space="preserve">
+Define o formato da hora exibida no jogo.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_lessons">Ativar Lições</system:String>
+    <system:String x:Key="launcher_settings_graphics_lessonsHelp" xml:space="preserve">
+Caso esta opção esteja ativada, o jogo exibirá dicas relacionadas com o que você está fazendo,
+como por exemplo, dando uma festa. Essas dicas falam um pouco sobre o que você está fazendo e
+você pode aceita-las para que o jogo lhe mostre um tutorial mais detalhado sobre o assunto
+relacionado. Mesmo que você desative esta opção, você ainda será capaz de acessar os tutoriais
+do jogo através das opções de pausa do jogo.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_interactiveLoad">Ativar Tela de Carregamento Interativa</system:String>
+    <system:String x:Key="launcher_settings_graphics_interactiveLoadHelp" xml:space="preserve">
+Caso esta opção esteja ativada, o jogo exibirá uma tela de carregamento interativa onde você
+pode encontrar objetos no cenário para ganhar pontos.
+
+- RECOMENDADO: Mantenha esta opção desativada. A tela de carregamento interativa pode estender
+o tempo de carregamento, além de consumir mais recursos do jogo, reduzindo seu desempenho. 
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_invertCameraH">Inverter Rotação da Câmera na Horizontal</system:String>
+    <system:String x:Key="launcher_settings_graphics_invertCameraHhelp" xml:space="preserve">
+Inverte a rotação da Câmera quando você tentar rotaciona-la usando as teclas "&lt;" e "&gt;" ou o Mouse.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_invertCameraV">Inverter Rotação da Câmera na Vertical</system:String>
+    <system:String x:Key="launcher_settings_graphics_invertCameraVhelp" xml:space="preserve">
+Inverte a rotação da Câmera quando você tentar rotaciona-la usando as teclas "&lt;" e "&gt;" ou o Mouse.  
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_memories">Habilitar Memorias</system:String>
+    <system:String x:Key="launcher_settings_graphics_memoriesHelp" xml:space="preserve">
+Controla o funcionamento do recurso de Memórias do jogo. As Memórias são momentos marcantes na vida dos Sims,
+e sempre que um Sim cria um nova Memória, você pode acessa-la através do painel de informações do Sim. Uma
+foto do momento também é guardada no seu Save.
+
+- RECOMENDADO: Desabilite esse recurso. O recurso de Memórias do The Sims 3 é um sério causador de má performance
+no jogo, além de inchar seu arquivo de Save muito rapidamente.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespan">Expectativa de Vida dos Sims</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanHelp" xml:space="preserve">
+Este parâmetro define a expectativa de vida dos Sims. Os valores exatos de cada estágio de vida são definidos
+em Presets e você só pode alterar a expectativa de vida através desses Presets. É recomendado que você ajuste de
+acordo com o a dificuldade de gameplay, então por exemplo, se você instalou mods para deixar o jogo mais difícil,
+ganhando menos dinheiro por exemplo, então seus Sims precisarão de tempos de vida maiores para que não passem
+todo o tempo de vida apenas trabalhando.
+
+- RECOMENDADO: Deixe em "Longo". Não há um motivo especial para isso, mas geralmente é a melhor escolha para
+a maioria dos jogadores.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanSim">Sims</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanSimBaby">Recém-Nascido: %d% Dias</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanSimToddler">Bebê: %d% Dias</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanSimChild">Criança: %d% Dias</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanSimTeen">Adolescente: %d% Dias</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanSimYoungAdult">Jovem: %d% Dias</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanSimAdult">Adulto: %d% Dias</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanSimElder">Idoso: %d% Dias</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanCat">Cats</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanCatKitten">Gatinho: %d% Dias</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanCatAdult">Adulto: %d% Dias</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanCatElder">Idoso: %d% Dias</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanDog">Dogs</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanDogPuppy">Cãozinho: %d% Dias</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanDogAdult">Adulto: %d% Dias</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanDogElder">Idoso: %d% Dias</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanHorse">Horses</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanHorseFoal">Potro: %d% Dias</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanHorseAdult">Adulto: %d% Dias</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanHorseElder">Idoso: %d% Dias</system:String>
+    <system:String x:Key="launcher_settings_graphics_aging">Ativar Envelhecimento</system:String>
+    <system:String x:Key="launcher_settings_graphics_agingHelp" xml:space="preserve">
+Se esta opção estiver ativada, os Sims envelhecerão.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_suppressOpportunities">Suprimir Oportunidades</system:String>
+    <system:String x:Key="launcher_settings_graphics_suppressOpportunitiesHelp" xml:space="preserve">
+Caso esta opção esteja ativada, os Sims não receberão mais nenhuma oportunidade (ou missão) nas
+Escolas, Trabalhos ou no Dia-a-Dia.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_noAutonomy">Desativar Autonomia Para o Sim Ativo</system:String>
+    <system:String x:Key="launcher_settings_graphics_noAutonomyHelp" xml:space="preserve">
+Caso esta opção esteja ativada, a autonomia será desativada para o Sim (Humano ou Pet)
+atualmente ativo no jogo.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_simAutonomy">Nível de Autonomia dos Sims</system:String>
+    <system:String x:Key="launcher_settings_graphics_simAutonomyHelp" xml:space="preserve">
+Define o nível de autonomia dos Sims em geral. Em níveis mais baixos, o Sim só fará algumas
+coisas muito específicas automaticamente. Em níveis mais altos o Sim terá mais liberdade para
+fazer o que realmente deseja, a hora que quiser.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_petAutonomy">Nível de Autonomia dos Pets</system:String>
+    <system:String x:Key="launcher_settings_graphics_petAutonomyHelp" xml:space="preserve">
+Define o nível de autonomia dos Sims em geral. Em níveis mais baixos, o Sim só fará algumas
+coisas muito específicas automaticamente. Em níveis mais altos o Sim terá mais liberdade para
+fazer o que realmente deseja, a hora que quiser.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_seasonSummer">Estação de Verão</system:String>
+    <system:String x:Key="launcher_settings_graphics_seasonSummerHelp" xml:space="preserve">
+Define se esta Estação deve estar ativa, e se sim, qual será a duração dela.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_fallSummer">Estação de Outono</system:String>
+    <system:String x:Key="launcher_settings_graphics_fallSummerHelp" xml:space="preserve">
+Define se esta Estação deve estar ativa, e se sim, qual será a duração dela.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_winterSummer">Estação de Inverno</system:String>
+    <system:String x:Key="launcher_settings_graphics_winterSummerHelp" xml:space="preserve">
+Define se esta Estação deve estar ativa, e se sim, qual será a duração dela.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_springSummer">Estação da Primavera</system:String>
+    <system:String x:Key="launcher_settings_graphics_springSummerHelp" xml:space="preserve">
+Define se esta Estação deve estar ativa, e se sim, qual será a duração dela.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_temperatureUnit">Unidade de Temperatura</system:String>
+    <system:String x:Key="launcher_settings_graphics_temperatureUnitHelp" xml:space="preserve">
+Define a unidade de medida de temperatura a ser usada pelo jogo.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_weatherHail">Ativar Clima de Chuva de Granizo</system:String>
+    <system:String x:Key="launcher_settings_graphics_weatherHailHelp" xml:space="preserve">
+Ativa ou desativa este clima no jogo. Note que mesmo que este clima esteja desativado, a estação
+vinculada a ele continuará funcionando se você não desativa-la.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_weatherRain">Ativar Clima de Chuva</system:String>
+    <system:String x:Key="launcher_settings_graphics_weatherRainHelp" xml:space="preserve">
+Ativa ou desativa este clima no jogo. Note que mesmo que este clima esteja desativado, a estação
+vinculada a ele continuará funcionando se você não desativa-la.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_weatherSnow">Ativar Clima de Neve</system:String>
+    <system:String x:Key="launcher_settings_graphics_weatherSnowHelp" xml:space="preserve">
+Ativa ou desativa este clima no jogo. Note que mesmo que este clima esteja desativado, a estação
+vinculada a ele continuará funcionando se você não desativa-la.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_weatherFog">Ativar Clima de Névoa</system:String>
+    <system:String x:Key="launcher_settings_graphics_weatherFogHelp" xml:space="preserve">
+Ativa ou desativa este clima no jogo. Note que mesmo que este clima esteja desativado, a estação
+vinculada a ele continuará funcionando se você não desativa-la.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_lunarCycle">Ciclo Lunar</system:String>
+    <system:String x:Key="launcher_settings_graphics_lunarCycleHelp" xml:space="preserve">
+Define como funcionará o Ciclo Lunar no decorrer dos dias dos Sims.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_environmentWarn">AVISO: As novas configurações de "Estações" e "Climas" definidas, podem não se aplicar a Saves já existentes. Se isso acontecer, você precisará fazer as mesmas configurações nos seus Saves existentes e então salvar o jogo.</system:String>
+    <system:String x:Key="launcher_settings_graphics_enableProgression">Progressão da História</system:String>
+    <system:String x:Key="launcher_settings_graphics_enableProgressionHelp" xml:space="preserve">
+Caso esta opção esteja ativada, os outros Sims da vizinhança, que não estão sendo jogados
+por você continuarão vivendo suas vidas normalmente, se casando, sendo promovidos, se mudando
+e etc. Isso mantem o jogo mais vivo e interessante.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_vampires">Ativar Vampiros</system:String>
+    <system:String x:Key="launcher_settings_graphics_vampiresHelp" xml:space="preserve">
+Ativa ou desativa esse tipo de Sim da prograssão de história do jogo. Caso o tipo de Sim
+seja desativado, novos Sims do tipo não continuarão surgindo conforme a história
+da vizinhança progride.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_werewolves">Ativar Lobisomens</system:String>
+    <system:String x:Key="launcher_settings_graphics_werewolvesHelp" xml:space="preserve">
+Ativa ou desativa esse tipo de Sim da prograssão de história do jogo. Caso o tipo de Sim
+seja desativado, novos Sims do tipo não continuarão surgindo conforme a história
+da vizinhança progride.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_pets">Ativar Pets</system:String>
+    <system:String x:Key="launcher_settings_graphics_petsHelp" xml:space="preserve">
+Ativa ou desativa esse tipo de Sim da prograssão de história do jogo. Caso o tipo de Sim
+seja desativado, novos Sims do tipo não continuarão surgindo conforme a história
+da vizinhança progride.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_celebrities">Ativar Celebridades</system:String>
+    <system:String x:Key="launcher_settings_graphics_celebritiesHelp" xml:space="preserve">
+Ativa ou desativa esse tipo de Sim da prograssão de história do jogo. Caso o tipo de Sim
+seja desativado, novos Sims do tipo não continuarão surgindo conforme a história
+da vizinhança progride.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_fairies">Ativar Fadas</system:String>
+    <system:String x:Key="launcher_settings_graphics_fairiesHelp" xml:space="preserve">
+Ativa ou desativa esse tipo de Sim da prograssão de história do jogo. Caso o tipo de Sim
+seja desativado, novos Sims do tipo não continuarão surgindo conforme a história
+da vizinhança progride.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_witches">Ativar Bruxos</system:String>
+    <system:String x:Key="launcher_settings_graphics_witchesHelp" xml:space="preserve">
+Ativa ou desativa esse tipo de Sim da prograssão de história do jogo. Caso o tipo de Sim
+seja desativado, novos Sims do tipo não continuarão surgindo conforme a história
+da vizinhança progride.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_horses">Ativar Cavalos</system:String>
+    <system:String x:Key="launcher_settings_graphics_horsesHelp" xml:space="preserve">
+Ativa ou desativa esse tipo de Sim da prograssão de história do jogo. Caso o tipo de Sim
+seja desativado, novos Sims do tipo não continuarão surgindo conforme a história
+da vizinhança progride.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_celebritiesSystem">Desativar Sistema de Celebridades Para o Núcleo-Familiar Ativo</system:String>
+    <system:String x:Key="launcher_settings_graphics_celebritiesSystemHelp" xml:space="preserve">
+Caso este parâmetro esteja ativo, os membros do núcleo familiar ativo não poderão se tornar celebridades.
     </system:String>
 
+    <!-- Screen 6: Launcher - Cache -->
+    <system:String x:Key="launcher_cache_clearButton">LIMPAR</system:String>
+    <system:String x:Key="launcher_cache_seeLogsButton">VER LOGS</system:String>
+    <system:String x:Key="launcher_cache_cacheWarn">Aqui você encontra todos os tipos de Cache gerados pelo Dream Launcher ou pelo The Sims 3 e pode limpa-los com apenas alguns cliques. É recomendado que você sempre dê uma olhada nessa página e limpe todo o Cache do seu jogo periodicamente.</system:String>
+    <system:String x:Key="launcher_cache_newErrorLogMsg">Um erro aconteceu enquanto você jogava e o Error Trap guardou os detalhes num log. Por favor, visite a página "Cache" para ler o log e saber se ele já foi corrigido pelo Error Trap ou se você precisará corrigi-lo manualmente em seu jogo.</system:String>
+    <system:String x:Key="launcher_cache_item0atitle">Logs do Error Trap</system:String>
+    <system:String x:Key="launcher_cache_item0adescription">Contém os arquivos de Logs de erros encontrados pelo mod Error Trap, erros que aconteceram enquanto você jogava. O Error Trap corrige a maioria dos erros automaticamente, mas é sempre importânte que você leia esses logs periodicamente para identificar coisas que possam estar erradas em seu Save de Jogo, e dessa forma corrigi-las. Caso não entenda algum erro de algum log, pesquise na Internet.</system:String>
+    <system:String x:Key="launcher_cache_item0title">Cache do Launcher</system:String>
+    <system:String x:Key="launcher_cache_item0description">São os arquivos temporários gerados pelo Dream Launcher. Eles devem e podem ser excluídos sem nenhum problema.</system:String>
+    <system:String x:Key="launcher_cache_item1title">CAS Parts Cache</system:String>
+    <system:String x:Key="launcher_cache_item1description">Contém arquivos de Cache do CAS ou Criar-um-Sim.</system:String>
+    <system:String x:Key="launcher_cache_item2title">Compositor Cache</system:String>
+    <system:String x:Key="launcher_cache_item2description">Contém arquivos de Cache relacionados a objetos que aparecem no modo Compra e Construção.</system:String>
+    <system:String x:Key="launcher_cache_item3title">Scripts Cache</system:String>
+    <system:String x:Key="launcher_cache_item3description">Contém arquivos de Cache relacionados a Mods ou Hacks que usam códigos de programação.</system:String>
+    <system:String x:Key="launcher_cache_item4title">Sim Compositor Cache</system:String>
+    <system:String x:Key="launcher_cache_item4description">Contém arquivos de Cache relacionados as Skins dos Sims.</system:String>
+    <system:String x:Key="launcher_cache_item5title">Social Cache</system:String>
+    <system:String x:Key="launcher_cache_item5description">Contém arquivos de Cache relacionados a funcionalidade de login em contas do The Sims 3.</system:String>
+    <system:String x:Key="launcher_cache_item6title">Cache de Indíces de Repositório</system:String>
+    <system:String x:Key="launcher_cache_item6description">Contém arquivos de Cache relacionados ao Launcher original, como "dcc.ent", "missingdeps.idx", "Downloads", "SigsCache", "SavedSims" e "IGACache".</system:String>
+    <system:String x:Key="launcher_cache_item7title">Thumbnails Cache</system:String>
+    <system:String x:Key="launcher_cache_item7description">Contém arquivos de Cache relacionados as Thumbnails do CAS e o Modo Loja.</system:String>
+    <system:String x:Key="launcher_cache_item8title">Worlds Cache</system:String>
+    <system:String x:Key="launcher_cache_item8description">Contém arquivos de Cache relacionados a ferramenta Create-a-World e novos mundos do jogo.</system:String>
+    <system:String x:Key="launcher_cache_logsViewerMsg">Estes são todos os arquivos de Log encontrados, gerados pelo Error Trap enquanto você jogava. É interessante que você analise cada um deles e caso o log aponte que o problema não foi resolvido, é importante que você tente corrigi-lo ingame.</system:String>
+    <system:String x:Key="launcher_cache_logsViewerEmpty">Nenhum Log por enquanto</system:String>
+    <system:String x:Key="launcher_cache_logsViewerTitle">Visualizador de Logs</system:String>
+    <system:String x:Key="launcher_cache_logsViewerLoad">Carregando...</system:String>
+    <system:String x:Key="launcher_cache_logsViewerCounter">%n% Itens</system:String>
+    <system:String x:Key="launcher_cache_logsViewerOpen">ABRIR</system:String>
+    <system:String x:Key="launcher_cache_logsViewerOpenError">Não foi possível abrir o Log. É necessário que a Ferramenta "Notepad++" esteja instalada no Dream Launcher. Por favor, instale-a a partir da página "Ferramentas".</system:String>
+
+    <!-- Screen 6: Launcher - Tools -->
+    <system:String x:Key="launcher_tools_msg">As ferramentas listadas aqui são recomendadas de serem usadas apenas por jogadores com conhecimento técnico mais avançado. Estas são ferramentas usadas para checagens, modding, ajustes do jogo, adições de novas coisas e muito mais. Use com cuidado.</system:String>
+    <system:String x:Key="launcher_tools_createdBy">Criado por: %name%</system:String>
+    <system:String x:Key="launcher_tools_install">INSTALAR</system:String>
+    <system:String x:Key="launcher_tools_open">ABRIR</system:String>
+    <system:String x:Key="launcher_tools_running">RODANDO</system:String>
+    <system:String x:Key="launcher_tools_installError">Houve um problema ao instalar a ferramenta requisitada. Por favor, verifique sua conexão com a Internet.</system:String>
+    <system:String x:Key="launcher_tools_s3peTitle">S3PE</system:String>
+    <system:String x:Key="launcher_tools_s3peInformation">Requer: .Net Framework 4.0</system:String>
+    <system:String x:Key="launcher_tools_s3peDescription">Cria, Visualiza, Edita ou Mescla arquivos Package do The Sims 3 de maneira fácil. É usado de maneira mais geral para modding e edições de arquivos Package.</system:String>
+    <system:String x:Key="launcher_tools_nppTitle">Notepad++</system:String>
+    <system:String x:Key="launcher_tools_nppInformation">Requer: Nada</system:String>
+    <system:String x:Key="launcher_tools_nppDescription">Um dos mais famosos editores de texto. Usado pelo Launcher para visualização de arquivos de texto.</system:String>
+    <system:String x:Key="launcher_tools_s3ocTitle">S3OC</system:String>
+    <system:String x:Key="launcher_tools_s3ocInformation">Requer: .Net Framework 4.0</system:String>
+    <system:String x:Key="launcher_tools_s3ocDescription">Visualiza ou Edita arquivos Package do The Sims 3 que contenham móbilias ou itens disponíveis no Modo Compra. Altere preços, descrições, categorias e muito mais.</system:String>
+    <system:String x:Key="launcher_tools_dshTitle">Dashboard by Delphy</system:String>
+    <system:String x:Key="launcher_tools_dshInformation">Requer: .Net Framework 3.5</system:String>
+    <system:String x:Key="launcher_tools_dshDescription">Escaneia a sua pasta de Mods e identifica conflitos entre Mods (exibe em laranja), Mods que estejam corrompidos (exibe em vermelho) ou Mods que estejam duplicados (exibe em amarelo).</system:String>
+    <system:String x:Key="launcher_tools_eseTitle">Easy STBL Manager</system:String>
+    <system:String x:Key="launcher_tools_eseInformation">Requer: .Net Framework 3.5</system:String>
+    <system:String x:Key="launcher_tools_eseDescription">Edita arquivos STBL de maneira fácil. Arquivos STBL são arquivos que contém textos e são muito encontrados em arquivos Package do The Sims 3.</system:String>
+    <system:String x:Key="launcher_tools_pkgTitle">Package Viewer</system:String>
+    <system:String x:Key="launcher_tools_pkgInformation">Requer: Nada</system:String>
+    <system:String x:Key="launcher_tools_pkgDescription">Escaneia a sua pasta de Mods e lhe permite visualizar Thumbnails que estejam presentes dentro deles, além de também exibir Mods corrompidos.</system:String>
+    <system:String x:Key="launcher_tools_s3miTitle">Sims3Pack Multi Installer</system:String>
+    <system:String x:Key="launcher_tools_s3miInformation">Requer: .NET Framework 2.0</system:String>
+    <system:String x:Key="launcher_tools_s3miDescription">Extrai todos os arquivos "package" presentes dentro de um arquivo "sims3pack" para uma pasta de destino.</system:String>
+    <system:String x:Key="launcher_tools_szipTitle">7-Zip</system:String>
+    <system:String x:Key="launcher_tools_szipInformation">Requer: Nada</system:String>
+    <system:String x:Key="launcher_tools_szipDescription">Uma das melhores e mais conhecidas ferramentas para manipulação de arquivos ou pacotes comprimidos.</system:String>
+    <system:String x:Key="launcher_tools_s3ceTitle">Sims3Pack CLI Extractor</system:String>
+    <system:String x:Key="launcher_tools_s3ceInformation">Requer: .NET Framework 2.0</system:String>
+    <system:String x:Key="launcher_tools_s3ceDescription">Permite extrair arquivos "package" de dentro de "sims3pack" através da CLI. Permite que o Launcher possa interpretar arquivos "sims3pack".</system:String>
+
+    <!-- Screen 6: Launcher - Mods -->
+    <system:String x:Key="launcher_mods_message">Daqui você pode gerenciar todos os Mods ou Conteúdos Personalizados instalados no seu jogo. Você também pode instalar novos Mods/Conteúdos recomendados pelo Dream Launcher a partir da aba "Recomendado" ou se preferir instalar seus próprios Mods/Conteúdos baixados por você usando a aba "Customizado".</system:String>
+    <system:String x:Key="launcher_mods_installedTab">Instalado</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_all">TUDO</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_contents">CONTEÚDOS</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_graphics">GRÁFICOS</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_sounds">SONS</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_fixes">CORREÇÕES</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_gameplay">GAMEPLAY</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_sliders">SLIDERS</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_others">OUTROS</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_patches">DE PATCHES</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modLibSize">Tamanho</system:String>
+    <system:String x:Key="launcher_mods_installedTab_noMods">Sem Mods nesta categoria ou correspondentes ao termo digitado!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modsSearchResult">Encontrado %n% Mods que correspondem ao termo digitado</system:String>
+    <system:String x:Key="launcher_mods_installedTab_search">Digite aqui para procurar...</system:String>
+    <system:String x:Key="launcher_mods_installedTab_recommendedStar">Este Mod foi instalado a partir da biblioteca de Mods recomendados do Dream Launcher!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_patchGear">Este Mod foi instalado a partir da biblioteca de Patches do Dream Launcher. Não é recomendado que você mexa em nada nele!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modDeleteDiagTitle">Remover o Mod?</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modDeleteDiagText">Tenha em mente que se este for um Mod que contém Scripts, os jogos Salvos que usavam este Mod podem ter sérios problemas de funcionamento. Não é possível desfazer a ação de deletar. Deseja continuar?</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_rename">Renomear</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameField">Nome do Mod</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameButton">PRONTO</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameErrorTitle">Erro</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameErrorText">O nome digitado é inválido. Por favor, forneça um nome válido.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameBusyTitle">Error</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameBusyText">Cannot rename now. There are one or more Tasks in progress in Dream Launcher.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_empty">O nome não pode estar vazio.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_long">O nome só pode conter um máximo de 80 caracteres.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_exists">Já existe um Mod com este nome.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_hyphen">O nome só pode conter um máximo de 1 hífen.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_chars">O nome só pode conter letras, números, hífen, espaços e underlines.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_fchar">O primeiro caractere não pode ser um espaço.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_copy">Copiar Para</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_s3pe">Abrir no S3PE</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_s3pe_notInstalled">Não foi possível abrir o Mod no S3PE. A ferramenta não foi instalada no Dream Launcher. Por favor, a instale através da página "Tools"</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_s3oc">Abrir no S3OC</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_s3oc_notInstalled">Não foi possível abrir o Mod no S3OC. A ferramenta não foi instalada no Dream Launcher. Por favor, a instale através da página "Tools"</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modCopyDiagTitle">Pronto</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modCopyDiagText">O Mod foi copiado para a pasta selecionada.</system:String>
+    <system:String x:Key="launcher_mods_deleteUnrecognized">O arquivo "%file%" presente dentro da pasta "Mods" não foi reconhecido pelo Dream Launcher e por isso foi removido para evitar o mau funcionamento das funções do Launcher e do Jogo. É importante que não sejam feitas alterações manuais na pasta "Mods" do seu jogo, toda alteração só deve ser feita pelo Dream Launcher.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab">Adicionar</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_recommended">RECOMENDADO</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_recommendedAddError">Não foi possível adicionar o Mod. É necessário que a Ferramenta "7-Zip" esteja instalada no Dream Launcher. Por favor, instale-a a partir da página "Ferramentas".</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_custom">PERSONALIZADO</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_customAddError">Não é possível adicionar. É necessário que a Ferramenta "Sims3Pack CLI Extractor" esteja instalada no Dream Launcher. Por favor, instale-a a partir da página "Ferramentas".</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_custom_message">Selecione a categoria na qual deseja que o Mod apareça e então clique no botão abaixo para selecionar um arquivo "package" ou "sims3pack" de um Mod do The Sims 3 para ser instalado.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_custom_button">ESCOLHER MOD...</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_recommended_loadError">Não foi possível carregar a biblioteca de Mods recomendados. Por favor, verifique sua conexão com a Internet e tente novamente mais tarde.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_openPage">Abrir Página do Mod</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_problemIcon">Este Mod não pode ser instalado...</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modErrorTitle">Mod Indisponível</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modErrorText">Este Mod não pode ser instalado em seu jogo por causa dos motivos abaixo...</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modErrorReason1">Seu jogo não possui todos os Pacotes de Expansão requeridos pelo Mod.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modErrorReason2">O Mod recomendado "%mod%" não está instalado.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modErrorReason3">O Mod "%mod%" não está instalado. Instale o Patch que traz este Mod, para corrigir isso.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_s3pPreModInstaller_title">Dream Launcher - Visualizador de Sims3Pack</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_s3pPreModInstaller_promptQuitErrorTitle">Erro</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_s3pPreModInstaller_promptQuitErrorText">Aguarde a conclusão da extração do Sims3Pack antes de sair.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_s3pPreModInstaller_extracting">Lendo Sims3Pack</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_s3pPreModInstaller_pkgListEmpty">Nada encontrado!</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_s3pPreModInstaller_pkgListTip">Estes foram todos arquivos "package" encontrados dentro do seu "sims3pack". Agora, você pode instalar cada um deles individualmente.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_s3pPreModInstaller_install">INSTALAR</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_s3pPreModInstaller_installed">INSTALADO</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_title">Dream Launcher - Instalador de Mods</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_promptText">O Mod abaixo será instalado no seu jogo. Uma vez que a instalação comece, NÃO é possível imterrompe-la, pois isso pode resultar na instalação de um Mod corrompido no seu jogo. Deseja continuar a instalação?</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_promptYes">YES</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_promptNo">NO</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_promptQuitErrorTitle">Erro</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_promptQuitErrorText">Aguarde a conclusão da instalação do Mod para sair.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installTitle">Instalando</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installTypeR">Recomendado</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installTypeC">Customizado</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep1Title">Carregar o Mod</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep1TxtDownload">Baixando</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep1TxtDownloadError">Não foi possível baixar o Mod</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep1TxtExtract">Extraindo Pacote</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep1TxtExtractError0">Não foi possível extrair o Pacote</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep1TxtExtractError1">Não foi possível localizar o Pacote extraído</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep1TxtLoad">Carregando</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep1TxtLoadError">Não foi possível carregar o Mod</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep2Title">Validação</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep2TxtValidating">Analisando "%pack%"</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep2TxtValidatingError">Arquivo de Mod Package inválido</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep3Title">Verificação de Conflitos</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep3TitleS0">Inicializando</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep3TitleS1">Construindo inventário de recursos</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep3TitleS2">Analisando. %n% conflitos encontrados até agora.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep3TitleS3">Encontrados %n% recursos conflitantes com Mods já instalados</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep3TxtError">Este Mod entra em conflito com um ou mais Mods já instalados</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep3CopyTitle">Copiado</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep3CopyText">O código HEX da Instância do Recurso conflitante foi copiado para a área de transferência.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep4Title">Instalação</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep4Txt">Finalizando a Instalação</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep4TxtError">Já existe um Mod instalado, usando este nome</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installFinish">O Mod foi instalado com sucesso!</system:String>
+    
 </ResourceDictionary>

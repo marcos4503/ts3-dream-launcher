@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)https://simswiki.info/wiki.php?title=Tutorials:TS3_Advanced_Coding_Tutorials -->
+<html lang="en" dir="ltr" class="client-js" crosspilot=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Tutorials:TS3 Advanced Modding Reference - SimsWiki</title>
+
+<meta name="generator" content="MediaWiki 1.20.2">
+<link rel="canonical" href="https://simswiki.info/wiki.php?title=Tutorials:TS3_Advanced_Modding_Reference">
+<link rel="shortcut icon" href="https://simswiki.info/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="https://simswiki.info/opensearch_desc.php" title="SimsWiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://simswiki.info/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="SimsWiki Atom feed" href="https://simswiki.info/index.php?title=Special:RecentChanges&amp;feed=atom">
+<link rel="stylesheet" href="./Home_files/load.php">
+<style>.mw-collapsible-toggle{float:right} li .mw-collapsible-toggle{float:none} .mw-collapsible-toggle-li{list-style:none}
+/* cache key: simswiki:resourceloader:filter:minify-css:7:4250852ed2349a0d4d0fc6509a3e7d4c */.suggestions{overflow:hidden;position:absolute;top:0;left:0;width:0;border:none;z-index:1099;padding:0;margin:-1px -1px 0 0} html > body .suggestions{margin:-1px 0 0 0}.suggestions-special{position:relative;background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0;margin-top:-2px;display:none;padding:0.25em 0.25em;line-height:1.25em}.suggestions-results{background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0}.suggestions-result{color:black;margin:0;line-height:1.5em;padding:0.01em 0.25em;text-align:left}.suggestions-result-current{background-color:#4C59A6;color:white}.suggestions-special .special-label{color:gray;text-align:left}.suggestions-special .special-query{color:black;font-style:italic;text-align:left}.suggestions-special .special-hover{background-color:silver}.suggestions-result-current .special-label,.suggestions-result-current .special-query{color:white}.autoellipsis-matched,.highlight{font-weight:bold}
+/* cache key: simswiki:resourceloader:filter:minify-css:7:9780324491b653a3780e2d029bdc140c */</style><meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="./Home_files/load(1).php">
+<style>a:lang(ar),a:lang(ckb),a:lang(fa),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: simswiki:resourceloader:filter:minify-css:7:0a93bf4c4bbe66fa48c9223e11ec88f1 */</style>
+
+<script src="./Home_files/load(2).php" type="text/javascript"></script><script src="./Home_files/load(3).php"></script>
+<script type="text/javascript">if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"Tutorials","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":110,"wgPageName":"Tutorials:TS3_Advanced_Modding_Reference","wgTitle":"TS3 Advanced Modding Reference","wgCurRevisionId":72864,"wgArticleId":9387,"wgIsArticle":true,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Tutorials:TS3_Advanced_Modding_Reference","wgRestrictionEdit":[],"wgRestrictionMove":[],"wgRedirectedFrom":"Tutorials:TS3_Advanced_Coding_Tutorials"});
+}</script><script type="text/javascript">if(window.mw){
+mw.loader.implement("user.options",function(){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":5,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,"watchlistdays":3,
+"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs100":false,"searchNs101":false,"searchNs110":true,"searchNs111":false,"searchNs120":true,"searchNs121":false,"searchNs130":true,"searchNs131":false,"searchNs140":false,"searchNs141":false,"searchNs150":true,"searchNs151":false,"searchNs160":false,"searchNs161":false,"searchNs170":true,"searchNs171":false,"searchNs180":true,"searchNs181":false,"searchNs190":true,"searchNs191":false});;},{},{});mw.loader.implement("user.tokens",function(){mw.user.tokens.set({"editToken":"+\\","watchToken":false});;
+},{},{});
+/* cache key: simswiki:resourceloader:filter:minify-js:7:da7b5dc6515c8e2e35ea1f7f8a0e5b02 */
+}</script>
+<script type="text/javascript">if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax"]);
+}</script><script type="text/javascript" src="./Home_files/load(4).php"></script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--><script type="text/javascript" src="./Home_files/c7fa7451-6f95-4815-ac32-b8cc2537837a" data-awssuidacr="rQwZczGYbVHUSZJuk05XCnXgZ9O0N8Zy"></script></head>
+<body class="mediawiki ltr sitedir-ltr ns-110 ns-subject page-Tutorials_TS3_Advanced_Modding_Reference skin-vector action-view vector-animateLayout">
+<script async="" data-ad-client="ca-pub-4706276976859163" src="./Home_files/f.txt" type="text/javascript"></script>
+
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content" class="mw-body">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading"><span dir="auto">Tutorials:TS3 Advanced Modding Reference</span></h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+								<!-- tagline -->
+				<div id="siteSub">From SimsWiki</div>
+				<!-- /tagline -->
+								<!-- subtitle -->
+				<div id="contentSub">(Redirected from <a href="https://simswiki.info/index.php?title=Tutorials:TS3_Advanced_Coding_Tutorials&amp;redirect=no" title="Tutorials:TS3 Advanced Coding Tutorials">Tutorials:TS3 Advanced Coding Tutorials</a>)</div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav" class="mw-jump">
+					Jump to:					<a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_Advanced_Coding_Tutorials#mw-head">navigation</a>, 					<a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_Advanced_Coding_Tutorials#p-search">search</a>
+				</div>
+				<!-- /jumpto -->
+				<div style="width:100%; text-align:center; align:center">
+</div>
+				<!-- bodycontent -->
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><table class="toccolours" align="center" style="margin-bottom:9px">
+
+<tbody><tr>
+<th colspan="2" style="background:#ccf;"> <a href="https://simswiki.info/wiki.php?title=Sims_3:Modding" title="Sims 3:Modding">Tutorials</a> by Category
+</th></tr>
+<tr>
+<td colspan="2" style="font-size: 90%;" align="center">
+<p><a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_CAS_Tutorials" title="Tutorials:TS3 CAS Tutorials"><b>CAS</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_Pattern_Tutorials" title="Tutorials:TS3 Pattern Tutorials"><b>Patterns</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_Meshing_Tutorials" title="Tutorials:TS3 Meshing Tutorials"><b>Objects</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_Building_Tutorials" title="Tutorials:TS3 Building Tutorials"><b>Building</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_CAW_Tutorials" title="Tutorials:TS3 CAW Tutorials"><b>Worlds</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_General_Modding_Tutorials" title="Tutorials:TS3 General Modding Tutorials"><b>Modding</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_Advanced_Coding_Tutorials" title="Tutorials:TS3 Advanced Coding Tutorials" class="mw-redirect"><b>Modding Reference</b></a>&nbsp;
+</p>
+</td></tr></tbody></table>
+<table class="toccolours" align="center" style="margin-bottom:9px">
+
+<tbody><tr>
+<th colspan="2" style="background:#ccf;"> <a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_Advanced_Coding_Tutorials" title="Tutorials:TS3 Advanced Coding Tutorials" class="mw-redirect">Modding Reference</a> by Category
+</th></tr>
+<tr>
+<td colspan="2" style="font-size: 90%;" align="center">
+<p><a href="https://simswiki.info/wiki.php?title=Sims_3:DBPF" title="Sims 3:DBPF"><b>Sims 3 :DBPF</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Sims_3:PackedFileTypes" title="Sims 3:PackedFileTypes"><b>File Types</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Sims_3:RCOL" title="Sims 3:RCOL"><b>RCOL(Scene)</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Sims_3:Catalog_Resource" title="Sims 3:Catalog Resource"><b>Catalog Resource</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Sims_3:Catalog_Resource/StringTable" title="Sims 3:Catalog Resource/StringTable"><b>String Table</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Sims_3:Key_table" title="Sims 3:Key table"><b>Key Table</b></a>&nbsp;|
+<a href="https://simswiki.info/wiki.php?title=TS3PR" title="TS3PR"><b>TS3 Programmer's Reference</b></a>&nbsp;
+</p>
+</td></tr>
+</tbody></table>
+<p>Tutorials related to modding and scripting can be found at <a rel="nofollow" class="external free" href="https://simswiki.info/wiki.php?title=Tutorials:TS3_GeneralModding">http://simswiki.info/wiki.php?title=Tutorials:TS3_GeneralModding</a>
+</p>
+<h2> <span class="mw-headline" id="Introduction">Introduction</span></h2>
+<p>This is all the mumbo jumbo that goes on behind the scenes, we do not recommend that if you are new to this you just jump right in here, we advise learning some of the modding tutorials first to get your head around how the game works.
+</p><p>If you're looking for documentation of the in-game codebase, please see: <a href="https://simswiki.info/wiki.php?title=TS3PR" title="TS3PR">TS3PR</a>
+</p>
+<h2> <span class="mw-headline" id="Resources">Resources</span></h2>
+<ul><li> <a href="https://simswiki.info/wiki.php?title=Sims_3:DBPF" title="Sims 3:DBPF">Package file format</a>
+</li><li> <a href="https://simswiki.info/wiki.php?title=Sims_3:SIMS3PACK" title="Sims 3:SIMS3PACK">Sims3Pack file format</a>
+</li><li> <a href="https://simswiki.info/wiki.php?title=Sims_3:PackedFileTypes" title="Sims 3:PackedFileTypes">Files by type code</a>
+</li><li> <a href="https://simswiki.info/wiki.php?title=Sims_3:RCOL" title="Sims 3:RCOL">RCOL (scene)</a>
+</li><li> <a href="https://simswiki.info/wiki.php?title=Sims_3:Catalog_Resource" title="Sims 3:Catalog Resource">Catalog resource</a>
+</li><li> <a href="https://simswiki.info/wiki.php?title=Sims_3:Catalog_Resource/StringTable" title="Sims 3:Catalog Resource/StringTable">Catalog resource string table</a>
+</li><li> <a href="https://simswiki.info/wiki.php?title=Sims_3:Key_table" title="Sims 3:Key table">Key table and lists of resource references</a>
+</li><li> <a href="https://simswiki.info/wiki.php?title=Sims_3:Product_GUIDs" title="Sims 3:Product GUIDs">Product GUIDs</a> - Used for installing/uninstalling.
+</li><li> <a href="https://simswiki.info/wiki.php?title=Sims_3:Versions" title="Sims 3:Versions">Version numbers</a>
+</li><li> <a href="https://simswiki.info/wiki.php?title=Sims_3:Locales" title="Sims 3:Locales">Locales</a> - Useful for finding TS3 in the Documents directory, among other things.
+</li><li> Resource Chain
+</li></ul>
+<dl><dd><dl><dd><dl><dd><dl><dd><a href="https://simswiki.info/wiki.php?title=File:Sims_3-ToiletResourceChain.png" class="image"><img alt="Sims 3-ToiletResourceChain.png" src="./Home_files/100px-Sims_3-ToiletResourceChain.png" width="100" height="200"></a>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+<p><br>
+</p>
+<table class="toccolours" align="center" style="margin-bottom:9px">
+
+<tbody><tr>
+<th colspan="2" style="background:#ccf;"> <a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_Advanced_Coding_Tutorials" title="Tutorials:TS3 Advanced Coding Tutorials" class="mw-redirect">Modding Reference</a> by Category
+</th></tr>
+<tr>
+<td colspan="2" style="font-size: 90%;" align="center">
+<p><a href="https://simswiki.info/wiki.php?title=Sims_3:DBPF" title="Sims 3:DBPF"><b>Sims 3 :DBPF</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Sims_3:PackedFileTypes" title="Sims 3:PackedFileTypes"><b>File Types</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Sims_3:RCOL" title="Sims 3:RCOL"><b>RCOL(Scene)</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Sims_3:Catalog_Resource" title="Sims 3:Catalog Resource"><b>Catalog Resource</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Sims_3:Catalog_Resource/StringTable" title="Sims 3:Catalog Resource/StringTable"><b>String Table</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Sims_3:Key_table" title="Sims 3:Key table"><b>Key Table</b></a>&nbsp;|
+<a href="https://simswiki.info/wiki.php?title=TS3PR" title="TS3PR"><b>TS3 Programmer's Reference</b></a>&nbsp;
+</p>
+</td></tr>
+</tbody></table>
+<table class="toccolours" align="center" style="margin-bottom:9px">
+
+<tbody><tr>
+<th colspan="2" style="background:#ccf;"> <a href="https://simswiki.info/wiki.php?title=Sims_3:Modding" title="Sims 3:Modding">Tutorials</a> by Category
+</th></tr>
+<tr>
+<td colspan="2" style="font-size: 90%;" align="center">
+<p><a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_CAS_Tutorials" title="Tutorials:TS3 CAS Tutorials"><b>CAS</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_Pattern_Tutorials" title="Tutorials:TS3 Pattern Tutorials"><b>Patterns</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_Meshing_Tutorials" title="Tutorials:TS3 Meshing Tutorials"><b>Objects</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_Building_Tutorials" title="Tutorials:TS3 Building Tutorials"><b>Building</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_CAW_Tutorials" title="Tutorials:TS3 CAW Tutorials"><b>Worlds</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_General_Modding_Tutorials" title="Tutorials:TS3 General Modding Tutorials"><b>Modding</b></a>&nbsp;| 
+<a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_Advanced_Coding_Tutorials" title="Tutorials:TS3 Advanced Coding Tutorials" class="mw-redirect"><b>Modding Reference</b></a>&nbsp;
+</p>
+</td></tr></tbody></table>
+
+<!-- 
+NewPP limit report
+Preprocessor visited node count: 15/1000000
+Preprocessor generated node count: 48/1000000
+Post-expand include size: 2423/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key simswiki:pcache:idhash:9387-0!*!0!!*!2!* and timestamp 20240203165713 -->
+</div>				<!-- /bodycontent -->
+								<!-- printfooter -->
+				<div class="printfooter">
+				Retrieved from "<a href="https://simswiki.info/index.php?title=Tutorials:TS3_Advanced_Modding_Reference&amp;oldid=72864">http://simswiki.info/index.php?title=Tutorials:TS3_Advanced_Modding_Reference&amp;oldid=72864</a>"				</div>
+				<!-- /printfooter -->
+												<!-- catlinks -->
+				<div id="catlinks" class="catlinks catlinks-allhidden"></div>				<!-- /catlinks -->
+												<div class="visualClear"></div>
+				<!-- debughtml -->
+								<!-- /debughtml -->
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="mw-head" class="noprint">
+			
+<!-- 0 -->
+<div id="p-personal" class="">
+	<h5>Personal tools</h5>
+	<ul>
+		<li id="pt-login"><a href="https://simswiki.info/index.php?title=Special:UserLogin&amp;returnto=Tutorials%3ATS3+Advanced+Coding+Tutorials" title="You are encouraged to log in; however, it is not mandatory [alt-shift-o]" accesskey="o">Log in</a></li>
+	</ul>
+</div>
+
+<!-- /0 -->
+			<div id="left-navigation">
+				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li id="ca-nstab-tutorials" class="selected"><span><a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_Advanced_Modding_Reference">Tutorials</a></span></li>
+					<li id="ca-talk" class="new"><span><a href="https://simswiki.info/index.php?title=Tutorials_Talk:TS3_Advanced_Modding_Reference&amp;action=edit&amp;redlink=1" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+	<h4>
+		</h4>
+	<h5><span>Variants</span><a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_Advanced_Coding_Tutorials#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+			</div>
+			<div id="right-navigation">
+				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_Advanced_Modding_Reference">Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="https://simswiki.info/index.php?title=Tutorials:TS3_Advanced_Modding_Reference&amp;action=edit" title="This page is protected.
+You can view its source [alt-shift-e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="https://simswiki.info/index.php?title=Tutorials:TS3_Advanced_Modding_Reference&amp;action=history" title="Past revisions of this page [alt-shift-h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="https://simswiki.info/wiki.php?title=Tutorials:TS3_Advanced_Coding_Tutorials#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+	<h5><label for="searchInput">Search</label></h5>
+	<form action="https://simswiki.info/index.php" id="searchform">
+				<div>
+			<input type="search" name="search" title="Search SimsWiki [alt-shift-f]" accesskey="f" id="searchInput" autocomplete="off" placeholder="Search">			<input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchGoButton" class="searchButton">			<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton">					<input type="hidden" name="title" value="Special:Search">
+		</div>
+	</form>
+</div>
+
+<!-- /2 -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="mw-panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(http://www.simswiki.info/skins/common/images/WikiLogo3.gif);" href="https://simswiki.info/wiki.php?title=Main_Page" title="Visit the main page"></a></div>
+				<!-- /logo -->
+				
+<!-- navigation -->
+<div class="portal" id="p-navigation">
+	<h5>Navigation</h5>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="https://simswiki.info/wiki.php?title=Main_Page">Home</a></li>
+			<li id="n-Game-Help"><a href="https://simswiki.info/wiki.php?title=Game_Help">Game Help</a></li>
+			<li id="n-Modding-Info"><a href="https://simswiki.info/wiki.php?title=Modding_Info">Modding Info</a></li>
+			<li id="n-Tutorials"><a href="https://simswiki.info/wiki.php?title=Tutorials:Select_Game">Tutorials</a></li>
+			<li id="n-Content-Lists"><a href="https://simswiki.info/wiki.php?title=Custom_Content_Lists">Content Lists</a></li>
+			<li id="n-recentchanges"><a href="https://simswiki.info/wiki.php?title=Special:RecentChanges" title="A list of recent changes in the wiki [alt-shift-r]" accesskey="r">Recent changes</a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- /navigation -->
+
+<!-- game select -->
+<div class="portal" id="p-game_select">
+	<h5>game select</h5>
+	<div class="body">
+		<ul>
+			<li id="n-Sims-2"><a href="https://simswiki.info/wiki.php?title=Sims_2:Main_Page">Sims 2</a></li>
+			<li id="n-Sims-3"><a href="https://simswiki.info/wiki.php?title=Sims_3:Main_Page">Sims 3</a></li>
+			<li id="n-Sims-4"><a href="https://simswiki.info/wiki.php?title=Sims_4:Main_Page">Sims 4</a></li>
+			<li id="n-Sims-Medieval"><a href="https://simswiki.info/wiki.php?title=Medieval:Modding">Sims Medieval</a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- /game select -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal" id="p-tb">
+	<h5>Toolbox</h5>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="https://simswiki.info/wiki.php?title=Special:WhatLinksHere/Tutorials:TS3_Advanced_Modding_Reference" title="A list of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="https://simswiki.info/wiki.php?title=Special:RecentChangesLinked/Tutorials:TS3_Advanced_Modding_Reference" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="https://simswiki.info/wiki.php?title=Special:SpecialPages" title="A list of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="https://simswiki.info/index.php?title=Tutorials:TS3_Advanced_Modding_Reference&amp;printable=yes" rel="alternate" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="https://simswiki.info/index.php?title=Tutorials:TS3_Advanced_Modding_Reference&amp;oldid=72864" title="Permanent link to this revision of the page">Permanent link</a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+		<!-- footer -->
+		<div id="footer">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 11 March 2021, at 06:14.</li>
+											<li id="footer-info-viewcount">This page has been accessed 178,233 times.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="https://simswiki.info/wiki.php?title=SimsWiki:Privacy_policy" title="SimsWiki:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="https://simswiki.info/wiki.php?title=SimsWiki:About" title="SimsWiki:About">About SimsWiki</a></li>
+											<li id="footer-places-disclaimer"><a href="https://simswiki.info/wiki.php?title=SimsWiki:General_disclaimer" title="SimsWiki:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-poweredbyico">
+						<a href="https://www.mediawiki.org/"><img src="./Home_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31"></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+		<script type="text/javascript">if(window.mw){
+mw.loader.state({"site":"loading","user":"missing","user.groups":"ready"});
+}</script>
+<script src="./Home_files/load(5).php" type="text/javascript"></script>
+<script type="text/javascript">if(window.mw){
+mw.loader.load(["mediawiki.user","mediawiki.page.ready","mediawiki.searchSuggest"], null, true);
+}</script>
+<script src="./Home_files/load(6).php" type="text/javascript"></script>
+<!-- Served in 0.086 secs. --><style>
+#bottomanchoradtag {
+    position: fixed;
+    bottom: 0;
+    align: center;
+    text-align: center;
+    height: 90px;
+    width: 100%;
+}
+#bottomanchoradtag > .ad-tag {
+    margin: 0 auto;
+    max-width: 970px;
+    height: 90px;
+    z-index: 1000;
+}
+</style>
+<div id="bottomanchoradtag">
+</div>
+
+	
+
+<script>(() => {
+        window.addoncropExtensions = window.addoncropExtensions || [];
+        window.addoncropExtensions.push({
+            mode: 'emulator',
+            emulator: 'Foxified',
+            extension: {
+                id: 44,
+                name: 'Programa de transferência de MP3 e vídeos do YouTube',
+                version: '17.2.8',
+                date: 'January 30, 2024',
+            },
+            flixmateConnected: false,
+        });
+    })();</script><script src="./Home_files/load(7).php" type="text/javascript"></script><div class="suggestions" style="display: none; font-size: 13.3333px;"><div class="suggestions-results"></div><div class="suggestions-special"></div></div></body></html>
