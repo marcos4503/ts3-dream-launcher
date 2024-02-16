@@ -74,6 +74,7 @@ I would like to thank the following people or entities for providing components 
 - <a href="https://github.com/LazyDuchess" target="_blank">Lazy Duchess</a> - By Intel Alder Lake Patcher, Intel Fix and its amazing mods!
 - <a href="https://github.com/secana" target="_blank">Stefan Hausotte</a> - By the <a href="https://github.com/secana/PeNet" target="_blank">PeNET</a> library that allows patching of executables.
 - <a href="https://sourceforge.net/u/pljones/profile/" target="_blank">Peter L Jones</a> - By the <a href="https://sourceforge.net/projects/s3pi/files/" target="_blank">S3PI</a> library that allows to edit game files.
+- <a href="https://github.com/lolp1" target="_blank">Jacob Kemple</a> - By the <a href="https://github.com/lolp1/Overlay.NET" target="_blank">Overlay.NET</a> library that allows easy DirectX Overlay renderization.
 
 # Support projects like this
 
