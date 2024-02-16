@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cQmK/Kmn37wR34JhkBaL91pV1LWt7aAz4j6DK+VLZ4QvPcBn+LZ4h519zEurJQI1fOYVGj4JSF+5FMMwhzTQkg==",
+  "dgSpecHash": "WiMDinQWYu+AZqMAreKLpJCa981ldyemDieRp4rMfDMj4RxnHlCPEkYW6evrj8ER2m4eXhaVqrnYiNLjLw5N/w==",
   "success": true,
-  "projectFilePath": "D:\\Visual-Studio\\TS3 Dream Launcher\\TS3 Dream Launcher.csproj",
+  "projectFilePath": "D:\\!GitHub-Repo\\ts3-dream-launcher\\Dream-Launcher-Source\\TS3 Dream Launcher.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\junio\\.nuget\\packages\\coroutinesforwpf\\0.3.0\\coroutinesforwpf.0.3.0.nupkg.sha512",
     "C:\\Users\\junio\\.nuget\\packages\\dotnetzip\\1.16.0\\dotnetzip.1.16.0.nupkg.sha512",
