@@ -1,0 +1,6 @@
+1. Compile "Dl3DxOverlay", "Sims3Launcher" and "TS3 Dream Launcher" modules
+2. Get "release" resultant files
+3. Merge all files in a folder
+4. Zip all files
+5. Load the resultante zip file to github with the name of "launcher-current-compilation.zip" on folder "Repository-Pages"
+6. Update the file "launcher-current-version.txt" to have the current version string.
