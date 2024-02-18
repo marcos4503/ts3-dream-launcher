@@ -340,6 +340,23 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://lazyduchess.tumblr.com/post/658637646732623872/ts3-cat-dog-visual-addons",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-cat-and-dog-add-ons.zip"
+        },
+
+
+
+
+
+        {
+            "name": "The Sims 2 Musics",
+            "category": "SOUNDS",
+            "author": "mypantsfelldown",
+            "description_enUS": "Adds songs from The Sims 2 base to the game. Adds music for purchase mode, construction mode, CAS, menu, neighborhood, loading screen, stereo and more!",
+            "description_ptBR": "Adiciona ao jogo, as músicas do The Sims 2 base. Adiciona as músicas do modo compra, modo construção, CAS, menu, vizinhança, tela de carregamento, aparelho de som e mais!",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/647087/sims-2-music-the-redux.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.002 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.003 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.004 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.005 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.006 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.007 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.008 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.009"
         }
     ]
 }
