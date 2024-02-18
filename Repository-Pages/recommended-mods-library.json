@@ -316,6 +316,18 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://modthesims.info/d/634199/snow-but-better-snow-replacement-mod.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-snow-but-better.zip"
+        },
+        {
+            "name": "Project Eden",
+            "category": "GRAPHICS",
+            "author": "Boring Bones Tv",
+            "description_enUS": "It replaces many of the game's default textures in the neighborhood category, making streets, rocks, vegetation, terrain and other things more beautiful.",
+            "description_ptBR": "Substitui muitas das texturas padrões do jogo na categoria de vizinhança, deixando ruas, pedras, vegetações, terrenos e outras coisas mais bonitas.",
+            "requiredEps": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.patreon.com/boringbonestv",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-project-eden.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-project-eden.zip.002 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-project-eden.zip.003"
         }
     ]
 }
