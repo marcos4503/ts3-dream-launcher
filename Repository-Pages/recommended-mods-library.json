@@ -328,6 +328,18 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://www.patreon.com/boringbonestv",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-project-eden.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-project-eden.zip.002 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-project-eden.zip.003"
+        },
+        {
+            "name": "Cat & Dog Visual Addons",
+            "category": "GRAPHICS",
+            "author": "Lazy Duchess",
+            "description_enUS": "Improves the visual textures of Pets, making them more beautiful and with more details. Furthermore, now the Pets have mustaches and their eyes also look prettier.",
+            "description_ptBR": "Aprimora as texturas de visuais dos Pets deixando-as mais bonitas e com mais detalhes. Além disso, agora os Pets tem bigodes e seus olhos também parecem mais bonitos.",
+            "requiredEps": [ 5 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://lazyduchess.tumblr.com/post/658637646732623872/ts3-cat-dog-visual-addons",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-cat-and-dog-add-ons.zip"
         }
     ]
 }
