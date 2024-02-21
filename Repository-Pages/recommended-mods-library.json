@@ -341,6 +341,18 @@
             "pageUrl": "https://lazyduchess.tumblr.com/post/658637646732623872/ts3-cat-dog-visual-addons",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-cat-and-dog-add-ons.zip"
         },
+        {
+            "name": "High Definition Bubbles",
+            "category": "GRAPHICS",
+            "author": "xiasimla",
+            "description_enUS": "Enhances thought and speech bubbles so they have better visual quality, even while the camera is close to Sims.",
+            "description_ptBR": "Aprimora os balões de pensamento e fala para que possuam uma melhor qualidade visual, mesmo enquanto a câmera está próxima dos Sims.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://xiasimla.tumblr.com/post/655598304120438784/higher-quality-default-replacements-for-ts3",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-high-definition-bubbles.zip"
+        },
 
 
 
