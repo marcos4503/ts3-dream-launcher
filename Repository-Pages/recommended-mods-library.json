@@ -377,6 +377,18 @@
             "pageUrl": "https://modthesims.info/d/420063/wall-floor-hider.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-wall-floor-hider.zip"
         },
+        {
+            "name": "Baby Little Wisps Hair",
+            "category": "GRAPHICS",
+            "author": "QuizicalGin",
+            "description_enUS": "This mod makes newborn babies have little wisps hair. This way, it is possible to see part of the newborn Sim's genetics from an early age.",
+            "description_ptBR": "Este mod faz com que os bebês recem-nascidos tenham pequenas mechas de cabelos. Dessa forma, já é possível ver desde cedo uma parte da genética do Sim recem-nascido.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://quizicalgin.tumblr.com/post/64541973996/presenting-the-little-wisps-hair-for-your-babes",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-little-wisps-hair.zip"
+        },
 
 
 
