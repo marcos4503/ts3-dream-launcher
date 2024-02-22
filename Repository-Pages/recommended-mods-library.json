@@ -389,6 +389,18 @@
             "pageUrl": "https://quizicalgin.tumblr.com/post/64541973996/presenting-the-little-wisps-hair-for-your-babes",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-little-wisps-hair.zip"
         },
+        {
+            "name": "White Formula",
+            "category": "GRAPHICS",
+            "author": "daluved1",
+            "description_enUS": "Replaces the default texture of the game's baby bottles, which makes the contents of the baby bottles green. With this mod, the contents of the baby bottles will be white.",
+            "description_ptBR": "Substitui a textura padrão das mamadeiras do jogo, aos quais fazem o conteúdo das mamadeiras serem verdes. Com este mod, o conteúdo das mamadeiras será branco.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/391044/white-formula-default-replacement-bottle.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-white-formula.zip"
+        },
 
 
 
