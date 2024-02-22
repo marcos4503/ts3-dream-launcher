@@ -365,6 +365,18 @@
             "pageUrl": "https://modthesims.info/d/646181/the-sims-3-modern-loading-screen.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-modern-loading-screen.zip"
         },
+        {
+            "name": "Wall and Floor Hider",
+            "category": "GRAPHICS",
+            "author": "HugeLunatic",
+            "description_enUS": "It groups floors and walls that are very similar, that is, they are basically recolored versions. This mod groups all these repeated floors and walls into a single group for each different floor and wall, better organizing the shopping mode and making it easier to find floors and walls for your home. This version includes both flavors of this mod within a single package.",
+            "description_ptBR": "Agrupa pisos e paredes que são muito similares, ou seja, basicamente são versões recoloridas. Este mod agrupa todos esses pisos e paredes repetidos dentro de um único grupo para cada piso e parede diferente, organizando melhor o modo compra e deixando mais fácil encontrar pisos e paredes para sua casa. Esta versão inclui os dois sabores deste mod dentro de um único pacote.",
+            "requiredEps": [ 2 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/420063/wall-floor-hider.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-wall-floor-hider.zip"
+        },
 
 
 
@@ -374,7 +386,7 @@
             "name": "The Sims 2 Musics",
             "category": "SOUNDS",
             "author": "mypantsfelldown",
-            "description_enUS": "Adds songs from The Sims 2 base to the game. Adds music for purchase mode, construction mode, CAS, menu, neighborhood, loading screen, stereo and more!",
+            "description_enUS": "Adds songs from The Sims 2 base, to the game. Adds music for purchase mode, construction mode, CAS, menu, neighborhood, loading screen, stereo and more!",
             "description_ptBR": "Adiciona ao jogo, as músicas do The Sims 2 base. Adiciona as músicas do modo compra, modo construção, CAS, menu, vizinhança, tela de carregamento, aparelho de som e mais!",
             "requiredEps": [ ],
             "requiredRecommendedModFiles": [ ],
