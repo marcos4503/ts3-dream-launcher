@@ -378,16 +378,16 @@
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-enchanted-sky.zip"
         },
         {
-            "name": "High Definition Bubbles",
+            "name": "Clean User Interface",
             "category": "GRAPHICS",
-            "author": "xiasimla",
-            "description_enUS": "Enhances thought and speech bubbles so they have better visual quality, even while the camera is close to Sims.",
-            "description_ptBR": "Aprimora os balões de pensamento e fala para que possuam uma melhor qualidade visual, mesmo enquanto a câmera está próxima dos Sims.",
-            "requiredEps": [ ],
+            "author": "Justmiha97",
+            "description_enUS": "Updates The Sims 3 User Interface to have a cleaner, nicer, more modern look. This is a BETA mod and for now, only 30% of the game's interface has been updated by the creator of this mod.",
+            "description_ptBR": "Atualiza a Interface de Usuário do The Sims 3 para ter uma aparência mais limpa, bonita e moderna. Este é um mod BETA e por hora, apenas 30% da Interface do jogo foi atualizada pelo criador deste mod.",
+            "requiredEps": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ],
             "requiredRecommendedModFiles": [ ],
             "requiredPatchModFiles": [ ],
-            "pageUrl": "https://xiasimla.tumblr.com/post/655598304120438784/higher-quality-default-replacements-for-ts3",
-            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-high-definition-bubbles.zip"
+            "pageUrl": "https://www.tumblr.com/justmiha97/641940442089439232/clean-ui-13-beta-release",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-clean-user-interface.zip"
         },
         {
             "name": "Modern Loading Screen",
@@ -400,6 +400,18 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://modthesims.info/d/646181/the-sims-3-modern-loading-screen.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-modern-loading-screen.zip"
+        },
+        {
+            "name": "High Definition Bubbles",
+            "category": "GRAPHICS",
+            "author": "xiasimla",
+            "description_enUS": "Enhances thought and speech bubbles so they have better visual quality, even while the camera is close to Sims.",
+            "description_ptBR": "Aprimora os balões de pensamento e fala para que possuam uma melhor qualidade visual, mesmo enquanto a câmera está próxima dos Sims.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://xiasimla.tumblr.com/post/655598304120438784/higher-quality-default-replacements-for-ts3",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-high-definition-bubbles.zip"
         },
         {
             "name": "Wall and Floor Hider",
