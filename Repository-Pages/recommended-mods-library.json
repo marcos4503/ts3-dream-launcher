@@ -401,6 +401,18 @@
             "pageUrl": "https://modthesims.info/d/391044/white-formula-default-replacement-bottle.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-white-formula.zip"
         },
+        {
+            "name": "Enchanted Sky and Moon",
+            "category": "GRAPHICS",
+            "author": "wasset",
+            "description_enUS": "Makes rainbows, clouds, night sky, sun and moon more beautiful and realistic.",
+            "description_ptBR": "Deixa os arco-íris, núvens, céu noturno, sol e lua mais bonitos e realistas.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.tumblr.com/champagnesimmidos/154006356297/wasset-aseskara-enchanted-environment-sky-mod",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-enchanted-sky.zip"
+        },
 
 
 
