@@ -470,6 +470,18 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://modthesims.info/d/516348/fixes-for-three-ea-wall-sets-from-the-base-game-and-ambitions.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-ambitions-pilaster-molding-paneling-wall-fix.zip"
+        },
+        {
+            "name": "Half Walls Fix",
+            "category": "FIXES",
+            "author": "simsi45",
+            "description_enUS": "Fixes the corners of the game's half walls so that they have a better finish, instead of the game's default choppy and strange finish.",
+            "description_ptBR": "Corrige as quinas das meias paredes do jogo para que possuam um melhor acabamento, ao invés do acabamento cortado e estranho padrão do jogo.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/597434/base-game-half-walls-fixed.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-half-walls-fix.zip"
         }
     ]
 }
