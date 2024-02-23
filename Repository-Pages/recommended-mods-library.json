@@ -511,8 +511,8 @@
             "name": "Simply Stylish Wall Fix",
             "category": "FIXES",
             "author": "armiel",
-            "description_enUS": "Fixes the rotation angle of the Simply Stylish brick wall.",
-            "description_ptBR": "Corrige o ângulo de rotação da parede de tijolos Simplesmente Elegante.",
+            "description_enUS": "Fixes the rotation angle for textures in the Simply Stylish brick wall.",
+            "description_ptBR": "Corrige o ângulo de rotação das texturas na parede de tijolos Simplesmente Elegante.",
             "requiredEps": [ 6 ],
             "requiredRecommendedModFiles": [ ],
             "requiredPatchModFiles": [ ],
@@ -530,6 +530,42 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://modthesims.info/d/632205/itf-perigee-planter-fix.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-fence-future-planter-fix.zip"
+        },
+        {
+            "name": "Random Sim Fixes",
+            "category": "FIXES",
+            "author": "LazyDuchess",
+            "description_enUS": "Fixes several elements when it comes to Sims. This mod improves the generation of Sims, reducing the number of Sims with puding faces, prevents Sims from having clothes from the future in standard cities, the variation in voices is greater, there are more variations in physical fitness, Sims age with new clothes and others details that make sense. All this and more!",
+            "description_ptBR": "Corrige vários elementos no que se diz respeito a Sims. Este mod aprimora a geração de Sims, reduzindo a quantidade de Sims com caras redondas, impede que Sims possuam roupas do futuro em cidades padrões, a variação de vozes é maior, há mais variações de condicionamento físico, os Sims envelhecem com novas roupas e outros detalhes que fazem sentido. Tudo isso e mais!",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/670722/random-sim-fixes-2-0.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-random-sim-fixes.zip"
+        },
+        {
+            "name": "Walk Cycle Edits",
+            "category": "FIXES",
+            "author": "simbouquet",
+            "description_enUS": "Fixes several anomalies in Sims' facial animations or movement animation details. An example is the correction of Sims smiling, even if they are not in a bad mood.",
+            "description_ptBR": "Corrige várias anomalias nas animações faciais ou detalhes de animações de movimento dos Sims. Um exemplo é a correção dos Sims andarem sorrindo, mesmo que não estejam de mal humor.",
+            "requiredEps": [ 7, 9, 11 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/669462/walk-cycle-edits.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-walk-cycle-edits-fix.zip"
+        },
+        {
+            "name": "Excavation Site Fix",
+            "category": "FIXES",
+            "author": "Buzzler",
+            "description_enUS": "Fixes bugs and issues that can occur when a Sim is commanded to excavate a certain location in the world. This mod prevents problems from happening and preventing you from receiving the treasure.",
+            "description_ptBR": "Corrige os erros e problemas que podem acontecer quando um Sim é comandado a escavar um determinado local no mundo. Este mod impede que problemas venham a acontecer e impeçam o recebimento do tesouro.",
+            "requiredEps": [ 1 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/411913/excavation-site-hotfix.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-excavation-site-fix.zip"
         }
     ]
 }
