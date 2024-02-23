@@ -566,6 +566,47 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://modthesims.info/d/411913/excavation-site-hotfix.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-excavation-site-fix.zip"
+        },
+
+
+
+
+
+        {
+            "name": "Always Put Books Away",
+            "category": "GAMEPLAY",
+            "author": "Twoftmama",
+            "description_enUS": "Makes Sims more likely to store books that are scattered around the house on floors, tables, or counters.",
+            "description_ptBR": "Faz com que os Sims sejam mais propensos a guardar livros que estejam espalhados pela casa no chão, mesas ou em balcões.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://simsasylum.com/tfm/index.php?/topic/8567-always-put-books-away-v6-updated-february-2-2014/",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-always-put-books-away.zip"
+        },
+        {
+            "name": "Faster Toddler Training",
+            "category": "GAMEPLAY",
+            "author": "Twoftmama",
+            "description_enUS": "Changes the training time for baby Sims to adult Sims, making training babies up to 70% faster.",
+            "description_ptBR": "Altera o tempo de treinamento de Sims bebês pelos Sims adultos, fazendo com que o treinamento de bebês seja até 70% mais rápido.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://simsasylum.com/tfm/index.php?/topic/7872-faster-toddler-training-v5-4-flavors-updated-october-28-2013/",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-faster-toddler-training.zip"
+        },
+        {
+            "name": "Less Frequent Male Pregnancy",
+            "category": "GAMEPLAY",
+            "author": "WTFeathers",
+            "description_enUS": "Reduces how often male Sims abducted by aliens can become pregnant. The chance of pregnancy is reduced from 33% to 16%.",
+            "description_ptBR": "Reduz a frequência com que Sims homens abduzidos por alienigenas possam engravidar. A chance de gravidez é reduzida de 33% para 16%.",
+            "requiredEps": [ 8 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/492913/less-more-frequent-male-pregnancy.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-low-male-pregnancy-chance.zip"
         }
     ]
 }
