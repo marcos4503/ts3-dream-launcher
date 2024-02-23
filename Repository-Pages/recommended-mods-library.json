@@ -441,6 +441,35 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://modthesims.info/d/647087/sims-2-music-the-redux.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.002 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.003 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.004 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.005 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.006 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.007 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.008 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-the-sims-2-basegame-musics.zip.009"
+        },
+
+
+
+
+
+        {
+            "name": "Foundation Wall Fix",
+            "category": "FIXES",
+            "author": "Buckley",
+            "description_enUS": "This mod brings a fix for the coloring issue of one of the game's foundation walls.",
+            "description_ptBR": "Este mod traz uma correção para o problema de coloração de uma das paredes de fundação do jogo.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/516348/fixes-for-three-ea-wall-sets-from-the-base-game-and-ambitions.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-foundation-wall-fix.zip"
+        },
+        {
+            "name": "Ambitions Pilaster, Molding and Paneling Wall Fix",
+            "category": "FIXES",
+            "author": "Buckley",
+            "description_enUS": "This mod brings corrections to the positioning of wall textures on pilasters, walls and frames for the items introduced by the Ambitions Expansion Pack.",
+            "description_ptBR": "Este mod traz correções de posicionamento de texturas de paredes em pilastras, paredes e molduras para os itens intruduzidos pelo Pacote de Expansão Ambições.",
+            "requiredEps": [ 2 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/516348/fixes-for-three-ea-wall-sets-from-the-base-game-and-ambitions.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-ambitions-pilaster-molding-paneling-wall-fix.zip"
         }
     ]
 }
