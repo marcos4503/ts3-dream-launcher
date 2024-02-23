@@ -482,6 +482,30 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://modthesims.info/d/597434/base-game-half-walls-fixed.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-half-walls-fix.zip"
+        },
+        {
+            "name": "Horizontal Timbered Walls Fix",
+            "category": "FIXES",
+            "author": "Havelock",
+            "description_enUS": "Fixes the Normal Maps (basically the differences in depth and color) of the game's log walls.",
+            "description_ptBR": "Corrige os Normal Maps (basicamente as diferenças de profundidade e coloração) das paredes de toras de madeiras do jogo.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/479709/fix-for-the-normalmaps-on-horizontal-timbered-wall-set.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-horizontal-timbered-wall-fix.zip"
+        },
+        {
+            "name": "Horizontal Clapboard Fix",
+            "category": "FIXES",
+            "author": "CircusWolf",
+            "description_enUS": "Fixes the colors and inversion of the game's wooden calpboard walls.",
+            "description_ptBR": "Corrige a coloração e inversão das paredes de ripa de madeira do jogo.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/653768/horizontal-clapboard-fixed.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-horizontal-clapboard-fix.zip"
         }
     ]
 }
