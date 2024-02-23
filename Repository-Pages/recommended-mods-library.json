@@ -506,6 +506,30 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://modthesims.info/d/653768/horizontal-clapboard-fixed.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-horizontal-clapboard-fix.zip"
+        },
+        {
+            "name": "Simply Stylish Wall Fix",
+            "category": "FIXES",
+            "author": "armiel",
+            "description_enUS": "Fixes the rotation angle of the Simply Stylish brick wall.",
+            "description_ptBR": "Corrige o ângulo de rotação da parede de tijolos Simplesmente Elegante.",
+            "requiredEps": [ 6 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/471072/sht-simply-stylish-wall-fence-fixed.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-simply-stylish-wall-fix.zip"
+        },
+        {
+            "name": "Perigee Planter Fix",
+            "category": "FIXES",
+            "author": "heaven",
+            "description_enUS": "Fixes incorrect placement of snow on one of the game's fences, added by the 'Into The Future' Expansion Pack.",
+            "description_ptBR": "Corrige o posicionamento incorreto da neve sobre uma das cercas do jogo, adicionada pelo Pacote de Expansão 'No Futuro'.",
+            "requiredEps": [ 11 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/632205/itf-perigee-planter-fix.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-fence-future-planter-fix.zip"
         }
     ]
 }
