@@ -631,6 +631,42 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://modthesims.info/d/492913/less-more-frequent-male-pregnancy.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-low-male-pregnancy-chance.zip"
+        },
+        {
+            "name": "Bills Rebalanced",
+            "category": "GAMEPLAY",
+            "author": "marcos4503",
+            "description_enUS": "This mod means that bills only arrive on Monday, instead of 2 days a week. The value of the bills increased to 3% of the family's assets (furnished property + funds). Roommates now make payments on Fridays and only pay 25% of what they originally paid.",
+            "description_ptBR": "Este mod faz com que as contas cheguem somente na Segunda-Feira, ao invés de 2 dias na semana. O valor das contas aumentou para 3% do patrimônio da família (propriedade mobiliada + fundos). Colegas de quarto agora fazem pagamentos nas Sextas-Feiras e só pagam 25% do que pagavam originalmente.",
+            "requiredEps": [ 1, 3, 9 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-bills-rebalanced.zip"
+        },
+        {
+            "name": "Writing is Hard and No Payment For Partial Submissions",
+            "category": "GAMEPLAY",
+            "author": "analect",
+            "description_enUS": "This mod does not allow your Sims to receive payments for partial submissions of their work as a writer. The speed at which Sims write is reduced, and the number of weeks that Sims receive royalties is increased to 8, instead of 6. Additionally, the chances of creating a bestseller are reduced.",
+            "description_ptBR": "Este mod não permite que seus Sims recebam pagamentos por envios parciais de seu trabalho como escritor. A velocidade no qual os Sims escrevem é reduzida, e a quantidade de semanas as quais os Sims recebem royalties é aumentada para 8, ao invés de 6. Além disso, as chances de criar um best-seller são reduzidas.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/484590/writing-is-hard-no-payment-for-partial-submissions-updated-to-1-67.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-writing-no-payments-for-partial-submissions.zip"
+        },
+        {
+            "name": "Claw Machine Nerfed",
+            "category": "GAMEPLAY",
+            "author": "marcos4503",
+            "description_enUS": "The Claaaaaw! The Claw Machine has been nerfed. Now she doesn't drop bags of money worth more than §100. Additionally, prizes worth more than §200 when sold have been removed.",
+            "description_ptBR": "O Gaaaaarra! A Máquina de Garra foi nerfada. Agora ela não solta sacos de dinheiro com valores superiores a §100. Além disso, os prêmios que valem mais de §200 ao serem vendidos foram removidos.",
+            "requiredEps": [ 7 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-claw-machine-nerfed.zip"
         }
     ]
 }
