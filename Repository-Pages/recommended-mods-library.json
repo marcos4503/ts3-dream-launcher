@@ -579,6 +579,18 @@
             "pageUrl": "https://modthesims.info/d/432449/mood-hotfix-with-optional-harder-mood-flavor.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-mood-fix.zip"
         },
+        {
+            "name": "Hanging Lantern Fix",
+            "category": "FIXES",
+            "author": "heaven",
+            "description_enUS": "Fixes issue with Sims not being able to pass under some overhead lanterns in the game.",
+            "description_ptBR": "Corrige o problema dos Sims não conseguirem passar por baixo de algumas lanternas suspensas do jogo.",
+            "requiredEps": [ 10 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/633994/hanging-lantern-fix.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-hanging-lantern-fix.zip"
+        },
 
 
 
