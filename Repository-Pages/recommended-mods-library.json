@@ -579,18 +579,6 @@
             "pageUrl": "https://modthesims.info/d/432449/mood-hotfix-with-optional-harder-mood-flavor.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-mood-fix.zip"
         },
-        {
-            "name": "Mood Fix",
-            "category": "FIXES",
-            "author": "Buzzler",
-            "description_enUS": "This mod will fix a bug that has been in the game since the 'Late Night' Expansion Pack and which causes some mood modifiers to not be applied correctly, the main case being the 'Well Rested' modifier which is not applied correctly to the Sim's mood. Note that this Mod may have an impact on your game's performance if your computer has older hardware. Test it before definitely using it.",
-            "description_ptBR": "Este mod irá corrigir um bug que está no jogo desde o Pacote de Expansão 'Caindo na Noite' e que faz com alguns modificadores de humor não sejam aplicados corretamente, o principal caso é o do modificador 'Bem Descansado' que não é aplicado corretamente ao humor do Sim. Note que este Mod pode ter um impacto no desempenho do seu jogo, se o seu computador possui um hardware mais antigo. Teste-o antes de usar definitivamente.",
-            "requiredEps": [ 3 ],
-            "requiredRecommendedModFiles": [ ],
-            "requiredPatchModFiles": [ ],
-            "pageUrl": "https://modthesims.info/d/432449/mood-hotfix-with-optional-harder-mood-flavor.html",
-            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-mood-fix.zip"
-        },
 
 
 
