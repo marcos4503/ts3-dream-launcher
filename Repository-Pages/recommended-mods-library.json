@@ -660,13 +660,80 @@
             "name": "Claw Machine Nerfed",
             "category": "GAMEPLAY",
             "author": "marcos4503",
-            "description_enUS": "The Claaaaaw! The Claw Machine has been nerfed. Now she doesn't drop bags of money worth more than §100. Additionally, prizes worth more than §200 when sold have been removed.",
-            "description_ptBR": "O Gaaaaarra! A Máquina de Garra foi nerfada. Agora ela não solta sacos de dinheiro com valores superiores a §100. Além disso, os prêmios que valem mais de §200 ao serem vendidos foram removidos.",
+            "description_enUS": "The Claaaaaw! The Claw Machine has been nerfed. Now she doesn't drop bags of money worth more than §100. Additionally, prizes worth more than §200 when sold have been removed. Her price is also increased to §50,000 to discourage purchasing her in normal lots.",
+            "description_ptBR": "O Gaaaaarra! A Máquina de Garra foi nerfada. Agora ela não solta sacos de dinheiro com valores superiores a §100. Além disso, os prêmios que valem mais de §200 ao serem vendidos foram removidos. O preço dela também é aumentado para §50.000 para desensentivar a compra dela em lotes normais.",
             "requiredEps": [ 7 ],
             "requiredRecommendedModFiles": [ ],
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-claw-machine-nerfed.zip"
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {
+            "name": "Porter",
+            "category": "OTHERS",
+            "author": "NRaas",
+            "description_enUS": "This mod serves as a replacement for the game standard Sim/Family Export and Import system. With this mod, you are able to export entire families maintaining their relationships, and even ancestors, like dead Sims. When you click on occupied lots, you will see the 'NRaas > Porter > Pack' interaction to start the Families export interaction. On unoccupied lots, you will see the 'NRaas > Porter > Unpack' interaction to start the Families import interaction. NOTE: Make sure you read and learn how to use this mod before using it. Click on the 3 dots on the side and click and access this mod page to learn more about it.",
+            "description_ptBR": "Este mod serve como um substituto ao sistema padrão de Exportação e Importação de Sims/Famílias do jogo. Com este mod, você é capaz de exportar famílias inteiras mantendo seus relacionamentos, e até mesmo antepaçados, como os Sims mortos. Ao clicar em lotes ocupados, você verá a interação 'NRaas > Porter > Empacotar e Exportar' para iniciar a interação de exportação de Famílias. Em lotes desocupados, você verá a interação 'NRaas > Porter > Importar' para iniciar a interação de importação de Famílias. NOTA: Certifique-se de ler e aprender a como usar este mod, antes de usa-lo. Clique nos 3 pontos ao lado e clique e acesse a página deste mod para aprender mais sobre ele.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.nraas.net/community/Porter-FAQ",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-porter.zip"
         }
     ]
 }
