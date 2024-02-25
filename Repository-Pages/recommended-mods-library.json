@@ -776,6 +776,42 @@
             "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-lottery-nerfed.zip"
         },
+        {
+            "name": "Magic Gnomes Nerfed",
+            "category": "GAMEPLAY",
+            "author": "marcos4503",
+            "description_enUS": "Magical Gnomes are furniture that spawn around the world, with a small chance, whenever a certain action is performed. For example, whenever a dog barks at a refrigerator, there is a 0.1% chance that a Gnome will spawn in front of the refrigerator, whenever Sims hooray in spring, there is a chance that a Spring Gnome will spawn, and so on. The problem is that in many cases the appearance of these Gnomes can be common and by selling each of them it is possible to get §1,000 for each. This mod reduces the sale value of each gnome to just §150.",
+            "description_ptBR": "Os Gnomos Mágicos são mobilhas que spawnam pelo mundo, com uma pequena chance, sempre que uma determinada ação é executada. Por exemplo, sempre que um cachorro late para uma geladeira, há 0.1% de chance de um Gnomo spawnar em frente a geladeira, sempre que os Sims fazem oba-oba na primavera, há uma chance de um Gnomo da primavera spawnar e assim por diante. O problema é que em muitos casos pode ser comum a aparição destes Gnomos e ao vender cada um deles é possível conseguir §1.000 em cada. Esse mod reduz o valor de venda de cada gnomo para apenas §150.",
+            "requiredEps": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-magic-gnomes-nerfed.zip"
+        },
+        {
+            "name": "Minimum Wage Remastered and Realistic",
+            "category": "GAMEPLAY",
+            "author": "EvelynnMama",
+            "description_enUS": "This mod does the job of reducing the minimum wage for jobs in The Sims 3. In some situations, the working hours are also slightly extended. This helps to add additional realism to the game so that the game becomes more challenging and enjoyable when achieving personal goals! The salary reduction is on average 50%.",
+            "description_ptBR": "Este mod faz o trabalho de reduzir o salário mínimo dos trabalhos do The Sims 3. Em algumas situações, a carga horária do trabalho também é um pouco extendida. Isso ajuda a dar um realismo adicional para o jogo de modo que o jogo se torne mais desafiante e prazeroso ao se cumprir os objetivos pessoais! A redução de salário é de em média 50%.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/download.php?t=657165",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-minimum-wage-remastered-and-realistic.zip"
+        },
+        {
+            "name": "Less Wage Active Careers and Expensive Boarding School-University",
+            "category": "GAMEPLAY",
+            "author": "Madam Doofie",
+            "description_enUS": "This mod aims to make boarding schools MUCH more expensive, universities more expensive, like in real life, adjusts the salary for independent careers (it's still higher than normal careers) and greatly increases university bonuses as well.",
+            "description_ptBR": "Este mod tem o objetivo de deixar internatos MUITO mais caros, universidades mais caras, como na vida real, ajusta o salário das carreiras autonômas (ainda é superior do que as carreiras normais) e aumenta muito as bonificações de universidade também.",
+            "requiredEps": [ 9 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/490587/now-compatible-1-67-minimum-wage-more-realistic-earnings-higher-tuition-higher-boarding-school-costs-higher-grant-money.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-less-wage-active-careers-and-expensive-boarding-school-university.zip"
+        },
 
 
 
