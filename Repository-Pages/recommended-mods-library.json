@@ -746,6 +746,30 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://www.nraas.net/Tagger-FAQ",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-tagger.zip"
+        },
+        {
+            "name": "Saver",
+            "category": "OTHERS",
+            "author": "NRaas",
+            "description_enUS": "Reminds you from time to time to save your game. In the default setting, the mod will remind you to save the game every 30 minutes of real-life time.",
+            "description_ptBR": "Te lembra de tempos em tempos a salvar o seu jogo. Na configuração padrão, o mod te lembrará de salvar o jogo a cada 30 minutos do tempo da vida real.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.nraas.net/community/Saver-Interactions",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-saver.zip"
+        },
+        {
+            "name": "Add Any Lot Size",
+            "category": "OTHERS",
+            "author": "velocitygrass",
+            "description_enUS": "Allows you to add new Lot formats of any size between 1x1 and 64x64. To do this you just need to use the cheat 'AddLotSize <size> <size>', for example 'AddLotSize 33 20'. The mod already adds sizes 40x30 and 50x40 by default.",
+            "description_ptBR": "Permite que você adicione novos formatos de Lotes de qualquer tamanho entre 1x1 e 64x64. Para isso você só precisa usar o cheat 'AddLotSize <tamanho> <tamanho>', por exemplo 'AddLotSize 33 20'. O mod já adiciona por padrão os tamanhos 40x30 e 50x40.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/471164/add-any-lot-size-edited-01-16-2014.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-add-any-lot-size.zip"
         }
     ]
 }
