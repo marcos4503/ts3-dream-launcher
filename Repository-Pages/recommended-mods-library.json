@@ -740,6 +740,42 @@
             "pageUrl": "https://modthesims.info/d/486737/lower-higher-lifetime-reward-prices-updated-10-24-2013-for-1-63.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-higher-lifetime-rewards.zip"
         },
+        {
+            "name": "Harder Fame",
+            "category": "GAMEPLAY",
+            "author": "Mogilated",
+            "description_enUS": "This mod makes becoming a celebrity much more difficult. Now, Sims will no longer become celebrities just by leveling up a skill. Ordinary jobs will grant very little or no celebrity advancement, however, jobs related to entertainment and creativity will grant more fame advancement. Having many friends or romances are actions that will grant more fame progress.",
+            "description_ptBR": "Este mod torna muito mais difícil se tornar uma celebridade. Agora, os Sims não mais se tornarão celebridades apenas por subir alguma habilidade de nível. Trabalhos comuns concederão muito pouco ou nenhum progresso de celebridade, porém, trabalhos ligados ao entretenimento e criatividade concederão mais progresso de fama. Ter muitos amigos ou romances, são ações que concederão mais progresso de fama.",
+            "requiredEps": [ 3 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/666448/harder-fame-ts3su-updated-5-22.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-harder-fame.zip"
+        },
+        {
+            "name": "Money Tree Nerfed",
+            "category": "GAMEPLAY",
+            "author": "marcos4503",
+            "description_enUS": "This mod nerfs the money tree so that it gives much less money, but still gives a reasonable amount for families that have a lot of trees and take good care of them.",
+            "description_ptBR": "Este mod nerfa a árvore de dinheiro para que ela dê bem menos dinheiro, mas ainda dê uma quantia rasoável para famílias que possuam muitas árvores e cuidem bem delas.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-money-tree-nerfed.zip"
+        },
+        {
+            "name": "Lottery Nerfed",
+            "category": "GAMEPLAY",
+            "author": "marcos4503",
+            "description_enUS": "This mod makes the game's lottery more realistic and balanced, in order to avoid easy money gains. Firstly, the ticket purchase time was extremely reduced. The chances of getting a prize were also greatly reduced. For example, to obtain §1,000,000, the chance is 0.0005% (before it was up to 7% on average, and could be even higher if you went to the Future). Furthermore, the 'Lucky' and 'Unlucky' traits do not greatly affect the luck of winning the Lottery. Now, traveling to the future and checking lottery records to have a better chance of winning will no longer work. Checking lottery records now does not give you any additional chance of winning the lottery.",
+            "description_ptBR": "Este mod torna a loteria do jogo, mais realista e balanceada, afim de evitar o ganho fácil de dinheiro. Primeiramente, o tempo de compra de bilhete foi extremamente reduzido. As chances de se obter um prêmio também foram muito reduzidas. Por exemplo, para se obter §1.000.000, a chance é de 0.0005% (antes era de até 7% em média, e poderia ser ainda maior se você fosse pro Futuro). Além disso, os traços 'Sortudo' e 'Azarado' não interferem muito na sorte de se ganhar na Loteria. Agora, viajar para o futuro e checar os registros da loteria para ter maiores chances de ganhar, não funcionará mais. Verificar os registros da loteria agora não da nenhuma chance adicional de ganhar na loteria.",
+            "requiredEps": [ 11 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-lottery-nerfed.zip"
+        },
 
 
 
