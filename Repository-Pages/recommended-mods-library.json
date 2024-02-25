@@ -704,6 +704,42 @@
             "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-gem-cutting-machine-nerfed.zip"
         },
+        {
+            "name": "Gem, Rock and Metal Nerfs",
+            "category": "GAMEPLAY",
+            "author": "marcos4503",
+            "description_enUS": "This mod nerfs the value of all 'rare' gems, metals, and meteorites in the game, including the completely broken Tiberium. Tiberium that was previously worth an average of §40,000 per stone (after growing) is now worth an average of §620 per stone. The values of most stone cuts have also been reduced. Giant and large meteorites are now classified as uncommon, making them rarer, and the value multiplier has been reduced to a maximum of 2.5x instead of a maximum of 10x. No more your dog bringing you loads of easy money while you hunt around!",
+            "description_ptBR": "Este mod nerfa o valor de todas as pedras preciosas, metais, e meteoritos 'raros' do jogo, inclusive o completamente quebrado Tiberium. O Tiberium que antes valia §40.000 em média por pedra (após crescer), agora vale em média §620 por pedra. Os valores da maioria dos cortes de pedra também foram reduzidos. Os meteoritos gigantes e grandes agora são classificados como incomuns, os fazendo mais raro, e o multiplicador de valor foi reduzido para no máximo 2,5x ao invés de no máximo 10x. Chega do seu cachorro lhe trazer rios de dinheiro fácil enquanto caça por aí!",
+            "requiredEps": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-gem-rock-metal-nerfs.zip"
+        },
+        {
+            "name": "No Apple or Watermelon Affecting Baby Gender",
+            "category": "GAMEPLAY",
+            "author": "marcos4503",
+            "description_enUS": "This mod means that the fruits consumed by your Sim (Apple and Watermelon) no longer exert any influence on whether your Sim will have a male or female baby. This way, the baby's gender will be determined completely by randomness. Furthermore, the chance of having multiple babies per pregnancy was reduced from up to 3% to just a 0.2% of base chance.",
+            "description_ptBR": "Este mod faz com que as frutas consumidas pelo seu Sim (Maçã e Melância) não mais exerçam nenhum tipo de influência para determinar se seu Sim terá um bebê do sexo Masculino ou Feminino. Dessa forma, o gênero do bebê será determinado completamente pela aleatóriedade. Além disso, a chance de se obter multiplos bebês por gravidez foi reduzida de até 3% para apenas 0.2% de chance base.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-no-apple-watermelon-affecting-baby-gender.zip"
+        },
+        {
+            "name": "Higher Lifetime Rewards",
+            "category": "GAMEPLAY",
+            "author": "ellacharmed",
+            "description_enUS": "This mod increases the cost of all Enduring Happiness rewards for your Sims and Pets. It's another difficulty barrier imposed to avoid easy play and give the game more realism.",
+            "description_ptBR": "Este mod aumenta o custo de todas as recompensas de Felicidade Duradoura para seus Sims e Pets. É mais uma barreira de dificuldade imposta para evitar o jogo fácil e dar mais realismo ao jogo.",
+            "requiredEps": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/486737/lower-higher-lifetime-reward-prices-updated-10-24-2013-for-1-63.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-higher-lifetime-rewards.zip"
+        },
 
 
 
