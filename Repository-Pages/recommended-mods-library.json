@@ -770,6 +770,30 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://modthesims.info/d/471164/add-any-lot-size-edited-01-16-2014.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-add-any-lot-size.zip"
+        },
+        {
+            "name": "Treasure Box",
+            "category": "OTHERS",
+            "author": "treeag",
+            "description_enUS": "WARNING: It is not recommended that you play with this mod installed, just use it for testing. This mod allows you to buy a small treasure chest in buy mode. This item can be found in 'Decorations > Miscellaneous Decorations' and has the function of spawning precious stones around you, or allowing you to buy precious stones.",
+            "description_ptBR": "AVISO: Não é recomendado que você jogue com este mod instalado, apenas o use para testes. Este mod permite que você compre um pequeno baú de tesouro no modo compra. Este item pode ser encontrado em 'Decorações > Decorações Diversas' e possui a função de spawnar pedras preciosas ao seu redor, ou de lhe permitir comprar pedras preciosas.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/383093/treasure-box-compatible-with-1-67.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-treasure-box.zip"
+        },
+        {
+            "name": "SetHour Cheat",
+            "category": "OTHERS",
+            "author": "LazyDuchess",
+            "description_enUS": "WARNING: It is not recommended that you play with this mod installed, just use it for testing. This mod allows you to set any desired time of day using the command 'sethour <time>' for example 'sethour 20'.",
+            "description_ptBR": "AVISO: Não é recomendado que você jogue com este mod instalado, apenas o use para testes. Este mod permite que você defina qualquer hora do dia desejada usando o comando 'sethour <hora>' por exemplo 'sethour 20'.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/665876/sethour-cheat.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-sethour-cheat.zip"
         }
     ]
 }
