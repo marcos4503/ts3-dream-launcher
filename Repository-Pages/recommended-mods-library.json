@@ -734,6 +734,18 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://www.nraas.net/community/Porter-FAQ",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-porter.zip"
+        },
+        {
+            "name": "Tagger",
+            "category": "OTHERS",
+            "author": "NRaas",
+            "description_enUS": "This mod allows you to enable icons for all Sims or all Lots present in your city. These icons, called 'Tags' can be activated by clicking on the town hall, then 'Nraas > Tagger > Options' then simply activate the 'Enable Lot Tags' or 'Enable Sim Tags' option. You can configure various aspects of these Tags and when you hover your mouse over these Tags, they reveal various interesting details about the Sims or Lots.",
+            "description_ptBR": "Este mod permite que você habilite ícones para todos os Sims ou todos os Lotes presentes na sua cidade. Esses ícones, chamados de 'Tags' podem ser ativados clicando na prefeitura, então 'Nraas > Tagger > Options' então basta ativar a opção 'Ativar Tags de Lotes' ou 'Ativar Tags de Sims'. É possível configurar vários aspectos dessas Tags e ao passar o mouse sobre essas Tags, elas revelam vários detalhes interessantes sobre os Sims ou Lotes. Este mod é uma versão traduzida para PT-BR por marcos4503.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.nraas.net/Tagger-FAQ",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-tagger.zip"
         }
     ]
 }
