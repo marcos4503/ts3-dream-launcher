@@ -668,6 +668,65 @@
             "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-claw-machine-nerfed.zip"
         },
+        {
+            "name": "Fairies Nerfed",
+            "category": "GAMEPLAY",
+            "author": "marcos4503",
+            "description_enUS": "This mod nerfs fairies in several aspects. The 'Creativity' and 'Body and Mind' auras are removed. For the remaining auras, fairies consume 250 magic per hour, instead of 33, which makes the auras last an average of 1 hour. Fairy Hidden Skill now takes at least twice as long to promote. The interactions of 'I can fly!' and 'Fairy Concert' were removed. The 'Bloom' interaction with plants has been rebalanced. Now the chances of a successful flowering are reduced and no longer increases the quality of the plant in case of success. On the other hand, the chances of reducing the quality of the plant in the event of failure were considerably reduced. Finally, fairy houses now cost hundreds of thousands of simoleons, instead of just §1,000, as fairies are much more incentivized to live in normal houses.",
+            "description_ptBR": "Este mod nerfa as fadas em diversos aspectos. As auras de 'Criatividade' e 'Corpo e Mente' são removidas. Para as auras restantes, as fadas consomem 250 de magia por hora, ao invés de 33, o que faz com que as auras durem em média 1 hora. A habilidade oculta de fada agora demora pelo menos o dobro de tempo para ser promovida. As interações de 'Eu sei voar!' e 'Concerto de Fada' foram removidas. A interação 'Florescer' com as plantas foi rebalanceada. Agora as chances de um florescimento bem sucedido são reduzidas e não aumentam mais a qualidade da planta em caso de sucesso. Em contrapartida, as chances da redução da qualidade da planta em caso de falha, foram consideravelmente reduzidas. Por fim, as casas de fada agora custam centenas de miliares de simoleons, ao invés de apenas §1.000, pois dessa forma as fadas são muito mais incentivadas a morarem em casas normais.",
+            "requiredEps": [ 7 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-fairies-nerfed.zip"
+        },
+        {
+            "name": "Fishing Nerfed",
+            "category": "GAMEPLAY",
+            "author": "marcos4503",
+            "description_enUS": "This mod nerfs the rare Fish obtained through fishing, so that it is no longer possible to obtain rivers of easy money just by fishing.",
+            "description_ptBR": "Este mod nerfa os Peixes raros obtidos através da pesca, para que não seja mais possível obter rios de dinheiro fácil apenas pescando.",
+            "requiredEps": [ 1, 2 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-fishing-nerfed.zip"
+        },
+        {
+            "name": "Gem Cutting Machine Nerfed",
+            "category": "GAMEPLAY",
+            "author": "marcos4503",
+            "description_enUS": "This mod increases the cost of the gem cutting machine to §24.000. The objective is to make purchasing this machine more difficult so that the hobby of working with stones makes more sense. It also makes it difficult to obtain precious stone dust, which are useful resources for some activities in the game, such as alchemy.",
+            "description_ptBR": "Este mod aumenta o custo da máquina de corte de pedras preciosas para §24.000. O objetivo é dificultar a compra desta máquina para que o hobbie de trabalhar com pedras faça mais sentido. Além de também dificultar a obtenção de poeiras de pedras preciosas, que são recursos úteis para algumas atividades no jogo, como a alquimia.",
+            "requiredEps": [ 7 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-gem-cutting-machine-nerfed.zip"
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
