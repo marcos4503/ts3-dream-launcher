@@ -876,13 +876,49 @@
             "name": "No More NPC Protests",
             "category": "GAMEPLAY",
             "author": "Don Babilon",
-            "description_enUS": "This mod removes the protests that were added by the 'University Life' expansion. This prevents protests from happening in unlikely locations (like lakes) and also removes routing bugs that could affect the game's performance.",
-            "description_ptBR": "Esse mod remove os protestos que foram adicionados pela expansão 'University Life'. Isso impede que protestos aconteçam em locais improváveis (como lagos) e de quebra remove bugs de roteamento que podem afetar a performance do jogo.",
+            "description_enUS": "This mod removes the protests that were added by the 'University Life' expansion. This prevents protests from happening in unlikely locations (like lakes) and also removes routing bugs that could affect the game's performance. This mod only affects the random and automatic protests added by this expansion and does not affect town hall protests (from the base game) or protests initiated by active Sims.",
+            "description_ptBR": "Esse mod remove os protestos que foram adicionados pela expansão 'University Life'. Isso impede que protestos aconteçam em locais improváveis (como lagos) e de quebra remove bugs de roteamento que podem afetar a performance do jogo. Este mod só afeta os protestos aleatórios e automáticos adicionados por esta expansão e não afeta os protestos de prefeitura (do jogo base) ou iniciados por Sims ativos.",
             "requiredEps": [ 9 ],
             "requiredRecommendedModFiles": [ ],
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://modthesims.info/d/566803",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-no-more-npc-protests.zip"
+        },
+        {
+            "name": "No Time Portal Camera Zoom",
+            "category": "GAMEPLAY",
+            "author": "bolto7",
+            "description_enUS": "This mod removes automatic camera movement the moment a Portal to the Future appears in your game.",
+            "description_ptBR": "Este mod remove o movimento automático da câmera no momento em que um Portal para o Futuro aparece em seu jogo.",
+            "requiredEps": [ 11 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/590519/no-timeportal-camerazoom.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-no-time-portal-camera-zoom.zip"
+        },
+        {
+            "name": "Play For Tips In Subway Nerfed",
+            "category": "GAMEPLAY",
+            "author": "marcos4503",
+            "description_enUS": "This mod nerfs the gains obtained by 'Playing for Tips' in subways. No more earning more money than 5-star celebrities, just for playing on the subway.",
+            "description_ptBR": "Este mod nerfa os ganhos obtidos pela ação de 'Tocar Por Gorjetas' em metrôs. Chega de ganhar mais dinheiro do que celebridades de 5 estrelas, apenas por tocar no metrô.",
+            "requiredEps": [ 3 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-play-for-tips-in-subway-nerfed.zip"
+        },
+        {
+            "name": "Realistic Investment Balancing",
+            "category": "GAMEPLAY",
+            "author": "marcos4503",
+            "description_enUS": "Investment in establishments has been completely rebalanced with this mod. Now, when you invest in an establishment, you will obtain gains corresponding to 1% ~ 1.25% of the amount invested every week. This means that if you invest §50.000, instead of receiving something like §8.000 per week, you will receive around §550. This way, the investments work much more like in real life, they will still be valuable, because after all, it will be money that will be flowing into your account for free, forever, but it will not make the gameplay boring, leaving you completely rich in the blink of an eye.",
+            "description_ptBR": "O investimento em estabelecimentos foi completamente rebalanceado com este mod. Agora, quando você investir num estabelecimento, você obterá ganhos correspondentes a 1%~1,25% do valor investido toda semana. Isso significa que se você investir §50.000, ao invés de receber algo como §8.000 por semana, você receberá por volta de §550. Dessa forma, os investimentos funcionaram muito mais como na vida real, ainda serão valiosos, pois afinal, será um dinheiro que estará caindo de graça na sua conta, para sempre, porém não tornará a gameplay chata, te deixando completamente rico num estalar de dedos.",
+            "requiredEps": [ 3, 5, 7, 9, 11 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-realistic-investment-balancing.zip"
         },
 
 
