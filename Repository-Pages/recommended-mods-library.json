@@ -996,8 +996,8 @@
             "name": "Ask To Join Fishing",
             "category": "GAMEPLAY",
             "author": "icarus_allsorts",
-            "description_enUS": "This mod adds a new fishing interaction to the game. If you are at a lake and there are Sims near you, you can click on the lake and then call nearby Sims to fish with you.",
-            "description_ptBR": "Este mod adiciona uma nova interação de pesca ao jogo. Caso você esteja num lago e existam Sims próximos a você, você poderá clicar no lago e então chamar os Sims próximos para pescarem junto de você.",
+            "description_enUS": "This mod adds a new fishing interaction to the game. If you are at a lake and there are Sims near you, you can click on the lake and then call nearby Sims to fish with you. The interaction only appears while your Sim is fishing and you click on the water in a lake or fishing pool.",
+            "description_ptBR": "Este mod adiciona uma nova interação de pesca ao jogo. Caso você esteja num lago e existam Sims próximos a você, você poderá clicar no lago e então chamar os Sims próximos para pescarem junto de você. A interação só aparece enquanto seu Sim está pescando e você clica na água de um lago ou piscina de pesca.",
             "requiredEps": [ ],
             "requiredRecommendedModFiles": [ ],
             "requiredPatchModFiles": [ ],
@@ -1027,6 +1027,42 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://modthesims.info/download.php?t=565380",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-change-at-home-after-work.zip"
+        },
+        {
+            "name": "Genie Magic Points Unlocked",
+            "category": "GAMEPLAY",
+            "author": "icarus_allsorts",
+            "description_enUS": "This mod adds a Magic Points system for Genie Sims. Now playing as a Genie, although it will still be useful, will not be so broken, since after performing 1 or more spells, the Sim will have very little or no Magic Points. When a Sim drops to 60 or fewer Magic Points, the Sim will receive a negative Mood Mod that will last for 4 hours, after which 4 hours the mood mod will disappear and the Sim's Magic Points will be resaturated. This version of the mod should also reduce the gains obtained from wishing 'Fortune' to a Genie of the Lamp. Previously the Genie of the Lamp gave §100,000, but now he will only give §50 for this wish. This puts an end to the cheating gameplay of getting easy money with Genies of the Lamp, and also ends the abuse of traveling to the future and then having wish resets with the Genies of the Lamp, which is basically an extremely infinite source of easy money.",
+            "description_ptBR": "Este mod adiciona um sistema de Pontos de Magia para Sims Gênios. Agora jogar como um Gênio, apesar de ainda continuar sendo útil, não vai ser tão quebrado, já que depois de realizar 1 ou mais mágicas, o Sim ficará com muito pouco ou nada de Pontos de Magia. Quando um Sim ficar com 60 ou menos Pontos de Magia, o Sim receberá um Modificador de Humor negativo que durará 4 horas, e após essas 4 horas o modifcador sumirá e os Pontos de Magia do Sim serão resaturados. Esta versão do mod também deve reduzir os ganhos obtidos de se desejar 'Fortuna' para um Gênio da Lâmpada. Antes o Gênio da Lâmpada dava §100.000, mas agora dará apenas §50 para este desejo. Isso acaba com a gameplay trapaceira de conseguir dinheiro fácil com Gênios da Lâmpada, e de quebra acaba com o abuso de se viajar para o futuro e então ter resets de desejos com os Gênios da Lâmpada, o que é basicamente uma fonte de dinheiro ifinito extremamente fácil.",
+            "requiredEps": [ 6, 7 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/519616/genie-magic-points-unlocked-i-e-less-cheaty-genies-new-versions-available-9-feb-2014.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-genie-magic-points-unlocked.zip"
+        },
+        {
+            "name": "Moar Interactions",
+            "category": "GAMEPLAY",
+            "author": "Buzzler",
+            "description_enUS": "This mod is a compilation of interactions that are either entirely new or changed/fixed interactions from EA. The latter is done by replacing the original interactions. This increases the diversity of actions that active and non-active Sims can perform around the city, such as shopping at restaurants, watching games and shows together, and more.",
+            "description_ptBR": "Este mod é uma compilação de interações que são inteiramente novas ou interações alteradas/corrigidas da EA. Este último é feito substituindo as interações originais. Este aumenta a diversidade de ações que Sims ativos ou não podem executar pela cidade, como fazer compras em restaurantes, assistir jogos e shows juntos e muito mais.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/437344",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-moar-interactions.zip"
+        },
+        {
+            "name": "Job Overhaul",
+            "category": "GAMEPLAY",
+            "author": "gamefreak130",
+            "description_enUS": "This amazing mod adds more realism to The Sims 3's job system! With this mod, your Sims (from the active family) will no longer be able to get instant jobs by looking in Newspapers, Computers or going to community lots for such jobs. Instead, they should now look at the classifieds in Newspapers and Computers. Once they find a vacancy, you must accept or decline it. If you refuse, the Sim will continue searching for a position at the Newspaper or Computer, which may take longer. There will be days when there are no vacancies available. If your Sim finds a vacancy and accepts it, they will go to the vacancy's community lot and fill out a form to apply for the vacancy and then have a job interview scheduled within 24hrs to 72hrs. The Sim will then go to the interview and have a real chance of being hired or fired! Additionally, this mod will also add a number of other small improvements to go along with this new system!",
+            "description_ptBR": "Este mod incrível adiciona mais realismo ao sistema de empregos do The Sims 3! Com este mod, seus Sims (da família ativa) não serão mais capazes de conseguir empregos instantaneos olhando em Jornais, Computadores ou indo até os lotes comunitários de tais empregos. Ao invés disso, agora eles devem olhar os classificados em Jornais e Computadores. Uma vez que encontraram uma vaga, você deverá aceita-la ou recusa-la. Se recusar, o Sim continuará buscando por uma vaga no Jornal ou Computador, o que pode levar mais tempo. Haverá dias que não existirão vagas disponíveis. Se seu Sim encontrar uma vaga e aceita-la, ele irá no lote comunitário da vaga e preencherá um formulário para concorrer a vaga e então terá uma entrevista de emprego agendada dentro de 24hrs a 72hrs. O Sim então irá para a entrevista e terá chances reais de ser contratado ou dispensado! Além disso, esse mod também adicionará uma série de pequenas outras melhorias para acompanhar esse novo sistema! Esta é uma versão traduzida para PT-BR por marcos4503.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/629524/job-overhaul-interviews-and-more-updated-3-october-2019.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-job-overhaul.zip"
         },
 
 
