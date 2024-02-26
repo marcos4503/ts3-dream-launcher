@@ -1124,6 +1124,30 @@
             "pageUrl": "https://www.nraas.net/community/Vector-FAQ",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-vector-minor.zip"
         },
+        {
+            "name": "Workout Costs Money",
+            "category": "GAMEPLAY",
+            "author": "NRaas",
+            "description_enUS": "This mod charges Sims for using community services such as gym, public pool and other things when they use it to improve skills. This version of the mod has been adjusted so that this mod charges a lower fee as it charges a very high fee by default.",
+            "description_ptBR": "Este mod cobra Sims por utilizar serviços da comunidade, como academia, piscina pública e outras coisas, quando eles usam para aprimorar habilidades. Esta versão do mod foi ajustada para que esse mod cobre uma taxa menor, pois ele cobra uma taxa muito alta por padrão.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.nraas.net/community/Workout-Costs-Money-FAQ",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-workout-costs-money.zip"
+        },
+        {
+            "name": "Painting Costs Money",
+            "category": "GAMEPLAY",
+            "author": "darren111",
+            "description_enUS": "This mod makes painting materials chargeable to your Sims. The value can vary between §300 and §1.200 depending on the size of the canvas to be used in the painting. Basically what this mod does is balance the paintings in the game so that at the beginning the paintings will make a loss for your Sim, but after increasing the skill, your Sim will be able to make greater profits, however, not in such a stealing way. to the point of having infinite money.",
+            "description_ptBR": "Este mod faz com que os materiais para pintura sejam cobrados dos seus Sims. O valor pode variar entre §300 a §1.200 dependendo do tamanho da tela a ser usada na pintura. Basicamente o que este mod faz é balancear as pinturas do jogo de modo que no ínicio as pinturas darão prejuízo para seu Sim, mas depois de aumentar a habilidade, o seu Sim será capaz de fazer maiores lucros, porém, não de uma maneira tão roubada a ponto de ter dinheiro infinito.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/668370/painting-costs-money.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-painting-costs-money.zip"
+        },
 
 
 
