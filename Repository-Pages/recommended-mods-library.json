@@ -956,6 +956,42 @@
             "pageUrl": "https://modthesims.info/d/646178/wildflower-sell-price-nerf.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-wild-flower-nerfed.zip"
         },
+        {
+            "name": "Charge Subway",
+            "category": "GAMEPLAY",
+            "author": "SimsMatthew",
+            "description_enUS": "This mod will make sure your Sims are always charged whenever they use the subway. If they do not have money to pay for the trip, the cost of the trip will be added to the family's mail bills.",
+            "description_ptBR": "Este mod fará com que seus Sims sempre sejam cobrados sempre que utilizarem o metrô. Caso não tenham dinheiro para pagar a viagem, o valor da viagem será adicionado as contas de correio da família. Este mod é a versão traduzida para PT-BR por marcos4503.",
+            "requiredEps": [ 3 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/download.php?t=530967",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-charge-subway.zip"
+        },
+        {
+            "name": "Charge Taxi",
+            "category": "GAMEPLAY",
+            "author": "Sleepy-Genius",
+            "description_enUS": "This mod will ensure that your Sims are always charged whenever they use a Taxi. If they do not have money to pay for the trip, the cost of the trip will be added to the family's mail bills.",
+            "description_ptBR": "Este mod fará com que seus Sims sempre sejam cobrados sempre que utilizarem um Taxi. Caso não tenham dinheiro para pagar a viagem, o valor da viagem será adicionado as contas de correio da família. Este mod é a versão traduzida para PT-BR por marcos4503.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/download.php?t=529758",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-charge-taxi.zip"
+        },
+        {
+            "name": "Cars Use Petrol System",
+            "category": "GAMEPLAY",
+            "author": "SimsMatthew",
+            "description_enUS": "This mod makes the game's vehicles (including motorcycles, cars, scooters and others) consume fuel on each journey started. Only active family vehicles consume fuel and when you purchase the vehicle, it will have fuel for 25 journeys. When the fuel runs out, an amount of §1.000 will be debited and the vehicle will have fuel again for another 25 journeys. A supply of §1.000 is still more worth it than taking 25 taxi journeys. If the Sim does not have money to pay for refueling, the amount will be added to the family accounts.",
+            "description_ptBR": "Este mod faz com que os veículos do jogo (incluindo motos, carros, lambretas e outros) consumam combustível em cada jornada iniciada. Somente os veículos da família ativa consomem combustível e ao comprar o veículo, ele terá combustível para 25 jornadas. Ao acabar o combustível, um valor de §1.000 será debitado e o veículo voltará a ter combustível para mais 25 jornadas. O abastecimento de §1.000 ainda vale mais a pena do que executar 25 jornadas de Taxi. Caso o Sim não tenha dinheiro para pagar o reabastecimento, o valor será adicionado as contas da família. Este mod é a versão traduzida para PT-BR por marcos4503.",
+            "requiredEps": [ 2 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/556081/update-24-5-2018-cars-use-petrol-system.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-cars-use-petrol-system.zip"
+        },
 
 
 
