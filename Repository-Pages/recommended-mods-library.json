@@ -1064,6 +1064,42 @@
             "pageUrl": "https://modthesims.info/d/629524/job-overhaul-interviews-and-more-updated-3-october-2019.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-job-overhaul.zip"
         },
+        {
+            "name": "More Sims In Clubs",
+            "category": "GAMEPLAY",
+            "author": "Danieu",
+            "description_enUS": "The clubs and bars are always empty. With this mod this problem will be solved forever. This mod will always send Sims to the lot your Sims are currently on. All Sims will dance, they will order drinks, they will chat with other Sims, they will play arcade games, all Sims will interact all the time! You will love! When your Sim enters the lot (Dance Club, Pool Club, Nightclub, Sportsbar or Public Pool), the mod will start sending Sims. They can go on foot or by car. When Sims arrive, the mod starts finding specific interactions for each Sim.",
+            "description_ptBR": "Os clubes e bares estão sempre vazios. Com este mod este problema será resolvido para sempre. Este mod sempre enviará Sims para o lote em que seus Sims estão no momento. Todos os Sims vão dançar, vão pedir bebidas, vão conversar com outros Sims, vão jogar jogos de arcade, todos os Sims vão interagir o tempo todo! Você vai adorar! Quando o seu Sim entrar no lote (Clube de Dança, Clube de Piscina, Discoteca, Sportsbar ou Piscina Pública), o mod começará a enviar Sims. Eles podem ir a pé ou de carro. Quando os Sims chegam, o mod começa a encontrar interações específicas para cada Sim.",
+            "requiredEps": [ 3 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/552227/new-update-16-07-v3-msc-mod-more-sims-in-clubs.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-sims-in-clubs.zip"
+        },
+        {
+            "name": "No Fridge Shopping",
+            "category": "GAMEPLAY",
+            "author": "NRaas",
+            "description_enUS": "No shopping in the fridge. Now you need to shop for ingredients. This mod replaces meal-making interactions in the fridge with custom ones that check whether the Sim has the necessary ingredients to make the meal or snack.",
+            "description_ptBR": "Sem compras na geladeira. Agora você precisa fazer compras para ter ingredientes. Este mod substitui as interações de fabricação de refeições na geladeira por outras personalizadas que verificam se o Sim tem os ingredientes necessários para fazer a refeição ou lanche.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.nraas.net/community/No-Fridge-Shopping-FAQ",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-no-fridge-shopping.zip"
+        },
+        {
+            "name": "Once Read",
+            "category": "GAMEPLAY",
+            "author": "NRaas",
+            "description_enUS": "This mod replaces all read book type interactions so that they only autonomously select books that your Sim has not yet read. This also prevents Sims from saving children's books so they can actually read them on their own. This mod also prevents Sims from reading the same book over and over again.",
+            "description_ptBR": "Este mod substitui todas as interações do tipo livro lido para que eles apenas selecionem autonomamente os livros que seu Sim ainda não leu. Isso também impede que os Sims guardem livros infantis para que eles realmente os leiam por conta própria. Esse mod também impede que os Sims fiquem lendo o mesmo livro repetidas vezes.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.nraas.net/community/OnceRead",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-once-read.zip"
+        },
 
 
 
