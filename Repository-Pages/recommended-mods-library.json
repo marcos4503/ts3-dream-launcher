@@ -920,6 +920,42 @@
             "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-realistic-investment-balancing.zip"
         },
+        {
+            "name": "Realistically Slower Cars, Taxis, and Bikes",
+            "category": "GAMEPLAY",
+            "author": "JSimmer",
+            "description_enUS": "This mod is capable of making the speeds of Cars, Taxis and Bikes more realistic. It will limit the speed of all of them to a slightly slower speed so the cars don't look like the Flash walking. In addition, Taxis, Cars and Bikes will accelerate and gradually increase their speed until reaching maximum speed. Newer or faster cars pick up speed more quickly.",
+            "description_ptBR": "Este mod é capaz de deixar as velocidades de Carros, Taxis e Bikes mais realistas. Ele limitará a velocidade de todos eles para uma velocidade um pouco menor, para que os carros não pareçam o Flash andando. Além disso, Taxis, Carros e Bikes terão uma aceleração e irão aumentando a velocidade gradativamente até chegar a velocidade máxima. Carros mais novos ou mais rápidos aumentam a velocidade mais rapidamente.",
+            "requiredEps": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/482543/realistically-slower-cars-taxis-and-bikes.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-realistically-slower-cars-taxis-and-bikes.zip"
+        },
+        {
+            "name": "Vehicle Prices Nerfed",
+            "category": "GAMEPLAY",
+            "author": "marcos4503",
+            "description_enUS": "This mod adjusts the price of all vehicles in the game that cost less than §15.000 to make them more in line with reality. After all, you won't buy a Sedan for just §1300.",
+            "description_ptBR": "Este mod ajusta o preço de todos os veiculos do jogo que custam menos do que §15.000 para que sejam mais condizentes com a realidade. Afinal, você não irá comprar um Sedan por apenas §1300.",
+            "requiredEps": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-vehicles-prices-nerfed.zip"
+        },
+        {
+            "name": "Wild Flower Nerfed",
+            "category": "GAMEPLAY",
+            "author": "_ss2",
+            "description_enUS": "This mod nerfs the game's collectible flowers, reducing the selling price of the most expensive flowers. No more making lots of easy money just by collecting and selling flowers.",
+            "description_ptBR": "Este mod nerfa as flores coletáveis do jogo, reduzindo o preço de venda das flores mais caras. Chega de fazer rios de dinheiro fácil apenas coletando e vendendo flores.",
+            "requiredEps": [ 8 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/646178/wildflower-sell-price-nerf.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-wild-flower-nerfed.zip"
+        },
 
 
 
