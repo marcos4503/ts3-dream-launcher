@@ -1177,79 +1177,114 @@
             "pageUrl": "https://modthesims.info/download.php?p=2935159",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-jonha-breast-size-slider.zip"
         },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        {
+            "name": "Butt Slider",
+            "category": "SLIDERS",
+            "author": "jonha",
+            "description_enUS": "Adds the Slider to control the size of the Butt.",
+            "description_ptBR": "Adiciona o Slider para controlar o tamanho do Bumbum.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ "SLIDERS --- jonha - CAS Sliders.package" ],
+            "requiredPatchModFiles": [ "MasterController.package", "MasterController_Cheats.package", "MasterController_Integration.package" ],
+            "pageUrl": "https://modthesims.info/download.php?p=2935159",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-jonha-butt-slider.zip"
+        },
+        {
+            "name": "Calf Slider",
+            "category": "SLIDERS",
+            "author": "jonha",
+            "description_enUS": "Adds the Slider to control the size of the Calves.",
+            "description_ptBR": "Adiciona o Slider para controlar o tamanho das Panturrilhas.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ "SLIDERS --- jonha - CAS Sliders.package" ],
+            "requiredPatchModFiles": [ "MasterController.package", "MasterController_Cheats.package", "MasterController_Integration.package" ],
+            "pageUrl": "https://modthesims.info/download.php?p=2935159",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-jonha-calf-slider.zip"
+        },
+        {
+            "name": "Chest Slider",
+            "category": "SLIDERS",
+            "author": "jonha",
+            "description_enUS": "Add Slide to control the size of the Thorax.",
+            "description_ptBR": "Adiciona o Slider para controlar o tamanho do Torax.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ "SLIDERS --- jonha - CAS Sliders.package" ],
+            "requiredPatchModFiles": [ "MasterController.package", "MasterController_Cheats.package", "MasterController_Integration.package" ],
+            "pageUrl": "https://modthesims.info/download.php?p=2935159",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-jonha-chest-slider.zip"
+        },
+        {
+            "name": "Head Slider",
+            "category": "SLIDERS",
+            "author": "jonha",
+            "description_enUS": "Adds the Slider to control the size of the Head.",
+            "description_ptBR": "Adiciona o Slider para controlar o tamanho da Cabeça.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ "SLIDERS --- jonha - CAS Sliders.package" ],
+            "requiredPatchModFiles": [ "MasterController.package", "MasterController_Cheats.package", "MasterController_Integration.package" ],
+            "pageUrl": "https://modthesims.info/download.php?p=2935159",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-jonha-head-slider.zip"
+        },
+        {
+            "name": "Hip Slider",
+            "category": "SLIDERS",
+            "author": "jonha",
+            "description_enUS": "Adds the Slider to control the Hip width.",
+            "description_ptBR": "Adiciona o Slider para controlar a largura do Quadril.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ "SLIDERS --- jonha - CAS Sliders.package" ],
+            "requiredPatchModFiles": [ "MasterController.package", "MasterController_Cheats.package", "MasterController_Integration.package" ],
+            "pageUrl": "https://modthesims.info/download.php?p=2935159",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-jonha-hip-slider.zip"
+        },
+        {
+            "name": "Neck Slider",
+            "category": "SLIDERS",
+            "author": "jonha",
+            "description_enUS": "Adds the Slider to control the Neck width.",
+            "description_ptBR": "Adiciona o Slider para controlar a largura do Pescoço.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ "SLIDERS --- jonha - CAS Sliders.package" ],
+            "requiredPatchModFiles": [ "MasterController.package", "MasterController_Cheats.package", "MasterController_Integration.package" ],
+            "pageUrl": "https://modthesims.info/download.php?p=2935159",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-jonha-neck-slider.zip"
+        },
+        {
+            "name": "Shoulder Slider",
+            "category": "SLIDERS",
+            "author": "jonha",
+            "description_enUS": "Adds the Slider to control the width of the Shoulders.",
+            "description_ptBR": "Adiciona o Slider para controlar a largura dos Ombros.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ "SLIDERS --- jonha - CAS Sliders.package" ],
+            "requiredPatchModFiles": [ "MasterController.package", "MasterController_Cheats.package", "MasterController_Integration.package" ],
+            "pageUrl": "https://modthesims.info/download.php?p=2935159",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-jonha-shoulder-slider.zip"
+        },
+        {
+            "name": "Thigh Slider",
+            "category": "SLIDERS",
+            "author": "jonha",
+            "description_enUS": "Adds the Slider to control the width of the Thighs.",
+            "description_ptBR": "Adiciona o Slider para controlar a largura das Coxas.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ "SLIDERS --- jonha - CAS Sliders.package" ],
+            "requiredPatchModFiles": [ "MasterController.package", "MasterController_Cheats.package", "MasterController_Integration.package" ],
+            "pageUrl": "https://modthesims.info/download.php?p=2935159",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-jonha-thigh-slider.zip"
+        },
+        {
+            "name": "Waist Slider",
+            "category": "SLIDERS",
+            "author": "jonha",
+            "description_enUS": "Adds the Slider to control the Waist width.",
+            "description_ptBR": "Adiciona o Slider para controlar a largura da Cintura.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ "SLIDERS --- jonha - CAS Sliders.package" ],
+            "requiredPatchModFiles": [ "MasterController.package", "MasterController_Cheats.package", "MasterController_Integration.package" ],
+            "pageUrl": "https://modthesims.info/download.php?p=2935159",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-jonha-waist-slider.zip"
+        },
 
 
 
