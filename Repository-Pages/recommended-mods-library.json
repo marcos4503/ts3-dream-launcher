@@ -1153,6 +1153,35 @@
 
 
 
+        {
+            "name": "CAS Sliders",
+            "category": "SLIDERS",
+            "author": "jonha",
+            "description_enUS": "This mod created by Jonha adds support for several new Sliders so that we can edit more aspects of our Sims bodies in CAS. Values of these Sliders placed on adult Sims will also count towards their genetics, if the Sim has a child. All of these Sliders can be found in the 'Visual' tab of the CAS (the one with the Head icon) and some Sliders will be found in the 'Mouth' tab (the one with the Mouth icon), others in the ' Nose' (the one with the Nose icon) and so on. Most will find themselves in the Boca tab, clicking on the little ball called 'Global'.",
+            "description_ptBR": "Este mod criado por Jonha adiciona suporte para diversos novos Sliders (controles deslizantes) para que possamos editar mais aspectos do corpo dos nossos Sims no CAS. Valores desses Sliders colocados em Sims adultos, também contarão para sua genética, caso o Sim tenha um filho. Todos esses Sliders podem ser encontrados na aba 'Visual' do CAS (a que possui o ícone de uma Cabeça) e alguns Sliders se encontrarão na aba da 'Boca' (a que possui o ícone de uma Boca), outros na aba de 'Nariz' (a que possui o ícone de Nariz) e assim por diante. A maioria se encontrará na aba da Boca, clicando na bolinha chamada 'Global'.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ "MasterController.package", "MasterController_Cheats.package", "MasterController_Integration.package" ],
+            "pageUrl": "https://modthesims.info/download.php?p=2935159",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-jonha-cas-sliders-base.zip"
+        },
+        {
+            "name": "Breast Slider",
+            "category": "SLIDERS",
+            "author": "jonha",
+            "description_enUS": "Adds the Slider to control the size of the Breasts.",
+            "description_ptBR": "Adiciona o Slider para controlar o tamanho dos Seios.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ "SLIDERS --- jonha - CAS Sliders.package" ],
+            "requiredPatchModFiles": [ "MasterController.package", "MasterController_Cheats.package", "MasterController_Integration.package" ],
+            "pageUrl": "https://modthesims.info/download.php?p=2935159",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-jonha-breast-size-slider.zip"
+        },
+
+
+
+
+
 
 
 
