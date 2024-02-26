@@ -848,6 +848,42 @@
             "pageUrl": "https://simsasylum.com/tfm/index.php?/topic/3551-zombies-no-attacking-plants/",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-zombies-no-attacking-plants.zip"
         },
+        {
+            "name": "No More Autonomous Computer Use",
+            "category": "GAMEPLAY",
+            "author": "SaladWithKoRn",
+            "description_enUS": "So, everything is quite simple. This mod disables unattended computer interactions such as playing chess, surfing the web, playing computer games, and chatting with random strangers on the internet. Disabled interactions for the holo computer are also included. In short, this mod fixes the problem of Sims sometimes giving priority to the Computer when compared to other things like watching TV, eating, going to the bathroom, etc.",
+            "description_ptBR": "Então, tudo é bem simples. Este mod desativa interações autônomas no computador, como jogar xadrez, navegar na web, jogar jogos de computador e conversar com estranhos aleatórios na internet. Interações desativadas para o computador holo também estão incluídas. Em resumo, este mod corrige o problema dos Sims as vezes darem prioridade ao Computador quando comparadas as outras coisas como assistir TV, comer, ir ao banheiro e etc.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/624996/no-more-autonomous-computer-use-1-67.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-no-more-autonomous-computer-use.zip"
+        },
+        {
+            "name": "No More Autonomous Smartphone Browsing",
+            "category": "GAMEPLAY",
+            "author": "mikey",
+            "description_enUS": "This mod prevents Sims from autonomously browsing the internet or watching streaming using their Smartphones.",
+            "description_ptBR": "Este mod impede que os Sims autonomamente naveguem pela internet ou assistam streamming usando seus Smartphones.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/download.php?t=385378",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-no-more-autonomous-smartphone-browsing.zip"
+        },
+        {
+            "name": "No More NPC Protests",
+            "category": "GAMEPLAY",
+            "author": "Don Babilon",
+            "description_enUS": "This mod removes the protests that were added by the 'University Life' expansion. This prevents protests from happening in unlikely locations (like lakes) and also removes routing bugs that could affect the game's performance.",
+            "description_ptBR": "Esse mod remove os protestos que foram adicionados pela expansão 'University Life'. Isso impede que protestos aconteçam em locais improváveis (como lagos) e de quebra remove bugs de roteamento que podem afetar a performance do jogo.",
+            "requiredEps": [ 9 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/566803",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-no-more-npc-protests.zip"
+        },
 
 
 
