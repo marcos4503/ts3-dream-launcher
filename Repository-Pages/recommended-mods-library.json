@@ -992,6 +992,42 @@
             "pageUrl": "https://modthesims.info/d/556081/update-24-5-2018-cars-use-petrol-system.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-cars-use-petrol-system.zip"
         },
+        {
+            "name": "Ask To Join Fishing",
+            "category": "GAMEPLAY",
+            "author": "icarus_allsorts",
+            "description_enUS": "This mod adds a new fishing interaction to the game. If you are at a lake and there are Sims near you, you can click on the lake and then call nearby Sims to fish with you.",
+            "description_ptBR": "Este mod adiciona uma nova interação de pesca ao jogo. Caso você esteja num lago e existam Sims próximos a você, você poderá clicar no lago e então chamar os Sims próximos para pescarem junto de você.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/522673/update-23-sep-2014-ask-to-join-fishing.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-ask-to-join-fishing.zip"
+        },
+        {
+            "name": "Hidden Skills Unhidden",
+            "category": "GAMEPLAY",
+            "author": "gobot101",
+            "description_enUS": "This mod displays all hidden skills in the game, in your Sim's skills tab. This means that you will now be able to see your progress in your Sim's Fairy skill, Dance skill, Hoverboard, etc.",
+            "description_ptBR": "Este mod exibe todas as habilidades ocultas no jogo, na guia de habilidades do seu Sim. Isso quer dizer, que agora você será capaz de ver seu progresso na habilidade de Fada do seu Sim, na habilidade de Dança, Hoverboard e etc.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/436732/hidden-skills-unhidden.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-hidden-skills-unhidden.zip"
+        },
+        {
+            "name": "Change At Home After Work",
+            "category": "GAMEPLAY",
+            "author": "mmsbludhound",
+            "description_enUS": "With this mod, Sims will change into their everyday clothes when they get home while wearing their work attire. This avoids situations where the Sim stays at home practically all the time wearing their work uniform, almost until the next day.",
+            "description_ptBR": "Com este mod, os Sims vão mudar para suas roupas cotidianas ao chegar em casa enquanto usam seu traje de trabalho. Isso evita situações onde o Sim fica em casa praticamente o tempo todo usando o uniforme de trabalho, quase que até o dia seguinte.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/download.php?t=565380",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-change-at-home-after-work.zip"
+        },
 
 
 
