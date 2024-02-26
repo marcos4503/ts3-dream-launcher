@@ -425,6 +425,18 @@
             "pageUrl": "https://modthesims.info/d/420063/wall-floor-hider.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-wall-floor-hider.zip"
         },
+        {
+            "name": "Never Auto Hide Notifications",
+            "category": "GRAPHICS",
+            "author": "marcos4503",
+            "description_enUS": "This mod changes the notification timeout time to 1 hour. Basically making game notifications (which appear in the top right corner) never automatically hide. They will only automatically hide if you click the arrow to hide their visibility.",
+            "description_ptBR": "Este mod altera o tempo de timeout das notificações para 1 hora. Basicamente fazendo com que as notificações de jogo (que aparecem no canto superior direito) nunca se escondam automaticamente. Elas só esconderão automaticamente se você clicar na seta para ocultar a visibilidade.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-never-auto-hide-notifications.zip"
+        },
 
 
 
@@ -811,6 +823,30 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://modthesims.info/d/490587/now-compatible-1-67-minimum-wage-more-realistic-earnings-higher-tuition-higher-boarding-school-costs-higher-grant-money.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-less-wage-active-careers-and-expensive-boarding-school-university.zip"
+        },
+        {
+            "name": "Witches Nerfed",
+            "category": "GAMEPLAY",
+            "author": "marcos4503",
+            "description_enUS": "This mod removes the 'Restoration', 'Reanimation', 'Upgrade', 'Hunger Charm', 'Energy Charm', 'Hygiene Charm', 'Fun Charm' and 'Social Charm' spells from Warlocks. These spells simply filled the Sims' need bars or upgraded Furniture, for example. Things that border on cheating and certainly make the game more boring over time.",
+            "description_ptBR": "Este mod remove os feitiços de 'Restauração', 'Reanimação', 'Upgrade', 'Encanto da Fome', 'Encanto da Energia', 'Encanto da Higiene', 'Encanto da Diversão' e 'Encanto do Social' dos Bruxos. Esses feitiços simplesmente enchiam as barras de necessidade dos Sims ou faziam upgrades em Mobilias por exemplo. Coisas que beiram a trapaça e com certeza deixa o jogo mais chato com o tempo.",
+            "requiredEps": [ 7 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-witches-nerfed.zip"
+        },
+        {
+            "name": "Zombies No Attacking Plants",
+            "category": "GAMEPLAY",
+            "author": "Shimrod101",
+            "description_enUS": "This mod prevents Zombies from attacking the plants on your lot.",
+            "description_ptBR": "Este mod impede que Zumbis ataquem as plantas do seu lote.",
+            "requiredEps": [ 7 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://simsasylum.com/tfm/index.php?/topic/3551-zombies-no-attacking-plants/",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-zombies-no-attacking-plants.zip"
         },
 
 
