@@ -1100,6 +1100,30 @@
             "pageUrl": "https://www.nraas.net/community/OnceRead",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-once-read.zip"
         },
+        {
+            "name": "Vector",
+            "category": "GAMEPLAY",
+            "author": "NRaas",
+            "description_enUS": "This mod makes it possible to add more diseases to the game, in addition to the single disease added to the game by the 'Seasons' expansion.",
+            "description_ptBR": "Este mod torna possível a adição de mais doenças ao jogo, além da única doença adicionada ao jogo pela expansão 'Estações'.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.nraas.net/community/Vector-FAQ",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-vector.zip"
+        },
+        {
+            "name": "Vector - Minor Module",
+            "category": "GAMEPLAY",
+            "author": "NRaas",
+            "description_enUS": "Module for use with Vector, containing two minor non-fatal diseases: The Common Cold, and Simfluenza.",
+            "description_ptBR": "Módulo para uso com Vector, contendo duas doenças menores não fatais: Resfriado Comum e Simfluenza.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ "GAMEPLAY --- NRaas - Vector.package" ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.nraas.net/community/Vector-FAQ",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-vector-minor.zip"
+        },
 
 
 
