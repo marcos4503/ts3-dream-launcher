@@ -619,7 +619,7 @@
             "name": "Top Nude Pregnant Muscle Fix",
             "category": "FIXES",
             "author": "CmarNYC",
-            "description_enUS": "Enables the upper part of teenagers bodies for pregnancy, correcting muscle flaws and bugs. Required if you want to enable teen pregnancy.",
+            "description_enUS": "Enables the upper part of teenagers bodies for pregnancy, fixing muscle flaws and bugs. Required if you want to enable teen pregnancy.",
             "description_ptBR": "Habilita a parte de cima dos corpos de adolescantes para gravidez, corrigindo falhas e bugs de musculos. Necessário se você desejar habilitar gravidez adolescente.",
             "requiredEps": [ 8 ],
             "requiredRecommendedModFiles": [ "CONTENTS --- CmarNYC - Teen Female Maternity Wear.package" ],
@@ -631,7 +631,7 @@
             "name": "Bottom Nude Pregnant Muscle Fix",
             "category": "FIXES",
             "author": "CmarNYC",
-            "description_enUS": "Enables the bottom part of teenagers bodies for pregnancy, correcting muscle flaws and bugs. Required if you want to enable teen pregnancy.",
+            "description_enUS": "Enables the bottom part of teenagers bodies for pregnancy, fixing muscle flaws and bugs. Required if you want to enable teen pregnancy.",
             "description_ptBR": "Habilita a parte de baixo dos corpos de adolescantes para gravidez, corrigindo falhas e bugs de musculos. Necessário se você desejar habilitar gravidez adolescente.",
             "requiredEps": [ 8 ],
             "requiredRecommendedModFiles": [ "CONTENTS --- CmarNYC - Teen Female Maternity Wear.package" ],
@@ -1219,6 +1219,18 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://www.nraas.net/community/Woohooer-FAQ",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-woohooer.zip"
+        },
+        {
+            "name": "Woohooer - Scoring Module",
+            "category": "GAMEPLAY",
+            "author": "NRaas",
+            "description_enUS": "Module to be used with Woohooer. Installing this module expands Woohooer's scoring system, unlocking the base mod's ability to score attraction based on characteristics and other criteria.",
+            "description_ptBR": "Modulo para ser usado com o Woohooer. A instalação deste módulo, expande o sistema de pontuação do Woohooer, desbloqueando a capacidade do mod base de marcar atração com base em características e outros critérios.",
+            "requiredEps": [ 8 ],
+            "requiredRecommendedModFiles": [ "GAMEPLAY --- NRaas - Woohooer.package" ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.nraas.net/community/Woohooer-Scoring",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-woohooer-scoring.zip"
         },
 
 
