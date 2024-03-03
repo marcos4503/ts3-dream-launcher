@@ -615,6 +615,30 @@
             "pageUrl": "https://modthesims.info/d/633994/hanging-lantern-fix.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-hanging-lantern-fix.zip"
         },
+        {
+            "name": "Top Nude Pregnant Muscle Fix",
+            "category": "FIXES",
+            "author": "CmarNYC",
+            "description_enUS": "Enables the upper part of teenagers bodies for pregnancy, correcting muscle flaws and bugs. Required if you want to enable teen pregnancy.",
+            "description_ptBR": "Habilita a parte de cima dos corpos de adolescantes para gravidez, corrigindo falhas e bugs de musculos. Necessário se você desejar habilitar gravidez adolescente.",
+            "requiredEps": [ 8 ],
+            "requiredRecommendedModFiles": [ "CONTENTS --- CmarNYC - Teen Female Maternity Wear.package" ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/492712/teen-female-maternity-wear.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-teen-pregnancy-top-nude-muscle-fix.zip"
+        },
+        {
+            "name": "Bottom Nude Pregnant Muscle Fix",
+            "category": "FIXES",
+            "author": "CmarNYC",
+            "description_enUS": "Enables the bottom part of teenagers bodies for pregnancy, correcting muscle flaws and bugs. Required if you want to enable teen pregnancy.",
+            "description_ptBR": "Habilita a parte de baixo dos corpos de adolescantes para gravidez, corrigindo falhas e bugs de musculos. Necessário se você desejar habilitar gravidez adolescente.",
+            "requiredEps": [ 8 ],
+            "requiredRecommendedModFiles": [ "CONTENTS --- CmarNYC - Teen Female Maternity Wear.package" ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/492712/teen-female-maternity-wear.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-teen-pregnancy-bottom-nude-muscle-fix.zip"
+        },
 
 
 
@@ -1191,7 +1215,7 @@
             "description_enUS": "This mod makes the game 'woo-hoo' rules much more relaxed as well as making some improvements to the game romance system. Teen Sims can now 'woo-hoo' with older Sims or other teens. New romantic interactions are added, as well as new traits and a jealousy system. Furthermore, it also allows teenagers to get pregnant. This version of the mod is already configured with the best default settings.",
             "description_ptBR": "Este mod deixa as regras de 'oba-oba' do jogo muito mais relaxadas além de fazer algumas melhorias no sistema de romance do jogo. Agora, Sims adolescentes podem fazer 'oba-oba' com Sims mais velhos ou com outros adolescentes. Novas interações românticas são adicionadas, além de novos traços e um sistema de ciúme. Além disso, ele também permite que adolescentes engravidem. Esta versão do mod já vem configurada com as melhores configurações padrões.",
             "requiredEps": [ 8 ],
-            "requiredRecommendedModFiles": [ "CONTENTS --- CmarNYC - Teen Female Maternity Wear.package", "GAMEPLAY --- NRaas - Sleep Freedom.package" ],
+            "requiredRecommendedModFiles": [ "CONTENTS --- CmarNYC - Teen Female Maternity Wear.package", "FIXES --- CmarNYC - Top Nude Pregnant Muscle Fix.package", "FIXES --- CmarNYC - Bottom Nude Pregnant Muscle Fix.package", "GAMEPLAY --- NRaas - Sleep Freedom.package" ],
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://www.nraas.net/community/Woohooer-FAQ",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-woohooer.zip"
