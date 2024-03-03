@@ -241,6 +241,18 @@
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.002 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.003"
         },
         {
+            "name": "Teen Female Maternity Wear",
+            "category": "CONTENTS",
+            "author": "CmarNYC",
+            "description_enUS": "Adds several new clothes from different categories for Pregnant Teens, Females. If you intend to enable teen pregnancy in your game, this mod is an absolute must.",
+            "description_ptBR": "Adiciona diversas novas roupas de diversas categorias para Adolescentes Grávidas, do sexo Feminino. Se você pretende habilitar a gravidez adolescente no seu jogo, este mod é absolutamente necessário.",
+            "requiredEps": [ 8 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/492712/teen-female-maternity-wear.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-teen-female-maternity-wear.zip"
+        },
+        {
             "name": "More Accessories Pack 1",
             "category": "CONTENTS",
             "author": "Various",
@@ -1147,6 +1159,42 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://modthesims.info/d/668370/painting-costs-money.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-painting-costs-money.zip"
+        },
+        {
+            "name": "Dirty Laundry",
+            "category": "GAMEPLAY",
+            "author": "Twinsimming",
+            "description_enUS": "This mod is meant to balance out the positive moodlets sims get from doing laundry and give a greater incentive to do laundry regularly by adding negative moodlets if laundry hasn't been done recently.",
+            "description_ptBR": "Este mod tem como objetivo equilibrar os modificadores de humor positivos que os Sims obtêm ao lavar roupa e dar um incentivo maior para lavar as roupas regularmente, adicionando modificadores de humor negativos se a roupa não tiver sido lavada recentemente.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/676546/dirty-laundry-mod-update-1-5-24-compatible-with-lyralei-s-washerdryer-combi.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-dirty-laundry.zip"
+        },
+        {
+            "name": "Sleep Freedom",
+            "category": "GAMEPLAY",
+            "author": "NRaas",
+            "description_enUS": "This mod makes the game double beds more flexible. This way, teenagers can sleep together, or even with adults.",
+            "description_ptBR": "Este mod torna as camas de casal do jogo, mais flexíveis. Dessa forma adolescentes podem dormir juntos, ou até com adultos.",
+            "requiredEps": [ 8 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.nraas.net/community/SleepFreedom",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-sleep-freedom.zip"
+        },
+        {
+            "name": "Woohooer",
+            "category": "GAMEPLAY",
+            "author": "NRaas",
+            "description_enUS": "This mod makes the game 'woo-hoo' rules much more relaxed as well as making some improvements to the game romance system. Teen Sims can now 'woo-hoo' with older Sims or other teens. New romantic interactions are added, as well as new traits and a jealousy system. Furthermore, it also allows teenagers to get pregnant. This version of the mod is already configured with the best default settings.",
+            "description_ptBR": "Este mod deixa as regras de 'oba-oba' do jogo muito mais relaxadas além de fazer algumas melhorias no sistema de romance do jogo. Agora, Sims adolescentes podem fazer 'oba-oba' com Sims mais velhos ou com outros adolescentes. Novas interações românticas são adicionadas, além de novos traços e um sistema de ciúme. Além disso, ele também permite que adolescentes engravidem. Esta versão do mod já vem configurada com as melhores configurações padrões.",
+            "requiredEps": [ 8 ],
+            "requiredRecommendedModFiles": [ "CONTENTS --- CmarNYC - Teen Female Maternity Wear.package", "GAMEPLAY --- NRaas - Sleep Freedom.package" ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.nraas.net/community/Woohooer-FAQ",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-woohooer.zip"
         },
 
 
