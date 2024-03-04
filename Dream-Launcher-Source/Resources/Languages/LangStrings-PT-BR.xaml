@@ -26,7 +26,7 @@
     <!-- Screen 6: Launcher -->
     <system:String x:Key="launcher_button_goHome">ÍNICIO</system:String>
     <system:String x:Key="launcher_button_goSaves">SAVES</system:String>
-    <system:String x:Key="launcher_button_goSims">SIMS</system:String>
+    <system:String x:Key="launcher_button_goExports">EXPORTAÇÕES</system:String>
     <system:String x:Key="launcher_button_goWorlds">MUNDOS</system:String>
     <system:String x:Key="launcher_button_goMedia">MÍDIA</system:String>
     <system:String x:Key="launcher_button_goCache">CACHE</system:String>
@@ -74,6 +74,11 @@
     <system:String x:Key="launcher_linkDonate">Faça uma Doação e ajude a manter o Dream Launcher!</system:String>
     <system:String x:Key="launcher_linkGithub">Acessar o repositório do Dream Launcher no GitHub</system:String>
     <system:String x:Key="launcher_linkSteam">Acessar mega-guia com diversas dicas e tutoriais na Steam (Português Apenas)</system:String>
+    <system:String x:Key="launcher_updateNotifier">A versão %v% do Dream Launcher já está disponível. Instale a atualização agora!</system:String>
+    <system:String x:Key="launcher_updateButton">INSTALAR</system:String>
+    <system:String x:Key="launcher_updateWait">Por favor, aguarde a conclusão de todas as Tarefas atualmente em andamento, antes de iniciar o processo de atualização.</system:String>
+    <system:String x:Key="launcher_updateError">Não foi possível executar a atualização do Dream Launcher. Por favor, verifique sua conexão a internet e tente novamente.</system:String>
+    <system:String x:Key="launcher_updateSuccess">O Dream Launcher foi atualizado com sucesso!</system:String>
 
     <!-- Screen 6: Launcher - Patches -->
     <system:String x:Key="launcher_patches_intro">Aqui você encontra todos os melhores Patches/Ajustes para o jogo. Todos esses Patches podem ser aplicados com poucos cliques. Sempre que um Patch é aplicado ao jogo, o Dream Launcher irá verificar sua integridade automaticamente para garantir o melhor estado de tudo!</system:String>
@@ -111,6 +116,8 @@
     <system:String x:Key="launcher_patch9_description">Este Patch adiciona um kit de mods que fazem a otimização de roteamento dos Sims no jogo, reduzindo problemas de roteamento, aprimorando a velocidade na qual as rotas são calculadas etc. Os mods adicionados são... "bluegenjutsu - Faster Loading and Moving of the Elevators" que reduz o tempo de espera por elevadores em Late Night EP. O "bluegenjutsu - Better Routing for Game Objects" que aprimora o roteamento para objetos sendo disputados por Sims. O "Twoftmama - Route Fix v9" que aprimora os roteamentos num geral. O "Nukael - No Motive Fail Tantrum or Whining" que remove as animações de birra enquanto o Sim passa necessidades, porém, as crianças ainda continuam fazendo birra. O "stevebo77 - No Route Fail Tantrum" que remove as animações de birra ao não encontrar uma rota para o destino. E por fim o "stevebo77 - No Foot Tapping" que remove a animação do Sim batendo o pé enquanto espera por uma rota.</system:String>
     <system:String x:Key="launcher_patch10_title">Patch de Remoção de Internet</system:String>
     <system:String x:Key="launcher_patch10_description">Este Patch proíbe que o The Sims 3 se conecte a internet. Isso evita atrasos no jogo por causa de requisições a Web, downloa de centenas de arquivos não desejados e até aumenta a performance do jogo e reduz o consumo de RAM em muitos casos. Este patch funcionará ainda melhor caso você desative as "Notificações Online" e o "Modo Loja". REQUER o Firewall do Windows ativado para funcionar.</system:String>
+    <system:String x:Key="launcher_patch11_title">Patch de Melhoria da Progressão de História</system:String>
+    <system:String x:Key="launcher_patch11_description">Este patch adicionará ao seu jogo o "NRaas - Story Progression" substituindo totalmente a progressão de história padrão imposta pela EA. Graças a este Patch os sims não jogados de sua cidade agora viverão vidas mais interessantes e de maneiras mais realistas. Casarão com outros Sims, comprarão mobílias ou automóveis, trocarão de emprego, terão personalidades, aprimorarão habilidades e muito, muito mais. As configurações de população e progressão de história do seu jogo ainda serão respeitadas mesmo com este patch instalado. Este patch também instala o "NRaas - Second Image" que trará mais informações de Sims em notificações de jogo. Os mods incluídos neste Patch já são pré-configurados para a melhor experiência de jogabilidade e performance. Este Patch lhe fornecerá uma melhor experiência de jogo, se você jogar com a expectativa de vida dos Sims no modo "Longo". Caso você esteja jogando em PT-BR, a versão brasileira do "NRaas - Story Progression" traduzida por marcos4503 será instalada.</system:String>
 
     <!-- Screen 6: Launcher - Settings -->
     <system:String x:Key="launcher_settings_save">SALVAR</system:String>
@@ -147,6 +154,11 @@ o jogo tenha total preferência sobre os recursos, ainda haverá recursos para o
     <system:String x:Key="launcher_settings_launcher_launcherBehaviour">Comportamento Enquanto Joga</system:String>
     <system:String x:Key="launcher_settings_launcher_launcherBehaviourHelp" xml:space="preserve">
 Determina o que o Launcher deve fazer enquanto o The Sims 3 está rodando.
+    </system:String>
+    <system:String x:Key="launcher_settings_launcher_gameOverlay">Overlay no Jogo</system:String>
+    <system:String x:Key="launcher_settings_launcher_gameOverlayHelp" xml:space="preserve">
+Exibe um Overlay dentro do jogo. Este Overlay exibe o FPS atual no qual o jogo está rodando e também a quantidade de memória RAM que
+o jogo está usando, da mesma maneira que você poderia acompanhar através do Gerenciador de Tarefas.
     </system:String>
     <system:String x:Key="launcher_settings_launcher_resetTemplate">Redefinir Template de Opções</system:String>
     <system:String x:Key="launcher_settings_launcher_resetTemplateHelp" xml:space="preserve">
@@ -619,8 +631,8 @@ Caso este parâmetro esteja ativo, os membros do núcleo familiar ativo não pod
     <system:String x:Key="launcher_mods_installedTab_modOptions_renameButton">PRONTO</system:String>
     <system:String x:Key="launcher_mods_installedTab_modOptions_renameErrorTitle">Erro</system:String>
     <system:String x:Key="launcher_mods_installedTab_modOptions_renameErrorText">O nome digitado é inválido. Por favor, forneça um nome válido.</system:String>
-    <system:String x:Key="launcher_mods_installedTab_modOptions_renameBusyTitle">Error</system:String>
-    <system:String x:Key="launcher_mods_installedTab_modOptions_renameBusyText">Cannot rename now. There are one or more Tasks in progress in Dream Launcher.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameBusyTitle">Erro</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameBusyText">Não é possível renomear agora. Existem uma ou mais Tarefas em progresso no Dream Launcher.</system:String>
     <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_empty">O nome não pode estar vazio.</system:String>
     <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_long">O nome só pode conter um máximo de 80 caracteres.</system:String>
     <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_exists">Já existe um Mod com este nome.</system:String>
@@ -632,9 +644,27 @@ Caso este parâmetro esteja ativo, os membros do núcleo familiar ativo não pod
     <system:String x:Key="launcher_mods_installedTab_modOptions_s3pe_notInstalled">Não foi possível abrir o Mod no S3PE. A ferramenta não foi instalada no Dream Launcher. Por favor, a instale através da página "Tools"</system:String>
     <system:String x:Key="launcher_mods_installedTab_modOptions_s3oc">Abrir no S3OC</system:String>
     <system:String x:Key="launcher_mods_installedTab_modOptions_s3oc_notInstalled">Não foi possível abrir o Mod no S3OC. A ferramenta não foi instalada no Dream Launcher. Por favor, a instale através da página "Tools"</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_caspsEditor">Abrir no CASPs Editor</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_casps_notInstalled">Não foi possível abrir o Mod no CASPs Editor. A ferramenta não foi instalada no Dream Launcher. Por favor, a instale através da página "Tools"</system:String>
     <system:String x:Key="launcher_mods_installedTab_modCopyDiagTitle">Pronto</system:String>
     <system:String x:Key="launcher_mods_installedTab_modCopyDiagText">O Mod foi copiado para a pasta selecionada.</system:String>
     <system:String x:Key="launcher_mods_deleteUnrecognized">O arquivo "%file%" presente dentro da pasta "Mods" não foi reconhecido pelo Dream Launcher e por isso foi removido para evitar o mau funcionamento das funções do Launcher e do Jogo. É importante que não sejam feitas alterações manuais na pasta "Mods" do seu jogo, toda alteração só deve ser feita pelo Dream Launcher.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_busyTitle">Erro</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_busyText">Não é possível fechar o CASPs Editor agora. O CASPs Editor está lendo ou salvando um Package agora. Por favor, aguarde a conclusão da tarefa atual, antes de fecha-lo.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_emptyMsg">Nenhum CAS Part encontrado neste Package</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_saveButton">SALVAR</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipMale">Permitido para Homens</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipFemale">Permitido para Mulheres</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipToddler">Permitido para Bebês</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipChild">Permitido para Crianças</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipTeen">Permitido para Adolescentes</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipYoungAdult">Permitido para Jovens Adultos</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipAdult">Permitido para Adultos</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipElder">Permitido para Idosos</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipCanges">Modificado</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipValidForRandom">Permitir para Aleatórios (outros Sims da cidade)?</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipValidForMaternity">Permitir para Maternidade?</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_saved">As alterações feitas no Mod foram aplicadas com sucesso.</system:String>
     <system:String x:Key="launcher_mods_addNewTab">Adicionar</system:String>
     <system:String x:Key="launcher_mods_addNewTab_recommended">RECOMENDADO</system:String>
     <system:String x:Key="launcher_mods_addNewTab_recommendedAddError">Não foi possível adicionar o Mod. É necessário que a Ferramenta "7-Zip" esteja instalada no Dream Launcher. Por favor, instale-a a partir da página "Ferramentas".</system:String>
@@ -690,5 +720,20 @@ Caso este parâmetro esteja ativo, os membros do núcleo familiar ativo não pod
     <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep4Txt">Finalizando a Instalação</system:String>
     <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep4TxtError">Já existe um Mod instalado, usando este nome</system:String>
     <system:String x:Key="launcher_mods_addNewTab_modInstaller_installFinish">O Mod foi instalado com sucesso!</system:String>
-    
+
+    <!-- Screen 6: Launcher - Media -->
+    <system:String x:Key="launcher_media_noMediaFound">Nenhuma mídia gerada até agora</system:String>
+    <system:String x:Key="launcher_media_cut">Mover Mídias selecionadas para...</system:String>
+    <system:String x:Key="launcher_media_copy">Copiar Mídias selecionadas para...</system:String>
+    <system:String x:Key="launcher_media_delete">Deletar Mídias selecionadas</system:String>
+    <system:String x:Key="launcher_media_statusLoad">Carregando</system:String>
+    <system:String x:Key="launcher_media_statusCount">%n% itens</system:String>
+    <system:String x:Key="launcher_media_statusCountWithSelecion">%n% itens, %s% selecionados</system:String>
+    <system:String x:Key="launcher_media_deleteConfirmTitle">Confirmação</system:String>
+    <system:String x:Key="launcher_media_deleteConfirmText">Tem certeza que deseja deletar as mídias selecionadas?</system:String>
+    <system:String x:Key="launcher_media_copyDoneTitle">Copia Concluída</system:String>
+    <system:String x:Key="launcher_media_copyDoneText">As mídias selecionadas foram copiadas com sucesso para a pasta escolhida!</system:String>
+    <system:String x:Key="launcher_media_cutDoneTitle">Move Done</system:String>
+    <system:String x:Key="launcher_media_cutDoneText">As mídias selecionadas foram movidas com sucesso para a pasta escolhida!</system:String>
+
 </ResourceDictionary>

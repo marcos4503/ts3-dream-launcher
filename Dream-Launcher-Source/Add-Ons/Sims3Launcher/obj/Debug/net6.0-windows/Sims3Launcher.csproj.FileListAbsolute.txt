@@ -6,6 +6,7 @@ D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Sims3Launcher\bin\Debug\net6.0-windo
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Sims3Launcher\obj\Debug\net6.0-windows\Sims3Launcher.csproj.AssemblyReference.cache
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Sims3Launcher\obj\Debug\net6.0-windows\MainWindow.g.cs
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Sims3Launcher\obj\Debug\net6.0-windows\App.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Sims3Launcher\obj\Debug\net6.0-windows\Sims3Launcher_Content.g.cs
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Sims3Launcher\obj\Debug\net6.0-windows\Sims3Launcher_MarkupCompile.cache
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Sims3Launcher\obj\Debug\net6.0-windows\Sims3Launcher_MarkupCompile.lref
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Sims3Launcher\obj\Debug\net6.0-windows\MainWindow.baml
@@ -19,4 +20,3 @@ D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Sims3Launcher\obj\Debug\net6.0-windo
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Sims3Launcher\obj\Debug\net6.0-windows\Sims3Launcher.pdb
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Sims3Launcher\obj\Debug\net6.0-windows\Sims3Launcher.genruntimeconfig.cache
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Sims3Launcher\obj\Debug\net6.0-windows\ref\Sims3Launcher.dll
-D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Sims3Launcher\obj\Debug\net6.0-windows\Sims3Launcher_Content.g.cs

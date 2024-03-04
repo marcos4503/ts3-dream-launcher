@@ -26,9 +26,11 @@ namespace TS3_Dream_Launcher.Scripts
             public string gameLang = "undefined";
             public int gamePriority = 0;
             public int launcherBehaviour = 0;
+            public int gameOverlay = 1;
             public bool alreadyTranslated = false;
             public bool alreadyIntelFixed = false;
             public int lastErrorLogsCount = 0;
+            public int lastMediaFilesCount = 0;
 
             public bool patchModsSupport = false;
             public bool patchBasicOptimization = false;
@@ -38,6 +40,7 @@ namespace TS3_Dream_Launcher.Scripts
             public bool patchImprovedShaders = false;
             public bool patchShadowExtender = false;
             public bool patchRoutingOptimizations = false;
+            public bool patchStoryProgression = false;
             public bool patchInternetRemoval = false;
 
             public int resolution = 0;

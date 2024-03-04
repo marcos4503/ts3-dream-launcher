@@ -264,6 +264,20 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             toReturn.Add("Traffic_Tuning", "NRaas - Traffic - Default Settings");
             toReturn.Add("Traveler", "NRaas - Traveler");
             toReturn.Add("Traveler_Tuning", "NRaas - Traveler - Default Settings");
+            toReturn.Add("StoryProgression", "NRaas - Story Progression");
+            toReturn.Add("StoryProgression_Meanies", "NRaas - Story Progression - Meanies Module");
+            toReturn.Add("StoryProgression_Lovers", "NRaas - Story Progression - Lovers Module");
+            toReturn.Add("StoryProgression_Career", "NRaas - Story Progression - Career Module");
+            toReturn.Add("StoryProgression_FairiesAndWerewolves", "NRaas - Story Progression - Fairies And Werewolves Module");
+            toReturn.Add("StoryProgression_Extra", "NRaas - Story Progression - Extra Module");
+            toReturn.Add("StoryProgression_Money", "NRaas - Story Progression - Money Module");
+            toReturn.Add("StoryProgression_Population", "NRaas - Story Progression - Population Module");
+            toReturn.Add("StoryProgression_Relationship", "NRaas - Story Progression - Relationship Module");
+            toReturn.Add("StoryProgression_Skill", "NRaas - Story Progression - Skill Module");
+            toReturn.Add("StoryProgression_CopsAndRobbers", "NRaas - Story Progression - Cops And Robbers Module");
+            toReturn.Add("StoryProgression_VampiresAndSlayers", "NRaas - Story Progression - Vampires And Slayers Module");
+            toReturn.Add("StoryProgression_Tuning", "NRaas - Story Progression - Default Settings");
+            toReturn.Add("SecondImage", "NRaas - Second Image");
 
             //Return the directionary
             return toReturn;
@@ -322,6 +336,12 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             openS3oc.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_s3oc");
             openS3oc.Click += (s, e) => { OpenInS3OC(); };
             moreButton.ContextMenu.Items.Add(openS3oc);
+
+            //Add open in CASPs option
+            MenuItem openCasps = new MenuItem();
+            openCasps.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_caspsEditor");
+            openCasps.Click += (s, e) => { OpenInCASPsEditor(); };
+            moreButton.ContextMenu.Items.Add(openCasps);
 
             //Add rename option
             MenuItem renameOption = new MenuItem();
@@ -509,6 +529,36 @@ namespace TS3_Dream_Launcher.Controls.ListItems
                 instantiatedByWindow.SetInteractionBlockerEnabled(false);
             };
             asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+        }
+    
+        private void OpenInCASPsEditor()
+        {
+            //If don't have Dl3CASPsEditor tool installed, cancel
+            if (File.Exists((contentsDirPath + "/tool-caspe/Dl3CASPsEditor.exe")) == false)
+            {
+                instantiatedByWindow.ShowToast(instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_casps_notInstalled"), MainWindow.ToastType.Error);
+                return;
+            }
+
+            //Prepare the "casp-editor" temp folder path
+            string caspEditorCachePath = (instantiatedByWindow.myDocumentsPath + ("/!DL-TmpCache/casp-editor"));
+            //If the directory not exists, create it
+            if (Directory.Exists(caspEditorCachePath) == false)
+                Directory.CreateDirectory(caspEditorCachePath);
+
+            //Add the task to queue
+            instantiatedByWindow.AddTask("casps_edit_Running", "Running CASPs Editor.");
+            //Block interactions
+            instantiatedByWindow.SetInteractionBlockerEnabled(true);
+
+            //Open CASPs window
+            WindowCASPsEditor windowCASPsEditor = new WindowCASPsEditor(instantiatedByWindow, contentsDirPath, caspEditorCachePath, thisModPath);
+            windowCASPsEditor.Closed += (s, e) =>
+            {
+                instantiatedByWindow.RemoveTask("casps_edit_Running");
+                instantiatedByWindow.SetInteractionBlockerEnabled(false);
+            };
+            windowCASPsEditor.Show();
         }
     }
 }

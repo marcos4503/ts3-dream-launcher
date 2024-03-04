@@ -46,7 +46,7 @@ namespace TS3_Dream_Launcher
         {
             home,
             saves,
-            sims,
+            exports,
             worlds,
             media,
             cache,
@@ -122,12 +122,14 @@ namespace TS3_Dream_Launcher
         private IDisposable recommendedModsUpdateRoutine = null;
         private ModCategory currentSeeingRecModsCategory = ModCategory.All;
         private IDisposable recommendedModsFilterRoutine = null;
+        private IDisposable mediaListUpdateRoutine = null;
 
         //Private variables
         private IDictionary<string, Storyboard> animStoryboards = new Dictionary<string, Storyboard>();
         private System.Windows.Forms.NotifyIcon launcherTrayIcon = null;
         private IDictionary<string, string> runningTasks = new Dictionary<string, string>();
         private Process currentGameProcess = null;
+        private Process currentGameOverlayProcess = null;
 
         //Public variables
         public string myDocumentsPath = "";
@@ -138,6 +140,7 @@ namespace TS3_Dream_Launcher
         public List<ToolItem> instantiatedToolItems = new List<ToolItem>();
         public List<InstalledModItem> instantiatedModsItems = new List<InstalledModItem>();
         public List<StoreModItem> instantiatedRecModItems = new List<StoreModItem>();
+        public List<MediaItem> instantiatedMediaItems = new List<MediaItem>();
 
         //Core methods
 
@@ -795,8 +798,14 @@ namespace TS3_Dream_Launcher
 
                         //Recalculate all cache types sizes
                         RecalculateAllCacheTypesSizes();
+                        //Re-update the medias list
+                        UpdateMediaList();
                     };
                     asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+
+                    //If the overlay is enabled, create a thread to start the overlay
+                    if (launcherPrefs.loadedData.gameOverlay != 0)
+                        StartGameOverlayThread();
                 }
                 catch (Exception ex) { ShowToast((GetStringApplicationResource("launcher_launchGameProblem") + " \"" + ex.Message + "\""), ToastType.Error); }
             };
@@ -835,7 +844,7 @@ namespace TS3_Dream_Launcher
             //Setup the navigation buttons
             goHome.Click += (s, e) => { SwitchPage(LauncherPage.home); };
             goSaves.Click += (s, e) => { SwitchPage(LauncherPage.saves); };
-            goSims.Click += (s, e) => { SwitchPage(LauncherPage.sims); };
+            goExports.Click += (s, e) => { SwitchPage(LauncherPage.exports); };
             goWorlds.Click += (s, e) => { SwitchPage(LauncherPage.worlds); };
             goMedia.Click += (s, e) => { SwitchPage(LauncherPage.media); };
             goCache.Click += (s, e) => { SwitchPage(LauncherPage.cache); };
@@ -862,7 +871,7 @@ namespace TS3_Dream_Launcher
             {
                 //Disable all navigation buttons
                 goSaves.IsEnabled = false;
-                goSims.IsEnabled = false;
+                goExports.IsEnabled = false;
                 goWorlds.IsEnabled = false;
                 goMedia.IsEnabled = false;
                 goCache.IsEnabled = false;
@@ -917,6 +926,13 @@ namespace TS3_Dream_Launcher
 
             //Prepare the mods system
             BuildAndPrepareModsListSystem();
+
+            //Prepare the media system
+            BuildAndPrepareMediaListSystem();
+
+            //Check if have a new update and warn if was updated
+            CheckUpdates();
+            WarnIfLauncherWasSuccessfullyUpdated();
         }
 
         //Tasks manager
@@ -1104,7 +1120,7 @@ namespace TS3_Dream_Launcher
                 case LauncherPage.saves:
                     pageIdToShow = 1;
                     break;
-                case LauncherPage.sims:
+                case LauncherPage.exports:
                     pageIdToShow = 2;
                     break;
                 case LauncherPage.worlds:
@@ -1134,7 +1150,7 @@ namespace TS3_Dream_Launcher
             List<Controls.BeautyButton.BeautyButton> buttons = new List<Controls.BeautyButton.BeautyButton>();
             buttons.Add(goHome);
             buttons.Add(goSaves);
-            buttons.Add(goSims);
+            buttons.Add(goExports);
             buttons.Add(goWorlds);
             buttons.Add(goMedia);
             buttons.Add(goCache);
@@ -1147,7 +1163,7 @@ namespace TS3_Dream_Launcher
             List<Grid> pages = new List<Grid>();
             pages.Add(pageHome);
             pages.Add(pageSaves);
-            pages.Add(pageSims);
+            pages.Add(pageExports);
             pages.Add(pageWorlds);
             pages.Add(pageMedia);
             pages.Add(pageCache);
@@ -1160,7 +1176,7 @@ namespace TS3_Dream_Launcher
             List<string> titles = new List<string>();
             titles.Add(GetStringApplicationResource("launcher_button_goHome"));
             titles.Add(GetStringApplicationResource("launcher_button_goSaves")); 
-            titles.Add(GetStringApplicationResource("launcher_button_goSims"));
+            titles.Add(GetStringApplicationResource("launcher_button_goExports"));
             titles.Add(GetStringApplicationResource("launcher_button_goWorlds"));
             titles.Add(GetStringApplicationResource("launcher_button_goMedia"));
             titles.Add(GetStringApplicationResource("launcher_button_goCache"));
@@ -1201,8 +1217,10 @@ namespace TS3_Dream_Launcher
                 return;
 
             //Show the red dot...
-            if(desiredPage == LauncherPage.saves)
+            if (desiredPage == LauncherPage.saves)
                 savesWarn.Visibility = Visibility.Visible;
+            if (desiredPage == LauncherPage.exports)
+                exportsWarn.Visibility = Visibility.Visible;
             if (desiredPage == LauncherPage.media)
                 mediaWarn.Visibility = Visibility.Visible;
             if (desiredPage == LauncherPage.cache)
@@ -1215,6 +1233,7 @@ namespace TS3_Dream_Launcher
         {
             //Disable all red dots notifications
             savesWarn.Visibility = Visibility.Collapsed;
+            exportsWarn.Visibility = Visibility.Collapsed;
             mediaWarn.Visibility = Visibility.Collapsed;
             cacheWarn.Visibility = Visibility.Collapsed;
             patchesWarn.Visibility = Visibility.Collapsed;
@@ -1531,6 +1550,41 @@ namespace TS3_Dream_Launcher
                     newPatchItem.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
                 //Add callbacks for buttons
                 newPatchItem.RegisterOnClickInstallCallback((thisPatchItem) => { DoPatch_RoutingOptimizations(PatchMode.Install, thisPatchItem.thisInstantiationIdInList); });
+            }
+
+            //Better Story Progression
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                PatchItem newPatchItem = new PatchItem(this, instantiatedPatchItems.Count);
+                patchesList.Children.Add(newPatchItem);
+                instantiatedPatchItems.Add(newPatchItem);
+                //Disable the interaction, if don't have requiremenet patches installed
+                if (launcherPrefs.loadedData.patchModsSupport == false)
+                {
+                    newPatchItem.IsHitTestVisible = false;
+                    newPatchItem.Opacity = 0.30f;
+                }
+                //Set it up
+                newPatchItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newPatchItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newPatchItem.Width = double.NaN;
+                newPatchItem.Height = double.NaN;
+                newPatchItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this patch item
+                newPatchItem.SetPatchIcon("Resources/patch-11.png");
+                newPatchItem.SetPatchTitle(GetStringApplicationResource("launcher_patch11_title"));
+                newPatchItem.SetPatchDescription(GetStringApplicationResource("launcher_patch11_description"));
+                //Show if is installed
+                if (launcherPrefs.loadedData.patchStoryProgression == true)
+                {
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    DoPatch_BetterStoryProgression(PatchMode.CheckIntegrity, newPatchItem.thisInstantiationIdInList);
+                }
+                if (launcherPrefs.loadedData.patchStoryProgression == false)
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+                //Add callbacks for buttons
+                newPatchItem.RegisterOnClickInstallCallback((thisPatchItem) => { DoPatch_BetterStoryProgression(PatchMode.Install, thisPatchItem.thisInstantiationIdInList); });
             }
 
             //Internet removal
@@ -3185,6 +3239,218 @@ namespace TS3_Dream_Launcher
             }
         }
 
+        private void DoPatch_BetterStoryProgression(PatchMode doPatchMode, int instantiatedPatchItemInList)
+        {
+            //
+            //
+            //
+            //INTEGRITY CHECK...
+            //
+            //
+            //
+
+            //If is desired to only check integrity
+            if (doPatchMode == PatchMode.CheckIntegrity)
+            {
+                //Add the task to queue
+                AddTask("patch_betterStoryProgression_integrity", "Checking patch.");
+
+                //--- Start a thread to check patch integrity ---//
+                AsyncTaskSimplified aTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                aTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(1000);
+                    //Prepare the response to return
+                    string toReturn = "ok";
+
+                    //Prepare a list of files
+                    List<string> filesToCheck = new List<string>();
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/SecondImage.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Tuning.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Meanies.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Lovers.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Career.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Extra.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Money.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Population.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Relationship.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Skill.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_CopsAndRobbers.package"));
+
+                    //Check integrity of this patch...
+                    foreach (string filePath in filesToCheck)
+                        if (File.Exists(filePath) == false)
+                        {
+                            toReturn = "problemFound";
+                            break;
+                        }
+
+                    //Finish the thread...
+                    return new string[] { toReturn, (startParams[0]) };
+                };
+                aTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of problem, inform it
+                    if (threadTaskResponse == "problemFound")
+                    {
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.InstalledWithProblem);
+                        ShowToast(GetStringApplicationResource("launcher_patches_problemFound"), ToastType.Error);
+                        EnablePageRedDotNotification(LauncherPage.patches);
+                    }
+
+                    //Remove the task from queue
+                    RemoveTask("patch_betterStoryProgression_integrity");
+                };
+                aTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+
+            //
+            //
+            //
+            //INSTALLING...
+            //
+            //
+            //
+
+            //If is desired to install
+            if (doPatchMode == PatchMode.Install)
+            {
+                //--- Start a thread to do the patching ---//
+                AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                asyncTask.onStartTask_RunMainThread += (callerWindow, startParams) =>
+                {
+                    //Get the instantiated patch item in list
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(startParams[0]))];
+                    //Change the UI
+                    instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installing);
+                    //Add the task to queue
+                    AddTask("patch_betterStoryProgression", "Installing patch.");
+                };
+                asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(5000);
+
+                    //Try to do the task
+                    try
+                    {
+                        //Prepare a list of files
+                        List<string> filesToCheck = new List<string>();
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/SecondImage.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Tuning.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Meanies.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Lovers.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Career.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_FairiesAndWerewolves.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_FairiesAndWerewolves.package.disabled"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Extra.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Money.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Population.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Relationship.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Skill.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_CopsAndRobbers.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_VampiresAndSlayers.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_VampiresAndSlayers.package.disabled"));
+                        //Remove all files, if exists
+                        foreach (string filePath in filesToCheck)
+                            if (File.Exists(filePath) == true)
+                                File.Delete(filePath);
+
+                        //Download the patch files...
+                        //Prepare the target download URL
+                        string downloadUrl = @"https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/patch-better-story-progression.zip";
+                        string saveAsPath = (myDocumentsPath + @"/!DL-TmpCache/patch-better-story-progression.zip");
+                        //Download the "Mods" folder sync
+                        HttpClient httpClient = new HttpClient();
+                        HttpResponseMessage httpRequestResult = httpClient.GetAsync(downloadUrl).Result;
+                        httpRequestResult.EnsureSuccessStatusCode();
+                        Stream downloadStream = httpRequestResult.Content.ReadAsStreamAsync().Result;
+                        FileStream fileStream = new FileStream(saveAsPath, FileMode.Create, FileAccess.Write, FileShare.None);
+                        downloadStream.CopyTo(fileStream);
+                        httpClient.Dispose();
+                        fileStream.Dispose();
+                        fileStream.Close();
+                        downloadStream.Dispose();
+                        downloadStream.Close();
+
+                        //Extract the downloaded patch files
+                        ZipFile zipFile = ZipFile.Read(saveAsPath);
+                        foreach (ZipEntry entry in zipFile)
+                            entry.Extract((myDocumentsPath + @"/!DL-TmpCache"), ExtractExistingFileAction.OverwriteSilently);
+                        zipFile.Dispose();
+
+                        //Put the files in the right place
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/SecondImage.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/SecondImage.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/StoryProgression.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/StoryProgression_Tuning.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Tuning.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/StoryProgression_Meanies.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Meanies.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/StoryProgression_Lovers.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Lovers.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/StoryProgression_Career.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Career.package"));
+                        if (Directory.Exists(((new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent).FullName + "/EP7")) == true)
+                            File.Move((myDocumentsPath + "/!DL-TmpCache/StoryProgression_FairiesAndWerewolves.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_FairiesAndWerewolves.package"));
+                        if (Directory.Exists(((new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent).FullName + "/EP7")) == false)
+                            File.Move((myDocumentsPath + "/!DL-TmpCache/StoryProgression_FairiesAndWerewolves.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_FairiesAndWerewolves.package.disabled"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/StoryProgression_Extra.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Extra.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/StoryProgression_Money.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Money.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/StoryProgression_Population.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Population.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/StoryProgression_Relationship.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Relationship.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/StoryProgression_Skill.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_Skill.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/StoryProgression_CopsAndRobbers.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_CopsAndRobbers.package"));
+                        if (Directory.Exists(((new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent).FullName + "/EP7")) == true)
+                            File.Move((myDocumentsPath + "/!DL-TmpCache/StoryProgression_VampiresAndSlayers.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_VampiresAndSlayers.package"));
+                        if (Directory.Exists(((new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent).FullName + "/EP7")) == false)
+                            File.Move((myDocumentsPath + "/!DL-TmpCache/StoryProgression_VampiresAndSlayers.package"), (myDocumentsPath + "/Mods/Packages/DL3-Patches/StoryProgression_VampiresAndSlayers.package.disabled"));
+
+                        //Return a success response
+                        return new string[] { "success", (startParams[0]) };
+                    }
+                    catch (Exception ex)
+                    {
+                        //Return a error response
+                        return new string[] { "error", (startParams[0]) };
+                    }
+
+                    //Finish the thread...
+                    return new string[] { "none", (startParams[0]) };
+                };
+                asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of success, inform it
+                    if (threadTaskResponse == "success")
+                    {
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallSuccess").Replace("%name%", GetStringApplicationResource("launcher_patch11_title"))), ToastType.Success);
+                        launcherPrefs.loadedData.patchStoryProgression = true;
+                        launcherPrefs.Save();
+                    }
+
+                    //If have a response different from success, inform error
+                    if (threadTaskResponse != "success")
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallError").Replace("%name%", GetStringApplicationResource("launcher_patch11_title"))), ToastType.Error);
+
+                    //Update the UI
+                    if (launcherPrefs.loadedData.patchStoryProgression == true)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    if (launcherPrefs.loadedData.patchStoryProgression == false)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+
+                    //Remove the task from queue
+                    RemoveTask("patch_betterStoryProgression");
+                };
+                asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+        }
+
         private void DoPatch_InternetRemoval(PatchMode doPatchMode, int instantiatedPatchItemInList)
         {
             //
@@ -3869,7 +4135,7 @@ namespace TS3_Dream_Launcher
             {
                 playBtText.Content = GetStringApplicationResource("launcher_button_playingButton");
                 goSaves.IsEnabled = false;
-                goSims.IsEnabled = false;
+                goExports.IsEnabled = false;
                 goWorlds.IsEnabled = false;
                 goMedia.IsEnabled = false;
                 goCache.IsEnabled = false;
@@ -3888,7 +4154,7 @@ namespace TS3_Dream_Launcher
             {
                 playBtText.Content = GetStringApplicationResource("launcher_button_playButton");
                 goSaves.IsEnabled = true;
-                goSims.IsEnabled = true;
+                goExports.IsEnabled = true;
                 goWorlds.IsEnabled = true;
                 goMedia.IsEnabled = true;
                 goCache.IsEnabled = true;
@@ -3912,6 +4178,168 @@ namespace TS3_Dream_Launcher
             //If is desired to disable it
             if (enabled == false)
                 interactionBlocker.Visibility = Visibility.Collapsed;
+        }
+
+        public void StartGameOverlayThread()
+        {
+            //Create the thread for start the overlay
+            AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { });
+            asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+            {
+                //Wait initial time to wait the game open
+                threadTools.MakeThreadSleep(30000);
+
+                //Get the correct working directory
+                string workingDirectory = Directory.GetCurrentDirectory();
+
+                //Create the overlay process
+                Process process = new Process();
+                process.StartInfo.FileName = System.IO.Path.Combine(workingDirectory, "Dl3DxOverlay.exe");
+                process.StartInfo.WorkingDirectory = workingDirectory;
+                process.StartInfo.Arguments = "\"TS3W\" " + ((launcherPrefs.loadedData.gameOverlay == 1) ? "0" : "1");
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.CreateNoWindow = true;  //<- Hide the process window
+                process.StartInfo.RedirectStandardOutput = true;
+                process.Start();
+
+                //Store it
+                currentGameOverlayProcess = process;
+
+                //Create a monitor loop
+                while (true)
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(5000);
+
+                    //If was finished the overlay process or the game was closed, break the monitor loop
+                    if (currentGameOverlayProcess.HasExited == true || isPlayingTheGame == false)
+                        break;
+                }
+
+                //Return empty response
+                return new string[] { };
+            };
+            asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+            {
+                //Stop it
+                currentGameOverlayProcess.Kill();
+                currentGameOverlayProcess.Dispose();
+
+                //Clear it
+                currentGameOverlayProcess = null;
+            };
+            asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+        }
+
+        public void CheckUpdates()
+        {
+            //Start a thread to download the current version info
+            AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { });
+            asyncTask.onStartTask_RunMainThread += (callerWindow, startParams) =>
+            {
+                //Add the task to queue
+                AddTask("loadingCurrentVersion", "Checking for a new version.");
+            };
+            asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+            {
+                //Wait some time
+                threadTools.MakeThreadSleep(5000);
+
+                //Try to do the task
+                try
+                {
+                    //Prepare the target download URL
+                    string downloadUrl = @"https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/launcher-current-version.txt";
+                    string saveAsPath = (myDocumentsPath + @"/!DL-TmpCache/launcher-current-version.txt");
+                    //Download the current version file
+                    HttpClient httpClient = new HttpClient();
+                    HttpResponseMessage httpRequestResult = httpClient.GetAsync(downloadUrl).Result;
+                    httpRequestResult.EnsureSuccessStatusCode();
+                    Stream downloadStream = httpRequestResult.Content.ReadAsStreamAsync().Result;
+                    FileStream fileStream = new FileStream(saveAsPath, FileMode.Create, FileAccess.Write, FileShare.None);
+                    downloadStream.CopyTo(fileStream);
+                    httpClient.Dispose();
+                    fileStream.Dispose();
+                    fileStream.Close();
+                    downloadStream.Dispose();
+                    downloadStream.Close();
+
+                    //Return a success response
+                    return new string[] { "success" };
+                }
+                catch (Exception ex)
+                {
+                    //Return a error response
+                    return new string[] { "error" };
+                }
+
+                //Finish the thread...
+                return new string[] { "none" };
+            };
+            asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+            {
+                //Get the thread response
+                string threadTaskResponse = backgroundResult[0];
+
+                //If have a response of success, compare the versions
+                if (threadTaskResponse == "success")
+                {
+                    //Get the versions
+                    string localCurrentVersion = GetLauncherVersion();
+                    string remoteCurrentVersion = File.ReadAllText((myDocumentsPath + @"/!DL-TmpCache/launcher-current-version.txt"));
+
+                    //Setup the update callback
+                    updateButton.Click += ((s, e) => { StartLauncherUpdater(); });
+                    //Show the version notification
+                    updateText.Text = GetStringApplicationResource("launcher_updateNotifier").Replace("%v%", remoteCurrentVersion);
+
+                    //If the version is different, enable the update notification
+                    if (localCurrentVersion != remoteCurrentVersion)
+                        updateNotifier.Visibility = Visibility.Visible;
+                }
+
+                //Remove the task from queue
+                RemoveTask("loadingCurrentVersion");
+            };
+            asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+        }
+
+        public void StartLauncherUpdater()
+        {
+            //Cancel if is running some takss
+            if(GetRunningTasksCount() > 0)
+            {
+                ShowToast(GetStringApplicationResource("launcher_updateWait"), ToastType.Error);
+                return;
+            }
+
+            //Add task to queue
+            AddTask("updatingLauncher", "Updating the Launcher.");
+            //Hide this window
+            this.Visibility = Visibility.Collapsed;
+
+            //Open the updater window and install event
+            WindowLauncherUpdater updater = new WindowLauncherUpdater(myDocumentsPath, Directory.GetCurrentDirectory());
+            updater.Closed += (s, e) =>
+            {
+                ShowToast(GetStringApplicationResource("launcher_updateError"), ToastType.Error);
+                RemoveTask("updatingLauncher");
+                this.Visibility = Visibility.Visible;
+            };
+            updater.Show();
+        }
+
+        public void WarnIfLauncherWasSuccessfullyUpdated()
+        {
+            //If the successfully update file don't exists, cancel
+            if (File.Exists((myDocumentsPath + @"/!DL-TmpCache/launcher-updater/update-successfully.ok")) == false)
+                return;
+
+            //Warn about the update
+            ShowToast(GetStringApplicationResource("launcher_updateSuccess"), ToastType.Success);
+
+            //Remove the status file
+            File.Delete((myDocumentsPath + @"/!DL-TmpCache/launcher-updater/update-successfully.ok"));
         }
 
         //Settings manager
@@ -3969,6 +4397,8 @@ namespace TS3_Dream_Launcher
             set_priority.SelectedIndex = launcherPrefs.loadedData.gamePriority;
             //*** set_launcherBehaviour
             set_launcherBehaviour.SelectedIndex = launcherPrefs.loadedData.launcherBehaviour;
+            //*** set_gameOverlay
+            set_gameOverlay.SelectedIndex = launcherPrefs.loadedData.gameOverlay;
 
             //Graphics tab
             //*** set_Resolution
@@ -4183,6 +4613,8 @@ namespace TS3_Dream_Launcher
             launcherPrefs.loadedData.gamePriority = set_priority.SelectedIndex;
             //*** set_launcherBehaviour
             launcherPrefs.loadedData.launcherBehaviour = set_launcherBehaviour.SelectedIndex;
+            //*** set_gameOverlay
+            launcherPrefs.loadedData.gameOverlay = set_gameOverlay.SelectedIndex;
 
             //Graphics tab
             //*** set_Resolution
@@ -6345,6 +6777,34 @@ namespace TS3_Dream_Launcher
                 //Prepare the tool
                 newToolItem.Prepare();
             }
+
+            //---------------// CASPs Editor //---------------//
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                ToolItem newToolItem = new ToolItem(this);
+                toolsList.Children.Add(newToolItem);
+                instantiatedToolItems.Add(newToolItem);
+                //Set it up
+                newToolItem.HorizontalAlignment = HorizontalAlignment.Left;
+                newToolItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newToolItem.Width = double.NaN;
+                newToolItem.Height = double.NaN;
+                newToolItem.Margin = new Thickness(4, 4, 4, 4);
+                //Fill this item
+                newToolItem.SetIcon("Resources/tool-caspe.png");
+                newToolItem.SetInformation(GetStringApplicationResource("launcher_tools_caspeInformation"));
+                newToolItem.SetTitle(GetStringApplicationResource("launcher_tools_caspeTitle"));
+                newToolItem.SetDescription(GetStringApplicationResource("launcher_tools_caspeDescription"));
+                newToolItem.SetCreator("marcos4503");
+                newToolItem.SetContentsFolderPath((Directory.GetCurrentDirectory() + @"/Content"));
+                newToolItem.SetToolFolderName("tool-caspe");
+                newToolItem.SetToolExePathInsideFolder("Dl3CASPsEditor.exe");
+                newToolItem.SetMyDocumentsPath(myDocumentsPath);
+                newToolItem.SetToolDownloadURL("https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/tool-caspe.zip");
+                //Prepare the tool
+                newToolItem.Prepare();
+            }
         }
     
         //Mods Manager
@@ -6527,7 +6987,7 @@ namespace TS3_Dream_Launcher
             modsFolderSize.Text = GetFormattedCacheSize(totalSizeInBytes).Replace("~", "");
 
             //Auto change to category to all
-            SetInstalledModsCategoryFilter(ModCategory.All);
+            SetInstalledModsCategoryFilter(currentSeeingModsCategory);
 
             //Run the animation of loading exit
             animStoryboards["installedModsLoadExit"].Begin();
@@ -6900,7 +7360,7 @@ namespace TS3_Dream_Launcher
                     string fileExtension = System.IO.Path.GetExtension(filePath).Replace(".", "").ToLower();
 
                     //If is not a valid file
-                    if (fileExtension != "package")
+                    if (fileExtension != "package" && fileExtension != "disabled")
                         deleteThis = true;
 
                     //If is not desired to delete this, continues
@@ -7105,6 +7565,17 @@ namespace TS3_Dream_Launcher
             if (isDownloadingRecommendedLibrary == true)
                 return;
 
+            //If the recommended library is more old than 5 minutes, auto clear it
+            if(File.Exists((myDocumentsPath + "/!DL-TmpCache/recommended-mods-library.json")) == true)
+            {
+                //Calculate the minutes old of recommended library
+                long minutesOld = (new TimeSpan(DateTime.Now.Ticks) - new TimeSpan(File.GetLastWriteTime((myDocumentsPath + "/!DL-TmpCache/recommended-mods-library.json")).Ticks)).Minutes;
+
+                //If library is more old than 5 minutes, delete it
+                if (minutesOld >= 5)
+                    File.Delete((myDocumentsPath + "/!DL-TmpCache/recommended-mods-library.json"));
+            }
+
             //If the library file don't exists in cache, download it
             if(File.Exists((myDocumentsPath + "/!DL-TmpCache/recommended-mods-library.json")) == false)
             {
@@ -7243,7 +7714,7 @@ namespace TS3_Dream_Launcher
             }
 
             //Auto change to category of all
-            SetRecommendedModsCategoryFilter(ModCategory.All);
+            SetRecommendedModsCategoryFilter(currentSeeingRecModsCategory);
 
             //Wait end of animation
             yield return new WaitForSeconds(0.5);
@@ -7457,6 +7928,281 @@ namespace TS3_Dream_Launcher
             SetInteractionBlockerEnabled(true);
             //Add the task to queue
             AddTask("modInstalling", "Running Mod installer.");
+        }
+    
+        //Media manager
+
+        private void BuildAndPrepareMediaListSystem()
+        {
+            //Disable the buttons
+            SetEnabledActionButtons(false);
+
+            //Prepare the buttons
+            mediaCopy.Click += (s, e) => { CopySelectedMedia(); };
+            mediaCut.Click += (s, e) => { CutSelectedMedia(); };
+            mediaDelete.Click += (s, e) => { DeleteSelectedMedia(); };
+
+            //Update the media list
+            UpdateMediaList();
+        }
+
+        private void SetEnabledActionButtons(bool enable)
+        {
+            //If is desired to disable
+            if(enable == false)
+            {
+                mediaCut.Opacity = 0.25f;
+                mediaCut.IsHitTestVisible = false;
+                mediaCopy.Opacity = 0.25f;
+                mediaCopy.IsHitTestVisible = false;
+                mediaDelete.Opacity = 0.25f;
+                mediaDelete.IsHitTestVisible = false;
+            }
+
+            //If is desired to enable
+            if (enable == true)
+            {
+                mediaCut.Opacity = 0.85f;
+                mediaCut.IsHitTestVisible = true;
+                mediaCopy.Opacity = 0.85f;
+                mediaCopy.IsHitTestVisible = true;
+                mediaDelete.Opacity = 0.85f;
+                mediaDelete.IsHitTestVisible = true;
+            }
+        }
+
+        private void CutSelectedMedia()
+        {
+            //Prepare the file list
+            List<string> fileList = new List<string>();
+
+            //Mount file list
+            foreach (MediaItem item in instantiatedMediaItems)
+                if (item.isSelected == true)
+                    fileList.Add(item.filePath);
+
+            //Prepare the folder selected path
+            string selectedFolderPath = "";
+            //Open folder picker dialog
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            {
+                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK)
+                    selectedFolderPath = dialog.SelectedPath;
+            }
+            //If no folder was selected, cancel
+            if (selectedFolderPath == "")
+                return;
+
+            //Move all files to selected place
+            foreach (string filePath in fileList)
+                File.Move(filePath, (selectedFolderPath + "/" + System.IO.Path.GetFileName(filePath)));
+
+            //Warn about the cut
+            MessageBox.Show(GetStringApplicationResource("launcher_media_cutDoneText"),
+                            GetStringApplicationResource("launcher_media_cutDoneTitle"), MessageBoxButton.OK, MessageBoxImage.Information);
+
+            //Update media list
+            UpdateMediaList();
+        }
+
+        private void CopySelectedMedia()
+        {
+            //Prepare the file list
+            List<string> fileList = new List<string>();
+
+            //Mount file list
+            foreach (MediaItem item in instantiatedMediaItems)
+                if (item.isSelected == true)
+                    fileList.Add(item.filePath);
+
+            //Prepare the folder selected path
+            string selectedFolderPath = "";
+            //Open folder picker dialog
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            {
+                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK)
+                    selectedFolderPath = dialog.SelectedPath;
+            }
+            //If no folder was selected, cancel
+            if (selectedFolderPath == "")
+                return;
+
+            //Copy all files to selected place
+            foreach (string filePath in fileList)
+                File.Copy(filePath, (selectedFolderPath + "/" + System.IO.Path.GetFileName(filePath)));
+
+            //Warn about the copy
+            MessageBox.Show(GetStringApplicationResource("launcher_media_copyDoneText"),
+                            GetStringApplicationResource("launcher_media_copyDoneTitle"), MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void DeleteSelectedMedia()
+        {
+            //Prepare the file list
+            List<string> fileList = new List<string>();
+
+            //Mount file list
+            foreach (MediaItem item in instantiatedMediaItems)
+                if (item.isSelected == true)
+                    fileList.Add(item.filePath);
+
+            //Show the confirmation dialog
+            MessageBoxResult dialogResult = MessageBox.Show(GetStringApplicationResource("launcher_media_deleteConfirmText"),
+                                                            GetStringApplicationResource("launcher_media_deleteConfirmTitle"), MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            //If is desired to delete, do it
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                //Delete each file
+                foreach (string filePath in fileList)
+                    File.Delete(filePath);
+
+                //Update media list
+                UpdateMediaList();
+            }
+        }
+
+        private void UpdateMediaList()
+        {
+            //If the routine is already running, stop it
+            if (mediaListUpdateRoutine != null)
+            {
+                mediaListUpdateRoutine.Dispose();
+                mediaListUpdateRoutine = null;
+            }
+
+            //Start the media update routine
+            mediaListUpdateRoutine = Coroutine.Start(UpdateMediaListRoutine());
+        }
+
+        private void ProcessMediaSelection()
+        {
+            //Prepare the medias selected counter
+            int mediasSelectedCount = 0;
+
+            //Count medias selected
+            foreach (MediaItem item in instantiatedMediaItems)
+                if (item.isSelected == true)
+                    mediasSelectedCount += 1;
+
+            //Enable or disable the action buttons
+            if (mediasSelectedCount == 0)
+                SetEnabledActionButtons(false);
+            if (mediasSelectedCount >= 1)
+                SetEnabledActionButtons(true);
+
+            //Show the selection counter
+            if(mediasSelectedCount == 0)
+                mediaCount.Content = GetStringApplicationResource("launcher_media_statusCount").Replace("%n%", instantiatedMediaItems.Count.ToString());
+            if (mediasSelectedCount >= 1)
+                mediaCount.Content = GetStringApplicationResource("launcher_media_statusCountWithSelecion").Replace("%n%", instantiatedMediaItems.Count.ToString()).Replace("%s%", mediasSelectedCount.ToString());
+        }
+
+        private IEnumerator UpdateMediaListRoutine()
+        {
+            //Add task to list
+            AddTask("mediaListUpdate", "Updating the Media list.");
+
+            //Show the loading indicator
+            mediaLoad.Visibility = Visibility.Visible;
+            mediaContent.Visibility = Visibility.Collapsed;
+            mediaCount.Content = GetStringApplicationResource("launcher_media_statusLoad");
+            mediasSize.Content = "-";
+
+            //Disable the action buttons
+            SetEnabledActionButtons(false);
+
+            //Wait some time
+            yield return new WaitForSeconds(1.0f);
+
+            //Clear all medias previously rendered
+            foreach (MediaItem item in instantiatedMediaItems)
+                mediaList.Children.Remove(item);
+            instantiatedMediaItems.Clear();
+
+            //Prepare the mods counters
+            int screenshotsCounter = 0;
+            int videosCounter = 0;
+
+            //Prepare the list of media files
+            List<string> allMediasList = new List<string>();
+
+            //Fill the list of media files
+            foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/Screenshots")).GetFiles()))
+                if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".jpg")
+                {
+                    allMediasList.Add(file.FullName);
+                    screenshotsCounter += 1;
+                }
+            foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/Recorded Videos")).GetFiles()))
+                if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".avi")
+                {
+                    allMediasList.Add(file.FullName);
+                    videosCounter += 1;
+                }
+
+            //Render all media
+            foreach(string mediaFilePath in allMediasList)
+            {
+                //Draw the item on screen
+                MediaItem newItem = new MediaItem(this, mediaFilePath);
+                mediaList.Children.Add(newItem);
+                instantiatedMediaItems.Add(newItem);
+
+                //Configure it
+                newItem.HorizontalAlignment = HorizontalAlignment.Left;
+                newItem.VerticalAlignment = VerticalAlignment.Top;
+                newItem.Width = double.NaN;
+                newItem.Height = double.NaN;
+                newItem.Margin = new Thickness(4, 4, 4, 4);
+
+                //Inform the data about the media
+                newItem.RegisterOnClickCallback(() => { ProcessMediaSelection(); });
+                newItem.Prepare();
+
+                //Wait before render next to avoid UI freezing
+                yield return new WaitForSeconds(0.02f);
+            }
+
+            //Count total media files size
+            long totalSizeInBytes = 0;
+            foreach (string mediaPath in allMediasList)
+                if (File.Exists(mediaPath) == true)
+                    totalSizeInBytes += (new FileInfo(mediaPath)).Length;
+
+            //Enable or hide the empty media warning
+            if (instantiatedMediaItems.Count == 0)
+                mediaEmptyWarn.Visibility = Visibility.Visible;
+            if (instantiatedMediaItems.Count >= 1)
+                mediaEmptyWarn.Visibility = Visibility.Collapsed;
+
+            //Wait some time
+            yield return new WaitForSeconds(1.0f);
+
+            //Show new media notification, if necessary
+            int currentMediasCount = (screenshotsCounter + videosCounter);
+            int lastMediasCount = launcherPrefs.loadedData.lastMediaFilesCount;
+            //If the current medias count is not zero, check if was increased
+            if (currentMediasCount > 0)
+                if (currentMediasCount > lastMediasCount)
+                    EnablePageRedDotNotification(LauncherPage.media);
+            //Save the medias count
+            launcherPrefs.loadedData.lastMediaFilesCount = currentMediasCount;
+            launcherPrefs.Save();
+
+            //Remove the task
+            RemoveTask("mediaListUpdate");
+
+            //Show the content
+            mediaLoad.Visibility = Visibility.Collapsed;
+            mediaContent.Visibility = Visibility.Visible;
+            mediaCount.Content = GetStringApplicationResource("launcher_media_statusCount").Replace("%n%", (screenshotsCounter + videosCounter).ToString());
+            mediasSize.Content = GetFormattedCacheSize(totalSizeInBytes).Replace("~", "");
+
+            //Auto clear routine reference
+            mediaListUpdateRoutine = null;
         }
     }
 }

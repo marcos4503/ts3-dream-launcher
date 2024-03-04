@@ -1,0 +1,459 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Dl3CASPsEditor/1.0.0": {
+        "dependencies": {
+          "CreateAssemblyVersion": "1.0.6349.31186",
+          "DDSPanel": "1705.20.1719.31186",
+          "s3pi.CASPartResource": "1705.20.1719.31191",
+          "s3pi.CatalogResource": "1705.20.1719.31188",
+          "s3pi.ComplateResource": "1705.20.1719.31190",
+          "s3pi.Controls": "1705.20.1719.31192",
+          "s3pi.CustomForms": "1705.20.1719.31186",
+          "s3pi.DefaultResource": "1705.20.1719.31188",
+          "s3pi.Extensions": "1705.20.1719.31188",
+          "s3pi.Filetable": "1705.20.1719.31192",
+          "s3pi.GenericRCOLResource": "1705.20.1719.31188",
+          "s3pi.Helpers": "1705.20.1719.31191",
+          "s3pi.ImageResource": "1705.20.1719.31190",
+          "s3pi.Interfaces": "1705.20.1719.31187",
+          "s3pi.JazzResource": "1705.20.1719.31191",
+          "s3pi.MeshChunks": "1705.20.1719.31192",
+          "s3pi.ModularResource": "1705.20.1719.31188",
+          "s3pi.NameMapResource": "1705.20.1719.31188",
+          "s3pi.NGMPHashMapResource": "1705.20.1719.31191",
+          "s3pi.ObjKeyResource": "1705.20.1719.31188",
+          "s3pi.Package": "1705.20.1719.31188",
+          "s3pi.RCOLChunks": "1705.20.1719.31190",
+          "s3pi.RigResource": "1705.20.1719.31191",
+          "s3pi.ScriptResource": "1705.20.1719.31190",
+          "s3pi.Settings": "1705.20.1719.31186",
+          "s3pi.StblResource": "1705.20.1719.31188",
+          "s3pi.TextResource": "1705.20.1719.31190",
+          "s3pi.TxtcResource": "1705.20.1719.31190",
+          "s3pi.UserCAStPreset": "1705.20.1719.31192",
+          "s3pi.WrapperDealer": "1705.20.1719.31188",
+          "System.Custom": "1705.20.1719.31186"
+        },
+        "runtime": {
+          "Dl3CASPsEditor.dll": {}
+        }
+      },
+      "CreateAssemblyVersion/1.0.6349.31186": {
+        "runtime": {
+          "CreateAssemblyVersion.exe": {
+            "assemblyVersion": "1.0.6349.31186",
+            "fileVersion": "1.0.6349.31186"
+          }
+        }
+      },
+      "DDSPanel/1705.20.1719.31186": {
+        "runtime": {
+          "DDSPanel.dll": {
+            "assemblyVersion": "1705.20.1719.31186",
+            "fileVersion": "1705.20.1719.31186"
+          }
+        }
+      },
+      "s3pi.CASPartResource/1705.20.1719.31191": {
+        "runtime": {
+          "s3pi.CASPartResource.dll": {
+            "assemblyVersion": "1705.20.1719.31191",
+            "fileVersion": "1705.20.1719.31191"
+          }
+        }
+      },
+      "s3pi.CatalogResource/1705.20.1719.31188": {
+        "runtime": {
+          "s3pi.CatalogResource.dll": {
+            "assemblyVersion": "1705.20.1719.31188",
+            "fileVersion": "1705.20.1719.31188"
+          }
+        }
+      },
+      "s3pi.ComplateResource/1705.20.1719.31190": {
+        "runtime": {
+          "s3pi.ComplateResource.dll": {
+            "assemblyVersion": "1705.20.1719.31190",
+            "fileVersion": "1705.20.1719.31190"
+          }
+        }
+      },
+      "s3pi.Controls/1705.20.1719.31192": {
+        "runtime": {
+          "s3pi.Controls.dll": {
+            "assemblyVersion": "1705.20.1719.31192",
+            "fileVersion": "1705.20.1719.31192"
+          }
+        }
+      },
+      "s3pi.CustomForms/1705.20.1719.31186": {
+        "runtime": {
+          "s3pi.CustomForms.dll": {
+            "assemblyVersion": "1705.20.1719.31186",
+            "fileVersion": "1705.20.1719.31186"
+          }
+        }
+      },
+      "s3pi.DefaultResource/1705.20.1719.31188": {
+        "runtime": {
+          "s3pi.DefaultResource.dll": {
+            "assemblyVersion": "1705.20.1719.31188",
+            "fileVersion": "1705.20.1719.31188"
+          }
+        }
+      },
+      "s3pi.Extensions/1705.20.1719.31188": {
+        "runtime": {
+          "s3pi.Extensions.dll": {
+            "assemblyVersion": "1705.20.1719.31188",
+            "fileVersion": "1705.20.1719.31188"
+          }
+        }
+      },
+      "s3pi.Filetable/1705.20.1719.31192": {
+        "runtime": {
+          "s3pi.Filetable.dll": {
+            "assemblyVersion": "1705.20.1719.31192",
+            "fileVersion": "1705.20.1719.31192"
+          }
+        }
+      },
+      "s3pi.GenericRCOLResource/1705.20.1719.31188": {
+        "runtime": {
+          "s3pi.GenericRCOLResource.dll": {
+            "assemblyVersion": "1705.20.1719.31188",
+            "fileVersion": "1705.20.1719.31188"
+          }
+        }
+      },
+      "s3pi.Helpers/1705.20.1719.31191": {
+        "runtime": {
+          "s3pi.Helpers.dll": {
+            "assemblyVersion": "1705.20.1719.31191",
+            "fileVersion": "1705.20.1719.31191"
+          }
+        }
+      },
+      "s3pi.ImageResource/1705.20.1719.31190": {
+        "runtime": {
+          "s3pi.ImageResource.dll": {
+            "assemblyVersion": "1705.20.1719.31190",
+            "fileVersion": "1705.20.1719.31190"
+          }
+        }
+      },
+      "s3pi.Interfaces/1705.20.1719.31187": {
+        "runtime": {
+          "s3pi.Interfaces.dll": {
+            "assemblyVersion": "1705.20.1719.31187",
+            "fileVersion": "1705.20.1719.31187"
+          }
+        }
+      },
+      "s3pi.JazzResource/1705.20.1719.31191": {
+        "runtime": {
+          "s3pi.JazzResource.dll": {
+            "assemblyVersion": "1705.20.1719.31191",
+            "fileVersion": "1705.20.1719.31191"
+          }
+        }
+      },
+      "s3pi.MeshChunks/1705.20.1719.31192": {
+        "runtime": {
+          "s3pi.MeshChunks.dll": {
+            "assemblyVersion": "1705.20.1719.31192",
+            "fileVersion": "1705.20.1719.31192"
+          }
+        }
+      },
+      "s3pi.ModularResource/1705.20.1719.31188": {
+        "runtime": {
+          "s3pi.ModularResource.dll": {
+            "assemblyVersion": "1705.20.1719.31188",
+            "fileVersion": "1705.20.1719.31188"
+          }
+        }
+      },
+      "s3pi.NameMapResource/1705.20.1719.31188": {
+        "runtime": {
+          "s3pi.NameMapResource.dll": {
+            "assemblyVersion": "1705.20.1719.31188",
+            "fileVersion": "1705.20.1719.31188"
+          }
+        }
+      },
+      "s3pi.NGMPHashMapResource/1705.20.1719.31191": {
+        "runtime": {
+          "s3pi.NGMPHashMapResource.dll": {
+            "assemblyVersion": "1705.20.1719.31191",
+            "fileVersion": "1705.20.1719.31191"
+          }
+        }
+      },
+      "s3pi.ObjKeyResource/1705.20.1719.31188": {
+        "runtime": {
+          "s3pi.ObjKeyResource.dll": {
+            "assemblyVersion": "1705.20.1719.31188",
+            "fileVersion": "1705.20.1719.31188"
+          }
+        }
+      },
+      "s3pi.Package/1705.20.1719.31188": {
+        "runtime": {
+          "s3pi.Package.dll": {
+            "assemblyVersion": "1705.20.1719.31188",
+            "fileVersion": "1705.20.1719.31188"
+          }
+        }
+      },
+      "s3pi.RCOLChunks/1705.20.1719.31190": {
+        "runtime": {
+          "s3pi.RCOLChunks.dll": {
+            "assemblyVersion": "1705.20.1719.31190",
+            "fileVersion": "1705.20.1719.31190"
+          }
+        }
+      },
+      "s3pi.RigResource/1705.20.1719.31191": {
+        "runtime": {
+          "s3pi.RigResource.dll": {
+            "assemblyVersion": "1705.20.1719.31191",
+            "fileVersion": "1705.20.1719.31191"
+          }
+        }
+      },
+      "s3pi.ScriptResource/1705.20.1719.31190": {
+        "runtime": {
+          "s3pi.ScriptResource.dll": {
+            "assemblyVersion": "1705.20.1719.31190",
+            "fileVersion": "1705.20.1719.31190"
+          }
+        }
+      },
+      "s3pi.Settings/1705.20.1719.31186": {
+        "runtime": {
+          "s3pi.Settings.dll": {
+            "assemblyVersion": "1705.20.1719.31186",
+            "fileVersion": "1705.20.1719.31186"
+          }
+        }
+      },
+      "s3pi.StblResource/1705.20.1719.31188": {
+        "runtime": {
+          "s3pi.StblResource.dll": {
+            "assemblyVersion": "1705.20.1719.31188",
+            "fileVersion": "1705.20.1719.31188"
+          }
+        }
+      },
+      "s3pi.TextResource/1705.20.1719.31190": {
+        "runtime": {
+          "s3pi.TextResource.dll": {
+            "assemblyVersion": "1705.20.1719.31190",
+            "fileVersion": "1705.20.1719.31190"
+          }
+        }
+      },
+      "s3pi.TxtcResource/1705.20.1719.31190": {
+        "runtime": {
+          "s3pi.TxtcResource.dll": {
+            "assemblyVersion": "1705.20.1719.31190",
+            "fileVersion": "1705.20.1719.31190"
+          }
+        }
+      },
+      "s3pi.UserCAStPreset/1705.20.1719.31192": {
+        "runtime": {
+          "s3pi.UserCAStPreset.dll": {
+            "assemblyVersion": "1705.20.1719.31192",
+            "fileVersion": "1705.20.1719.31192"
+          }
+        }
+      },
+      "s3pi.WrapperDealer/1705.20.1719.31188": {
+        "runtime": {
+          "s3pi.WrapperDealer.dll": {
+            "assemblyVersion": "1705.20.1719.31188",
+            "fileVersion": "1705.20.1719.31188"
+          }
+        }
+      },
+      "System.Custom/1705.20.1719.31186": {
+        "runtime": {
+          "System.Custom.dll": {
+            "assemblyVersion": "1705.20.1719.31186",
+            "fileVersion": "1705.20.1719.31186"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Dl3CASPsEditor/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CreateAssemblyVersion/1.0.6349.31186": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DDSPanel/1705.20.1719.31186": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.CASPartResource/1705.20.1719.31191": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.CatalogResource/1705.20.1719.31188": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.ComplateResource/1705.20.1719.31190": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.Controls/1705.20.1719.31192": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.CustomForms/1705.20.1719.31186": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.DefaultResource/1705.20.1719.31188": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.Extensions/1705.20.1719.31188": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.Filetable/1705.20.1719.31192": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.GenericRCOLResource/1705.20.1719.31188": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.Helpers/1705.20.1719.31191": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.ImageResource/1705.20.1719.31190": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.Interfaces/1705.20.1719.31187": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.JazzResource/1705.20.1719.31191": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.MeshChunks/1705.20.1719.31192": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.ModularResource/1705.20.1719.31188": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.NameMapResource/1705.20.1719.31188": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.NGMPHashMapResource/1705.20.1719.31191": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.ObjKeyResource/1705.20.1719.31188": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.Package/1705.20.1719.31188": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.RCOLChunks/1705.20.1719.31190": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.RigResource/1705.20.1719.31191": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.ScriptResource/1705.20.1719.31190": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.Settings/1705.20.1719.31186": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.StblResource/1705.20.1719.31188": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.TextResource/1705.20.1719.31190": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.TxtcResource/1705.20.1719.31190": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.UserCAStPreset/1705.20.1719.31192": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "s3pi.WrapperDealer/1705.20.1719.31188": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Custom/1705.20.1719.31186": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

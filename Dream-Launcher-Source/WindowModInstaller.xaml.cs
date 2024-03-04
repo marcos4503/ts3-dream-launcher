@@ -737,10 +737,13 @@ namespace TS3_Dream_Launcher
                             string resourceKey = typeHex + "-" + groupHex + "-" + instanceHex;
 
                             //If is a "_KEY" resource, skip this resource
-                            if (resourceKey == "0x0166038C-0x00000000-0x0000000000000000")
+                            if (resourceKey == "0x0166038C-0x00000000-0x0000000000000000" || resourceKey == "0x0166038C-0x00000000-0x9A04BBD3B97097D5")
                                 continue;
                             //If is a "_XML" resource of manifest, skip this resource
                             if (resourceKey == "0x73E93EEB-0x00000000-0x0000000000000000")
+                                continue;
+                            //If is a "_IMG" resource of empty overlay or dropshadow, skip this resource
+                            if (resourceKey == "0x00B2D882-0x00000000-0x75F8F21E0F143CAC" || resourceKey == "0x00B2D882-0x00000000-0x8BBC4B03744AE422")
                                 continue;
                             //If is a "COMP" resource, skip this resource
                             if (resourceKey == "0x044AE110-0x02000000-0x0000000000000000")
@@ -767,7 +770,7 @@ namespace TS3_Dream_Launcher
                         threadTools.ReportNewProgress("ui::progress::" + ((float) filesAnalyzedCount / (float)packageFilesToBeAnalyzed.Count) * 100.0f);
 
                         //Wait some time before go to next
-                        threadTools.MakeThreadSleep(75);
+                        threadTools.MakeThreadSleep(50);
                     }
 
                     //Inform the final result

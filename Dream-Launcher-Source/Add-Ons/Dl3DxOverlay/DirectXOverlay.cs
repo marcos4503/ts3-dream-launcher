@@ -155,6 +155,15 @@ namespace Dl3DxOverlay
             //Prepare the thread
             ramCounterThread = new Thread(() =>
             {
+                //Show a initial ram string
+                ramString = "0 MB";
+
+                //Prepare the performance counter
+                PerformanceCounter performanceCounter = new PerformanceCounter();
+                performanceCounter.CategoryName = "Process";
+                performanceCounter.CounterName = "Working Set - Private";
+                performanceCounter.InstanceName = targetProcess.ProcessName;
+
                 //Start a loop
                 while (true)
                 {
@@ -163,18 +172,22 @@ namespace Dl3DxOverlay
                         break;
 
                     //Get the RAM usage
-                    targetProcess.Refresh();
-                    int ramUsageMb = (int)((float)(targetProcess.PrivateMemorySize64) / 1024.0f / 1024.0f);
+                    //targetProcess.Refresh();
+                    //int ramUsageMb = (int)((float)(targetProcess.PrivateMemorySize64) / 1024.0f / 1024.0f);
+
+                    //Get the RAM usage using Performance Counter for more proximity with Windows Task Manager
+                    int ramUsageMb = (int)((double)performanceCounter.RawValue / 1024.0f / 1024.0f);
 
                     //Save into the string
                     ramString = (ramUsageMb + " MB");
 
                     //Wait interval
-                    Thread.Sleep(5000);
+                    Thread.Sleep(500);
                 }
 
-                //Wait interval
-                Thread.Sleep(250);
+                //Dispose from performance counter
+                performanceCounter.Close();
+                performanceCounter.Dispose();
             });
 
             //Start the thread

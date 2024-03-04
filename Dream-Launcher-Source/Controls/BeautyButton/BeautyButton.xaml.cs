@@ -27,8 +27,6 @@ namespace TS3_Dream_Launcher.Controls.BeautyButton
         {
             //Initialize the component
             InitializeComponent();
-
-            //...
         }
 
         //Custom Properties Registration

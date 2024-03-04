@@ -13,6 +13,9 @@
     <Compile Update="Controls\ListItems\CacheItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\ListItems\CaspItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\ListItems\ConflictItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -20,6 +23,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\ListItems\LogItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\ListItems\MediaItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\ListItems\PatchItem.xaml.cs">
@@ -34,7 +40,13 @@
     <Compile Update="Controls\ListItems\ToolItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WindowCASPsEditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WindowIconViewer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WindowLauncherUpdater.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WindowModInstaller.xaml.cs">
@@ -54,6 +66,9 @@
     <Page Update="Controls\ListItems\CacheItem.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Controls\ListItems\CaspItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\ListItems\ConflictItem.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -61,6 +76,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\ListItems\LogItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\ListItems\MediaItem.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\ListItems\PatchItem.xaml">
@@ -87,7 +105,13 @@
     <Page Update="Resources\Languages\LangStrings.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="WindowCASPsEditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WindowIconViewer.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WindowLauncherUpdater.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WindowModInstaller.xaml">

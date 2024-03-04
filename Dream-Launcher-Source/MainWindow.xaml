@@ -273,21 +273,24 @@
                             <BeautyButton:BeautyButton x:Name="goHome" Content="{DynamicResource launcher_button_goHome}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Cursor="Hand"/>
                             <Grid Height="28" Margin="0,4,0,0">
                                 <BeautyButton:BeautyButton x:Name="goSaves" Content="{DynamicResource launcher_button_goSaves}" HoverBackground="#FF5D90C8" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,0,0,0" Cursor="Hand"/>
-                                <Border x:Name="savesWarn" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="8" Height="8" Background="Red" CornerRadius="8,8,8,8" Margin="62,0,0,0"/>
+                                <Border x:Name="savesWarn" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="8" Height="8" Background="Red" CornerRadius="8,8,8,8" Margin="48,0,0,0"/>
                             </Grid>
-                            <BeautyButton:BeautyButton x:Name="goSims" Content="{DynamicResource launcher_button_goSims}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0" Cursor="Hand"/>
+                            <Grid Height="28" Margin="0,4,0,0">
+                                <BeautyButton:BeautyButton x:Name="goExports" Content="{DynamicResource launcher_button_goExports}" HoverBackground="#FF5D90C8" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,0,0,0" Cursor="Hand"/>
+                                <Border x:Name="exportsWarn" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="8" Height="8" Background="Red" CornerRadius="8,8,8,8" Margin="48,0,0,0"/>
+                            </Grid>
                             <BeautyButton:BeautyButton x:Name="goWorlds" Content="{DynamicResource launcher_button_goWorlds}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0" Cursor="Hand"/>
                             <Grid Height="28" Margin="0,4,0,0">
                                 <BeautyButton:BeautyButton x:Name="goMedia" Content="{DynamicResource launcher_button_goMedia}" HoverBackground="#FF5D90C8" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,0,0,0" Cursor="Hand"/>
-                                <Border x:Name="mediaWarn" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="8" Height="8" Background="Red" CornerRadius="8,8,8,8" Margin="62,0,0,0"/>
+                                <Border x:Name="mediaWarn" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="8" Height="8" Background="Red" CornerRadius="8,8,8,8" Margin="48,0,0,0"/>
                             </Grid>
                             <Grid Height="28" Margin="0,4,0,0">
                                 <BeautyButton:BeautyButton x:Name="goCache" Content="{DynamicResource launcher_button_goCache}" HoverBackground="#FF5D90C8" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,0,0,0" Cursor="Hand"/>
-                                <Border x:Name="cacheWarn" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="8" Height="8" Background="Red" CornerRadius="8,8,8,8" Margin="62,0,0,0"/>
+                                <Border x:Name="cacheWarn" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="8" Height="8" Background="Red" CornerRadius="8,8,8,8" Margin="48,0,0,0"/>
                             </Grid>
                             <Grid Height="28" Margin="0,4,0,0">
                                 <BeautyButton:BeautyButton x:Name="goPatches" Content="{DynamicResource launcher_button_goPatches}" HoverBackground="#FF5D90C8" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,0,0,0" Cursor="Hand"/>
-                                <Border x:Name="patchesWarn" BorderThickness="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="8" Height="8" Background="Red" CornerRadius="8,8,8,8" Margin="0,0,90,0"/>
+                                <Border x:Name="patchesWarn" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="8" Height="8" Background="Red" CornerRadius="8,8,8,8" Margin="48,0,0,0"/>
                             </Grid>
                             <BeautyButton:BeautyButton x:Name="goMods" Content="{DynamicResource launcher_button_goMods}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0" Cursor="Hand"/>
                             <BeautyButton:BeautyButton x:Name="goTools" Content="{DynamicResource launcher_button_goTools}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0" Cursor="Hand"/>
@@ -344,11 +347,59 @@
                                         <Label x:Name="playBtText" FontFamily="{DynamicResource TheSimsSansSc}" FontWeight="Normal" Padding="0,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="12,0,0,0" Foreground="White" IsHitTestVisible="False" Content="{DynamicResource launcher_button_playButton}" HorizontalAlignment="Left" FontSize="34"/>
                                     </StackPanel>
                                 </Grid>
+                                <Grid x:Name="updateNotifier" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="0,0,0,0" Visibility="Collapsed">
+                                    <Border BorderThickness="0,0,0,0" Background="#FFFFA400"/>
+                                    <Image Height="24" Width="24" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,8,0,8" Source="/Resources/update-icon.png"/>
+                                    <TextBlock x:Name="updateText" TextWrapping="Wrap" FontWeight="Bold" Foreground="White" MaxWidth="640" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Open Sans" Margin="40,8,0,8" HorizontalAlignment="Left" Text="Place Holder"/>
+                                    <BeautyButton:BeautyButton x:Name="updateButton" HoverBackground="#FFADCAEC" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF84B0E2" BorderBrush="#FF4D82BF" Foreground="White" Cursor="Hand" Margin="0,0,8,0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="128" Height="24">
+                                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Center" Orientation="Horizontal">
+                                            <Image Height="12" Width="12" VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Resources/download-icon.png"/>
+                                            <Label Content="{DynamicResource launcher_updateButton}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="8,0,0,0" Padding="0,0,0,0" Foreground="White" FontSize="14"/>
+                                        </StackPanel>
+                                    </BeautyButton:BeautyButton>
+                                </Grid>
                             </Grid>
                             <Grid x:Name="pageSaves" Visibility="Collapsed"/>
-                            <Grid x:Name="pageSims" Visibility="Collapsed"/>
-                            <Grid x:Name="pageWorlds" Visibility="Collapsed"/>
-                            <Grid x:Name="pageMedia" Visibility="Visible"/>
+                            <Grid x:Name="pageExports" Visibility="Collapsed"/>
+                            <Grid x:Name="pageWorlds" Visibility="Visible"/>
+                            <Grid x:Name="pageMedia" Visibility="Collapsed">
+                                <Grid VerticalAlignment="Top">
+                                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,8,8,8" Orientation="Horizontal">
+                                        <Button x:Name="mediaCut" Padding="0,0,0,0" Cursor="Hand" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,8,0" ToolTip="{DynamicResource launcher_media_cut}">
+                                            <Image Height="24" Width="24" Source="/Resources/cut-media.png" Opacity="0.75"/>
+                                        </Button>
+                                        <Button x:Name="mediaCopy" Padding="0,0,0,0" Cursor="Hand" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,8,0" ToolTip="{DynamicResource launcher_media_copy}">
+                                            <Image Height="24" Width="24" Source="/Resources/copy-media.png" Opacity="0.75"/>
+                                        </Button>
+                                        <Button x:Name="mediaDelete" Padding="0,0,0,0" Cursor="Hand" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" ToolTip="{DynamicResource launcher_media_delete}">
+                                            <Image Height="24" Width="24" Source="/Resources/delete-media.png" Opacity="0.75"/>
+                                        </Button>
+                                    </StackPanel>
+                                    <Rectangle Stroke="#FF8C8C8C" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="0.5"/>
+                                </Grid>
+                                <Grid x:Name="mediaContent" Margin="0,42,0,36" Visibility="Visible">
+                                    <ScrollViewer>
+                                        <Grid VerticalAlignment="Top">
+                                            <Label x:Name="mediaEmptyWarn" Content="{DynamicResource launcher_media_noMediaFound}" HorizontalAlignment="Center" VerticalAlignment="Top" Padding="0,0,0,0" Margin="0,8,0,0" Foreground="#FF848484" HorizontalContentAlignment="Left"/>
+                                            <WrapPanel x:Name="mediaList" VerticalAlignment="Top" Margin="8,0,8,0" HorizontalAlignment="Left"/>
+                                        </Grid>
+                                    </ScrollViewer>
+                                </Grid>
+                                <Grid x:Name="mediaLoad" Margin="0,42,0,36" Visibility="Collapsed">
+                                    <Image gif:ImageBehavior.AnimatedSource="/Resources/load.gif" gif:ImageBehavior.AnimationSpeedRatio="1.5" VerticalAlignment="Center" HorizontalAlignment="Center" Width="48" Height="48" />
+                                </Grid>
+                                <Grid VerticalAlignment="Bottom">
+                                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8,8,0,8" Orientation="Horizontal">
+                                        <Image Height="20" Width="24" Source="/Resources/count-media.png" Opacity="0.5" Stretch="Fill"/>
+                                        <Label x:Name="mediaCount" Content="Place Holder" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0,0,0,0" Margin="8,0,0,0" Foreground="#FF7F7F7F"/>
+                                    </StackPanel>
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,8,0" Orientation="Horizontal">
+                                        <Label x:Name="mediasSize" Content="0 KB" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,0,0" Margin="0,0,8,0" Foreground="#FF7F7F7F"/>
+                                        <Image Height="20" Width="20" Source="/Resources/media-info.png" Opacity="0.5" Stretch="Fill"/>
+                                    </StackPanel>
+                                    <Rectangle Stroke="#FF8C8C8C" Margin="0,0,0,0" VerticalAlignment="Top" Height="0.5"/>
+                                </Grid>
+                            </Grid>
                             <Grid x:Name="pageCache" Visibility="Collapsed">
                                 <ScrollViewer Margin="0,0,0,32">
                                     <StackPanel x:Name="cacheList" VerticalAlignment="Top" Margin="16,0,16,0"/>
@@ -524,6 +575,15 @@
                                                         <ComboBox x:Name="set_launcherBehaviour" Width="300" DockPanel.Dock="Right" Height="26" VerticalContentAlignment="Center" SelectedIndex="0">
                                                             <ComboBoxItem Content="Hide"/>
                                                             <ComboBoxItem Content="Lock On Home Page"/>
+                                                        </ComboBox>
+                                                    </DockPanel>
+                                                    <DockPanel LastChildFill="False" Margin="0,16,0,0">
+                                                        <Label Content="{DynamicResource launcher_settings_launcher_gameOverlay}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" VerticalContentAlignment="Center" Margin="0,0,0,0"/>
+                                                        <Image Width="24" DockPanel.Dock="Right" Margin="8,0,0,0" Height="24" Source="/Resources/help.png" Cursor="Help" VerticalAlignment="Center" ToolTip="{DynamicResource launcher_settings_launcher_gameOverlayHelp}"/>
+                                                        <ComboBox x:Name="set_gameOverlay" Width="300" DockPanel.Dock="Right" Height="26" VerticalContentAlignment="Center" SelectedIndex="0">
+                                                            <ComboBoxItem Content="Disabled"/>
+                                                            <ComboBoxItem Content="Bottom Right"/>
+                                                            <ComboBoxItem Content="Top Middle"/>
                                                         </ComboBox>
                                                     </DockPanel>
                                                     <DockPanel LastChildFill="False" Margin="0,16,0,0">
@@ -1131,7 +1191,7 @@
                 <Grid Margin="0,32,0,0">
                     <ScrollViewer Margin="0,0,0,32">
                         <StackPanel x:Name="logsViewerList" VerticalAlignment="Top" Margin="8,0,8,0">
-                            <TextBlock x:Name="logsViewerEmpty" TextWrapping="Wrap" Text="{DynamicResource launcher_cache_logsViewerEmpty}" Margin="0,16,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" FontStyle="Italic" Foreground="#FF9A9A9A"/>
+                            <TextBlock x:Name="logsViewerEmpty" TextWrapping="Wrap" Text="{DynamicResource launcher_cache_logsViewerEmpty}" Margin="0,16,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" FontStyle="Normal" Foreground="#FF9A9A9A"/>
                         </StackPanel>
                     </ScrollViewer>
                     <Rectangle Height="0.5" VerticalAlignment="Bottom" Margin="0,0,0,32" StrokeThickness="0" Fill="Gray"/>

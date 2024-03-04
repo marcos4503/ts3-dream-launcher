@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\Visual-Studio\TS3 Dream Launcher\App.xaml
-17-1859318822
+212119933779
 8-1598785695
-23-627427307
-243-1636183496
-Controls\BeautyButton\BeautyButton.xaml;Controls\ListItems\CacheItem.xaml;Controls\ListItems\ConflictItem.xaml;Controls\ListItems\InstalledModItem.xaml;Controls\ListItems\LogItem.xaml;Controls\ListItems\PatchItem.xaml;Controls\ListItems\S3PkModItem.xaml;Controls\ListItems\StoreModItem.xaml;Controls\ListItems\ToolItem.xaml;Controls\ValidableTextBox\ValidableTextBox.xaml;MainWindow.xaml;Resources\Languages\LangStrings-PT-BR.xaml;Resources\Languages\LangStrings.xaml;WindowIconViewer.xaml;WindowModInstaller.xaml;WindowModRename.xaml;WindowS3PkgPreModInstaller.xaml;
+271507724266
+244-641165224
+Controls\BeautyButton\BeautyButton.xaml;Controls\ListItems\CacheItem.xaml;Controls\ListItems\CaspItem.xaml;Controls\ListItems\ConflictItem.xaml;Controls\ListItems\InstalledModItem.xaml;Controls\ListItems\LogItem.xaml;Controls\ListItems\MediaItem.xaml;Controls\ListItems\PatchItem.xaml;Controls\ListItems\S3PkModItem.xaml;Controls\ListItems\StoreModItem.xaml;Controls\ListItems\ToolItem.xaml;Controls\ValidableTextBox\ValidableTextBox.xaml;MainWindow.xaml;Resources\Languages\LangStrings-PT-BR.xaml;Resources\Languages\LangStrings.xaml;WindowCASPsEditor.xaml;WindowIconViewer.xaml;WindowLauncherUpdater.xaml;WindowModInstaller.xaml;WindowModRename.xaml;WindowS3PkgPreModInstaller.xaml;
 
 False
 

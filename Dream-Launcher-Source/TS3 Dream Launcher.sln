@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sims3Launcher", "Add-Ons\Si
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dl3DxOverlay", "Add-Ons\Dl3DxOverlay\Dl3DxOverlay.csproj", "{9A5450A5-2244-433B-962D-865CB3F57559}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LauncherUpdateEnder", "Add-Ons\LauncherUpdateEnder\LauncherUpdateEnder.csproj", "{D07ED2DC-A659-40A9-AC3B-6FCE1F801FB9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dl3CASPsEditor", "Add-Ons\Dl3CASPsEditor\Dl3CASPsEditor.csproj", "{3327EF68-4148-46D5-BC90-2A6AEA2C8A7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{9A5450A5-2244-433B-962D-865CB3F57559}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A5450A5-2244-433B-962D-865CB3F57559}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A5450A5-2244-433B-962D-865CB3F57559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D07ED2DC-A659-40A9-AC3B-6FCE1F801FB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D07ED2DC-A659-40A9-AC3B-6FCE1F801FB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D07ED2DC-A659-40A9-AC3B-6FCE1F801FB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D07ED2DC-A659-40A9-AC3B-6FCE1F801FB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3327EF68-4148-46D5-BC90-2A6AEA2C8A7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3327EF68-4148-46D5-BC90-2A6AEA2C8A7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3327EF68-4148-46D5-BC90-2A6AEA2C8A7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3327EF68-4148-46D5-BC90-2A6AEA2C8A7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

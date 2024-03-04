@@ -1,0 +1,116 @@
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\Dl3CASPsEditor.exe
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\Dl3CASPsEditor.deps.json
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\Dl3CASPsEditor.runtimeconfig.json
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\Dl3CASPsEditor.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\Dl3CASPsEditor.pdb
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.AssemblyInfoInputs.cache
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.AssemblyInfo.cs
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.csproj.CoreCompileInputs.cache
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\obj\Debug\net6.0\refint\Dl3CASPsEditor.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.pdb
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.genruntimeconfig.cache
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\obj\Debug\net6.0\ref\Dl3CASPsEditor.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\CreateAssemblyVersion.exe
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\DDSPanel.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.CASPartResource.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.CatalogResource.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.ComplateResource.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Controls.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.CustomForms.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.DefaultResource.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Extensions.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Filetable.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.GenericRCOLResource.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Helpers.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.ImageResource.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Interfaces.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.JazzResource.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.MeshChunks.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.ModularResource.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.NameMapResource.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.NGMPHashMapResource.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.ObjKeyResource.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Package.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.RCOLChunks.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.RigResource.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.ScriptResource.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Settings.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.StblResource.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.TextResource.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.TxtcResource.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.UserCAStPreset.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.WrapperDealer.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\System.Custom.dll
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\DDSPanel.xml
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Controls.xml
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.CustomForms.xml
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.DefaultResource.xml
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Extensions.xml
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Filetable.xml
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.GenericRCOLResource.xml
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Interfaces.xml
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Package.xml
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.WrapperDealer.xml
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\bin\Debug\net6.0\System.Custom.xml
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.csproj.AssemblyReference.cache
+C:\Users\junio\Desktop\Currently Working\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.csproj.CopyComplete
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\Dl3CASPsEditor.exe
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\Dl3CASPsEditor.deps.json
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\Dl3CASPsEditor.runtimeconfig.json
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\Dl3CASPsEditor.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\Dl3CASPsEditor.pdb
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\CreateAssemblyVersion.exe
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\DDSPanel.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.CASPartResource.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.CatalogResource.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.ComplateResource.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Controls.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.CustomForms.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.DefaultResource.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Extensions.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Filetable.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.GenericRCOLResource.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Helpers.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.ImageResource.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Interfaces.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.JazzResource.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.MeshChunks.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.ModularResource.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.NameMapResource.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.NGMPHashMapResource.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.ObjKeyResource.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Package.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.RCOLChunks.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.RigResource.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.ScriptResource.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Settings.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.StblResource.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.TextResource.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.TxtcResource.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.UserCAStPreset.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.WrapperDealer.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\System.Custom.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\DDSPanel.xml
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Controls.xml
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.CustomForms.xml
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.DefaultResource.xml
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Extensions.xml
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Filetable.xml
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.GenericRCOLResource.xml
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Interfaces.xml
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.Package.xml
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\s3pi.WrapperDealer.xml
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\bin\Debug\net6.0\System.Custom.xml
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.csproj.AssemblyReference.cache
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.GeneratedMSBuildEditorConfig.editorconfig
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.AssemblyInfoInputs.cache
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.AssemblyInfo.cs
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.csproj.CoreCompileInputs.cache
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.csproj.CopyComplete
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\refint\Dl3CASPsEditor.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.pdb
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.genruntimeconfig.cache
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\ref\Dl3CASPsEditor.dll

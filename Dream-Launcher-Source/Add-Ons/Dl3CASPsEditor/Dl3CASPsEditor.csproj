@@ -1,0 +1,106 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="CreateAssemblyVersion">
+      <HintPath>Libraries\S3PI_Lib\CreateAssemblyVersion.exe</HintPath>
+    </Reference>
+    <Reference Include="DDSPanel">
+      <HintPath>Libraries\S3PI_Lib\DDSPanel.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.CASPartResource">
+      <HintPath>Libraries\S3PI_Lib\s3pi.CASPartResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.CatalogResource">
+      <HintPath>Libraries\S3PI_Lib\s3pi.CatalogResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.ComplateResource">
+      <HintPath>Libraries\S3PI_Lib\s3pi.ComplateResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.Controls">
+      <HintPath>Libraries\S3PI_Lib\s3pi.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.CustomForms">
+      <HintPath>Libraries\S3PI_Lib\s3pi.CustomForms.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.DefaultResource">
+      <HintPath>Libraries\S3PI_Lib\s3pi.DefaultResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.Extensions">
+      <HintPath>Libraries\S3PI_Lib\s3pi.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.Filetable">
+      <HintPath>Libraries\S3PI_Lib\s3pi.Filetable.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.GenericRCOLResource">
+      <HintPath>Libraries\S3PI_Lib\s3pi.GenericRCOLResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.Helpers">
+      <HintPath>Libraries\S3PI_Lib\s3pi.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.ImageResource">
+      <HintPath>Libraries\S3PI_Lib\s3pi.ImageResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.Interfaces">
+      <HintPath>Libraries\S3PI_Lib\s3pi.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.JazzResource">
+      <HintPath>Libraries\S3PI_Lib\s3pi.JazzResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.MeshChunks">
+      <HintPath>Libraries\S3PI_Lib\s3pi.MeshChunks.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.ModularResource">
+      <HintPath>Libraries\S3PI_Lib\s3pi.ModularResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.NameMapResource">
+      <HintPath>Libraries\S3PI_Lib\s3pi.NameMapResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.NGMPHashMapResource">
+      <HintPath>Libraries\S3PI_Lib\s3pi.NGMPHashMapResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.ObjKeyResource">
+      <HintPath>Libraries\S3PI_Lib\s3pi.ObjKeyResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.Package">
+      <HintPath>Libraries\S3PI_Lib\s3pi.Package.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.RCOLChunks">
+      <HintPath>Libraries\S3PI_Lib\s3pi.RCOLChunks.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.RigResource">
+      <HintPath>Libraries\S3PI_Lib\s3pi.RigResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.ScriptResource">
+      <HintPath>Libraries\S3PI_Lib\s3pi.ScriptResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.Settings">
+      <HintPath>Libraries\S3PI_Lib\s3pi.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.StblResource">
+      <HintPath>Libraries\S3PI_Lib\s3pi.StblResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.TextResource">
+      <HintPath>Libraries\S3PI_Lib\s3pi.TextResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.TxtcResource">
+      <HintPath>Libraries\S3PI_Lib\s3pi.TxtcResource.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.UserCAStPreset">
+      <HintPath>Libraries\S3PI_Lib\s3pi.UserCAStPreset.dll</HintPath>
+    </Reference>
+    <Reference Include="s3pi.WrapperDealer">
+      <HintPath>Libraries\S3PI_Lib\s3pi.WrapperDealer.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Custom">
+      <HintPath>Libraries\S3PI_Lib\System.Custom.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

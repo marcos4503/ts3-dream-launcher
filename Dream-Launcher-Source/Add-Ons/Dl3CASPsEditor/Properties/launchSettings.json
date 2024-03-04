@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Dl3CASPsEditor": {
+      "commandName": "Project",
+      "commandLineArgs": "dl3"
+    }
+  }
+}

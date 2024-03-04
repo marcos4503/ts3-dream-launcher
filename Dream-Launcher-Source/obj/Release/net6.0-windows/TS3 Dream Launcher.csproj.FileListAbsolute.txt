@@ -1,54 +1,54 @@
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.csproj.AssemblyReference.cache
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Interop.NetFwTypeLib.dll
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.csproj.ResolveComReference.cache
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Resources\Languages\LangStrings-PT-BR.baml
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Resources\Languages\LangStrings.baml
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\BeautyButton\BeautyButton.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\CacheItem.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\ConflictItem.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\InstalledModItem.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\LogItem.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\PatchItem.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\S3PkModItem.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\StoreModItem.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\ToolItem.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ValidableTextBox\ValidableTextBox.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\MainWindow.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowIconViewer.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowLauncherUpdater.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowModInstaller.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowModRename.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowS3PkgPreModInstaller.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\App.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher_Content.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher_MarkupCompile.cache
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher_MarkupCompile.lref
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\TS3 Dream Launcher.exe
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\antilag-template.cfg
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\IntelFix.dll
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\intro.wmv
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\smooth-patch-template.txt
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\tray-busy.ico
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\tray-off.ico
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\tray-on.ico
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\TS3 Dream Launcher.deps.json
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\TS3 Dream Launcher.runtimeconfig.json
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\TS3 Dream Launcher.dll
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\TS3 Dream Launcher.pdb
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.csproj.AssemblyReference.cache
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\MainWindow.g.cs
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\App.g.cs
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher_MarkupCompile.cache
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher_MarkupCompile.lref
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\MainWindow.baml
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.g.resources
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.GeneratedMSBuildEditorConfig.editorconfig
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.AssemblyInfoInputs.cache
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.AssemblyInfo.cs
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.csproj.CoreCompileInputs.cache
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.dll
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\refint\TS3 Dream Launcher.dll
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.pdb
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.genruntimeconfig.cache
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\ref\TS3 Dream Launcher.dll
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher_Content.g.cs
-D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\intro.wmv
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\CoroutinesDotNet.Wpf.dll
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\CoroutinesDotNet.dll
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\DotNetZip.dll
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Newtonsoft.Json.dll
-D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\WpfAnimatedGif.dll
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\BeautyButton\BeautyButton.baml
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Resources\Languages\LangStrings-PT-BR.baml
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Resources\Languages\LangStrings.baml
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\BeautyButton\BeautyButton.g.cs
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\GeneratedInternalTypeHelper.g.cs
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\App.baml
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.csproj.CopyComplete
-D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\IntelFix.dll
-D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\tray-busy.ico
-D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\tray-off.ico
-D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\tray-on.ico
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\PeNet.dll
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\PeNet.Asn1.dll
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\System.CodeDom.dll
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\System.Formats.Asn1.dll
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\System.Management.dll
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\System.Security.Cryptography.Pkcs.dll
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\WpfAnimatedGif.dll
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\runtimes\win\lib\net6.0\System.Management.dll
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowIconViewer.g.cs
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowIconViewer.baml
-D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\antilag-template.cfg
-D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\Content\smooth-patch-template.txt
-D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\DotNetZip.dll
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\CreateAssemblyVersion.exe
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\DDSPanel.dll
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\s3pi.CASPartResource.dll
@@ -91,20 +91,8 @@ D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\s3pi.Interfaces.x
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\s3pi.Package.xml
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\s3pi.WrapperDealer.xml
 D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\System.Custom.xml
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Interop.NetFwTypeLib.dll
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.csproj.ResolveComReference.cache
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\CacheItem.g.cs
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\ConflictItem.g.cs
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\InstalledModItem.g.cs
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\LogItem.g.cs
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\PatchItem.g.cs
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\S3PkModItem.g.cs
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\StoreModItem.g.cs
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\ToolItem.g.cs
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ValidableTextBox\ValidableTextBox.g.cs
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowModInstaller.g.cs
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowModRename.g.cs
-D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowS3PkgPreModInstaller.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\App.baml
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\BeautyButton\BeautyButton.baml
 D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\CacheItem.baml
 D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\ConflictItem.baml
 D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\InstalledModItem.baml
@@ -114,6 +102,27 @@ D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItem
 D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\StoreModItem.baml
 D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\ToolItem.baml
 D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ValidableTextBox\ValidableTextBox.baml
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\MainWindow.baml
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowIconViewer.baml
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowLauncherUpdater.baml
 D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowModInstaller.baml
 D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowModRename.baml
 D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowS3PkgPreModInstaller.baml
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.g.resources
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.GeneratedMSBuildEditorConfig.editorconfig
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.AssemblyInfoInputs.cache
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.AssemblyInfo.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.csproj.CoreCompileInputs.cache
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.csproj.CopyComplete
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.dll
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\refint\TS3 Dream Launcher.dll
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.pdb
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\TS3 Dream Launcher.genruntimeconfig.cache
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\ref\TS3 Dream Launcher.dll
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\CaspItem.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowCASPsEditor.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\CaspItem.baml
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowCASPsEditor.baml
+D:\Visual-Studio\TS3 Dream Launcher\bin\Release\net6.0-windows\NReco.VideoConverter.dll
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\MediaItem.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\MediaItem.baml

@@ -42,3 +42,7 @@ D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Release\net6.0\refi
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Release\net6.0\Dl3DxOverlay.pdb
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Release\net6.0\Dl3DxOverlay.genruntimeconfig.cache
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Release\net6.0\ref\Dl3DxOverlay.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\bin\Release\net6.0\System.Configuration.ConfigurationManager.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\bin\Release\net6.0\System.Diagnostics.PerformanceCounter.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\bin\Release\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\bin\Release\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll

@@ -49,8 +49,24 @@
     <None Remove="Resources\cache-6.png" />
     <None Remove="Resources\cache-7.png" />
     <None Remove="Resources\cache-8.png" />
+    <None Remove="Resources\casp-adult.png" />
+    <None Remove="Resources\casp-changed.png" />
+    <None Remove="Resources\casp-child.png" />
+    <None Remove="Resources\casp-elder.png" />
+    <None Remove="Resources\casp-female.png" />
+    <None Remove="Resources\casp-male.png" />
+    <None Remove="Resources\casp-maternity.png" />
+    <None Remove="Resources\casp-random.png" />
+    <None Remove="Resources\casp-teen.png" />
+    <None Remove="Resources\casp-thumb.png" />
+    <None Remove="Resources\casp-toddler.png" />
+    <None Remove="Resources\casp-young-adult.png" />
     <None Remove="Resources\check.png" />
     <None Remove="Resources\close-popup.png" />
+    <None Remove="Resources\copy-media.png" />
+    <None Remove="Resources\count-media.png" />
+    <None Remove="Resources\cut-media.png" />
+    <None Remove="Resources\delete-media.png" />
     <None Remove="Resources\dlc_ep1.png" />
     <None Remove="Resources\dlc_ep10.png" />
     <None Remove="Resources\dlc_ep10s.png" />
@@ -91,6 +107,7 @@
     <None Remove="Resources\dlc_sp8s.png" />
     <None Remove="Resources\dlc_sp9.png" />
     <None Remove="Resources\dlc_sp9s.png" />
+    <None Remove="Resources\download-icon.png" />
     <None Remove="Resources\ghost.png" />
     <None Remove="Resources\help.png" />
     <None Remove="Resources\icon-128x.png" />
@@ -109,6 +126,8 @@
     <None Remove="Resources\load.gif" />
     <None Remove="Resources\logo.png" />
     <None Remove="Resources\logs-icon.png" />
+    <None Remove="Resources\media-icon.png" />
+    <None Remove="Resources\media-info.png" />
     <None Remove="Resources\mod-install-busy.png" />
     <None Remove="Resources\mod-install-done.png" />
     <None Remove="Resources\mod-install-error.png" />
@@ -121,6 +140,7 @@
     <None Remove="Resources\patch-0.png" />
     <None Remove="Resources\patch-1.png" />
     <None Remove="Resources\patch-10.png" />
+    <None Remove="Resources\patch-11.png" />
     <None Remove="Resources\patch-2.png" />
     <None Remove="Resources\patch-3.png" />
     <None Remove="Resources\patch-4.png" />
@@ -130,12 +150,14 @@
     <None Remove="Resources\patch-8.png" />
     <None Remove="Resources\patch-9.png" />
     <None Remove="Resources\patch-gear-icon.png" />
+    <None Remove="Resources\play-media.png" />
     <None Remove="Resources\play.png" />
     <None Remove="Resources\recommended-star.png" />
     <None Remove="Resources\sim-think.png" />
     <None Remove="Resources\task-ok.png" />
     <None Remove="Resources\task-run.gif" />
     <None Remove="Resources\three-dots-icon.png" />
+    <None Remove="Resources\tool-caspe.png" />
     <None Remove="Resources\tool-dashboard.png" />
     <None Remove="Resources\tool-ese.png" />
     <None Remove="Resources\tool-npp.png" />
@@ -146,6 +168,7 @@
     <None Remove="Resources\tool-s3pe.png" />
     <None Remove="Resources\tool-szip.png" />
     <None Remove="Resources\trash-icon.png" />
+    <None Remove="Resources\update-icon.png" />
     <None Remove="Resources\validation-error.png" />
     <None Remove="Resources\wallpaper-0.jpg" />
     <None Remove="Resources\wallpaper-0.png" />
@@ -204,6 +227,7 @@
     <PackageReference Include="CoroutinesForWpf" Version="0.3.0" />
     <PackageReference Include="DotNetZip" Version="1.16.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NReco.VideoConverter" Version="1.2.1" />
     <PackageReference Include="PeNet" Version="4.0.4" />
     <PackageReference Include="System.Management" Version="8.0.0" />
     <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
@@ -222,8 +246,24 @@
     <Resource Include="Resources\cache-6.png" />
     <Resource Include="Resources\cache-7.png" />
     <Resource Include="Resources\cache-8.png" />
+    <Resource Include="Resources\casp-adult.png" />
+    <Resource Include="Resources\casp-changed.png" />
+    <Resource Include="Resources\casp-child.png" />
+    <Resource Include="Resources\casp-elder.png" />
+    <Resource Include="Resources\casp-female.png" />
+    <Resource Include="Resources\casp-male.png" />
+    <Resource Include="Resources\casp-maternity.png" />
+    <Resource Include="Resources\casp-random.png" />
+    <Resource Include="Resources\casp-teen.png" />
+    <Resource Include="Resources\casp-thumb.png" />
+    <Resource Include="Resources\casp-toddler.png" />
+    <Resource Include="Resources\casp-young-adult.png" />
     <Resource Include="Resources\check.png" />
     <Resource Include="Resources\close-popup.png" />
+    <Resource Include="Resources\copy-media.png" />
+    <Resource Include="Resources\count-media.png" />
+    <Resource Include="Resources\cut-media.png" />
+    <Resource Include="Resources\delete-media.png" />
     <Resource Include="Resources\dlc_ep1.png" />
     <Resource Include="Resources\dlc_ep10.png" />
     <Resource Include="Resources\dlc_ep10s.png" />
@@ -264,6 +304,7 @@
     <Resource Include="Resources\dlc_sp8s.png" />
     <Resource Include="Resources\dlc_sp9.png" />
     <Resource Include="Resources\dlc_sp9s.png" />
+    <Resource Include="Resources\download-icon.png" />
     <Resource Include="Resources\ghost.png" />
     <Resource Include="Resources\help.png" />
     <Resource Include="Resources\icon-128x.png" />
@@ -282,6 +323,8 @@
     <Resource Include="Resources\load.gif" />
     <Resource Include="Resources\logo.png" />
     <Resource Include="Resources\logs-icon.png" />
+    <Resource Include="Resources\media-icon.png" />
+    <Resource Include="Resources\media-info.png" />
     <Resource Include="Resources\mod-install-busy.png" />
     <Resource Include="Resources\mod-install-done.png" />
     <Resource Include="Resources\mod-install-error.png" />
@@ -294,6 +337,7 @@
     <Resource Include="Resources\patch-0.png" />
     <Resource Include="Resources\patch-1.png" />
     <Resource Include="Resources\patch-10.png" />
+    <Resource Include="Resources\patch-11.png" />
     <Resource Include="Resources\patch-2.png" />
     <Resource Include="Resources\patch-3.png" />
     <Resource Include="Resources\patch-4.png" />
@@ -303,6 +347,7 @@
     <Resource Include="Resources\patch-8.png" />
     <Resource Include="Resources\patch-9.png" />
     <Resource Include="Resources\patch-gear-icon.png" />
+    <Resource Include="Resources\play-media.png" />
     <Resource Include="Resources\play.png" />
     <Resource Include="Resources\recommended-star.png" />
     <Resource Include="Resources\sim-think.png" />
@@ -315,6 +360,7 @@
     <Resource Include="Resources\task-ok.png" />
     <Resource Include="Resources\task-run.gif" />
     <Resource Include="Resources\three-dots-icon.png" />
+    <Resource Include="Resources\tool-caspe.png" />
     <Resource Include="Resources\tool-dashboard.png" />
     <Resource Include="Resources\tool-ese.png" />
     <Resource Include="Resources\tool-npp.png" />
@@ -325,6 +371,7 @@
     <Resource Include="Resources\tool-s3pe.png" />
     <Resource Include="Resources\tool-szip.png" />
     <Resource Include="Resources\trash-icon.png" />
+    <Resource Include="Resources\update-icon.png" />
     <Resource Include="Resources\validation-error.png" />
     <Resource Include="Resources\wallpaper-0.png" />
     <Resource Include="Resources\wallpaper-1.png" />

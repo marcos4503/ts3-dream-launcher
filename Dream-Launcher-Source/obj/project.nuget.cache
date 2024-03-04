@@ -1,14 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "WiMDinQWYu+AZqMAreKLpJCa981ldyemDieRp4rMfDMj4RxnHlCPEkYW6evrj8ER2m4eXhaVqrnYiNLjLw5N/w==",
+  "dgSpecHash": "CjSfi7TFFw3BzuvLZCjUPT12ZfsCXx2qQs0xIbOxpTtW7MhDHxZuDsOD7WRBIFrCmfgowCA8zWIF8NpQzGi2tw==",
   "success": true,
-  "projectFilePath": "D:\\!GitHub-Repo\\ts3-dream-launcher\\Dream-Launcher-Source\\TS3 Dream Launcher.csproj",
+  "projectFilePath": "D:\\Visual-Studio\\TS3 Dream Launcher\\TS3 Dream Launcher.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\junio\\.nuget\\packages\\coroutinesforwpf\\0.3.0\\coroutinesforwpf.0.3.0.nupkg.sha512",
     "C:\\Users\\junio\\.nuget\\packages\\dotnetzip\\1.16.0\\dotnetzip.1.16.0.nupkg.sha512",
     "C:\\Users\\junio\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.1\\microsoft.netcore.platforms.3.1.1.nupkg.sha512",
     "C:\\Users\\junio\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\junio\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\junio\\.nuget\\packages\\nreco.videoconverter\\1.2.1\\nreco.videoconverter.1.2.1.nupkg.sha512",
     "C:\\Users\\junio\\.nuget\\packages\\penet\\4.0.4\\penet.4.0.4.nupkg.sha512",
     "C:\\Users\\junio\\.nuget\\packages\\penet.asn1\\2.0.1\\penet.asn1.2.0.1.nupkg.sha512",
     "C:\\Users\\junio\\.nuget\\packages\\system.codedom\\8.0.0\\system.codedom.8.0.0.nupkg.sha512",

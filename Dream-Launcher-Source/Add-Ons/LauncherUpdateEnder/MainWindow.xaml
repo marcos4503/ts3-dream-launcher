@@ -1,0 +1,15 @@
+﻿<Window x:Class="LauncherUpdateEnder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LauncherUpdateEnder"
+        mc:Ignorable="d"
+        Title="Dream Launcher Updater" Icon="/Resources/icon-32x.png" ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Grid Width="256" Height="128" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock x:Name="statusText" TextWrapping="Wrap" Text="Place Holder" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <ProgressBar Height="16" Width="200" IsIndeterminate="True" Margin="0,16,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -26,7 +26,7 @@
     <!-- Screen 6: Launcher -->
     <system:String x:Key="launcher_button_goHome">HOME</system:String>
     <system:String x:Key="launcher_button_goSaves">SAVES</system:String>
-    <system:String x:Key="launcher_button_goSims">SIMS</system:String>
+    <system:String x:Key="launcher_button_goExports">EXPORTS</system:String>
     <system:String x:Key="launcher_button_goWorlds">WORLDS</system:String>
     <system:String x:Key="launcher_button_goMedia">MEDIA</system:String>
     <system:String x:Key="launcher_button_goCache">CACHE</system:String>
@@ -74,6 +74,11 @@
     <system:String x:Key="launcher_linkDonate">Make a Donation and help maintain Dream Launcher!</system:String>
     <system:String x:Key="launcher_linkGithub">Access the Dream Launcher repository on GitHub</system:String>
     <system:String x:Key="launcher_linkSteam">Access mega-guide with lots of tips and tutorials on Steam (Portuguese Only)</system:String>
+    <system:String x:Key="launcher_updateNotifier">The %v% version of Dream Launcher is now available. Install the update now!</system:String>
+    <system:String x:Key="launcher_updateButton">INSTALL</system:String>
+    <system:String x:Key="launcher_updateWait">Please wait for all Tasks currently in progress to complete before starting the update process.</system:String>
+    <system:String x:Key="launcher_updateError">Unable to perform Dream Launcher update. Please check your internet connection and try again.</system:String>
+    <system:String x:Key="launcher_updateSuccess">Dream Launcher has been updated successfully!</system:String>
 
     <!-- Screen 6: Launcher - Patches -->
     <system:String x:Key="launcher_patches_intro">Here you will find all the best Patches/Tweaks for the game. All these Patches can be applied with a few clicks. Whenever a Patch is applied to the game, Dream Launcher will automatically check its integrity to ensure the best state of everything!</system:String>
@@ -111,6 +116,8 @@
     <system:String x:Key="launcher_patch9_description">This Patch adds a kit of mods that optimize Sims' routing in the game, reducing routing problems, improving the speed at which routes are calculated, etc. The mods added are... "bluegenjutsu - Faster Loading and Moving of the Elevators" which reduces the waiting time for elevators in Late Night EP. "bluegenjutsu - Better Routing for Game Objects" which improves routing for objects being fought over by Sims. "Twoftmama - Route Fix v9" which improves routing in general. "Nukael - No Motive Fail Tantrum or Whining" which removes tantrum animations while the Sim is in need, however, children still continue to throw tantrums. "stevebo77 - No Route Fail Tantrum" which removes tantrum animations when not finding a route to the destination. And finally "stevebo77 - No Foot Tapping" which removes the animation of the Sim tapping their foot while waiting for a route.</system:String>
     <system:String x:Key="launcher_patch10_title">Internet Removal Patch</system:String>
     <system:String x:Key="launcher_patch10_description">This Patch prohibits The Sims 3 from connecting to the internet. This avoids delays in the game due to web requests, downloads of hundreds of unwanted files and even increases game performance and reduces RAM consumption in many cases. This patch will work even better if you disable "Online Notifications" and "Shop Mode". REQUIRES Windows Firewall enabled to work.</system:String>
+    <system:String x:Key="launcher_patch11_title">Better Story Progression Patch</system:String>
+    <system:String x:Key="launcher_patch11_description">This patch will add "NRaas - Story Progression" to your game, completely replacing the standard story progression imposed by EA. Thanks to this Patch, the unplayed sims in your city will now live more interesting lives in more realistic ways. They will marry other Sims, buy furniture or cars, change jobs, have personalities, improve skills and much, much more. Your game's population and story progression settings will still be respected even with this patch installed. This patch also installs "NRaas - Second Image" which will bring more Sim information in game notifications. The mods included in this Patch are already pre-configured for the best gameplay and performance experience. This Patch will provide you with a better gaming experience if you play with Sims lifespan in "Long" mode.</system:String>
 
     <!-- Screen 6: Launcher - Settings -->
     <system:String x:Key="launcher_settings_save">SAVE</system:String>
@@ -146,6 +153,11 @@ preference over resources, there will still be resources for the rest of the sys
     <system:String x:Key="launcher_settings_launcher_launcherBehaviour">Behavior While Playing</system:String>
     <system:String x:Key="launcher_settings_launcher_launcherBehaviourHelp" xml:space="preserve">
 Determines what the Launcher should do while The Sims 3 is running.
+    </system:String>
+    <system:String x:Key="launcher_settings_launcher_gameOverlay">Game Overlay</system:String>
+    <system:String x:Key="launcher_settings_launcher_gameOverlayHelp" xml:space="preserve">
+Displays an Overlay within the game. This Overlay displays the current FPS the game is running at and also the amount of RAM
+the game is using, in the same way you could track it through the Task Manager.
     </system:String>
     <system:String x:Key="launcher_settings_launcher_resetTemplate">Reset Options Template</system:String>
     <system:String x:Key="launcher_settings_launcher_resetTemplateHelp" xml:space="preserve">
@@ -588,6 +600,9 @@ If this parameter is active, active family members will not be able to become ce
     <system:String x:Key="launcher_tools_s3ceTitle">Sims3Pack CLI Extractor</system:String>
     <system:String x:Key="launcher_tools_s3ceInformation">Requires: .NET Framework 2.0</system:String>
     <system:String x:Key="launcher_tools_s3ceDescription">Allows to extract "package" files from within "sims3pack" via CLI. Allows the Launcher to interpret "sims3pack" files.</system:String>
+    <system:String x:Key="launcher_tools_caspeTitle">CASPs Editor</system:String>
+    <system:String x:Key="launcher_tools_caspeInformation">Requires: .NET 6.0</system:String>
+    <system:String x:Key="launcher_tools_caspeDescription">Allows you to edit clothes parameters (CAS Parts) that are within "Package" files. This editing is done via CLI. Dream Launcher uses this tool by providing a UI.</system:String>
 
     <!-- Screen 6: Launcher - Mods -->
     <system:String x:Key="launcher_mods_message">From here you can manage all Mods or Custom Content installed in your game. You can also install new Mods/Content recommended by Dream Launcher from the "Recommended" tab or if you prefer to install your own Mods/Content downloaded by you using the "Custom" tab.</system:String>
@@ -627,9 +642,27 @@ If this parameter is active, active family members will not be able to become ce
     <system:String x:Key="launcher_mods_installedTab_modOptions_s3pe_notInstalled">Unable to open Mod in S3PE. The tool was not installed on Dream Launcher. Please install it via the "Tools" page.</system:String>
     <system:String x:Key="launcher_mods_installedTab_modOptions_s3oc">Open in S3OC</system:String>
     <system:String x:Key="launcher_mods_installedTab_modOptions_s3oc_notInstalled">Unable to open Mod in S3OC. The tool was not installed on Dream Launcher. Please install it via the "Tools" page.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_caspsEditor">Open in CASPs Editor</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_casps_notInstalled">Unable to open Mod in CASPs Editor. The tool was not installed on Dream Launcher. Please install it via the "Tools" page.</system:String>
     <system:String x:Key="launcher_mods_installedTab_modCopyDiagTitle">Done</system:String>
     <system:String x:Key="launcher_mods_installedTab_modCopyDiagText">The Mod has been copied to the selected folder.</system:String>
     <system:String x:Key="launcher_mods_deleteUnrecognized">The "%file%" file present inside the "Mods" folder was not recognized by Dream Launcher and was therefore removed to avoid malfunctions in the Launcher and Game functions. It is important that no manual changes are made to your game's "Mods" folder, any changes must only be made through the Dream Launcher.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_busyTitle">Error</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_busyText">You cannot close CASPs Editor now. CASPs Editor is reading or saving a Package now. Please wait for the current task to complete before closing it.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_emptyMsg">No CAS Parts found in this Package</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_saveButton">SAVE</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipMale">Allowed for Males</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipFemale">Allowed for Females</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipToddler">Allowed for Toddlers</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipChild">Allowed for Childs</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipTeen">Allowed for Teens</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipYoungAdult">Allowed for Young Adults</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipAdult">Allowed for Adults</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipElder">Allowed for Elders</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipCanges">Modified</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipValidForRandom">Allow for Random (other Sims and Townies)?</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipValidForMaternity">Allow for Maternity?</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_saved">The changes made to the Mod were successfully applied.</system:String>
     <system:String x:Key="launcher_mods_addNewTab">Add New</system:String>
     <system:String x:Key="launcher_mods_addNewTab_recommended">RECOMMENDED</system:String>
     <system:String x:Key="launcher_mods_addNewTab_recommendedAddError">Unable to add the Mod. The "7-Zip" Tool must be installed on the Dream Launcher. Please install it from the "Tools" page.</system:String>
@@ -685,5 +718,20 @@ If this parameter is active, active family members will not be able to become ce
     <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep4Txt">Finishing the Installation</system:String>
     <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep4TxtError">There is already a Mod installed, using this name</system:String>
     <system:String x:Key="launcher_mods_addNewTab_modInstaller_installFinish">Mod installed successfully!</system:String>
+
+    <!-- Screen 6: Launcher - Media -->
+    <system:String x:Key="launcher_media_noMediaFound">No media generated so far</system:String>
+    <system:String x:Key="launcher_media_cut">Move Selected Media to...</system:String>
+    <system:String x:Key="launcher_media_copy">Copy Selected Media to...</system:String>
+    <system:String x:Key="launcher_media_delete">Delete selected Media</system:String>
+    <system:String x:Key="launcher_media_statusLoad">Loading</system:String>
+    <system:String x:Key="launcher_media_statusCount">%n% items</system:String>
+    <system:String x:Key="launcher_media_statusCountWithSelecion">%n% items, %s% selected</system:String>
+    <system:String x:Key="launcher_media_deleteConfirmTitle">Confirmation</system:String>
+    <system:String x:Key="launcher_media_deleteConfirmText">Are you sure you want to delete the selected media?</system:String>
+    <system:String x:Key="launcher_media_copyDoneTitle">Copy Done</system:String>
+    <system:String x:Key="launcher_media_copyDoneText">The selected media has been successfully copied to the chosen folder!</system:String>
+    <system:String x:Key="launcher_media_cutDoneTitle">Move Done</system:String>
+    <system:String x:Key="launcher_media_cutDoneText">The selected media has been successfully moved to the chosen folder!</system:String>
 
 </ResourceDictionary>
