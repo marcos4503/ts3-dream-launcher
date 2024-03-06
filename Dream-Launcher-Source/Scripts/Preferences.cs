@@ -31,6 +31,8 @@ namespace TS3_Dream_Launcher.Scripts
             public bool alreadyIntelFixed = false;
             public int lastErrorLogsCount = 0;
             public int lastMediaFilesCount = 0;
+            public int lastExportFilesCount = 0;
+            public int lastSaveFilesCount = 0;
 
             public bool patchModsSupport = false;
             public bool patchBasicOptimization = false;

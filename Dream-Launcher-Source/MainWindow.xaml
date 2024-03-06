@@ -325,7 +325,7 @@
                             <Label x:Name="pageTitle" Content="Place Holder" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="{DynamicResource TheSimsSansSc}" Foreground="White" FontSize="20" FontWeight="Bold"/>
                         </Border>
                         <Grid x:Name="pagesContent" Margin="4,36,4,4">
-                            <Grid x:Name="pageHome" Margin="0,0,0,0" Visibility="Collapsed">
+                            <Grid x:Name="pageHome" Margin="0,0,0,0" Visibility="Visible">
                                 <Border x:Name="playWallpaper" BorderThickness="0,0,0,0" CornerRadius="0,0,8,8">
                                     <Border.Background>
                                         <ImageBrush Stretch="UniformToFill" ImageSource="/Resources/wallpaper-0.png">
@@ -362,8 +362,72 @@
                                     </BeautyButton:BeautyButton>
                                 </Grid>
                             </Grid>
-                            <Grid x:Name="pageSaves" Visibility="Collapsed"/>
-                            <Grid x:Name="pageExports" Visibility="Visible"/>
+                            <Grid x:Name="pageSaves" Visibility="Collapsed">
+                                <Grid VerticalAlignment="Top">
+                                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,8,8,8" Orientation="Horizontal">
+                                        <Button x:Name="importSave" Padding="0,0,0,0" Cursor="Hand" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" ToolTip="{DynamicResource launcher_save_importTooltip}">
+                                            <Image Height="24" Width="24" Source="/Resources/save-add.png" Opacity="0.75"/>
+                                        </Button>
+                                    </StackPanel>
+                                    <Rectangle Stroke="#FF8C8C8C" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="0.5"/>
+                                </Grid>
+                                <Grid x:Name="saveContent" Margin="0,42,0,36" Visibility="Visible">
+                                    <ScrollViewer>
+                                        <Grid VerticalAlignment="Top">
+                                            <Label x:Name="saveEmptyWarn" Content="{DynamicResource launcher_save_noSaveFound}" HorizontalAlignment="Center" VerticalAlignment="Top" Padding="0,0,0,0" Margin="0,8,0,0" Foreground="#FF848484" HorizontalContentAlignment="Left"/>
+                                            <StackPanel x:Name="saveList" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="8,8,8,8"/>
+                                        </Grid>
+                                    </ScrollViewer>
+                                </Grid>
+                                <Grid x:Name="saveLoad" Margin="0,42,0,36" Visibility="Collapsed">
+                                    <Image gif:ImageBehavior.AnimatedSource="/Resources/load.gif" gif:ImageBehavior.AnimationSpeedRatio="1.5" VerticalAlignment="Center" HorizontalAlignment="Center" Width="48" Height="48" />
+                                </Grid>
+                                <Grid VerticalAlignment="Bottom">
+                                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8,8,0,8" Orientation="Horizontal">
+                                        <Image Height="20" Width="24" Source="/Resources/saves-icon.png" Opacity="0.5" Stretch="Uniform"/>
+                                        <Label x:Name="saveCount" Content="Place Holder" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0,0,0,0" Margin="8,0,0,0" Foreground="#FF7F7F7F"/>
+                                    </StackPanel>
+                                    <Rectangle Stroke="#FF8C8C8C" Margin="0,0,0,0" VerticalAlignment="Top" Height="0.5"/>
+                                </Grid>
+                            </Grid>
+                            <Grid x:Name="pageExports" Visibility="Collapsed">
+                                <Grid VerticalAlignment="Top">
+                                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,8,8,8" Orientation="Horizontal">
+                                        <Button x:Name="exportImport" Padding="0,0,0,0" Cursor="Hand" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" ToolTip="{DynamicResource launcher_export_importTooltip}" Margin="0,0,8,0">
+                                            <Image Height="24" Width="24" Source="/Resources/import-export.png" Opacity="0.75"/>
+                                        </Button>
+                                        <Button x:Name="exportCopy" Padding="0,0,0,0" Cursor="Hand" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0,0,8,0" ToolTip="{DynamicResource launcher_export_copyTooltip}">
+                                            <Image Height="24" Width="24" Source="/Resources/copy-media.png" Opacity="0.75"/>
+                                        </Button>
+                                        <Button x:Name="exportDelete" Padding="0,0,0,0" Cursor="Hand" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" ToolTip="{DynamicResource launcher_export_deleteTooltip}">
+                                            <Image Height="24" Width="24" Source="/Resources/delete-media.png" Opacity="0.75"/>
+                                        </Button>
+                                    </StackPanel>
+                                    <Rectangle Stroke="#FF8C8C8C" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="0.5"/>
+                                </Grid>
+                                <Grid x:Name="exportContent" Margin="0,42,0,36" Visibility="Visible">
+                                    <ScrollViewer>
+                                        <Grid VerticalAlignment="Top">
+                                            <Label x:Name="exportEmptyWarn" Content="{DynamicResource launcher_export_emptyWarn}" HorizontalAlignment="Center" VerticalAlignment="Top" Padding="0,0,0,0" Margin="0,8,0,0" Foreground="#FF848484" HorizontalContentAlignment="Left"/>
+                                            <StackPanel x:Name="exportList" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="8,8,8,8"/>
+                                        </Grid>
+                                    </ScrollViewer>
+                                </Grid>
+                                <Grid x:Name="exportLoad" Margin="0,42,0,36" Visibility="Collapsed">
+                                    <Image gif:ImageBehavior.AnimatedSource="/Resources/load.gif" gif:ImageBehavior.AnimationSpeedRatio="1.5" VerticalAlignment="Center" HorizontalAlignment="Center" Width="48" Height="48" />
+                                </Grid>
+                                <Grid VerticalAlignment="Bottom">
+                                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8,8,0,8" Orientation="Horizontal">
+                                        <Image Height="20" Width="24" Source="/Resources/exports-count.png" Opacity="0.75" Stretch="Fill"/>
+                                        <Label x:Name="exportCount" Content="Place Holder" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0,0,0,0" Margin="8,0,0,0" Foreground="#FF7F7F7F"/>
+                                    </StackPanel>
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,8,0" Orientation="Horizontal">
+                                        <Label x:Name="exportSize" Content="0 KB" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,0,0" Margin="0,0,8,0" Foreground="#FF7F7F7F"/>
+                                        <Image Height="20" Width="20" Source="/Resources/media-info.png" Opacity="0.5" Stretch="Fill"/>
+                                    </StackPanel>
+                                    <Rectangle Stroke="#FF8C8C8C" Margin="0,0,0,0" VerticalAlignment="Top" Height="0.5"/>
+                                </Grid>
+                            </Grid>
                             <Grid x:Name="pageWorlds" Visibility="Collapsed">
                                 <Grid VerticalAlignment="Top">
                                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,8,8,8" Orientation="Horizontal">

@@ -19,6 +19,9 @@
     <Compile Update="Controls\ListItems\ConflictItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\ListItems\ExportItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\ListItems\InstalledModItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -35,6 +38,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\ListItems\S3PkWorldItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\ListItems\SaveItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\ListItems\StoreModItem.xaml.cs">
@@ -84,6 +90,9 @@
     <Page Update="Controls\ListItems\ConflictItem.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Controls\ListItems\ExportItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\ListItems\InstalledModItem.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -100,6 +109,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\ListItems\S3PkWorldItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\ListItems\SaveItem.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\ListItems\StoreModItem.xaml">

@@ -108,6 +108,7 @@
     <None Remove="Resources\dlc_sp9.png" />
     <None Remove="Resources\dlc_sp9s.png" />
     <None Remove="Resources\download-icon.png" />
+    <None Remove="Resources\exports-count.png" />
     <None Remove="Resources\gear-icon.png" />
     <None Remove="Resources\ghost.png" />
     <None Remove="Resources\help.png" />
@@ -117,6 +118,7 @@
     <None Remove="Resources\icon-32x.png" />
     <None Remove="Resources\icon-48x.png" />
     <None Remove="Resources\icon-64x.png" />
+    <None Remove="Resources\import-export.png" />
     <None Remove="Resources\info-icon.png" />
     <None Remove="Resources\lang-en-us.png" />
     <None Remove="Resources\lang-pt-br.png" />
@@ -153,7 +155,10 @@
     <None Remove="Resources\patch-gear-icon.png" />
     <None Remove="Resources\play-media.png" />
     <None Remove="Resources\play.png" />
+    <None Remove="Resources\plumbot-icon.png" />
     <None Remove="Resources\recommended-star.png" />
+    <None Remove="Resources\save-add.png" />
+    <None Remove="Resources\saves-icon.png" />
     <None Remove="Resources\sim-think.png" />
     <None Remove="Resources\task-ok.png" />
     <None Remove="Resources\task-run.gif" />
@@ -313,6 +318,7 @@
     <Resource Include="Resources\dlc_sp9.png" />
     <Resource Include="Resources\dlc_sp9s.png" />
     <Resource Include="Resources\download-icon.png" />
+    <Resource Include="Resources\exports-count.png" />
     <Resource Include="Resources\gear-icon.png" />
     <Resource Include="Resources\ghost.png" />
     <Resource Include="Resources\help.png" />
@@ -322,6 +328,7 @@
     <Resource Include="Resources\icon-32x.png" />
     <Resource Include="Resources\icon-48x.png" />
     <Resource Include="Resources\icon-64x.png" />
+    <Resource Include="Resources\import-export.png" />
     <Resource Include="Resources\info-icon.png" />
     <Resource Include="Resources\lang-en-us.png" />
     <Resource Include="Resources\lang-pt-br.png" />
@@ -358,7 +365,10 @@
     <Resource Include="Resources\patch-gear-icon.png" />
     <Resource Include="Resources\play-media.png" />
     <Resource Include="Resources\play.png" />
+    <Resource Include="Resources\plumbot-icon.png" />
     <Resource Include="Resources\recommended-star.png" />
+    <Resource Include="Resources\save-add.png" />
+    <Resource Include="Resources\saves-icon.png" />
     <Resource Include="Resources\sim-think.png" />
     <Resource Include="Resources\sims-bold-sc.otf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

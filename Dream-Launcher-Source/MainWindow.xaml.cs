@@ -124,6 +124,8 @@ namespace TS3_Dream_Launcher
         private IDisposable recommendedModsFilterRoutine = null;
         private IDisposable mediaListUpdateRoutine = null;
         private IDisposable worldListUpdateRoutine = null;
+        private IDisposable exportListUpdateRoutine = null;
+        private IDisposable saveListUpdateRoutine = null;
 
         //Private variables
         private IDictionary<string, Storyboard> animStoryboards = new Dictionary<string, Storyboard>();
@@ -143,6 +145,8 @@ namespace TS3_Dream_Launcher
         public List<StoreModItem> instantiatedRecModItems = new List<StoreModItem>();
         public List<MediaItem> instantiatedMediaItems = new List<MediaItem>();
         public List<WorldItem> instantiatedWorldItems = new List<WorldItem>();
+        public List<ExportItem> instantiatedExportItems = new List<ExportItem>();
+        public List<SaveItem> instantiatedSaveItems = new List<SaveItem>();
 
         //Core methods
 
@@ -802,6 +806,10 @@ namespace TS3_Dream_Launcher
                         RecalculateAllCacheTypesSizes();
                         //Re-update the medias list
                         UpdateMediaList();
+                        //Re-update the exports list
+                        UpdateExportList();
+                        //Re-update the saves list
+                        UpdateSaveList();
                     };
                     asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
 
@@ -936,6 +944,12 @@ namespace TS3_Dream_Launcher
 
             //Prepare the worlds system
             BuildAndPrepareWorldsSystem();
+
+            //Prepare the exports system
+            BuildAndPrepareExportsSystem();
+
+            //Prepare the save system
+            BuildAndPrepareSaveSystem();
 
             //Check if have a new update and warn if was updated
             CheckUpdates();
@@ -7949,7 +7963,7 @@ namespace TS3_Dream_Launcher
         private void BuildAndPrepareMediaListSystem()
         {
             //Disable the buttons
-            SetEnabledActionButtons(false);
+            SetEnabledMediaActionButtons(false);
 
             //Prepare the buttons
             mediaCopy.Click += (s, e) => { CopySelectedMedia(); };
@@ -7960,7 +7974,7 @@ namespace TS3_Dream_Launcher
             UpdateMediaList();
         }
 
-        private void SetEnabledActionButtons(bool enable)
+        private void SetEnabledMediaActionButtons(bool enable)
         {
             //If is desired to disable
             if(enable == false)
@@ -8090,9 +8104,9 @@ namespace TS3_Dream_Launcher
 
             //Enable or disable the action buttons
             if (mediasSelectedCount == 0)
-                SetEnabledActionButtons(false);
+                SetEnabledMediaActionButtons(false);
             if (mediasSelectedCount >= 1)
-                SetEnabledActionButtons(true);
+                SetEnabledMediaActionButtons(true);
 
             //Show the selection counter
             if (mediasSelectedCount == 0)
@@ -8126,7 +8140,7 @@ namespace TS3_Dream_Launcher
             mediasSize.Content = "-";
 
             //Disable the action buttons
-            SetEnabledActionButtons(false);
+            SetEnabledMediaActionButtons(false);
 
             //Wait some time
             yield return new WaitForSeconds(1.0f);
@@ -8400,6 +8414,476 @@ namespace TS3_Dream_Launcher
                 RemoveTask("worldInstalling");
             };
             worldInstaller.Show();
+        }
+    
+        //Exports manager
+
+        private void BuildAndPrepareExportsSystem()
+        {
+            //Disable the buttons
+            SetEnabledExportActionButtons(false);
+
+            //Prepare the buttons
+            exportImport.Click += (s, e) => { ImportExport(); };
+            exportCopy.Click += (s, e) => { CopySelectedExport(); };
+            exportDelete.Click += (s, e) => { DeleteSelectedExport(); };
+
+            //Update the exports list
+            UpdateExportList();
+        }
+
+        private void SetEnabledExportActionButtons(bool enable)
+        {
+            //If is desired to disable
+            if (enable == false)
+            {
+                exportCopy.Opacity = 0.25f;
+                exportCopy.IsHitTestVisible = false;
+                exportDelete.Opacity = 0.25f;
+                exportDelete.IsHitTestVisible = false;
+            }
+
+            //If is desired to enable
+            if (enable == true)
+            {
+                exportCopy.Opacity = 0.85f;
+                exportCopy.IsHitTestVisible = true;
+                exportDelete.Opacity = 0.85f;
+                exportDelete.IsHitTestVisible = true;
+            }
+        }
+   
+        private void ImportExport()
+        {
+            //Open the file picker 
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "TS3 File|*.package;*.sims3pack";
+            bool? result = fileDialog.ShowDialog();
+
+            //If don't have picked file, cancel
+            if (result == false || fileDialog.FileName == "")
+                return;
+
+            //Calculate the target file path
+            string targetFinalPath = (myDocumentsPath + "/Exports/" + System.IO.Path.GetFileName(fileDialog.FileName));
+
+            //Check if the file already exists in destination
+            if (File.Exists(targetFinalPath) == true)
+            {
+                //Display a dialog and cancel
+                MessageBox.Show(GetStringApplicationResource("launcher_export_importErrorText"),
+                                GetStringApplicationResource("launcher_export_importErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            //Copy the selected path to the exports
+            File.Copy(fileDialog.FileName, targetFinalPath);
+
+            //Force update the exports list
+            UpdateExportList();
+        }
+
+        private void CopySelectedExport()
+        {
+            //Prepare the file list
+            List<string> fileList = new List<string>();
+
+            //Mount file list
+            foreach (ExportItem item in instantiatedExportItems)
+                if (item.isSelected == true)
+                    fileList.Add(item.filePath);
+
+            //Prepare the folder selected path
+            string selectedFolderPath = "";
+            //Open folder picker dialog
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            {
+                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK)
+                    selectedFolderPath = dialog.SelectedPath;
+            }
+            //If no folder was selected, cancel
+            if (selectedFolderPath == "")
+                return;
+
+            //Copy all files to selected place
+            foreach (string filePath in fileList)
+                File.Copy(filePath, (selectedFolderPath + "/" + System.IO.Path.GetFileName(filePath)));
+
+            //Warn about the copy
+            MessageBox.Show(GetStringApplicationResource("launcher_export_copyDoneText"),
+                            GetStringApplicationResource("launcher_export_copyDoneTitle"), MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void DeleteSelectedExport()
+        {
+            //Prepare the file list
+            List<string> fileList = new List<string>();
+
+            //Mount file list
+            foreach (ExportItem item in instantiatedExportItems)
+                if (item.isSelected == true)
+                    fileList.Add(item.filePath);
+
+            //Show the confirmation dialog
+            MessageBoxResult dialogResult = MessageBox.Show(GetStringApplicationResource("launcher_export_deleteConfirmText"),
+                                                            GetStringApplicationResource("launcher_export_deleteConfirmTitle"), MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            //If is desired to delete, do it
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                //Delete each file
+                foreach (string filePath in fileList)
+                    File.Delete(filePath);
+
+                //Update exports list
+                UpdateExportList();
+            }
+        }
+
+        private void ProcessExportSelection()
+        {
+            //Prepare the exports selected counter
+            int exportsSelectedCount = 0;
+
+            //Count exports selected
+            foreach (ExportItem item in instantiatedExportItems)
+                if (item.isSelected == true)
+                    exportsSelectedCount += 1;
+
+            //Enable or disable the action buttons
+            if (exportsSelectedCount == 0)
+                SetEnabledExportActionButtons(false);
+            if (exportsSelectedCount >= 1)
+                SetEnabledExportActionButtons(true);
+
+            //Show the selection counter
+            if (exportsSelectedCount == 0)
+                exportCount.Content = GetStringApplicationResource("launcher_export_statusCount").Replace("%n%", instantiatedExportItems.Count.ToString());
+            if (exportsSelectedCount >= 1)
+                exportCount.Content = GetStringApplicationResource("launcher_export_statusCountWithSelecion").Replace("%n%", instantiatedExportItems.Count.ToString()).Replace("%s%", exportsSelectedCount.ToString());
+        }
+    
+        private void UpdateExportList()
+        {
+            //If the routine is already running, stop it
+            if (exportListUpdateRoutine != null)
+            {
+                exportListUpdateRoutine.Dispose();
+                exportListUpdateRoutine = null;
+            }
+
+            //Start the export update routine
+            exportListUpdateRoutine = Coroutine.Start(UpdateExportListRoutine());
+        }
+
+        private IEnumerator UpdateExportListRoutine()
+        {
+            //Add task to list
+            AddTask("exportListUpdate", "Updating the Export list.");
+
+            //Disable the import button
+            exportImport.IsEnabled = false;
+            //Show the loading indicator
+            exportLoad.Visibility = Visibility.Visible;
+            exportContent.Visibility = Visibility.Collapsed;
+            exportCount.Content = GetStringApplicationResource("launcher_export_statusLoading");
+            exportSize.Content = "-";
+
+            //Disable the action buttons
+            SetEnabledExportActionButtons(false);
+
+            //Wait some time
+            yield return new WaitForSeconds(1.0f);
+
+            //Clear all exports previously rendered
+            foreach (ExportItem item in instantiatedExportItems)
+                exportList.Children.Remove(item);
+            instantiatedExportItems.Clear();
+
+            //Prepare the list of export files
+            List<string> allExportsList = new List<string>();
+
+            //Fill the list of exports files
+            foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/Exports")).GetFiles()))
+                if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".package")
+                    allExportsList.Add(file.FullName);
+            foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/Exports")).GetFiles()))
+                if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".sims3pack")
+                    allExportsList.Add(file.FullName);
+
+            //Render all exports
+            foreach (string exportFilePath in allExportsList)
+            {
+                //Draw the item on screen
+                ExportItem newItem = new ExportItem(this, exportFilePath);
+                exportList.Children.Add(newItem);
+                instantiatedExportItems.Add(newItem);
+
+                //Configure it
+                newItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newItem.VerticalAlignment = VerticalAlignment.Top;
+                newItem.Width = double.NaN;
+                newItem.Height = double.NaN;
+                newItem.Margin = new Thickness(0, 0, 0, 8);
+
+                //Inform the data about the export
+                newItem.RegisterOnClickCallback(() => { ProcessExportSelection(); });
+                newItem.Prepare();
+
+                //Wait before render next to avoid UI freezing
+                yield return new WaitForSeconds(0.02f);
+            }
+
+            //Count total export files size
+            long totalSizeInBytes = 0;
+            foreach (string exportPath in allExportsList)
+                if (File.Exists(exportPath) == true)
+                    totalSizeInBytes += (new FileInfo(exportPath)).Length;
+
+            //Enable or hide the empty export warning
+            if (instantiatedExportItems.Count == 0)
+                exportEmptyWarn.Visibility = Visibility.Visible;
+            if (instantiatedExportItems.Count >= 1)
+                exportEmptyWarn.Visibility = Visibility.Collapsed;
+
+            //Wait some time
+            yield return new WaitForSeconds(1.0f);
+
+            //Show new export notification, if necessary
+            int currentExportCount = allExportsList.Count;
+            int lastExportCount = launcherPrefs.loadedData.lastExportFilesCount;
+            //If the current exports count is not zero, check if was increased
+            if (currentExportCount > 0)
+                if (currentExportCount > lastExportCount)
+                    EnablePageRedDotNotification(LauncherPage.exports);
+            //Save the exports count
+            launcherPrefs.loadedData.lastExportFilesCount = currentExportCount;
+            launcherPrefs.Save();
+
+            //Remove the task
+            RemoveTask("exportListUpdate");
+
+            //Show the content
+            exportLoad.Visibility = Visibility.Collapsed;
+            exportContent.Visibility = Visibility.Visible;
+            exportCount.Content = GetStringApplicationResource("launcher_export_statusCount").Replace("%n%", allExportsList.Count.ToString());
+            exportSize.Content = GetFormattedCacheSize(totalSizeInBytes).Replace("~", "");
+            //Enable the import button
+            exportImport.IsEnabled = true;
+
+            //Auto clear routine reference
+            exportListUpdateRoutine = null;
+        }
+    
+        //Saves manager
+
+        private void BuildAndPrepareSaveSystem()
+        {
+            //Create the "save-vault" folder if not exists
+            if (Directory.Exists((myDocumentsPath + "/!DL-Static/save-vault")) == false)
+                Directory.CreateDirectory((myDocumentsPath + "/!DL-Static/save-vault"));
+
+            //Prepare the buttons
+            importSave.Click += (s, e) => { ImportSaveGame(); };
+
+            //Update the save list
+            UpdateSaveList();
+        }
+
+        private void ImportSaveGame()
+        {
+            //Prepare the folder selected path
+            string selectedFolderPath = "";
+            //Open folder picker dialog
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            {
+                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK)
+                    selectedFolderPath = dialog.SelectedPath;
+            }
+            //If no folder was selected, cancel
+            if (selectedFolderPath == "")
+                return;
+
+            //Prepare the response if found NHD file
+            bool foundNhdFile = false;
+            //Check if the selected folder have a NHD file
+            foreach (FileInfo file in (new DirectoryInfo(selectedFolderPath).GetFiles()))
+                if(System.IO.Path.GetExtension(file.FullName).Replace(".", "").ToLower() == "nhd")
+                {
+                    foundNhdFile = true;
+                    break;
+                }
+            //If not found a NHD file, cancel
+            if (foundNhdFile == false)
+            {
+                MessageBox.Show(GetStringApplicationResource("launcher_save_importError0Text"),
+                                GetStringApplicationResource("launcher_save_importError0Title"), MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            //Get directory info of the folder selected
+            DirectoryInfo dirInfo = new DirectoryInfo(selectedFolderPath);
+            //Split the directory name
+            string[] dirNameParts = dirInfo.Name.Split(".");
+            //Check if the name have ".sims3" in the end
+            if(dirNameParts.Length <= 1 || dirNameParts[dirNameParts.Length - 1].ToLower() != "sims3")
+            {
+                MessageBox.Show(GetStringApplicationResource("launcher_save_importError0Text"),
+                                GetStringApplicationResource("launcher_save_importError0Title"), MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            //Check if the folder already exists in the save folder
+            if(Directory.Exists((myDocumentsPath + "/Saves/" + dirInfo.Name)) == true)
+            {
+                MessageBox.Show(GetStringApplicationResource("launcher_save_importError1Text"),
+                                GetStringApplicationResource("launcher_save_importError1Title"), MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            //Check if the folder is in drive C
+            if(selectedFolderPath[0].ToString().ToLower() != "c")
+            {
+                MessageBox.Show(GetStringApplicationResource("launcher_save_importError2Text"),
+                                GetStringApplicationResource("launcher_save_importError2Title"), MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            //Move the selected folder to the destination
+            Directory.Move(selectedFolderPath, (myDocumentsPath + "/Saves/" + dirInfo.Name));
+
+            //Force update save list
+            UpdateSaveList();
+        }
+
+        private void UpdateSaveList()
+        {
+            //If the routine is already running, stop it
+            if (saveListUpdateRoutine != null)
+            {
+                saveListUpdateRoutine.Dispose();
+                saveListUpdateRoutine = null;
+            }
+
+            //Start the save update routine
+            saveListUpdateRoutine = Coroutine.Start(UpdateSaveListRoutine());
+        }
+
+        private IEnumerator UpdateSaveListRoutine()
+        {
+            //Add task to list
+            AddTask("saveListUpdate", "Updating the Save Game list.");
+
+            //Disable the import button
+            importSave.IsEnabled = false;
+            //Show the loading indicator
+            saveLoad.Visibility = Visibility.Visible;
+            saveContent.Visibility = Visibility.Collapsed;
+            saveCount.Content = GetStringApplicationResource("launcher_save_statusLoading");
+
+            //Wait some time
+            yield return new WaitForSeconds(1.0f);
+
+            //Clear all saves previously rendered
+            foreach (SaveItem item in instantiatedSaveItems)
+                saveList.Children.Remove(item);
+            instantiatedSaveItems.Clear();
+
+            //Prepare the list of save files
+            List<string> allSaveList = new List<string>();
+
+            //Fill the list of saves files
+            foreach (DirectoryInfo dir in (new DirectoryInfo((myDocumentsPath + "/Saves")).GetDirectories()))
+            {
+                //Get the directory name
+                string dirName = dir.Name;
+
+                //If contains ".backup" in the name, ignore it
+                if (dirName.Contains(".backup") == true)
+                    continue;
+
+                //Prepare the response if have NHD file
+                bool foundNhdFile = false;
+                //Try to found the NHD file
+                foreach(FileInfo file in (new DirectoryInfo(dir.FullName).GetFiles()))
+                {
+                    //Get the file name and extension
+                    string fileName = System.IO.Path.GetFileNameWithoutExtension(file.FullName);
+                    string extension = System.IO.Path.GetExtension(file.FullName).Replace(".", "").ToLower();
+
+                    //Prepare a list of possible names of contains for NHD files
+                    string possibleName0 = (dirName.Split(".")[0].Replace(" ", "") + "_0x");
+                    string possibleName1 = (dirName.Split(".")[0] + "_0x");
+
+                    //Check if is the NHD file desired
+                    if (extension == "nhd")
+                        if (fileName.Contains(possibleName0) == true || fileName.Contains(possibleName1) == true)
+                            foundNhdFile = true;
+                }
+                //If not found the NHD file, ignore it
+                if (foundNhdFile == false)
+                    continue;
+
+                //Add to list of save files
+                allSaveList.Add(dir.FullName);
+            }
+
+            //Render all saves
+            foreach (string saveFilePath in allSaveList)
+            {
+                //Draw the item on screen
+                SaveItem newItem = new SaveItem(this, saveFilePath);
+                saveList.Children.Add(newItem);
+                instantiatedSaveItems.Add(newItem);
+
+                //Configure it
+                newItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newItem.VerticalAlignment = VerticalAlignment.Top;
+                newItem.Width = double.NaN;
+                newItem.Height = double.NaN;
+                newItem.Margin = new Thickness(0, 0, 0, 8);
+
+                //Inform the data about the save
+                newItem.Prepare();
+
+                //Wait before render next to avoid UI freezing
+                yield return new WaitForSeconds(0.02f);
+            }
+
+            //Enable or hide the empty saves warning
+            if (instantiatedSaveItems.Count == 0)
+                saveEmptyWarn.Visibility = Visibility.Visible;
+            if (instantiatedSaveItems.Count >= 1)
+                saveEmptyWarn.Visibility = Visibility.Collapsed;
+
+            //Wait some time
+            yield return new WaitForSeconds(1.0f);
+
+            //Show new save notification, if necessary
+            int currentSaveCount = allSaveList.Count;
+            int lastSaveCount = launcherPrefs.loadedData.lastSaveFilesCount;
+            //If the current saves count is not zero, check if was increased
+            if (currentSaveCount > 0)
+                if (currentSaveCount > lastSaveCount)
+                    EnablePageRedDotNotification(LauncherPage.saves);
+            //Save the saves count
+            launcherPrefs.loadedData.lastSaveFilesCount = currentSaveCount;
+            launcherPrefs.Save();
+
+            //Remove the task
+            RemoveTask("saveListUpdate");
+
+            //Show the content
+            saveLoad.Visibility = Visibility.Collapsed;
+            saveContent.Visibility = Visibility.Visible;
+            saveCount.Content = GetStringApplicationResource("launcher_save_statusCount").Replace("%n%", allSaveList.Count.ToString());
+            //Enable the import button
+            importSave.IsEnabled = true;
+
+            //Auto clear routine reference
+            saveListUpdateRoutine = null;
         }
     }
 }

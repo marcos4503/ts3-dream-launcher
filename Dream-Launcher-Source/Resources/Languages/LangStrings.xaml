@@ -820,4 +820,31 @@ Click to Change!
     <system:String x:Key="launcher_world_install_installErrorTextTooLessWorlds">There must be at least 1 file of type "World".</system:String>
     <system:String x:Key="launcher_world_install_installError">There was an unknown error installing Custom World. If it appears in the worlds list, please uninstall it and try installing it again.</system:String>
 
+    <!-- Screen 6: Launcher - Exports -->
+    <system:String x:Key="launcher_export_importTooltip">Import Package</system:String>
+    <system:String x:Key="launcher_export_copyTooltip">Copy Selected Exports To...</system:String>
+    <system:String x:Key="launcher_export_deleteTooltip">Delete Selected Exports</system:String>
+    <system:String x:Key="launcher_export_emptyWarn">No Exports were generated. Exports are generated in-game, when exporting or sharing Content</system:String>
+    <system:String x:Key="launcher_export_statusLoading">Loading</system:String>
+    <system:String x:Key="launcher_export_statusCount">%n% items</system:String>
+    <system:String x:Key="launcher_export_statusCountWithSelecion">%n% items, %s% selected</system:String>
+    <system:String x:Key="launcher_export_importErrorTitle">Error</system:String>
+    <system:String x:Key="launcher_export_importErrorText">An Export file with the same name as the file you are trying to Import into Exports already exists.</system:String>
+    <system:String x:Key="launcher_export_copyDoneTitle">Copy Done</system:String>
+    <system:String x:Key="launcher_export_copyDoneText">The selected exports has been successfully copied to the chosen folder!</system:String>
+    <system:String x:Key="launcher_export_deleteConfirmTitle">Confirmation</system:String>
+    <system:String x:Key="launcher_export_deleteConfirmText">Are you sure you want to delete the selected exports?</system:String>
+
+    <!-- Screen 6: Launcher - Saves -->
+    <system:String x:Key="launcher_save_importTooltip">Import Save Game</system:String>
+    <system:String x:Key="launcher_save_noSaveFound">No Save Game created</system:String>
+    <system:String x:Key="launcher_save_statusLoading">Loading</system:String>
+    <system:String x:Key="launcher_save_statusCount">%n% items</system:String>
+    <system:String x:Key="launcher_save_importError0Title">Error</system:String>
+    <system:String x:Key="launcher_save_importError0Text">The selected folder is not a valid Save Game.</system:String>
+    <system:String x:Key="launcher_save_importError1Title">Error</system:String>
+    <system:String x:Key="launcher_save_importError1Text">There is already a Save Game with this name.</system:String>
+    <system:String x:Key="launcher_save_importError2Title">Error</system:String>
+    <system:String x:Key="launcher_save_importError2Text">The Save Game folder to be imported must be on drive "C:\".</system:String>
+
 </ResourceDictionary>

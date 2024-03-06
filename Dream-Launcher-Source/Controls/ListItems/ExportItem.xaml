@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="TS3_Dream_Launcher.Controls.ListItems.ExportItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TS3_Dream_Launcher.Controls.ListItems"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid VerticalAlignment="Top">
+        <Border x:Name="background" BorderBrush="#FF969696" BorderThickness="1" VerticalAlignment="Top" CornerRadius="8,8,8,8">
+            <Grid Margin="8,8,8,8" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="24" Width="24">
+                    <Image Height="24" Width="24" Source="/Resources/plumbot-icon.png"/>
+                </Grid>
+                <StackPanel VerticalAlignment="Top" Grid.Column="2">
+                    <Label x:Name="name" Content="Label" Padding="0,0,0,0" VerticalContentAlignment="Center" FontSize="14"/>
+                    <Label x:Name="type" Content="Label" Padding="0,0,0,0" VerticalContentAlignment="Center" FontSize="10" Foreground="#FF8C8C8C"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+    </Grid>
+</UserControl>

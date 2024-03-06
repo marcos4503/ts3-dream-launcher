@@ -821,5 +821,32 @@ Clique Para Alterar!
     <system:String x:Key="launcher_world_install_installErrorTextTooManyWorlds">Só pode haver no máximo 1 arquivo de tipo "Mundo".</system:String>
     <system:String x:Key="launcher_world_install_installErrorTextTooLessWorlds">Deve haver no mínimo 1 arquivo do tipo "Mundo".</system:String>
     <system:String x:Key="launcher_world_install_installError">Houve um erro desconhecido ao instalar o Mundo Customizado. Se ele aparecer na lista de mundos, por favor, desinstale-o e tente instala-lo novamente.</system:String>
-    
+
+    <!-- Screen 6: Launcher - Exports -->
+    <system:String x:Key="launcher_export_importTooltip">Importar Package</system:String>
+    <system:String x:Key="launcher_export_copyTooltip">Copiar Exportações Selecionadas Para...</system:String>
+    <system:String x:Key="launcher_export_deleteTooltip">Deletar Exportações Selecionadas</system:String>
+    <system:String x:Key="launcher_export_emptyWarn">Nenhuma Exportação gerada. Estes são geradas em jogo, ao exportar ou compartilhar Conteúdo</system:String>
+    <system:String x:Key="launcher_export_statusLoading">Carregando</system:String>
+    <system:String x:Key="launcher_export_statusCount">%n% itens</system:String>
+    <system:String x:Key="launcher_export_statusCountWithSelecion">%n% itens, %s% selecionados</system:String>
+    <system:String x:Key="launcher_export_importErrorTitle">Erro</system:String>
+    <system:String x:Key="launcher_export_importErrorText">Já existe um arquivo de Exportação com o mesmo nome do arquivo que você está tentando Importar para as Exportações.</system:String>
+    <system:String x:Key="launcher_export_copyDoneTitle">Copia Concluída</system:String>
+    <system:String x:Key="launcher_export_copyDoneText">As exportações selecionadas foram copiadas com sucesso para a pasta escolhida!</system:String>
+    <system:String x:Key="launcher_export_deleteConfirmTitle">Confirmação</system:String>
+    <system:String x:Key="launcher_export_deleteConfirmText">Tem certeza que deseja deletar as exportações selecionadas?</system:String>
+
+    <!-- Screen 6: Launcher - Saves -->
+    <system:String x:Key="launcher_save_importTooltip">Importar Save Game</system:String>
+    <system:String x:Key="launcher_save_noSaveFound">Nenhum Save Game criado</system:String>
+    <system:String x:Key="launcher_save_statusLoading">Carregando</system:String>
+    <system:String x:Key="launcher_save_statusCount">%n% itens</system:String>
+    <system:String x:Key="launcher_save_importError0Title">Erro</system:String>
+    <system:String x:Key="launcher_save_importError0Text">A pasta selecionada, não é um Save Game válido.</system:String>
+    <system:String x:Key="launcher_save_importError1Title">Erro</system:String>
+    <system:String x:Key="launcher_save_importError1Text">Já existe um Save Game com este nome.</system:String>
+    <system:String x:Key="launcher_save_importError2Title">Erro</system:String>
+    <system:String x:Key="launcher_save_importError2Text">A pasta de Save Game a ser importada, precisa estar no drive "C:\".</system:String>
+
 </ResourceDictionary>
