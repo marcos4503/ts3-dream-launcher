@@ -1,6 +1,6 @@
 <p align="center" style="font-size: 2px;">
     <img src="This-Repository/dream-launcher.png" />
-    <br>
+    <br> 
     Clone this repository and then copy the "Dream-Launcher-Compiled" folder to your computer. Read all the instructions below and then just enjoy!
 </p>
 
