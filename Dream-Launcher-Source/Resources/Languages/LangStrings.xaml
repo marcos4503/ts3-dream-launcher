@@ -622,6 +622,7 @@ If this parameter is active, active family members will not be able to become ce
     <system:String x:Key="launcher_mods_installedTab_search">Type here to Search...</system:String>
     <system:String x:Key="launcher_mods_installedTab_recommendedStar">This Mod was installed from the Dream Launcher Recommended mod library!</system:String>
     <system:String x:Key="launcher_mods_installedTab_patchGear">This Mod was installed from the Dream Launcher Patches library. It is not recommended that you modify anything on it!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_customWorld">This mod was installed as a dependency on a Custom World. It is not recommended that you modify anything on it!</system:String>
     <system:String x:Key="launcher_mods_installedTab_modDeleteDiagTitle">Delete the Mod?</system:String>
     <system:String x:Key="launcher_mods_installedTab_modDeleteDiagText">Keep in mind that if this is a Mod that contains Scripts, the Saved games that used this Mod may experience serious problems. It is not possible to undo the delete action. Do you wish to continue?</system:String>
     <system:String x:Key="launcher_mods_installedTab_modOptions_rename">Rename</system:String>
@@ -733,5 +734,90 @@ If this parameter is active, active family members will not be able to become ce
     <system:String x:Key="launcher_media_copyDoneText">The selected media has been successfully copied to the chosen folder!</system:String>
     <system:String x:Key="launcher_media_cutDoneTitle">Move Done</system:String>
     <system:String x:Key="launcher_media_cutDoneText">The selected media has been successfully moved to the chosen folder!</system:String>
+
+    <!-- Screen 6: Launcher - Worlds -->
+    <system:String x:Key="launcher_world_optionsTooltip">More Options...</system:String>
+    <system:String x:Key="launcher_world_optionsHelp">Get Help</system:String>
+    <system:String x:Key="launcher_world_addNewButton">ADD NEW WORLD</system:String>
+    <system:String x:Key="launcher_world_customAddError">Unable to add. The "Sims3Pack CLI Extractor" Tool must be installed on the Dream Launcher. Please install it from the "Tools" page.</system:String>
+    <system:String x:Key="launcher_world_customAddErrorPatch">Cannot add. The "Mods Support" patch must be installed in your game. Install it from the "Patches" page.</system:String>
+    <system:String x:Key="launcher_world_helpTitle">Dream Launcher - Custom Worlds Help</system:String>
+    <system:String x:Key="launcher_world_help_topic1Title" xml:space="preserve">What do I need to know before installing Custom Worlds?</system:String>
+    <system:String x:Key="launcher_world_help_topic1Text" xml:space="preserve">
+You need to keep a few things in mind. First, you must download "sims3pack" files. These files are a type of ZIP, which contains "package" files inside. Dream Launcher can only install Custom Worlds from "sims3pack" files.
+
+Do not download CAW files (from Create A World). You must download the normal world, namely the "sims3pack" file. The CAW files are intended for editing so that it is possible to use Create a World to edit these worlds, while the "sims3pack" files contain the worlds ready to be played.
+
+Another important tip is to pay attention to the performance of the worlds. When you find a world you like, try researching the world online to see if it has performance or routing issues, or things like incompatibility with installed mods. If there is a comments section on the world download page, take a look to see if anyone has had problems with the world.
+        
+Finally, it is also important to pay attention to the dependencies that each Custom World requires. Some worlds will require you to have some Expansion Packs or Stuff Packs installed, or even certain mods or lots. It is important that you pay attention to these details and make sure that your game meets the requirements before installing a specific Custom World.
+    </system:String>
+    <system:String x:Key="launcher_world_help_topic2Title" xml:space="preserve">Where can I find Custom Worlds to download?</system:String>
+    <system:String x:Key="launcher_world_help_topic2Text" xml:space="preserve">
+There are several websites that offer Customized Worlds for download. The buttons below contain links to the main and most reliable sites for downloading worlds, already in the "sims3pack" format. Enjoy!
+    </system:String>
+    <system:String x:Key="launcher_world_help_topic3Title" xml:space="preserve">Can I see Worlds that were not installed by Dream Launcher?</system:String>
+    <system:String x:Key="launcher_world_help_topic3Text" xml:space="preserve">
+Unfortunately not. Dream Launcher only lists Custom Worlds that were installed through it.
+    </system:String>
+    <system:String x:Key="launcher_world_help_topic4Title" xml:space="preserve">What is the correct way to re-install a World?</system:String>
+    <system:String x:Key="launcher_world_help_topic4Text" xml:space="preserve">
+First, make sure you still have the world's "sims3pack" file to be re-installed. Then look at the name of the world that is currently installed, listed in Dream Launcher. Write it down exactly. Once done, uninstall the world through Dream Launcher.
+
+Now install the world again using the world's original "sims3pack" file. Before finishing the installation, give the world a name exactly the same as it was before.
+    </system:String>
+    <system:String x:Key="launcher_world_emptyWorlds">No Custom Worlds installed</system:String>
+    <system:String x:Key="launcher_world_problemFound">One or more Custom Worlds were found to have problems in their files. It is recommended that you re-install these worlds. Access the "Worlds" page to check which ones are having problems.</system:String>
+    <system:String x:Key="launcher_world_unintallButton">Uninstall</system:String>
+    <system:String x:Key="launcher_world_unintallDialogTitle">Uninstall World</system:String>
+    <system:String x:Key="launcher_world_unintallDialogText">Are you sure you want to uninstall this Custom World?</system:String>
+    <system:String x:Key="launcher_world_install_exitFail0Title">Error</system:String>
+    <system:String x:Key="launcher_world_install_exitFail0Text">It is not possible to exit while an extraction is in progress. Wait for the current task to complete before exiting.</system:String>
+    <system:String x:Key="launcher_world_install_exitFail1Title">Error</system:String>
+    <system:String x:Key="launcher_world_install_exitFail1Text">It is not possible to exit while an installation is in progress. Wait for the current task to complete before exiting.</system:String>
+    <system:String x:Key="launcher_world_install_title">Dream Launcher - World Installer</system:String>
+    <system:String x:Key="launcher_world_install_extractingTitle">Reading Sims3Pack</system:String>
+    <system:String x:Key="launcher_world_install_worldName">Name</system:String>
+    <system:String x:Key="launcher_world_install_pickThumbTooltip">Pick Thumbnail...</system:String>
+    <system:String x:Key="launcher_world_install_metaTitle">World Metadata</system:String>
+    <system:String x:Key="launcher_world_install_filesTitle">Files To Install</system:String>
+    <system:String x:Key="launcher_world_install_tipText">The installer detected the world file automatically. However, you must check that it is the correct file, and also, if there are other files, you must mark where they will go using the list above.</system:String>
+    <system:String x:Key="launcher_world_install_installButton">INSTALL</system:String>
+    <system:String x:Key="launcher_world_install_installEmptyTitle">Oops!</system:String>
+    <system:String x:Key="launcher_world_install_installEmptyText">It appears that the "sims3pack" file provided is empty. It will not be possible to install it.</system:String>
+    <system:String x:Key="launcher_world_install_currentTypeNone" xml:space="preserve">
+Current Type: None
+(Will be discarded)
+        
+Click to Change!
+    </system:String>
+    <system:String x:Key="launcher_world_install_currentTypeWorld" xml:space="preserve">
+Current Type: World
+(It will be installed as a World file)
+        
+Click to Change!
+    </system:String>
+    <system:String x:Key="launcher_world_install_currentTypeMod" xml:space="preserve">
+Current Type: Mod
+(It will be installed as a dependency file for this World)
+        
+Click to Change!
+    </system:String>
+    <system:String x:Key="launcher_world_install_setTypeNone">Set Type: None</system:String>
+    <system:String x:Key="launcher_world_install_setTypeWorld">Set Type: World</system:String>
+    <system:String x:Key="launcher_world_install_setTypeMod">Set Type: Mod</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameEmpty">The name cannot be empty.</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameLong">The name can contain a maximum of 64 characters.</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameLetters">The name can only contain letters from A to Z and spaces.</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameSpace">The name can only contain 1 space at a time, not double spaces.</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameSpaceFirst">The name cannot start or end with a space.</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameExists">There is already a Custom World installed, with this name.</system:String>
+    <system:String x:Key="launcher_world_install_invalidImageTitle">Error</system:String>
+    <system:String x:Key="launcher_world_install_invalidImageText">Invalid image. The image must be square, that is, the same width and height in pixels.</system:String>
+    <system:String x:Key="launcher_world_install_installErrorTitle">Error on Install</system:String>
+    <system:String x:Key="launcher_world_install_installErrorTextNameError">The World name is invalid.</system:String>
+    <system:String x:Key="launcher_world_install_installErrorTextTooManyWorlds">There can only be a maximum of 1 file of type "World".</system:String>
+    <system:String x:Key="launcher_world_install_installErrorTextTooLessWorlds">There must be at least 1 file of type "World".</system:String>
+    <system:String x:Key="launcher_world_install_installError">There was an unknown error installing Custom World. If it appears in the worlds list, please uninstall it and try installing it again.</system:String>
 
 </ResourceDictionary>

@@ -624,6 +624,7 @@ Caso este parâmetro esteja ativo, os membros do núcleo familiar ativo não pod
     <system:String x:Key="launcher_mods_installedTab_search">Digite aqui para procurar...</system:String>
     <system:String x:Key="launcher_mods_installedTab_recommendedStar">Este Mod foi instalado a partir da biblioteca de Mods recomendados do Dream Launcher!</system:String>
     <system:String x:Key="launcher_mods_installedTab_patchGear">Este Mod foi instalado a partir da biblioteca de Patches do Dream Launcher. Não é recomendado que você mexa em nada nele!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_customWorld">Este mod foi instalado como uma dependência de um Mundo Customizado. Não é recomendado que você mexa em nada nele!</system:String>
     <system:String x:Key="launcher_mods_installedTab_modDeleteDiagTitle">Remover o Mod?</system:String>
     <system:String x:Key="launcher_mods_installedTab_modDeleteDiagText">Tenha em mente que se este for um Mod que contém Scripts, os jogos Salvos que usavam este Mod podem ter sérios problemas de funcionamento. Não é possível desfazer a ação de deletar. Deseja continuar?</system:String>
     <system:String x:Key="launcher_mods_installedTab_modOptions_rename">Renomear</system:String>
@@ -736,4 +737,89 @@ Caso este parâmetro esteja ativo, os membros do núcleo familiar ativo não pod
     <system:String x:Key="launcher_media_cutDoneTitle">Move Done</system:String>
     <system:String x:Key="launcher_media_cutDoneText">As mídias selecionadas foram movidas com sucesso para a pasta escolhida!</system:String>
 
+    <!-- Screen 6: Launcher - Worlds -->
+    <system:String x:Key="launcher_world_optionsTooltip">Opções Adicionais...</system:String>
+    <system:String x:Key="launcher_world_optionsHelp">Obter Ajuda</system:String>
+    <system:String x:Key="launcher_world_addNewButton">ADICIONAR NOVO MUNDO</system:String>
+    <system:String x:Key="launcher_world_customAddError">Não é possível adicionar. É necessário que a Ferramenta "Sims3Pack CLI Extractor" esteja instalada no Dream Launcher. Por favor, instale-a a partir da página "Ferramentas".</system:String>
+    <system:String x:Key="launcher_world_customAddErrorPatch">Não é possível adicionar. O patch "Suporte Para Mods" precisa estar instalado no seu jogo. Instale-o a partir da página "Patches".</system:String>
+    <system:String x:Key="launcher_world_helpTitle">Dream Launcher - Ajuda Com Mundos Customizados</system:String>
+    <system:String x:Key="launcher_world_help_topic1Title" xml:space="preserve">O que preciso saber antes de instalar Mundos Customizados?</system:String>
+    <system:String x:Key="launcher_world_help_topic1Text" xml:space="preserve">
+É necessário ter algumas coisas em mente. Primeiro, você deve baixar arquivos "sims3pack". Esses arquivos são um tipo de ZIP, que contém arquivos "package" dentro. O Dream Launcher só pode instalar Mundos Customizados a partir de arquivos "sims3pack".
+
+Não baixe arquivos CAW (do Create A World). Você deve baixar o mundo normal, ou seja, o arquivo "sims3pack". Os arquivos CAW são destinados a edições para que seja possivel usar o Create a World para editar esses mundos, já os arquivos "sims3pack" contém os mundos prontos para serem jogados.
+
+Uma outra dica importante é se atentar a questão de desempenho dos mundos. Ao encontrar um mundo que você goste, tente pesquisar sobre o mundo na Internet para saber se ele possui problemas de desempenho ou roteamento, ou coisas como por exemplo, incompatibilidade com mods instalados. Se na página de download do mundo houver uma seção de comentários, de uma olhada para saber se alguém teve problemas com o mundo.
+        
+Por fim, é importante também prestar atenção nas dependências que cada Mundo Customizado exige. Alguns mundos irão requerer que você tenha alguns Pacotes de Expansões ou Pacotes de Objetos instalados, ou até mesmo certos mods ou lotes. É importante que você se atenha a estes detalhes e certifique-se de que seu jogo atende as exigências, antes de instalar um determinado Mundo Customizado.
+    </system:String>
+    <system:String x:Key="launcher_world_help_topic2Title" xml:space="preserve">Onde encontro Mundos Customizados para baixar?</system:String>
+    <system:String x:Key="launcher_world_help_topic2Text" xml:space="preserve">
+São vários os websites que disponibilizam Mundos Customizados para download. Os botões abaixo contém links para os principais e mais confiáveis sites para download de mundos, já no formato "sims3pack". Aproveite!
+    </system:String>
+    <system:String x:Key="launcher_world_help_topic3Title" xml:space="preserve">Consigo visualizar os Mundos que não foram instalados pelo Dream Launcher?</system:String>
+    <system:String x:Key="launcher_world_help_topic3Text" xml:space="preserve">
+Infelizmente não. O Dream Launcher só lista Mundos Customizados que foram instalados através dele.
+    </system:String>
+    <system:String x:Key="launcher_world_help_topic4Title" xml:space="preserve">Qual a maneira correta de re-instalar um Mundo?</system:String>
+    <system:String x:Key="launcher_world_help_topic4Text" xml:space="preserve">
+Primeiro, certifique-se de ainda ter o arquivo "sims3pack" do mundo a ser re-instalado. Em seguida, olhe para o nome do mundo que está instalado atualmente, listado no Dream Launcher. Anote-o de maneira exata. Feito isso, desinstale o mundo através do Dream Launcher.
+
+Agora, instale o mundo novamente usando o arquivo "sims3pack" original do mundo. Antes de finalizar a instalação, dê ao mundo um nome exatamente igual ao que tinha antes.
+    </system:String>
+    <system:String x:Key="launcher_world_emptyWorlds">Nenhum Mundo Customizado instalado</system:String>
+    <system:String x:Key="launcher_world_problemFound">Foram encontrados um ou mais Mundos Customizados com problemas em seus arquivos. É recomendado que você re-instale esses mundos. Acesse a página "Mundos" para verificar quais estão com problemas.</system:String>
+    <system:String x:Key="launcher_world_unintallButton">Desinstalar</system:String>
+    <system:String x:Key="launcher_world_unintallDialogTitle">Desinstalar Mundo</system:String>
+    <system:String x:Key="launcher_world_unintallDialogText">Tem certeza que deseja desinstalar este Mundo Customizado?</system:String>
+    <system:String x:Key="launcher_world_install_exitFail0Title">Erro</system:String>
+    <system:String x:Key="launcher_world_install_exitFail0Text">Não é possível sair enquanto uma extração está em andamento. Aguarde a conclusão da tarefa atual antes de sair.</system:String>
+    <system:String x:Key="launcher_world_install_exitFail1Title">Erro</system:String>
+    <system:String x:Key="launcher_world_install_exitFail1Text">Não é possível sair enquanto uma instalação está em andamento. Aguarde a conclusão da tarefa atual antes de sair.</system:String>
+    <system:String x:Key="launcher_world_install_title">Dream Launcher - Instalador de Mundos</system:String>
+    <system:String x:Key="launcher_world_install_extractingTitle">Lendo Sims3Pack</system:String>
+    <system:String x:Key="launcher_world_install_worldName">Nome</system:String>
+    <system:String x:Key="launcher_world_install_pickThumbTooltip">Escolher Thumbnail...</system:String>
+    <system:String x:Key="launcher_world_install_metaTitle">Metadados do Mundo</system:String>
+    <system:String x:Key="launcher_world_install_filesTitle">Arquivos a Instalar</system:String>
+    <system:String x:Key="launcher_world_install_tipText">O instalador detectou o arquivo de mundo automaticamente. Porém, você deve verificar se é o arquivo correto, e também, se houver outros arquivos, você deve marcar para onde eles irão usando a lista acima.</system:String>
+    <system:String x:Key="launcher_world_install_installButton">INSTALAR</system:String>
+    <system:String x:Key="launcher_world_install_installEmptyTitle">Opa!</system:String>
+    <system:String x:Key="launcher_world_install_installEmptyText">Parece que o arquivo "sims3pack" fornecido, está vazio. Não será possível instala-lo.</system:String>
+    <system:String x:Key="launcher_world_install_currentTypeNone" xml:space="preserve">
+Tipo Atual: Nenhum
+(Será descartado)
+        
+Clique Para Alterar!
+    </system:String>
+    <system:String x:Key="launcher_world_install_currentTypeWorld" xml:space="preserve">
+Tipo Atual: Mundo
+(Será instalado como um arquivo de Mundo)
+        
+Clique Para Alterar!
+    </system:String>
+    <system:String x:Key="launcher_world_install_currentTypeMod" xml:space="preserve">
+Tipo Atual: Mod
+(Será instalado como uma dependência do Mundo)
+        
+Clique Para Alterar!
+    </system:String>
+    <system:String x:Key="launcher_world_install_setTypeNone">Definir Tipo: Nenhum</system:String>
+    <system:String x:Key="launcher_world_install_setTypeWorld">Definir Tipo: Mundo</system:String>
+    <system:String x:Key="launcher_world_install_setTypeMod">Definir Tipo: Mod</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameEmpty">O nome não pode estar vazio.</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameLong">O nome pode conter no máximo 64 caracteres.</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameLetters">O nome só pode conter letras de A à Z e espaços.</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameSpace">O nome só pode conter 1 espaço de cada vez, não espaços duplos.</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameSpaceFirst">O nome não pode começar ou terminar com espaço.</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameExists">Já existe um Mundo Customizado instalado, com este nome.</system:String>
+    <system:String x:Key="launcher_world_install_invalidImageTitle">Erro</system:String>
+    <system:String x:Key="launcher_world_install_invalidImageText">Imagem inválida. A imagem precisa ser quadrada, ou seja, o mesmo tamanho de largura e altura em pixels.</system:String>
+    <system:String x:Key="launcher_world_install_installErrorTitle">Erro na Instalação</system:String>
+    <system:String x:Key="launcher_world_install_installErrorTextNameError">O nome do Mundo é inválido.</system:String>
+    <system:String x:Key="launcher_world_install_installErrorTextTooManyWorlds">Só pode haver no máximo 1 arquivo de tipo "Mundo".</system:String>
+    <system:String x:Key="launcher_world_install_installErrorTextTooLessWorlds">Deve haver no mínimo 1 arquivo do tipo "Mundo".</system:String>
+    <system:String x:Key="launcher_world_install_installError">Houve um erro desconhecido ao instalar o Mundo Customizado. Se ele aparecer na lista de mundos, por favor, desinstale-o e tente instala-lo novamente.</system:String>
+    
 </ResourceDictionary>

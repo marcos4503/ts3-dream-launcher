@@ -123,6 +123,7 @@ namespace TS3_Dream_Launcher
         private ModCategory currentSeeingRecModsCategory = ModCategory.All;
         private IDisposable recommendedModsFilterRoutine = null;
         private IDisposable mediaListUpdateRoutine = null;
+        private IDisposable worldListUpdateRoutine = null;
 
         //Private variables
         private IDictionary<string, Storyboard> animStoryboards = new Dictionary<string, Storyboard>();
@@ -141,6 +142,7 @@ namespace TS3_Dream_Launcher
         public List<InstalledModItem> instantiatedModsItems = new List<InstalledModItem>();
         public List<StoreModItem> instantiatedRecModItems = new List<StoreModItem>();
         public List<MediaItem> instantiatedMediaItems = new List<MediaItem>();
+        public List<WorldItem> instantiatedWorldItems = new List<WorldItem>();
 
         //Core methods
 
@@ -889,6 +891,8 @@ namespace TS3_Dream_Launcher
 
             //Create the folder of cache of the Dream Launcher in my documents
             Directory.CreateDirectory((myDocumentsPath + "/!DL-TmpCache"));
+            //Create the folder of static of the Dream Launcher in my documents
+            Directory.CreateDirectory((myDocumentsPath + "/!DL-Static"));
 
             //Get a copy of "Options.ini" as template for settings apply, if don't have one
             LoadNewOptionsTemplateIfDontHaveOne();
@@ -929,6 +933,9 @@ namespace TS3_Dream_Launcher
 
             //Prepare the media system
             BuildAndPrepareMediaListSystem();
+
+            //Prepare the worlds system
+            BuildAndPrepareWorldsSystem();
 
             //Check if have a new update and warn if was updated
             CheckUpdates();
@@ -1098,6 +1105,10 @@ namespace TS3_Dream_Launcher
             //----- Start of notifications disablers... -----//
             if (desiredPage == LauncherPage.saves)
                 savesWarn.Visibility = Visibility.Collapsed;
+            if (desiredPage == LauncherPage.exports)
+                exportsWarn.Visibility = Visibility.Collapsed;
+            if (desiredPage == LauncherPage.worlds)
+                worldsWarn.Visibility = Visibility.Collapsed;
             if (desiredPage == LauncherPage.media)
                 mediaWarn.Visibility = Visibility.Collapsed;
             if (desiredPage == LauncherPage.cache)
@@ -1221,6 +1232,8 @@ namespace TS3_Dream_Launcher
                 savesWarn.Visibility = Visibility.Visible;
             if (desiredPage == LauncherPage.exports)
                 exportsWarn.Visibility = Visibility.Visible;
+            if (desiredPage == LauncherPage.worlds)
+                worldsWarn.Visibility = Visibility.Visible;
             if (desiredPage == LauncherPage.media)
                 mediaWarn.Visibility = Visibility.Visible;
             if (desiredPage == LauncherPage.cache)
@@ -1234,6 +1247,7 @@ namespace TS3_Dream_Launcher
             //Disable all red dots notifications
             savesWarn.Visibility = Visibility.Collapsed;
             exportsWarn.Visibility = Visibility.Collapsed;
+            worldsWarn.Visibility = Visibility.Collapsed;
             mediaWarn.Visibility = Visibility.Collapsed;
             cacheWarn.Visibility = Visibility.Collapsed;
             patchesWarn.Visibility = Visibility.Collapsed;
@@ -8064,19 +8078,6 @@ namespace TS3_Dream_Launcher
             }
         }
 
-        private void UpdateMediaList()
-        {
-            //If the routine is already running, stop it
-            if (mediaListUpdateRoutine != null)
-            {
-                mediaListUpdateRoutine.Dispose();
-                mediaListUpdateRoutine = null;
-            }
-
-            //Start the media update routine
-            mediaListUpdateRoutine = Coroutine.Start(UpdateMediaListRoutine());
-        }
-
         private void ProcessMediaSelection()
         {
             //Prepare the medias selected counter
@@ -8094,10 +8095,23 @@ namespace TS3_Dream_Launcher
                 SetEnabledActionButtons(true);
 
             //Show the selection counter
-            if(mediasSelectedCount == 0)
+            if (mediasSelectedCount == 0)
                 mediaCount.Content = GetStringApplicationResource("launcher_media_statusCount").Replace("%n%", instantiatedMediaItems.Count.ToString());
             if (mediasSelectedCount >= 1)
                 mediaCount.Content = GetStringApplicationResource("launcher_media_statusCountWithSelecion").Replace("%n%", instantiatedMediaItems.Count.ToString()).Replace("%s%", mediasSelectedCount.ToString());
+        }
+
+        private void UpdateMediaList()
+        {
+            //If the routine is already running, stop it
+            if (mediaListUpdateRoutine != null)
+            {
+                mediaListUpdateRoutine.Dispose();
+                mediaListUpdateRoutine = null;
+            }
+
+            //Start the media update routine
+            mediaListUpdateRoutine = Coroutine.Start(UpdateMediaListRoutine());
         }
 
         private IEnumerator UpdateMediaListRoutine()
@@ -8203,6 +8217,189 @@ namespace TS3_Dream_Launcher
 
             //Auto clear routine reference
             mediaListUpdateRoutine = null;
+        }
+    
+        //Worlds manager
+
+        private void BuildAndPrepareWorldsSystem()
+        {
+            //Create the "custom-worlds" folder if not exists
+            if (Directory.Exists((myDocumentsPath + "/!DL-Static/custom-worlds")) == false)
+                Directory.CreateDirectory((myDocumentsPath + "/!DL-Static/custom-worlds"));
+
+            //Prepare the more options button
+            worldsMore.ContextMenu = new ContextMenu();
+            //Setup the context menu display
+            worldsMore.Click += (s, e) =>
+            {
+                ContextMenu contextMenu = worldsMore.ContextMenu;
+                contextMenu.PlacementTarget = worldsMore;
+                contextMenu.IsOpen = true;
+                e.Handled = true;
+            };
+
+            //Add "help" option to options menu
+            MenuItem helpItem = new MenuItem();
+            helpItem.Header = GetStringApplicationResource("launcher_world_optionsHelp");
+            helpItem.Click += (s, e) => { OpenWorldsHelpWindow(); };
+            worldsMore.ContextMenu.Items.Add(helpItem);
+
+            //Prepare the add world button
+            addNewWorld.Click += (s, e) => { OpenCustomWorldPicker(); };
+
+            //Update the worlds list
+            UpdateWorldList();
+        }
+
+        private void OpenWorldsHelpWindow()
+        {
+            //Block interactions
+            SetInteractionBlockerEnabled(true);
+
+            //Open help window
+            WindowWorldHelp worldsHelp = new WindowWorldHelp(this);
+            worldsHelp.Closed += (s, e) =>
+            {
+                SetInteractionBlockerEnabled(false);
+            };
+            worldsHelp.Show();
+        }
+
+        public void UpdateWorldList()
+        {
+            //If the routine is already running, stop it
+            if (worldListUpdateRoutine != null)
+            {
+                worldListUpdateRoutine.Dispose();
+                worldListUpdateRoutine = null;
+            }
+
+            //Start the worlds update routine
+            worldListUpdateRoutine = Coroutine.Start(UpdateWorldListRoutine());
+        }
+
+        private IEnumerator UpdateWorldListRoutine()
+        {
+            //Add task to list
+            AddTask("worldListUpdate", "Updating and checking the World list.");
+
+            //Show the loading indicator
+            worldLoad.Visibility = Visibility.Visible;
+            worldContent.Visibility = Visibility.Collapsed;
+            addNewWorld.IsEnabled = false;
+
+            //Wait some time
+            yield return new WaitForSeconds(1.0f);
+
+            //Clear all worlds previously rendered
+            foreach (WorldItem item in instantiatedWorldItems)
+                worldList.Children.Remove(item);
+            instantiatedWorldItems.Clear();
+
+            //Prepare the list of world files
+            List<string> allWorldsList = new List<string>();
+
+            //Fill the list of world files
+            foreach (FileInfo file in (new DirectoryInfo((myDocumentsPath + "/!DL-Static/custom-worlds")).GetFiles()))
+                if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".json")
+                    allWorldsList.Add(file.FullName);
+
+            //Render all worlds
+            foreach (string worldFilePath in allWorldsList)
+            {
+                //Draw the item on screen
+                WorldItem newItem = new WorldItem(this, worldFilePath);
+                worldList.Children.Add(newItem);
+                instantiatedWorldItems.Add(newItem);
+
+                //Configure it
+                newItem.HorizontalAlignment = HorizontalAlignment.Left;
+                newItem.VerticalAlignment = VerticalAlignment.Top;
+                newItem.Width = double.NaN;
+                newItem.Height = double.NaN;
+                newItem.Margin = new Thickness(4, 4, 4, 4);
+
+                //Inform the data about the media
+                newItem.Prepare();
+
+                //Wait before render next to avoid UI freezing
+                yield return new WaitForSeconds(0.02f);
+            }
+
+            //Enable or hide the empty world warning
+            if (instantiatedWorldItems.Count == 0)
+                worldEmptyWarn.Visibility = Visibility.Visible;
+            if (instantiatedWorldItems.Count >= 1)
+                worldEmptyWarn.Visibility = Visibility.Collapsed;
+
+            //Prepare the check variable
+            bool foundProblems = false;
+            //Check each installed world to know if have problems
+            foreach (WorldItem item in instantiatedWorldItems)
+                if (item.foundProblem == true)
+                    foundProblems = true;
+            //If found problem, notify
+            if(foundProblems == true)
+            {
+                //Send notification
+                ShowToast(GetStringApplicationResource("launcher_world_problemFound"), ToastType.Error);
+
+                //Enable the dot notification
+                EnablePageRedDotNotification(LauncherPage.worlds);
+            }
+
+            //Wait some time
+            yield return new WaitForSeconds(1.0f);
+
+            //Remove the task
+            RemoveTask("worldListUpdate");
+
+            //Show the content
+            worldLoad.Visibility = Visibility.Collapsed;
+            worldContent.Visibility = Visibility.Visible;
+            addNewWorld.IsEnabled = true;
+
+            //Auto clear routine reference
+            mediaListUpdateRoutine = null;
+        }
+
+        private void OpenCustomWorldPicker()
+        {
+            //If the patch of "Mods Support" is not installed, cancel
+            if (launcherPrefs.loadedData.patchModsSupport == false)
+            {
+                ShowToast(GetStringApplicationResource("launcher_world_customAddErrorPatch"), ToastType.Error);
+                return;
+            }
+            //If don't have S3CLI Extractor, cancel
+            if (File.Exists((Directory.GetCurrentDirectory() + @"/Content/tool-s3ce/s3ce.exe")) == false)
+            {
+                ShowToast(GetStringApplicationResource("launcher_world_customAddError"), MainWindow.ToastType.Error);
+                return;
+            }
+
+            //Open the file picker 
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "TS3 World File|*.sims3pack";
+            bool? result = fileDialog.ShowDialog();
+
+            //If don't have picker file, cancel
+            if (result == false || fileDialog.FileName == "")
+                return;
+
+            //Block the UI
+            SetInteractionBlockerEnabled(true);
+            //Add the task to queue
+            AddTask("worldInstalling", "Running World installer.");
+
+            //Open the window of world installer
+            WindowWorldInstaller worldInstaller = new WindowWorldInstaller(this, (Directory.GetCurrentDirectory() + @"/Content"), fileDialog.FileName);
+            worldInstaller.Closed += (s, e) =>
+            {
+                SetInteractionBlockerEnabled(false);
+                RemoveTask("worldInstalling");
+            };
+            worldInstaller.Show();
         }
     }
 }

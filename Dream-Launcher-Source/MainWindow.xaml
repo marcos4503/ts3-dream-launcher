@@ -279,7 +279,10 @@
                                 <BeautyButton:BeautyButton x:Name="goExports" Content="{DynamicResource launcher_button_goExports}" HoverBackground="#FF5D90C8" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,0,0,0" Cursor="Hand"/>
                                 <Border x:Name="exportsWarn" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="8" Height="8" Background="Red" CornerRadius="8,8,8,8" Margin="48,0,0,0"/>
                             </Grid>
-                            <BeautyButton:BeautyButton x:Name="goWorlds" Content="{DynamicResource launcher_button_goWorlds}" HoverBackground="#FF5D90C8" Height="28" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,4,0,0" Cursor="Hand"/>
+                            <Grid Height="28" Margin="0,4,0,0">
+                                <BeautyButton:BeautyButton x:Name="goWorlds" Content="{DynamicResource launcher_button_goWorlds}" HoverBackground="#FF5D90C8" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,0,0,0" Cursor="Hand"/>
+                                <Border x:Name="worldsWarn" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="8" Height="8" Background="Red" CornerRadius="8,8,8,8" Margin="48,0,0,0"/>
+                            </Grid>
                             <Grid Height="28" Margin="0,4,0,0">
                                 <BeautyButton:BeautyButton x:Name="goMedia" Content="{DynamicResource launcher_button_goMedia}" HoverBackground="#FF5D90C8" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Margin="0,0,0,0" Cursor="Hand"/>
                                 <Border x:Name="mediaWarn" BorderThickness="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Width="8" Height="8" Background="Red" CornerRadius="8,8,8,8" Margin="48,0,0,0"/>
@@ -360,8 +363,37 @@
                                 </Grid>
                             </Grid>
                             <Grid x:Name="pageSaves" Visibility="Collapsed"/>
-                            <Grid x:Name="pageExports" Visibility="Collapsed"/>
-                            <Grid x:Name="pageWorlds" Visibility="Visible"/>
+                            <Grid x:Name="pageExports" Visibility="Visible"/>
+                            <Grid x:Name="pageWorlds" Visibility="Collapsed">
+                                <Grid VerticalAlignment="Top">
+                                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,8,8,8" Orientation="Horizontal">
+                                        <Button x:Name="worldsMore" Padding="0,0,0,0" Cursor="Hand" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" ToolTip="{DynamicResource launcher_world_optionsTooltip}">
+                                            <Image Height="24" Width="24" Source="/Resources/three-dots-icon.png" Opacity="0.75"/>
+                                        </Button>
+                                    </StackPanel>
+                                    <Rectangle Stroke="#FF8C8C8C" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="0.5"/>
+                                </Grid>
+                                <Grid x:Name="worldContent" Margin="0,42,0,36" Visibility="Visible">
+                                    <ScrollViewer>
+                                        <Grid VerticalAlignment="Top">
+                                            <Label x:Name="worldEmptyWarn" Content="{DynamicResource launcher_world_emptyWorlds}" HorizontalAlignment="Center" VerticalAlignment="Top" Padding="0,0,0,0" Margin="0,8,0,0" Foreground="#FF848484" HorizontalContentAlignment="Left"/>
+                                            <WrapPanel x:Name="worldList" VerticalAlignment="Top" Margin="8,0,8,0" HorizontalAlignment="Left"/>
+                                        </Grid>
+                                    </ScrollViewer>
+                                </Grid>
+                                <Grid x:Name="worldLoad" Margin="0,42,0,36" Visibility="Collapsed">
+                                    <Image gif:ImageBehavior.AnimatedSource="/Resources/load.gif" gif:ImageBehavior.AnimationSpeedRatio="1.5" VerticalAlignment="Center" HorizontalAlignment="Center" Width="48" Height="48" />
+                                </Grid>
+                                <Grid VerticalAlignment="Bottom">
+                                    <Rectangle Stroke="#FF8C8C8C" Margin="0,0,0,0" VerticalAlignment="Top" Height="0.5"/>
+                                    <BeautyButton:BeautyButton x:Name="addNewWorld" HoverBackground="#FF3AB142" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF1B7321" BorderBrush="#FF145F19" Foreground="White" Cursor="Hand" Margin="0,6,0,6" Height="24" Width="256" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,0,0,0">
+                                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                                            <Image Height="16" Width="16" VerticalAlignment="Center" HorizontalAlignment="Center" Source="/Resources/add-mod.png" Margin="0,0,8,0"/>
+                                            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Padding="0,0,0,0" VerticalContentAlignment="Center" Content="{DynamicResource launcher_world_addNewButton}"/>
+                                        </StackPanel>
+                                    </BeautyButton:BeautyButton>
+                                </Grid>
+                            </Grid>
                             <Grid x:Name="pageMedia" Visibility="Collapsed">
                                 <Grid VerticalAlignment="Top">
                                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,8,8,8" Orientation="Horizontal">

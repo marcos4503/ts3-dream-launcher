@@ -126,3 +126,11 @@ D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\MediaItem.g.cs
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\MediaItem.baml
 D:\Visual-Studio\TS3 Dream Launcher\bin\Debug\net6.0-windows\NReco.VideoConverter.dll
+D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\WindowWorldHelp.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\WindowWorldInstaller.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\WindowWorldHelp.baml
+D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\WindowWorldInstaller.baml
+D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\WorldItem.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\WorldItem.baml
+D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\S3PkWorldItem.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\S3PkWorldItem.baml

@@ -126,18 +126,22 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             //Hide star and gear icon
             star.Visibility = Visibility.Collapsed;
             patch.Visibility = Visibility.Collapsed;
+            world.Visibility = Visibility.Collapsed;
 
             //Get the parent directory name for this mod
             string parentDirectoryName = new FileInfo(thisModPath).Directory.Name;
             //Enable star icon if is a recommended mod
             if (parentDirectoryName == "DL3-Recommended")
                 star.Visibility = Visibility.Visible;
-            //Enable star icon if is a patch mod
+            //Enable gear icon if is a patch mod
             if (parentDirectoryName == "DL3-Patches" || parentDirectoryName == "Packages")
                 patch.Visibility = Visibility.Visible;
+            //Enable world icon if is a world dependency mod
+            if (title.Text.Contains("World Dependency - ") == true)
+                world.Visibility = Visibility.Visible;
 
-            //Disable interaction if is a patch mod
-            if (parentDirectoryName == "DL3-Patches" || parentDirectoryName == "Packages")
+            //Disable interaction if is a patch mod OR a world dependency
+            if (parentDirectoryName == "DL3-Patches" || parentDirectoryName == "Packages" || title.Text.Contains("World Dependency - ") == true)
             {
                 enabled.IsEnabled = false;
                 uninstallButton.IsEnabled = false;

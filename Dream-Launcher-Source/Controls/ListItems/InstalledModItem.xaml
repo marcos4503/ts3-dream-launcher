@@ -33,6 +33,7 @@
                         <TextBlock x:Name="title" TextWrapping="Wrap" Text="Title" FontWeight="Normal" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                         <Image x:Name="star" Height="14" Width="14" HorizontalAlignment="Left" VerticalAlignment="Center" Source="/Resources/recommended-star.png" Margin="8,0,0,0" ToolTip="{DynamicResource launcher_mods_installedTab_recommendedStar}" Cursor="Help"/>
                         <Image x:Name="patch" Height="14" Width="14" Source="/Resources/patch-gear-icon.png" ToolTip="{DynamicResource launcher_mods_installedTab_patchGear}" Cursor="Help" Margin="8,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        <Image x:Name="world" Height="14" Width="14" Source="/Resources/world-earth.png" ToolTip="{DynamicResource launcher_mods_installedTab_customWorld}" Cursor="Help" Margin="8,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     </StackPanel>
                     <TextBlock x:Name="category" TextWrapping="Wrap" Text="Category" Margin="0,0,0,2" FontSize="10" Foreground="#FFA0A0A0"/>
                 </StackPanel>

@@ -34,10 +34,16 @@
     <Compile Update="Controls\ListItems\S3PkModItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\ListItems\S3PkWorldItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\ListItems\StoreModItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\ListItems\ToolItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\ListItems\WorldItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WindowCASPsEditor.xaml.cs">
@@ -56,6 +62,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WindowS3PkgPreModInstaller.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WindowWorldHelp.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WindowWorldInstaller.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -87,10 +99,16 @@
     <Page Update="Controls\ListItems\S3PkModItem.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Controls\ListItems\S3PkWorldItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\ListItems\StoreModItem.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\ListItems\ToolItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\ListItems\WorldItem.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\ValidableTextBox\ValidableTextBox.xaml">
@@ -121,6 +139,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WindowS3PkgPreModInstaller.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WindowWorldHelp.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WindowWorldInstaller.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

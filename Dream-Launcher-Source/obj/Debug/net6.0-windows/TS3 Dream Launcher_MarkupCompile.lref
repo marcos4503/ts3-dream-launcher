@@ -1,4 +1,4 @@
-﻿D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+﻿
 FD:\Visual-Studio\TS3 Dream Launcher\App.xaml;;
 FD:\Visual-Studio\TS3 Dream Launcher\Controls\BeautyButton\BeautyButton.xaml;;
 FD:\Visual-Studio\TS3 Dream Launcher\Controls\ListItems\CacheItem.xaml;;
@@ -19,4 +19,8 @@ FD:\Visual-Studio\TS3 Dream Launcher\WindowLauncherUpdater.xaml;;
 FD:\Visual-Studio\TS3 Dream Launcher\WindowModInstaller.xaml;;
 FD:\Visual-Studio\TS3 Dream Launcher\WindowModRename.xaml;;
 FD:\Visual-Studio\TS3 Dream Launcher\WindowS3PkgPreModInstaller.xaml;;
+FD:\Visual-Studio\TS3 Dream Launcher\WindowWorldHelp.xaml;;
+FD:\Visual-Studio\TS3 Dream Launcher\WindowWorldInstaller.xaml;;
+FD:\Visual-Studio\TS3 Dream Launcher\Controls\ListItems\WorldItem.xaml;;
+FD:\Visual-Studio\TS3 Dream Launcher\Controls\ListItems\S3PkWorldItem.xaml;;
 
