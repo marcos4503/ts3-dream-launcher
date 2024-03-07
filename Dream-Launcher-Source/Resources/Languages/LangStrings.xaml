@@ -846,5 +846,10 @@ Click to Change!
     <system:String x:Key="launcher_save_importError1Text">There is already a Save Game with this name.</system:String>
     <system:String x:Key="launcher_save_importError2Title">Error</system:String>
     <system:String x:Key="launcher_save_importError2Text">The Save Game folder to be imported must be on drive "C:\".</system:String>
+    <system:String x:Key="launcher_save_unknownEdit">Unknown</system:String>
+    <system:String x:Key="launcher_save_lastEdit">%d% at %h%</system:String>
+    <system:String x:Key="launcher_save_lastEditTooltip">Last Edit</system:String>
+    <system:String x:Key="launcher_save_totalSizeTooltip">Total Size</system:String>
+    <system:String x:Key="launcher_save_lastVaultTooltip">Last Vault Save</system:String>
 
 </ResourceDictionary>

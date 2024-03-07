@@ -10,10 +10,38 @@
         <Border x:Name="background" BorderBrush="#FF969696" BorderThickness="1" VerticalAlignment="Center" CornerRadius="8,8,8,8">
             <Grid Margin="8,8,8,8" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="90"/>
                     <ColumnDefinition Width="8"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                <Grid Height="90" Width="90">
+                    <Border BorderThickness="0,0,0,0" CornerRadius="8,8,8,8">
+                        <Border.Background>
+                            <ImageBrush Stretch="UniformToFill" ImageSource="/Resources/portrait-bg-bitmap.png"/>
+                        </Border.Background>
+                    </Border>
+                    <Image x:Name="portrait"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <StackPanel VerticalAlignment="Top" Margin="0,0,0,0">
+                        <Label x:Name="name" Content="Save Game Name" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="0,0,0,0" VerticalContentAlignment="Center" FontSize="18" FontWeight="Normal"/>
+                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,10,0,0" Orientation="Horizontal">
+                            <Image Height="12" Width="12" VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Resources/save-last-edit.png" Opacity="0.5" Cursor="Help" ToolTip="{DynamicResource launcher_save_lastEditTooltip}"/>
+                            <Label x:Name="lastEdit" Content="Place Holder" VerticalContentAlignment="Center" Padding="0,0,0,0" Foreground="#FF7F7F7F" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,4,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Image Height="12" Width="12" VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Resources/save-vault.png" Opacity="0.5" Cursor="Help" ToolTip="{DynamicResource launcher_save_lastVaultTooltip}"/>
+                            <Label x:Name="lastVault" Content="Place Holder" VerticalContentAlignment="Center" Padding="0,0,0,0" Foreground="#FF7F7F7F" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,4,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Image Height="12" Width="12" VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Resources/media-info.png" Opacity="0.5" Cursor="Help" ToolTip="{DynamicResource launcher_save_totalSizeTooltip}"/>
+                            <Label x:Name="size" Content="Place Holder" VerticalContentAlignment="Center" Padding="0,0,0,0" Foreground="#FF7F7F7F" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="6,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Button x:Name="moreButton" Grid.Column="2" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Padding="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="24" Width="24" Cursor="Hand" Margin="0,0,0,0">
+                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/Resources/three-dots-icon.png" Margin="2,2,2,2"/>
+                </Button>
             </Grid>
         </Border>
 

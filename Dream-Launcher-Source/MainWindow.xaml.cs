@@ -8849,7 +8849,7 @@ namespace TS3_Dream_Launcher
                 newItem.Prepare();
 
                 //Wait before render next to avoid UI freezing
-                yield return new WaitForSeconds(0.02f);
+                yield return new WaitForSeconds(0.7f);
             }
 
             //Enable or hide the empty saves warning

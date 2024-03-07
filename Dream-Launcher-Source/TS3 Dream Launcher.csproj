@@ -156,8 +156,12 @@
     <None Remove="Resources\play-media.png" />
     <None Remove="Resources\play.png" />
     <None Remove="Resources\plumbot-icon.png" />
+    <None Remove="Resources\portrait-bg-bitmap.png" />
+    <None Remove="Resources\portrait-bg-source.psd" />
     <None Remove="Resources\recommended-star.png" />
     <None Remove="Resources\save-add.png" />
+    <None Remove="Resources\save-last-edit.png" />
+    <None Remove="Resources\save-vault.png" />
     <None Remove="Resources\saves-icon.png" />
     <None Remove="Resources\sim-think.png" />
     <None Remove="Resources\task-ok.png" />
@@ -366,8 +370,12 @@
     <Resource Include="Resources\play-media.png" />
     <Resource Include="Resources\play.png" />
     <Resource Include="Resources\plumbot-icon.png" />
+    <Resource Include="Resources\portrait-bg-bitmap.png" />
+    <Resource Include="Resources\portrait-bg-source.psd" />
     <Resource Include="Resources\recommended-star.png" />
     <Resource Include="Resources\save-add.png" />
+    <Resource Include="Resources\save-last-edit.png" />
+    <Resource Include="Resources\save-vault.png" />
     <Resource Include="Resources\saves-icon.png" />
     <Resource Include="Resources\sim-think.png" />
     <Resource Include="Resources\sims-bold-sc.otf">
