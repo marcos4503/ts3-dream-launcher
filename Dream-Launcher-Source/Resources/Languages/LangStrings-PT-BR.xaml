@@ -853,5 +853,27 @@ Clique Para Alterar!
     <system:String x:Key="launcher_save_lastEditTooltip">Última Edição</system:String>
     <system:String x:Key="launcher_save_totalSizeTooltip">Tamanho Total</system:String>
     <system:String x:Key="launcher_save_lastVaultTooltip">Último Salvamento no Cofre</system:String>
-
+    <system:String x:Key="launcher_save_moreVault">Cofre</system:String>
+    <system:String x:Key="launcher_save_moreVaultSave">Salvar Cópia</system:String>
+    <system:String x:Key="launcher_save_moreVaultRestore">Restaurar Cópia</system:String>
+    <system:String x:Key="launcher_save_lastVaultEmpty">Sem cópia no Cofre</system:String>
+    <system:String x:Key="launcher_save_lastVaultDate">%d% às %h%</system:String>
+    <system:String x:Key="launcher_save_vaultSavingCopy">Salvando cópia de "%s%" no Cofre</system:String>
+    <system:String x:Key="launcher_save_vaultSavingCopySuccess">Uma cópia de "%s%" foi salva com sucesso no Cofre. Se já havia uma cópia deste Save Game no Cofre, a antiga foi substituída pela atual.</system:String>
+    <system:String x:Key="launcher_save_vaultSavingCopyError">Houve um problema ao salvar uma cópia de "%s%" no Cofre.</system:String>
+    <system:String x:Key="launcher_save_vaultRestoreDiagTitle">Confirmação</system:String>
+    <system:String x:Key="launcher_save_vaultRestoreDiagText">Restaurar a cópia do Cofre vai substituir o seu Save Game atual, pela cópia do seu Save Game atualmente existente no Cofre. ESSA AÇÃO NÃO PODE SER DESFEITA. Deseja continuar?</system:String>
+    <system:String x:Key="launcher_save_vaultRestoringCopy">Restaurando cópia de "%s%" no Cofre</system:String>
+    <system:String x:Key="launcher_save_vaultRestoringCopySuccess">A cópia de "%s%" foi restaurada com sucesso do Cofre!</system:String>
+    <system:String x:Key="launcher_save_vaultRestoringCopyError">Houve um problema ao restaurar a cópia de "%s%" do Cofre.</system:String>
+    <system:String x:Key="launcher_save_copyTo">Copiar Para</system:String>
+    <system:String x:Key="launcher_save_copyToErrorTitle">Erro</system:String>
+    <system:String x:Key="launcher_save_copyToErrorText">Já existe uma pasta com o nome do Save Game no local selecionado.</system:String>
+    <system:String x:Key="launcher_save_copyToDoneTitle">Cópia Concluída</system:String>
+    <system:String x:Key="launcher_save_copyToDoneText">O Save Game foi copiado para o local selecionado.</system:String>
+    <system:String x:Key="launcher_save_delete">Deletar</system:String>
+    <system:String x:Key="launcher_save_deleteDiagTitle">Confirmação</system:String>
+    <system:String x:Key="launcher_save_deleteDiagText">O Save Game "%s%" será deletado. ESTA AÇÃO NÃO PODERÁ SER DESFEITA. Tem certeza que deseja continuar?</system:String>
+    <system:String x:Key="launcher_save_clean">Limpar</system:String>
+    
 </ResourceDictionary>

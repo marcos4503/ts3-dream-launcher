@@ -126,6 +126,8 @@ namespace TS3_Dream_Launcher
         private IDisposable worldListUpdateRoutine = null;
         private IDisposable exportListUpdateRoutine = null;
         private IDisposable saveListUpdateRoutine = null;
+        private IDisposable showVaultTaskRoutine = null;
+        private IDisposable hideVaultTaskRoutine = null;
 
         //Private variables
         private IDictionary<string, Storyboard> animStoryboards = new Dictionary<string, Storyboard>();
@@ -237,6 +239,8 @@ namespace TS3_Dream_Launcher
             animStoryboards.Add("logsViewerEntry", (FindResource("logsViewerEntry") as Storyboard));
             animStoryboards.Add("logsViewerExit", (FindResource("logsViewerExit") as Storyboard));
             animStoryboards.Add("installedModsLoadExit", (FindResource("installedModsLoadExit") as Storyboard));
+            animStoryboards.Add("vaultTaskEnter", (FindResource("vaultTaskEnter") as Storyboard));
+            animStoryboards.Add("vaultTaskExit", (FindResource("vaultTaskExit") as Storyboard));
         }
 
         private void PrepareAndShowScreen1_Language()
@@ -8758,7 +8762,7 @@ namespace TS3_Dream_Launcher
             UpdateSaveList();
         }
 
-        private void UpdateSaveList()
+        public void UpdateSaveList()
         {
             //If the routine is already running, stop it
             if (saveListUpdateRoutine != null)
@@ -8884,6 +8888,67 @@ namespace TS3_Dream_Launcher
 
             //Auto clear routine reference
             saveListUpdateRoutine = null;
+        }
+    
+        public void ShowVaultTaskBlocker(string messageToShow)
+        {
+            //Show the message
+            vaultTaskMessage.Text = messageToShow;
+
+            //If the routine is already running, stop it
+            if (showVaultTaskRoutine != null)
+            {
+                showVaultTaskRoutine.Dispose();
+                showVaultTaskRoutine = null;
+            }
+
+            //Start the show routine
+            showVaultTaskRoutine = Coroutine.Start(ShowVaultTaskBlockerRoutine());
+        }
+
+        private IEnumerator ShowVaultTaskBlockerRoutine()
+        {
+            //Enable the blocker and run animation of enter
+            vaultTaskPopUp.Visibility = Visibility.Visible;
+            animStoryboards["vaultTaskEnter"].Begin();
+
+            //Wait end of animation
+            yield return new WaitForSeconds(0.3f);
+
+            //Stop the animation
+            animStoryboards["vaultTaskEnter"].Stop();
+
+            //Auto clear reference of routine
+            showVaultTaskRoutine = null;
+        }
+
+        public void HideVaultTaskBlocker()
+        {
+            //If the routine is already running, stop it
+            if (hideVaultTaskRoutine != null)
+            {
+                hideVaultTaskRoutine.Dispose();
+                hideVaultTaskRoutine = null;
+            }
+
+            //Start the show routine
+            hideVaultTaskRoutine = Coroutine.Start(HideVaultTaskBlockerRoutine());
+        }
+
+        private IEnumerator HideVaultTaskBlockerRoutine()
+        {
+            //Run the animation of exit
+            animStoryboards["vaultTaskExit"].Begin();
+
+            //Wait end of animation
+            yield return new WaitForSeconds(0.3f);
+
+            //Disable the blocker and stop the animation
+            vaultTaskPopUp.Visibility = Visibility.Collapsed;
+            animStoryboards["vaultTaskExit"].Stop();
+
+            //Auto clear reference of routine
+            hideVaultTaskRoutine = null;
         }
     }
 }

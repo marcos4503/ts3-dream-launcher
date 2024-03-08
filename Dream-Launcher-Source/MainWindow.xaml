@@ -182,6 +182,18 @@
                 <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="vaultTaskEnter">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="vaultTaskPopUp" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="vaultTaskExit">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="vaultTaskPopUp" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <Grid x:Name="root" Width="1208" Height="680">
         <Grid x:Name="s1_language" Visibility="Collapsed">
@@ -1316,6 +1328,13 @@
                     </Grid>
                 </StackPanel>
             </ScrollViewer>
+        </Grid>
+        <Grid x:Name="vaultTaskPopUp" Visibility="Collapsed">
+            <Border BorderThickness="0,0,0,0" Background="#D800041B"/>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="720">
+                <Image gif:ImageBehavior.AnimatedSource="/Resources/load.gif" gif:ImageBehavior.AnimationSpeedRatio="1.5" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,16" />
+                <TextBlock x:Name="vaultTaskMessage" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="{DynamicResource TheSimsSansSc}" Foreground="White" FontSize="18" TextAlignment="Center" Text="Place Holder"/>
+            </StackPanel>
         </Grid>
         <Grid x:Name="interactionBlocker" Background="Black" Opacity="0.75" Visibility="Collapsed"/>
 

@@ -851,5 +851,27 @@ Click to Change!
     <system:String x:Key="launcher_save_lastEditTooltip">Last Edit</system:String>
     <system:String x:Key="launcher_save_totalSizeTooltip">Total Size</system:String>
     <system:String x:Key="launcher_save_lastVaultTooltip">Last Vault Save</system:String>
-
+    <system:String x:Key="launcher_save_moreVault">Vault</system:String>
+    <system:String x:Key="launcher_save_moreVaultSave">Save Copy</system:String>
+    <system:String x:Key="launcher_save_moreVaultRestore">Restore Copy</system:String>
+    <system:String x:Key="launcher_save_lastVaultEmpty">No copy in Vault</system:String>
+    <system:String x:Key="launcher_save_lastVaultDate">%d% at %h%</system:String>
+    <system:String x:Key="launcher_save_vaultSavingCopy">Saving copy of "%s%" to Vault</system:String>
+    <system:String x:Key="launcher_save_vaultSavingCopySuccess">A copy of "%s%" was successfully saved to the Vault. If there was already a copy of this Save Game in the Vault, the old one was replaced by the current one.</system:String>
+    <system:String x:Key="launcher_save_vaultSavingCopyError">There was a problem saving a copy of "%s%" to the Vault.</system:String>
+    <system:String x:Key="launcher_save_vaultRestoreDiagTitle">Confirmation</system:String>
+    <system:String x:Key="launcher_save_vaultRestoreDiagText">Restoring the copy from the Vault will replace your current Save Game with the copy of your Save Game currently in the Vault. THIS ACTION CANNOT BE UNDOED. Do you wish to continue?</system:String>
+    <system:String x:Key="launcher_save_vaultRestoringCopy">Restoring copy of "%s%" in Vault</system:String>
+    <system:String x:Key="launcher_save_vaultRestoringCopySuccess">The copy of "%s%" was successfully restored from the Vault!</system:String>
+    <system:String x:Key="launcher_save_vaultRestoringCopyError">There was a problem restoring the copy of "%s%" from the Vault.</system:String>
+    <system:String x:Key="launcher_save_copyTo">Copy To</system:String>
+    <system:String x:Key="launcher_save_copyToErrorTitle">Error</system:String>
+    <system:String x:Key="launcher_save_copyToErrorText">A folder with the Save Game name already exists in the selected location.</system:String>
+    <system:String x:Key="launcher_save_copyToDoneTitle">Copy Done</system:String>
+    <system:String x:Key="launcher_save_copyToDoneText">The Save Game has been copied to the selected location.</system:String>
+    <system:String x:Key="launcher_save_delete">Delete</system:String>
+    <system:String x:Key="launcher_save_deleteDiagTitle">Confirmation</system:String>
+    <system:String x:Key="launcher_save_deleteDiagText">The Save Game "%s%" will be deleted. THIS ACTION CANNOT BE UNDONE. Are you sure you want to continue?</system:String>
+    <system:String x:Key="launcher_save_clean">Clean</system:String>
+    
 </ResourceDictionary>
