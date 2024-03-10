@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid VerticalAlignment="Top">
-        <Border x:Name="background" BorderBrush="#FF969696" BorderThickness="1" VerticalAlignment="Center" CornerRadius="8,8,8,8">
+        <Border x:Name="background" BorderBrush="#FFC8C8C8" BorderThickness="1" VerticalAlignment="Center" CornerRadius="8,8,8,8">
             <Grid Margin="8,8,8,8" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="90"/>
@@ -39,6 +39,7 @@
                         </StackPanel>
                     </StackPanel>
                 </Grid>
+                <Image x:Name="badWarn" Grid.ColumnSpan="3" Height="20" Width="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,2,32,0" Source="/Resources/save-bad.png" Cursor="Help" ToolTip="{DynamicResource launcher_save_badGameTip}"/>
                 <Button x:Name="moreButton" Grid.Column="2" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Padding="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="24" Width="24" Cursor="Hand" Margin="0,0,0,0">
                     <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/Resources/three-dots-icon.png" Margin="2,2,2,2"/>
                 </Button>

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid VerticalAlignment="Top">
-        <Border x:Name="background" BorderBrush="#FF969696" BorderThickness="1" VerticalAlignment="Top" CornerRadius="8,8,8,8">
+        <Border x:Name="background" BorderBrush="#FFC8C8C8" BorderThickness="1" VerticalAlignment="Top" CornerRadius="8,8,8,8">
             <Grid Margin="8,8,8,8" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="24"/>

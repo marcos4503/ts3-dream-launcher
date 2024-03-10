@@ -854,6 +854,8 @@ Click to Change!
     <system:String x:Key="launcher_save_moreVault">Vault</system:String>
     <system:String x:Key="launcher_save_moreVaultSave">Save Copy</system:String>
     <system:String x:Key="launcher_save_moreVaultRestore">Restore Copy</system:String>
+    <system:String x:Key="launcher_save_moreBackup">Backup</system:String>
+    <system:String x:Key="launcher_save_moreBackupExport">Export Last Automatic Backup</system:String>
     <system:String x:Key="launcher_save_lastVaultEmpty">No copy in Vault</system:String>
     <system:String x:Key="launcher_save_lastVaultDate">%d% at %h%</system:String>
     <system:String x:Key="launcher_save_vaultSavingCopy">Saving copy of "%s%" to Vault</system:String>
@@ -872,6 +874,78 @@ Click to Change!
     <system:String x:Key="launcher_save_delete">Delete</system:String>
     <system:String x:Key="launcher_save_deleteDiagTitle">Confirmation</system:String>
     <system:String x:Key="launcher_save_deleteDiagText">The Save Game "%s%" will be deleted. THIS ACTION CANNOT BE UNDONE. Are you sure you want to continue?</system:String>
+    <system:String x:Key="launcher_save_badGameDetected">One or more bad Save Game files were found. Check the "Saves" page for more information.</system:String>
+    <system:String x:Key="launcher_save_badGameTip" xml:space="preserve">
+This save game file is corrupt, has experienced save issues or cleaning
+issues. There's not much you can do with it, but you can try one of the
+things below...
+        
+1. Restore the copy of this Save, from the Vault, if you have already made one.
+
+OR
+
+2. Export the Automatic Backup of this Save Game to somewhere on your
+   computer. Delete this Save Game and then import the previously exported
+   Automatic Backup back. This will replace this problematic Save Game
+   with a Backup copy, automatically created by the game.
+    </system:String>
+    <system:String x:Key="launcher_save_backupExportDiagTitle">Backup Export</system:String>
+    <system:String x:Key="launcher_save_backupExportDiagText">An Automatic Backup is not the same as a copy that has been saved in the Vault. An Automatic Backup of your Save Game is automatically generated whenever you use the "Save" option within the game. The last Automatic Backup was generated on the date below...§§%d%§§Would you like to continue exporting this Automatic Backup to some location on your computer?</system:String>
+    <system:String x:Key="launcher_save_backupExportErrorTitle">Error</system:String>
+    <system:String x:Key="launcher_save_backupExportErrorText">A folder with the Save Game name already exists in the selected location.</system:String>
+    <system:String x:Key="launcher_save_backupExportDoneTitle">Export Done</system:String>
+    <system:String x:Key="launcher_save_backupExportDoneText">The Save Game Backup has been copied to the selected location.</system:String>
     <system:String x:Key="launcher_save_clean">Clean</system:String>
+    <system:String x:Key="launcher_save_cleanExitErrorTitle">Error</system:String>
+    <system:String x:Key="launcher_save_cleanExitErrorText">You cannot exit until the current cleaning task is completed. Please wait for the task to finish before leaving.</system:String>
+    <system:String x:Key="launcher_save_clean_title">Dream Launcher - Save Cleaner</system:String>
+    <system:String x:Key="launcher_save_clean_box">Cleaning Preferences</system:String>
+    <system:String x:Key="launcher_save_clean_snapsAndThumbs">Clear Snapshots and Thumbs</system:String>
+    <system:String x:Key="launcher_save_clean_snapsAndThumbsHelp" xml:space="preserve">
+The game generates small Thumbnail images of the Sims in the game,
+one image for each facial expression, emotion, mood or similar things.
+Whenever the game needs it, it generates more and more files, however,
+they are never removed from the Save Game and even though they are small
+files, over time they tend to take up a lot of space. Cleaning these
+files is completely harmless, as the game generates new ones whenever
+it needs them.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_memsPhotosPaint">Clear Memoirs, Camera Photos and Paints</system:String>
+    <system:String x:Key="launcher_save_clean_memsPhotosPaintHelp" xml:space="preserve">
+This will clear Camera Photos, Memories screenshots, Still Life paintings,
+and Portrait or Landscape paintings. The game only accumulates these images,
+generating duplicates of them when you save them and even if you sell your
+photos or paintings, delete the Memories (if you have them enabled),
+everything will still remain in your Save Game. This is due to the way
+EA treats Save Games, as if they were a Database that can never have anything
+deleted. To make matters worse, all of these images are duplicated whenever
+your Sim travels to another world or back home.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_seasonsCards">Clear Seasons Greeting Card Photos</system:String>
+    <system:String x:Key="launcher_save_clean_seasonsCardsHelp" xml:space="preserve">
+This will clear stored photos used in Seasons Welcome Cards. As above, the
+game only accumulates these images and over time, they can cause problems.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_promPhotos">Clear Prom Photos</system:String>
+    <system:String x:Key="launcher_save_clean_promPhotosHelp" xml:space="preserve">
+This will clear stored photos taken from Proms. As above, the game only
+accumulates these images and over time, they can cause problems.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_cabinPhotos">Clear Photo Booth Photos</system:String>
+    <system:String x:Key="launcher_save_clean_cabinPhotosHelp" xml:space="preserve">
+This will clear stored photos taken in Photo Booths. As above, the game only
+accumulates these images and over time, they can cause problems.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_worldHelp" xml:space="preserve">
+This cleanup shouldn't cause problems for your Save, but it will delete
+relationships your Sims have with Sims in this world.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_shangSimla">Clear Shang Simla World Data</system:String>
+    <system:String x:Key="launcher_save_clean_champsLesSims">Clear Champs Les Sims World Data</system:String>
+    <system:String x:Key="launcher_save_clean_alSimhara">Clear Al Simhara World Data</system:String>
+    <system:String x:Key="launcher_save_clean_simsUniversity">Clear Sims University World Data</system:String>
+    <system:String x:Key="launcher_save_clean_oasisLanding">Clear Oasis Landing World Data</system:String>
+    <system:String x:Key="launcher_save_clean_tipText">The Cleanup tool will automatically update your Save Game backup before cleaning. Cleaning will not negatively impact your Save, but keep in mind that after cleaning your Save, the game may run slower for the first few minutes while it regenerates needed resources.</system:String>
+    <system:String x:Key="launcher_save_clean_clearButton">CLEAR</system:String>
     
 </ResourceDictionary>

@@ -605,6 +605,9 @@ Caso este parâmetro esteja ativo, os membros do núcleo familiar ativo não pod
     <system:String x:Key="launcher_tools_s3ceTitle">Sims3Pack CLI Extractor</system:String>
     <system:String x:Key="launcher_tools_s3ceInformation">Requer: .NET Framework 2.0</system:String>
     <system:String x:Key="launcher_tools_s3ceDescription">Permite extrair arquivos "package" de dentro de "sims3pack" através da CLI. Permite que o Launcher possa interpretar arquivos "sims3pack".</system:String>
+    <system:String x:Key="launcher_tools_caspeTitle">CASPs Editor</system:String>
+    <system:String x:Key="launcher_tools_caspeInformation">Requer: .NET 6.0</system:String>
+    <system:String x:Key="launcher_tools_caspeDescription">Permite editar parâmetros de roupas (CAS Parts) que estão dentro dos arquivos "Package". Esta edição é feita via CLI. O Dream Launcher usa essa ferramenta fornecendo uma UI.</system:String>
 
     <!-- Screen 6: Launcher - Mods -->
     <system:String x:Key="launcher_mods_message">Daqui você pode gerenciar todos os Mods ou Conteúdos Personalizados instalados no seu jogo. Você também pode instalar novos Mods/Conteúdos recomendados pelo Dream Launcher a partir da aba "Recomendado" ou se preferir instalar seus próprios Mods/Conteúdos baixados por você usando a aba "Customizado".</system:String>
@@ -691,8 +694,8 @@ Caso este parâmetro esteja ativo, os membros do núcleo familiar ativo não pod
     <system:String x:Key="launcher_mods_addNewTab_s3pPreModInstaller_installed">INSTALADO</system:String>
     <system:String x:Key="launcher_mods_addNewTab_modInstaller_title">Dream Launcher - Instalador de Mods</system:String>
     <system:String x:Key="launcher_mods_addNewTab_modInstaller_promptText">O Mod abaixo será instalado no seu jogo. Uma vez que a instalação comece, NÃO é possível imterrompe-la, pois isso pode resultar na instalação de um Mod corrompido no seu jogo. Deseja continuar a instalação?</system:String>
-    <system:String x:Key="launcher_mods_addNewTab_modInstaller_promptYes">YES</system:String>
-    <system:String x:Key="launcher_mods_addNewTab_modInstaller_promptNo">NO</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_promptYes">SIM</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_promptNo">NÃO</system:String>
     <system:String x:Key="launcher_mods_addNewTab_modInstaller_promptQuitErrorTitle">Erro</system:String>
     <system:String x:Key="launcher_mods_addNewTab_modInstaller_promptQuitErrorText">Aguarde a conclusão da instalação do Mod para sair.</system:String>
     <system:String x:Key="launcher_mods_addNewTab_modInstaller_installTitle">Instalando</system:String>
@@ -856,6 +859,8 @@ Clique Para Alterar!
     <system:String x:Key="launcher_save_moreVault">Cofre</system:String>
     <system:String x:Key="launcher_save_moreVaultSave">Salvar Cópia</system:String>
     <system:String x:Key="launcher_save_moreVaultRestore">Restaurar Cópia</system:String>
+    <system:String x:Key="launcher_save_moreBackup">Backup</system:String>
+    <system:String x:Key="launcher_save_moreBackupExport">Exportar Último Backup Automático</system:String>
     <system:String x:Key="launcher_save_lastVaultEmpty">Sem cópia no Cofre</system:String>
     <system:String x:Key="launcher_save_lastVaultDate">%d% às %h%</system:String>
     <system:String x:Key="launcher_save_vaultSavingCopy">Salvando cópia de "%s%" no Cofre</system:String>
@@ -874,6 +879,82 @@ Clique Para Alterar!
     <system:String x:Key="launcher_save_delete">Deletar</system:String>
     <system:String x:Key="launcher_save_deleteDiagTitle">Confirmação</system:String>
     <system:String x:Key="launcher_save_deleteDiagText">O Save Game "%s%" será deletado. ESTA AÇÃO NÃO PODERÁ SER DESFEITA. Tem certeza que deseja continuar?</system:String>
+    <system:String x:Key="launcher_save_badGameDetected">Foram encontrados um ou mais arquivos de Save Game ruins. Verifique a página "Saves" para mais informações.</system:String>
+    <system:String x:Key="launcher_save_badGameTip" xml:space="preserve">  
+Este arquivo de Save Game está corrompido, experienciou problemas de
+salvamento ou problemas de limpeza. Não há muito o que fazer com ele, mas
+você pode tentar uma das coisas abaixo...
+  
+1. Restaure a cópia deste Save, do Cofre, caso você já tenha feito uma.
+        
+OU
+        
+2. Exporte o Backup automático desse Save Game para algum lugar do seu
+   computador. Apague este Save Game e depois importe o Backup automático,
+   exportado anteriormente de volta. Isso substituirá este Save Game
+   problemático por uma cópia de Backup, criada automaticamente pelo jogo.
+    </system:String>
+    <system:String x:Key="launcher_save_backupExportDiagTitle">Backup Export</system:String>
+    <system:String x:Key="launcher_save_backupExportDiagText">Um Backup Automático não é o mesmo que uma cópia que foi salva no Cofre. Um Backup Automático do seu Save Game é gerado automáticamente, sempre que você usa a opção "Save" dentro do jogo. O último Backup Automático foi gerado na data abaixo...§§%d%§§Você gostaria de continuar com a exportação desse Backup automático para algum local do seu computador?</system:String>
+    <system:String x:Key="launcher_save_backupExportErrorTitle">Error</system:String>
+    <system:String x:Key="launcher_save_backupExportErrorText">Já existe uma pasta com o nome do Save Game no local selecionado.</system:String>
+    <system:String x:Key="launcher_save_backupExportDoneTitle">Export Done</system:String>
+    <system:String x:Key="launcher_save_backupExportDoneText">O Backup do Save Game foi copiado para o local selecionado.</system:String>
     <system:String x:Key="launcher_save_clean">Limpar</system:String>
+    <system:String x:Key="launcher_save_cleanExitErrorTitle">Erro</system:String>
+    <system:String x:Key="launcher_save_cleanExitErrorText">Você não pode sair antes da tarefa atual de limpeza ser finalizada. Por favor, aguarde o final da tarefa, antes de sair.</system:String>
+    <system:String x:Key="launcher_save_clean_title">Dream Launcher - Limpador de Saves</system:String>
+    <system:String x:Key="launcher_save_clean_box">Preferencias de Limpeza</system:String>
+    <system:String x:Key="launcher_save_clean_snapsAndThumbs">Limpar Snapshots e Thumbnails</system:String>
+    <system:String x:Key="launcher_save_clean_snapsAndThumbsHelp" xml:space="preserve">
+O jogo gera pequenas imagens de Thumbnails dos Sims do jogo, uma
+imagem para cada expressão facial, emoção, humor ou coisas similares.
+Sempre que o jogo necessita, ele gera mais e mais arquivos, porém,
+eles nunca são removidos do Save Game e por mais que sejam arquivos
+pequenos, com o tempo eles tendem a ocupar muito espaço. Limpar
+estes arquivos é completamente inofensivo, já que o jogo gera novos
+sempre que precisar.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_memsPhotosPaint">Limpar Memórias, Fotos de Câmeras e Pinturas</system:String>
+    <system:String x:Key="launcher_save_clean_memsPhotosPaintHelp" xml:space="preserve">
+Isto limpará Fotos de Câmeras, capturas de tela de Memórias, pinturas
+de Natureza Morta e pinturas de Retrato ou Paisagem. O jogo só acumula
+essas imagens, gerando duplicatas delas ao guarda-las e mesmo que você
+venda suas fotos ou pinturas, apague as Memórias (se você estiver com
+elas habilitadas), tudo ainda irá continuar no seu Save Game. Isso se
+deve ao modo como a EA trata os Save Games, como se fossem um Banco de
+Dados que nunca podem ter nada apagado. Para piorar tudo, todas essas
+imagens são duplicadas sempre que seu Sim viaja para outro mundo ou de
+volta para casa.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_seasonsCards">Limpar Fotos de Cartões das Estações</system:String>
+    <system:String x:Key="launcher_save_clean_seasonsCardsHelp" xml:space="preserve">
+Isto limpará fotos armazenadas, usadas em Cartões de Boas-Vindas das
+Estações. Da mesma forma que acima, o jogo só acumula essas imagens
+e com tempo, podem causar problemas.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_promPhotos">Limpar Fotos de Bailes de Formatura</system:String>
+    <system:String x:Key="launcher_save_clean_promPhotosHelp" xml:space="preserve">
+Isto limpará fotos armazenadas, tiradas de Bailes de Formatura. Da
+mesma forma que acima, o jogo só acumula essas imagens e com tempo,
+podem causar problemas.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_cabinPhotos">Limpar Fotos de Cabines de Fotos</system:String>
+    <system:String x:Key="launcher_save_clean_cabinPhotosHelp" xml:space="preserve">
+Isto limpará fotos armazenadas, tiradas em Cabines de Fotos. Da mesma
+forma que acima, o jogo só acumula essas imagens e com tempo, podem
+causar problemas.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_worldHelp" xml:space="preserve">
+Esta limpeza não deve trazer problemas para seu Save, mas apagará
+relacionamentos que seus Sims tenham com Sims deste mundo.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_shangSimla">Limpar Dados do Mundo Shang Simla</system:String>
+    <system:String x:Key="launcher_save_clean_champsLesSims">Limpar Dados do Mundo Champs Les Sims</system:String>
+    <system:String x:Key="launcher_save_clean_alSimhara">Limpar Dados do Mundo Al Simhara</system:String>
+    <system:String x:Key="launcher_save_clean_simsUniversity">Limpar Dados do Mundo Sims University</system:String>
+    <system:String x:Key="launcher_save_clean_oasisLanding">Limpar Dados do Mundo Oasis Landing</system:String>
+    <system:String x:Key="launcher_save_clean_tipText">A ferramenta de Limpeza atualizará o backup automático do seu Save Game, automaticamente, antes da limpeza. A limpeza não impactará negativamente o seu Save, mas tenha em mente que após a limpeza do seu Save, o jogo pode executar de maneira mais lenta nos primeiros minutos, enquanto regenera recursos necessários.</system:String>
+    <system:String x:Key="launcher_save_clean_clearButton">LIMPAR</system:String>
     
 </ResourceDictionary>

@@ -9,7 +9,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Height="176" Width="176" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0">
 
-        <Border x:Name="background" BorderBrush="#FFA0A0A0" BorderThickness="1" Background="White" CornerRadius="8,8,8,8" Margin="0,0,0,0">
+        <Border x:Name="background" BorderBrush="#FFC8C8C8" BorderThickness="1" Background="White" CornerRadius="8,8,8,8" Margin="0,0,0,0">
             <Grid Margin="8,8,8,8">
                 <Border x:Name="thumb" BorderBrush="Black" BorderThickness="0,0,0,0" Width="120" Height="120" CornerRadius="8,8,8,8" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,8,0,24">
                     <Border.Background>

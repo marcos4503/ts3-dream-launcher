@@ -9,7 +9,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
 
-        <Border BorderBrush="#FF969696" BorderThickness="1,1,1,1" VerticalAlignment="Top" CornerRadius="8,8,8,8">
+        <Border BorderBrush="#FFC8C8C8" BorderThickness="1,1,1,1" VerticalAlignment="Top" CornerRadius="8,8,8,8">
             <Grid Margin="8,8,8,8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="64"/>
@@ -19,10 +19,10 @@
                 </Grid.ColumnDefinitions>
                 <Border x:Name="icon" BorderBrush="Black" BorderThickness="1" CornerRadius="48,48,48,48" Margin="0,0,0,0" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <StackPanel VerticalAlignment="Top" Margin="8,0,8,0" HorizontalAlignment="Left" Grid.Column="1">
-                    <TextBlock x:Name="title" TextWrapping="Wrap" Text="Title" Margin="0,0,0,4" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14"/>
-                    <TextBlock x:Name="description" TextWrapping="Wrap" Text="Description"/>
+                    <TextBlock x:Name="title" TextWrapping="Wrap" Text="Title" Margin="0,0,0,8" FontWeight="Normal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="18"/>
+                    <TextBlock x:Name="description" TextWrapping="Wrap" Text="Description" Foreground="#FF505050"/>
                 </StackPanel>
-                <Label x:Name="garbageMetter" Content="800 Mb" Grid.Column="2" VerticalAlignment="Center" Padding="0,0,0,0" HorizontalAlignment="Right" Margin="0,0,8,0" FontWeight="Bold" FontSize="14"/>
+                <Label x:Name="garbageMetter" Content="800 Mb" Grid.Column="2" VerticalAlignment="Center" Padding="0,0,0,0" HorizontalAlignment="Right" Margin="0,0,8,0" FontWeight="Normal" FontSize="14" Foreground="#FF7B7B7B"/>
                 <StackPanel Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="3" Margin="0,0,0,0">
                     <BeautyButton:BeautyButton x:Name="clearButton" Content="{DynamicResource launcher_cache_clearButton}" HoverBackground="#FF5D90C8" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Cursor="Hand" Height="24"/>
                     <Image x:Name="cleaningGif" gif:ImageBehavior.AnimatedSource="/Resources/load-spinner-0.gif" gif:ImageBehavior.AnimationSpeedRatio="1.5" Width="24" Height="24" Visibility="Visible" Stretch="Fill" />

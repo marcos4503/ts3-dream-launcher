@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Width="246" Height="158" HorizontalAlignment="Left" VerticalAlignment="Top">
-        <Border x:Name="background" BorderThickness="1,1,1,1" Background="White" CornerRadius="8,8,8,8" BorderBrush="#FFA0A0A0">
+        <Border x:Name="background" BorderThickness="1,1,1,1" Background="White" CornerRadius="8,8,8,8" BorderBrush="#FFC8C8C8">
             <Grid Margin="4,4,4,4">
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
                     <Image x:Name="male" Height="14" Width="14" Source="/Resources/casp-male.png" Cursor="Help"/>

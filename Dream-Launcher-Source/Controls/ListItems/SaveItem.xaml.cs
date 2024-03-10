@@ -38,6 +38,7 @@ namespace TS3_Dream_Launcher.Controls.ListItems
         //Public variables
         public MainWindow instantiatedBy = null;
         public string saveGameDirPath = "";
+        public bool isBadSaveGame = false;
 
         //Core methods
 
@@ -58,6 +59,17 @@ namespace TS3_Dream_Launcher.Controls.ListItems
 
         public void Prepare()
         {
+            //Determine if is a bad save game
+            if (File.Exists((saveGameDirPath + "/!bad-game!.bad")) == true)
+                isBadSaveGame = true;
+
+            //If is a bad save game, change border color to red
+            if(isBadSaveGame == true)
+                background.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 234, 130, 130));
+            //If is not a bad game, hide the bad warn
+            if (isBadSaveGame == false)
+                badWarn.Visibility = Visibility.Collapsed;
+
             //Prepare the color highlight
             background.MouseEnter += (s, e) =>
             {
@@ -113,8 +125,9 @@ namespace TS3_Dream_Launcher.Controls.ListItems
                     nhdFiles.Add(file.FullName);
 
             //Prepare the possible names for the main NHD file
-            string possibleName0 = ((new DirectoryInfo(saveGameDirPath)).Name.Split(".")[0].Replace(" ", "") + "_0x");
-            string possibleName1 = ((new DirectoryInfo(saveGameDirPath)).Name.Split(".")[0] + "_0x");
+            string possibleName0 = ((new DirectoryInfo(saveGameDirPath)).Name.Split(".")[0].Replace(" ", ""));
+            string possibleName1 = ((new DirectoryInfo(saveGameDirPath)).Name.Split(".")[0]);
+
             //Try to determine the main NHD file index in the list
             for(int i = 0; i < nhdFiles.Count; i++)
             {
@@ -140,33 +153,38 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             if (saveGameMainNhdIndex == -1)
                 return;
 
-            //Load the main NHD file package
-            IPackage mainNhdPackage = Package.OpenPackage(0, saveGameNhdFilesPaths[saveGameMainNhdIndex], false);
+            //Try to load the save game thumbnail from the main NHD package file
+            try
+            {
+                //Load the main NHD file package
+                IPackage mainNhdPackage = Package.OpenPackage(0, saveGameNhdFilesPaths[saveGameMainNhdIndex], false);
 
-            //Search inside the package, by the thumbnail of type "SNAP" or "0x6B6D837E"
-            foreach (IResourceIndexEntry item in mainNhdPackage.GetResourceList)
-                if(GetLongConvertedToHexStr(item.ResourceType, 8) == "0x6B6D837E")
-                {
-                    //Get the base stream
-                    Stream aPackageStream = (mainNhdPackage as APackage).GetResource(item);
-                    //Get the base resource using the "ImageResource" s3pi wrapper
-                    IResource baseResource = (IResource)(new ImageResource.ImageResource(0, aPackageStream));
-                    //Get the bitmap from base resource stream
-                    BitmapImage bitmapImage = new BitmapImage();
-                    bitmapImage.BeginInit();
-                    bitmapImage.StreamSource = baseResource.Stream;
-                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmapImage.EndInit();
-                    bitmapImage.Freeze();
-                    //Put the bitmap on place
-                    portrait.Source = bitmapImage;
+                //Search inside the package, by the thumbnail of type "SNAP" or "0x6B6D837E"
+                foreach (IResourceIndexEntry item in mainNhdPackage.GetResourceList)
+                    if (GetLongConvertedToHexStr(item.ResourceType, 8) == "0x6B6D837E")
+                    {
+                        //Get the base stream
+                        Stream aPackageStream = (mainNhdPackage as APackage).GetResource(item);
+                        //Get the base resource using the "ImageResource" s3pi wrapper
+                        IResource baseResource = (IResource)(new ImageResource.ImageResource(0, aPackageStream));
+                        //Get the bitmap from base resource stream
+                        BitmapImage bitmapImage = new BitmapImage();
+                        bitmapImage.BeginInit();
+                        bitmapImage.StreamSource = baseResource.Stream;
+                        bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmapImage.EndInit();
+                        bitmapImage.Freeze();
+                        //Put the bitmap on place
+                        portrait.Source = bitmapImage;
 
-                    //Cancel the search
-                    break;
-                }
+                        //Cancel the search
+                        break;
+                    }
 
-            //Close the package
-            Package.ClosePackage(0, mainNhdPackage);
+                //Close the package
+                Package.ClosePackage(0, mainNhdPackage);
+            }
+            catch (Exception ex) { Console.WriteLine((ex.Message + "\n\n" + ex.StackTrace)); }
         }
 
         private void UpdateVaulyCopyStatus()
@@ -263,6 +281,8 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             //Add "clean" option to options menu
             MenuItem cleanItem = new MenuItem();
             cleanItem.Header = instantiatedBy.GetStringApplicationResource("launcher_save_clean");
+            if (isBadSaveGame == true)
+                cleanItem.IsEnabled = false;
             cleanItem.Click += (s, e) => { Clean(); };
             moreButton.ContextMenu.Items.Add(cleanItem);
 
@@ -271,6 +291,8 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             vaultItem.Header = instantiatedBy.GetStringApplicationResource("launcher_save_moreVault");
             MenuItem saveToVaultItem = new MenuItem();
             saveToVaultItem.Header = instantiatedBy.GetStringApplicationResource("launcher_save_moreVaultSave");
+            if (isBadSaveGame == true)
+                saveToVaultItem.IsEnabled = false;
             saveToVaultItem.Click += (s, e) => { SaveCopyOnVault(); };
             restoreOfVaultItem = new MenuItem();
             restoreOfVaultItem.Header = instantiatedBy.GetStringApplicationResource("launcher_save_moreVaultRestore");
@@ -279,9 +301,21 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             vaultItem.Items.Add(restoreOfVaultItem);
             moreButton.ContextMenu.Items.Add(vaultItem);
 
+            //Add "backup" option to options menu
+            MenuItem backupItem = new MenuItem();
+            backupItem.Header = instantiatedBy.GetStringApplicationResource("launcher_save_moreBackup");
+            MenuItem exportBackupItem = new MenuItem();
+            exportBackupItem.Header = instantiatedBy.GetStringApplicationResource("launcher_save_moreBackupExport");
+            exportBackupItem.IsEnabled = Directory.Exists((saveGameDirPath + ".backup"));
+            exportBackupItem.Click += (s, e) => { ExportAutomaticBackup(); };
+            backupItem.Items.Add(exportBackupItem);
+            moreButton.ContextMenu.Items.Add(backupItem);
+
             //Add "copy to" option to options menu
             MenuItem copyItem = new MenuItem();
             copyItem.Header = instantiatedBy.GetStringApplicationResource("launcher_save_copyTo");
+            if (isBadSaveGame == true)
+                copyItem.IsEnabled = false;
             copyItem.Click += (s, e) => { CopyTo(); };
             moreButton.ContextMenu.Items.Add(copyItem);
 
@@ -294,7 +328,19 @@ namespace TS3_Dream_Launcher.Controls.ListItems
 
         private void Clean()
         {
+            //Block the UI
+            instantiatedBy.SetInteractionBlockerEnabled(true);
+            //Add the task to queue
+            instantiatedBy.AddTask("saveCleaning", "Running Save Game cleaner.");
 
+            //Open the save cleaner window
+            WindowSaveCleaner saveCleaner = new WindowSaveCleaner(instantiatedBy, saveGameDirPath, saveGameNhdFilesPaths, saveGameMainNhdIndex);
+            saveCleaner.Closed += (s, e) =>
+            {
+                instantiatedBy.SetInteractionBlockerEnabled(false);
+                instantiatedBy.RemoveTask("saveCleaning");
+            };
+            saveCleaner.Show();
         }
 
         private void SaveCopyOnVault()
@@ -444,6 +490,64 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
         }
     
+        private void ExportAutomaticBackup()
+        {
+            //Get the last edition time of the automatic backup
+            string lastEditDate = "";
+            try
+            {
+                DateTime lastEdit = File.GetLastWriteTime((saveGameDirPath + ".backup/" + System.IO.Path.GetFileName(saveGameNhdFilesPaths[saveGameMainNhdIndex])));
+                lastEditDate = instantiatedBy.GetStringApplicationResource("launcher_save_lastEdit").Replace("%d%", lastEdit.ToString("dd/MM/yyyy")).Replace("%h%", lastEdit.ToString("HH:mm:ss"));
+            }
+            catch (Exception ex) { }
+
+            //Show the confirmation dialog
+            MessageBoxResult dialogResult = MessageBox.Show(instantiatedBy.GetStringApplicationResource("launcher_save_backupExportDiagText").Replace("§", "\n").Replace("%d%", lastEditDate),
+                                                            instantiatedBy.GetStringApplicationResource("launcher_save_backupExportDiagTitle"), MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+            //If is desire to cancel, cancel it
+            if (dialogResult != MessageBoxResult.Yes)
+                return;
+
+            //Prepare the folder selected path
+            string selectedFolderPath = "";
+            //Open folder picker dialog
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            {
+                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK)
+                    selectedFolderPath = dialog.SelectedPath;
+            }
+            //If no folder was selected, cancel
+            if (selectedFolderPath == "")
+                return;
+
+            //Get the save game folder name
+            string folderName = (new DirectoryInfo((saveGameDirPath + ".backup"))).Name;
+
+            //If already exists a folder with the target name, cancel
+            if (Directory.Exists((selectedFolderPath + "/" + folderName)) == true)
+            {
+                MessageBox.Show(instantiatedBy.GetStringApplicationResource("launcher_save_backupExportErrorText"),
+                                instantiatedBy.GetStringApplicationResource("launcher_save_backupExportErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            //Create the save folder in the place
+            Directory.CreateDirectory((selectedFolderPath + "/" + folderName));
+
+            //Copy each file of the save, to destination
+            foreach (FileInfo file in (new DirectoryInfo((saveGameDirPath + ".backup"))).GetFiles())
+                File.Copy(file.FullName, (selectedFolderPath + "/" + folderName + "/" + System.IO.Path.GetFileName(file.FullName)));
+
+            //Rename the folder post copied to have the same name of original save game
+            Directory.Move((selectedFolderPath + "/" + folderName), (selectedFolderPath + "/" + (new DirectoryInfo(saveGameDirPath)).Name));
+
+            //Warn about the copy
+            MessageBox.Show(instantiatedBy.GetStringApplicationResource("launcher_save_backupExportDoneText"),
+                            instantiatedBy.GetStringApplicationResource("launcher_save_backupExportDoneTitle"), MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
         private void CopyTo()
         {
             //Prepare the folder selected path

@@ -70,6 +70,9 @@
     <Compile Update="WindowS3PkgPreModInstaller.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WindowSaveCleaner.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WindowWorldHelp.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -151,6 +154,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WindowS3PkgPreModInstaller.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WindowSaveCleaner.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WindowWorldHelp.xaml">

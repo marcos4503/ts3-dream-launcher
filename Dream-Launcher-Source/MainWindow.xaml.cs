@@ -8803,9 +8803,10 @@ namespace TS3_Dream_Launcher
             {
                 //Get the directory name
                 string dirName = dir.Name;
+                string[] dirNameParts = dir.Name.Split(".");
 
-                //If contains ".backup" in the name, ignore it
-                if (dirName.Contains(".backup") == true)
+                //If contains ".backup" in the end of name, ignore it
+                if (dirNameParts.Length <= 1 || dirNameParts[dirNameParts.Length - 1].ToLower() == "backup")
                     continue;
 
                 //Prepare the response if have NHD file
@@ -8818,8 +8819,8 @@ namespace TS3_Dream_Launcher
                     string extension = System.IO.Path.GetExtension(file.FullName).Replace(".", "").ToLower();
 
                     //Prepare a list of possible names of contains for NHD files
-                    string possibleName0 = (dirName.Split(".")[0].Replace(" ", "") + "_0x");
-                    string possibleName1 = (dirName.Split(".")[0] + "_0x");
+                    string possibleName0 = (dirName.Split(".")[0].Replace(" ", ""));
+                    string possibleName1 = (dirName.Split(".")[0]);
 
                     //Check if is the NHD file desired
                     if (extension == "nhd")
@@ -8832,6 +8833,34 @@ namespace TS3_Dream_Launcher
 
                 //Add to list of save files
                 allSaveList.Add(dir.FullName);
+            }
+
+            //Check each save in list, to check if is a bad save game
+            for(int i = 0; i < allSaveList.Count; i++)
+            {
+                //Get the directory name parts
+                string[] dirNameParts = (new DirectoryInfo(allSaveList[i])).Name.Split(".");
+
+                //If this is not a bad save game, ignore it
+                if (dirNameParts[dirNameParts.Length - 1].ToLower() != "bad")
+                    continue;
+
+                //Prepare the new desired name for this save game folder
+                string newFolderName = "";
+                for (int x = 0; x < dirNameParts.Length; x++)
+                    if (x < (dirNameParts.Length - 1))
+                        newFolderName += (((x == 0) ? "" : ".") + dirNameParts[x]);
+                //Prepare the new path for this savegame renamed
+                string renamedPath = (new DirectoryInfo(allSaveList[i])).Parent.FullName + "/" + newFolderName;
+
+                //Create a bad file to signal that this is a corrupted game
+                File.WriteAllText((allSaveList[i] + "/!bad-game!.bad"), "BAD GAME!");
+
+                //Rename the save game folder
+                Directory.Move(allSaveList[i], renamedPath);
+
+                //Update the path in the list
+                allSaveList[i] = renamedPath;
             }
 
             //Render all saves
@@ -8875,6 +8904,15 @@ namespace TS3_Dream_Launcher
             //Save the saves count
             launcherPrefs.loadedData.lastSaveFilesCount = currentSaveCount;
             launcherPrefs.Save();
+
+            //Check each save game to see if have a bad save game
+            foreach(string saveGamePath in allSaveList)
+                if(File.Exists((saveGamePath + "/!bad-game!.bad")) == true)
+                {
+                    ShowToast(GetStringApplicationResource("launcher_save_badGameDetected"), ToastType.Error);
+                    EnablePageRedDotNotification(LauncherPage.saves);
+                    break;
+                }
 
             //Remove the task
             RemoveTask("saveListUpdate");

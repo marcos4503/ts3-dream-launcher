@@ -9,7 +9,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
 
-        <Border BorderBrush="#FF969696" BorderThickness="1,1,1,1" VerticalAlignment="Stretch" CornerRadius="8,8,8,8" Width="256" HorizontalAlignment="Left">
+        <Border BorderBrush="#FFC8C8C8" BorderThickness="1,1,1,1" VerticalAlignment="Stretch" CornerRadius="8,8,8,8" Width="256" HorizontalAlignment="Left">
             <Grid Margin="8,8,8,8" VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="64"/>
@@ -21,9 +21,9 @@
                     <Border x:Name="icon" BorderBrush="Black" BorderThickness="1" CornerRadius="48,48,48,48" Margin="0,0,0,0"/>
                 </Grid>
                 <StackPanel Grid.Row="1" Margin="0,8,0,16">
-                    <TextBlock x:Name="title" TextWrapping="Wrap" Text="Title" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="description" TextWrapping="Wrap" Margin="0,8,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Description" TextAlignment="Center"/>
-                    <TextBlock x:Name="createdby" TextWrapping="Wrap" Text="Created by: name" HorizontalAlignment="Center" Margin="0,8,0,0" Foreground="#FF717171"/>
+                    <TextBlock x:Name="title" TextWrapping="Wrap" Text="Title" FontWeight="Normal" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="description" TextWrapping="Wrap" Margin="0,8,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Description" TextAlignment="Center" Foreground="#FF484848"/>
+                    <TextBlock x:Name="createdby" TextWrapping="Wrap" Text="Created by: name" HorizontalAlignment="Center" Margin="0,8,0,0" Foreground="#FF888888"/>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="2">
                     <BeautyButton:BeautyButton x:Name="button" Content="{DynamicResource launcher_patches_install}" HoverBackground="#FF5D90C8" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Cursor="Hand" Height="24" Width="100"/>

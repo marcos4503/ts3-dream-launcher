@@ -25,7 +25,7 @@
         <Grid x:Name="confirmationPrompt" Visibility="Collapsed">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="464">
                 <TextBlock x:Name="question" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" FontFamily="{DynamicResource TheSimsSansSc}" MaxWidth="800" TextAlignment="Center" Text="Place Holder"/>
-                <TextBlock x:Name="modInfo" TextWrapping="Wrap" FontSize="14" FontWeight="Normal" MaxWidth="800" TextAlignment="Center" Text="Place Holder" Margin="0,32,0,0"/>
+                <TextBlock x:Name="modInfo" TextWrapping="Wrap" FontSize="14" FontWeight="Normal" MaxWidth="800" TextAlignment="Center" Text="Place Holder" Margin="0,16,0,0"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,64,0,0">
                     <BeautyButton:BeautyButton x:Name="no" HoverBackground="#FFB34242" Width="128" Height="34" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FFA00000" BorderBrush="#FF580000" Foreground="White" Content="PH" Cursor="Hand"/>
                     <BeautyButton:BeautyButton x:Name="yes" HoverBackground="#FF00BF0C" Width="128" Height="34" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF00A00A" BorderBrush="#FF0F5800" Foreground="White" Margin="32,0,0,0" Content="PH" Cursor="Hand"/>
@@ -36,11 +36,11 @@
             <StackPanel VerticalAlignment="Top" Margin="8,8,8,0">
                 <TextBlock x:Name="title" TextWrapping="Wrap" Text="Title" FontSize="24" FontWeight="Bold" FontFamily="{DynamicResource TheSimsSansSc}" HorizontalAlignment="Center"/>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,8,0,0" Orientation="Horizontal">
-                    <TextBlock x:Name="type" TextWrapping="Wrap" Text="Type" Margin="0,0,4,0"/>
+                    <TextBlock x:Name="type" TextWrapping="Wrap" Text="Type" Margin="0,0,4,0" Foreground="#FF484848"/>
                     <Border BorderThickness="0,0,0,0" Width="4" Height="4" Background="Black" CornerRadius="4,4,4,4" Opacity="0.25"/>
-                    <TextBlock x:Name="name" TextWrapping="Wrap" Text="Name" Margin="4,0,0,0"/>
+                    <TextBlock x:Name="name" TextWrapping="Wrap" Text="Name" Margin="4,0,0,0" Foreground="#FF484848"/>
                 </StackPanel>
-                <Border BorderBrush="#FFA7A7A7" BorderThickness="1" Margin="0,32,0,0" CornerRadius="8,8,8,8">
+                <Border BorderBrush="#FFC8C8C8" BorderThickness="1" Margin="0,32,0,0" CornerRadius="8,8,8,8">
                     <StackPanel VerticalAlignment="Top" Margin="8,8,8,8">
                         <StackPanel Orientation="Horizontal">
                             <Grid Height="16" Width="16" Margin="0,0,8,0">
@@ -49,7 +49,7 @@
                                 <Image x:Name="step1Success" Height="16" Width="16" Source="/Resources/mod-install-ok.png"/>
                                 <Image x:Name="step1Pending" Height="16" Width="16" Source="/Resources/mod-install-pending.png"/>
                             </Grid>
-                            <TextBlock x:Name="step1Title" TextWrapping="Wrap" Text="Title" HorizontalAlignment="Left" FontWeight="Bold"/>
+                            <TextBlock x:Name="step1Title" TextWrapping="Wrap" Text="Title" HorizontalAlignment="Left" FontWeight="Normal"/>
                         </StackPanel>
                         <StackPanel x:Name="step1Content" Margin="0,8,0,0">
                             <TextBlock x:Name="step1ContentText" TextWrapping="Wrap" Text="Message" HorizontalAlignment="Center"/>
@@ -58,16 +58,16 @@
                         </StackPanel>
                     </StackPanel>
                 </Border>
-                <Border BorderBrush="#FFA7A7A7" BorderThickness="1" CornerRadius="8,8,8,8" Margin="0,8,0,0">
+                <Border BorderBrush="#FFC8C8C8" BorderThickness="1" CornerRadius="8,8,8,8" Margin="0,8,0,0">
                     <StackPanel VerticalAlignment="Top" Margin="8,8,8,8">
                         <StackPanel Orientation="Horizontal">
                             <Grid Height="16" Width="16" Margin="0,0,8,0">
                                 <Image x:Name="step2Busy" Height="16" Width="16" Source="/Resources/mod-install-busy.png"/>
-                                <Image x:Name="step2Error" Height="16" Width="16" Source="/Resources/mod-install-error.png" Margin="1,-1,-1,1"/>
+                                <Image x:Name="step2Error" Height="16" Width="16" Source="/Resources/mod-install-error.png" Margin="0,0,0,0"/>
                                 <Image x:Name="step2Success" Height="16" Width="16" Source="/Resources/mod-install-ok.png"/>
                                 <Image x:Name="step2Pending" Height="16" Width="16" Source="/Resources/mod-install-pending.png"/>
                             </Grid>
-                            <TextBlock x:Name="step2Title" TextWrapping="Wrap" Text="Title" HorizontalAlignment="Left" FontWeight="Bold"/>
+                            <TextBlock x:Name="step2Title" TextWrapping="Wrap" Text="Title" HorizontalAlignment="Left" FontWeight="Normal"/>
                         </StackPanel>
                         <StackPanel x:Name="step2Content" Margin="0,8,0,0">
                             <TextBlock x:Name="step2ContentText" TextWrapping="Wrap" Text="Message" HorizontalAlignment="Center"/>
@@ -75,7 +75,7 @@
                         </StackPanel>
                     </StackPanel>
                 </Border>
-                <Border BorderBrush="#FFA7A7A7" BorderThickness="1" CornerRadius="8,8,8,8" Margin="0,8,0,0">
+                <Border BorderBrush="#FFC8C8C8" BorderThickness="1" CornerRadius="8,8,8,8" Margin="0,8,0,0">
                     <StackPanel VerticalAlignment="Top" Margin="8,8,8,8">
                         <StackPanel Orientation="Horizontal">
                             <Grid Height="16" Width="16" Margin="0,0,8,0">
@@ -84,7 +84,7 @@
                                 <Image x:Name="step3Success" Height="16" Width="16" Source="/Resources/mod-install-ok.png"/>
                                 <Image x:Name="step3Pending" Height="16" Width="16" Source="/Resources/mod-install-pending.png"/>
                             </Grid>
-                            <TextBlock x:Name="step3Title" TextWrapping="Wrap" Text="Title" HorizontalAlignment="Left" FontWeight="Bold"/>
+                            <TextBlock x:Name="step3Title" TextWrapping="Wrap" Text="Title" HorizontalAlignment="Left" FontWeight="Normal"/>
                         </StackPanel>
                         <StackPanel x:Name="step3Content" Margin="0,8,0,0">
                             <TextBlock x:Name="step3ContentText" TextWrapping="Wrap" Text="Message" HorizontalAlignment="Center"/>
@@ -97,7 +97,7 @@
                         </StackPanel>
                     </StackPanel>
                 </Border>
-                <Border BorderBrush="#FFA7A7A7" BorderThickness="1" CornerRadius="8,8,8,8" Margin="0,8,0,0">
+                <Border BorderBrush="#FFC8C8C8" BorderThickness="1" CornerRadius="8,8,8,8" Margin="0,8,0,0">
                     <StackPanel VerticalAlignment="Top" Margin="8,8,8,8">
                         <StackPanel Orientation="Horizontal">
                             <Grid Height="16" Width="16" Margin="0,0,8,0">
@@ -106,7 +106,7 @@
                                 <Image x:Name="step4Success" Height="16" Width="16" Source="/Resources/mod-install-ok.png"/>
                                 <Image x:Name="step4Pending" Height="16" Width="16" Source="/Resources/mod-install-pending.png"/>
                             </Grid>
-                            <TextBlock x:Name="step4Title" TextWrapping="Wrap" Text="Title" HorizontalAlignment="Left" FontWeight="Bold"/>
+                            <TextBlock x:Name="step4Title" TextWrapping="Wrap" Text="Title" HorizontalAlignment="Left" FontWeight="Normal"/>
                         </StackPanel>
                         <StackPanel x:Name="step4Content" Margin="0,8,0,0">
                             <TextBlock x:Name="step4ContentText" TextWrapping="Wrap" Text="Message" HorizontalAlignment="Center"/>

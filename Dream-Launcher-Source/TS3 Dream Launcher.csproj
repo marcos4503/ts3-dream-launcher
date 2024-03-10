@@ -160,6 +160,7 @@
     <None Remove="Resources\portrait-bg-source.psd" />
     <None Remove="Resources\recommended-star.png" />
     <None Remove="Resources\save-add.png" />
+    <None Remove="Resources\save-bad.png" />
     <None Remove="Resources\save-last-edit.png" />
     <None Remove="Resources\save-vault.png" />
     <None Remove="Resources\saves-icon.png" />
@@ -374,6 +375,7 @@
     <Resource Include="Resources\portrait-bg-source.psd" />
     <Resource Include="Resources\recommended-star.png" />
     <Resource Include="Resources\save-add.png" />
+    <Resource Include="Resources\save-bad.png" />
     <Resource Include="Resources\save-last-edit.png" />
     <Resource Include="Resources\save-vault.png" />
     <Resource Include="Resources\saves-icon.png" />

@@ -21,7 +21,7 @@
                 <Label x:Name="title" Content="Label" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="0,0,0,0" Margin="8,0,0,0" FontSize="14"/>
                 <BeautyButton:BeautyButton x:Name="openButton" Content="{DynamicResource launcher_cache_logsViewerOpen}" HoverBackground="#FF5D90C8" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF2C67A9" BorderBrush="#FF06305F" Foreground="White" Cursor="Hand" Grid.ColumnSpan="2" Margin="0,0,0,0" Grid.Column="2" Height="24"/>
             </Grid>
-            <Rectangle Height="0.5" StrokeThickness="0" Fill="Black" Margin="16,8,16,0"/>
+            <Rectangle Height="0.5" StrokeThickness="0" Fill="#FF777777" Margin="16,8,16,0"/>
         </StackPanel>
 
     </Grid>
