@@ -712,18 +712,6 @@
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-harverster-temp-fix.zip"
         },
         {
-            "name": "Fishing Box/Chest Fix",
-            "category": "FIXES",
-            "author": "NanaBx3",
-            "description_enUS": "This mod fixes the bug that meant that Treasure Chests and Crates could never be fished by fishing Sims.",
-            "description_ptBR": "Este mod corrige o bug que faz com que as Caixas e Baús de tesouro nunca pudessem ser pescados por Sims pescadores.",
-            "requiredEps": [ ],
-            "requiredRecommendedModFiles": [ ],
-            "requiredPatchModFiles": [ ],
-            "pageUrl": "https://modthesims.info/d/682060/fishing-box-chest-fix-2-versions.html",
-            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-fishing-box-chest-fix.zip"
-        },
-        {
             "name": "Cross Eye Fix",
             "category": "FIXES",
             "author": "Lazy Duchess",
@@ -900,8 +888,8 @@
             "name": "Fishing Nerfed",
             "category": "GAMEPLAY",
             "author": "marcos4503",
-            "description_enUS": "This mod nerfs the rare Fish obtained through fishing, so that it is no longer possible to obtain rivers of easy money just by fishing.",
-            "description_ptBR": "Este mod nerfa os Peixes raros obtidos através da pesca, para que não seja mais possível obter rios de dinheiro fácil apenas pescando.",
+            "description_enUS": "This mod nerfs the rare Fish obtained through fishing, so that it is no longer possible to obtain rivers of easy money just by fishing. Additionally, this mod fixes the bug that meant that Treasure Chests and Crates could never be fished by fishing Sims.",
+            "description_ptBR": "Este mod nerfa os Peixes raros obtidos através da pesca, para que não seja mais possível obter rios de dinheiro fácil apenas pescando. Além disso, este mod corrige o bug que faz com que as Caixas e Baús de tesouro nunca pudessem ser pescados por Sims pescadores.",
             "requiredEps": [ 1, 2 ],
             "requiredRecommendedModFiles": [ ],
             "requiredPatchModFiles": [ ],
