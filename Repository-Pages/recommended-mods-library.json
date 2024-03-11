@@ -675,6 +675,42 @@
             "pageUrl": "https://sweetdevil-sims.tumblr.com/post/684214345927933952/generations-shirt-sweater-top-channel-fix-for",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-shirt-sweater-top-channel-fix.zip"
         },
+        {
+            "name": "Fixed Horse Tails",
+            "category": "FIXES",
+            "author": "simsi45",
+            "description_enUS": "Fixes incorrect visual effect that causes horses to glow.",
+            "description_ptBR": "Corrige o efeito visual incorreto que faz com que cavalos brilhem.",
+            "requiredEps": [ 5 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/654609/fixed-horse-tails-no-more-shiny-horses.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-horse-tail-fix.zip"
+        },
+        {
+            "name": "University Life Visual Fixes",
+            "category": "FIXES",
+            "author": "simbouquet",
+            "description_enUS": "Fixes several visual bugs introduced by the University Life expansion, bugs like missing speech bubbles for certain interactions and other things.",
+            "description_ptBR": "Corrige diversos bugs visuais introduzidos pela expansão University Life, bugs como balões de fala faltando para certas interações e outras coisas.",
+            "requiredEps": [ 9 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/666298",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-university-life-visual-fixes.zip"
+        },
+        {
+            "name": "Harvester Fix",
+            "category": "FIXES",
+            "author": "fantuanss12",
+            "description_enUS": "The Harvester invention that came with Ambitions is extremely buggy. After using the Harvester, the item may be forever stuck in the inventory, your sim will not use their own car, will have glitchy guitar animation, glitched animation when using another Harvester, and will not be able to enter pools. This mod fixes that.",
+            "description_ptBR": "A invenção da Colheitadeira que veio com Ambitions é extremamente bugada. Depois de usar a Colheitadeira, o item pode ficar para sempre preso no inventário, seu sim não usará seu próprio carro, terá animação de guitarra com falhas, animação com falha ao usar outra Colheitadeira e não poderá entrar em piscinas. Este mod corrige isso.",
+            "requiredEps": [ 2 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/679470/harvester-fix.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-harverster-temp-fix.zip"
+        },
 
 
 
