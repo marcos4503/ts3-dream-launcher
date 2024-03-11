@@ -770,7 +770,7 @@ Now install the world again using the world's original "sims3pack" file. Before 
     <system:String x:Key="launcher_world_problemFound">One or more Custom Worlds were found to have problems in their files. It is recommended that you re-install these worlds. Access the "Worlds" page to check which ones are having problems.</system:String>
     <system:String x:Key="launcher_world_unintallButton">Uninstall</system:String>
     <system:String x:Key="launcher_world_unintallDialogTitle">Uninstall World</system:String>
-    <system:String x:Key="launcher_world_unintallDialogText">Are you sure you want to uninstall this Custom World?</system:String>
+    <system:String x:Key="launcher_world_unintallDialogText">The Custom World will be uninstalled and you will no longer be able to see it within the game. If it has attachment items (such as lots, mods and others), they will also be deleted. Are you sure you want to continue?</system:String>
     <system:String x:Key="launcher_world_install_exitFail0Title">Error</system:String>
     <system:String x:Key="launcher_world_install_exitFail0Text">It is not possible to exit while an extraction is in progress. Wait for the current task to complete before exiting.</system:String>
     <system:String x:Key="launcher_world_install_exitFail1Title">Error</system:String>
@@ -781,7 +781,7 @@ Now install the world again using the world's original "sims3pack" file. Before 
     <system:String x:Key="launcher_world_install_pickThumbTooltip">Pick Thumbnail...</system:String>
     <system:String x:Key="launcher_world_install_metaTitle">World Metadata</system:String>
     <system:String x:Key="launcher_world_install_filesTitle">Files To Install</system:String>
-    <system:String x:Key="launcher_world_install_tipText">The installer detected the world file automatically. However, you must check that it is the correct file, and also, if there are other files, you must mark where they will go using the list above.</system:String>
+    <system:String x:Key="launcher_world_install_tipText">The installer was detected the world file automatically. However, you must check that it is the correct file, and also, if there are other files, you must mark where they will go using the list above. If you need to install Lots, Sims, or Family files, attach them before finishing the installation.</system:String>
     <system:String x:Key="launcher_world_install_installButton">INSTALL</system:String>
     <system:String x:Key="launcher_world_install_installEmptyTitle">Oops!</system:String>
     <system:String x:Key="launcher_world_install_installEmptyText">It appears that the "sims3pack" file provided is empty. It will not be possible to install it.</system:String>
@@ -799,13 +799,20 @@ Click to Change!
     </system:String>
     <system:String x:Key="launcher_world_install_currentTypeMod" xml:space="preserve">
 Current Type: Mod
-(It will be installed as a dependency file for this World)
+(It will be installed as a dependency file/mod for this World)
+        
+Click to Change!
+    </system:String>
+    <system:String x:Key="launcher_world_install_currentTypeLibrary" xml:space="preserve">
+Current Type: Library
+(It will be installed as a dependency lot/Sim for this World)
         
 Click to Change!
     </system:String>
     <system:String x:Key="launcher_world_install_setTypeNone">Set Type: None</system:String>
     <system:String x:Key="launcher_world_install_setTypeWorld">Set Type: World</system:String>
     <system:String x:Key="launcher_world_install_setTypeMod">Set Type: Mod</system:String>
+    <system:String x:Key="launcher_world_install_setTypeLibrary">Set Type: Library</system:String>
     <system:String x:Key="launcher_world_install_invalidNameEmpty">The name cannot be empty.</system:String>
     <system:String x:Key="launcher_world_install_invalidNameLong">The name can contain a maximum of 64 characters.</system:String>
     <system:String x:Key="launcher_world_install_invalidNameLetters">The name can only contain letters from A to Z and spaces.</system:String>
@@ -819,6 +826,10 @@ Click to Change!
     <system:String x:Key="launcher_world_install_installErrorTextTooManyWorlds">There can only be a maximum of 1 file of type "World".</system:String>
     <system:String x:Key="launcher_world_install_installErrorTextTooLessWorlds">There must be at least 1 file of type "World".</system:String>
     <system:String x:Key="launcher_world_install_installError">There was an unknown error installing Custom World. If it appears in the worlds list, please uninstall it and try installing it again.</system:String>
+    <system:String x:Key="launcher_world_install_attachTooltip">Add Attachment File...</system:String>
+    <system:String x:Key="launcher_world_install_attachErrorTitle">Error</system:String>
+    <system:String x:Key="launcher_world_install_attachErrorText">The file you are trying to attach to this World installation has already been attached.</system:String>
+    <system:String x:Key="launcher_world_attachCountTooltip">This World has attachments like Lots or Sims!</system:String>
 
     <!-- Screen 6: Launcher - Exports -->
     <system:String x:Key="launcher_export_importTooltip">Import Package</system:String>
@@ -1042,6 +1053,13 @@ or door, try using the Alt key to place objects.
     <system:String x:Key="launcher_home_performanceTip_12" xml:space="preserve">
 Avoid Playing in Overcrowded Cities§
 Cities like Bridgeport can cause performance problems because of their density of lots that favor a greater number of existing Sims and lots to be simulated or loaded into memory.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_13" xml:space="preserve">
+Avoid Installing "Fixed" Versions of Original EA Worlds§
+Many times "fixeds" versions of original worlds brought by EA can bring more problems than they try to fix, routing problems, breaking of some items like lots
+or transportation methods etc. with Mods that fix routing issues, as these "fixed" versions of worlds can have issues with them. The Dream Launcher through Patches
+It already installs several routing fixes that already help your game a lot. But if you're interested in playing on different worlds, without routing issues or things like that, consider
+search for Custom Worlds on the Internet and install them via Dream Launcher!
     </system:String>
 
     

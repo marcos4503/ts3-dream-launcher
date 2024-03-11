@@ -67,7 +67,7 @@ namespace TS3_Dream_Launcher.Controls.ListItems
                 background.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
 
             //Show the name of the world
-            name.Content = System.IO.Path.GetFileNameWithoutExtension(worldFilePath);
+            name.Text = System.IO.Path.GetFileNameWithoutExtension(worldFilePath);
 
             //Prepare the file thumb path
             string fileThumbPath = (System.IO.Path.GetDirectoryName(worldFilePath) + "/" + System.IO.Path.GetFileNameWithoutExtension(worldFilePath) + ".bmp" );
@@ -89,6 +89,18 @@ namespace TS3_Dream_Launcher.Controls.ListItems
                 imageBrush.Stretch = Stretch.UniformToFill;
                 thumb.Background = imageBrush;
             }
+
+            //Prepare the count of attachs
+            int attachsCount = 0;
+            //Count the attachs
+            foreach (string file in worldInfo.loadedData.files)
+                if (file.Contains("/Library/world_dependency__") == true || file.Contains("/Mods/Packages/DL3-Custom/") == true)
+                    attachsCount += 1;
+            //Show the attachs count
+            attachCount.Content = attachsCount.ToString();
+            //If don't have attachs, hide the icon
+            if (attachsCount == 0)
+                attachIcon.Visibility = Visibility.Collapsed;
 
             //Prepare the more options button
             moreButton.ContextMenu = new ContextMenu();

@@ -7,16 +7,24 @@
              xmlns:BeautyButton="clr-namespace:TS3_Dream_Launcher.Controls.BeautyButton" x:Class="TS3_Dream_Launcher.Controls.ListItems.WorldItem"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Height="176" Width="176" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0">
+    <Grid Height="190" Width="176" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0">
 
         <Border x:Name="background" BorderBrush="#FFC8C8C8" BorderThickness="1" Background="White" CornerRadius="8,8,8,8" Margin="0,0,0,0">
             <Grid Margin="8,8,8,8">
-                <Border x:Name="thumb" BorderBrush="Black" BorderThickness="0,0,0,0" Width="120" Height="120" CornerRadius="8,8,8,8" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,8,0,24">
+                <Border x:Name="thumb" BorderBrush="Black" BorderThickness="0,0,0,0" Width="120" Height="120" CornerRadius="8,8,8,8" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,8,0,36">
                     <Border.Background>
                         <ImageBrush Stretch="UniformToFill" ImageSource="/Resources/world-thumb.png"/>
                     </Border.Background>
+                    <Grid>
+                        <Border x:Name="attachIcon" BorderThickness="0,0,0,0" Height="24" Width="40" VerticalAlignment="Bottom" HorizontalAlignment="Left" Background="White" CornerRadius="0,8,0,0" Cursor="Help" Visibility="Visible" ToolTip="{DynamicResource launcher_world_attachCountTooltip}">
+                            <StackPanel Margin="4,4,4,4" HorizontalAlignment="Left" VerticalAlignment="Stretch" Orientation="Horizontal">
+                                <Image Source="/Resources/atach-icon.png" Width="12" Height="12" VerticalAlignment="Center" HorizontalAlignment="Left" Opacity="0.7"/>
+                                <Label x:Name="attachCount" Content="99" Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="0,0,0,0" Opacity="0.7"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
                 </Border>
-                <Label x:Name="name" Content="Place Holder" Padding="0,0,0,0" MaxWidth="136" VerticalContentAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="name" TextWrapping="Wrap" Text="Place Holder" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,134,0,0" TextAlignment="Center"/>
             </Grid>
         </Border>
 

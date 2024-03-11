@@ -775,7 +775,7 @@ Agora, instale o mundo novamente usando o arquivo "sims3pack" original do mundo.
     <system:String x:Key="launcher_world_problemFound">Foram encontrados um ou mais Mundos Customizados com problemas em seus arquivos. É recomendado que você re-instale esses mundos. Acesse a página "Mundos" para verificar quais estão com problemas.</system:String>
     <system:String x:Key="launcher_world_unintallButton">Desinstalar</system:String>
     <system:String x:Key="launcher_world_unintallDialogTitle">Desinstalar Mundo</system:String>
-    <system:String x:Key="launcher_world_unintallDialogText">Tem certeza que deseja desinstalar este Mundo Customizado?</system:String>
+    <system:String x:Key="launcher_world_unintallDialogText">O Mundo Customizado será desinstalado e não será mais possível vê-lo dentro do jogo. Se ele possuir itens de anexo (como lotes, mods e outros), eles também serão excluídos. Tem certeza que deseja continuar?</system:String>
     <system:String x:Key="launcher_world_install_exitFail0Title">Erro</system:String>
     <system:String x:Key="launcher_world_install_exitFail0Text">Não é possível sair enquanto uma extração está em andamento. Aguarde a conclusão da tarefa atual antes de sair.</system:String>
     <system:String x:Key="launcher_world_install_exitFail1Title">Erro</system:String>
@@ -786,7 +786,7 @@ Agora, instale o mundo novamente usando o arquivo "sims3pack" original do mundo.
     <system:String x:Key="launcher_world_install_pickThumbTooltip">Escolher Thumbnail...</system:String>
     <system:String x:Key="launcher_world_install_metaTitle">Metadados do Mundo</system:String>
     <system:String x:Key="launcher_world_install_filesTitle">Arquivos a Instalar</system:String>
-    <system:String x:Key="launcher_world_install_tipText">O instalador detectou o arquivo de mundo automaticamente. Porém, você deve verificar se é o arquivo correto, e também, se houver outros arquivos, você deve marcar para onde eles irão usando a lista acima.</system:String>
+    <system:String x:Key="launcher_world_install_tipText">O instalador detectou o arquivo de mundo automaticamente. Porém, você deve verificar se é o arquivo correto, e também, se houver outros arquivos, você deve marcar para onde eles irão usando a lista acima. Se você precisa instalar arquivos de Lote, Sims ou Famílias, anexe-os antes de finalizar a instalação.</system:String>
     <system:String x:Key="launcher_world_install_installButton">INSTALAR</system:String>
     <system:String x:Key="launcher_world_install_installEmptyTitle">Opa!</system:String>
     <system:String x:Key="launcher_world_install_installEmptyText">Parece que o arquivo "sims3pack" fornecido, está vazio. Não será possível instala-lo.</system:String>
@@ -798,19 +798,26 @@ Clique Para Alterar!
     </system:String>
     <system:String x:Key="launcher_world_install_currentTypeWorld" xml:space="preserve">
 Tipo Atual: Mundo
-(Será instalado como um arquivo de Mundo)
+(Será instalado como o arquivo do Mundo)
         
 Clique Para Alterar!
     </system:String>
     <system:String x:Key="launcher_world_install_currentTypeMod" xml:space="preserve">
 Tipo Atual: Mod
-(Será instalado como uma dependência do Mundo)
+(Será instalado como uma dependência de mod/arquivo do Mundo)
+        
+Clique Para Alterar!
+    </system:String>
+    <system:String x:Key="launcher_world_install_currentTypeLibrary" xml:space="preserve">
+Tipo Atual: Biblioteca
+(Será instalado como uma dependência de lote/Sim do Mundo)
         
 Clique Para Alterar!
     </system:String>
     <system:String x:Key="launcher_world_install_setTypeNone">Definir Tipo: Nenhum</system:String>
     <system:String x:Key="launcher_world_install_setTypeWorld">Definir Tipo: Mundo</system:String>
     <system:String x:Key="launcher_world_install_setTypeMod">Definir Tipo: Mod</system:String>
+    <system:String x:Key="launcher_world_install_setTypeLibrary">Definir Tipo: Biblioteca</system:String>
     <system:String x:Key="launcher_world_install_invalidNameEmpty">O nome não pode estar vazio.</system:String>
     <system:String x:Key="launcher_world_install_invalidNameLong">O nome pode conter no máximo 64 caracteres.</system:String>
     <system:String x:Key="launcher_world_install_invalidNameLetters">O nome só pode conter letras de A à Z e espaços.</system:String>
@@ -824,6 +831,10 @@ Clique Para Alterar!
     <system:String x:Key="launcher_world_install_installErrorTextTooManyWorlds">Só pode haver no máximo 1 arquivo de tipo "Mundo".</system:String>
     <system:String x:Key="launcher_world_install_installErrorTextTooLessWorlds">Deve haver no mínimo 1 arquivo do tipo "Mundo".</system:String>
     <system:String x:Key="launcher_world_install_installError">Houve um erro desconhecido ao instalar o Mundo Customizado. Se ele aparecer na lista de mundos, por favor, desinstale-o e tente instala-lo novamente.</system:String>
+    <system:String x:Key="launcher_world_install_attachTooltip">Adicionar Arquivo de Anexo...</system:String>
+    <system:String x:Key="launcher_world_install_attachErrorTitle">Erro</system:String>
+    <system:String x:Key="launcher_world_install_attachErrorText">O arquivo que você está tentando anexar a esta instalação de Mundo, já foi anexado.</system:String>
+    <system:String x:Key="launcher_world_attachCountTooltip">Este Mundo possui anexos como Lotes ou Sims!</system:String>
 
     <!-- Screen 6: Launcher - Exports -->
     <system:String x:Key="launcher_export_importTooltip">Importar Package</system:String>
@@ -1050,7 +1061,14 @@ ou porta, tente usar a tecla Alt para colocar objetos.
     </system:String>
     <system:String x:Key="launcher_home_performanceTip_12" xml:space="preserve">
 Evite Jogar Em Cidades Superpopulosas§
-Cities like Bridgeport can cause performance problems because of their density of lots that favor a greater number of existing Sims and lots to be simulated or loaded into memory.
+Cidades como Bridgeport podem causar problemas de desempenho devido à sua densidade de lotes que favorece um maior número de Sims existentes e lotes a serem simulados ou carregados na memória.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_13" xml:space="preserve">
+Evite Instalar Versões "Corrigidas" de Mundos Originais da EA§
+Muitas vezes versões "corrigidas" de mundos originais trazidos pela EA podem trazer mais problemas do que eles tentam corrigir, problemas de roteamento, quebra de alguns itens como lotes
+ou métodos de transporte etc. com Mods que corrigem problemas de roteamento, já que essas versões "corrigidas" dos mundos podem ter problemas com eles. O Dream Launcher por meio dos Patches
+já instala diversas correções de roteamento que já ajudam bastante o seu jogo. Mas se você tem interesse em jogar em mundos diferentes, sem problemas de roteamento ou coisas assim, considere
+procurar Mundos Personalizados pela Internet e instalar-os pelo Dream Launcher!
     </system:String>
 
 

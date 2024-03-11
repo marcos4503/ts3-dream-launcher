@@ -49,7 +49,12 @@
                     </Grid>
                     <ValidableTextBox:ValidableTextBox x:Name="name" Grid.Column="2" LabelName="Place Holder"/>
                 </Grid>
-                <TextBlock x:Name="titleFiles" TextWrapping="Wrap" Text="Title" FontSize="20" FontWeight="Bold" FontFamily="{DynamicResource TheSimsSansSc}" Margin="0,16,0,16" HorizontalAlignment="Center"/>
+                <Grid Height="25" Margin="0,16,0,16" VerticalAlignment="Top">
+                    <TextBlock x:Name="titleFiles" TextWrapping="Wrap" Text="Title" FontSize="20" FontWeight="Bold" FontFamily="{DynamicResource TheSimsSansSc}" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Button x:Name="atachFile" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Padding="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Center" Height="20" Width="20" Cursor="Hand" Margin="0,0,0,0">
+                        <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/Resources/atach-icon.png" Margin="1,1,1,1" Opacity="0.7"/>
+                    </Button>
+                </Grid>
                 <Border BorderBrush="#FFB3ABAB" BorderThickness="1" Height="200">
                     <ScrollViewer>
                         <Grid VerticalAlignment="Top" Margin="8,8,8,8">

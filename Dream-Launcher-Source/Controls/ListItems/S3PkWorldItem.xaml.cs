@@ -28,7 +28,8 @@ namespace TS3_Dream_Launcher.Controls.ListItems
         {
             None,
             World,
-            Mod
+            Mod,
+            Library
         }
 
         //Public variables
@@ -78,6 +79,11 @@ namespace TS3_Dream_Launcher.Controls.ListItems
                 currentType.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/wfile-type-mod.png"));
                 changeButton.ToolTip = instantiatedBy.GetStringApplicationResource("launcher_world_install_currentTypeMod");
             }
+            if (currentFileType == FileType.Library)
+            {
+                currentType.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/wfile-type-library.png"));
+                changeButton.ToolTip = instantiatedBy.GetStringApplicationResource("launcher_world_install_currentTypeLibrary");
+            }
         }
 
         public void Prepare()
@@ -92,7 +98,7 @@ namespace TS3_Dream_Launcher.Controls.ListItems
                 background.Background = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
             };
 
-            //Show the name
+            //Show the name and size
             name.Content = System.IO.Path.GetFileNameWithoutExtension(filePath);
             size.Content = GetFormattedFileSize((new FileInfo(filePath)).Length).Replace("~", "");
 
@@ -127,6 +133,12 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             typeModItem.Header = instantiatedBy.GetStringApplicationResource("launcher_world_install_setTypeMod");
             typeModItem.Click += (s, e) => { SetFileType(FileType.Mod); };
             changeButton.ContextMenu.Items.Add(typeModItem);
+
+            //Add "Set Type: Library" option to options menu
+            MenuItem typeLibraryItem = new MenuItem();
+            typeLibraryItem.Header = instantiatedBy.GetStringApplicationResource("launcher_world_install_setTypeLibrary");
+            typeLibraryItem.Click += (s, e) => { SetFileType(FileType.Library); };
+            changeButton.ContextMenu.Items.Add(typeLibraryItem);
         }
 
         //Auxiliar methods

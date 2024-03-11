@@ -105,6 +105,7 @@ namespace TS3_Dream_Launcher
             titleFiles.Text = mainWindowRef.GetStringApplicationResource("launcher_world_install_filesTitle");
             tipText.Text = mainWindowRef.GetStringApplicationResource("launcher_world_install_tipText");
             installButton.Content = mainWindowRef.GetStringApplicationResource("launcher_world_install_installButton");
+            atachFile.ToolTip = mainWindowRef.GetStringApplicationResource("launcher_world_install_attachTooltip");
 
             //Change to extraction screen
             extractionUi.Visibility = Visibility.Visible;
@@ -205,6 +206,9 @@ namespace TS3_Dream_Launcher
                 imageBrush.Stretch = Stretch.UniformToFill;
                 thumb.Background = imageBrush;
             };
+
+            //Prepare the file attachment system
+            atachFile.Click += (s, e) => { AddAttachmentFile(); };
 
             //Prepare the install button
             installButton.Click += (s, e) =>
@@ -368,6 +372,124 @@ namespace TS3_Dream_Launcher
             isExtractionInProgress = false;
         }
     
+        private void AddAttachmentFile()
+        {
+            //Open the file selector
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "TS3 File|*.package;*.sims3pack";
+            bool? result = fileDialog.ShowDialog();
+
+            //If don't have picker file, cancel
+            if (result == false || fileDialog.FileName == "")
+                return;
+
+            //If the file already was attached, cancel
+            if(File.Exists((mainWindowRef.myDocumentsPath + "/!DL-TmpCache/world-s3pkg-extract/" + System.IO.Path.GetFileName(fileDialog.FileName))) == true)
+            {
+                MessageBox.Show(mainWindowRef.GetStringApplicationResource("launcher_world_install_attachErrorText"),
+                                mainWindowRef.GetStringApplicationResource("launcher_world_install_attachErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            //Get the extension of the mod to be installed
+            string fileExtension = System.IO.Path.GetExtension(fileDialog.FileName).ToLower().Replace(".", "");
+
+            //If is a package file...
+            if(fileExtension == "package")
+            {
+                //Just copy the package file to inside of extraction temp folder
+                File.Copy(fileDialog.FileName, (mainWindowRef.myDocumentsPath + "/!DL-TmpCache/world-s3pkg-extract/" + System.IO.Path.GetFileName(fileDialog.FileName)));
+            }
+
+            //If is a sims3pack file...
+            if(fileExtension == "sims3pack")
+            {
+                //Prepare the path for the sims3pack cache copy
+                string targetCachePath = (mainWindowRef.myDocumentsPath + "/!DL-TmpCache/world-s3pkg-extract/" + System.IO.Path.GetFileName(fileDialog.FileName));
+
+                //Copy the sims3pack to the extraction temp folder
+                File.Copy(fileDialog.FileName, targetCachePath);
+
+                //Extract this sims3pack inside the folder
+                Process process = new Process();
+                process.StartInfo.FileName = System.IO.Path.Combine(contentPath, "tool-s3ce", "s3ce.exe");
+                process.StartInfo.WorkingDirectory = System.IO.Path.Combine(contentPath, "tool-s3ce");
+                process.StartInfo.Arguments = "\"" + targetCachePath + "\"";
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.CreateNoWindow = true;  //<- Hide the process window
+                process.StartInfo.RedirectStandardOutput = true;
+                process.Start();
+                //Wait process finishes
+                process.WaitForExit();
+            }
+
+            //Update the UI to render all new files attached to the install
+            IDisposable routine = Coroutine.Start(UpdateFileListToShowNewestFilesRoutine());
+        }
+
+        private IEnumerator UpdateFileListToShowNewestFilesRoutine()
+        {
+            //Store the original opacity value for content
+            double originalOpacity = content.Opacity;
+            //Lock the UI
+            content.IsHitTestVisible = false;
+            content.Opacity = 0.25f;
+            installButton.IsEnabled = false;
+
+            //Wait some time
+            yield return new WaitForSeconds(0.5);
+
+            //Build a list of "package" files inside the temp extraction folder, that is not already listed
+            List<string> newPackageFilesExtracted = new List<string>();
+            foreach (FileInfo file in (new DirectoryInfo((mainWindowRef.myDocumentsPath + "/!DL-TmpCache/world-s3pkg-extract")).GetFiles()))
+                if (System.IO.Path.GetExtension(file.FullName).ToLower() == ".package")
+                {
+                    //Try to check if the current file is already rendered
+                    bool foundAlreadyRendered = false;
+                    foreach (S3PkWorldItem item in instantiatedWorldItems)
+                        if (item.filePath == file.FullName)
+                        {
+                            foundAlreadyRendered = true;
+                            break;
+                        }
+                    //If found this path inside a already rendered world item, ignore this file
+                    if (foundAlreadyRendered == true)
+                        continue;
+
+                    //Add this file to list
+                    newPackageFilesExtracted.Add(file.FullName);
+                }
+
+            //Render each new world item attached
+            for (int i = 0; i < newPackageFilesExtracted.Count; i++)
+            {
+                //Create the item to display
+                S3PkWorldItem newItem = new S3PkWorldItem(mainWindowRef);
+                filesList.Children.Add(newItem);
+                instantiatedWorldItems.Add(newItem);
+
+                //Configure it
+                newItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newItem.VerticalAlignment = VerticalAlignment.Top;
+                newItem.Width = double.NaN;
+                newItem.Height = double.NaN;
+                newItem.Margin = new Thickness(0, 0, 0, 0);
+
+                //Inform the data about the mod
+                newItem.SetFilePath(newPackageFilesExtracted[i]);
+                newItem.SetFileType(S3PkWorldItem.FileType.None);
+                newItem.Prepare();
+            }
+
+            //Wait some time
+            yield return new WaitForSeconds(0.5);
+
+            //Unlock the UI
+            content.IsHitTestVisible = true;
+            content.Opacity = originalOpacity;
+            installButton.IsEnabled = true;
+        }
+
         private IEnumerator FinishTheInstall()
         {
             //Prepare the validation result
@@ -437,7 +559,7 @@ namespace TS3_Dream_Launcher
                 //Prepare the list of files
                 List<string> installedFiles = new List<string>();
 
-                //Copy all files to right places
+                //Move all files to right places
                 foreach(S3PkWorldItem item in instantiatedWorldItems)
                 {
                     //If is type of none, skip it
@@ -462,6 +584,20 @@ namespace TS3_Dream_Launcher
                     {
                         //Prepare the target final path
                         string finalPath = (mainWindowRef.myDocumentsPath + "/Mods/Packages/DL3-Custom/OTHERS --- World Dependency - " + name.textBox.Text + ".package");
+
+                        //Move the file
+                        File.Move(item.filePath, finalPath);
+
+                        //Add it to list of installed files
+                        installedFiles.Add(finalPath);
+                    }
+
+                    //If is a library file type
+                    if (item.currentFileType == S3PkWorldItem.FileType.Library)
+                    {
+                        //Prepare the target final path
+                        string finalPath = (mainWindowRef.myDocumentsPath + "/Library/world_dependency__" + name.textBox.Text.ToLower().Replace(" ", "_") + 
+                                            "_" + System.IO.Path.GetFileNameWithoutExtension(item.filePath).ToLower().Replace(" ", "_") + ".package");
 
                         //Move the file
                         File.Move(item.filePath, finalPath);

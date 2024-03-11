@@ -39,6 +39,7 @@
     <None Remove="Content\tray-on.png" />
     <None Remove="Resources\add-mod.png" />
     <None Remove="Resources\add-package.png" />
+    <None Remove="Resources\atach-icon.png" />
     <None Remove="Resources\bell.png" />
     <None Remove="Resources\cache-0a.png" />
     <None Remove="Resources\cache-1.png" />
@@ -199,6 +200,7 @@
     <None Remove="Resources\wallpaper-7.png" />
     <None Remove="Resources\wallpaper-8.png" />
     <None Remove="Resources\wallpaper-9.png" />
+    <None Remove="Resources\wfile-type-library.png" />
     <None Remove="Resources\wfile-type-mod.png" />
     <None Remove="Resources\wfile-type-none.png" />
     <None Remove="Resources\wfile-type-world.png" />
@@ -256,6 +258,7 @@
   <ItemGroup>
     <Resource Include="Resources\add-mod.png" />
     <Resource Include="Resources\add-package.png" />
+    <Resource Include="Resources\atach-icon.png" />
     <Resource Include="Resources\bell.png" />
     <Resource Include="Resources\cache-0a.png" />
     <Resource Include="Resources\cache-1.png" />
@@ -420,6 +423,7 @@
     <Resource Include="Resources\wallpaper-9.png" />
     <Resource Include="Resources\wfile-type-mod.png" />
     <Resource Include="Resources\wfile-type-none.png" />
+    <Resource Include="Resources\wfile-type-library.png" />
     <Resource Include="Resources\wfile-type-world.png" />
     <Resource Include="Resources\world-earth.png" />
     <Resource Include="Resources\world-thumb.png" />
