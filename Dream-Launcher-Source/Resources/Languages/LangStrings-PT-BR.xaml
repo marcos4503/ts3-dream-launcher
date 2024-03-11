@@ -853,6 +853,9 @@ Clique Para Alterar!
     <system:String x:Key="launcher_save_importError2Text">A pasta de Save Game a ser importada, precisa estar no drive "C:\".</system:String>
     <system:String x:Key="launcher_save_unknownEdit">Desconhecido</system:String>
     <system:String x:Key="launcher_save_lastEdit">%d% às %h%</system:String>
+    <system:String x:Key="launcher_save_lastEditToday">Hoje</system:String>
+    <system:String x:Key="launcher_save_saveWorldTooltip">Mundo de Residência</system:String>
+    <system:String x:Key="launcher_save_unknownWorld">Desconhecido</system:String>
     <system:String x:Key="launcher_save_lastEditTooltip">Última Edição</system:String>
     <system:String x:Key="launcher_save_totalSizeTooltip">Tamanho Total</system:String>
     <system:String x:Key="launcher_save_lastVaultTooltip">Último Salvamento no Cofre</system:String>
@@ -946,8 +949,12 @@ forma que acima, o jogo só acumula essas imagens e com tempo, podem
 causar problemas.
     </system:String>
     <system:String x:Key="launcher_save_clean_worldHelp" xml:space="preserve">
-Esta limpeza não deve trazer problemas para seu Save, mas apagará
-relacionamentos que seus Sims tenham com Sims deste mundo.
+Esta limpeza não deve trazer problemas para seu Save, mas fará com que
+este mundo retorne ao seu estado padrão e apagará relacionamentos que seus
+Sims tenham com Sims deste mundo, ou se  seus Sims tenha algum tipo de
+parentesco com Sims deste mundo, os Sims deste mundo serão removidos da
+sua árvore genealógica. Em resumo, limpe estes dados somente se você não
+ligar para este mundo ou tiver passado pouco tempo nele.
     </system:String>
     <system:String x:Key="launcher_save_clean_shangSimla">Limpar Dados do Mundo Shang Simla</system:String>
     <system:String x:Key="launcher_save_clean_champsLesSims">Limpar Dados do Mundo Champs Les Sims</system:String>
@@ -956,5 +963,258 @@ relacionamentos que seus Sims tenham com Sims deste mundo.
     <system:String x:Key="launcher_save_clean_oasisLanding">Limpar Dados do Mundo Oasis Landing</system:String>
     <system:String x:Key="launcher_save_clean_tipText">A ferramenta de Limpeza atualizará o backup automático do seu Save Game, automaticamente, antes da limpeza. A limpeza não impactará negativamente o seu Save, mas tenha em mente que após a limpeza do seu Save, o jogo pode executar de maneira mais lenta nos primeiros minutos, enquanto regenera recursos necessários.</system:String>
     <system:String x:Key="launcher_save_clean_clearButton">LIMPAR</system:String>
+    <system:String x:Key="launcher_save_clean_clearError">Houve um problema ao executar a limpeza no Save Game "%s%". Para reverter essa limpeza, exporte o Último Backup Automático salvo, apague o Save Game que tem problemas e então importe o Último Backup Automático.</system:String>
+    <system:String x:Key="launcher_save_clean_clearSuccess">A limpeza do Save Game "%s%" foi concluída com sucesso! O tamanho total do Save foi reduzido de %b% para %a%.</system:String>
+
     
+
+    
+    
+    <!-- Screen 6: Launcher - Performance Tips -->
+    <system:String x:Key="launcher_home_performanceTip_Tab">Dicas de Performance</system:String>
+    <system:String x:Key="launcher_home_performanceTip_Title">Dicas Para Melhor Desempenho de Jogo</system:String>
+    <system:String x:Key="launcher_home_performanceTip_0" xml:space="preserve">
+Configurações do Jogo§
+Configure o seu jogo seguindo as recomendações do Dream Launcher para desempenho aprimorado. Na página "Configurações" você pode passar o mouse em cima dos ícones
+de ponto de interrogação para visualizar as recomendações.
+\b\b
+Além disso, as configurações devem ser feitas somente através do Dream Launcher.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_1" xml:space="preserve">
+Use o Overwatch a Seu Favor§
+Se você instalou o Patch de otimização do Dream Launcher, seu jogo terá o Overwatch. O Overwatch irá lhe notificar sempre que detectar um Sim com problemas de roteamento,
+dizendo algo como "Sim teve problemas para sair de casa hoje". Ao saber da notificação, procure o Sim que está com o problema usando o modo "Editar Cidade" e então, tente
+descobrir o que pode estar causando o problema. Geralmente são coisas como mobílias impedindo que o Sim possa encontrar uma rota entre ele e o ponto de destino e coisas assim.
+\b\b
+Você também pode usar o Master Controller para Redefinir Lotes, corrigindo objetos quebrados e para Redefinir Objetos que possam estar com problemas. Por padrão, o Overwatch
+instalado nos Patches do Dream Launcher não irá redefinir os Sims com problemas, automaticamente. Dessa forma, você terá tempo para encontrar o Sim e ter melhores pistas do
+que pode estar causando o problema.
+\b\b
+É recomendado que você procure resolver os problemas de roteamento dos Sims da sua cidade sempre que possível, pois esses problemas podem gerar lag no seu jogo. Se você preferir
+por redefinir todos os Sims da cidade, você pode usar o cheat "resetsim *" (sem aspas).
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_2" xml:space="preserve">
+Evite Jogar em Island Paradiso§
+Infelizmente essa cidade adicionada pelo Pacote de Expansão 10, possui diversos problemas de otimização e de roteamento, o que faz com que jogar nela seja um prato cheio
+para problemas de lag e congelamento.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_3" xml:space="preserve">
+Evite Modificar a Cidade§
+Evite modificar a sua cidade adicionando novos lotes residenciais, muitos lotes comerciais, deletando lotes já existentes ou coisas assim. Fazer essas operações poderá resultar
+em mudanças na malha de roteamento da sua cidade, e como a EA não fez um bom trabalho de otimização no jogo, essas mudanças na malha de roteamento podem resultar em mais lag
+para seu jogo, dependendo do mundo e do caso.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_4" xml:space="preserve">
+Jogue Com as Memórias Desabilitadas§
+As Memórias do The Sims 3 trazem problemas sérios de otimização para o jogo. Se você instalou os Patches do Dream Launcher, então o seu jogo já possui um mod que força o desligamento
+das Memórias, mas apenas para confirmar, jogue com a configuração "Habilitar Memórias" desativada.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_5" xml:space="preserve">
+Use SSD§
+É recomendado que seu sistema operacional esteja instalado num SSD ao invés de HDD. Além disso, se possível, deixe o The Sims 3 instalado num SSD também. O The Sims 3 é um jogo
+que faz uso intensivo de IO, e pode se beneficiar muito de uma unidade de drive mais rápida como os SSDs.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_6" xml:space="preserve">
+Evite Ir Ao Futuro§
+Se você não tem muito interesse em explorar o futuro, não vá para o Futuro (Oasis Landing). Isso pode prevenir que você tenha alguns problemas de otimização.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_7" xml:space="preserve">
+Mais Escolas!§
+Sua cidade é povoada com muitas crianças e adolescentes em idade escolar? Considere adicionar uma ou mais escolas extras para evitar a superlotação na porta e os sims não poderem entrar.
+Isso evitará problemas de aglomeração e consequentemente de roteamento, que traria lag para seu jogo.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_8" xml:space="preserve">
+Acalme Seu Anti-Virus§
+O jogo está o tempo todo criando, lendo e gravando arquivos na pasta "Meus Documentos" do seu computador. Se você possui apenas o "Microsoft Windows Defender" instalado em seu
+computador, adicione a pasta "Documents/Electronic Arts/The Sims 3" na lista de exclusões para que o anti-virus não escaneie arquivos gerados dentro dessa pasta, o que pode ajudar com o
+desempenho do seu jogo.
+\b\b
+Se você possui outros anti-virus de terceiros, se possível, faça o mesmo procedimento para eles, já que outros anti-virus podem ser até mais agressivos do que o Windows Defender.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_9" xml:space="preserve">
+Saia do Jogo Antes de Carregar Outro Save§
+Sempre saia completamente do jogo para a Área de Trabalho e reinicie-o antes de carregar outro save ou iniciar um novo jogo, em vez de apenas voltar para o Menu Principal. O The Sims 3 não
+é eficiente em liberar memória usada pela cidade anterior e não só isso pode levar ao Erro 12 de salvamento, mas também carrega dados do arquivo da cidade anterior, fazendo com que ele inche
+seu Save permanentemente e pode levar a corrupção do arquivo do jogo.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_10" xml:space="preserve">
+Evite Elevadores em Lotes Comunitários§
+Os elevadores podem causar lag, especialmente quando em lotes comunitários.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_11" xml:space="preserve">
+Cheats Perigosos§
+O cheat "buydebug" pode levar a diversos problemas se você mante-lo ativo enquanto seus Sims viajam, ou se você sair do jogo. Por isso, não o mantenha ativo sob essas condições.
+\b\b
+O cheat "moveobjects on" pode levar a diferentes problemas, especialmente com o roteamento, então não é aconselhável ter isso ligado durante o jogo. Ao tentar colocar uma janela
+ou porta, tente usar a tecla Alt para colocar objetos.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_12" xml:space="preserve">
+Evite Jogar Em Cidades Superpopulosas§
+Cities like Bridgeport can cause performance problems because of their density of lots that favor a greater number of existing Sims and lots to be simulated or loaded into memory.
+    </system:String>
+
+
+
+
+
+    <!-- Screen 6: Launcher - Maintenance Tips -->
+    <system:String x:Key="launcher_home_maintenanceTip_Tab">Dicas de Manutenção</system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_Title">Dicas De Manutenção Rotineiras do Seu Jogo</system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_0" xml:space="preserve">
+Mantenha a Quantidade de Conteúdos Customizáveis Sob Controle§
+Tenha cuidado com a quantidade de conteúdos como roupas, objetos, mobílias e outros itens similares você possui instalado no seu jogo. Geralmente um bom limite máximo
+para conteúdos customizados é de 3.0 GB para a pasta "mods". No Dream Launcher, o tamanho da sua pasta "mods" é exibido na página "Mods".
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_1" xml:space="preserve">
+Mescle Conteúdos Customizados§
+Acabou de baixar várias roupas, mobílias e outros tipos de conteúdos? Bem. Mescle tudo isso! A mesclagme nada mais é do que juntar vários arquivos "package" dentro de um
+único arquivo "package". Mesclar arquivos ajuda imensamente a reduzir os tempos de carregamento do seu jogo. A mesclagem não deve ser feita em arquivos de mods que contém
+scripts ou sliders. Se você não sabe como fazer isso, clique no ícone da "Steam" aqui no Dream Launcher para acessar o mega-guia e aprender isso.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_2" xml:space="preserve">
+Limpe o Seu Save Game Regularmente§
+As vezes, o tamanho do arquivo de Save pode ficar um pouco fora de controle (normalmente, eu diria mais do que cerca de 200Mb a 300Mb), levando a longos tempos de
+carregamento. Isso pode ser corrigido excluindo alguns recursos do arquivo de Save, ou seja, limpando-o. As vezes, o jogo gera vários recursos para um único evento, como
+por exemplo fotos de câmeras, memórias, etc, mas apenas um desses recursos é usado. Quanto aos recursos não utilizados, o jogo irá mantê-los no Save Game como lixo. Além
+disso, se você já enviou seus Sims para uma viagem, não apenas os recursos de memórias são copiados, mas também as fotos de câmera, e coisas como pinturas dentro de seus
+inventários. O jogo usará as novas cópias como recursos para exibir na tela. Quanto aos antigos, o jogo não irá excluí-los, mas irá mantê-los no Save Game. Devido a isso,
+é indispensável que você limpe o seu Save Game regularmente.
+\b\b
+No Dream Launcher, na página "Saves", você pode clicar no "Ícone de 3 Pontos" do seu Save Game e então em "Limpar" para executar a limpeza do seu Save Game de maneira
+extremamente fácil e rápida.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_3" xml:space="preserve">
+Dê Atenção aos Logs de Erro§
+Se você instalou os Patches do Dream Launcher, o seu jogo terá o Error Trap. Ele lhe enviará uma notificação durante a Gameplay, sempre que detectar um erro gerado
+enquanto você joga. O Dream Launcher também sempre lhe notificará quando detectar novos logs de erro. Você pode visualiza-los através da página "Cache".
+\b\b
+É muito importante que você visualize cada novo log já que embora o Error Trap corrija automaticamente a maioria dos erros, alguns ele não é capaz de corrigir, por
+isso você deve visualizar cada novo log e caso o erro não tenha sido corrigido, você precisa corrigi-lo, geralmente redefinindo objetos, Sims ou lotes. Se você não
+entende algum Log lançado, tente buscar ajuda no Google ou na internet em geral.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_4" xml:space="preserve">
+Quantidade de Sims Salvos§
+Sempre que possível, reduza a quantidade de Sims salvos em seu jogo.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_5" xml:space="preserve">
+Limpe os Inventários Regularmente§
+Conforme o tempo vai passando no seu jogo, os Sims vão acumulando itens em seus inventários. Após algumas semanas de jogo, é muito fácil ter centenas de itens espalhados
+pela cidade ao total. Se você instalou os Patches do Dream Launcher, você terá o mod Master Controller disponível em seu jogo e poderá limpar os inventários de todos os
+Sims da cidade facilmente. Para fazer isso, basta clicar na Prefeitura da Cidade, e então em "NRaas > Master Controller > Cidade > Informações do Objecto". Então marque
+"Inventário" e clique em "Ok", em seguida marque "Todos" e clique em "Ok" novamente. O jogo exibirá uma caixa de confirmação lhe perguntando se você realmente deseja limpar
+os itens. Basta confirmar. Se você clicar num lote de alguma família, e seguir o mesmo caminho, você verá somente os itens pertencentes a família dona do lote.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_6" xml:space="preserve">
+Redefina a Cidade Inteira§
+Se você instalou os Patches do Dream Launcher, você possuirá o Master Controller em seu jogo. Usando ele, você será capaz de redefinir toda a sua cidade, o que inclui todos
+os Sims, Lotes, Objetos e outras coisas. A cada 4 semanas de jogo, no mínimo, é recomendado que você redefina toda a sua cidade. Isso ajudará a manter o jogo mais liso,
+removendo objetos abandonados como carros, redefinindo coisas quebradas ou coisas parecidas, o que poderá resultar em um melhor desempenho para seu jogo.
+\b\b
+A redefinição da sua cidade não afetará de nenhuma forma sua progressão. Para redefinir, clique na Prefeitura da Cidade, e então em "NRaas > Master Controller > Cidade > 
+Reiniciar Tudo". Em seguida, basta confirmar. O jogo deve congelar por alguns instantes, mas logo ele voltará ao normal.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_7" xml:space="preserve">
+Limpe Arquivos Temporários e de Cache Regularmente§
+Enquanto você joga, o jogo gera arquivos temporários e de Cache. Pode ser benefico para o desempenho, e as vezes até resolver problemas se você limpar os arquivos de
+Cache e temporários. Limpe regularmente os arquivos de Cache e Temporários, e também limpe-os depois de instalar algum mod novo, conteúdo customizado ou mundo customizado.
+Com o Dream Launcher você consegue limpar todos os tipos de arquivos Temporários e de Cache indo a página "Cache" do Launcher.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_8" xml:space="preserve">
+Cuide dos Inventários dos Seus Sims§
+Evite manter MUITOS itens nos inventários dos seus Sims ativos. Muitos itens nos inventários podem contribuir para o lag no seu jogo.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_9" xml:space="preserve">
+Salve no Modo Vizinhança§
+Antes de salvar o seu jogo, sempre alterne para o modo de visualização da cidade. Neste modo, o jogo utiliza menos memória RAM, o que pode reduzir a chance de algum erro
+ou problema de salvamento, ainda mais se seu jogo já estiver próximo do limite de uso de RAM.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_10" xml:space="preserve">
+Vigie o Uso de RAM do Jogo§
+O The Sims 3 é um jogo de arquitetura 32 bits. Por isso ele possui uma séria limitação na quantidade de recursos que ele pode usar do computador. Isso basicamente quer
+dizer que o The Sims 3 está limitado a usar no máximo 2 GB de sua memória RAM instalada. Por isso, verifique enquanto joga, para saber se o seu jogo está próximo desse
+limite. Se o seu jogo estiver próximo de 1900 MB, isso quer dizer que é hora de salvar o seu jogo, fechar o The Sims 3 e então abri-lo novamente, antes que você tenha algum
+problema de crash ou erro de salvamento. O Dream Launcher exibe um medidor de uso de RAM dentro do jogo, caso a opção de Overlay esteja ativada.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_11" xml:space="preserve">
+Verifique as Estatísticas de População§
+De tempo em tempo, dê uma olhada na população da sua cidade. Se você achar que ela aumentou muito e com isso seu jogo está com mais lag, remove Sims ou famílias irrelevantes
+da sua cidade. Se você instalou os Patches do Dream Launcher, seu jogo terá o Master Controller. Para obter as estatísticas de população da cidade, clique na Prefeitura da 
+Cidade, em seguida "NRaas > Master Controller > Demografia > População" e em seguida, clique no "X". O jogo exibirá um pequeno relatório detalhando os moradores da sua cidade.
+\b\b
+Se você desejar eliminar alguns Sims da cidade, você pode usar o Editor de Cidades do jogo ou você também pode usar o Master Controller. Para isso clique na Prefeitura da Cidade,
+então, clique em "NRaas > Master Controller > Cidade > Aniquilação". Escolha uma categoria de sim e clique em "Ok". Em seguida, na lista de Sims que surge, escolha um ou mais
+Sims que deseja remover da cidade e então clique em "Ok". O lado positivo de usar o Master Controller é que você pode visualizar até mesmo Sims de serviço, ou Sims sem-teto.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_12" xml:space="preserve">
+Gerencie os Mortos§
+Conforme o tempo vai passando em seu jogo, Sims vão nascendo, outros vão morrendo. Conforme o tempo passa, a quantidade de Sims mortos vai se acumulando. Os Sims que morrem em
+famílias inativas são automaticamente levados para o Mausoleu da cidade. Já os Sims ativos são transformados em Urnas ou Lápides. O problema é que com o tempo, os Sims mortos
+podem inflacionar o seu arquivo de Save, ou causar problemas de Lag por causa dos fantasmas deles sendo spawnados durante a gameplay. Por isso, de tempo em tempo, é bom que você
+execute algumas limpezas para garantir que as coisas funcionem no seu melhor estado.
+\b\b
+A primeira coisa é garantir que todos os mortos possuam lápides ou urnas associadas a eles. Para fazer isso, clique na Prefeitura da Cidade, em seguida "NRaas > Master Controller > 
+Enterrar os Mortos". Feito isso, caso haja Sims mortos sem lápides ou urnas vinculadas a eles, as urnas ou lápides serão criadas e guardadas dentro do Mausoleu da cidade.
+\b\b
+Agora, a segunda coisa a se fazer é garantir que todas as urnas e lápides existentes na cidade, estejam guardadas dentro do Mausoleu da cidade. Clique na Prefeitura da Cidade, em
+seguida "NRaas > Master Controller > Sim > Básico > Encontrar Sepultura", agora selecione um Sim morto ao qual você suspeite que sua urna ou lápide não esteja guardada dentro do
+Mausoleu da cidade, então clique em "Ok". Caso o artefato já esteja dentro do Mausoleu, ou esteja no inventário de algum Sim ou objeto, o jogo irá lhe perguntar se você deseja transferir
+a urna ou lápide para o seu inventário, é você quem decide. Caso a sepultura ou urna do Sim morto esteja fora no mundo, a céu aberto, a câmera irá se mover para o local onde o artefato
+se encontra...
+\b\b
+Se a urna ou lápide estiver em um lote público, como o cemitério, você precisará fazer o seguinte... Clique num local próximo da onde a sepultura ou urna está, no lote. Clique em
+"NRaas > Master Controller: > Radius Add To Inventory" então digite "9" e clique em "Ok". Vários itens coletáveis próximos de onde você clicou, serão listados para que você possa
+escolher algum e transferir para o inventário do seu Sim. Você deve escolher o item de lápide que deve ter um nome similar a "Objects.UrnstoneHuman" e então clicar em "Ok". Feito isso
+outro menu aparecerá lhe mostrando todas as urnas próximas da área onde você clicou. Algumas urnas ou lápides não possuem Sims vinculados a elas e só estão ali por questões de decoração,
+por isso, você precisa pegar a lápide ou urna com nome do Sim que você estava procurando. Feito isso, basta clicar em "Ok", e confirmar a próxima caixa de confirmação. A lápide será
+colocada no inventário da família, então você poderá entrar no modo compra, coloca-la no seu lote e então coloca-la no inventário de um Sim ativo seu. Veremos o que fazer com ela, mais abaixo.
+\b\b
+Se a urna ou lápide estiver num lote de um Sim inativo, as coisas serão um pouco mais simples. Clique no lote em que o artefato se encontra, então clique em "Nraas > Master Controller > 
+Tornar Activo". Então, a família dona do lote se tornará sua família ativa. Agora, é só procurar pela urna ou lápide e coloca-la no inventário do seu Sim ativo. Se você não quiser transformar
+a família dona do lote em ativa para pegar a urna ou lápide, então clique no lote, num local próximo de onde você acha que o artefato está. Em seguida, clique em "NRaas > Master Controller: > 
+Radius Add To Inventory" então digite "9" e clique em "Ok". Vários itens coletáveis próximos de onde você clicou, serão listados para que você possa escolher algum e transferir para o inventário
+do seu Sim. Você deve escolher o item de lápide que deve ter um nome similar a "Objects.UrnstoneHuman" e então clicar em "Ok". Feito isso, os próximos passos são iguais aos passos que você precisa
+seguir para pegar uma urna ou lápide de um lote público, conforme descrito no parágrafo acima...
+\b\b
+Uma vez que você tenha a urna ou lápide em mãos, é hora de guarda-la dentro do Mausoleu. Para fazer isso, clique na Prefeitura da Cidade, então "NRaas > Master Controller > Cidade > 
+Gerir os Mortos". Agora é só transferir as lápides e urnas para o inventário do Mausoleu. Se não for possível transferir os artefatos, você pode ir até o lote do cemitério, clicar no
+Mausoleu, então "NRaas > Master Controller: Mausoléu da Família XXX.. > Transferir Para" e então, é só selecionar todas as urnas e lápides no inventário do seu Sim, e clicar em "Ok". E isso
+é tudo!
+\b\b
+Apenas um adendo. Para sua família, também é interessante colocar as lápides ou urnas dos seus Sims mortos dentro do Mausoleu. Se você quiser que um ou outro fantasma continue a spawnar, 
+coloque algumas lápides fora do Mausoleu, e quanto quiser que nenhum fantasma spawne, guarde tudo dentro do Mausoleu.
+\b\b
+BÔNUS: Se você estiver jogando a muito tempo no mesmo Save Game, pode ser de seu interesse apagar Sims mortos irrelevantes. Se for este o caso, basta clicar na Prefeitura da Cidade, então
+clique em "NRaas > Master Controller > Cidade > Aniquilação > Morto" e clique em "Ok". Na lista que se abre, marque os Sims que você deseja apagar da existência. Agora, clique em "Ok".
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_13" xml:space="preserve">
+Atenção a Quantidade de Objetos no Seu Lote§
+Se seu lote ativo tiver miliares de objetos, é interessante ser minimalista e procurar reduzi-los a uma quantidade mais realista. Miliares de objetos num lote ativo pode trazer problemas de lag
+a depender de cada caso, por isso, se você está experimentando lag, teste ir para um lote com menos objetos.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_14" xml:space="preserve">
+Migração Para Cidade Nova§
+Se você está fazendo manutenção de sua cidade e está jogando a um bom tempo, mas mesmo assim sente que o jogo está com um lag que não existia antes, como último recurso, você pode testar a
+possibilidade de migrar sua família para uma cidade limpa e zerada. É possível migrar sua família mantendo a árvore genalógica e relacionamentos com outros Sims. Para isso, vamos usar o
+mod "Porter" por isso NÃO use a opção "Mudar Para Uma Nova Cidade" nativa do jogo.
+\b\b
+Antes de começar, tenha certeza de possuir o mod "Porter" instalado no seu jogo. Ele pode ser encontrado na página "Mods" do Dream Launcher, na aba "Recomendado", em "Others". Além disso,
+não tente fazer os passos a seguir no modo de Edição de Cidade, apenas no modo de jogo normal.
+\b\b
+Primeiramente, pause o jogo. Em seguida, clique no telhado da casa da sua família. Agora clique em "NRaas > Porter... > Empacotar e Exportar". Na janela que se abre, selecione sua família ativa
+e outras famílias que você gostaria de empacotar e manter os relacionamentos. Se você deseja manter árvores genealógicas, é importante que neste passo, você selecione famílias que possuem mortos e
+que tenham a ver com os Sims que você está empacotando. Agora clique em "Ok". Na lista que se abre, marque "Todos" e clique em "Ok" novamente. Dê um nome para a empacotação e
+clique em "Ok". Agora é só aguardar. Após a conclusão da exportação, feche completamente o jogo, exceto o Dream Launcher.
+\b\b
+Abra o The Sims 3 novamente e inicie um novo jogo num mundo desejado. Selecione um Sim qualquer e coloque-o numa casa para começar a jogar inicialmente. Agora, clique no telhado de uma casa
+vazia, em seguida clique em "NRaas > Porter... > Importar". Na janela que se abre, selecione SOMENTE o pacote que possui o nome que você deu anteriormente e clique em "Ok". As famílias contidas
+dentro do empacotamento serão importadas para a cidade. Famílias extras receberão suas casas e Sims mortos serão adicionados ao Mausoleu automaticamente.
+\b\b
+Você pode entrar no modo "Edição de Cidade" para procurar por sua família e torna-la a família ativa, agora. Se preferir ativar sua família mais rapidamente, você pode usar o Master Controller. 
+Para isso, clique na Prefeitura da Cidade, em seguida "NRaas > Master Controller > Casa > Tornar Activo". Na janela que se abre, procure a casa que possui o nome de sua família, e clique nela.
+\b\b
+Isso é tudo! Mas se você encontrar alguma família que ficou com um nome (apelido) incorreto após a importação, você pode usar o Master Controller para alterar o nome (apelido) da família. Para
+isso, clique no telhado da casa da família, em seguida em "NRaas > Master Controller > Alterar Nome" na janela que se abre, digite o sobrenome que os membros da família devem ter, e então 
+clique em "Ok". Você pode passar o mouse sobre um Sim membro da família para ver seu sobrenome e então dar o mesmo sobrenome para aquele núcleo familiar.
+    </system:String>
+
 </ResourceDictionary>

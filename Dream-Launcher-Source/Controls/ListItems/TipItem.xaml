@@ -1,0 +1,23 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TS3_Dream_Launcher.Controls.ListItems"
+             xmlns:ValidableTextBox="clr-namespace:TS3_Dream_Launcher.Controls.ValidableTextBox" x:Class="TS3_Dream_Launcher.Controls.ListItems.TipItem"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="8"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="number" Content="999" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0,0,0,0" FontWeight="Normal" Margin="0,2,0,0" Foreground="#FF505050"/>
+        <StackPanel Grid.Column="2" VerticalAlignment="Top">
+            <TextBlock x:Name="title" TextWrapping="Wrap" Text="Title" FontSize="14" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <TextBlock x:Name="text" TextWrapping="Wrap" Text="Tip Text" FontWeight="Normal" Margin="0,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

@@ -83,6 +83,9 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             //Determine the main NHD file path of this save game
             DetermineTheMainNhdPath();
 
+            //Show the main NHD world name in the save as world of residence info
+            RenderTheMainNhdWorldNameInScreen();
+
             //Render the thumbnail of this save game
             RenderThumbnail();
 
@@ -100,7 +103,13 @@ namespace TS3_Dream_Launcher.Controls.ListItems
 
                 //Show the last edit
                 lastEdit.Content = instantiatedBy.GetStringApplicationResource("launcher_save_lastEdit").Replace("%d%", lastEditTime.ToString("dd/MM/yyyy")).Replace("%h%", lastEditTime.ToString("HH:mm:ss"));
+
+                //Show "today" if is necessary
+                DateTime todayDate = DateTime.Now;
+                if (((string)lastEdit.Content).Contains(todayDate.ToString("dd/MM/yyyy")) == true)
+                    lastEdit.Content = ((string)lastEdit.Content).Replace(todayDate.ToString("dd/MM/yyyy"), instantiatedBy.GetStringApplicationResource("launcher_save_lastEditToday"));
             }
+
             //Show the total size of this save
             size.Content = GetFormattedFileSize(GetSaveGameTotalSize()).Replace("~", "");
 
@@ -124,18 +133,15 @@ namespace TS3_Dream_Launcher.Controls.ListItems
                 if (System.IO.Path.GetExtension(file.FullName).Replace(".", "").ToLower() == "nhd")
                     nhdFiles.Add(file.FullName);
 
-            //Prepare the possible names for the main NHD file
-            string possibleName0 = ((new DirectoryInfo(saveGameDirPath)).Name.Split(".")[0].Replace(" ", ""));
-            string possibleName1 = ((new DirectoryInfo(saveGameDirPath)).Name.Split(".")[0]);
-
             //Try to determine the main NHD file index in the list
             for(int i = 0; i < nhdFiles.Count; i++)
             {
                 //Get the file name
-                string currentfileName = System.IO.Path.GetFileNameWithoutExtension(nhdFiles[i]);
+                string nhdName = System.IO.Path.GetFileNameWithoutExtension(nhdFiles[i]);
 
-                //If have one of the possible names, determine as main NHD file
-                if (currentfileName.Contains(possibleName0) == true || currentfileName.Contains(possibleName1) == true)
+                //If not have the name of "China", "Egypt", "France", "Oasis Landing" or "Sims University", determine as main NHD file
+                if (nhdName.Contains("China_0x") == false && nhdName.Contains("Egypt_0x") == false && nhdName.Contains("France_0x") == false &&
+                    nhdName.Contains("Oasis Landing_0x") == false && nhdName.Contains("Sims University_0x") == false)
                 {
                     indexForMainNhdFile = i;
                     break;
@@ -145,6 +151,67 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             //Inform the collected data
             saveGameNhdFilesPaths = nhdFiles.ToArray();
             saveGameMainNhdIndex = indexForMainNhdFile;
+        }
+
+        private void RenderTheMainNhdWorldNameInScreen()
+        {
+            //If known the main NHD file, show it
+            if (saveGameMainNhdIndex != -1)
+                saveWorld.Content = GetSpacedStringOnUpperCaseLetters(System.IO.Path.GetFileNameWithoutExtension(saveGameNhdFilesPaths[saveGameMainNhdIndex]).Split("_")[0]);
+
+            //If don't know the main NHD file, just show unknown
+            if (saveGameMainNhdIndex == -1)
+                saveWorld.Content = instantiatedBy.GetStringApplicationResource("launcher_save_unknownWorld");
+        }
+
+        private string GetSpacedStringOnUpperCaseLetters(string sourceString)
+        {
+            //Prepare the string to return
+            string toReturn = sourceString;
+
+            //Prepare the list of upper case letters
+            List<string> letters = new List<string>();
+            letters.Add("A");
+            letters.Add("B");
+            letters.Add("C");
+            letters.Add("Ç");
+            letters.Add("D");
+            letters.Add("E");
+            letters.Add("F");
+            letters.Add("G");
+            letters.Add("H");
+            letters.Add("I");
+            letters.Add("J");
+            letters.Add("K");
+            letters.Add("L");
+            letters.Add("M");
+            letters.Add("N");
+            letters.Add("O");
+            letters.Add("P");
+            letters.Add("Q");
+            letters.Add("R");
+            letters.Add("S");
+            letters.Add("T");
+            letters.Add("U");
+            letters.Add("V");
+            letters.Add("W");
+            letters.Add("X");
+            letters.Add("Y");
+            letters.Add("Z");
+
+            //Set the spaces
+            for (int i = 0; i < letters.Count; i++)
+                toReturn = toReturn.Replace(letters[i], (" " + letters[i]));
+
+            //If have double spaces, remove it
+            toReturn = toReturn.Replace("  ", " ");
+
+            //If the first character is a space, remove it
+            if (toReturn[0] == ' ')
+                toReturn = toReturn.Remove(0, 1);
+
+            //Return the result
+            return toReturn;
         }
 
         private void RenderThumbnail()
@@ -199,6 +266,11 @@ namespace TS3_Dream_Launcher.Controls.ListItems
 
                 //Show the last vault copy
                 lastVault.Content = instantiatedBy.GetStringApplicationResource("launcher_save_lastVaultDate").Replace("%d%", lastEditTime.ToString("dd/MM/yyyy")).Replace("%h%", lastEditTime.ToString("HH:mm:ss"));
+
+                //Show "today" if is necessary
+                DateTime todayDate = DateTime.Now;
+                if (((string)lastVault.Content).Contains(todayDate.ToString("dd/MM/yyyy")) == true)
+                    lastVault.Content = ((string)lastVault.Content).Replace(todayDate.ToString("dd/MM/yyyy"), instantiatedBy.GetStringApplicationResource("launcher_save_lastEditToday"));
             }
 
             //Hide or enable the "restore from vault" menu item

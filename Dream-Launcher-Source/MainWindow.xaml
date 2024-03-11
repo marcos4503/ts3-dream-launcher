@@ -179,7 +179,7 @@
         <Storyboard x:Key="installedModsLoadExit">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="instModsLoading" Storyboard.TargetProperty="(UIElement.Opacity)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="vaultTaskEnter">
@@ -193,6 +193,26 @@
                 <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="tipsEnter">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="tipsPopUpBackground" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0.5"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="tipsPopUp" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="0,0,-472,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:00.3000000" Value="0,0,2,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="tipsExit">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="tipsPopUpBackground" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="tipsPopUp" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="0,0,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:00.3000000" Value="0,0,-472,0"/>
+            </ThicknessAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
     <Grid x:Name="root" Width="1208" Height="680">
@@ -337,7 +357,7 @@
                             <Label x:Name="pageTitle" Content="Place Holder" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="{DynamicResource TheSimsSansSc}" Foreground="White" FontSize="20" FontWeight="Bold"/>
                         </Border>
                         <Grid x:Name="pagesContent" Margin="4,36,4,4">
-                            <Grid x:Name="pageHome" Margin="0,0,0,0" Visibility="Visible">
+                            <Grid x:Name="pageHome" Margin="0,0,0,0" Visibility="Visible" ClipToBounds="True">
                                 <Border x:Name="playWallpaper" BorderThickness="0,0,0,0" CornerRadius="0,0,8,8">
                                     <Border.Background>
                                         <ImageBrush Stretch="UniformToFill" ImageSource="/Resources/wallpaper-0.png">
@@ -372,6 +392,45 @@
                                             <Label Content="{DynamicResource launcher_updateButton}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="8,0,0,0" Padding="0,0,0,0" Foreground="White" FontSize="14"/>
                                         </StackPanel>
                                     </BeautyButton:BeautyButton>
+                                </Grid>
+                                <Grid x:Name="tipsPopUpBackground" Background="Black" Opacity="0.5" Visibility="Collapsed"/>
+                                <Grid x:Name="tipsPopUp" Width="472" HorizontalAlignment="Right" Background="White" Margin="0,0,-472,0" Visibility="Visible">
+                                    <Grid Height="64" VerticalAlignment="Top" Margin="0,0,0,0" ClipToBounds="True">
+                                        <Image VerticalAlignment="Top" Source="/Resources/wallpaper-5.png" Stretch="UniformToFill" StretchDirection="Both" Margin="0,-28,0,0"/>
+                                    </Grid>
+                                    <TabControl Padding="0,2,0,0" SelectedIndex="0" TabStripPlacement="Top" Margin="0,72,0,0" BorderThickness="0,1,0,1">
+                                        <TabItem Header="{DynamicResource launcher_home_performanceTip_Tab}">
+                                            <Grid VerticalAlignment="Stretch">
+                                                <ScrollViewer Margin="0,0,0,0" VerticalAlignment="Stretch">
+                                                    <Grid Margin="0,0,0,0" VerticalAlignment="Top">
+                                                        <StackPanel x:Name="performanceTipsList" VerticalAlignment="Top" Margin="16,16,16,32">
+                                                            <TextBlock TextWrapping="Wrap" Text="{DynamicResource launcher_home_performanceTip_Title}" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="16" Margin="0,0,0,32" TextAlignment="Center"/>
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </ScrollViewer>
+                                            </Grid>
+                                        </TabItem>
+                                        <TabItem Header="{DynamicResource launcher_home_maintenanceTip_Tab}">
+                                            <Grid>
+                                                <ScrollViewer>
+                                                    <Grid Margin="0,0,0,0" VerticalAlignment="Top">
+                                                        <StackPanel x:Name="maintenanceTipsList" VerticalAlignment="Top" Margin="16,16,16,32">
+                                                            <TextBlock TextWrapping="Wrap" Text="{DynamicResource launcher_home_maintenanceTip_Title}" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="16" Margin="0,0,0,32" TextAlignment="Center"/>
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </ScrollViewer>
+                                            </Grid>
+                                        </TabItem>
+                                    </TabControl>
+                                    <Grid Height="64" Width="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="-20,0,0,0">
+                                        <Border x:Name="tipsPush" BorderThickness="0,0,0,0" Margin="0,0,0,0" Background="White" CornerRadius="8,0,0,8" Cursor="Hand">
+                                            <Grid Height="14" Width="14" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <Image x:Name="tipsLoad" gif:ImageBehavior.AnimatedSource="/Resources/load-spinner-0.gif" gif:ImageBehavior.AnimationSpeedRatio="1.5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="Collapsed" IsHitTestVisible="False" />
+                                                <Image x:Name="tipsOpen" Height="14" Width="14" Source="/Resources/tips-open.png" Opacity="0.75" Visibility="Visible" IsHitTestVisible="False"/>
+                                                <Image x:Name="tipsClose" Height="14" Width="14" Source="/Resources/tips-close.png" Opacity="0.75" Visibility="Collapsed" IsHitTestVisible="False"/>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
                                 </Grid>
                             </Grid>
                             <Grid x:Name="pageSaves" Visibility="Collapsed">

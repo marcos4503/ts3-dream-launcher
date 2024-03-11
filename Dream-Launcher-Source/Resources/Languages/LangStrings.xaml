@@ -848,6 +848,9 @@ Click to Change!
     <system:String x:Key="launcher_save_importError2Text">The Save Game folder to be imported must be on drive "C:\".</system:String>
     <system:String x:Key="launcher_save_unknownEdit">Unknown</system:String>
     <system:String x:Key="launcher_save_lastEdit">%d% at %h%</system:String>
+    <system:String x:Key="launcher_save_lastEditToday">Today</system:String>
+    <system:String x:Key="launcher_save_saveWorldTooltip">Residence World</system:String>
+    <system:String x:Key="launcher_save_unknownWorld">Unknown</system:String>
     <system:String x:Key="launcher_save_lastEditTooltip">Last Edit</system:String>
     <system:String x:Key="launcher_save_totalSizeTooltip">Total Size</system:String>
     <system:String x:Key="launcher_save_lastVaultTooltip">Last Vault Save</system:String>
@@ -937,8 +940,12 @@ This will clear stored photos taken in Photo Booths. As above, the game only
 accumulates these images and over time, they can cause problems.
     </system:String>
     <system:String x:Key="launcher_save_clean_worldHelp" xml:space="preserve">
-This cleanup shouldn't cause problems for your Save, but it will delete
-relationships your Sims have with Sims in this world.
+This cleanup shouldn't cause problems for your Save, but it will return this
+world to its default state and will delete relationships that your Sims have with
+Sims from this world, or if your Sims have any type of relationship with Sims
+from this world, the Sims from this world world will be removed from your family
+tree. In short, clear this data only if you don't care about this world or have
+spent little time in it.
     </system:String>
     <system:String x:Key="launcher_save_clean_shangSimla">Clear Shang Simla World Data</system:String>
     <system:String x:Key="launcher_save_clean_champsLesSims">Clear Champs Les Sims World Data</system:String>
@@ -947,5 +954,257 @@ relationships your Sims have with Sims in this world.
     <system:String x:Key="launcher_save_clean_oasisLanding">Clear Oasis Landing World Data</system:String>
     <system:String x:Key="launcher_save_clean_tipText">The Cleanup tool will automatically update your Save Game backup before cleaning. Cleaning will not negatively impact your Save, but keep in mind that after cleaning your Save, the game may run slower for the first few minutes while it regenerates needed resources.</system:String>
     <system:String x:Key="launcher_save_clean_clearButton">CLEAR</system:String>
+    <system:String x:Key="launcher_save_clean_clearError">There was a problem running cleanup on Save Game "%s%". To reverse this cleanup, export the Last Saved Automatic Backup, delete the Save Game that has problems and then import the Last Automatic Backup.</system:String>
+    <system:String x:Key="launcher_save_clean_clearSuccess">Cleaning of Save Game "%s%" was completed successfully! The total Save size was reduced from %b% to %a%.</system:String>
+
     
+    
+    
+    
+    <!-- Screen 6: Launcher - Performance Tips -->
+    <system:String x:Key="launcher_home_performanceTip_Tab">Performance Tips</system:String>
+    <system:String x:Key="launcher_home_performanceTip_Title">Tips For Better Gaming Performance</system:String>
+    <system:String x:Key="launcher_home_performanceTip_0" xml:space="preserve">
+Game Settings§
+Configure your game following Dream Launcher recommendations for improved performance. On the "Settings" page you can hover your mouse over the icons
+question mark to view recommendations.
+\b\b
+Furthermore, settings must only be made through Dream Launcher.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_1" xml:space="preserve">
+Use Overwatch to Your Advantage§
+If you have installed the Dream Launcher Optimization Patch, your game will have Overwatch. Overwatch will notify you whenever it detects a Sim with routing issues,
+saying something like "Sim had trouble leaving the house today." When you hear about the notification, look for the Sim that has the problem using the "Edit City" mode and then try
+find out what could be causing the problem. These are usually things like furniture preventing the Sim from finding a route between themselves and the destination point and things like that.
+\b\b
+You can also use the Master Controller to Reset Batches, fixing broken objects and to Reset Objects that may have problems. By default, Overwatch
+installed on Dream Launcher Patches will not automatically reset problematic Sims. This way, you will have time to find the Sim and have better clues.
+that may be causing the problem.
+\b\b
+It is recommended that you try to resolve routing issues for Sims in your city whenever possible, as these issues can cause lag in your game. If you prefer
+for resetting all Sims in the city, you can use the "resetsim *" cheat (without quotes).
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_2" xml:space="preserve">
+Avoid Playing on Island Paradiso§
+Unfortunately, this city, added by Expansion Pack 10, has several optimization and routing problems, which makes playing in it a hassle.
+for lag and freezing issues.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_3" xml:space="preserve">
+Avoid Modifying the City§
+Avoid modifying your city by adding new residential lots, lots of commercial lots, deleting existing lots or things like that. Performing these operations may result in
+in changes to your city's routing mesh, and since EA has not done a good job of optimizing the game, these changes to the routing mesh may result in more lag
+for your game, depending on the world and case.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_4" xml:space="preserve">
+Play With Memories Disabled§
+The Sims 3 Memories brings serious optimization issues to the game. If you have installed Dream Launcher Patches, then your game already has a mod that forces shutdown
+of Memories, but just to confirm, play with the "Enable Memories" setting turned off.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_5" xml:space="preserve">
+Use SSD§
+It is recommended that your operating system is installed on an SSD instead of an HDD. Also, if possible, leave The Sims 3 installed on an SSD as well. The Sims 3 is a game
+which is IO intensive, and can benefit greatly from a faster drive unit like SSDs.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_6" xml:space="preserve">
+Avoid Going To The Future§
+If you don't have much interest in exploring the future, don't go to the Future (Oasis Landing). This can prevent you from having some optimization problems.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_7" xml:space="preserve">
+More Schools!§
+Is your city populated with many school-age children and teenagers? Consider adding one or more extra schools to avoid overcrowding at the door and sims not being able to get in.
+This will avoid crowding problems and consequently routing, which would bring lag to your game.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_8" xml:space="preserve">
+Calm Your Anti-Virus§
+The game is constantly creating, reading and writing files in the "My Documents" folder on your computer. If you only have "Microsoft Windows Defender" installed on your
+computer, add the "Documents/Electronic Arts/The Sims 3" folder to the exclusion list so that the anti-virus does not scan files generated within that folder, which can help with the
+performance of your game.
+\b\b
+If you have other third-party anti-viruses, if possible, do the same procedure for them, as other anti-viruses can be even more aggressive than Windows Defender.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_9" xml:space="preserve">
+Quit the Game Before Loading Another Save§
+Always exit the game completely to the Desktop and restart it before loading another save or starting a new game, rather than just returning to the Main Menu. The Sims 3 does not
+is efficient at freeing up memory used by the previous city and not only can this lead to Save Error 12, but it also loads data from the previous city's file, causing it to bloat
+your Save permanently and may lead to game file corruption.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_10" xml:space="preserve">
+Avoid Elevators on Community Lots§
+Elevators can cause lag, especially when on community lots.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_11" xml:space="preserve">
+Dangerous Cheats§
+The "buydebug" cheat can lead to a variety of problems if you keep it active while your Sims travel, or if you exit the game. Therefore, do not keep it active under these conditions.
+\b\b
+The "moveobjects on" cheat can lead to different problems, especially with routing, so it is not advisable to have this turned on during gameplay. When trying to place a window
+or door, try using the Alt key to place objects.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_12" xml:space="preserve">
+Avoid Playing in Overcrowded Cities§
+Cities like Bridgeport can cause performance problems because of their density of lots that favor a greater number of existing Sims and lots to be simulated or loaded into memory.
+    </system:String>
+
+    
+    
+    
+    
+    <!-- Screen 6: Launcher - Maintenance Tips -->
+    <system:String x:Key="launcher_home_maintenanceTip_Tab">Maintenance Tips</system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_Title">Routine Maintenance Tips for Your Game</system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_0" xml:space="preserve">
+Keep the Amount of Customizable Content Under Control§
+Be careful with the amount of content such as clothes, objects, furniture and other similar items you have installed in your game. Generally a good upper limit
+for custom content it is 3.0 GB for the "mods" folder. In Dream Launcher, the size of your "mods" folder is displayed on the "Mods" page.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_1" xml:space="preserve">
+Merge Custom Content§
+Did you just download lots of clothes, furniture and other types of content? Well. Merge it all! Merging is nothing more than joining several "package" files into one
+single "package" file. Merging files helps immensely in reducing your game's loading times. Merging should not be done on mod files that contain
+scripts or sliders. If you don't know how to do this, click on the "Steam" icon here in Dream Launcher to access the mega guide and learn this.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_2" xml:space="preserve">
+Clean Your Save Game Regularly§
+Sometimes the Save file size can get a little out of control (normally, I'd say more than about 200Mb to 300Mb), leading to long download times.
+loading. This can be fixed by deleting some resources from the Save file, i.e. cleaning it. Sometimes the game generates multiple resources for a single event, such as
+for example camera photos, memories, etc, but only one of these resources is used. As for unused resources, the game will keep them in the Save Game as trash. In addition
+Additionally, if you've ever sent your Sims on a trip, not only are the memory assets copied, but also the camera photos, and things like paintings inside their Sims.
+inventories. The game will use the new copies as resources to display on the screen. As for the old ones, the game will not delete them, but will keep them in the Save Game. Due to this,
+It is essential that you clean your Save Game regularly.
+\b\b
+In Dream Launcher, on the "Saves" page, you can click on the "3-Dot Icon" of your Save Game and then on "Clear" to perform cleanup of your Save Game in a
+extremely easy and quick.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_3" xml:space="preserve">
+Pay Attention to Error Logs§
+If you have installed Dream Launcher Patches, your game will have Error Trap. It will send you a notification during gameplay whenever it detects an error generated
+while you play. Dream Launcher will also always notify you when it detects new error logs. You can view them through the "Cache" page.
+\b\b
+It is very important that you view each new log as although Error Trap automatically corrects most errors, some it is not able to correct, for
+This you must view each new log and if the error has not been corrected, you need to correct it, usually by resetting objects, Sims or lots. If you do not
+If you understand any Log released, try looking for help on Google or the internet in general.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_4" xml:space="preserve">
+Number of Sims Saved§
+Whenever possible, reduce the number of Sims saved in your game.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_5" xml:space="preserve">
+Clean Inventories Regularly§
+As time passes in your game, Sims accumulate items in their inventories. After a few weeks of playing, it's very easy to have hundreds of items lying around
+across the city in total. If you have installed the Dream Launcher Patches, you will have the Master Controller mod available in your game and will be able to clear the inventories of all
+City sims easily. To do this, simply click on the City Hall, and then on "NRaas > Master Controller > City > Object Stats". Then mark
+"Inventory" and click "Ok", then check "All" and click "Ok" again. The game will display a confirmation box asking you if you really want to clear
+the items. Just confirm. If you click on a family's lot, and follow the same path, you will only see items belonging to the family that owns the lot.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_6" xml:space="preserve">
+Redefine the Entire City§
+If you have installed the Dream Launcher Patches, you will have the Master Controller in your game. Using it you will be able to reset your entire city which includes everyone
+the Sims, Lots, Objects and other things. At least every 4 game weeks, it is recommended that you reset your entire city. This will help keep the game smoother,
+removing abandoned objects like cars, resetting broken things or the like, which could result in better performance for your game.
+\b\b
+Resetting your city will not affect your progression in any way. To reset, click on the City Hall, and then on "NRaas > Master Controller > Town >
+Reset All". Then, just confirm. The game should freeze for a few moments, but it will soon return to normal.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_7" xml:space="preserve">
+Clear Temporary and Cache Files Regularly§
+As you play, the game generates temporary and cache files. It can be beneficial for performance, and sometimes even solve problems, if you clean up the
+Cache and temps. Clean Cache and Temporary files regularly, and also clean them after installing a new mod, custom content or custom world.
+With Dream Launcher you can clear all types of Temporary and Cache files by going to the Launcher "Cache" page.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_8" xml:space="preserve">
+Take Care of Your Sims Inventories§
+Avoid keeping TOO many items in your active Sims inventories. Many items in inventories can contribute to lag in your game.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_9" xml:space="preserve">
+Save in Neighborhood Mode§
+Before saving your game, always switch to city view mode. In this mode, the game uses less RAM, which can reduce the chance of errors.
+or saving problem, especially if your game is already close to the RAM usage limit.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_10" xml:space="preserve">
+Monitor Game RAM Usage§
+The Sims 3 is a 32-bit architecture game. Therefore, he has a serious limitation on the amount of resources he can use on the computer. This basically wants
+say that The Sims 3 is limited to using a maximum of 2GB of your installed RAM. So check while you play to see if your game is close to that
+limit. If your game is approaching 1900 MB, it means it's time to save your game, close The Sims 3, and then open it again before you have any
+crash problem or saving error. Dream Launcher displays a RAM usage meter within the game if the Overlay option is enabled.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_11" xml:space="preserve">
+Check Population Statistics§
+From time to time, take a look at the population of your city. If you find that it has increased a lot and your game is experiencing more lag, remove irrelevant Sims or families
+from your city. If you have installed Dream Launcher Patches, your game will have the Master Controller. To obtain city population statistics, click on City Hall
+City, then "NRaas > Master Controller > Demographics > Population" and then click on the "X". The game will display a short report detailing the residents of your city.
+\b\b
+If you want to eliminate some Sims from the city, you can use the game's City Editor or you can also use the Master Controller. To do this, click on the City Hall,
+then, click on "NRaas > Master Controller > City > Annihilation". Choose a sim category and click "Ok". Then, from the list of Sims that appears, choose one or more
+Sims you want to remove from the city and then click "Ok". The positive side of using the Master Controller is that you can view even service Sims, or homeless Sims.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_12" xml:space="preserve">
+Manage The Deads§
+As time passes in your game, Sims are born, others die. As time passes, the number of dead Sims accumulates. Sims who die in
+Inactive families are automatically taken to the city Mausoleum. Active Sims are transformed into Urns or Tombstones. The problem is that over time, dead Sims
+they can inflate your save file, or cause lag problems due to their ghosts being spawned during gameplay. Therefore, from time to time, it is good that you
+perform some cleaning to ensure things are running at their best.
+\b\b
+The first thing is to ensure that all the dead have headstones or urns associated with them. To do this, click on the City Hall, then "NRaas > Master Controller >
+Bury the Dead." Once this is done, if there are dead Sims without tombstones or urns linked to them, the urns or tombstones will be created and stored inside the city's Mausoleum.
+\b\b
+Now, the second thing to do is to ensure that all existing urns and tombstones in the city are stored inside the city Mausoleum. Click on the City Hall, in
+Then "NRaas > Master Controller > Sim > Basic > Find Grave", now select a dead Sim whose urn or tombstone you suspect is not stored inside the
+City Mausoleum, then click "Ok". If the artifact is already inside the Mausoleum, or is in the inventory of a Sim or object, the game will ask you if you want to transfer the 
+urn or tombstone for your inventory, it's up to you. If the dead Sim's grave or urn is out in the world, in the open, the camera will move to the location where the artifact is found...
+\b\b
+If the urn or tombstone is on a public lot, such as a cemetery, you will need to do the following... Click on a location near where the grave or urn is on the lot. Click in
+"NRaas > Master Controller: > Radius Add To Inventory" then enter "9" and click "Ok". Several collectibles near where you clicked will be listed so you can
+choose one and transfer it to your Sim's inventory. You must choose the tombstone item which must have a name similar to "Objects.UrnstoneHuman" and then click "Ok". Done this
+another menu will appear showing you all the urns near the area where you clicked. Some urns or tombstones do not have Sims linked to them and are only there for decoration purposes,
+Therefore, you need to get the tombstone or urn with the name of the Sim you were looking for. Once done, just click "Ok" and confirm the next confirmation box. The tombstone will be
+placed in the family inventory, then you can enter purchase mode, place it on your lot and then place it in the inventory of an active Sim of yours. We'll see what to do with it, below.
+\b\b
+If the urn or tombstone is on an inactive Sim's lot, things will be a little simpler. Click on the lot where the artifact is located, then click on "Nraas > Master Controller >
+Make Active". Then, the family that owns the lot will become your active family. Now, just look for the urn or tombstone and place it in your active Sim's inventory. If you don't want to transform
+the family that owns the lot in active to get the urn or tombstone, then click on the lot, in a location close to where you think the artifact is. Then click on "NRaas > Master Controller: >
+Radius Add To Inventory" then type "9" and click "Ok". Several collectable items near where you clicked will be listed so you can choose one and transfer to inventory
+of your Sim. You must choose the tombstone item which must have a name similar to "Objects.UrnstoneHuman" and then click "Ok". Once this is done, the next steps are the same as the steps you need
+proceed to pick up an urn or tombstone from a public lot as described in the paragraph above...
+\b\b
+Once you have the urn or tombstone in hand, it's time to store it inside the Mausoleum. To do this, click on the City Hall, then "NRaas > Master Controller > City >
+Manage the Dead". Now just transfer the tombstones and urns to the Mausoleum inventory. If it is not possible to transfer the artifacts, you can go to the cemetery plot, click on the
+Mausoleum, then "NRaas > Master Controller: XXX Family Mausoleum.. > Transfer To" and then just select all the urns and tombstones in your Sim's inventory, and click "Ok". And that
+and it all!
+\b\b
+Just an addendum. For your family, it is also interesting to place the tombstones or urns of your dead Sims inside the Mausoleum. If you want one or two ghosts to continue to spawn, place 
+some tombstones outside the Mausoleum, and if you want no ghosts to spawn, keep everything inside the Mausoleum.
+\b\b
+BONUS: If you've been playing the same Save Game for a long time, it may be in your best interest to delete irrelevant dead Sims. If this is the case, simply click on the City Hall, then
+click "NRaas > Master Controller > City > Annihilation > Dead" and click "Ok". In the list that opens, select the Sims you want to erase from existence. Now click "Ok".
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_13" xml:space="preserve">
+Pay Attention To The Number Of Objects In Your Lot§
+If your active lot has thousands of objects, it's a good idea to be minimalist and try to reduce them to a more realistic quantity. Thousands of objects in an active batch can cause lag problems
+It depends on each case, so if you are experiencing lag, test go for a batch with fewer objects.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_14" xml:space="preserve">
+Migration To New City§
+If you are maintaining your city and have been playing for a while, but still feel like the game is experiencing lag that wasn't there before, as a last resort, you can test the
+possibility of migrating your family to a clean, and new city. It is possible to migrate your family while maintaining your family tree and relationships with other Sims. To do this, we will use the
+"Porter" mod so DO NOT use the game's native "Move to a New City" option.
+\b\b
+Before starting, make sure you have the "Porter" mod installed in your game. It can be found on the Dream Launcher "Mods" page, under the "Recommended" tab, under "Others". Furthermore,
+Do not attempt the following steps in City Edit mode, only in normal game mode.
+\b\b
+First, pause the game. Then click on the roof of your family's house. Now click on "NRaas > Porter... > Pack". In the window that opens, select your active family
+and other families you would like to pack and maintain relationships with. If you want to maintain family trees, it is important that in this step, you select families that have dead and
+that have to do with the Sims you are packaging. Now click "Ok". In the list that opens, mark "All" and click "Ok" again. Give the package a name and
+click "Ok". Now just wait. After the export is complete, completely close the game except Dream Launcher.
+\b\b
+Open The Sims 3 again and start a new game in a desired world. Select any Sim and place them in a house to start playing initially. Now click on the roof of a house
+empty, then click on "NRaas > Porter... > Unpack". In the window that opens, select ONLY the package that has the name you gave previously and click "Ok". The families contained
+inside the packaging will be imported to the city. Extra families will receive their homes and dead Sims will be added to the Mausoleum automatically.
+\b\b
+You can enter "City Edit" mode to search for your family and make them the active family now. If you prefer to activate your family faster, you can use the Master Controller.
+To do this, click on the City Hall, then "NRaas > Master Controller > Home > Make Active". In the window that opens, look for the house that has your family's name, and click on it.
+\b\b
+That is all! But if you find a family that has an incorrect name (alias) after importing, you can use the Master Controller to change the family name (alias). For
+To do this, click on the roof of the family house, then on "NRaas > Master Controller > Change Name" in the window that opens, enter the surname that the family members should have, and then
+click "Ok". You can hover over a Sim family member to see their last name and then give the same last name to that family member.
+    </system:String>
+
 </ResourceDictionary>

@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="Place Holder" WindowStyle="ToolWindow" Icon="/Resources/icon-32x.png" ResizeMode="NoResize" ShowInTaskbar="False" SizeToContent="WidthAndHeight" Topmost="True" WindowStartupLocation="CenterScreen">
     <Grid Width="512" Height="512">
-        <StackPanel VerticalAlignment="Top" Margin="8,8,8,0">
+        <StackPanel x:Name="content" VerticalAlignment="Top" Margin="8,8,8,0">
             <TextBlock x:Name="title" TextWrapping="Wrap" Text="Title" FontSize="20" FontWeight="Bold" FontFamily="{DynamicResource TheSimsSansSc}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Grid VerticalAlignment="Top" Margin="0,32,0,0">
                 <Grid.ColumnDefinitions>
@@ -25,7 +25,7 @@
             <DockPanel LastChildFill="False">
                 <Label x:Name="snapsThumbsLbl" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,0" Padding="0,0,0,0" Content="Place Holder"/>
                 <Image x:Name="snapsThumbsHlp" Width="20" DockPanel.Dock="Right" Margin="8,0,0,0" Height="20" Source="/Resources/help.png" Cursor="Help" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                <CheckBox x:Name="snapsThumbsCbx" Width="16" DockPanel.Dock="Right" Height="16" VerticalAlignment="Center" HorizontalAlignment="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <CheckBox x:Name="snapsThumbsCbx" Width="16" DockPanel.Dock="Right" Height="16" VerticalAlignment="Center" HorizontalAlignment="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"/>
             </DockPanel>
             <DockPanel LastChildFill="False" Margin="0,8,0,0">
                 <Label x:Name="memsPhotosPaintLbl" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,0" Padding="0,0,0,0" Content="Place Holder"/>

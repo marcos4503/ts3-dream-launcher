@@ -170,6 +170,8 @@
     <None Remove="Resources\three-dots-icon.png" />
     <None Remove="Resources\thumb-pick.png" />
     <None Remove="Resources\tip-lamp.png" />
+    <None Remove="Resources\tips-close.png" />
+    <None Remove="Resources\tips-open.png" />
     <None Remove="Resources\tool-caspe.png" />
     <None Remove="Resources\tool-dashboard.png" />
     <None Remove="Resources\tool-ese.png" />
@@ -391,6 +393,8 @@
     <Resource Include="Resources\three-dots-icon.png" />
     <Resource Include="Resources\thumb-pick.png" />
     <Resource Include="Resources\tip-lamp.png" />
+    <Resource Include="Resources\tips-close.png" />
+    <Resource Include="Resources\tips-open.png" />
     <Resource Include="Resources\tool-caspe.png" />
     <Resource Include="Resources\tool-dashboard.png" />
     <Resource Include="Resources\tool-ese.png" />

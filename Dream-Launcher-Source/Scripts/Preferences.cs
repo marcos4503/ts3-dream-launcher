@@ -104,6 +104,17 @@ namespace TS3_Dream_Launcher.Scripts
             public bool allowWitches = true;
             public bool allowHorses = true;
             public int disableCelebritiesSystem = 0;
+
+            public bool saveCleanSnapsThumbs = true;
+            public bool saveCleanMemsPhotoPaint = true;
+            public bool saveCleanSeasonCards = true;
+            public bool saveCleanPromPhotos = true;
+            public bool saveCleanCabinPhotos = true;
+            public bool saveCleanWorldShangSimla = false;
+            public bool saveCleanWorldChampsLesSims = false;
+            public bool saveCleanWorldAlSimhara = false;
+            public bool saveCleanWorldSimsUniversity = false;
+            public bool saveCleanWorldOasisLanding = false;
         }
 
         //Public variables

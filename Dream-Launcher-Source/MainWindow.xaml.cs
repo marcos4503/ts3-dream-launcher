@@ -104,6 +104,13 @@ namespace TS3_Dream_Launcher
             Custom
         }
 
+        //Private classes
+        private class TipItemTextFormatted
+        {
+            public string title = "";
+            public string text = "";
+        }
+
         //Cache variables
         private double thisWindowLeftPosition = 0;
         private double thisWindowTopPosition = 0;
@@ -128,6 +135,9 @@ namespace TS3_Dream_Launcher
         private IDisposable saveListUpdateRoutine = null;
         private IDisposable showVaultTaskRoutine = null;
         private IDisposable hideVaultTaskRoutine = null;
+        private IDisposable showTipsSectionRoutine = null;
+        private IDisposable hideTipsSectionRoutine = null;
+        private bool isTipsSectionToggled = false;
 
         //Private variables
         private IDictionary<string, Storyboard> animStoryboards = new Dictionary<string, Storyboard>();
@@ -241,6 +251,8 @@ namespace TS3_Dream_Launcher
             animStoryboards.Add("installedModsLoadExit", (FindResource("installedModsLoadExit") as Storyboard));
             animStoryboards.Add("vaultTaskEnter", (FindResource("vaultTaskEnter") as Storyboard));
             animStoryboards.Add("vaultTaskExit", (FindResource("vaultTaskExit") as Storyboard));
+            animStoryboards.Add("tipsEnter", (FindResource("tipsEnter") as Storyboard));
+            animStoryboards.Add("tipsExit", (FindResource("tipsExit") as Storyboard));
         }
 
         private void PrepareAndShowScreen1_Language()
@@ -954,6 +966,9 @@ namespace TS3_Dream_Launcher
 
             //Prepare the save system
             BuildAndPrepareSaveSystem();
+
+            //Prepare the tips system
+            BuildAndPrepareTipsSystem();
 
             //Check if have a new update and warn if was updated
             CheckUpdates();
@@ -7024,7 +7039,7 @@ namespace TS3_Dream_Launcher
             //Run the animation of loading exit
             animStoryboards["installedModsLoadExit"].Begin();
             //Wait end of animation
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
             //Hide the loading indicator
             instModsLoading.Visibility = Visibility.Collapsed;
 
@@ -7701,7 +7716,7 @@ namespace TS3_Dream_Launcher
             //Show the loading indicator
             recModsLoading.Visibility = Visibility.Visible;
             //Wait end of animation
-            yield return new WaitForSeconds(0.5);
+            yield return new WaitForSeconds(0.2);
 
             //Clear all mods previously rendered
             foreach (StoreModItem item in instantiatedRecModItems)
@@ -7742,14 +7757,14 @@ namespace TS3_Dream_Launcher
                 newItem.Prepare();
 
                 //Wait before render next to avoid UI freezing
-                yield return new WaitForSeconds(0.02f);
+                yield return new WaitForSeconds(0.01f);
             }
 
             //Auto change to category of all
             SetRecommendedModsCategoryFilter(currentSeeingRecModsCategory);
 
             //Wait end of animation
-            yield return new WaitForSeconds(0.5);
+            yield return new WaitForSeconds(0.2);
             //Hide the loading indicator
             recModsLoading.Visibility = Visibility.Collapsed;
 
@@ -7843,7 +7858,7 @@ namespace TS3_Dream_Launcher
             //Show the loading indicator
             recModsFiltering.Visibility = Visibility.Visible;
             //Wait some time before apply filter
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.15f);
 
             //Hide all items
             foreach (StoreModItem item in instantiatedRecModItems)
@@ -7852,7 +7867,7 @@ namespace TS3_Dream_Launcher
                 item.Visibility = Visibility.Collapsed;
 
                 //Wait before render next to avoid UI freezing
-                yield return new WaitForSeconds(0.005f);
+                yield return new WaitForSeconds(0.0025f);
             }
 
             //Enable only that corresponds with the filter...
@@ -7883,7 +7898,7 @@ namespace TS3_Dream_Launcher
                     item.Visibility = Visibility.Visible;
 
                 //Wait before render next to avoid UI freezing
-                yield return new WaitForSeconds(0.005f);
+                yield return new WaitForSeconds(0.0025f);
             }
 
             //Hide the loading indicator
@@ -8781,7 +8796,8 @@ namespace TS3_Dream_Launcher
             AddTask("saveListUpdate", "Updating the Save Game list.");
 
             //Disable the import button
-            importSave.IsEnabled = false;
+            importSave.Opacity = 0.25f;
+            importSave.IsHitTestVisible = false;
             //Show the loading indicator
             saveLoad.Visibility = Visibility.Visible;
             saveContent.Visibility = Visibility.Collapsed;
@@ -8802,7 +8818,6 @@ namespace TS3_Dream_Launcher
             foreach (DirectoryInfo dir in (new DirectoryInfo((myDocumentsPath + "/Saves")).GetDirectories()))
             {
                 //Get the directory name
-                string dirName = dir.Name;
                 string[] dirNameParts = dir.Name.Split(".");
 
                 //If contains ".backup" in the end of name, ignore it
@@ -8811,22 +8826,13 @@ namespace TS3_Dream_Launcher
 
                 //Prepare the response if have NHD file
                 bool foundNhdFile = false;
-                //Try to found the NHD file
-                foreach(FileInfo file in (new DirectoryInfo(dir.FullName).GetFiles()))
-                {
-                    //Get the file name and extension
-                    string fileName = System.IO.Path.GetFileNameWithoutExtension(file.FullName);
-                    string extension = System.IO.Path.GetExtension(file.FullName).Replace(".", "").ToLower();
-
-                    //Prepare a list of possible names of contains for NHD files
-                    string possibleName0 = (dirName.Split(".")[0].Replace(" ", ""));
-                    string possibleName1 = (dirName.Split(".")[0]);
-
-                    //Check if is the NHD file desired
-                    if (extension == "nhd")
-                        if (fileName.Contains(possibleName0) == true || fileName.Contains(possibleName1) == true)
-                            foundNhdFile = true;
-                }
+                //Try to found an NHD file
+                foreach (FileInfo file in (new DirectoryInfo(dir.FullName).GetFiles()))
+                    if (System.IO.Path.GetExtension(file.FullName).Replace(".", "").ToLower() == "nhd")
+                    {
+                        foundNhdFile = true;
+                        break;
+                    }
                 //If not found the NHD file, ignore it
                 if (foundNhdFile == false)
                     continue;
@@ -8922,7 +8928,8 @@ namespace TS3_Dream_Launcher
             saveContent.Visibility = Visibility.Visible;
             saveCount.Content = GetStringApplicationResource("launcher_save_statusCount").Replace("%n%", allSaveList.Count.ToString());
             //Enable the import button
-            importSave.IsEnabled = true;
+            importSave.Opacity = 0.85f;
+            importSave.IsHitTestVisible = true;
 
             //Auto clear routine reference
             saveListUpdateRoutine = null;
@@ -8987,6 +8994,219 @@ namespace TS3_Dream_Launcher
 
             //Auto clear reference of routine
             hideVaultTaskRoutine = null;
+        }
+    
+        //Tips manager
+
+        private void BuildAndPrepareTipsSystem()
+        {
+            //Render all tips
+            IDisposable coroutine = Coroutine.Start(RenderAllTipsRoutine());
+
+            //Setup the open button
+            tipsPush.MouseDown += (s, e) => 
+            {
+                //If is loading, ignore it
+                if (tipsLoad.Visibility == Visibility.Visible)
+                    return;
+
+                //If is closed, open
+                if(isTipsSectionToggled == false)
+                {
+                    OpenTipsSection();
+                    isTipsSectionToggled = true;
+                    return;
+                }
+
+                //If is opened, close
+                if (isTipsSectionToggled == true)
+                {
+                    CloseTipsSection();
+                    isTipsSectionToggled = false;
+                    return;
+                }
+            };
+
+            //Prepare the background closer
+            tipsPopUpBackground.MouseDown += (s, e) => 
+            {
+                CloseTipsSection();
+                isTipsSectionToggled = false;
+                return;
+            };
+        }
+
+        private TipItemTextFormatted GetGrossTipStringFormatted(string source)
+        {
+            //Prepare the value to return
+            TipItemTextFormatted toReturn = new TipItemTextFormatted();
+
+            //Split string parts
+            string[] stringParts = source.Split("§");
+
+            //Inform the title and text
+            toReturn.title = stringParts[0].Replace("\n", "");
+            toReturn.text = stringParts[1].Replace("\n", "").Replace("\\b", "\n").Replace("\\B", "\n");
+
+            //Return the value
+            return toReturn;
+        }
+
+        private IEnumerator RenderAllTipsRoutine()
+        {
+            //Show the loading indicator
+            tipsLoad.Visibility = Visibility.Visible;
+            tipsOpen.Visibility = Visibility.Collapsed;
+            tipsClose.Visibility = Visibility.Collapsed;
+            //Show loading cursor
+            tipsPush.Cursor = Cursors.Wait;
+
+            //Wait some time
+            yield return new WaitForSeconds(1.0f);
+
+            //Prepare the index of perfomance tips
+            int performanceTipsIndex = 0;
+            //Render each performance tip registered in lang files
+            while (true == true)
+            {
+                //Wait before render next to avoid UI freezing
+                yield return new WaitForSeconds(0.5f);
+
+                //Get the tip
+                string tipGross = GetStringApplicationResource(("launcher_home_performanceTip_" + performanceTipsIndex));
+
+                //If is a error string, cancel
+                if (tipGross == "###")
+                    break;
+
+                //Get the tip processed
+                TipItemTextFormatted tipProcessed = GetGrossTipStringFormatted(tipGross);
+
+                //Render this tip
+                TipItem newItem = new TipItem((performanceTipsIndex + 1).ToString(), tipProcessed.title, tipProcessed.text);
+                performanceTipsList.Children.Add(newItem);
+
+                //Configure it
+                newItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newItem.VerticalAlignment = VerticalAlignment.Top;
+                newItem.Width = double.NaN;
+                newItem.Height = double.NaN;
+                newItem.Margin = new Thickness(0, 0, 0, 8);
+
+                //Increase the index
+                performanceTipsIndex += 1;
+            }
+
+            //Prepare the index of maintenance tips
+            int maintenanceTipsIndex = 0;
+            //Render each maintenance tip registered in lang files
+            while (true == true)
+            {
+                //Wait before render next to avoid UI freezing
+                yield return new WaitForSeconds(0.5f);
+
+                //Get the tip
+                string tipGross = GetStringApplicationResource(("launcher_home_maintenanceTip_" + maintenanceTipsIndex));
+
+                //If is a error string, cancel
+                if (tipGross == "###")
+                    break;
+
+                //Get the tip processed
+                TipItemTextFormatted tipProcessed = GetGrossTipStringFormatted(tipGross);
+
+                //Render this tip
+                TipItem newItem = new TipItem((maintenanceTipsIndex + 1).ToString(), tipProcessed.title, tipProcessed.text);
+                maintenanceTipsList.Children.Add(newItem);
+
+                //Configure it
+                newItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newItem.VerticalAlignment = VerticalAlignment.Top;
+                newItem.Width = double.NaN;
+                newItem.Height = double.NaN;
+                newItem.Margin = new Thickness(0, 0, 0, 8);
+
+                //Increase the index
+                maintenanceTipsIndex += 1;
+            }
+
+            //Wait some time
+            yield return new WaitForSeconds(1.0f);
+
+            //Show loading cursor
+            tipsPush.Cursor = Cursors.Hand;
+            //Show the open indicator
+            tipsLoad.Visibility = Visibility.Collapsed;
+            tipsOpen.Visibility = Visibility.Visible;
+            tipsClose.Visibility = Visibility.Collapsed;
+        }
+
+        private void OpenTipsSection()
+        {
+            //If the routine is already running, stop it
+            if (showTipsSectionRoutine != null)
+            {
+                showTipsSectionRoutine.Dispose();
+                showTipsSectionRoutine = null;
+            }
+
+            //Start the show routine
+            showTipsSectionRoutine = Coroutine.Start(OpenTipsSectionRoutine());
+        }
+
+        private IEnumerator OpenTipsSectionRoutine()
+        {
+            //Change to close icon
+            tipsOpen.Visibility = Visibility.Collapsed;
+            tipsClose.Visibility = Visibility.Visible;
+
+            //Enable the tips UI and run animation
+            tipsPopUpBackground.Visibility = Visibility.Visible;
+            animStoryboards["tipsEnter"].Begin();
+
+            //Wait end of animation
+            yield return new WaitForSeconds(0.3f);
+
+            //Stop the animation
+            animStoryboards["tipsEnter"].Stop();
+            tipsPopUp.Margin = new Thickness(0, 0, 0, 0);
+
+            //Auto clear reference of routine
+            showTipsSectionRoutine = null;
+        }
+
+        private void CloseTipsSection()
+        {
+            //If the routine is already running, stop it
+            if (hideTipsSectionRoutine != null)
+            {
+                hideTipsSectionRoutine.Dispose();
+                hideTipsSectionRoutine = null;
+            }
+
+            //Start the show routine
+            hideTipsSectionRoutine = Coroutine.Start(CloseTipsSectionRoutine());
+        }
+
+        private IEnumerator CloseTipsSectionRoutine()
+        {
+            //Change to close icon
+            tipsOpen.Visibility = Visibility.Visible;
+            tipsClose.Visibility = Visibility.Collapsed;
+
+            //Run the animation of exit
+            animStoryboards["tipsExit"].Begin();
+
+            //Wait end of animation
+            yield return new WaitForSeconds(0.3f);
+
+            //Disable the tips and stop animation
+            tipsPopUpBackground.Visibility = Visibility.Collapsed;
+            animStoryboards["tipsExit"].Stop();
+            tipsPopUp.Margin = new Thickness(0, 0, -472, 0);
+
+            //Auto clear reference of routine
+            hideTipsSectionRoutine = null;
         }
     }
 }
