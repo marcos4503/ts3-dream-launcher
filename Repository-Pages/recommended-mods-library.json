@@ -783,6 +783,30 @@
             "pageUrl": "https://modthesims.info/d/653649/sims-3-hidden-stencils-unlocked-fixed.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-hidden-stencils-unlocked-fixed.zip"
         },
+        {
+            "name": "Get to Know Fix+",
+            "category": "FIXES",
+            "author": "simbouquet",
+            "description_enUS": "This mod improves the interactions of learning about Sims traits, fixes existing bugs in the system and adds new features. Makes it possible for inactive Sims to also learn traits from other Sims, etc.",
+            "description_ptBR": "Este mod aprimora as interações de aprender sobre traços de Sims, corrige bugs existentes no sistema e adiciona novas funcionalidades. Torna possível que Sims inativos também aprendam traços de outros Sims etc.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/666303/get-to-know-fix.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-get-to-know-fix.zip"
+        },
+        {
+            "name": "Tileable Items Shader Fix",
+            "category": "FIXES",
+            "author": "simsi45",
+            "description_enUS": "This mod fixes lighting bugs for tiled furniture, such as bookshelves.",
+            "description_ptBR": "Este mod corrige os bugs de iluminação de mobílias que podem ser ladrilhadas, como estantes de livros.",
+            "requiredEps": [ 1, 3, 5, 6, 7, 9, 11 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/655529/tileable-items-shader-fix.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-tileable-items-shader-fix.zip"
+        },
 
 
 
