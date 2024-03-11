@@ -711,6 +711,42 @@
             "pageUrl": "https://modthesims.info/d/679470/harvester-fix.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-harverster-temp-fix.zip"
         },
+        {
+            "name": "Fishing Box/Chest Fix",
+            "category": "FIXES",
+            "author": "NanaBx3",
+            "description_enUS": "This mod fixes the bug that meant that Treasure Chests and Crates could never be fished by fishing Sims.",
+            "description_ptBR": "Este mod corrige o bug que faz com que as Caixas e Baús de tesouro nunca pudessem ser pescados por Sims pescadores.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/682060/fishing-box-chest-fix-2-versions.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-fishing-box-chest-fix.zip"
+        },
+        {
+            "name": "Cross Eye Fix",
+            "category": "FIXES",
+            "author": "Lazy Duchess",
+            "description_enUS": "This mod fixes the bug that sometimes causes when a Sim gets old to become cross-eyed.",
+            "description_ptBR": "Este mod corrige o bug que faz com que as vezes, quando um Sim envelhece, ele fica vesgo.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.patreon.com/posts/ts3-small-mods-96833640",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-cross-eye-fix.zip"
+        },
+        {
+            "name": "Champs Les Sims Distant Terrain Tree Fix",
+            "category": "FIXES",
+            "author": "Potato Ballad",
+            "description_enUS": "This mod fixes the low definition textures of distant trees on the horizon in Champs Les Sims.",
+            "description_ptBR": "Este mod corrige as texturas de baixa definição de árvores distantes no horizonte de Champs Les Sims.",
+            "requiredEps": [ 1 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://potato-ballad-sims.tumblr.com/post/186731593545/just-dropping-in-then-ill-be-gone-for-the-next",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-terrain-distant-france-fix.zip"
+        },
 
 
 
