@@ -747,6 +747,42 @@
             "pageUrl": "https://potato-ballad-sims.tumblr.com/post/186731593545/just-dropping-in-then-ill-be-gone-for-the-next",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-terrain-distant-france-fix.zip"
         },
+        {
+            "name": "Read Toddler to Sleep Fixed",
+            "category": "FIXES",
+            "author": "danjaley",
+            "description_enUS": "This mod fixes the 'Read to Sleep Child' interaction that was broken by EA.",
+            "description_ptBR": "Este mod corrige a interação de 'Ler Para Criança Dormir' que foi quebrada pela EA.",
+            "requiredEps": [ 4 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://danjaley.tumblr.com/post/186252745188/read-toddler-to-sleep-fixed-interaction-great",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-read-to-sleep-fix.zip"
+        },
+        {
+            "name": "Pick Up Toddler Fixes",
+            "category": "FIXES",
+            "author": "TheSweetSimmer",
+            "description_enUS": "What this mod does is a simple fix that now Sims will always forward to the child to pick them up, no matter where they are, while the child waits and stays in place. They can also catch them at any angle.",
+            "description_ptBR": "O que este mod faz é uma correção simples que agora Sims sempre irão caminhar para a criança para pegá-los, não importa onde eles estão, enquanto a criança espera e permanece no lugar. Eles também podem pegá-los em qualquer ângulo.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/678824/pick-up-toddler-fixes.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-pick-up-toddler-fix.zip"
+        },
+        {
+            "name": "Hidden Stencils Unlocked and Fixed",
+            "category": "FIXES",
+            "author": "simsi45",
+            "description_enUS": "",
+            "description_ptBR": "",
+            "requiredEps": [ 1, 2, 3, 4, 5, 6, 8 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/653649/sims-3-hidden-stencils-unlocked-fixed.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-hidden-stencils-unlocked-fixed.zip"
+        },
 
 
 
