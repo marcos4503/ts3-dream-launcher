@@ -30,6 +30,7 @@ namespace Dl3DxOverlay
 
         //Cache variables
         private Thread ramCounterThread = null;
+        private int ramInteger = 0;
         private string ramString = "";
         private Thread fpsCounterThread = null;
         private TraceEventSession fpsEtwSession = null;
@@ -43,23 +44,26 @@ namespace Dl3DxOverlay
         //Private variables
         private int overlayPosition = -1;
         private System.Diagnostics.Process targetProcess = null;
+        private int warningRam = 0;
         private ProcessSharp processSharp = null;
         private Stopwatch stopwatch = null;
         private TickEngine tickEngine = new TickEngine();
 
         //Draw tools
-        private int backgroundBrush = -1;
+        private int backgroundBrushWarning = -1;
+        private int backgroundBrushNormal = -1;
         private int whiteBrush = -1;
         private int separatorBrush = -1;
         private int font = -1;
 
         //Core methods
 
-        public DirectXOverlay(System.Diagnostics.Process targetProcess, int overlayPosition)
+        public DirectXOverlay(System.Diagnostics.Process targetProcess, int overlayPosition, int warningRam)
         {
             //Store reference for target process
             this.overlayPosition = overlayPosition;
             this.targetProcess = targetProcess;
+            this.warningRam = warningRam;
         }
 
         public override void Initialize(IWindow tiwindow)
@@ -178,7 +182,8 @@ namespace Dl3DxOverlay
                     //Get the RAM usage using Performance Counter for more proximity with Windows Task Manager
                     int ramUsageMb = (int)((double)performanceCounter.RawValue / 1024.0f / 1024.0f);
 
-                    //Save into the string
+                    //Save into the string and integer variables
+                    ramInteger = ramUsageMb;
                     ramString = (ramUsageMb + " MB");
 
                     //Wait interval
@@ -288,7 +293,8 @@ namespace Dl3DxOverlay
         private void PrepareTheDrawTools()
         {
             //Prepare the draw tools
-            backgroundBrush = OverlayWindow.Graphics.CreateBrush(Color.FromArgb(135, 0, 0, 0));
+            backgroundBrushWarning = OverlayWindow.Graphics.CreateBrush(Color.FromArgb(192, 255, 0, 0));
+            backgroundBrushNormal = OverlayWindow.Graphics.CreateBrush(Color.FromArgb(135, 0, 0, 0));
             whiteBrush = OverlayWindow.Graphics.CreateBrush(Color.FromArgb(255, 255, 255, 255));
             separatorBrush = OverlayWindow.Graphics.CreateBrush(Color.FromArgb(128, 255, 255, 255));
             font = OverlayWindow.Graphics.CreateFont("Courier New", 12);
@@ -307,7 +313,10 @@ namespace Dl3DxOverlay
             //Draw a fill rectangle (bottom-right of screen)
             if (overlayPosition == 0)
             {
-                OverlayWindow.Graphics.FillRectangle((width - bgWidth - 6), (height - bgHeight - 6), (bgWidth), (bgHeight), backgroundBrush);
+                if (ramInteger < warningRam)
+                    OverlayWindow.Graphics.FillRectangle((width - bgWidth - 6), (height - bgHeight - 6), (bgWidth), (bgHeight), backgroundBrushNormal);
+                if (ramInteger >= warningRam)
+                    OverlayWindow.Graphics.FillRectangle((width - bgWidth - 6), (height - bgHeight - 6), (bgWidth), (bgHeight), backgroundBrushWarning);
                 OverlayWindow.Graphics.DrawText(ramString, font, whiteBrush, (width - bgWidth - 6 + 2), (height - bgHeight - 6 + 2));
                 OverlayWindow.Graphics.DrawLine((width - (bgWidth / 2) - 6), (height - bgHeight - 6 + 4), (width - (bgWidth / 2) - 6), (height - bgHeight - 6 + 12), 2, separatorBrush);
                 OverlayWindow.Graphics.DrawText(fpsString, font, whiteBrush, (width - bgWidth - 6 + 80), (height - bgHeight - 6 + 2));
@@ -316,7 +325,10 @@ namespace Dl3DxOverlay
             //Draw a fill rectangle (top-middle of screen)
             if (overlayPosition == 1)
             {
-                OverlayWindow.Graphics.FillRectangle((int)((float)width * 0.5f) - (bgWidth / 2), 6, bgWidth, bgHeight, backgroundBrush);
+                if (ramInteger < warningRam)
+                    OverlayWindow.Graphics.FillRectangle((int)((float)width * 0.5f) - (bgWidth / 2), 6, bgWidth, bgHeight, backgroundBrushNormal);
+                if (ramInteger >= warningRam)
+                    OverlayWindow.Graphics.FillRectangle((int)((float)width * 0.5f) - (bgWidth / 2), 6, bgWidth, bgHeight, backgroundBrushWarning);
                 OverlayWindow.Graphics.DrawText(ramString, font, whiteBrush, (int)((float)width * 0.5f) - (bgWidth / 2) + 2, 8);
                 OverlayWindow.Graphics.DrawLine((int)((float)width * 0.5f), 10, (int)((float)width * 0.5f), 18, 2, separatorBrush);
                 OverlayWindow.Graphics.DrawText(fpsString, font, whiteBrush, (int)((float)width * 0.5f) - (bgWidth / 2) + 80, 8);

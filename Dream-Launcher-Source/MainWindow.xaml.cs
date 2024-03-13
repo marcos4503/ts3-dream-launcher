@@ -4243,7 +4243,7 @@ namespace TS3_Dream_Launcher
                 Process process = new Process();
                 process.StartInfo.FileName = System.IO.Path.Combine(workingDirectory, "Dl3DxOverlay.exe");
                 process.StartInfo.WorkingDirectory = workingDirectory;
-                process.StartInfo.Arguments = "\"TS3W\" " + ((launcherPrefs.loadedData.gameOverlay == 1) ? "0" : "1");
+                process.StartInfo.Arguments = ("\"TS3W\" " + ((launcherPrefs.loadedData.gameOverlay == 1) ? "0" : "1") + " 1800");
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.CreateNoWindow = true;  //<- Hide the process window
                 process.StartInfo.RedirectStandardOutput = true;
@@ -9046,7 +9046,44 @@ namespace TS3_Dream_Launcher
 
             //Inform the title and text
             toReturn.title = stringParts[0].Replace("\n", "");
-            toReturn.text = stringParts[1].Replace("\n", "").Replace("\\b", "\n").Replace("\\B", "\n");
+
+            //Get the text
+            string textToReturn = stringParts[1];
+
+            //Replace line breaks with spaces, and remove double spaces
+            textToReturn = textToReturn.Replace("\n", " ").Replace("\r", " ").Replace("  ", " ").Replace("  ", " ");
+
+            //Replace '\b' signals with line breaks
+            textToReturn = textToReturn.Replace("\\b", "\n").Replace("\\B", "\n");
+
+            //Fix string to don't have spaces before and after line breaks
+            string[] textToReturnLines = textToReturn.Split("\n");
+            for(int i = 0; i < textToReturnLines.Length; i++)
+            {
+                //Skip line if don't have text
+                if (textToReturnLines[i].Length == 0)
+                    continue;
+
+                //Remove spaces in start of the line
+                while (textToReturnLines[i][0] == ' ')
+                    textToReturnLines[i] = textToReturnLines[i].Remove(0, 1);
+
+                //Remove spaces in end of the line
+                while (textToReturnLines[i][(textToReturnLines[i].Length - 1)] == ' ')
+                    textToReturnLines[i] = textToReturnLines[i].Remove((textToReturnLines[i].Length - 1), 1);
+            }
+            //Reset the text to return
+            textToReturn = "";
+            //Rebuild the original string
+            for(int i = 0; i < textToReturnLines.Length; i++)
+            {
+                if (i > 0)
+                    textToReturn += "\n";
+                textToReturn += textToReturnLines[i];
+            }
+
+            //Inform the text
+            toReturn.text = textToReturn;
 
             //Return the value
             return toReturn;
@@ -9070,7 +9107,7 @@ namespace TS3_Dream_Launcher
             while (true == true)
             {
                 //Wait before render next to avoid UI freezing
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.25f);
 
                 //Get the tip
                 string tipGross = GetStringApplicationResource(("launcher_home_performanceTip_" + performanceTipsIndex));

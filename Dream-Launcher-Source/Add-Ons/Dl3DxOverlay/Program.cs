@@ -21,12 +21,13 @@ namespace Dl3DxOverlay
             catchedArguments = arguments;
 
             //If don't have a argument, cancel
-            if (arguments.Length < 2)
+            if (arguments.Length < 3)
                 return;
 
             //Get the target process name and overlay position
             string processName = arguments[0];
             int overlayPosition = int.Parse(arguments[1]);
+            int warningRam = int.Parse(arguments[2]);
 
             //Try to get a reference for the process name
             System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessesByName(processName).FirstOrDefault();
@@ -36,7 +37,7 @@ namespace Dl3DxOverlay
                 return;
 
             //Start the DirectX overlay in target process
-            DirectXOverlay overlay = new DirectXOverlay(process, overlayPosition);
+            DirectXOverlay overlay = new DirectXOverlay(process, overlayPosition, warningRam);
             overlay.Initialize(null);
 
             //Try to read the input in the console, to pause the application...

@@ -987,9 +987,9 @@ ligar para este mundo ou tiver passado pouco tempo nele.
     <system:String x:Key="launcher_home_performanceTip_0" xml:space="preserve">
 Configurações do Jogo§
 Configure o seu jogo seguindo as recomendações do Dream Launcher para desempenho aprimorado. Na página "Configurações" você pode passar o mouse em cima dos ícones
-de ponto de interrogação para visualizar as recomendações.
+de ponto de interrogação para visualizar as recomendações. Seguir todas as configurações recomendadas garantirá as melhores configurações para seu jogo!
 \b\b
-Além disso, as configurações devem ser feitas somente através do Dream Launcher.
+Além disso, as configurações do seu jogo devem ser feitas somente através do Dream Launcher.
     </system:String>
     <system:String x:Key="launcher_home_performanceTip_1" xml:space="preserve">
 Use o Overwatch a Seu Favor§
@@ -1002,7 +1002,7 @@ instalado nos Patches do Dream Launcher não irá redefinir os Sims com problema
 que pode estar causando o problema.
 \b\b
 É recomendado que você procure resolver os problemas de roteamento dos Sims da sua cidade sempre que possível, pois esses problemas podem gerar lag no seu jogo. Se você preferir
-por redefinir todos os Sims da cidade, você pode usar o cheat "resetsim *" (sem aspas).
+por redefinir todos os Sims da cidade, você pode usar o cheat "resetsim *" (sem aspas) ou o Master Controller, instalado pelos Patches do Dream Launcher.
     </system:String>
     <system:String x:Key="launcher_home_performanceTip_2" xml:space="preserve">
 Evite Jogar em Island Paradiso§
@@ -1011,9 +1011,9 @@ para problemas de lag e congelamento.
     </system:String>
     <system:String x:Key="launcher_home_performanceTip_3" xml:space="preserve">
 Evite Modificar a Cidade§
-Evite modificar a sua cidade adicionando novos lotes residenciais, muitos lotes comerciais, deletando lotes já existentes ou coisas assim. Fazer essas operações poderá resultar
+Evite modificar a sua cidade adicionando novos lotes residenciais, lotes comerciais, deletando lotes já existentes ou coisas assim. Fazer essas operações poderá resultar
 em mudanças na malha de roteamento da sua cidade, e como a EA não fez um bom trabalho de otimização no jogo, essas mudanças na malha de roteamento podem resultar em mais lag
-para seu jogo, dependendo do mundo e do caso.
+para seu jogo, dependendo do mundo e do caso. Em resumo, use somente os lotes existentes na cidade, o máximo que puder.
     </system:String>
     <system:String x:Key="launcher_home_performanceTip_4" xml:space="preserve">
 Jogue Com as Memórias Desabilitadas§
@@ -1027,7 +1027,7 @@ que faz uso intensivo de IO, e pode se beneficiar muito de uma unidade de drive 
     </system:String>
     <system:String x:Key="launcher_home_performanceTip_6" xml:space="preserve">
 Evite Ir Ao Futuro§
-Se você não tem muito interesse em explorar o futuro, não vá para o Futuro (Oasis Landing). Isso pode prevenir que você tenha alguns problemas de otimização.
+Se você não tem muito interesse em explorar o futuro, não vá para o Futuro (Oasis Landing). Isso pode prevenir que você tenha alguns problemas de otimização e consequentemente, lag.
     </system:String>
     <system:String x:Key="launcher_home_performanceTip_7" xml:space="preserve">
 Mais Escolas!§
@@ -1046,7 +1046,7 @@ Se você possui outros anti-virus de terceiros, se possível, faça o mesmo proc
 Saia do Jogo Antes de Carregar Outro Save§
 Sempre saia completamente do jogo para a Área de Trabalho e reinicie-o antes de carregar outro save ou iniciar um novo jogo, em vez de apenas voltar para o Menu Principal. O The Sims 3 não
 é eficiente em liberar memória usada pela cidade anterior e não só isso pode levar ao Erro 12 de salvamento, mas também carrega dados do arquivo da cidade anterior, fazendo com que ele inche
-seu Save permanentemente e pode levar a corrupção do arquivo do jogo.
+seu Save permanentemente e pode levar a corrupção do seu arquivo de Save.
     </system:String>
     <system:String x:Key="launcher_home_performanceTip_10" xml:space="preserve">
 Evite Elevadores em Lotes Comunitários§
@@ -1057,18 +1057,28 @@ Cheats Perigosos§
 O cheat "buydebug" pode levar a diversos problemas se você mante-lo ativo enquanto seus Sims viajam, ou se você sair do jogo. Por isso, não o mantenha ativo sob essas condições.
 \b\b
 O cheat "moveobjects on" pode levar a diferentes problemas, especialmente com o roteamento, então não é aconselhável ter isso ligado durante o jogo. Ao tentar colocar uma janela
-ou porta, tente usar a tecla Alt para colocar objetos.
+ou porta, tente usar a tecla ALT para colocar objetos.
     </system:String>
     <system:String x:Key="launcher_home_performanceTip_12" xml:space="preserve">
-Evite Jogar Em Cidades Superpopulosas§
-Cidades como Bridgeport podem causar problemas de desempenho devido à sua densidade de lotes que favorece um maior número de Sims existentes e lotes a serem simulados ou carregados na memória.
+Evite Jogar Em Cidades Muito Grandes ou Superpopulosas§
+Cidades como Bridgeport podem causar problemas de desempenho devido à sua densidade de lotes que favorece um maior número de Sims existentes e lotes a serem simulados ou carregados na 
+memória. Prefira cidades de tamanho médio ou pequenas, como cidades de subúrbios ou com no máximo poucos prédios.
     </system:String>
     <system:String x:Key="launcher_home_performanceTip_13" xml:space="preserve">
 Evite Instalar Versões "Corrigidas" de Mundos Originais da EA§
 Muitas vezes versões "corrigidas" de mundos originais trazidos pela EA podem trazer mais problemas do que eles tentam corrigir, problemas de roteamento, quebra de alguns itens como lotes
-ou métodos de transporte etc. com Mods que corrigem problemas de roteamento, já que essas versões "corrigidas" dos mundos podem ter problemas com eles. O Dream Launcher por meio dos Patches
-já instala diversas correções de roteamento que já ajudam bastante o seu jogo. Mas se você tem interesse em jogar em mundos diferentes, sem problemas de roteamento ou coisas assim, considere
-procurar Mundos Personalizados pela Internet e instalar-os pelo Dream Launcher!
+ou métodos de transporte etc. Esses mundos também podem apresentar problemas de incompatibilidade com mods que corrigem problemas de roteamento, já que essas versões "corrigidas" dos mundos,
+mudam as coisas. O Dream Launcher por meio dos Patches já instala diversas correções de roteamento que já ajudam bastante o seu jogo. Mas se você tem interesse em jogar em mundos diferentes, 
+sem problemas de roteamento ou coisas assim, considere procurar Mundos Personalizados pela Internet e instalar-os pelo Dream Launcher!
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_14" xml:space="preserve">
+Salve Seu Jogo Usando "Salvar Como"§
+Se você tiver o hábito de regularmente salvar uma cópia do jogo no Cofre do Dream Launcher, então pode-se usar somente o "Salvar", mas ainda sim, é recomendado periodicamente (a cada 3 semanas 
+por exemplo) usar o "Salvar Como" com um novo nome (exemplo: "Cidade (1)") para gerar um salvamento limpo, e então, você pode apagar o antigo.
+\b\b
+É um bom hábito sempre salvar uma cópia do seu Save no Cofre regularmente, pois casso algo dê errado com seu Save, você poderá restaurar o seu Save para a cópia existente no Cofre, e "voltar no
+tempo". Se você for uma pessoa que se importa muito com seu Save, é recomendado até mesmo copia-lo para algum local do seu computador, periodicamente, usando o Dream Launcher, e então guardar 
+as cópias num local seguro, como um backup ou nuvem.
     </system:String>
 
 
@@ -1081,13 +1091,13 @@ procurar Mundos Personalizados pela Internet e instalar-os pelo Dream Launcher!
     <system:String x:Key="launcher_home_maintenanceTip_0" xml:space="preserve">
 Mantenha a Quantidade de Conteúdos Customizáveis Sob Controle§
 Tenha cuidado com a quantidade de conteúdos como roupas, objetos, mobílias e outros itens similares você possui instalado no seu jogo. Geralmente um bom limite máximo
-para conteúdos customizados é de 3.0 GB para a pasta "mods". No Dream Launcher, o tamanho da sua pasta "mods" é exibido na página "Mods".
+para conteúdos customizados é de 3.0 GB para a pasta "Mods". No Dream Launcher, o tamanho da sua pasta "Mods" é exibido na página "Mods".
     </system:String>
     <system:String x:Key="launcher_home_maintenanceTip_1" xml:space="preserve">
 Mescle Conteúdos Customizados§
-Acabou de baixar várias roupas, mobílias e outros tipos de conteúdos? Bem. Mescle tudo isso! A mesclagme nada mais é do que juntar vários arquivos "package" dentro de um
+Acabou de baixar várias roupas, mobílias e outros tipos de conteúdos? Bem. Mescle tudo isso! A mesclagem nada mais é do que juntar vários arquivos "package" dentro de um
 único arquivo "package". Mesclar arquivos ajuda imensamente a reduzir os tempos de carregamento do seu jogo. A mesclagem não deve ser feita em arquivos de mods que contém
-scripts ou sliders. Se você não sabe como fazer isso, clique no ícone da "Steam" aqui no Dream Launcher para acessar o mega-guia e aprender isso.
+scripts ou sliders. Se você não sabe como fazer isso, clique no ícone da "Steam" aqui no Dream Launcher para acessar o mega-guia e aprender a fazer isso.
     </system:String>
     <system:String x:Key="launcher_home_maintenanceTip_2" xml:space="preserve">
 Limpe o Seu Save Game Regularmente§
@@ -1111,10 +1121,6 @@ isso você deve visualizar cada novo log e caso o erro não tenha sido corrigido
 entende algum Log lançado, tente buscar ajuda no Google ou na internet em geral.
     </system:String>
     <system:String x:Key="launcher_home_maintenanceTip_4" xml:space="preserve">
-Quantidade de Sims Salvos§
-Sempre que possível, reduza a quantidade de Sims salvos em seu jogo.
-    </system:String>
-    <system:String x:Key="launcher_home_maintenanceTip_5" xml:space="preserve">
 Limpe os Inventários Regularmente§
 Conforme o tempo vai passando no seu jogo, os Sims vão acumulando itens em seus inventários. Após algumas semanas de jogo, é muito fácil ter centenas de itens espalhados
 pela cidade ao total. Se você instalou os Patches do Dream Launcher, você terá o mod Master Controller disponível em seu jogo e poderá limpar os inventários de todos os
@@ -1122,7 +1128,7 @@ Sims da cidade facilmente. Para fazer isso, basta clicar na Prefeitura da Cidade
 "Inventário" e clique em "Ok", em seguida marque "Todos" e clique em "Ok" novamente. O jogo exibirá uma caixa de confirmação lhe perguntando se você realmente deseja limpar
 os itens. Basta confirmar. Se você clicar num lote de alguma família, e seguir o mesmo caminho, você verá somente os itens pertencentes a família dona do lote.
     </system:String>
-    <system:String x:Key="launcher_home_maintenanceTip_6" xml:space="preserve">
+    <system:String x:Key="launcher_home_maintenanceTip_5" xml:space="preserve">
 Redefina a Cidade Inteira§
 Se você instalou os Patches do Dream Launcher, você possuirá o Master Controller em seu jogo. Usando ele, você será capaz de redefinir toda a sua cidade, o que inclui todos
 os Sims, Lotes, Objetos e outras coisas. A cada 4 semanas de jogo, no mínimo, é recomendado que você redefina toda a sua cidade. Isso ajudará a manter o jogo mais liso,
@@ -1131,29 +1137,29 @@ removendo objetos abandonados como carros, redefinindo coisas quebradas ou coisa
 A redefinição da sua cidade não afetará de nenhuma forma sua progressão. Para redefinir, clique na Prefeitura da Cidade, e então em "NRaas > Master Controller > Cidade > 
 Reiniciar Tudo". Em seguida, basta confirmar. O jogo deve congelar por alguns instantes, mas logo ele voltará ao normal.
     </system:String>
-    <system:String x:Key="launcher_home_maintenanceTip_7" xml:space="preserve">
+    <system:String x:Key="launcher_home_maintenanceTip_6" xml:space="preserve">
 Limpe Arquivos Temporários e de Cache Regularmente§
 Enquanto você joga, o jogo gera arquivos temporários e de Cache. Pode ser benefico para o desempenho, e as vezes até resolver problemas se você limpar os arquivos de
 Cache e temporários. Limpe regularmente os arquivos de Cache e Temporários, e também limpe-os depois de instalar algum mod novo, conteúdo customizado ou mundo customizado.
 Com o Dream Launcher você consegue limpar todos os tipos de arquivos Temporários e de Cache indo a página "Cache" do Launcher.
     </system:String>
-    <system:String x:Key="launcher_home_maintenanceTip_8" xml:space="preserve">
-Cuide dos Inventários dos Seus Sims§
+    <system:String x:Key="launcher_home_maintenanceTip_7" xml:space="preserve">
+Cuide dos Inventários dos Seus Sims Ativos Também§
 Evite manter MUITOS itens nos inventários dos seus Sims ativos. Muitos itens nos inventários podem contribuir para o lag no seu jogo.
     </system:String>
-    <system:String x:Key="launcher_home_maintenanceTip_9" xml:space="preserve">
+    <system:String x:Key="launcher_home_maintenanceTip_8" xml:space="preserve">
 Salve no Modo Vizinhança§
 Antes de salvar o seu jogo, sempre alterne para o modo de visualização da cidade. Neste modo, o jogo utiliza menos memória RAM, o que pode reduzir a chance de algum erro
 ou problema de salvamento, ainda mais se seu jogo já estiver próximo do limite de uso de RAM.
     </system:String>
-    <system:String x:Key="launcher_home_maintenanceTip_10" xml:space="preserve">
+    <system:String x:Key="launcher_home_maintenanceTip_9" xml:space="preserve">
 Vigie o Uso de RAM do Jogo§
 O The Sims 3 é um jogo de arquitetura 32 bits. Por isso ele possui uma séria limitação na quantidade de recursos que ele pode usar do computador. Isso basicamente quer
-dizer que o The Sims 3 está limitado a usar no máximo 2 GB de sua memória RAM instalada. Por isso, verifique enquanto joga, para saber se o seu jogo está próximo desse
-limite. Se o seu jogo estiver próximo de 1900 MB, isso quer dizer que é hora de salvar o seu jogo, fechar o The Sims 3 e então abri-lo novamente, antes que você tenha algum
+dizer que o The Sims 3 está limitado a usar no máximo ~3,5 GB de sua memória RAM instalada. Por isso, verifique enquanto joga, para saber se o seu jogo está próximo desse
+limite. Se o seu jogo estiver próximo de ~1800 MB, isso quer dizer que é hora de salvar o seu jogo, fechar o The Sims 3 e então abri-lo novamente, antes que você tenha algum
 problema de crash ou erro de salvamento. O Dream Launcher exibe um medidor de uso de RAM dentro do jogo, caso a opção de Overlay esteja ativada.
     </system:String>
-    <system:String x:Key="launcher_home_maintenanceTip_11" xml:space="preserve">
+    <system:String x:Key="launcher_home_maintenanceTip_10" xml:space="preserve">
 Verifique as Estatísticas de População§
 De tempo em tempo, dê uma olhada na população da sua cidade. Se você achar que ela aumentou muito e com isso seu jogo está com mais lag, remove Sims ou famílias irrelevantes
 da sua cidade. Se você instalou os Patches do Dream Launcher, seu jogo terá o Master Controller. Para obter as estatísticas de população da cidade, clique na Prefeitura da 
@@ -1162,13 +1168,24 @@ Cidade, em seguida "NRaas > Master Controller > Demografia > População" e em s
 Se você desejar eliminar alguns Sims da cidade, você pode usar o Editor de Cidades do jogo ou você também pode usar o Master Controller. Para isso clique na Prefeitura da Cidade,
 então, clique em "NRaas > Master Controller > Cidade > Aniquilação". Escolha uma categoria de sim e clique em "Ok". Em seguida, na lista de Sims que surge, escolha um ou mais
 Sims que deseja remover da cidade e então clique em "Ok". O lado positivo de usar o Master Controller é que você pode visualizar até mesmo Sims de serviço, ou Sims sem-teto.
+\b\b
+Se você preferir limitar mais, a quantidade de Sims que se é possível comportar na cidade, você pode reconfigurar lotes residenciais vazios para "tranca-los". Para isso, alterne
+para o modo de Edição de Cidade, em seguida, clique no ícone de um lote residencial vazio. Em seguida, na janela que se abre, clique em "Alterar Tipo de Lote". Alterne para
+"Comunitário" e "Visitas Proibidas". Dessa forma, o jogo entenderá que tal lote ou casa não pode ser povoada e dessa forma o jogo se sentirá menos tentado a acrescentar
+mais famílias na cidade.
     </system:String>
-    <system:String x:Key="launcher_home_maintenanceTip_12" xml:space="preserve">
+    <system:String x:Key="launcher_home_maintenanceTip_11" xml:space="preserve">
 Gerencie os Mortos§
 Conforme o tempo vai passando em seu jogo, Sims vão nascendo, outros vão morrendo. Conforme o tempo passa, a quantidade de Sims mortos vai se acumulando. Os Sims que morrem em
 famílias inativas são automaticamente levados para o Mausoleu da cidade. Já os Sims ativos são transformados em Urnas ou Lápides. O problema é que com o tempo, os Sims mortos
 podem inflacionar o seu arquivo de Save, ou causar problemas de Lag por causa dos fantasmas deles sendo spawnados durante a gameplay. Por isso, de tempo em tempo, é bom que você
 execute algumas limpezas para garantir que as coisas funcionem no seu melhor estado.
+\b\b
+Antes de iniciarmos, saiba que é preciso que o cemitério de sua cidade possua um Mausoléu. Se ele não tiver, entre no modo de Edição da Cidade e edite o cemitério, para colocar
+um Mausoléu nele. É recomendado fazer isso no começo do seu jogo, mas se você já está jogando a um tempo e usar "Editar Cidade" para mover qualquer coisa no cemitério, os túmulos
+existentes, desaparecerão. Então é melhor você comprar a propriedade e depois fazer essas mudanças, para manter os túmulos existentes. Talvez seja necessário usar o cheat "buydebug on"
+para que você possa encontrar um Mausoléu para comprar. O cheat "buydebug on" só funcionará se "testingcheatsenabled true" estiver ativo. Não se esqueça de desligar o "buydebug" depois
+de terminar, usando "buydebug off".
 \b\b
 A primeira coisa é garantir que todos os mortos possuam lápides ou urnas associadas a eles. Para fazer isso, clique na Prefeitura da Cidade, em seguida "NRaas > Master Controller > 
 Enterrar os Mortos". Feito isso, caso haja Sims mortos sem lápides ou urnas vinculadas a eles, as urnas ou lápides serão criadas e guardadas dentro do Mausoleu da cidade.
@@ -1198,18 +1215,58 @@ Gerir os Mortos". Agora é só transferir as lápides e urnas para o inventário
 Mausoleu, então "NRaas > Master Controller: Mausoléu da Família XXX.. > Transferir Para" e então, é só selecionar todas as urnas e lápides no inventário do seu Sim, e clicar em "Ok". E isso
 é tudo!
 \b\b
-Apenas um adendo. Para sua família, também é interessante colocar as lápides ou urnas dos seus Sims mortos dentro do Mausoleu. Se você quiser que um ou outro fantasma continue a spawnar, 
+Apenas um adendo. Para sua família ativa, também é interessante colocar as lápides ou urnas dos seus Sims mortos dentro do Mausoleu. Se você quiser que um ou outro fantasma continue a spawnar, 
 coloque algumas lápides fora do Mausoleu, e quanto quiser que nenhum fantasma spawne, guarde tudo dentro do Mausoleu.
 \b\b
 BÔNUS: Se você estiver jogando a muito tempo no mesmo Save Game, pode ser de seu interesse apagar Sims mortos irrelevantes. Se for este o caso, basta clicar na Prefeitura da Cidade, então
 clique em "NRaas > Master Controller > Cidade > Aniquilação > Morto" e clique em "Ok". Na lista que se abre, marque os Sims que você deseja apagar da existência. Agora, clique em "Ok".
     </system:String>
-    <system:String x:Key="launcher_home_maintenanceTip_13" xml:space="preserve">
+    <system:String x:Key="launcher_home_maintenanceTip_12" xml:space="preserve">
 Atenção a Quantidade de Objetos no Seu Lote§
 Se seu lote ativo tiver miliares de objetos, é interessante ser minimalista e procurar reduzi-los a uma quantidade mais realista. Miliares de objetos num lote ativo pode trazer problemas de lag
 a depender de cada caso, por isso, se você está experimentando lag, teste ir para um lote com menos objetos.
     </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_13" xml:space="preserve">
+Livre-se dos LHAMAs!§
+O Arranjador Atômico Molecular de Raios ou LHAMA é uma cabine telefônica que teletransporta Sims. O problema é que as LHAMAs causam problemas de roteamento e lag no seu jogo, por isso,
+cheque se eles existem na sua cidade, e se existirem, delete todos eles.
+\b\b
+Caso você tenha instalado os Patches do Dream Launcher, você terá o Master Controller em seu jogo. Para remover todos os LHAMAs da cidade, clique na Prefeitura da Cidade, então clique em
+"NRaas > Master Controller > Cidade > Informações do Objecto", clique em "Sem Inventário" e clique em "Ok". Na lista que aparece, aguarde até que todos os itens terminem de aparecer. Pode levar
+algum tempo. A lista já vem classificada em ordem alfabética, então, procure pelo item chamado "Object.Miscellaneous.AncientPortal" (ícone de uma cabine telefônica vermelha). Se você não encontrar,
+então provavelmente ele não existe na sua cidade, mas se existir, então selecione-o e clique em "Ok", ja próxima janela, marque a opção "Todos" e clique em "Ok".
+    </system:String>
     <system:String x:Key="launcher_home_maintenanceTip_14" xml:space="preserve">
+Deixe Poucos ou Nenhum Spawner Em Sua Cidade§
+Antes de entendermos por que Spawners podem ser um problema, precisamos entender o que eles fazem no jogo. Os Spawners são entidades (ou objetos) invisíveis em The Sims 3 que permitem que objetos
+colecionáveis como sementes, rochas, gemas, metais, insetos, peixes e locais de escavação apareçam nas proximidades. Os Spawners são normalmente colocados em vários locais em qualquer mundo, e cada 
+um tem a chance de criar um objeto de um determinado tipo (ou variedade de tipos).
+\b\b
+A questão, é que Spawners podem ser MUITO problemáticos para seu jogo, gerando erros e lags. Além disso, se você precisar de alguma coisa que venha de um Spawner (como um determinado peixe
+por exemplo), você sempre poderá encontrar alguma outra maneira de obte-lo. Por exemplo, com cachorros, é possível de se encontrar gemas e metais, sem ter que procurar por metais gerados por
+Spawners espalhados pelo terreno no mundo. Pelo fato dos Spawners serem problemáticos e gerar problemas de desempenho, é recomendado que removamos todos os Spawners da nossa cidade, ou pelo menos 
+a grande maioria. Há também a estratégia de remover TODOS os Spawners da cidade, e então adicionar, manualmente, alguns poucos Spawners aqui e ali, de modo que não afetem tanto o desempenho, como 
+afetariam se TODOS os Spawners originais da cidade permanececem.
+\b\b
+Como os Spawners são invisíveis, precisamos usar alguns cheats para poder vê-los. Para visualizar Spawners, você precisa ativar o cheat "buydebug on", mas ele só funcionará se o cheat
+"testingcheatsenabled true" estiver ativo. Ativando estes cheats enquanto está na visão da cidade, você só precisará editar um lote e então todos os Spawners existentes naquele lote aparecerão
+como caixas brancas. Se você clicar em cada um, você poderá move-los, bem como ver seus nomes para saber de que tipo de Spawner se trata. Se quiser remover o Spawner, basta vende-lo. Não se esqueça 
+de desativar "buydebug off" quando terminar.
+\b\b
+Se quiser remover todos os Spawners da cidade de uma maneira rápida e fácil, caso tenha instalado os Patches do Dream Launcher, você terá o Master Controller em seu jogo. Para isso, clique
+na Prefeitura da Cidade, em seguida em "NRaas > Master Controller > Cidade > Informações do Objecto". Na janela que sabriu, marque "Local" e "Sem Inventário", então, clique em "Ok". Uma lista aparecerá
+listando vários objetos existentes pela cidade, ela poderá levar alguns instantes até carregar todos os elementos, por isso aguarde. Uma vez que esteja tudo carregado, marque todos os objetos que
+tem o nome começando com "Objects.Spawners.XXXX" ou somente os Spawners que você deseja remover (Spawners de peixes tem o nome começando com "Objects.Fishing.FishingSpawnerXXX"). Depois clique em "Ok". 
+Na próxima janela que se abre, marque "Todos" e clique em "Ok". Feito isso, basta confirmar. Pode ser necessário re-fazer esse procedimento, após algumas semanas jogando.
+\b\b
+Se você optou por remover todos os Spawners e precisa de algum local spawnando algo específico (por exemplo, criaturas menores), então você pode colocar um Spawner para gerar o item desejado no local
+que você precisar! Para isso, ative o cheat "buydebug on" e entre no modo de edição de um lote desejado. Mude para o Modo Compra. Em seguida, ative o cheat "buydebug on" novamente. Um ícone de
+Ponto de Interrogação aparecerá acima da Interface de compra da loja. Clique nele. Nas abas de categorias que aparecem horizontalmente, basta explorar e procurar por "Geradores". Há vários e vários
+geradores disponíveis para que você possa pegar e colocar no lote. Como por exemplo, o "Gerador de Besouros Hércules". Os geradores geralmente tem um ícone de uma caixa branca, grande ou pequena, na loja.
+\b\b
+Só mais uma coisa! Pra não trapacear, não coloque Spawners que normalmente não estariam na sua cidade hein! ;)
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_15" xml:space="preserve">
 Migração Para Cidade Nova§
 Se você está fazendo manutenção de sua cidade e está jogando a um bom tempo, mas mesmo assim sente que o jogo está com um lag que não existia antes, como último recurso, você pode testar a
 possibilidade de migrar sua família para uma cidade limpa e zerada. É possível migrar sua família mantendo a árvore genalógica e relacionamentos com outros Sims. Para isso, vamos usar o
@@ -1233,6 +1290,9 @@ Para isso, clique na Prefeitura da Cidade, em seguida "NRaas > Master Controller
 Isso é tudo! Mas se você encontrar alguma família que ficou com um nome (apelido) incorreto após a importação, você pode usar o Master Controller para alterar o nome (apelido) da família. Para
 isso, clique no telhado da casa da família, em seguida em "NRaas > Master Controller > Alterar Nome" na janela que se abre, digite o sobrenome que os membros da família devem ter, e então 
 clique em "Ok". Você pode passar o mouse sobre um Sim membro da família para ver seu sobrenome e então dar o mesmo sobrenome para aquele núcleo familiar.
+\b\b
+AVISO: Incluir muitas famílias na exportação, pode fazer o jogo ficar sem memória e dar um erro na exportação. Então se for desejado exportar várias famílias de uma cidade, dentro de um único 
+pacote para manter os relacionamentos, é necessário testar o número máximo de famílias que se é possível de exportar.
     </system:String>
 
 </ResourceDictionary>

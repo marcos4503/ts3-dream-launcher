@@ -583,7 +583,8 @@ namespace TS3_Dream_Launcher
                     if (item.currentFileType == S3PkWorldItem.FileType.Mod)
                     {
                         //Prepare the target final path
-                        string finalPath = (mainWindowRef.myDocumentsPath + "/Mods/Packages/DL3-Custom/OTHERS --- World Dependency - " + name.textBox.Text + ".package");
+                        string finalPath = (mainWindowRef.myDocumentsPath + "/Mods/Packages/DL3-Custom/OTHERS --- World Dependency - " + name.textBox.Text + ", " +
+                                            System.IO.Path.GetFileNameWithoutExtension(item.filePath).Replace(" ", "_") + ".package");
 
                         //Move the file
                         File.Move(item.filePath, finalPath);
