@@ -32,7 +32,7 @@ And there are several other functions. Keep reading to find out how to install i
 
 # To use this Software
 
-It is <b>MANDATORY</b> that you uninstall your The Sims 3, install it again from scratch, and then install the Dream Launcher following the procedures below. This is necessary to ensure a clean, functional and conflict-free installation for your game. <b>If you have mods installed</b> in your game, it is MANDATORY that you delete the "Mods" folder from your "The Sims 3" folder in "My Documents" on your computer. This is necessary because Dream Launcher will now control and format your game Mods! If you've already done all of this, then continue...
+It is <b>MANDATORY</b> that you uninstall your The Sims 3, install it again from scratch, and then install the Dream Launcher following the procedures below. This is necessary to ensure a clean, functional and conflict-free installation for your game. <b>If you have mods installed</b> in your game, it is MANDATORY that you delete the "Mods" folder from your "The Sims 3" folder in "My Documents" on your computer. This is necessary because Dream Launcher will now control and format your game Mods! If you want to install the Mods you had before, save them and install them through the Launcher once you have it installed it. If you've already done all of this, then continue...
 
 <b>1.</b> To start, download this repository by cloning the "Dream-Launcher-Compiled" folder to your computer. After that, copy ALL the content inside the "Dream-Launcher-Compiled" folder. 
 
