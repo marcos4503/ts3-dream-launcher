@@ -138,6 +138,7 @@ namespace TS3_Dream_Launcher
         private IDisposable showTipsSectionRoutine = null;
         private IDisposable hideTipsSectionRoutine = null;
         private bool isTipsSectionToggled = false;
+        private bool wasRenderedAllPatches = false;
 
         //Private variables
         private IDictionary<string, Storyboard> animStoryboards = new Dictionary<string, Storyboard>();
@@ -1020,6 +1021,9 @@ namespace TS3_Dream_Launcher
 
             //Update the tray icon
             UpdateLauncherSystemTray();
+
+            //Update the patches install availability
+            UpdatePatchesInstallAvailability();
         }
 
         public int GetRunningTasksCount()
@@ -1295,6 +1299,9 @@ namespace TS3_Dream_Launcher
 
             //Instantiate all patch items
             InstantiateEachPatchItemAndCheckIntegrityOfInstalleds();
+
+            //Update the patches install availability
+            UpdatePatchesInstallAvailability();
         }
 
         private void InstantiateEachPatchItemAndCheckIntegrityOfInstalleds()
@@ -1671,6 +1678,9 @@ namespace TS3_Dream_Launcher
             finalSpacer.VerticalAlignment = VerticalAlignment.Top;
             finalSpacer.Width = double.NaN;
             finalSpacer.Height = 16.0f;
+
+            //Inform that was rendered all patches
+            wasRenderedAllPatches = true;
         }
 
         private void DoPatch_AlderLakePatch()
@@ -3654,6 +3664,46 @@ namespace TS3_Dream_Launcher
                 };
                 asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
             }
+        }
+
+        private void UpdatePatchesInstallAvailability()
+        {
+            //If not rendered all patchs in the list yet, ignore this call
+            if (wasRenderedAllPatches == false)
+                return;
+
+            //Get quantity of running tasks
+            int runningTasks = GetRunningTasksCount();
+
+            //If have none task running, enable all patches install
+            if (runningTasks == 0)
+                SetEnabledAllPatchesButton(true);
+
+            //If have tasks running, disable all patches install
+            if (runningTasks > 0)
+                SetEnabledAllPatchesButton(false);
+        }
+
+        private void SetEnabledAllPatchesButton(bool enabled)
+        {
+            //Scan all instantiated patches
+            foreach (PatchItem item in instantiatedPatchItems)
+                if(item.title.Text.Contains("Alder Lake") == false && item.title.Text.Contains("PT-BR") == false)   //<- Ignore patches of "Alder Lake+ Support" and "PT-PT to PT-BR Better Support"
+                {
+                    //If is desired to enable..
+                    if(enabled == true)
+                    {
+                        item.installButton.IsEnabled = true;
+                        item.reInstallButton.IsEnabled = true;
+                    }
+
+                    //If is desired to disable...
+                    if (enabled == false)
+                    {
+                        item.installButton.IsEnabled = false;
+                        item.reInstallButton.IsEnabled = false;
+                    }
+                }
         }
 
         //Exit manager
