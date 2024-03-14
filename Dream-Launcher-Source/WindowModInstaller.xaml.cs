@@ -237,7 +237,7 @@ namespace TS3_Dream_Launcher
             asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
             {
                 //Wait some time
-                threadTools.MakeThreadSleep(1000);
+                threadTools.MakeThreadSleep(250);
 
                 //Get the start params data
                 string modUrl = startParams[0];
@@ -281,7 +281,7 @@ namespace TS3_Dream_Launcher
                             threadTools.ReportNewProgress("ui::progress::" + (((float) (i + 1) / (float) downloadUrls.Length) * 100.0f));
 
                         //Wait some time
-                        threadTools.MakeThreadSleep(1000);
+                        threadTools.MakeThreadSleep(250);
                     }
 
                     //Create the OK file
@@ -357,7 +357,7 @@ namespace TS3_Dream_Launcher
             asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
             {
                 //Wait some time
-                threadTools.MakeThreadSleep(2500);
+                threadTools.MakeThreadSleep(250);
 
                 //Get the start params data
                 string modUrl = startParams[0];
@@ -474,7 +474,7 @@ namespace TS3_Dream_Launcher
             asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
             {
                 //Wait some time
-                threadTools.MakeThreadSleep(2500);
+                threadTools.MakeThreadSleep(250);
 
                 //Get the start params data
                 string originalModPath = startParams[0];
@@ -574,7 +574,7 @@ namespace TS3_Dream_Launcher
             asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
             {
                 //Wait some time
-                threadTools.MakeThreadSleep(5000);
+                threadTools.MakeThreadSleep(500);
 
                 //Get the start params data
                 string targetPackageFile = startParams[0];
@@ -664,7 +664,7 @@ namespace TS3_Dream_Launcher
             asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
             {
                 //Wait some time
-                threadTools.MakeThreadSleep(2000);
+                threadTools.MakeThreadSleep(250);
 
                 //Get the start params data
                 string targetPackageFile = startParams[0];
@@ -697,7 +697,7 @@ namespace TS3_Dream_Launcher
                     Package.ClosePackage(0, package);
 
                     //Wait some time
-                    threadTools.MakeThreadSleep(3000);
+                    threadTools.MakeThreadSleep(250);
 
                     //Prepare the conflict count
                     int conflictCount = 0;
@@ -770,7 +770,7 @@ namespace TS3_Dream_Launcher
                         threadTools.ReportNewProgress("ui::progress::" + ((float) filesAnalyzedCount / (float)packageFilesToBeAnalyzed.Count) * 100.0f);
 
                         //Wait some time before go to next
-                        threadTools.MakeThreadSleep(50);
+                        threadTools.MakeThreadSleep(15);
                     }
 
                     //Inform the final result
@@ -903,7 +903,7 @@ namespace TS3_Dream_Launcher
             asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
             {
                 //Wait some time
-                threadTools.MakeThreadSleep(2500);
+                threadTools.MakeThreadSleep(500);
 
                 //Get the start params data
                 string targetPackageFile = startParams[0];
