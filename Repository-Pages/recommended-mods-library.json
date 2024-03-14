@@ -795,6 +795,30 @@
             "pageUrl": "https://modthesims.info/d/655529/tileable-items-shader-fix.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-tileable-items-shader-fix.zip"
         },
+        {
+            "name": "Pets Need Less Space",
+            "category": "FIXES",
+            "author": "OhRudi",
+            "description_enUS": "This mod changes the Pets hitboxes while they are performing interactions, so that they use less space while they are interacting, which leads to much fewer routing problems, which consequently cause lag.",
+            "description_ptBR": "Este mod altera as hitboxes dos Pets enquanto eles estão realizando interações, para que dessa forma, eles gastem menos espaço enquanto estão interagindo, o que leva a muito menos problemas de roteamento, que consequentemente trazem lag.",
+            "requiredEps": [ 5 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/683307/fix-pets-need-less-space.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-pets-need-less-space.zip"
+        },
+        {
+            "name": "Interaction On Sloped Terrain Enabler",
+            "category": "FIXES",
+            "author": "nikel23",
+            "description_enUS": "This mod allows Sims to interact with each other, at different height levels. This way, they will no longer need to look for an ideal place to start the interaction while they are in rugged or mountainous terrain. It is interesting that you test this mod, and see if you like it, before using it permanently.",
+            "description_ptBR": "Este mod permite que Sims interajam entre si, em diferentes níveis de altura. Dessa forma, eles não precisarão mais ficar procurando um local ideal para iniciar a interação enquanto estão num terreno acidentado ou montanhoso. É interessante que você teste esse mod, e veja se gosta, antes de utiliza-lo de forma definitiva.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/529671/interaction-on-sloped-terrain-enabler.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-interact-on-sloped-terrain.zip"
+        },
 
 
 
