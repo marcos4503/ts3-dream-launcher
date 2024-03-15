@@ -817,6 +817,10 @@ namespace TS3_Dream_Launcher
                         //Update the tray icon
                         UpdateLauncherSystemTray();
 
+                        //If not known the my documents path, stops here
+                        if (myDocumentsPath == "")
+                            return;
+
                         //Post-game tasks...
 
                         //Recalculate all cache types sizes
@@ -4250,15 +4254,18 @@ namespace TS3_Dream_Launcher
             if (lockNow == false)
             {
                 playBtText.Content = GetStringApplicationResource("launcher_button_playButton");
-                goSaves.IsEnabled = true;
-                goExports.IsEnabled = true;
-                goWorlds.IsEnabled = true;
-                goMedia.IsEnabled = true;
-                goCache.IsEnabled = true;
-                goPatches.IsEnabled = true;
-                goMods.IsEnabled = true;
-                goTools.IsEnabled = true;
-                goSettings.IsEnabled = true;
+                if (myDocumentsPath != "")
+                {
+                    goSaves.IsEnabled = true;
+                    goExports.IsEnabled = true;
+                    goWorlds.IsEnabled = true;
+                    goMedia.IsEnabled = true;
+                    goCache.IsEnabled = true;
+                    goPatches.IsEnabled = true;
+                    goMods.IsEnabled = true;
+                    goTools.IsEnabled = true;
+                    goSettings.IsEnabled = true;
+                }
                 goGithub.IsEnabled = true;
                 goDonate.IsEnabled = true;
                 goGuide.IsEnabled = true;

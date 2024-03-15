@@ -11,7 +11,7 @@
     <system:String x:Key="screen3_checkError3">Ocorreu um erro! O Dream Launcher não suporta essa versão do The Sims 3. Somente a versão "1.67.2.024037" (Steam) é suportada.</system:String>
 
     <!-- Screen 4: Translate -->
-    <system:String x:Key="screen4_dialogTitle">Gostaria de fazer o Patching de tradução de PT-PT para PT-BR? Se você não joga em usando o idioma Português, isso não deve lhe afetar em nada.</system:String>
+    <system:String x:Key="screen4_dialogTitle">Gostaria de fazer o Patching de tradução de PT-PT para PT-BR? Se você não joga usando o idioma Português BR, isso não deve lhe afetar em nada.</system:String>
     <system:String x:Key="screen4_dialogY">SIM</system:String>
     <system:String x:Key="screen4_dialogU">NÃO PERGUNTE DE NOVO</system:String>
     <system:String x:Key="screen4_dialogN">NÃO</system:String>
@@ -44,7 +44,7 @@
     <system:String x:Key="launcher_alderLakePatchProblem">Houve um problema ao fazer o patching de suporte a CPUs Intel Alder Lake+. O seu jogo pode não ser capaz de abrir por causa disso. O arquivo "TS3W.exe" já possui um backup de segurança.</system:String>
     <system:String x:Key="launcher_alderLakePatchSuccess">O patching para CPUs Intel Alder Lake+ foi bem sucedido!</system:String>
     <system:String x:Key="launcher_ptptToptbrTranslateProblem">Não foi possível aplicar o patching de tradução de pt-PT para pt-BR.</system:String>
-    <system:String x:Key="launcher_ptptToptbrTranslateSuccess">O patching de tradução de pt-PT para pt-BR foi aplicado com sucesso! Altere o idioma do jogo para "Português" na Steam e aqui nas Configurações do Launcher, para ver as mudanças!</system:String>
+    <system:String x:Key="launcher_ptptToptbrTranslateSuccess">O patching de tradução de pt-PT para pt-BR foi aplicado com sucesso! Altere o idioma do jogo para "Português Brasileiro" aqui nas Configurações do Launcher, para ver as mudanças!</system:String>
     <system:String x:Key="launcher_toastsHistoryTitle">Notificações Anteriores</system:String>
     <system:String x:Key="launcher_toastsHistoryAt">às</system:String>
     <system:String x:Key="launcher_toastsHistoryEmpty">Nada por aqui ainda</system:String>

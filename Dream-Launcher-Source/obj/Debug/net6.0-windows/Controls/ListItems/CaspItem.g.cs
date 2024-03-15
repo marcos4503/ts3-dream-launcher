@@ -174,7 +174,7 @@ namespace TS3_Dream_Launcher.Controls.ListItems {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TS3 Dream Launcher;V1.0.2;component/controls/listitems/caspitem.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TS3 Dream Launcher;V1.0.3;component/controls/listitems/caspitem.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Controls\ListItems\CaspItem.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

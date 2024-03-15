@@ -1303,9 +1303,9 @@
                                 <Image Source="/Resources/bell.png" Margin="-2,0,0,0" />
                             </Button>
                         </Grid>
-                        <Image x:Name="doingTasksGif" gif:ImageBehavior.AnimatedSource="/Resources/task-run.gif" gif:ImageBehavior.AnimationSpeedRatio="1.5" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Stretch" Visibility="Visible" />
-                        <Image x:Name="doingTasksOk" Height="23" Width="23" Visibility="Collapsed" Source="/Resources/task-ok.png"/>
-                        <Label x:Name="tasksStatus" Content="Place Holder" Height="28" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="14" Padding="0,0,0,0" Margin="8,0,0,0" Foreground="White" VerticalAlignment="Center"/>
+                        <Image x:Name="doingTasksGif" gif:ImageBehavior.AnimatedSource="/Resources/task-run.gif" gif:ImageBehavior.AnimationSpeedRatio="1.5" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Stretch" Visibility="Collapsed" />
+                        <Image x:Name="doingTasksOk" Height="23" Width="23" Visibility="Visible" Source="/Resources/task-ok.png"/>
+                        <Label x:Name="tasksStatus" Height="28" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="14" Padding="0,0,0,0" Margin="8,0,0,0" Foreground="White" VerticalAlignment="Center" Content="{DynamicResource launcher_taks_readyToPlay}"/>
                     </StackPanel>
                     <StackPanel Height="32" Margin="0,0,16,0" Orientation="Horizontal" HorizontalAlignment="Right">
                         <Image x:Name="dlc_ep1" Height="24" Width="24" ToolTipService.InitialShowDelay="1000" ToolTipService.ShowDuration="10000" ToolTipService.BetweenShowDelay="15000" Source="/Resources/dlc_ep1s.png" Cursor="Hand" />
