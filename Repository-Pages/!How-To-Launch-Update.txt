@@ -1,8 +1,6 @@
-1. In properties of module "TS3 Dream Launcher", change the version string to the new version like "1.0.0"
-2. Compile "Dl3DxOverlay", "Sims3Launcher" and "TS3 Dream Launcher" modules only
-3. Get "release" resultant files, not "debug"
-4. Merge all files in a folder (overwrite equal files if necessary)
-5. Zip all files
-6. Load the resultante zip file to github with the name of "launcher-current-compilation.zip" on folder "Repository-Pages"
-7. In the repository, put all updated files from "launcher-current-compilation.zip" inside folder "Dream-Launcher-Compiled" too.
-8. Update the file "launcher-current-version.txt" to have the current version string of current version.
+1. In properties of module "TS3 Dream Launcher", change the version string to the new version like "1.X.X"
+2. Compile "Dl3DxOverlay", "Sims3Launcher" and "TS3 Dream Launcher" modules in RELEASE mode
+3. Get "release" resultant files of each module and copy all files to folder "Dream-Launcher-Compiled" in this repository
+4. Zip all files of the folder "Dream-Launcher-Compiled"
+5. Copy the Zip file to folder "Repository-Pages" with the name of "launcher-current-compilation.zip"
+6. Update the file "launcher-current-version.txt" to have the current version string of current version.
