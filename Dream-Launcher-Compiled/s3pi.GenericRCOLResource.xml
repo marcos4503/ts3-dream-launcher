@@ -1,0 +1,727 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>s3pi.GenericRCOLResource</name>
+    </assembly>
+    <members>
+        <member name="T:s3pi.Interfaces.ARCOLBlock">
+            <summary>
+            Represents the abstract RCOL block within a <see cref="N:s3pi.GenericRCOLResource"/>.
+            </summary>
+        </member>
+        <member name="T:s3pi.Interfaces.IRCOLBlock">
+            <summary>
+            Defines the interface exposed by an RCOL block.
+            </summary>
+        </member>
+        <member name="M:s3pi.Interfaces.IRCOLBlock.UnParse">
+            <summary>
+            Writes the content of the RCOL block to a stream
+            </summary>
+            <returns>A stream containing the current content of the RCOL block</returns>
+        </member>
+        <member name="P:s3pi.Interfaces.IRCOLBlock.Tag">
+            <summary>
+            The four byte tag for the RCOL block, may be null if none present
+            </summary>
+        </member>
+        <member name="P:s3pi.Interfaces.IRCOLBlock.ResourceType">
+            <summary>
+            The ResourceType for the RCOL block, used to determine which specific RCOL handlers are available
+            </summary>
+        </member>
+        <member name="F:s3pi.Interfaces.ARCOLBlock.requestedAPIversion">
+            <summary>
+            Holds the requested API version.
+            </summary>
+        </member>
+        <member name="F:s3pi.Interfaces.ARCOLBlock.stream">
+            <summary>
+            Holds the stream from which the block was read.
+            </summary>
+            <remarks>Note that the state of the stream may change once the <see cref="M:s3pi.Interfaces.ARCOLBlock.Parse(System.IO.Stream)"/> method completes.</remarks>
+        </member>
+        <member name="M:s3pi.Interfaces.ARCOLBlock.#ctor(System.Int32,System.EventHandler,System.IO.Stream)">
+            <summary>
+            Create a new instance based on the data in the supplied <see cref="P:s3pi.Interfaces.ARCOLBlock.Stream"/>.
+            </summary>
+            <param name="APIversion">The requested API version.</param>
+            <param name="handler">The change event handler for the resource.</param>
+            <param name="s">The <see cref="P:s3pi.Interfaces.ARCOLBlock.Stream"/> containing the data.</param>
+            <seealso cref="M:s3pi.Interfaces.ARCOLBlock.Parse(System.IO.Stream)"/>
+        </member>
+        <member name="M:s3pi.Interfaces.ARCOLBlock.Parse(System.IO.Stream)">
+            <summary>
+            Any implementation must provide a method of reading data from the resource.
+            </summary>
+            <param name="s">The <see cref="P:s3pi.Interfaces.ARCOLBlock.Stream"/> referencing the data in the resource, position to the start of this block.</param>
+            <remarks>Any implementation must ensure the stream position ends at the first byte of the next block.</remarks>
+        </member>
+        <member name="M:s3pi.Interfaces.ARCOLBlock.UnParse">
+            <summary>
+            Implementing classes must provide a means of storing themselves in a <see cref="P:s3pi.Interfaces.ARCOLBlock.Stream"/>.
+            </summary>
+            <returns>The <see cref="P:s3pi.Interfaces.ARCOLBlock.Stream"/> containing the data from the RCOL block.</returns>
+        </member>
+        <member name="M:s3pi.Interfaces.ARCOLBlock.Equals(s3pi.Interfaces.ARCOLBlock)">
+            <summary>
+            Indicates whether the current <see cref="T:s3pi.Interfaces.ARCOLBlock"/> is equal to another instance.
+            </summary>
+            <param name="other">Another instance to compare with this <see cref="T:s3pi.Interfaces.ARCOLBlock"/>.</param>
+            <returns><c>true</c> if the current <see cref="T:s3pi.Interfaces.ARCOLBlock"/> is equal to the <paramref name="other"/> parameter;
+            otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:s3pi.Interfaces.ARCOLBlock.Equals(System.Object)">
+            <summary>
+            Indicates whether the current <see cref="T:s3pi.Interfaces.ARCOLBlock"/> is equal to another object of the same type.
+            </summary>
+            <param name="obj">An object to compare with this <see cref="T:s3pi.Interfaces.ARCOLBlock"/>.</param>
+            <returns><c>true</c> if the current <see cref="T:s3pi.Interfaces.ARCOLBlock"/> is equal to the <paramref name="obj"/> parameter;
+            otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:s3pi.Interfaces.ARCOLBlock.GetHashCode">
+            <summary>
+            Serves as a hash function for an <see cref="T:s3pi.Interfaces.ARCOLBlock"/>.
+            </summary>
+            <returns>A hash code for the current <see cref="T:s3pi.Interfaces.ARCOLBlock"/>.</returns>
+        </member>
+        <member name="M:s3pi.Interfaces.ARCOLBlock.OnRCOLChanged(System.Object,System.EventArgs)">
+            <summary>
+            Used to indicate the RCOL has changed.
+            </summary>
+        </member>
+        <member name="P:s3pi.Interfaces.ARCOLBlock.ParentTGIBlocks">
+            <summary>
+            For ValueBuilder purposes, the list of external resource keys is passed down here.
+            Not all RCOLs need it, so it may end up unused.  Override this property to take
+            specific action (such as passing the reference further on).
+            </summary>
+        </member>
+        <member name="P:s3pi.Interfaces.ARCOLBlock.ValueBuilderFields">
+            <summary>
+            Remove the additional &quot;banned&quot; fields for an RCOL block.
+            </summary>
+        </member>
+        <member name="P:s3pi.Interfaces.ARCOLBlock.ContentFields">
+            <summary>
+            The list of available field names on this API object
+            </summary>
+        </member>
+        <member name="P:s3pi.Interfaces.ARCOLBlock.RecommendedApiVersion">
+            <summary>
+            Unless overridden in an implementing class, returns <c>1</c>.
+            </summary>
+        </member>
+        <member name="P:s3pi.Interfaces.ARCOLBlock.Tag">
+            <summary>
+            The &quot;FOUR CC&quot; tag identifying this RCOL block; may be <c>null</c> if not present.
+            </summary>
+        </member>
+        <member name="P:s3pi.Interfaces.ARCOLBlock.ResourceType">
+            <summary>
+            The Resource Type identifying this block format.
+            </summary>
+        </member>
+        <member name="P:s3pi.Interfaces.ARCOLBlock.Stream">
+            <summary>
+            The resource content as a Stream
+            </summary>
+        </member>
+        <member name="P:s3pi.Interfaces.ARCOLBlock.AsBytes">
+            <summary>
+            The resource content as a byte array
+            </summary>
+        </member>
+        <member name="E:s3pi.Interfaces.ARCOLBlock.ResourceChanged">
+            <summary>
+            Raised if the resource is changed
+            </summary>
+        </member>
+        <member name="P:s3pi.Interfaces.ARCOLBlock.Data">
+            <summary>
+            To allow editor import/export as a minimum.
+            </summary>
+        </member>
+        <member name="T:s3pi.GenericRCOLResource.DefaultRCOL">
+            <summary>
+            An RCOL block handler that "does nothing", providing the minimal support required for any RCOL block in a <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource"/>.
+            </summary>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.DefaultRCOL.#ctor(System.Int32,System.EventHandler)">
+            <summary>
+            <see cref="T:s3pi.GenericRCOLResource.DefaultRCOL"/> does not provide a constructor that <see cref="M:s3pi.GenericRCOLResource.GenericRCOLResourceHandler.CreateRCOLBlock(System.Int32,System.EventHandler,System.UInt32)"/> can call.
+            <para>Calling this constructor throws a <see cref="T:System.NotImplementedException"/>.</para>
+            </summary>
+            <param name="APIversion">Unused.</param>
+            <param name="handler">Unused.</param>
+            <exception cref="T:System.NotImplementedException">Thrown if this constructor is called.</exception>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.DefaultRCOL.#ctor(System.Int32,System.EventHandler,System.IO.Stream)">
+            <summary>
+            Read the block data from the <see cref="T:System.IO.Stream"/> provided.
+            </summary>
+            <param name="APIversion">Unused; requested API version.</param>
+            <param name="handler">Unused; change <see cref="T:System.EventHandler"/>.</param>
+            <param name="s"><see cref="T:System.IO.Stream"/> containing the data to read.</param>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.DefaultRCOL.#ctor(System.Int32,System.EventHandler,s3pi.GenericRCOLResource.DefaultRCOL)">
+            <summary>
+            Create a new instance from an existing instance.
+            </summary>
+            <param name="APIversion">Unused; requested API version.</param>
+            <param name="handler">Unused; change <see cref="T:System.EventHandler"/>.</param>
+            <param name="basis">An existing <see cref="T:s3pi.GenericRCOLResource.DefaultRCOL"/> to use as a basis.</param>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.DefaultRCOL.Parse(System.IO.Stream)">
+            <summary>
+            Read the data.
+            </summary>
+            <param name="s">The <see cref="T:System.IO.Stream"/> containing the data.</param>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.DefaultRCOL.UnParse">
+            <summary>
+            Return the data in a <see cref="T:System.IO.Stream"/>.
+            </summary>
+            <returns>The data in a <see cref="T:System.IO.Stream"/>.</returns>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.DefaultRCOL.Tag">
+            <summary>
+            DefaultRCOL only supplies "Tag" for <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResourceHandler"/>.
+            <para>It returns "*" to indicate it is the default RCOL block handler.</para>
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.DefaultRCOL.ResourceType">
+            <summary>
+            DefaultRCOL only supplies "ResourceType" for <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResourceHandler"/>.
+            <para>It returns <c>(uint)-1</c>.</para>
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.DefaultRCOL.Value">
+            <summary>
+            A default string to display, identifying any tag within the data and the length of the data block.
+            </summary>
+        </member>
+        <member name="T:s3pi.GenericRCOLResource.GenericRCOLResource">
+            <summary>
+            A resource wrapper that understands RCOL resources and manages the blocks within.
+            </summary>
+        </member>
+        <member name="F:s3pi.GenericRCOLResource.GenericRCOLResource.version">
+            <summary>
+            The version of this RCOL resource.
+            </summary>
+        </member>
+        <member name="F:s3pi.GenericRCOLResource.GenericRCOLResource.publicChunks">
+            <summary>
+            The number of &quot;public&quot; RCOL blocks in the resource.
+            </summary>
+        </member>
+        <member name="F:s3pi.GenericRCOLResource.GenericRCOLResource.unused">
+            <summary>
+            Unknown.
+            </summary>
+        </member>
+        <member name="F:s3pi.GenericRCOLResource.GenericRCOLResource.resources">
+            <summary>
+            The list of <see cref="T:s3pi.Interfaces.TGIBlock"/>s referenced for resources external to this resource.
+            </summary>
+        </member>
+        <member name="F:s3pi.GenericRCOLResource.GenericRCOLResource.blockList">
+            <summary>
+            The list of <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry"/> values for RCOL blocks within this resource.
+            </summary>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.#ctor(System.Int32,System.IO.Stream)">
+            <summary>
+            Instantiate a new GenericRCOLResource from the supplied <see cref="T:System.IO.Stream"/>.
+            </summary>
+            <param name="APIversion">Unused; requested API version.</param>
+            <param name="s">The <see cref="T:System.IO.Stream"/> to read the resource in from.</param>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.UnParse">
+            <summary>
+            Return a <see cref="T:System.IO.Stream"/> containing the data in this GenericRCOLResource instance.
+            </summary>
+            <returns>A <see cref="T:System.IO.Stream"/> containing the data in this GenericRCOLResource instance.</returns>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.RecommendedApiVersion">
+            <summary>
+            Return the version number that this wrapper prefers to be called with (the default if passed zero).
+            </summary>
+            <remarks>This wrapper returns <c>1</c> and is not sensitive to API version.</remarks>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.Version">
+            <summary>
+            The version of this RCOL resource.
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.PublicChunks">
+            <summary>
+            The number of &quot;public&quot; RCOL blocks in the resource.
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.Unused">
+            <summary>
+            Unknown.
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.Resources">
+            <summary>
+            The list of <see cref="T:s3pi.Interfaces.TGIBlock"/>s referenced for resources external to this resource.
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntries">
+            <summary>
+            The list of <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry"/> values for RCOL blocks within this resource.
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.Value">
+            <summary>
+            A displayable string representing the content of this resource.
+            </summary>
+        </member>
+        <member name="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry">
+            <summary>
+            <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry"/> couples the
+            <see cref="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry.TGIBlock"/> identifier with the <see cref="T:s3pi.Interfaces.ARCOLBlock"/> for ease of handling in a single list.
+            </summary>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry.#ctor(System.Int32,System.EventHandler,s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry)">
+            <summary>
+            Create a ChunkEntry from an existing <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry"/>.
+            </summary>
+            <param name="APIversion">Unused; the requested API version.</param>
+            <param name="handler">The change event handler.</param>
+            <param name="basis">An existing <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry"/> to use as a basis.</param>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry.#ctor(System.Int32,System.EventHandler,s3pi.Interfaces.TGIBlock,s3pi.Interfaces.ARCOLBlock)">
+            <summary>
+            Create a ChunkEntry from an existing <see cref="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry.TGIBlock"/> and an existing <see cref="T:s3pi.Interfaces.ARCOLBlock"/>.
+            </summary>
+            <param name="APIversion">Unused; the requested API version.</param>
+            <param name="handler">The change event handler.</param>
+            <param name="tgiBlock">An existing <see cref="T:TGIBlock"/>.</param>
+            <param name="rcolBlock">An existing <see cref="T:s3pi.Interfaces.ARCOLBlock"/>.</param>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry.Equals(s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry)">
+            <summary>
+            Indicates whether the current <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry"/> is equal to another instance.
+            </summary>
+            <param name="other">Another instance to compare with this <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry"/>.</param>
+            <returns><c>true</c> if the current <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry"/> is equal to the <paramref name="other"/> parameter;
+            otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry.Equals(System.Object)">
+            <summary>
+            Indicates whether the current <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry"/> is equal to another object of the same type.
+            </summary>
+            <param name="obj">An object to compare with this <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry"/>.</param>
+            <returns><c>true</c> if the current <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry"/> is equal to the <paramref name="obj"/> parameter;
+            otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry.GetHashCode">
+            <summary>
+            Serves as a hash function for an <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry"/>.
+            </summary>
+            <returns>A hash code for the current <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry"/>.</returns>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry.ParentTGIBlocks">
+            <summary>
+            Used internally to pass on the list of resource keys.
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry.RecommendedApiVersion">
+            <summary>
+            Return the version number that this class prefers to be called with (the default if passed zero).
+            </summary>
+            <remarks>This class returns <c>1</c> and is not sensitive to API version.</remarks>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry.ContentFields">
+            <summary>
+            The visible-to-API list of fields in this class.
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry.TGIBlock">
+            <summary>
+            The <see cref="T:TGIBlock"/> that identifies the RCOL block.
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry.RCOLBlock">
+            <summary>
+            The RCOL block.
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry.Value">
+            <summary>
+            Returns a formatted string containing the <see cref="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry.TGIBlock"/> and, where possible, <see cref="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry.RCOLBlock"/> values.
+            </summary>
+        </member>
+        <member name="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntryList">
+            <summary>
+            A <see cref="T:s3pi.Interfaces.DependentList`1"/> containing <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry"/> values.
+            </summary>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntryList.#ctor(System.EventHandler)">
+            <summary>
+            Create an empty list.
+            </summary>
+            <param name="handler">The list change <see cref="T:System.EventHandler"/> delegate.</param>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntryList.#ctor(System.EventHandler,System.Collections.Generic.IEnumerable{s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry})">
+            <summary>
+            Create a new list, with the contents from the provided enumeration.
+            </summary>
+            <param name="handler">The list change <see cref="T:System.EventHandler"/> delegate.</param>
+            <param name="ice">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry"/> values.</param>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntryList.CreateElement(System.IO.Stream)">
+            <summary>
+            CreateElement is not implemented.
+            </summary>
+            <param name="s">Unused.</param>
+            <returns>Not implemented.</returns>
+            <exception cref="T:System.NotImplementedException">Thrown if CreateElement is invoked.</exception>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntryList.WriteElement(System.IO.Stream,s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry)">
+            <summary>
+            WriteElement is not implemented.
+            </summary>
+            <param name="s">Unused.</param>
+            <param name="element">Unused.</param>
+            <exception cref="T:System.NotImplementedException">Thrown if WriteElement is invoked.</exception>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntryList.Add">
+            <summary>
+            <see cref="M:s3pi.Interfaces.IGenericAdd.Add"/> is not implemented.
+            </summary>
+            <exception cref="T:System.NotImplementedException">Thrown if <see cref="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntryList.Add"/> is invoked.</exception>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntryList.Add(s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntry)">
+            <summary>
+            Adds a ChunkEntry to a <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntryList"/>, setting the element change handler
+            and ParentTGIBlocks.
+            </summary>
+            <param name="item">An instance of type <c>ChunkEntry</c> to add to the list.</param>
+            <exception cref="T:System.InvalidOperationException">Thrown when list size exceeded.</exception>
+            <exception cref="T:System.NotSupportedException">The <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntryList"/> is read-only.</exception>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntryList.ParentTGIBlocks">
+            <summary>
+            Used to pass down the resource key list.
+            </summary>
+        </member>
+        <member name="T:s3pi.GenericRCOLResource.GenericRCOLResource.ReferenceType">
+            <summary>
+            The indicator bits for a <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/>.
+            </summary>
+        </member>
+        <member name="F:s3pi.GenericRCOLResource.GenericRCOLResource.ReferenceType.Public">
+            <summary>
+            Indicates the reference is to this resource, in <see cref="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntries"/>, below <see cref="P:s3pi.GenericRCOLResource.GenericRCOLResource.PublicChunks"/>.
+            </summary>
+        </member>
+        <member name="F:s3pi.GenericRCOLResource.GenericRCOLResource.ReferenceType.Private">
+            <summary>
+            Indicates the reference is to this resource, in <see cref="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntries"/>, at or above <see cref="P:s3pi.GenericRCOLResource.GenericRCOLResource.PublicChunks"/>.
+            </summary>
+        </member>
+        <member name="F:s3pi.GenericRCOLResource.GenericRCOLResource.ReferenceType.External">
+            <summary>
+            No known usage.
+            </summary>
+        </member>
+        <member name="F:s3pi.GenericRCOLResource.GenericRCOLResource.ReferenceType.Delayed">
+            <summary>
+            Indicates the reference is to another resource, via <see cref="P:s3pi.GenericRCOLResource.GenericRCOLResource.Resources"/>
+            </summary>
+        </member>
+        <member name="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference">
+            <summary>
+            Manages RCOL references to other RCOL blocks or other resources.
+            </summary>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.#ctor(System.Int32,System.EventHandler)">
+            <summary>
+            Create a new instance.
+            </summary>
+            <param name="APIversion">Unused; requested API version.</param>
+            <param name="handler">Change <see cref="T:System.EventHandler"/> delegate.</param>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.#ctor(System.Int32,System.EventHandler,System.IO.Stream)">
+            <summary>
+            Create a new instance from data in the provided <see cref="T:System.IO.Stream"/>.
+            </summary>
+            <param name="APIversion">Unused; requested API version.</param>
+            <param name="handler">Change <see cref="T:System.EventHandler"/> delegate.</param>
+            <param name="s">The <see cref="T:System.IO.Stream"/> containing the data.</param>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.#ctor(System.Int32,System.EventHandler,s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference)">
+            <summary>
+            Create a new instance based on the provided existing instance.
+            </summary>
+            <param name="APIversion">Unused; requested API version.</param>
+            <param name="handler">Change <see cref="T:System.EventHandler"/> delegate.</param>
+            <param name="basis">An existing instance.</param>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.#ctor(System.Int32,System.EventHandler,System.UInt32)">
+            <summary>
+            Create a new instance from the provided <see cref="T:System.UInt32"/> value.
+            </summary>
+            <param name="APIversion">Unused; requested API version.</param>
+            <param name="handler">Change <see cref="T:System.EventHandler"/> delegate.</param>
+            <param name="chunkReference">The chunk reference as a "raw" <see cref="T:System.UInt32"/>.</param>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.UnParse(System.IO.Stream)">
+            <summary>
+            Write this instance to the provided <see cref="T:System.IO.Stream"/>.
+            </summary>
+            <param name="s">The <see cref="T:System.IO.Stream"/> to write out to.</param>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.Equals(s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference)">
+            <summary>
+            Returns a value indicating whether this instance is equal to a specified
+            <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/>.
+            </summary>
+            <param name="other">A <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/> value to compare to this instance.</param>
+            <returns>
+            <c>true</c> if obj has the same value as this instance;
+            otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.Equals(System.Object)">
+            <summary>
+            Returns a value indicating whether this instance is equal to a specified
+            <see cref="T:System.Object"/>.
+            </summary>
+            <param name="obj">An <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+            <c>true</c> if <paramref name="obj"/> is an instance of <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/>
+            and equals the value of this instance;
+            otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.GetHashCode">
+            <summary>
+            Returns the hash code for this instance.
+            </summary>
+            <returns>A 32-bit signed integer hash code.</returns>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.Equals(s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference,s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference)">
+            <summary>
+            Determines whether the specified <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/> instances are equal.
+            </summary>
+            <param name="x">The first <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/> to compare.</param>
+            <param name="y">The second <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/> to compare.</param>
+            <returns>
+            <c>true</c> if the specified <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/> instances are equal;
+            otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.GetHashCode(s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference)">
+            <summary>
+            Returns a hash code for the specified object.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> for which a hash code is to be returned.</param>
+            <returns>A hash code for the specified object.</returns>
+            <exception cref="T:System.ArgumentNullException">The type of <paramref name="obj"/> is a reference type and <paramref name="obj"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.CompareTo(s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference)">
+            <summary>
+            Compares the current <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/> with another <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/>.
+            </summary>
+            <param name="other">Another <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/> to compare with this one.</param>
+            <returns>
+            A 32-bit signed integer that indicates the relative order of the <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/> instances
+            being compared. The return value has the following meanings:
+            <table>
+            <thead>
+            <tr><td>Value</td><td>Meaning</td></tr>
+            </thead>
+            <tbody>
+            <tr><td>Less than zero</td><td>This object is less than the <paramref name="other"/> parameter.</td></tr>
+            <tr><td>Zero</td><td>This object is equal to <paramref name="other"/>.</td></tr>
+            <tr><td>Greater than zero</td><td>This object is greater than <paramref name="other"/>.</td></tr>
+            </tbody>
+            </table> 
+            </returns>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.Compare(s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference,s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference)">
+            <summary>
+            Compares two <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/> instances and returns a value indicating whether one is
+            less than, equal to, or greater than the other.
+            </summary>
+            <param name="x">The first <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/> instance to compare.</param>
+            <param name="y">The second <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/> instance to compare.</param>
+            <returns>
+            <table>
+            <thead>
+            <tr><td>Value</td><td>Condition</td></tr>
+            </thead>
+            <tbody>
+            <tr><td>Less than zero</td><td><paramref name="x"/> is less than <paramref name="y"/>.</td></tr>
+            <tr><td>Zero</td><td><paramref name="x"/> equals <paramref name="y"/>.</td></tr>
+            <tr><td>Greater than zero</td><td><paramref name="x"/> is greater than <paramref name="y"/>.</td></tr>
+            </tbody>
+            </table> 
+            </returns>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.GetKey(s3pi.GenericRCOLResource.GenericRCOLResource,s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference)">
+            <summary>
+            Return the <see cref="T:s3pi.Interfaces.IResourceKey"/> indexed by the given <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/>.
+            </summary>
+            <param name="rcol">The RCOL resource to inspect.</param>
+            <param name="reference">The <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/> to look up.</param>
+            <returns>The <see cref="T:s3pi.Interfaces.IResourceKey"/> indexed by the given <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/>.</returns>
+            <exception cref="T:System.NotImplementedException">The <paramref name="reference"/> passed
+            does not have a supported <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ReferenceType"/> value.</exception>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.GetBlock(s3pi.GenericRCOLResource.GenericRCOLResource,s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference)">
+            <summary>
+            Return the RCOL block indexed by the given <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/>.
+            </summary>
+            <param name="rcol">The RCOL resource to inspect.</param>
+            <param name="reference">The <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/> to look up.</param>
+            <returns>The RCOL block indexed by the given <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/>.</returns>
+            <exception cref="T:System.NotImplementedException">The <paramref name="reference"/> passed
+            does not have a supported <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ReferenceType"/> value.</exception>
+            <remarks>Only <see cref="F:s3pi.GenericRCOLResource.GenericRCOLResource.ReferenceType.Public"/> and <see cref="F:s3pi.GenericRCOLResource.GenericRCOLResource.ReferenceType.Private"/>
+            are "sane" types.</remarks>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.CreateReference(s3pi.GenericRCOLResource.GenericRCOLResource,s3pi.Interfaces.IResourceKey)">
+            <summary>
+            Determine the <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/> value for the given <see cref="T:s3pi.Interfaces.IResourceKey"/> value.
+            </summary>
+            <param name="rcol">The RCOL resource to inspect.</param>
+            <param name="rk">The <see cref="T:s3pi.Interfaces.IResourceKey"/> to encode.</param>
+            <returns>The <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference"/> value for the given <see cref="T:s3pi.Interfaces.IResourceKey"/> value.</returns>
+            <remarks>Note that the value will be zero (i.e. indicating an invalid entry) if the <paramref name="rk"/>
+            value supplied is not found either in the <see cref="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntries"/> or
+            <see cref="P:s3pi.GenericRCOLResource.GenericRCOLResource.Resources"/> lists.</remarks>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.ParentTGIBlocks">
+            <summary>
+            Reference to <see cref="T:s3pi.Interfaces.TGIBlockList"/> into which <see cref="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.TGIBlockIndex"/> is an index.
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.ContentFields">
+            <summary>
+            Returns the list of fields for the type.
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.RecommendedApiVersion">
+            <summary>
+            Return the version number that this wrapper prefers to be called with (the default if passed zero).
+            </summary>
+            <remarks>This wrapper returns <c>1</c> and is not sensitive to API version.</remarks>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.TGIBlockIndex">
+            <summary>
+            The index into either the <see cref="P:s3pi.GenericRCOLResource.GenericRCOLResource.Resources"/>
+            or <see cref="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkEntries"/> lists.
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.RefType">
+            <summary>
+            The <see cref="T:s3pi.GenericRCOLResource.GenericRCOLResource.ReferenceType"/> of the instance.
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.GenericRCOLResource.ChunkReference.Value">
+            <summary>
+            A displayable string for the instance.
+            </summary>
+        </member>
+        <member name="T:s3pi.GenericRCOLResource.GenericRCOLResourceHandler">
+            <summary>
+            ResourceHandler for GenericRCOLResource wrapper.
+            </summary>
+            <remarks>
+            It has a pluggable API to support handlers for the blocks within an RCOL resource,
+            similar to WrapperDealer's support for resources within a package.
+            </remarks>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResourceHandler.CreateRCOLBlock(System.Int32,System.EventHandler,System.UInt32)">
+            <summary>
+            Invoke the "default" constructor for an RCOL block.
+            </summary>
+            <param name="APIversion">Requested API version.</param>
+            <param name="handler">Change <see cref="T:System.EventHandler"/> delegate.</param>
+            <param name="type">Resource type of RCOL block.</param>
+            <returns>A new, initialised instance of the requested RCOL block <paramref name="type"/>,
+            or <c>null</c> if the <paramref name="type"/> is not supported.</returns>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResourceHandler.RCOLDealer(System.Int32,System.EventHandler,System.UInt32,System.IO.Stream)">
+            <summary>
+            Return a new instance of the requested RCOL block <paramref name="type"/>,
+            initialised from the content of the supplied <see cref="T:System.IO.Stream"/>.
+            </summary>
+            <param name="APIversion">Requested API version.</param>
+            <param name="handler">Change <see cref="T:System.EventHandler"/> delegate.</param>
+            <param name="type">Resource type of RCOL block.</param>
+            <param name="s"><see cref="T:System.IO.Stream"/> containing data content for the RCOL block.</param>
+            <returns>A new instance of the requested RCOL block <paramref name="type"/>,
+            initialised from the supplied <see cref="T:System.IO.Stream"/>,
+            or <c>null</c> if the <paramref name="type"/> is not supported.</returns>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResourceHandler.RCOLDealer(System.Int32,System.EventHandler,System.UInt32,System.Object[])">
+            <summary>
+            Return a new instance of the requested RCOL block <paramref name="type"/>,
+            initialised from the supplied <paramref name="fields"/>.
+            </summary>
+            <param name="APIversion">Requested API version.</param>
+            <param name="handler">Change <see cref="T:System.EventHandler"/> delegate.</param>
+            <param name="type">Resource type of RCOL block.</param>
+            <param name="fields">The fields to pass to the RCOL block constructor.</param>
+            <returns>A new instance of the requested RCOL block <paramref name="type"/>,
+            initialised from the supplied <paramref name="fields"/>,
+            or <c>null</c> if the <paramref name="type"/> is not supported.</returns>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResourceHandler.RCOLTypesForTag(System.String)">
+            <summary>
+            Return the enumeration of ResourceTypes for the given tag.
+            </summary>
+            <param name="tag">An RCOL tag.</param>
+            <returns>An enumeration of ResourceTypes.</returns>
+        </member>
+        <member name="M:s3pi.GenericRCOLResource.GenericRCOLResourceHandler.#ctor">
+            <summary>
+            ResourceHandler for GenericRCOLResource wrapper
+            </summary>
+        </member>
+        <member name="T:s3pi.GenericRCOLResource.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:s3pi.GenericRCOLResource.Properties.Resources.RCOLResources">
+             <summary>
+               Looks up a localized string similar to ;type
+            ;tag (*=null)
+            ;y=stand alone resource
+            ;n=only embedded in a MODL or MLOD
+            ;desc
+            0x015A1849 GEOM N Body Geometry ; lies! but the stand alone is not a GenericRCOL
+            0x01661233 MODL Y Object Geometry
+            0x01D0E6FB VBUF N Vertex Buffer
+            0x01D0E70F IBUF N Index Buffer
+            0x01D0E723 VRTF N Vertex Format
+            0x01D0E75D MATD Y Material definition
+            0x01D0E76B SKIN N Mesh skin
+            0x01D10F34 MLOD Y Object Geometry LODs
+            0x02019972 MTST Y Material set
+            0x021D7E8C TREE Y
+            0x0229684B VBUF N Vertex Buffer(Used in shadow m [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+    </members>
+</doc>

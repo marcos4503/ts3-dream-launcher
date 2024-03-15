@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>s3pi.DefaultResource</name>
+    </assembly>
+    <members>
+        <member name="T:s3pi.DefaultResource.DefaultResource">
+            <summary>
+            A resource wrapper that "does nothing", providing the minimal support required for any resource in a Package.
+            </summary>
+        </member>
+        <member name="M:s3pi.DefaultResource.DefaultResource.#ctor(System.Int32,System.IO.Stream)">
+            <summary>
+            Create a new instance of the resource.
+            </summary>
+            <param name="APIversion">Requested API version</param>
+            <param name="s">Data stream to use, or null to create from scratch</param>
+        </member>
+        <member name="M:s3pi.DefaultResource.DefaultResource.UnParse">
+            <summary>
+            <see cref="T:s3pi.DefaultResource.DefaultResource"/> does not know how to parse anything, so this method is unimplemented.
+            </summary>
+            <returns>Throws <see cref="T:System.NotImplementedException"/>.</returns>
+            <exception cref="T:System.NotImplementedException">Thrown if called.</exception>
+        </member>
+        <member name="P:s3pi.DefaultResource.DefaultResource.RecommendedApiVersion">
+            <summary>
+            Return the version number that this wrapper prefers to be called with (the default if passed zero).
+            </summary>
+            <remarks>This wrapper returns <c>1</c> and is not sensitive to API version.</remarks>
+        </member>
+        <member name="P:s3pi.DefaultResource.DefaultResource.Stream">
+            <summary>
+            The resource content as a Stream, with the stream position set to the begining.
+            </summary>
+        </member>
+        <member name="T:s3pi.DefaultResource.DefaultResourceHandler">
+            <summary>
+            ResourceHandler for DefaultResource wrapper
+            </summary>
+        </member>
+        <member name="M:s3pi.DefaultResource.DefaultResourceHandler.#ctor">
+            <summary>
+            Populate the <see cref="T:s3pi.Interfaces.AResourceHandler"/> Dictionary.
+            <para>"*" is used to inform WrapperDealer this will happily wrap any resource.</para>
+            </summary>
+        </member>
+    </members>
+</doc>
