@@ -771,6 +771,16 @@ Primeiro, certifique-se de ainda ter o arquivo "sims3pack" do mundo a ser re-ins
 
 Agora, instale o mundo novamente usando o arquivo "sims3pack" original do mundo. Antes de finalizar a instalação, dê ao mundo um nome exatamente igual ao que tinha antes.
     </system:String>
+    <system:String x:Key="launcher_world_help_topic5Title" xml:space="preserve">O que fazer ao jogar num Mundo Customizado sem população? Preciso popula-lo?</system:String>
+    <system:String x:Key="launcher_world_help_topic5Text" xml:space="preserve">
+É comum que alguns Mundos Customizados venham com nenhuma população, e com todas as casas residênciais vazias. Fique sabendo que se a progressão de história do seu jogo, está ativada, o jogo irá gerar Sims que irão popular a sua cidade automaticamente.
+        
+Embora seja verdade que o processo de geração de Sims não aconteça instantaneamente, alguns Sims serão criados quase instantaneamente em um mundo com população zero, além de apenas a família ativa. Dentro desses Sims que são gerados quase que instantaneamente, inclue os Sims de Serviço e Sims de Função, além de um Sim para cada edíficio de trabalho ou escola. Após isso, o jogo irá lentamente gerar mais Sims para a cidade, conforme você joga.
+        
+Se você instalou o patch de otimização básica do Dream Launcher, e o Patch de Progressão de História, então seu jogo possui o NRaas Master Controller e o NRaas Story Progression. Com o Master Controller, você pode obter relatórios de estatística demografica da sua cidade, já o Story Progression instalado pelo Patch do Dream Launcher já vem configurado para melhor otimização e para permitir a imigração de Sims, que por sua vez povoarão sua cidade lentamente!
+        
+Se depois de tudo você ainda acha que não estão chegando novos Sims na sua cidade, então usando o Story Progression instalado pelos Patches do Launcher, você pode forçar a imigração de um número de famílias. Para isso, clique na Prefeitura da Cidade, depois "NRaas" > "Progressão de História" > "Opções Gerais" > "Opção: Lotes" > "Opções: Imigração/Emigração". Agora, clique em "Imigração Rápida" e depois digite um número de famílias que você deseja que imigrem para sua cidade. O Story Progression imigrará novas famílias a cada 5/10 minutos até que o número que você especificou diminua para zero ou você fique sem moradia adequada na cidade, o que acontecer primeiro. Sempre que um novo Sim/Família imigrar para sua cidade, o Story Progression lhe enviará uma notificação.
+    </system:String>
     <system:String x:Key="launcher_world_emptyWorlds">Nenhum Mundo Customizado instalado</system:String>
     <system:String x:Key="launcher_world_problemFound">Foram encontrados um ou mais Mundos Customizados com problemas em seus arquivos. É recomendado que você re-instale esses mundos. Acesse a página "Mundos" para verificar quais estão com problemas.</system:String>
     <system:String x:Key="launcher_world_unintallButton">Desinstalar</system:String>
@@ -1168,6 +1178,11 @@ Cidade, em seguida "NRaas > Master Controller > Demografia > População" e em s
 Se você desejar eliminar alguns Sims da cidade, você pode usar o Editor de Cidades do jogo ou você também pode usar o Master Controller. Para isso clique na Prefeitura da Cidade,
 então, clique em "NRaas > Master Controller > Cidade > Aniquilação". Escolha uma categoria de sim e clique em "Ok". Em seguida, na lista de Sims que surge, escolha um ou mais
 Sims que deseja remover da cidade e então clique em "Ok". O lado positivo de usar o Master Controller é que você pode visualizar até mesmo Sims de serviço, ou Sims sem-teto.
+\b\b
+Para ficar mais fácil de entender os tipos de Sims...\b\b
+- Sims de Serviço: São Sims que não vivem na cidade literalmente (se encaixam na categoria de "Sem Teto"), e só executam serviços, como mecânicos, carteiros, etc.\b
+- Sims de Função (Role): São Sims não vivem na cidade literalmente (se encaixam na categoria de "Sem Teto"), e só executam funções, como pianistas, bibliotecários, tatuador, etc.\b
+- Sims Normais: São os Sims que vivem na cidade, sejam os Sims inativos ou de sua família ativa.
 \b\b
 Se você preferir limitar mais, a quantidade de Sims que se é possível comportar na cidade, você pode reconfigurar lotes residenciais vazios para "tranca-los". Para isso, alterne
 para o modo de Edição de Cidade, em seguida, clique no ícone de um lote residencial vazio. Em seguida, na janela que se abre, clique em "Alterar Tipo de Lote". Alterne para

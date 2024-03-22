@@ -922,6 +922,25 @@ namespace TS3_Dream_Launcher
             Directory.CreateDirectory((myDocumentsPath + "/!DL-TmpCache"));
             //Create the folder of static of the Dream Launcher in my documents
             Directory.CreateDirectory((myDocumentsPath + "/!DL-Static"));
+            //Create the game folders that not exists, needed by the Launcher (to avoid crashing on acessing a folder that not exists yet)
+            Directory.CreateDirectory((myDocumentsPath + "/Collections"));
+            Directory.CreateDirectory((myDocumentsPath + "/ContentPatch"));
+            Directory.CreateDirectory((myDocumentsPath + "/DCBackup"));
+            Directory.CreateDirectory((myDocumentsPath + "/DCCache"));
+            Directory.CreateDirectory((myDocumentsPath + "/Downloads"));
+            Directory.CreateDirectory((myDocumentsPath + "/Exports"));
+            Directory.CreateDirectory((myDocumentsPath + "/FeaturedItems"));
+            Directory.CreateDirectory((myDocumentsPath + "/IGACache"));
+            Directory.CreateDirectory((myDocumentsPath + "/InstalledWorlds"));
+            Directory.CreateDirectory((myDocumentsPath + "/Library"));
+            Directory.CreateDirectory((myDocumentsPath + "/Recorded Videos"));
+            Directory.CreateDirectory((myDocumentsPath + "/SavedOutfits"));
+            Directory.CreateDirectory((myDocumentsPath + "/SavedSims"));
+            Directory.CreateDirectory((myDocumentsPath + "/Saves"));
+            Directory.CreateDirectory((myDocumentsPath + "/Screenshots"));
+            Directory.CreateDirectory((myDocumentsPath + "/SigsCache"));
+            Directory.CreateDirectory((myDocumentsPath + "/Thumbnails"));
+            Directory.CreateDirectory((myDocumentsPath + "/WorldCaches"));
 
             //Get a copy of "Options.ini" as template for settings apply, if don't have one
             LoadNewOptionsTemplateIfDontHaveOne();

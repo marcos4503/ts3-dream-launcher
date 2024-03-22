@@ -16,7 +16,7 @@
         <Label x:Name="number" Content="999" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0,0,0,0" FontWeight="Normal" Margin="0,2,0,0" Foreground="#FF505050"/>
         <StackPanel Grid.Column="2" VerticalAlignment="Top">
             <TextBlock x:Name="title" TextWrapping="Wrap" Text="Title" FontSize="14" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <TextBlock x:Name="text" TextWrapping="Wrap" Text="Tip Text" FontWeight="Normal" Margin="0,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <TextBlock x:Name="text" TextWrapping="Wrap" FontWeight="Normal" Margin="0,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" TextAlignment="Justify" Text="Tip Text"/>
         </StackPanel>
 
     </Grid>

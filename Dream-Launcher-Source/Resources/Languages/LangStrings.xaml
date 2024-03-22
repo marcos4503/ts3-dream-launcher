@@ -766,6 +766,16 @@ First, make sure you still have the world's "sims3pack" file to be re-installed.
 
 Now install the world again using the world's original "sims3pack" file. Before finishing the installation, give the world a name exactly the same as it was before.
     </system:String>
+    <system:String x:Key="launcher_world_help_topic5Title" xml:space="preserve">What to do when playing in a Custom World with no population? Do I need to populate it?</system:String>
+    <system:String x:Key="launcher_world_help_topic5Text" xml:space="preserve">
+It is common for some Custom Worlds to come with no population, and with all the residential houses empty. Keep in mind that if your game's story progression is activated, the game will automatically generate Sims that will populate your city.
+        
+While it is true that the Sim generation process does not happen instantly, some Sims will be created almost instantly in a world with zero population beyond just the active family. These Sims, which are generated almost instantly, include Service Sims and Function Sims, as well as a Sim for each work or school building. After this, the game will slowly spawn more Sims into the city as you play.
+
+If you have installed the Dream Launcher Basic Optimization Patch, and the Story Progression Patch, then your game has the NRaas Master Controller and NRaas Story Progression. With the Master Controller, you can obtain demographic statistics reports for your city, while the Story Progression installed by the Dream Launcher Patch is already configured for better optimization and to allow the immigration of Sims, which in turn will slowly populate your city!
+
+If after all you still think that no new Sims are arriving in your city, then using the Story Progression installed by Launcher Patches, you can force the immigration of a number of families. To do this, click on the City Hall, then "NRaas" > "Story Progression" > "General Options" > "Option: Lots" > "Options: Immigration/Emigration". Now, click on "Quick Immigration" and then enter a number of families you want to immigrate to your city. Story Progression will immigrate new families every 5/10 minutes until the number you specified decreases to zero or you run out of suitable housing in the city, whichever comes first. Whenever a new Sim/Family immigrates to your city, Story Progression will send you a notification.
+    </system:String>
     <system:String x:Key="launcher_world_emptyWorlds">No Custom Worlds installed</system:String>
     <system:String x:Key="launcher_world_problemFound">One or more Custom Worlds were found to have problems in their files. It is recommended that you re-install these worlds. Access the "Worlds" page to check which ones are having problems.</system:String>
     <system:String x:Key="launcher_world_unintallButton">Uninstall</system:String>
@@ -1156,6 +1166,11 @@ City, then "NRaas > Master Controller > Demographics > Population" and then clic
 If you want to eliminate some Sims from the city, you can use the game's City Editor or you can also use the Master Controller. To do this, click on the City Hall,
 then, click on "NRaas > Master Controller > City > Annihilation". Choose a sim category and click "Ok". Then, from the list of Sims that appears, choose one or more
 Sims you want to remove from the city and then click "Ok". The good side of using the Master Controller is that you can view even service Sims, or homeless Sims.
+\b\b
+To make it easier to understand the types of Sims...\b\b
+- Service Sims: These are Sims that do not literally live in the city (falls into the "Homeless" category), and only perform services, such as mechanics, postmen, etc.\b
+- Role Sims: These Sims do not literally live in the city (falls into the "Homeless" category), and only perform functions, such as pianists, librarians, tattoo artists, etc.\b
+- Normal Sims: These are the Sims who live in the city, whether they are inactive Sims or their active family.
 \b\b
 If you prefer to further limit the number of Sims that can be accommodated in the city, you can reconfigure empty residential lots to "lock" them. To do this, toggle
 to City Edit mode, then click on the icon of an empty residential lot. Then, in the window that opens, click on "Change Lot Type". Switch to

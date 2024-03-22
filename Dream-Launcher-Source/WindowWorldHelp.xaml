@@ -29,6 +29,9 @@
                     <Rectangle Stroke="Black" Height="0.5" Margin="64,32,64,32"/>
                     <TextBlock x:Name="topic4Title" TextWrapping="Wrap" Text="Place Holder" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="16" Margin="0,0,0,8" TextAlignment="Center"/>
                     <TextBlock x:Name="topic4Text" TextWrapping="Wrap" Text="Place Holder" FontWeight="Normal" VerticalAlignment="Top" TextAlignment="Justify"/>
+                    <Rectangle Stroke="Black" Height="0.5" Margin="64,32,64,32"/>
+                    <TextBlock x:Name="topic5Title" TextWrapping="Wrap" Text="Place Holder" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="16" Margin="0,0,0,8" TextAlignment="Center"/>
+                    <TextBlock x:Name="topic5Text" TextWrapping="Wrap" Text="Place Holder" FontWeight="Normal" VerticalAlignment="Top" TextAlignment="Justify"/>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

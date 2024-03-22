@@ -40,6 +40,8 @@ namespace TS3_Dream_Launcher
             topic3Text.Text = mainWindow.GetStringApplicationResource("launcher_world_help_topic3Text");
             topic4Title.Text = mainWindow.GetStringApplicationResource("launcher_world_help_topic4Title");
             topic4Text.Text = mainWindow.GetStringApplicationResource("launcher_world_help_topic4Text");
+            topic5Title.Text = mainWindow.GetStringApplicationResource("launcher_world_help_topic5Title");
+            topic5Text.Text = mainWindow.GetStringApplicationResource("launcher_world_help_topic5Text");
 
             //Build the links
             link1.Content = "MY SIM REALITY";
