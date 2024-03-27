@@ -60,7 +60,7 @@ The installation process is very simple and easy! Except for the first step, but
 [*] [b]1.[/b] It is mandatory that you uninstall your The Sims 3 from Steam. This is necessary to ensure a clean, functional and conflict-free installation for your game.
 [*] [b]2.[/b] Delete the "The Sims 3" folder in "My Documents > Electronic Arts" on your computer. BUT remember to back up your Saves and Mods, as you can later import them into the game again, through the Dream Launcher!
 [*] [b]3.[/b] Install The Sims 3 again on Steam as you would, but don't open it yet.
-[*] [b]4.[/b] Download the Launcher ZIP file here at Mod The Sims. The name should be something like "ts3-dream-launcher-X.X.X.zip".
+[*] [b]4.[/b] Download the Launcher ZIP file here at Nexus. The name should be something like "ts3-dream-launcher-X.X.X.zip".
 [*] [b]5.[/b] On Steam, go to The Sims 3 page in your library. Then click "[Gear Icon] > Properties > Installed Files > Explore". The game's installation root folder will open in Files Explorer. Open the "Game" folder and then open the "Bin" folder.
 [*] [b]6.[/b] Inside the "Bin" folder, search for "Sims3Launcher.exe" and rename it to "Sims3Launcher-backup.exe".
 [*] [b]7.[/b] Inside the "Bin" folder, extract ALL the contents of file "ts3-dream-launcher-X.X.X.zip"" into this folder.
@@ -70,6 +70,19 @@ The installation process is very simple and easy! Except for the first step, but
 If you did everything correctly, now, when you click play The Sims 3 on Steam, the Dream Launcher will open, instead of the standard EA Launcher. The game hours should continue to be counted and everything should work normally. Just enjoy! :)
 
 [b]NOTE:[/b] After installing Dream Launcher you should no longer do ANYTHING on your game files. Whether installing patches, Mods or anything similar. NOTHING. Leave these things to do ONLY through Dream Launcher! This will ensure that whatever needs to be done in your game, Dream Launcher will be aware of, and can take care of. Furthermore, basically everything you need to do in your game can be done using Dream Launcher! :)
+
+[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]What languages does Dream Launcher support?[/b]
+
+Dream Launcher supports all game languages, so you will be able to play the game in any language you want. However, Dream Launcher only displays its interface in the following languages...
+
+[list]
+[*] English
+[*] Portuguese
+[/list]
+
+[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]Need help or want to report a problem/bug?[/b]
+
+Please, I ask that you post comments, requests for help, problems or bugs found only here on the Mod page, on Nexus Mods. This way, by centralizing everything, it will be easier for me!
 
 [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]Dream Launcher is on GitHub![/b]
 
@@ -87,4 +100,5 @@ I was very happy with the final result, after 2 and a half months of very hard w
 [*] Peter L Jones - By the S3PI library that allows to edit game files.
 [*] Jacob Kemple - By the Overlay.NET library that allows easy DirectX Overlay renderization.
 [/list]
+
 Created with ❤ by Marcos Tomaz
