@@ -1,4 +1,4 @@
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/arrow-icon.png[/img] [b]What is Dream Launcher?[/b]
+[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]What is Dream Launcher?[/b]
 
 The "Dream Launcher" is a Launcher for The Sims 3. This is a Launcher developed to completely replace the game's original Launcher, developed by EA, in addition to being the "Dream Launcher" for every player who loves The Sims 3, just like me.
 
@@ -38,7 +38,7 @@ The goal of Dream Launcher is simple. You install your game clean. After that, a
 
 And of course, the most important thing! Launch the game easily through the Dream Launcher! HeHeHe :D
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/arrow-icon.png[/img] [b]What do I need to use Dream Launcher?[/b]
+[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]What do I need to use Dream Launcher?[/b]
 
 Well. There are some prerequisites and conditions for you to use Dream Launcher in your game. See them all below.
 
@@ -52,7 +52,7 @@ Well. There are some prerequisites and conditions for you to use Dream Launcher 
 [*] Not compatible with use of CCMagic tool or The Sims Resource CC Manager.
 [/list]
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/arrow-icon.png[/img] [b]How to install Dream Launcher?[/b]
+[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]How to install Dream Launcher?[/b]
 
 The installation process is very simple and easy! Except for the first step, but look... It will be so worth it! :)
 
@@ -71,13 +71,13 @@ If you did everything correctly, now, when you click play The Sims 3 on Steam, t
 
 [b]NOTE:[/b] After installing Dream Launcher you should no longer do ANYTHING on your game files. Whether installing patches, Mods or anything similar. NOTHING. Leave these things to do ONLY through Dream Launcher! This will ensure that whatever needs to be done in your game, Dream Launcher will be aware of, and can take care of. Furthermore, basically everything you need to do in your game can be done using Dream Launcher! :)
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/arrow-icon.png[/img] [b]Dream Launcher is on GitHub![/b]
+[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]Dream Launcher is on GitHub![/b]
 
 Dream Launcher is a proudly open source project! Feel free to Fork, make suggestions, check the code, compile yourself, or anything else that interests you! Dream Launcher was made using WPF with C#, in Visual Studio.
 
 [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/github-icon.png[/img] [url=https://github.com/marcos4503/ts3-dream-launcher]Click here to access Dream Launcher, on GitHub![/url]
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/arrow-icon.png[/img] [b]Credits and Special Thanks[/b]
+[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]Credits and Special Thanks[/b]
 
 I was very happy with the final result, after 2 and a half months of very hard work and a lot of care. Even though I developed this project alone, it would not have been possible without the people or entities below!
 
