@@ -30,6 +30,7 @@ Dream Launcher was born with the aim of making the entire process of leaving you
 
 And there are several other functions. Keep reading to find out how to install it!
 <br>
+<br>
 <p align="center" style="font-size: 2px;">
     <b>If you want to use the Dream Launcher in your game, I highly recommend you download and follow the installation instructions from the <a href="https://www.nexusmods.com/thesims3/mods/155" target="_blank">Dream Launcher page on Nexus Mods</a>! There you can also post comments, bug reports, get help, etc.</b>
 </p>
