@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "W6aWX6ok7UJMFH256tBaDR0IySXRAdV4JUt2YvkCt700JnI2uBU5GO/26hmzccn532N3wHhJKChloRkg5TY/zA==",
+  "dgSpecHash": "V2G3F1jW+lySNSHt1GwszozKptWQ8fo/g+tt4nvylHMWkxAuUZ51v9pW0lQiUsB3hJrTS8MtLxEDjYP2bxRTJA==",
   "success": true,
-  "projectFilePath": "D:\\Visual-Studio\\TS3 Dream Launcher\\Add-Ons\\LauncherUpdateEnder\\LauncherUpdateEnder.csproj",
+  "projectFilePath": "D:\\!GitHub-Repo\\ts3-dream-launcher\\Dream-Launcher-Source\\Add-Ons\\LauncherUpdateEnder\\LauncherUpdateEnder.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\junio\\.nuget\\packages\\dotnetzip\\1.16.0\\dotnetzip.1.16.0.nupkg.sha512",
     "C:\\Users\\junio\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.1\\microsoft.netcore.platforms.3.1.1.nupkg.sha512",
