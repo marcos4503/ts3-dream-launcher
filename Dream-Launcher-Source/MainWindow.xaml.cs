@@ -398,9 +398,10 @@ namespace TS3_Dream_Launcher
                     toReturn.Add("check1-error");
 
                 //Do the check #2...
-                bool steamAppIdExists = File.Exists(((new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent).FullName + "/steam_appid.txt"));
-                bool installScriptExists = File.Exists(((new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent).FullName + "/installscript_249181_windows.vdf"));
-                if(steamAppIdExists == true || installScriptExists == true)
+                string fourthFoldersUpFolderName = "";
+                try { fourthFoldersUpFolderName = new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Name; }
+                catch (Exception ex) { }
+                if(fourthFoldersUpFolderName == "steamapps")
                     toReturn.Add("check2-success");
                 else
                     toReturn.Add("check2-error");

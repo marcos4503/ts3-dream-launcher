@@ -78,7 +78,7 @@ namespace TS3_Dream_Launcher.Controls.ValidableTextBox {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TS3 Dream Launcher;V1.0.4;component/controls/validabletextbox/validabletextbox.x" +
+            System.Uri resourceLocater = new System.Uri("/TS3 Dream Launcher;V1.0.5;component/controls/validabletextbox/validabletextbox.x" +
                     "aml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Controls\ValidableTextBox\ValidableTextBox.xaml"

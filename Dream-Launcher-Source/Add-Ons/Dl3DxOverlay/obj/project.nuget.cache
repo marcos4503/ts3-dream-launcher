@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IiPpQmVFMiPKVtJlH0QWFbsTadSYM2UlKCLi5e5Kn1xD58SGd2NCi7q2XEC3HE5n65wzKW9njoP6oUufkBORYw==",
+  "dgSpecHash": "XJJoqbz02jK8Qt+RFOaBhAUWcfEatSjqNYA7X8vqmuCd80PXYKXv2XlQ+BUGhrzTo62LXLR8LegXNLOotjA7xg==",
   "success": true,
-  "projectFilePath": "D:\\!GitHub-Repo\\ts3-dream-launcher\\Dream-Launcher-Source\\Add-Ons\\Dl3DxOverlay\\Dl3DxOverlay.csproj",
+  "projectFilePath": "D:\\Visual-Studio\\TS3 Dream Launcher\\Add-Ons\\Dl3DxOverlay\\Dl3DxOverlay.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\junio\\.nuget\\packages\\microsoft.diagnostics.tracing.traceevent\\3.1.8\\microsoft.diagnostics.tracing.traceevent.3.1.8.nupkg.sha512",
     "C:\\Users\\junio\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",

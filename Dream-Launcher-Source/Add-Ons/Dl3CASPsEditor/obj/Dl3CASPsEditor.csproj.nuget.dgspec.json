@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\!GitHub-Repo\\ts3-dream-launcher\\Dream-Launcher-Source\\Add-Ons\\Dl3CASPsEditor\\Dl3CASPsEditor.csproj": {}
+    "D:\\Visual-Studio\\TS3 Dream Launcher\\Add-Ons\\Dl3CASPsEditor\\Dl3CASPsEditor.csproj": {}
   },
   "projects": {
-    "D:\\!GitHub-Repo\\ts3-dream-launcher\\Dream-Launcher-Source\\Add-Ons\\Dl3CASPsEditor\\Dl3CASPsEditor.csproj": {
+    "D:\\Visual-Studio\\TS3 Dream Launcher\\Add-Ons\\Dl3CASPsEditor\\Dl3CASPsEditor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\!GitHub-Repo\\ts3-dream-launcher\\Dream-Launcher-Source\\Add-Ons\\Dl3CASPsEditor\\Dl3CASPsEditor.csproj",
+        "projectUniqueName": "D:\\Visual-Studio\\TS3 Dream Launcher\\Add-Ons\\Dl3CASPsEditor\\Dl3CASPsEditor.csproj",
         "projectName": "Dl3CASPsEditor",
-        "projectPath": "D:\\!GitHub-Repo\\ts3-dream-launcher\\Dream-Launcher-Source\\Add-Ons\\Dl3CASPsEditor\\Dl3CASPsEditor.csproj",
+        "projectPath": "D:\\Visual-Studio\\TS3 Dream Launcher\\Add-Ons\\Dl3CASPsEditor\\Dl3CASPsEditor.csproj",
         "packagesPath": "C:\\Users\\junio\\.nuget\\packages\\",
-        "outputPath": "D:\\!GitHub-Repo\\ts3-dream-launcher\\Dream-Launcher-Source\\Add-Ons\\Dl3CASPsEditor\\obj\\",
+        "outputPath": "D:\\Visual-Studio\\TS3 Dream Launcher\\Add-Ons\\Dl3CASPsEditor\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
