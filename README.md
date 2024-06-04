@@ -62,6 +62,18 @@ You need to fulfill some requirements to be able to use this Software...
 - Not compatible with Launcher created by <a href="https://github.com/LazyDuchess" target="_blank">Lazy Duchess</a>.
 - Not compatible with use of CCMagic tool or The Sims Resource CC Manager.
 
+# Fixing "ASI Loader" error 126 when opening the game
+
+If you get an ASI-related Error 126 after opening The Sims 3, it could mean that your computer is missing DLLs. This is a common problem on computers with new Windows installations and to fix it, simply install ALL versions of DirectX and Visual Studio Redistributable below...
+
+- <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35" target="_blank">DirectX 9</a>
+- <a href="https://www.microsoft.com/en-us/download/details.aspx?id=26347" target="_blank">VS C++ Redistributable 2005 (x64 and x86)</a>
+- <a href="https://www.microsoft.com/en-us/download/details.aspx?id=26368" target="_blank">VS C++ Redistributable 2008 (x64 and x86)</a>
+- <a href="https://www.microsoft.com/en-us/download/details.aspx?id=26999" target="_blank">VS C++ Redistributable 2010 (x64 and x86)</a>
+- <a href="https://www.microsoft.com/en-us/download/details.aspx?id=30679" target="_blank">VS C++ Redistributable 2012 (x64 and x86)</a>
+- <a href="https://www.microsoft.com/en-us/download/details.aspx?id=40784" target="_blank">VS C++ Redistributable 2013 (x64 and x86)</a>
+- <a href="https://learn.microsoft.com/pt-br/cpp/windows/latest-supported-vc-redist?view=msvc-170" target="_blank">VS C++ Redistributable 2015-2022 (x64 and x86)</a>
+
 # Learn everything about this Launcher and The Sims 3!
 
 Would you like to learn everything about this Launcher and The Sims 3, from the basics to how to modify your game, edit furniture, install mods, edit mods, optimization tips, best practices and many other things?
