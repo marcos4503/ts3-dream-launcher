@@ -5648,6 +5648,8 @@ namespace TS3_Dream_Launcher
                 optionsIni.UpdateValue("lastdevice", (currentLastDeviceInfo[0] + ";" + currentLastDeviceInfo[1] + ";" + currentLastDeviceInfo[2] + ";" + currentDriverVersionInfo.Last()));
                 //**** Inform to don't show login warning if is not logged in
                 optionsIni.UpdateValue("requireloginbeforeload", "1");
+                //**** Inform to use the same "resolution" as the "pseudoresolution" too, to avoid 3d render downscaling
+                optionsIni.UpdateValue("pseudoresolution", "0,0");
 
 
 

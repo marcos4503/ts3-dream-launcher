@@ -175,7 +175,7 @@ namespace TS3_Dream_Launcher {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TS3 Dream Launcher;V1.0.5;component/windowworldhelp.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TS3 Dream Launcher;V1.0.6;component/windowworldhelp.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\WindowWorldHelp.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
