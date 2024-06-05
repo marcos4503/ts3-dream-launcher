@@ -71,6 +71,8 @@ If you did everything correctly, now, when you click play The Sims 3 on Steam, t
 
 [b]NOTE:[/b] After installing Dream Launcher you should no longer do ANYTHING on your game files. Whether installing patches, Mods or anything similar. NOTHING. Leave these things to do ONLY through Dream Launcher! This will ensure that whatever needs to be done in your game, Dream Launcher will be aware of, and can take care of. Furthermore, basically everything you need to do in your game can be done using Dream Launcher! :)
 
+[b]NOTE:[/b] If you get an ASI Loader related, error 126 after opening The Sims 3, it could mean that your computer is missing DLLs. Click [url=https://github.com/marcos4503/ts3-dream-launcher?tab=readme-ov-file#fixing-asi-loader-error-126-when-opening-the-game]this link[/url] to access the Dream Launcher repository and learn how to fix this problem!
+
 [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]What languages does Dream Launcher support?[/b]
 
 Dream Launcher supports all game languages, so you will be able to play the game in any language you want. However, Dream Launcher only displays its interface in the following languages...
