@@ -142,3 +142,5 @@ D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\WindowSaveCleaner.g
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\WindowSaveCleaner.baml
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\TipItem.g.cs
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\TipItem.baml
+D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\LocalToolItem.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\LocalToolItem.baml

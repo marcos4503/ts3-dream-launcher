@@ -76,6 +76,7 @@
     <system:String x:Key="launcher_linkSteam">Acessar mega-guia com diversas dicas e tutoriais na Steam (Português Apenas)</system:String>
     <system:String x:Key="launcher_updateNotifier">A versão %v% do Dream Launcher já está disponível. Instale a atualização agora!</system:String>
     <system:String x:Key="launcher_updateButton">INSTALAR</system:String>
+    <system:String x:Key="launcher_changelogButton">O QUE MUDOU?</system:String>
     <system:String x:Key="launcher_updateWait">Por favor, aguarde a conclusão de todas as Tarefas atualmente em andamento, antes de iniciar o processo de atualização.</system:String>
     <system:String x:Key="launcher_updateError">Não foi possível executar a atualização do Dream Launcher. Por favor, verifique sua conexão a internet e tente novamente.</system:String>
     <system:String x:Key="launcher_updateSuccess">O Dream Launcher foi atualizado com sucesso!</system:String>
@@ -608,6 +609,9 @@ Caso este parâmetro esteja ativo, os membros do núcleo familiar ativo não pod
     <system:String x:Key="launcher_tools_caspeTitle">CASPs Editor</system:String>
     <system:String x:Key="launcher_tools_caspeInformation">Requer: .NET 6.0</system:String>
     <system:String x:Key="launcher_tools_caspeDescription">Permite editar parâmetros de roupas (CAS Parts) que estão dentro dos arquivos "Package". Esta edição é feita via CLI. O Dream Launcher usa essa ferramenta fornecendo uma UI.</system:String>
+    <system:String x:Key="launcher_tools_ogLauncherTitle">Launcher Original</system:String>
+    <system:String x:Key="launcher_tools_ogLauncherInformation">Requer: Nada</system:String>
+    <system:String x:Key="launcher_tools_ogLauncherDescription">Te permite acessar o Launcher Original do The Sims 3. ATENÇÃO: O acesso ao Launcher original só é recomendado para realizar operações que envolvam a Loja ou o Exchange oficial da EA. Se fizer login no Launcher original, limpe todos os Caches antes de finalmente rodar o jogo.</system:String>
 
     <!-- Screen 6: Launcher - Mods -->
     <system:String x:Key="launcher_mods_message">Daqui você pode gerenciar todos os Mods ou Conteúdos Personalizados instalados no seu jogo. Você também pode instalar novos Mods/Conteúdos recomendados pelo Dream Launcher a partir da aba "Recomendado" ou se preferir instalar seus próprios Mods/Conteúdos baixados por você usando a aba "Customizado".</system:String>

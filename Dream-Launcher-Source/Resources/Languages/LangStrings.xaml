@@ -76,6 +76,7 @@
     <system:String x:Key="launcher_linkSteam">Access mega-guide with lots of tips and tutorials on Steam (Portuguese Only)</system:String>
     <system:String x:Key="launcher_updateNotifier">The %v% version of Dream Launcher is now available. Install the update now!</system:String>
     <system:String x:Key="launcher_updateButton">INSTALL</system:String>
+    <system:String x:Key="launcher_changelogButton">WHAT'S NEW?</system:String>
     <system:String x:Key="launcher_updateWait">Please wait for all Tasks currently in progress to complete before starting the update process.</system:String>
     <system:String x:Key="launcher_updateError">Unable to perform Dream Launcher update. Please check your internet connection and try again.</system:String>
     <system:String x:Key="launcher_updateSuccess">Dream Launcher has been updated successfully!</system:String>
@@ -603,6 +604,9 @@ If this parameter is active, active family members will not be able to become ce
     <system:String x:Key="launcher_tools_caspeTitle">CASPs Editor</system:String>
     <system:String x:Key="launcher_tools_caspeInformation">Requires: .NET 6.0</system:String>
     <system:String x:Key="launcher_tools_caspeDescription">Allows you to edit clothes parameters (CAS Parts) that are within "Package" files. This editing is done via CLI. Dream Launcher uses this tool by providing a UI.</system:String>
+    <system:String x:Key="launcher_tools_ogLauncherTitle">Original Launcher</system:String>
+    <system:String x:Key="launcher_tools_ogLauncherInformation">Requires: Nothing</system:String>
+    <system:String x:Key="launcher_tools_ogLauncherDescription">Allows you to access the Original Launcher of The Sims 3. WARNING: Access to the original Launcher is only recommended to carry out operations involving the official EA Store or Exchange. If you log in to the original Launcher, clear all Caches before finally run the game.</system:String>
 
     <!-- Screen 6: Launcher - Mods -->
     <system:String x:Key="launcher_mods_message">From here you can manage all Mods or Custom Content installed in your game. You can also install new Mods/Content recommended by Dream Launcher from the "Recommended" tab or if you prefer to install your own Mods/Content downloaded by you using the "Custom" tab.</system:String>

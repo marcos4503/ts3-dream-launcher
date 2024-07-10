@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Resources\icon-32x.ico</ApplicationIcon>
-    <AssemblyVersion>1.0.6</AssemblyVersion>
+    <AssemblyVersion>1.1.0</AssemblyVersion>
     <FileVersion></FileVersion>
     <UseWindowsForms>True</UseWindowsForms>
   </PropertyGroup>
@@ -62,6 +62,7 @@
     <None Remove="Resources\casp-thumb.png" />
     <None Remove="Resources\casp-toddler.png" />
     <None Remove="Resources\casp-young-adult.png" />
+    <None Remove="Resources\changelog-icon.png" />
     <None Remove="Resources\check.png" />
     <None Remove="Resources\close-popup.png" />
     <None Remove="Resources\copy-media.png" />
@@ -177,6 +178,7 @@
     <None Remove="Resources\tool-dashboard.png" />
     <None Remove="Resources\tool-ese.png" />
     <None Remove="Resources\tool-npp.png" />
+    <None Remove="Resources\tool-og-launcher.png" />
     <None Remove="Resources\tool-pkgv.png" />
     <None Remove="Resources\tool-s3ce.png" />
     <None Remove="Resources\tool-s3mi.png" />
@@ -281,6 +283,7 @@
     <Resource Include="Resources\casp-thumb.png" />
     <Resource Include="Resources\casp-toddler.png" />
     <Resource Include="Resources\casp-young-adult.png" />
+    <Resource Include="Resources\changelog-icon.png" />
     <Resource Include="Resources\check.png" />
     <Resource Include="Resources\close-popup.png" />
     <Resource Include="Resources\copy-media.png" />
@@ -402,6 +405,7 @@
     <Resource Include="Resources\tool-dashboard.png" />
     <Resource Include="Resources\tool-ese.png" />
     <Resource Include="Resources\tool-npp.png" />
+    <Resource Include="Resources\tool-og-launcher.png" />
     <Resource Include="Resources\tool-pkgv.png" />
     <Resource Include="Resources\tool-s3ce.png" />
     <Resource Include="Resources\tool-s3mi.png" />

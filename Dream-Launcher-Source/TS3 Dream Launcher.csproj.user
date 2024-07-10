@@ -25,6 +25,9 @@
     <Compile Update="Controls\ListItems\InstalledModItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\ListItems\LocalToolItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\ListItems\LogItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -100,6 +103,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\ListItems\InstalledModItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\ListItems\LocalToolItem.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\ListItems\LogItem.xaml">

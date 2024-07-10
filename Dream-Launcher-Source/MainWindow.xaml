@@ -386,10 +386,16 @@
                                     <Border BorderThickness="0,0,0,0" Background="#FFFFA400"/>
                                     <Image Height="24" Width="24" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,8,0,8" Source="/Resources/update-icon.png"/>
                                     <TextBlock x:Name="updateText" TextWrapping="Wrap" FontWeight="Bold" Foreground="White" MaxWidth="640" TextAlignment="Left" VerticalAlignment="Center" FontFamily="Open Sans" Margin="40,8,0,8" HorizontalAlignment="Left" Text="Place Holder"/>
-                                    <BeautyButton:BeautyButton x:Name="updateButton" HoverBackground="#FFADCAEC" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF84B0E2" BorderBrush="#FF4D82BF" Foreground="White" Cursor="Hand" Margin="0,0,8,0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="128" Height="24">
+                                    <BeautyButton:BeautyButton x:Name="updateButton" HoverBackground="#FFADCAEC" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF84B0E2" BorderBrush="#FF4D82BF" Foreground="White" Cursor="Hand" Margin="0,0,8,0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="100" Height="24">
                                         <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Center" Orientation="Horizontal">
                                             <Image Height="12" Width="12" VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Resources/download-icon.png"/>
                                             <Label Content="{DynamicResource launcher_updateButton}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="8,0,0,0" Padding="0,0,0,0" Foreground="White" FontSize="14"/>
+                                        </StackPanel>
+                                    </BeautyButton:BeautyButton>
+                                    <BeautyButton:BeautyButton x:Name="changelogButton" HoverBackground="#FFADCAEC" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF84B0E2" BorderBrush="#FF4D82BF" Foreground="White" Cursor="Hand" Margin="0,0,116,0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="150" Height="24">
+                                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Center" Orientation="Horizontal">
+                                            <Image Height="12" Width="12" VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Resources/changelog-icon.png"/>
+                                            <Label Content="{DynamicResource launcher_changelogButton}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="8,0,0,0" Padding="0,0,0,0" Foreground="White" FontSize="14"/>
                                         </StackPanel>
                                     </BeautyButton:BeautyButton>
                                 </Grid>

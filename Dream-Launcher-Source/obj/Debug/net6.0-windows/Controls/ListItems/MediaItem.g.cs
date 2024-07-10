@@ -95,7 +95,7 @@ namespace TS3_Dream_Launcher.Controls.ListItems {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TS3 Dream Launcher;V1.0.6;component/controls/listitems/mediaitem.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TS3 Dream Launcher;V1.1.0;component/controls/listitems/mediaitem.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Controls\ListItems\MediaItem.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

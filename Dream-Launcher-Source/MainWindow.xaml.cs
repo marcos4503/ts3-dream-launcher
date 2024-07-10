@@ -4414,6 +4414,7 @@ namespace TS3_Dream_Launcher
 
                     //Setup the update callback
                     updateButton.Click += ((s, e) => { StartLauncherUpdater(); });
+                    changelogButton.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://github.com/marcos4503/ts3-dream-launcher/releases", UseShellExecute = true }); });
                     //Show the version notification
                     updateText.Text = GetStringApplicationResource("launcher_updateNotifier").Replace("%v%", remoteCurrentVersion);
 
@@ -6931,8 +6932,31 @@ namespace TS3_Dream_Launcher
                 //Prepare the tool
                 newToolItem.Prepare();
             }
+
+            //---------------// Original Launcher //---------------//
+            if (true == true)
+            {
+                //Instantiate
+                LocalToolItem newToolItem = new LocalToolItem(this);
+                toolsList.Children.Add(newToolItem);
+                //Set it up
+                newToolItem.HorizontalAlignment = HorizontalAlignment.Left;
+                newToolItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newToolItem.Width = double.NaN;
+                newToolItem.Height = double.NaN;
+                newToolItem.Margin = new Thickness(4, 4, 4, 4);
+                //Fill this item
+                newToolItem.SetIcon("Resources/tool-og-launcher.png");
+                newToolItem.SetInformation(GetStringApplicationResource("launcher_tools_ogLauncherInformation"));
+                newToolItem.SetTitle(GetStringApplicationResource("launcher_tools_ogLauncherTitle"));
+                newToolItem.SetDescription(GetStringApplicationResource("launcher_tools_ogLauncherDescription"));
+                newToolItem.SetCreator("EA Games");
+                newToolItem.SetLocalToolExePath(Directory.GetCurrentDirectory(), "Sims3LauncherW.exe");
+                //Prepare the tool
+                newToolItem.Prepare();
+            }
         }
-    
+
         //Mods Manager
 
         private void BuildAndPrepareModsListSystem()

@@ -142,3 +142,5 @@ D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItem
 D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowSaveCleaner.baml
 D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowWorldHelp.baml
 D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\WindowWorldInstaller.baml
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\LocalToolItem.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Release\net6.0-windows\Controls\ListItems\LocalToolItem.baml
