@@ -19,11 +19,11 @@ The goal of Dream Launcher is simple. You install your game clean. After that, a
 [*] View all installed Custom Worlds and easily manage them.
 [*] Clear and/or monitor all types of game Cache, quickly and easily.
 [*] View and manage Logs sent by the "NRaas - Error Trap" mod easily (if it is installed).
-[*] Install all the “must-have” Patches for The Sims 3 easily. No more dealing with manipulating game files manually.
+[*] Install all the "must-have" Patches for The Sims 3 easily. No more dealing with manipulating game files manually.
 [*] Things like the "Mods" folder, graphical improvements, route optimizations, bug fixes and more can be easily installed through Patches!
 [*] Launcher detects if you use an Intel 12+ CPU and asks you if you would like to install "Alder Lake Patcher" automatically.
 [*] Install Mods RELIABLE and SIMPLY way, with Launcher Mod Installer. An installer that allows you to install "package" or "sims3pack" files easily, and on top of that, it analyzes your entire "Mods" folder whenever you install a new Mod, to ensure that the new Mod will not conflict with the Mods already installed.
-[*] Manage all your installed Mods easily. Open them in S3PE, edit CAS Parts, rename, delete, categorize, etc. All within the Launcher.
+[*] Manage all your installed Mods easily (including merge or unmerge)! Open them in S3PE, edit CAS Parts, rename, delete, categorize, etc. ALL inside the Launcher.
 [*] Install well-known tools such as "S3PE", "Notepad++", "Delphy Dashboard", "Easy STBL Manager" and etc. as Plugins. Once installed, you can access them whenever you want, and the Launcher can also use them!
 [*] Configure Launcher easily.
 [*] Manage and change ANY game settings, just through the Launcher. No more bug that makes you lose your settings when updating your Driver!
@@ -71,7 +71,7 @@ If you did everything correctly, now, when you click play The Sims 3 on Steam, t
 
 [b]NOTE:[/b] After installing Dream Launcher you should no longer do ANYTHING on your game files. Whether installing patches, Mods or anything similar. NOTHING. Leave these things to do ONLY through Dream Launcher! This will ensure that whatever needs to be done in your game, Dream Launcher will be aware of, and can take care of. Furthermore, basically everything you need to do in your game can be done using Dream Launcher! :)
 
-[b]NOTE:[/b] If you get an ASI Loader related, error 126 after opening The Sims 3, it could mean that your computer is missing DLLs. Click [url=https://github.com/marcos4503/ts3-dream-launcher?tab=readme-ov-file#fixing-asi-loader-error-126-when-opening-the-game]this link[/url] to access the Dream Launcher repository and learn how to fix this problem!
+[b]NOTE:[/b] If you get an ASI Loader related, error 126 on opening The Sims 3, it could mean that your computer is missing DLLs. Be sure to do all installations recommended on the "Patches" page within Dream Launcher.
 
 [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]What languages does Dream Launcher support?[/b]
 
