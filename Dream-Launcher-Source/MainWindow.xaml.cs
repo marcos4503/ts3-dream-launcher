@@ -1321,6 +1321,22 @@ namespace TS3_Dream_Launcher
             //Prepare the restart button
             patchRestartButton.Click += (s, e) => { CheckToExitFromLauncherAndWarnIfHaveTasksRunning(); };
 
+            //Prepare the links button
+            instDx9.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://download.microsoft.com/download/1/7/1/1718CCC4-6315-4D8E-9543-8E28A4E18C4C/dxwebsetup.exe", UseShellExecute = true }); });
+            instDnf4.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net481-web-installer", UseShellExecute = true }); });
+            instVsc2005x86.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://download.microsoft.com/download/6/B/B/6BB661D6-A8AE-4819-B79F-236472F6070C/vcredist_x86.exe", UseShellExecute = true }); });
+            instVsc2005x64.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://download.microsoft.com/download/6/B/B/6BB661D6-A8AE-4819-B79F-236472F6070C/vcredist_x64.exe", UseShellExecute = true }); });
+            instVsc2008x86.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x86.exe", UseShellExecute = true }); });
+            instVsc2008x64.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x64.exe", UseShellExecute = true }); });
+            instVsc2010x86.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x86.exe", UseShellExecute = true }); });
+            instVsc2010x64.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x64.exe", UseShellExecute = true }); });
+            instVsc2012x86.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe", UseShellExecute = true }); });
+            instVsc2012x64.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe", UseShellExecute = true }); });
+            instVsc2013x86.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x86.exe", UseShellExecute = true }); });
+            instVsc2013x64.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe", UseShellExecute = true }); });
+            instVsc2022x86.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://aka.ms/vs/17/release/vc_redist.x86.exe", UseShellExecute = true }); });
+            instVsc2022x64.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://aka.ms/vs/17/release/vc_redist.x64.exe", UseShellExecute = true }); });
+
             //Instantiate all patch items
             InstantiateEachPatchItemAndCheckIntegrityOfInstalleds();
 

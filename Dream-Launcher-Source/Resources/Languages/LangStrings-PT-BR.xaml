@@ -83,6 +83,7 @@
 
     <!-- Screen 6: Launcher - Patches -->
     <system:String x:Key="launcher_patches_intro">Aqui você encontra todos os melhores Patches/Ajustes para o jogo. Todos esses Patches podem ser aplicados com poucos cliques. Sempre que um Patch é aplicado ao jogo, o Dream Launcher irá verificar sua integridade automaticamente para garantir o melhor estado de tudo!</system:String>
+    <system:String x:Key="launcher_patches_dependencies">Instalações Recomendadas</system:String>
     <system:String x:Key="launcher_patches_install">INSTALAR</system:String>
     <system:String x:Key="launcher_patches_reInstall">RE-INSTALAR</system:String>
     <system:String x:Key="launcher_patches_noActions">SEM AÇÕES</system:String>
@@ -784,6 +785,10 @@ Embora seja verdade que o processo de geração de Sims não aconteça instantan
 Se você instalou o patch de otimização básica do Dream Launcher, e o Patch de Progressão de História, então seu jogo possui o NRaas Master Controller e o NRaas Story Progression. Com o Master Controller, você pode obter relatórios de estatística demografica da sua cidade, já o Story Progression instalado pelo Patch do Dream Launcher já vem configurado para melhor otimização e para permitir a imigração de Sims, que por sua vez povoarão sua cidade lentamente!
         
 Se depois de tudo você ainda acha que não estão chegando novos Sims na sua cidade, então usando o Story Progression instalado pelos Patches do Launcher, você pode forçar a imigração de um número de famílias. Para isso, clique na Prefeitura da Cidade, depois "NRaas" > "Progressão de História" > "Opções Gerais" > "Opção: Lotes" > "Opções: Imigração/Emigração". Agora, clique em "Imigração Rápida" e depois digite um número de famílias que você deseja que imigrem para sua cidade. O Story Progression imigrará novas famílias a cada 5/10 minutos até que o número que você especificou diminua para zero ou você fique sem moradia adequada na cidade, o que acontecer primeiro. Sempre que um novo Sim/Família imigrar para sua cidade, o Story Progression lhe enviará uma notificação.
+    </system:String>
+    <system:String x:Key="launcher_world_help_topic6Title" xml:space="preserve">O Dream Launcher suporta a instalação de Mundos Customizados da Loja/Exchange oficial da EA?</system:String>
+    <system:String x:Key="launcher_world_help_topic6Text" xml:space="preserve">
+Infelizmente não. O Dream Launcher só suporta a instalação de Mundos Customizados criados por usuários com a ferramenta "Create A World" da EA, e no formato "sims3pack". Se você precisar instalar um Mundo Customizado da Exchange ou Loja oficial da EA, você precisará usar o Launcher original do The Sims 3, que pode ser facilmente acessado através da página "Ferramentas" do Dream Launcher.
     </system:String>
     <system:String x:Key="launcher_world_emptyWorlds">Nenhum Mundo Customizado instalado</system:String>
     <system:String x:Key="launcher_world_problemFound">Foram encontrados um ou mais Mundos Customizados com problemas em seus arquivos. É recomendado que você re-instale esses mundos. Acesse a página "Mundos" para verificar quais estão com problemas.</system:String>

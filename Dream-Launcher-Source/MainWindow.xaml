@@ -582,7 +582,45 @@
                             </Grid>
                             <Grid x:Name="pagePatches" Visibility="Collapsed">
                                 <ScrollViewer Margin="0,0,0,32">
-                                    <StackPanel x:Name="patchesList" VerticalAlignment="Top" Margin="16,0,16,0"/>
+                                    <StackPanel x:Name="patchesList" VerticalAlignment="Top" Margin="16,0,16,0">
+                                        <Border BorderBrush="#FFC8C8C8" BorderThickness="1" CornerRadius="8,8,8,8" VerticalAlignment="Top" Margin="0,8,0,0">
+                                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="8,8,8,8">
+                                                <StackPanel VerticalAlignment="Top" Margin="0,0,0,0">
+                                                    <TextBlock TextWrapping="Wrap" Text="{DynamicResource launcher_patches_dependencies}" FontWeight="Normal" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,8"/>
+                                                    <StackPanel VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Center">
+                                                        <StackPanel Width="116">
+                                                            <BeautyButton:BeautyButton x:Name="instDx9" HoverBackground="#FF3C3C3C" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF191919" BorderBrush="Black" Foreground="White" Cursor="Hand" Height="24" Visibility="Visible" Content="DirectX 9.0~11.0" VerticalAlignment="Top" Margin="0,0,0,4"/>
+                                                            <BeautyButton:BeautyButton x:Name="instDnf4" HoverBackground="#FF3C3C3C" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF191919" BorderBrush="Black" Foreground="White" Cursor="Hand" Height="24" Visibility="Visible" Content=".NET Framework 4"/>
+                                                        </StackPanel>
+                                                        <StackPanel Width="114" Margin="8,0,0,0">
+                                                            <BeautyButton:BeautyButton x:Name="instVsc2005x86" HoverBackground="#FF3C3C3C" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF191919" BorderBrush="Black" Foreground="White" Cursor="Hand" Height="24" Visibility="Visible" Content="VSC++ 2005 x86" VerticalAlignment="Top" Margin="0,0,0,4"/>
+                                                            <BeautyButton:BeautyButton x:Name="instVsc2005x64" HoverBackground="#FF3C3C3C" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF191919" BorderBrush="Black" Foreground="White" Cursor="Hand" Height="24" Visibility="Visible" Content="VSC++ 2005 x64"/>
+                                                        </StackPanel>
+                                                        <StackPanel Width="114" Margin="8,0,0,0">
+                                                            <BeautyButton:BeautyButton x:Name="instVsc2008x86" HoverBackground="#FF3C3C3C" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF191919" BorderBrush="Black" Foreground="White" Cursor="Hand" Height="24" Visibility="Visible" Content="VSC++ 2008 x86" VerticalAlignment="Top" Margin="0,0,0,4"/>
+                                                            <BeautyButton:BeautyButton x:Name="instVsc2008x64" HoverBackground="#FF3C3C3C" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF191919" BorderBrush="Black" Foreground="White" Cursor="Hand" Height="24" Visibility="Visible" Content="VSC++ 2008 x64"/>
+                                                        </StackPanel>
+                                                        <StackPanel Width="114" Margin="8,0,0,0">
+                                                            <BeautyButton:BeautyButton x:Name="instVsc2010x86" HoverBackground="#FF3C3C3C" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF191919" BorderBrush="Black" Foreground="White" Cursor="Hand" Height="24" Visibility="Visible" Content="VSC++ 2010 x86" VerticalAlignment="Top" Margin="0,0,0,4"/>
+                                                            <BeautyButton:BeautyButton x:Name="instVsc2010x64" HoverBackground="#FF3C3C3C" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF191919" BorderBrush="Black" Foreground="White" Cursor="Hand" Height="24" Visibility="Visible" Content="VSC++ 2010 x64"/>
+                                                        </StackPanel>
+                                                        <StackPanel Width="114" Margin="8,0,0,0">
+                                                            <BeautyButton:BeautyButton x:Name="instVsc2012x86" HoverBackground="#FF3C3C3C" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF191919" BorderBrush="Black" Foreground="White" Cursor="Hand" Height="24" Visibility="Visible" Content="VSC++ 2012 x86" VerticalAlignment="Top" Margin="0,0,0,4"/>
+                                                            <BeautyButton:BeautyButton x:Name="instVsc2012x64" HoverBackground="#FF3C3C3C" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF191919" BorderBrush="Black" Foreground="White" Cursor="Hand" Height="24" Visibility="Visible" Content="VSC++ 2012 x64"/>
+                                                        </StackPanel>
+                                                        <StackPanel Width="114" Margin="8,0,0,0">
+                                                            <BeautyButton:BeautyButton x:Name="instVsc2013x86" HoverBackground="#FF3C3C3C" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF191919" BorderBrush="Black" Foreground="White" Cursor="Hand" Height="24" Visibility="Visible" Content="VSC++ 2013 x86" VerticalAlignment="Top" Margin="0,0,0,4"/>
+                                                            <BeautyButton:BeautyButton x:Name="instVsc2013x64" HoverBackground="#FF3C3C3C" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF191919" BorderBrush="Black" Foreground="White" Cursor="Hand" Height="24" Visibility="Visible" Content="VSC++ 2013 x64"/>
+                                                        </StackPanel>
+                                                        <StackPanel Width="148" Margin="8,0,0,0">
+                                                            <BeautyButton:BeautyButton x:Name="instVsc2022x86" HoverBackground="#FF3C3C3C" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF191919" BorderBrush="Black" Foreground="White" Cursor="Hand" Height="24" Visibility="Visible" Content="VSC++ 2015~2022 x86" VerticalAlignment="Top" Margin="0,0,0,4"/>
+                                                            <BeautyButton:BeautyButton x:Name="instVsc2022x64" HoverBackground="#FF3C3C3C" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF191919" BorderBrush="Black" Foreground="White" Cursor="Hand" Height="24" Visibility="Visible" Content="VSC++ 2015~2022 x64"/>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
                                 </ScrollViewer>
                                 <Rectangle Height="0.5" VerticalAlignment="Bottom" Margin="0,0,0,32" StrokeThickness="0" Fill="Gray"/>
                                 <TextBlock TextWrapping="Wrap" Text="{DynamicResource launcher_patches_intro}" TextAlignment="Center" VerticalAlignment="Bottom" Height="32" Padding="0,2,0,0" Margin="64,0,64,0" FontSize="10" Opacity="0.5"/>
