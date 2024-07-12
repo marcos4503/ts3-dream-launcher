@@ -449,6 +449,18 @@
             "pageUrl": "https://github.com/marcos4503/ts3-dream-launcher",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-never-auto-hide-notifications.zip"
         },
+        {
+            "name": "Breast Physics Animation",
+            "category": "GRAPHICS",
+            "author": "moltenrock3402",
+            "description_enUS": "This mod adds physics to the breasts of female Sims, in several animations, including walking and running animations. Unfortunately it is not compatible with the 'Walk Cycle Edits' mod as this mod also edits walking animations.",
+            "description_ptBR": "Este mod adiciona física aos seios de Sims mulheres, em diversas animações, inclusive em animações de caminhada e corrida. Infelizmente não é compatível com o mod 'Walk Cycle Edits' já que este mod também edita as animações de caminhada.",
+            "requiredEps": [ 1, 2, 3, 5, 6, 8, 10 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.loverslab.com/files/file/30993-updated-1642024-sims-3-breast-physics-animation-replacement/",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-breast-physics-animation.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-breast-physics-animation.zip.002 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-breast-physics-animation.zip.003 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-breast-physics-animation.zip.004"
+        },
 
 
 
@@ -571,8 +583,8 @@
             "name": "Walk Cycle Edits",
             "category": "FIXES",
             "author": "simbouquet",
-            "description_enUS": "Fixes several anomalies in Sims' facial animations or movement animation details. An example is the correction of Sims smiling, even if they are not in a bad mood.",
-            "description_ptBR": "Corrige várias anomalias nas animações faciais ou detalhes de animações de movimento dos Sims. Um exemplo é a correção dos Sims andarem sorrindo, mesmo que não estejam de mal humor.",
+            "description_enUS": "Fixes several anomalies in Sims' facial animations or movement animation details. An example is the correction of Sims smiling, even if they are not in a bad mood. Unfortunately it is not compatible with the 'Breast Physics Animation' mod as this mod also edits walking animations.",
+            "description_ptBR": "Corrige várias anomalias nas animações faciais ou detalhes de animações de movimento dos Sims. Um exemplo é a correção dos Sims andarem sorrindo, mesmo que não estejam de mal humor. Infelizmente não é compatível com o mod 'Breast Physics Animation' já que este mod também edita as animações de caminhada.",
             "requiredEps": [ 7, 9, 11 ],
             "requiredRecommendedModFiles": [ ],
             "requiredPatchModFiles": [ ],
