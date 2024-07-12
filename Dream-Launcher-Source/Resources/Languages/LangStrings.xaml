@@ -1130,6 +1130,10 @@ Merge Custom Content§
 Did you just download lots of clothes, furniture and other types of content? Well. Merge it all! Merging is nothing more than joining several "package" files into one
 single "package" file. Merging files helps immensely in reducing your game's loading times. Merging should not be done on mod files that contain
 scripts or sliders. If you don't know how to do this, click on the "Steam" icon here in Dream Launcher to access the mega guide and learn this.
+\b\b
+NOTE: From version 1.3.0 onwards, Dream Launcher is capable of merging Mods in a completely safe and easy way. To make a merge just go to Mods Installed and then click
+on the three dots icon of any mod to start. Merging is not available for Mods installed from the Recommended Mod Store or of Mods installed through Patches, as these Mods
+are already fully optimized and merged as necessary. Finally, after doing a merge, you can revert it at any time, easily.
     </system:String>
     <system:String x:Key="launcher_home_maintenanceTip_2" xml:space="preserve">
 Clean Your Save Game Regularly§

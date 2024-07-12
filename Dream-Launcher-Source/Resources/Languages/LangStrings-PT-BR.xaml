@@ -1141,6 +1141,11 @@ Mescle Conteúdos Customizados§
 Acabou de baixar várias roupas, mobílias e outros tipos de conteúdos? Bem. Mescle tudo isso! A mesclagem nada mais é do que juntar vários arquivos "package" dentro de um
 único arquivo "package". Mesclar arquivos ajuda imensamente a reduzir os tempos de carregamento do seu jogo. A mesclagem não deve ser feita em arquivos de mods que contém
 scripts ou sliders. Se você não sabe como fazer isso, clique no ícone da "Steam" aqui no Dream Launcher para acessar o mega-guia e aprender a fazer isso.
+\b\b
+NOTA: A partir da versão 1.3.0 o Dream Launcher é capaz de fazer mesclagem de Mods de maneira totalmente segura e fácil. Para fazer uma mesclagem basta ir até os Mods
+Instalados e em seguida clicar no ícone de três pontos de qualquer mod para começar. A mesclagem não está disponível para Mods instalados da Loja de Mods Recomendados ou
+de Mods instalados através de Patches, pois estes Mods já vem totalmente otimizados e mesclados conforme necessário. Por fim, depois de fazer uma mesclagem, você pode
+revertê-la a qualquer momento, facilmente.
     </system:String>
     <system:String x:Key="launcher_home_maintenanceTip_2" xml:space="preserve">
 Limpe o Seu Save Game Regularmente§

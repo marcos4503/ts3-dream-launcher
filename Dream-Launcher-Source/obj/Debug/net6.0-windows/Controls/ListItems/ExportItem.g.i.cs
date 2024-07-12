@@ -78,7 +78,7 @@ namespace TS3_Dream_Launcher.Controls.ListItems {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TS3 Dream Launcher;V1.3.0;component/controls/listitems/exportitem.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TS3 Dream Launcher;V1.3.1;component/controls/listitems/exportitem.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Controls\ListItems\ExportItem.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
