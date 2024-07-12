@@ -18,7 +18,7 @@
                     <ColumnDefinition Width="8"/>
                     <ColumnDefinition Width="24"/>
                 </Grid.ColumnDefinitions>
-                <CheckBox x:Name="enabled" Padding="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                <CheckBox x:Name="enabled" Padding="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,9.5,0,0">
                     <CheckBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1.25" ScaleY="1.25"/>
@@ -34,15 +34,17 @@
                         <Image x:Name="star" Height="14" Width="14" HorizontalAlignment="Left" VerticalAlignment="Center" Source="/Resources/recommended-star.png" Margin="8,0,0,0" ToolTip="{DynamicResource launcher_mods_installedTab_recommendedStar}" Cursor="Help"/>
                         <Image x:Name="patch" Height="14" Width="14" Source="/Resources/patch-gear-icon.png" ToolTip="{DynamicResource launcher_mods_installedTab_patchGear}" Cursor="Help" Margin="8,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                         <Image x:Name="world" Height="14" Width="14" Source="/Resources/world-earth.png" ToolTip="{DynamicResource launcher_mods_installedTab_customWorld}" Cursor="Help" Margin="8,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        <Image x:Name="merge" Height="14" Width="14" Source="/Resources/merge-icon.png" ToolTip="{DynamicResource launcher_mods_installedTab_mergedResult}" Cursor="Help" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,0,0"/>
                     </StackPanel>
                     <TextBlock x:Name="category" TextWrapping="Wrap" Text="Category" Margin="0,0,0,2" FontSize="10" Foreground="#FFA0A0A0"/>
+                    <TextBlock x:Name="modsList" TextWrapping="Wrap" Text="Place Holder" FontSize="10" Visibility="Visible" Margin="0,4,0,0"/>
                 </StackPanel>
-                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="2" Margin="0,0,0,0" Orientation="Horizontal">
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="2" Margin="0,5,0,0" Orientation="Horizontal">
                     <BeautyButton:BeautyButton x:Name="uninstallButton" HoverBackground="#FFAD2A2A" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF7D2323" BorderBrush="#FF5D0101" Foreground="White" Cursor="Hand" Height="24" Padding="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24">
                         <Image Source="/Resources/trash-icon.png" Margin="4,4,4,4"/>
                     </BeautyButton:BeautyButton>
                 </StackPanel>
-                <Button x:Name="moreButton" Grid.Column="4" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Padding="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="24" Width="24" Cursor="Hand">
+                <Button x:Name="moreButton" Grid.Column="4" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Padding="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="24" Width="24" Cursor="Hand" Margin="0,5,0,0">
                     <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/Resources/three-dots-icon.png" Margin="2,2,2,2"/>
                 </Button>
             </Grid>

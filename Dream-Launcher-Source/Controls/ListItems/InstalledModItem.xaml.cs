@@ -46,6 +46,7 @@ namespace TS3_Dream_Launcher.Controls.ListItems
         //Private variables
         private string thisModPath = "";
         private string contentsDirPath = "";
+        private bool isModResultOfMerge = false;
 
         //Public variables
         public MainWindow instantiatedByWindow = null;
@@ -84,6 +85,10 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             //Detect this mod category
             this.modCategory = GetModCategory();
 
+            //Check if this is a package result of a merge
+            if (thisModPath.Contains(" --- !₢DL-Merge₢! ") == true)
+                isModResultOfMerge = true;
+
             //Show the category name
             if (modCategory == ModCategory.Contents)
                 category.Text = ConvertFirstCharsOfStringToUpperCase(instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_cat_contents"));
@@ -118,15 +123,17 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             }
             //If is not a patch mod, show the file name
             if (modCategory != ModCategory.Patches && modCategory != ModCategory.Unknown)
-                title.Text = System.IO.Path.GetFileNameWithoutExtension(thisModPath).Split(" --- ")[1];
+                title.Text = System.IO.Path.GetFileNameWithoutExtension(thisModPath).Split(" --- ")[1].Replace("!₢DL-Merge₢! ", "");
             //If is a unknown mod, show the error
             if (modCategory == ModCategory.Unknown)
                 title.Text = "#ERROR-UNKNOWN-MOD#";
 
-            //Hide star and gear icon
+            //Hide star, gear, world, merge icons and the mod list
             star.Visibility = Visibility.Collapsed;
             patch.Visibility = Visibility.Collapsed;
             world.Visibility = Visibility.Collapsed;
+            merge.Visibility = Visibility.Collapsed;
+            modsList.Visibility = Visibility.Collapsed;
 
             //Get the parent directory name for this mod
             string parentDirectoryName = new FileInfo(thisModPath).Directory.Name;
@@ -139,6 +146,30 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             //Enable world icon if is a world dependency mod
             if (title.Text.Contains("World Dependency - ") == true)
                 world.Visibility = Visibility.Visible;
+            //Enable box icon if is a package result of merge
+            if (isModResultOfMerge == true)
+                merge.Visibility = Visibility.Visible;
+
+            //Show the mod list if is a mod result of merge
+            if (isModResultOfMerge == true)
+            {
+                //Build the list string
+                StringBuilder modsListString = new StringBuilder();
+
+                //Find all mods of this mod merge
+                bool wasAddedFirstInList = false;
+                foreach (FileInfo modFile in new DirectoryInfo(((new DirectoryInfo(thisModPath)).Parent.Parent.Parent.Parent + "/!DL-Static/merged-mods/" + title.Text)).GetFiles())
+                {
+                    if(wasAddedFirstInList == true)
+                        modsListString.Append("\n");
+                    modsListString.Append(System.IO.Path.GetFileNameWithoutExtension(modFile.FullName).Split(" --- ")[1]);
+                    wasAddedFirstInList = true;
+                }
+
+                //Enable the list
+                modsList.Text = modsListString.ToString();
+                modsList.Visibility = Visibility.Visible;
+            }
 
             //Disable interaction if is a patch mod OR a world dependency
             if (parentDirectoryName == "DL3-Patches" || parentDirectoryName == "Packages" || title.Text.Contains("World Dependency - ") == true)
@@ -148,6 +179,9 @@ namespace TS3_Dream_Launcher.Controls.ListItems
                 moreButton.Opacity = 0.25f;
                 moreButton.IsHitTestVisible = false;
             }
+            //Disable the uninstall button if is a merged mod
+            if (isModResultOfMerge == true)
+                uninstallButton.IsEnabled = false;
 
             //Get the extension of this mod
             string modExtension = System.IO.Path.GetExtension(thisModPath).Replace(".", "").ToLower();
@@ -329,37 +363,71 @@ namespace TS3_Dream_Launcher.Controls.ListItems
                 e.Handled = true;
             };
 
-            //Add open in S3PE option
-            MenuItem openS3pe = new MenuItem();
-            openS3pe.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_s3pe");
-            openS3pe.Click += (s, e) => { OpenInS3PE(); };
-            moreButton.ContextMenu.Items.Add(openS3pe);
+            //If is regular mod
+            if(isModResultOfMerge == false)
+            {
+                //Add open in S3PE option
+                MenuItem openS3pe = new MenuItem();
+                openS3pe.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_s3pe");
+                openS3pe.Click += (s, e) => { OpenInS3PE(); };
+                moreButton.ContextMenu.Items.Add(openS3pe);
 
-            //Add open in S3OC option
-            MenuItem openS3oc = new MenuItem();
-            openS3oc.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_s3oc");
-            openS3oc.Click += (s, e) => { OpenInS3OC(); };
-            moreButton.ContextMenu.Items.Add(openS3oc);
+                //Add open in S3OC option
+                MenuItem openS3oc = new MenuItem();
+                openS3oc.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_s3oc");
+                openS3oc.Click += (s, e) => { OpenInS3OC(); };
+                moreButton.ContextMenu.Items.Add(openS3oc);
 
-            //Add open in CASPs option
-            MenuItem openCasps = new MenuItem();
-            openCasps.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_caspsEditor");
-            openCasps.Click += (s, e) => { OpenInCASPsEditor(); };
-            moreButton.ContextMenu.Items.Add(openCasps);
+                //Add open in CASPs option
+                MenuItem openCasps = new MenuItem();
+                openCasps.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_caspsEditor");
+                openCasps.Click += (s, e) => { OpenInCASPsEditor(); };
+                moreButton.ContextMenu.Items.Add(openCasps);
 
-            //Add rename option
-            MenuItem renameOption = new MenuItem();
-            renameOption.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_rename");
-            renameOption.Click += (s, e) => { RenameThisMod(); };
-            if (star.Visibility == Visibility.Visible)  //<- Disable rename option if is a recommended mod
-                renameOption.IsEnabled = false;
-            moreButton.ContextMenu.Items.Add(renameOption);
+                //Add add to merge option
+                MenuItem addToMerge = new MenuItem();
+                addToMerge.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_addToMerge");
+                addToMerge.Click += (s, e) => { instantiatedByWindow.AddModPackageToMerge(thisModPath); };
+                if (star.Visibility == Visibility.Visible)  //<- Disable the option if is a recommended mod
+                    addToMerge.IsEnabled = false;
+                moreButton.ContextMenu.Items.Add(addToMerge);
 
-            //Add copy option
-            MenuItem copyToOption = new MenuItem();
-            copyToOption.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_copy");
-            copyToOption.Click += (s, e) => { CopyThisModTo(); };
-            moreButton.ContextMenu.Items.Add(copyToOption);
+                //Add rename option
+                MenuItem renameOption = new MenuItem();
+                renameOption.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_rename");
+                renameOption.Click += (s, e) => { RenameThisMod(); };
+                if (star.Visibility == Visibility.Visible)  //<- Disable rename option if is a recommended mod
+                    renameOption.IsEnabled = false;
+                moreButton.ContextMenu.Items.Add(renameOption);
+
+                //Add copy option
+                MenuItem copyToOption = new MenuItem();
+                copyToOption.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_copy");
+                copyToOption.Click += (s, e) => { CopyThisModTo(); };
+                moreButton.ContextMenu.Items.Add(copyToOption);
+            }
+
+            //If is a mod result of merge
+            if(isModResultOfMerge == true)
+            {
+                //Add revert option
+                MenuItem revertOption = new MenuItem();
+                revertOption.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_revertMerge");
+                revertOption.Click += (s, e) => { instantiatedByWindow.UnmergeMod(thisModPath); };
+                moreButton.ContextMenu.Items.Add(revertOption);
+
+                //Add rename option
+                MenuItem renameOption = new MenuItem();
+                renameOption.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_rename");
+                renameOption.Click += (s, e) => { RenameThisMod(); };
+                moreButton.ContextMenu.Items.Add(renameOption);
+
+                //Add export option
+                MenuItem exportOption = new MenuItem();
+                exportOption.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_exportModsOfMerge");
+                exportOption.Click += (s, e) => { ExportModsOfMergeTo(); };
+                moreButton.ContextMenu.Items.Add(exportOption);
+            }
         }
 
         private void RenameThisMod()
@@ -376,7 +444,7 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             instantiatedByWindow.SetInteractionBlockerEnabled(true);
 
             //Open rename window
-            WindowModRename modRenameWindow = new WindowModRename(instantiatedByWindow, instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_rename"), thisModPath);
+            WindowModRename modRenameWindow = new WindowModRename(instantiatedByWindow, instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_rename"), thisModPath, isModResultOfMerge);
             modRenameWindow.Closed += (s, e) =>
             {
                 if(modRenameWindow.wasRenamedTheMod == true)
@@ -563,6 +631,31 @@ namespace TS3_Dream_Launcher.Controls.ListItems
                 instantiatedByWindow.SetInteractionBlockerEnabled(false);
             };
             windowCASPsEditor.Show();
+        }
+    
+        private void ExportModsOfMergeTo()
+        {
+            //Prepare the folder selected path
+            string selectedFolderPath = "";
+            //Open folder picker dialog
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            {
+                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK)
+                    selectedFolderPath = dialog.SelectedPath;
+            }
+            //If no folder was selected, cancel
+            if (selectedFolderPath == "")
+                return;
+
+            //Copy all original mods of this merge to desired folder
+            foreach (FileInfo modFile in new DirectoryInfo(((new DirectoryInfo(thisModPath)).Parent.Parent.Parent.Parent + "/!DL-Static/merged-mods/" + title.Text)).GetFiles())
+                if(File.Exists((selectedFolderPath + "/" + System.IO.Path.GetFileName(modFile.FullName))) == false)
+                    File.Copy(modFile.FullName, (selectedFolderPath + "/" + System.IO.Path.GetFileName(modFile.FullName)));
+
+            //Warn about the export
+            MessageBox.Show(instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modExportDiagText"),
+                            instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modExportDiagTitle"), MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

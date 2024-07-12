@@ -214,6 +214,20 @@
                 <EasingThicknessKeyFrame KeyTime="00:00:00.3000000" Value="0,0,-472,0"/>
             </ThicknessAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="modMergeEnter">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="modMergeInterface" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="-300,0,0,36"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:00.2000000" Value="35,0,0,36"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:00.3000000" Value="0,0,0,36"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="modMergeExit">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="modMergeInterface" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00" Value="0,0,0,36"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:00.1000000" Value="35,0,0,36"/>
+                <EasingThicknessKeyFrame KeyTime="00:00:00.3000000" Value="-300,0,0,36"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <Grid x:Name="root" Width="1208" Height="680">
         <Grid x:Name="s1_language" Visibility="Collapsed">
@@ -1431,6 +1445,26 @@
                     </Grid>
                 </StackPanel>
             </ScrollViewer>
+        </Grid>
+        <Grid x:Name="modMergeInterface" HorizontalAlignment="Left" Width="255" Margin="0,0,0,36" Visibility="Collapsed">
+            <Rectangle Margin="4,4,4,4" Fill="#FF94C6FF" StrokeThickness="0" RadiusX="8" RadiusY="8"/>
+            <Border BorderThickness="0,0,0,0" VerticalAlignment="Top" CornerRadius="8,8,0,0" Height="32" Margin="4,4,4,0" Background="#FF4B9C52">
+                <Label Content="{DynamicResource launcher_modsMergeTitle}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="{DynamicResource TheSimsSansSc}" Foreground="White" FontSize="20" FontWeight="Bold" Margin="0,0,0,0"/>
+            </Border>
+            <ScrollViewer x:Name="modsMergeScroll" Margin="4,36,4,79">
+                <StackPanel x:Name="modsMergeList" VerticalAlignment="Top" Margin="8,5,8,0"/>
+            </ScrollViewer>
+            <Rectangle Height="1" VerticalAlignment="Bottom" StrokeThickness="0" Fill="#FFE8E8E8" Margin="4,0,4,78"/>
+            <Grid VerticalAlignment="Bottom" Margin="4,0,4,4" Height="65">
+                <DockPanel LastChildFill="False" VerticalAlignment="Top" Margin="9,0,9,0">
+                    <TextBlock TextWrapping="Wrap" Text="{DynamicResource launcher_modsMerge_sizeMessage}" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White"/>
+                    <TextBlock x:Name="modsMergeSize" TextWrapping="Wrap" Text="0 MB" DockPanel.Dock="Right" VerticalAlignment="Top" HorizontalAlignment="Right" Foreground="White"/>
+                </DockPanel>
+                <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,8">
+                    <BeautyButton:BeautyButton x:Name="cancelModMergeButton" HoverBackground="#FFB34242" Width="112" Height="34" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FFA00000" BorderBrush="#FF580000" Foreground="White" Cursor="Hand" Content="{DynamicResource launcher_modsMerge_cancelButton}" IsEnabled="False"/>
+                    <BeautyButton:BeautyButton x:Name="confirmModMergeButton" HoverBackground="#FF00BF0C" Width="112" Height="34" FontFamily="{DynamicResource TheSimsSansSc}" FontSize="16" Background="#FF00A00A" BorderBrush="#FF0F5800" Foreground="White" Content="{DynamicResource launcher_modsMerge_confirmButton}" Cursor="Hand" Margin="8,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+            </Grid>
         </Grid>
         <Grid x:Name="vaultTaskPopUp" Visibility="Collapsed">
             <Border BorderThickness="0,0,0,0" Background="#D800041B"/>

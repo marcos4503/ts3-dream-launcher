@@ -31,6 +31,8 @@ using TS3_Dream_Launcher.Controls.ListItems;
 using TS3_Dream_Launcher.Scripts;
 using NetFwTypeLib;
 using System.Xml;
+using s3pi.Interfaces;
+using s3pi.Package;
 
 namespace TS3_Dream_Launcher
 {
@@ -139,6 +141,7 @@ namespace TS3_Dream_Launcher
         private IDisposable hideTipsSectionRoutine = null;
         private bool isTipsSectionToggled = false;
         private bool wasRenderedAllPatches = false;
+        private List<string> listOfModsPathsToBeMerged = new List<string>();
 
         //Private variables
         private IDictionary<string, Storyboard> animStoryboards = new Dictionary<string, Storyboard>();
@@ -160,6 +163,7 @@ namespace TS3_Dream_Launcher
         public List<WorldItem> instantiatedWorldItems = new List<WorldItem>();
         public List<ExportItem> instantiatedExportItems = new List<ExportItem>();
         public List<SaveItem> instantiatedSaveItems = new List<SaveItem>();
+        public List<ModToMergeItem> instantiatedModMergeItem = new List<ModToMergeItem>();
 
         //Core methods
 
@@ -254,6 +258,8 @@ namespace TS3_Dream_Launcher
             animStoryboards.Add("vaultTaskExit", (FindResource("vaultTaskExit") as Storyboard));
             animStoryboards.Add("tipsEnter", (FindResource("tipsEnter") as Storyboard));
             animStoryboards.Add("tipsExit", (FindResource("tipsExit") as Storyboard));
+            animStoryboards.Add("modMergeEnter", (FindResource("tipsExit") as Storyboard));
+            animStoryboards.Add("modMergeExit", (FindResource("tipsExit") as Storyboard));
         }
 
         private void PrepareAndShowScreen1_Language()
@@ -4483,6 +4489,25 @@ namespace TS3_Dream_Launcher
             File.Delete((myDocumentsPath + @"/!DL-TmpCache/launcher-updater/update-successfully.ok"));
         }
 
+        private string GetLongConvertedToHexStr(ulong originalValue, int digits)
+        {
+            //Prepare the result
+            string result = "0x";
+
+            //Convert long to hex string
+            string tmpHex = originalValue.ToString("X");
+
+            //Add the digits if necessary
+            while (tmpHex.Length < digits)
+                tmpHex = "0" + tmpHex;
+
+            //Concat the values
+            result += tmpHex;
+
+            //Return the result
+            return result;
+        }
+
         //Settings manager
 
         private void LoadNewOptionsTemplateIfDontHaveOne()
@@ -7051,6 +7076,14 @@ namespace TS3_Dream_Launcher
 
             //Prepare the button picker
             instCustomButton.Click += (s, e) => { OpenCustomPackageModPicker(); };
+
+            //Create the "merged-mods" folder if not exists
+            if (Directory.Exists((myDocumentsPath + "/!DL-Static/merged-mods")) == false)
+                Directory.CreateDirectory((myDocumentsPath + "/!DL-Static/merged-mods"));
+
+            //Prepare the buttons of mods merge interface
+            cancelModMergeButton.Click += (s, e) => { CancelModsMerge(); };
+            confirmModMergeButton.Click += (s, e) => { MergeModsInMergeList(); };
         }
 
         public void UpdateInstalledMods()
@@ -8027,6 +8060,399 @@ namespace TS3_Dream_Launcher
             recommendedModsFilterRoutine = null;
         }
     
+        public void AddModPackageToMerge(string modPath)
+        {
+            //Start the installed mods update routine
+            installedModsUpdateRoutine = Coroutine.Start(AddModPackageToMergeRoutine(modPath));
+        }
+
+        private IEnumerator AddModPackageToMergeRoutine(string modPath)
+        {
+            //Block the interactions
+            SetInteractionBlockerEnabled(true);
+
+            //Wait end of animation
+            yield return new WaitForSeconds(0.25);
+
+            //Continue to add the package to merge
+            ContinueToAddPackageToMerge(modPath);
+        }
+
+        private void ContinueToAddPackageToMerge(string modPath)
+        {
+            //Prepare a list of not mergeable resources keys
+            List<string> notMergeableResourcesList = new List<string>();
+            notMergeableResourcesList.Add("0x073FAA07");   //If is a "S3SA" resource
+            notMergeableResourcesList.Add("0xB52F5055");   //If is a "FBLN" resource
+
+            //Check if the package have resources that cannot be merged
+            IPackage modPackage = Package.OpenPackage(0, modPath, false);
+            foreach (IResourceIndexEntry item in modPackage.GetResourceList)
+            {
+                //Get type of current resource
+                string resourceType = GetLongConvertedToHexStr(item.ResourceType, 8);
+
+                //Check if this resource type exists in list of not mergeable resources
+                foreach (string type in notMergeableResourcesList)
+                    if(type == resourceType)
+                    {
+                        //Inform error
+                        ShowToast(GetStringApplicationResource("launcher_mods_installedTab_modOptions_addToMerge_notMergeableError"), ToastType.Error);
+
+                        //Unlock the interactions
+                        SetInteractionBlockerEnabled(false);
+
+                        //Cancel the script
+                        Package.ClosePackage(0, modPackage);
+                        return;
+                    }
+            }
+            Package.ClosePackage(0, modPackage);
+
+            //If the mod already exists in list, cancel
+            foreach(string item in listOfModsPathsToBeMerged)
+                if(item == modPath)
+                {
+                    //Inform error
+                    ShowToast(GetStringApplicationResource("launcher_mods_installedTab_modOptions_addToMerge_alreadyAddedError"), ToastType.Error);
+
+                    //Unlock the interactions
+                    SetInteractionBlockerEnabled(false);
+
+                    //Cancel the script
+                    return;
+                }
+
+            //If is the first mod added, show the merge interface
+            if (listOfModsPathsToBeMerged.Count == 0)
+            {
+                //Show the interface
+                modMergeInterface.Visibility = Visibility.Visible;
+                animStoryboards["modMergeEnter"].Begin();
+
+                //Enable the cancel button
+                cancelModMergeButton.IsEnabled = true;
+            }
+
+            //If is not the first mod added, check if is the same category of the first
+            if (listOfModsPathsToBeMerged.Count > 0)
+            {
+                //Get category of the first mod added
+                string listCategory = System.IO.Path.GetFileNameWithoutExtension(listOfModsPathsToBeMerged[0]).ToUpper().Split(" --- ")[0];
+
+                //Get category of current mod added
+                string modCategory = System.IO.Path.GetFileNameWithoutExtension(modPath).ToUpper().Split(" --- ")[0];
+
+                //If the categories is not the same, cancel
+                if(listCategory != modCategory)
+                {
+                    //Inform error
+                    ShowToast(GetStringApplicationResource("launcher_mods_installedTab_modOptions_addToMerge_notSameCategoryError"), ToastType.Error);
+
+                    //Unlock the interactions
+                    SetInteractionBlockerEnabled(false);
+
+                    //Cancel the script
+                    return;
+                }
+            }
+
+            //Add to list of mods to be merged
+            listOfModsPathsToBeMerged.Add(modPath);
+
+            //Update the mods to merge list
+            UpdateModsToMergeList();
+
+            //Unlock the interactions
+            SetInteractionBlockerEnabled(false);
+        }
+
+        private void UpdateModsToMergeList()
+        {
+            //Clear mods previously rendered
+            foreach (ModToMergeItem item in instantiatedModMergeItem)
+                modsMergeList.Children.Remove(item);
+            instantiatedModMergeItem.Clear();
+
+            //Draw all mods to merge on screen
+            foreach(string modPath in listOfModsPathsToBeMerged)
+            {
+                //Draw the item on screen
+                ModToMergeItem newItem = new ModToMergeItem(this);
+                modsMergeList.Children.Add(newItem);
+                instantiatedModMergeItem.Add(newItem);
+
+                //Configure it
+                newItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newItem.VerticalAlignment = VerticalAlignment.Top;
+                newItem.Width = double.NaN;
+                newItem.Height = double.NaN;
+                newItem.Margin = new Thickness(0, 0, 0, 8);
+
+                //Inform the data about the media
+                newItem.SetModPath(modPath);
+                newItem.Prepare();
+            }
+
+            //Disable the remove button of first mod in list
+            instantiatedModMergeItem[0].SetRemoveButtonDisabled();
+
+            //Enable and disable the confirm merge button
+            if (listOfModsPathsToBeMerged.Count > 1)
+                confirmModMergeButton.IsEnabled = true;
+            if (listOfModsPathsToBeMerged.Count <= 1)
+                confirmModMergeButton.IsEnabled = false;
+
+            //Count total media files size
+            long totalSizeInBytes = 0;
+            foreach (string modPath in listOfModsPathsToBeMerged)
+                if (File.Exists(modPath) == true)
+                    totalSizeInBytes += (new FileInfo(modPath)).Length;
+
+            //Show the size
+            modsMergeSize.Text = GetFormattedCacheSize(totalSizeInBytes).Replace("~", "");
+        }
+
+        public void RemoveModPackageOfMerge(string modPath)
+        {
+            //Find the mod path id in list
+            int modPathIndex = -1;
+            for(int i = 0; i < listOfModsPathsToBeMerged.Count; i++)
+                if(listOfModsPathsToBeMerged[i] == modPath)
+                {
+                    modPathIndex = i;
+                    break;
+                }
+
+            //Remove the mod from the list
+            listOfModsPathsToBeMerged.RemoveAt(modPathIndex);
+
+            //Update the mod list
+            UpdateModsToMergeList();
+        }
+
+        private void CancelModsMerge()
+        {
+            //Disable the buttons
+            cancelModMergeButton.IsEnabled = false;
+            confirmModMergeButton.IsEnabled = false;
+
+            //Change the focus
+            toggleToastsHistory.Focus();
+
+            //Clear the mods to merge list
+            listOfModsPathsToBeMerged.Clear();
+
+            //Close the merge list interface
+            Coroutine.Start(WaitAndCloseMergeInterface());
+        }
+
+        private IEnumerator WaitAndCloseMergeInterface()
+        {
+            //Do the dismiss animation
+            animStoryboards["modMergeExit"].Begin();
+
+            //Wait some time..
+            yield return new WaitForSeconds(0.3f);
+
+            //Dismiss the toast history
+            modMergeInterface.Visibility = Visibility.Collapsed;
+        }
+
+        private void MergeModsInMergeList()
+        {
+            //Show interface blocker while merging
+            ShowVaultTaskBlocker(GetStringApplicationResource("launcher_mods_installedTab_modOptions_addToMerge_merging"));
+            //Add task to list
+            AddTask("mergingMods", "Merging Mods of the merge list.");
+
+            //Start a thread to do the cleaning process
+            AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { });
+            asyncTask.onStartTask_RunMainThread += (callerWindow, startParams) => { };
+            asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+            {
+                //Wait some time
+                threadTools.MakeThreadSleep(2500);
+
+                //Try to do the task
+                try
+                {
+                    //------------- START -------------//
+
+                    //Prepare the name of this merge
+                    string mergeName = ("Merge " + DateTime.Now.Ticks);
+                    //Prepare the path for folder of this merge
+                    string mergeFolder = (myDocumentsPath + "/!DL-Static/merged-mods/" + mergeName);
+                    //Get the parent folder of mods to merge
+                    string parentFolderOfMods = (new DirectoryInfo(listOfModsPathsToBeMerged[0])).Parent.FullName;
+
+                    //Create the folder of merge
+                    if (Directory.Exists(mergeFolder) == false)
+                        Directory.CreateDirectory(mergeFolder);
+
+                    //Create the target merge package
+                    IPackage targetPackageMerge = Package.NewPackage(0);
+
+                    //Get all resources of each mod of merge list and send to the target merged package
+                    foreach(string modPath in listOfModsPathsToBeMerged)
+                    {
+                        IPackage currentPackage = Package.OpenPackage(0, modPath, false);
+                        foreach (IResourceIndexEntry item in currentPackage.GetResourceList)
+                            targetPackageMerge.AddResource(item, (currentPackage as APackage).GetResource(item), true);
+                        Package.ClosePackage(0, currentPackage);
+                    }
+
+                    //Enable compression for all resources of target merged package
+                    foreach (IResourceIndexEntry item in targetPackageMerge.GetResourceList)
+                        item.Compressed = (ushort)((item.Filesize != item.Memsize) ? 0xFFFF : 0x0000);
+                    //Save the target merge package
+                    targetPackageMerge.SaveAs((parentFolderOfMods + "/" + System.IO.Path.GetFileNameWithoutExtension(listOfModsPathsToBeMerged[0]).ToUpper().Split(" --- ")[0] + " --- !₢DL-Merge₢! " + mergeName + ".package"));
+                    Package.ClosePackage(0, targetPackageMerge);
+
+                    //Copy all original mods of the merge, to the folder of the merge
+                    foreach (string modPath in listOfModsPathsToBeMerged)
+                        File.Copy(modPath, (mergeFolder + "/" + System.IO.Path.GetFileName(modPath)));
+
+                    //Delete all original mods of the library
+                    foreach (string modPath in listOfModsPathsToBeMerged)
+                        File.Delete(modPath);
+
+                    //------------- END -------------//
+
+                    //Wait some time
+                    threadTools.MakeThreadSleep(2500);
+
+                    //Return a success response
+                    return new string[] { "success", mergeName };
+                }
+                catch (Exception ex)
+                {
+                    //Return a error response
+                    return new string[] { "error", "" };
+                }
+
+                //Finish the thread...
+                return new string[] { "none", "" };
+            };
+            asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+            {
+                //If merging was success
+                if (backgroundResult[0] == "success")
+                {
+                    //Show the notification
+                    ShowToast(GetStringApplicationResource("launcher_mods_installedTab_modOptions_addToMerge_mergingSuccess").Replace("%s%", backgroundResult[1]), ToastType.Success);
+                }
+
+                //If merging was problematic
+                if (backgroundResult[0] != "success")
+                {
+                    //Show the notification
+                    ShowToast(GetStringApplicationResource("launcher_mods_installedTab_modOptions_addToMerge_mergingError"), ToastType.Error);
+                }
+
+                //Hide interface blocker
+                HideVaultTaskBlocker();
+                //Remove task of list
+                RemoveTask("mergingMods");
+
+                //Close the mods merging interface
+                CancelModsMerge();
+
+                //Refresh the mods library list
+                UpdateInstalledMods();
+            };
+            asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+        }
+
+        public void UnmergeMod(string modPath)
+        {
+            //Show the confirmation dialog
+            MessageBoxResult dialogResult = MessageBox.Show(GetStringApplicationResource("launcher_mods_installedTab_modOptions_revertMerge_dialogText"),
+                                                            GetStringApplicationResource("launcher_mods_installedTab_modOptions_revertMerge_dialogTitle"), MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            //If is not desired to revert merge, cancel
+            if (dialogResult != MessageBoxResult.Yes)
+                return;
+
+            //Show interface blocker while reverting
+            ShowVaultTaskBlocker(GetStringApplicationResource("launcher_mods_installedTab_modOptions_revertMerge_reverting"));
+            //Add task to list
+            AddTask("revertingModsMerge", "Reverting Merge of selected Mods Merge.");
+
+            AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { modPath });
+            asyncTask.onStartTask_RunMainThread += (callerWindow, startParams) => { };
+            asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+            {
+                //Wait some time
+                threadTools.MakeThreadSleep(2500);
+
+                //Get the path of the merge
+                string mergeResultPath = startParams[0];
+
+                //Try to do the task
+                try
+                {
+                    //------------- START -------------//
+
+                    //Get the base path for original mods folder
+                    string pathForOriginalModsFolder = (new DirectoryInfo(mergeResultPath)).Parent.Parent.Parent.Parent + "/!DL-Static/merged-mods";
+                    //Get the path for folder of original mods of this merge
+                    string thisMergeOriginalModsFolder = (pathForOriginalModsFolder + "/" + System.IO.Path.GetFileNameWithoutExtension(mergeResultPath.Split(" --- !₢DL-Merge₢! ")[1]));
+                    //Get path of folder of this merge
+                    string thisMergeFolder = (new DirectoryInfo(mergeResultPath)).Parent.FullName;
+
+                    //Copy all original mods to the current folder of merge
+                    foreach (FileInfo file in new DirectoryInfo(thisMergeOriginalModsFolder).GetFiles())
+                        File.Copy(file.FullName, (thisMergeFolder + "/" + System.IO.Path.GetFileName(file.FullName)));
+
+                    //Delete the merge result and the folder of original mods
+                    Directory.Delete(thisMergeOriginalModsFolder, true);
+                    File.Delete(mergeResultPath);
+
+                    //------------- END -------------//
+
+                    //Wait some time
+                    threadTools.MakeThreadSleep(2500);
+
+                    //Return a success response
+                    return new string[] { "success" };
+                }
+                catch (Exception ex)
+                {
+                    //Return a error response
+                    return new string[] { "error" };
+                }
+
+                //Finish the thread...
+                return new string[] { "none" };
+            };
+            asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+            {
+                //If merging was success
+                if (backgroundResult[0] == "success")
+                {
+                    //Show the notification
+                    ShowToast(GetStringApplicationResource("launcher_mods_installedTab_modOptions_revertMerge_revertingSuccess"), ToastType.Success);
+                }
+
+                //If merging was problematic
+                if (backgroundResult[0] != "success")
+                {
+                    //Show the notification
+                    ShowToast(GetStringApplicationResource("launcher_mods_installedTab_modOptions_revertMerge_revertingError"), ToastType.Error);
+                }
+
+                //Hide interface blocker
+                HideVaultTaskBlocker();
+                //Remove task of list
+                RemoveTask("revertingModsMerge");
+
+                //Refresh the mods library list
+                UpdateInstalledMods();
+            };
+            asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+        }
+
         private void OpenCustomPackageModPicker()
         {
             //If don't have S3CLI Extractor, cancel

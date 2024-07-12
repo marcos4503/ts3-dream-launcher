@@ -34,6 +34,9 @@
     <Compile Update="Controls\ListItems\MediaItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\ListItems\ModToMergeItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\ListItems\PatchItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -112,6 +115,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\ListItems\MediaItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\ListItems\ModToMergeItem.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\ListItems\PatchItem.xaml">

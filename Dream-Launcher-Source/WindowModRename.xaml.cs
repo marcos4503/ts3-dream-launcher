@@ -26,13 +26,14 @@ namespace TS3_Dream_Launcher
         private MainWindow mainWindowRef = null;
         private Dictionary<string, int> filesNamesInTheModDirectory = new Dictionary<string, int>();
         private string modPath = "";
+        private bool isModResultOfMerge = false;
 
         //Public variables
         public bool wasRenamedTheMod = false;
 
         //Core methods
 
-        public WindowModRename(MainWindow mainWindow, string windowTitle, string modPath)
+        public WindowModRename(MainWindow mainWindow, string windowTitle, string modPath, bool isModResultOfMerge)
         {
             //Prepare the window
             InitializeComponent();
@@ -45,6 +46,7 @@ namespace TS3_Dream_Launcher
 
             //Store the mod path
             this.modPath = modPath;
+            this.isModResultOfMerge = isModResultOfMerge;
 
             //Prepare the UI
             PrepareTheUI();
@@ -88,10 +90,20 @@ namespace TS3_Dream_Launcher
                 //Check if the first character is space
                 if (currentInput[0].ToString() == " ")
                     toReturn = mainWindowRef.GetStringApplicationResource("launcher_mods_installedTab_modOptions_renameInvalid_fchar");
+                //Check if the last character is space
+                if (currentInput[currentInput.Length - 1].ToString() == " ")
+                    toReturn = mainWindowRef.GetStringApplicationResource("launcher_mods_installedTab_modOptions_renameInvalid_lchar");
+                //Check if contains the reserved symbol
+                if (currentInput.Contains("!₢DL-Merge₢!") == true)
+                    toReturn = mainWindowRef.GetStringApplicationResource("launcher_mods_installedTab_modOptions_renameInvalid_reservSymbol");
 
                 //Return the value
                 return toReturn;
             });
+
+            //If this is a mod result of merge, hide the merge symbol
+            if (isModResultOfMerge == true)
+                nameField.textBox.Text = nameField.textBox.Text.Replace("!₢DL-Merge₢! ", "");
 
             //Set the title of the textbox
             nameField.LabelName = mainWindowRef.GetStringApplicationResource("launcher_mods_installedTab_modOptions_renameField");
@@ -105,6 +117,14 @@ namespace TS3_Dream_Launcher
 
         private void FinishModRenaming()
         {
+            //If the name was not changed, cancel
+            if(System.IO.Path.GetFileNameWithoutExtension(modPath).Split(" --- ")[1].Replace("!₢DL-Merge₢! ", "") == nameField.textBox.Text)
+            {
+                MessageBox.Show(mainWindowRef.GetStringApplicationResource("launcher_mods_installedTab_modOptions_renameInvalid_same"),
+                                mainWindowRef.GetStringApplicationResource("launcher_mods_installedTab_modOptions_renameErrorTitle"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             //If some field have error, ignore
             if (nameField.hasError() == true)
             {
@@ -118,8 +138,20 @@ namespace TS3_Dream_Launcher
             string fileExtension = System.IO.Path.GetExtension(modPath);
             string categoryPrefix = System.IO.Path.GetFileNameWithoutExtension(modPath).Split(" --- ")[0];
 
+            //If is a mod result of merge, first, rename the folder of original mods too
+            if (isModResultOfMerge == true)
+            {
+                //Get path of original mods folder
+                string pathForOriginalMod = (new DirectoryInfo(modPath)).Parent.Parent.Parent.Parent + "/!DL-Static/merged-mods";
+                //Get original name of the folder of original mods
+                string originalModsFolder = pathForOriginalMod + "/" + System.IO.Path.GetFileNameWithoutExtension(modPath).Split(" --- !₢DL-Merge₢! ")[1];
+
+                //Rename the directory of original mods too
+                Directory.Move(originalModsFolder, (pathForOriginalMod + "/" + nameField.textBox.Text));
+            }
+
             //Rename the file
-            File.Move(modPath, (parentDirPath + "/" + categoryPrefix + " --- " + nameField.textBox.Text + fileExtension));
+            File.Move(modPath, (parentDirPath + "/" + categoryPrefix + " --- " + ((isModResultOfMerge == true ? "!₢DL-Merge₢! " : "")) + nameField.textBox.Text + fileExtension));
 
             //Inform that was renamed the mod
             wasRenamedTheMod = true;
