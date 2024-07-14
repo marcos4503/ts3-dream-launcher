@@ -1637,6 +1637,18 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://modthesims.info/d/485285",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-pregnancy-controller.zip"
+        },
+        {
+            "name": "Get Naked Interaction",
+            "category": "OTHERS",
+            "author": "CmarNYC",
+            "description_enUS": "WARNING: It is not recommended that you play with this mod installed, just use it for testing. This mod makes the 'Get Naked' interaction available to Sims. To put something back on, you need to use the 'Change Clothes' interaction. Getting naked through this interaction does not mean other Sims will differentiate. They will treat it as if the Sim is wearing any clothes.",
+            "description_ptBR": "AVISO: Não é recomendado que você jogue com este mod instalado, apenas o use para testes. Este mod disponibiliza a interação 'Ficar Nú' para os Sims. Para voltar a vestir algo é necessário usar a interação 'Trocar de Roupa'. Ficar nú através desta interação não significa que outros Sims diferenciarão. Eles tratarão como se o Sim estivesse vestindo uma roupa qualquer.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ "GRAPHICS --- NRaas - Decensor.package" ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "http://sexysims.info/download.php?t=173728",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-get-naked.zip"
         }
     ]
 }
