@@ -253,6 +253,18 @@
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-makeups-pack1.zip"
         },
         {
+            "name": "Shorter Epiphany Fence",
+            "category": "CONTENTS",
+            "author": "SimRivers",
+            "description_enUS": "Adds a smaller version of the Epiphancy Fence to the game.",
+            "description_ptBR": "Adiciona uma versão menor da Epiphancy Fence no jogo.",
+            "requiredEps": [ 4 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/551475/your-wish-is-granted-a-short-chain-fence.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-shorter-epiphany-fencing.zip"
+        },
+        {
             "name": "More Floors Pack 1",
             "category": "CONTENTS",
             "author": "Various",
@@ -287,18 +299,6 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/walls-packs-page.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-walls-pack1.zip"
-        },
-        {
-            "name": "Shorter Epiphany Fence",
-            "category": "CONTENTS",
-            "author": "SimRivers",
-            "description_enUS": "Adds a smaller version of the Epiphancy Fence to the game.",
-            "description_ptBR": "Adiciona uma versão menor da Epiphancy Fence no jogo.",
-            "requiredEps": [ 4 ],
-            "requiredRecommendedModFiles": [ ],
-            "requiredPatchModFiles": [ ],
-            "pageUrl": "https://modthesims.info/d/551475/your-wish-is-granted-a-short-chain-fence.html",
-            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-shorter-epiphany-fencing.zip"
         },
 
 
@@ -1613,6 +1613,18 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://modthesims.info/d/665876/sethour-cheat.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-sethour-cheat.zip"
+        },
+        {
+            "name": "Pregnancy Controller",
+            "category": "OTHERS",
+            "author": "CmarNYC",
+            "description_enUS": "WARNING: It is not recommended that you play with this mod installed, just use it for testing. This mod allows you to get any Sim pregnant or unpregnant at any time, in addition to controlling different aspects of the pregnancy, such as progress. Can be used on Humans or Animals.",
+            "description_ptBR": "AVISO: Não é recomendado que você jogue com este mod instalado, apenas o use para testes. Este mod permite que você engravida ou desengravide qualquer Sim a qualquer momento, além de controlar diversos aspectos da gravidez, como por exemplo o progresso. Pode ser usado em Humanos ou Animais.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/485285",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-pregnancy-controller.zip"
         }
     ]
 }
