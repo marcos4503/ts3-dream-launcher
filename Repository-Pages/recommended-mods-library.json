@@ -1,18 +1,6 @@
 {
     "modsList": [
         {
-            "name": "Shorter Epiphany Fence",
-            "category": "CONTENTS",
-            "author": "SimRivers",
-            "description_enUS": "Adds a smaller version of the Epiphancy Fence to the game.",
-            "description_ptBR": "Adiciona uma versão menor da Epiphancy Fence no jogo.",
-            "requiredEps": [ 4 ],
-            "requiredRecommendedModFiles": [ ],
-            "requiredPatchModFiles": [ ],
-            "pageUrl": "https://modthesims.info/d/551475/your-wish-is-granted-a-short-chain-fence.html",
-            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-shorter-epiphany-fencing.zip"
-        },
-        {
             "name": "Default Replacement Brows",
             "category": "CONTENTS",
             "author": "Simple Life",
@@ -85,28 +73,16 @@
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-default-replace-eyes1.zip"
         },
         {
-            "name": "Default Replacement Skin Face",
+            "name": "Default Replacement Body Skin Natural+",
             "category": "CONTENTS",
-            "author": "Simple Life",
-            "description_enUS": "Replaces the game default skin face with prettier, more realistic versions.",
-            "description_ptBR": "Substitui a pele facial padrão do jogo por versões mais bonitas e realistas.",
+            "author": "teru_k",
+            "description_enUS": "Replaces the game's default body and facial skins with prettier, more realistic versions. Additionally, it adds more 6 skin tones that can be accessed through the 'little circle' next to the skin color bar. There are 'Light' and 'Tan with Pubic Hair' skin tones.",
+            "description_ptBR": "Substitui as peles corporais e faciais padrões do jogo, por versões mais bonitas e realistas. Além disso, adiciona mais 6 tons de pele que podem ser acessados através da 'bolinha' ao lado da barrinha de cor da pele. Há tons de pele 'Pálidos' e 'Bronzeados com Pelos Pubianos'.",
             "requiredEps": [ ],
             "requiredRecommendedModFiles": [ ],
             "requiredPatchModFiles": [ ],
-            "pageUrl": "https://simplelife.chagasi.com/sims3.html",
-            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-default-replace-skinface3.zip"
-        },
-        {
-            "name": "Default Replacement Body Skin",
-            "category": "CONTENTS",
-            "author": "Simple Life",
-            "description_enUS": "Replaces the game default body skin with prettier, more realistic versions.",
-            "description_ptBR": "Substitui a pele corporal padrão do jogo por versões mais bonitas e realistas.",
-            "requiredEps": [ ],
-            "requiredRecommendedModFiles": [ ],
-            "requiredPatchModFiles": [ ],
-            "pageUrl": "https://simplelife.chagasi.com/sims3.html",
-            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-default-replace-bodyskin.zip"
+            "pageUrl": "https://modthesims.info/d/493687/eskin-natural.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-default-replacement-body-skin-natural-plus.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-default-replacement-body-skin-natural-plus.zip.002 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-default-replacement-body-skin-natural-plus.zip.003"
         },
         {
             "name": "Default Replacement Topical Details",
@@ -181,6 +157,18 @@
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-default-replace-eyescontacts.zip"
         },
         {
+            "name": "Review For Private Parts And Fixes",
+            "category": "CONTENTS",
+            "author": "Various",
+            "description_enUS": "Adds several new clothes from different categories for Pregnant Teens, Females. These outfits can be worn even by Sims who are not pregnant. A pink icon appears in the CAS so you can know if it is one of the outfits added by this mod. Enables the upper and lower part of the bodies of teenagers for pregnancy, correcting muscle flaws and bugs. Enables and allows customization through Sliders, the male reproductive organ in Teenagers, Adults, Young Adults and Elderly, in addition to in-game it also makes it possible to control it by clicking on the male Sim himself and accessing the member adjustments option (note that the men's bottoms appear with some visual artifacts in CAS, but should appear normally in-game). Through this same menu, it is also possible to randomize the genetics of the private parts of all the Sims in the neighborhood. Enables and allows you to customize, through Sliders, female breasts in Teenagers, Adults, Young Adults and Elderly. These new Sliders appear in 'Global' in the 'Head/Ears' and 'Mouth' adjustment sections. Makes Panties more realistic and adds more pubic hair options.",
+            "description_ptBR": "Adiciona diversas novas roupas de diversas categorias para Adolescentes Grávidas, do sexo Feminino. Essas roupas podem ser usadas mesmo por Sims que não estão grávidas. Um ícone rosa aparece no CAS para que seja possível saber se trata-se de uma das roupas adicionadas por este mod. Habilita a parte de cima e de baixo dos corpos de adolescantes para gravidez, corrigindo falhas e bugs de musculos. Habilita e permite customizar através de Sliders, o orgão reprodutor masculino em Adolescentes, Adultos, Jovens Adultos e Idosos, além de in-game também tornar possível controla-lo clicando no próprio Sim masculino e acessando a opção de ajustes do membro (note que a parte de baixo dos homens aparecem com alguns artefatos visuais no CAS, mas deve aparecer normalmente in-game). Através deste mesmo menu, também é possível aleatorizar as genéticas de partes íntimas de todos os Sims da vizinhança. Habilita e permite customizar através de Sliders, os seios femininos em Adolescentes, Adultos, Jovens Adultos e Idosos. Esses novos Sliders aparecem no 'Global' nas seções de ajustes da 'Cabeça/Orelhas' e 'Boca'. Torna as Cuecas mais realistas e adiciona mais opçõs de pelos pubianos.",
+            "requiredEps": [ 8 ],
+            "requiredRecommendedModFiles": [ "CONTENTS --- teru_k - Default Replacement Body Skin Natural+.package" ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/review-private-parts-fixes-page.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-review-for-private-parts-and-fixes.zip"
+        },
+        {
             "name": "CAS Room Recolored",
             "category": "CONTENTS",
             "author": "Boring Bones",
@@ -241,18 +229,6 @@
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.002 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-clothes-pack1.zip.003"
         },
         {
-            "name": "Teen Female Maternity Wear",
-            "category": "CONTENTS",
-            "author": "CmarNYC",
-            "description_enUS": "Adds several new clothes from different categories for Pregnant Teens, Females. These outfits can be worn even by Sims who are not pregnant. A pink icon appears in the CAS so you can know if it is one of the outfits added by this mod. If you intend to enable teen pregnancy in your game, this mod is an absolute must.",
-            "description_ptBR": "Adiciona diversas novas roupas de diversas categorias para Adolescentes Grávidas, do sexo Feminino. Essas roupas podem ser usadas mesmo por Sims que não estão grávidas. Um ícone rosa aparece no CAS para que seja possível saber se trata-se de uma das roupas adicionadas por este mod. Se você pretende habilitar a gravidez adolescente no seu jogo, este mod é absolutamente necessário.",
-            "requiredEps": [ 8 ],
-            "requiredRecommendedModFiles": [ ],
-            "requiredPatchModFiles": [ ],
-            "pageUrl": "https://modthesims.info/d/492712/teen-female-maternity-wear.html",
-            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-teen-female-maternity-wear.zip"
-        },
-        {
             "name": "More Accessories Pack 1",
             "category": "CONTENTS",
             "author": "Various",
@@ -311,6 +287,18 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/walls-packs-page.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-more-walls-pack1.zip"
+        },
+        {
+            "name": "Shorter Epiphany Fence",
+            "category": "CONTENTS",
+            "author": "SimRivers",
+            "description_enUS": "Adds a smaller version of the Epiphancy Fence to the game.",
+            "description_ptBR": "Adiciona uma versão menor da Epiphancy Fence no jogo.",
+            "requiredEps": [ 4 ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/551475/your-wish-is-granted-a-short-chain-fence.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-shorter-epiphany-fencing.zip"
         },
 
 
@@ -626,30 +614,6 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://modthesims.info/d/633994/hanging-lantern-fix.html",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-hanging-lantern-fix.zip"
-        },
-        {
-            "name": "Top Nude Pregnant Muscle Fix",
-            "category": "FIXES",
-            "author": "CmarNYC",
-            "description_enUS": "Enables the upper part of teenagers bodies for pregnancy, fixing muscle flaws and bugs. Required if you want to enable teen pregnancy.",
-            "description_ptBR": "Habilita a parte de cima dos corpos de adolescantes para gravidez, corrigindo falhas e bugs de musculos. Necessário se você desejar habilitar gravidez adolescente.",
-            "requiredEps": [ 8 ],
-            "requiredRecommendedModFiles": [ "CONTENTS --- CmarNYC - Teen Female Maternity Wear.package" ],
-            "requiredPatchModFiles": [ ],
-            "pageUrl": "https://modthesims.info/d/492712/teen-female-maternity-wear.html",
-            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-teen-pregnancy-top-nude-muscle-fix.zip"
-        },
-        {
-            "name": "Bottom Nude Pregnant Muscle Fix",
-            "category": "FIXES",
-            "author": "CmarNYC",
-            "description_enUS": "Enables the bottom part of teenagers bodies for pregnancy, fixing muscle flaws and bugs. Required if you want to enable teen pregnancy.",
-            "description_ptBR": "Habilita a parte de baixo dos corpos de adolescantes para gravidez, corrigindo falhas e bugs de musculos. Necessário se você desejar habilitar gravidez adolescente.",
-            "requiredEps": [ 8 ],
-            "requiredRecommendedModFiles": [ "CONTENTS --- CmarNYC - Teen Female Maternity Wear.package" ],
-            "requiredPatchModFiles": [ ],
-            "pageUrl": "https://modthesims.info/d/492712/teen-female-maternity-wear.html",
-            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-teen-pregnancy-bottom-nude-muscle-fix.zip"
         },
         {
             "name": "Pet Tombstone Shadow Fix",
@@ -1407,7 +1371,7 @@
             "description_enUS": "This mod makes the game 'woo-hoo' rules much more relaxed as well as making some improvements to the game romance system. Teen Sims can now 'woo-hoo' with older Sims or other teens. New romantic interactions are added, as well as new traits and a jealousy system. Furthermore, it also allows teenagers to get pregnant. This version of the mod is already configured with the best default settings.",
             "description_ptBR": "Este mod deixa as regras de 'oba-oba' do jogo muito mais relaxadas além de fazer algumas melhorias no sistema de romance do jogo. Agora, Sims adolescentes podem fazer 'oba-oba' com Sims mais velhos ou com outros adolescentes. Novas interações românticas são adicionadas, além de novos traços e um sistema de ciúme. Além disso, ele também permite que adolescentes engravidem. Esta versão do mod já vem configurada com as melhores configurações padrões.",
             "requiredEps": [ 8 ],
-            "requiredRecommendedModFiles": [ "CONTENTS --- CmarNYC - Teen Female Maternity Wear.package", "FIXES --- CmarNYC - Top Nude Pregnant Muscle Fix.package", "FIXES --- CmarNYC - Bottom Nude Pregnant Muscle Fix.package", "GAMEPLAY --- NRaas - Sleep Freedom.package" ],
+            "requiredRecommendedModFiles": [ "CONTENTS --- Various - Review For Private Parts And Fixes.package", "GAMEPLAY --- NRaas - Sleep Freedom.package" ],
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://www.nraas.net/community/Woohooer-FAQ",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-woohooer.zip"
@@ -1423,6 +1387,18 @@
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://www.nraas.net/community/Woohooer-Scoring",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-woohooer-scoring.zip"
+        },
+        {
+            "name": "XCAS",
+            "category": "GAMEPLAY",
+            "author": "CmarNYC",
+            "description_enUS": "This mod adds several improvements and expands the customization of Sims in CAS. This mod increases the number of Sliders to 100, in the CAS, in addition to allowing you to adjust the Sliders to values up to 3x greater, allows the adjustment of facial hair in women, allows you to edit the Sim's 'Naked' appearance, through the CAS or Dresser, adds many more places for Tattoos. Additionally, switches the Sim to their 'Naked' appearance when editing body hair and Tattoos. NOTE: In CAS, there is a bug that causes you to lose all adjustments made to the Head, Skin, Face, etc, if you enter the Clothing Editing Section, change to the 'Nude' outfit and then exit the Section of Clothing Editing. To avoid this bug, just remember to never leave the Outfit Editing Section without changing from 'Nude' to 'Casual' mode first. Finally, do not attempt to customize 'Body Hair', 'Tattoos' or 'Nude' Clothing in Babies and Children (this is not supported, on purpose of course), as your Sim may become completely bugged, requiring you to exit CAS and return to fully resolve the bug. Only Teens, Young Adults, Adults and Elders can have their 'Nude' forms customized.",
+            "description_ptBR": "Este mod adiciona diversas melhorias e expande a customização dos Sims no CAS. Este mod aumenta a quantidade de Sliders para 100, no CAS, além de permitir ajustar os Sliders para valores de até 3x maiores, permite o ajuste de pelos faciais em mulheres, permite editar a aparência 'Nú' do Sim, através do CAS ou Guarda-Roupas, adiciona muito mais locais para Tatuagens. Além disso, alterna o Sim para sua aparência de 'Nú' ao editar os pelos corporais e Tatuagens. NOTA: No CAS, há um bug que faz com que você perca todos os ajustes feitos na Cabeça, Pele, Rosto, etc, se você entrar na Seção de Edição de Roupas, mudar para a roupa 'Nú' e em seguida sair da Seção de Edição de Roupas. Para evitar esse bug, apenas lembre-se de nunca abandonar a Seção de Edição de Roupas sem alterar do modo 'Nú' para 'Casual' antes. Por fim, não tente customizar 'Pelos Corporais', 'Tatuagens' ou as Roupas do modo 'Nú' em Bebês e Crianças (não há suporte para isso, propositalmente é claro), pois o seu Sim pode ficar completamente bugado, sendo necessário sair do CAS e retornar para resolver o bug completamente. Somente Adolescentes, Jovens Adultos, Adultos e Idosos podem ter suas formas 'Nús' customizadas.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ "CONTENTS --- Various - Review For Private Parts And Fixes.package" ],
+            "requiredPatchModFiles": [ "MasterController.package", "MasterController_Cheats.package", "MasterController_Integration.package" ],
+            "pageUrl": "https://modthesims.info/d/434270/",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-xcas.zip"
         },
 
 
