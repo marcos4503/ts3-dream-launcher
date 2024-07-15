@@ -1603,7 +1603,7 @@
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-add-any-lot-size.zip"
         },
         {
-            "name": "Passion Animations Pack",
+            "name": "Passion Animations Pack 1",
             "category": "OTHERS",
             "author": "ooOLaLa",
             "description_enUS": "A Pack with more than 300 animations for the 'Passion' mod. Compatible with up to 6 Sims.",
@@ -1612,10 +1612,10 @@
             "requiredRecommendedModFiles": [ ],
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://www.loverslab.com/files/file/16273-sims-3wip-ooolala-citys-sex-animations-for-kinky-world-passion-ts3-animated-penisupdated-3rd-july-2024/",
-            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-passion-animations-pack.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-passion-animations-pack.zip.002"
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-passion-animations-pack-1.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-passion-animations-pack-1.zip.002 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-passion-animations-pack-1.zip.003"
         },
         {
-            "name": "Passion Animations Indexes",
+            "name": "Passion Animations Indexes 1",
             "category": "OTHERS",
             "author": "ooOLaLa",
             "description_enUS": "Index Cache for the Passion Animations package.",
@@ -1624,7 +1624,7 @@
             "requiredRecommendedModFiles": [ "OTHERS --- ooOLaLa - Passion Animations Pack.package" ],
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://www.loverslab.com/files/file/16273-sims-3wip-ooolala-citys-sex-animations-for-kinky-world-passion-ts3-animated-penisupdated-3rd-july-2024/",
-            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-passion-animations-index.zip"
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-passion-animations-index-1.zip"
         },
         {
             "name": "Treasure Box",
