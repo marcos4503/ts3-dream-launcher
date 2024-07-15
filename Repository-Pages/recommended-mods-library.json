@@ -1621,10 +1621,34 @@
             "description_enUS": "Index Cache for the Passion Animations package.",
             "description_ptBR": "Cache de Índices para o pacote de Animações do Passion.",
             "requiredEps": [ ],
-            "requiredRecommendedModFiles": [ "OTHERS --- ooOLaLa - Passion Animations Pack.package" ],
+            "requiredRecommendedModFiles": [ "OTHERS --- ooOLaLa - Passion Animations Pack 1.package" ],
             "requiredPatchModFiles": [ ],
             "pageUrl": "https://www.loverslab.com/files/file/16273-sims-3wip-ooolala-citys-sex-animations-for-kinky-world-passion-ts3-animated-penisupdated-3rd-july-2024/",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-passion-animations-index-1.zip"
+        },
+        {
+            "name": "Passion Animations Pack 2",
+            "category": "OTHERS",
+            "author": "MaryJane",
+            "description_enUS": "A Pack with more than 50 animations for the 'Passion' mod. Compatible with up to 2 Sims.",
+            "description_ptBR": "Um pacote com mais de 50 animações para o mod 'Passion'. Compatível para até 2 Sims.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.loverslab.com/files/file/3758-maryjanes-animations-for-kinky-world-and-passion-updated-01march2021/",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-passion-animations-pack-2.zip"
+        },
+        {
+            "name": "Passion Animations Indexes 2",
+            "category": "OTHERS",
+            "author": "MaryJane",
+            "description_enUS": "Index Cache for the Passion Animations package.",
+            "description_ptBR": "Cache de Índices para o pacote de Animações do Passion.",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ "OTHERS --- MaryJane - Passion Animations Pack 2.package" ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.loverslab.com/files/file/3758-maryjanes-animations-for-kinky-world-and-passion-updated-01march2021/",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-passion-animations-index-2.zip"
         },
         {
             "name": "Treasure Box",
