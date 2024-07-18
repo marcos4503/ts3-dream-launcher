@@ -51,6 +51,7 @@ namespace TS3_Dream_Launcher.Controls.ListItems
         private string[] requiredPatchModsFiles = new string[0];
         private string modPageUrl = "";
         private string modDownloadZipUrl = "";
+        private string guideString = "";
 
         //Public variables
         public MainWindow instantiatedByWindow = null;
@@ -156,6 +157,16 @@ namespace TS3_Dream_Launcher.Controls.ListItems
                 description.Text = brDescription;
         }
 
+        public void SetGuide(string enGuide, string brGuide)
+        {
+            //Set the description of the mod
+            guideString = "#ERROR-GUIDE-UNVAILABLE#";
+            if (instantiatedByWindow.launcherPrefs.loadedData.launcherLang == "en-us")
+                guideString = enGuide;
+            if (instantiatedByWindow.launcherPrefs.loadedData.launcherLang == "pt-br")
+                guideString = brGuide;
+        }
+
         public void SetRequiredEPs(int[] requiredEps)
         {
             //Prepare the list of eps icons
@@ -217,6 +228,10 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             status.Background = new SolidColorBrush(Color.FromArgb(255, 148, 148, 148));
             addButton.Visibility = Visibility.Visible;
 
+            //If don't have a guide, hide the guide button
+            if (guideString == "")
+                guideButton.Visibility = Visibility.Collapsed;
+
             //Build the possible paths for this mod
             enabledModFileNameInsideRecModDir = (recommendedModsDirPath + "/" + modCategoryString + " --- " + author.Text + " - " + title.Text + ".package");
             disabledModFileNameInsideRecModDir = (recommendedModsDirPath + "/" + modCategoryString + " --- " + author.Text + " - " + title.Text + ".disabled");
@@ -264,6 +279,14 @@ namespace TS3_Dream_Launcher.Controls.ListItems
                 moreButton.Opacity = 0.25f;
                 moreButton.IsHitTestVisible = false;
             }
+
+            //Prepare guide button
+            guideButton.Click += (s, e) =>
+            {
+                //Open the window of guide
+                WindowModSetupGuide modInstaller = new WindowModSetupGuide(instantiatedByWindow, title.Text, guideString);
+                modInstaller.Show();
+            };
 
             //Prepare the install button
             addButton.Click += (s, e) => 

@@ -44,6 +44,7 @@ namespace TS3_Dream_Launcher.Scripts
             public bool patchRoutingOptimizations = false;
             public bool patchStoryProgression = false;
             public bool patchInternetRemoval = false;
+            public bool patchRecommendedMods = false;
 
             public int resolution = 0;
             public int refreshRate = 1;

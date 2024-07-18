@@ -76,6 +76,9 @@
     <Compile Update="WindowModRename.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WindowModSetupGuide.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WindowS3PkgPreModInstaller.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -169,6 +172,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WindowModRename.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WindowModSetupGuide.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WindowS3PkgPreModInstaller.xaml">

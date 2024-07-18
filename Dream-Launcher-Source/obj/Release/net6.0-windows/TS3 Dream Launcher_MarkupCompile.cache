@@ -1,5 +1,5 @@
 ﻿TS3 Dream Launcher
-1.3.1
+1.4.0
 
 winexe
 C#
@@ -10,11 +10,11 @@ none
 false
 TRACE;RELEASE;NET;NET6_0;NETCOREAPP
 D:\Visual-Studio\TS3 Dream Launcher\App.xaml
-31742713327
+322080277135
 8-1598785695
-381172199571
+39609863279
 2442094010010
-Controls\BeautyButton\BeautyButton.xaml;Controls\ListItems\CacheItem.xaml;Controls\ListItems\CaspItem.xaml;Controls\ListItems\ConflictItem.xaml;Controls\ListItems\ExportItem.xaml;Controls\ListItems\InstalledModItem.xaml;Controls\ListItems\LocalToolItem.xaml;Controls\ListItems\LogItem.xaml;Controls\ListItems\MediaItem.xaml;Controls\ListItems\ModToMergeItem.xaml;Controls\ListItems\PatchItem.xaml;Controls\ListItems\S3PkModItem.xaml;Controls\ListItems\S3PkWorldItem.xaml;Controls\ListItems\SaveItem.xaml;Controls\ListItems\StoreModItem.xaml;Controls\ListItems\TipItem.xaml;Controls\ListItems\ToolItem.xaml;Controls\ListItems\WorldItem.xaml;Controls\ValidableTextBox\ValidableTextBox.xaml;MainWindow.xaml;Resources\Languages\LangStrings-PT-BR.xaml;Resources\Languages\LangStrings.xaml;WindowCASPsEditor.xaml;WindowIconViewer.xaml;WindowLauncherUpdater.xaml;WindowModInstaller.xaml;WindowModRename.xaml;WindowS3PkgPreModInstaller.xaml;WindowSaveCleaner.xaml;WindowWorldHelp.xaml;WindowWorldInstaller.xaml;
+Controls\BeautyButton\BeautyButton.xaml;Controls\ListItems\CacheItem.xaml;Controls\ListItems\CaspItem.xaml;Controls\ListItems\ConflictItem.xaml;Controls\ListItems\ExportItem.xaml;Controls\ListItems\InstalledModItem.xaml;Controls\ListItems\LocalToolItem.xaml;Controls\ListItems\LogItem.xaml;Controls\ListItems\MediaItem.xaml;Controls\ListItems\ModToMergeItem.xaml;Controls\ListItems\PatchItem.xaml;Controls\ListItems\S3PkModItem.xaml;Controls\ListItems\S3PkWorldItem.xaml;Controls\ListItems\SaveItem.xaml;Controls\ListItems\StoreModItem.xaml;Controls\ListItems\TipItem.xaml;Controls\ListItems\ToolItem.xaml;Controls\ListItems\WorldItem.xaml;Controls\ValidableTextBox\ValidableTextBox.xaml;MainWindow.xaml;Resources\Languages\LangStrings-PT-BR.xaml;Resources\Languages\LangStrings.xaml;WindowCASPsEditor.xaml;WindowIconViewer.xaml;WindowLauncherUpdater.xaml;WindowModInstaller.xaml;WindowModRename.xaml;WindowModSetupGuide.xaml;WindowS3PkgPreModInstaller.xaml;WindowSaveCleaner.xaml;WindowWorldHelp.xaml;WindowWorldInstaller.xaml;
 
 False
 

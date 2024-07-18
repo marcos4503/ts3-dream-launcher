@@ -42,7 +42,10 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="2" Margin="0,8,0,0" Orientation="Horizontal">
-                    <BeautyButton:BeautyButton x:Name="problemButton" HoverBackground="#FFAD3434" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF882828" BorderBrush="#FF441212" Foreground="White" Cursor="Help" Height="24" Padding="0,0,0,0" Width="24" ToolTip="{DynamicResource launcher_mods_addNewTab_problemIcon}">
+                    <BeautyButton:BeautyButton x:Name="guideButton" HoverBackground="#FF006FD6" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF005EB5" BorderBrush="#FF002344" Foreground="White" Cursor="Hand" Height="24" Padding="0,0,0,0" Width="24" ToolTip="{DynamicResource launcher_mods_addNewTab_guideIcon}">
+                        <Image Source="/Resources/mod-guide.png" Margin="4,4,4,4"/>
+                    </BeautyButton:BeautyButton>
+                    <BeautyButton:BeautyButton x:Name="problemButton" HoverBackground="#FFAD3434" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF882828" BorderBrush="#FF441212" Foreground="White" Cursor="Help" Height="24" Padding="0,0,0,0" Width="24" ToolTip="{DynamicResource launcher_mods_addNewTab_problemIcon}" Margin="8,0,0,0">
                         <Image Source="/Resources/mod-problem.png" Margin="4,4,4,4"/>
                     </BeautyButton:BeautyButton>
                     <BeautyButton:BeautyButton x:Name="addButton" HoverBackground="#FF3AA42B" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF348828" BorderBrush="#FF071F04" Foreground="White" Cursor="Hand" Height="24" Padding="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Margin="8,0,0,0">

@@ -1716,6 +1716,35 @@ namespace TS3_Dream_Launcher
                 newPatchItem.RegisterOnClickInstallCallback((thisPatchItem) => { DoPatch_InternetRemoval(PatchMode.Install, thisPatchItem.thisInstantiationIdInList); });
             }
 
+            //Recommended Tunning
+            if (true == true)
+            {
+                //Instantiate and store reference for it
+                PatchItem newPatchItem = new PatchItem(this, instantiatedPatchItems.Count);
+                patchesList.Children.Add(newPatchItem);
+                instantiatedPatchItems.Add(newPatchItem);
+                //Set it up
+                newPatchItem.HorizontalAlignment = HorizontalAlignment.Stretch;
+                newPatchItem.VerticalAlignment = VerticalAlignment.Stretch;
+                newPatchItem.Width = double.NaN;
+                newPatchItem.Height = double.NaN;
+                newPatchItem.Margin = new Thickness(0, 8, 0, 0);
+                //Fill this patch item
+                newPatchItem.SetPatchIcon("Resources/patch-12.png");
+                newPatchItem.SetPatchTitle(GetStringApplicationResource("launcher_patch12_title"));
+                newPatchItem.SetPatchDescription(GetStringApplicationResource("launcher_patch12_description"));
+                //Show if is installed
+                if (launcherPrefs.loadedData.patchRecommendedMods == true)
+                {
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    DoPatch_RecommendedTunning(PatchMode.CheckIntegrity, newPatchItem.thisInstantiationIdInList);
+                }
+                if (launcherPrefs.loadedData.patchRecommendedMods == false)
+                    newPatchItem.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+                //Add callbacks for buttons
+                newPatchItem.RegisterOnClickInstallCallback((thisPatchItem) => { DoPatch_RecommendedTunning(PatchMode.Install, thisPatchItem.thisInstantiationIdInList); });
+            }
+
             //Add the final spacer
             Grid finalSpacer = new Grid();
             patchesList.Children.Add(finalSpacer);
@@ -3707,6 +3736,176 @@ namespace TS3_Dream_Launcher
 
                     //Remove the task from queue
                     RemoveTask("patch_internetRemoval");
+                };
+                asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+        }
+
+        private void DoPatch_RecommendedTunning(PatchMode doPatchMode, int instantiatedPatchItemInList)
+        {
+            //
+            //
+            //
+            //INTEGRITY CHECK...
+            //
+            //
+            //
+
+            //If is desired to only check integrity
+            if (doPatchMode == PatchMode.CheckIntegrity)
+            {
+                //Add the task to queue
+                AddTask("patch_recommendedTunning_integrity", "Checking patch.");
+
+                //--- Start a thread to check patch integrity ---//
+                AsyncTaskSimplified aTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                aTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(1000);
+                    //Prepare the response to return
+                    string toReturn = "ok";
+
+                    //Prepare a list of files
+                    List<string> filesToCheck = new List<string>();
+                    filesToCheck.Add((myDocumentsPath + "/Library/passion_recommended_tunning.package"));
+                    filesToCheck.Add((myDocumentsPath + "/Library/tagger_recommended_tunning.package"));
+
+                    //Check integrity of this patch...
+                    foreach (string filePath in filesToCheck)
+                        if (File.Exists(filePath) == false)
+                        {
+                            toReturn = "problemFound";
+                            break;
+                        }
+
+                    //Finish the thread...
+                    return new string[] { toReturn, (startParams[0]) };
+                };
+                aTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of problem, inform it
+                    if (threadTaskResponse == "problemFound")
+                    {
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.InstalledWithProblem);
+                        ShowToast(GetStringApplicationResource("launcher_patches_problemFound"), ToastType.Error);
+                        EnablePageRedDotNotification(LauncherPage.patches);
+                    }
+
+                    //Remove the task from queue
+                    RemoveTask("patch_recommendedTunning_integrity");
+                };
+                aTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+            }
+
+            //
+            //
+            //
+            //INSTALLING...
+            //
+            //
+            //
+
+            //If is desired to install
+            if (doPatchMode == PatchMode.Install)
+            {
+                //--- Start a thread to do the patching ---//
+                AsyncTaskSimplified asyncTask = new AsyncTaskSimplified(this, new string[] { (instantiatedPatchItemInList.ToString()) });
+                asyncTask.onStartTask_RunMainThread += (callerWindow, startParams) =>
+                {
+                    //Get the instantiated patch item in list
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(startParams[0]))];
+                    //Change the UI
+                    instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installing);
+                    //Add the task to queue
+                    AddTask("patch_recommendedTunning", "Installing patch.");
+                };
+                asyncTask.onExecuteTask_RunBackground += (callerWindow, startParams, threadTools) =>
+                {
+                    //Wait some time
+                    threadTools.MakeThreadSleep(5000);
+
+                    //Try to do the task
+                    try
+                    {
+                        //Prepare a list of files
+                        List<string> filesToCheck = new List<string>();
+                        filesToCheck.Add((myDocumentsPath + "/Library/passion_recommended_tunning.package"));
+                        filesToCheck.Add((myDocumentsPath + "/Library/tagger_recommended_tunning.package"));
+                        //Remove all files, if exists
+                        foreach (string filePath in filesToCheck)
+                            if (File.Exists(filePath) == true)
+                                File.Delete(filePath);
+
+                        //Download the patch files...
+                        //Prepare the target download URL
+                        string downloadUrl = @"https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/patch-recommended-tunning.zip";
+                        string saveAsPath = (myDocumentsPath + @"/!DL-TmpCache/patch-recommended-tunning.zip");
+                        //Download the "Mods" folder sync
+                        HttpClient httpClient = new HttpClient();
+                        HttpResponseMessage httpRequestResult = httpClient.GetAsync(downloadUrl).Result;
+                        httpRequestResult.EnsureSuccessStatusCode();
+                        Stream downloadStream = httpRequestResult.Content.ReadAsStreamAsync().Result;
+                        FileStream fileStream = new FileStream(saveAsPath, FileMode.Create, FileAccess.Write, FileShare.None);
+                        downloadStream.CopyTo(fileStream);
+                        httpClient.Dispose();
+                        fileStream.Dispose();
+                        fileStream.Close();
+                        downloadStream.Dispose();
+                        downloadStream.Close();
+
+                        //Extract the downloaded patch files
+                        ZipFile zipFile = ZipFile.Read(saveAsPath);
+                        foreach (ZipEntry entry in zipFile)
+                            entry.Extract((myDocumentsPath + @"/!DL-TmpCache"), ExtractExistingFileAction.OverwriteSilently);
+                        zipFile.Dispose();
+
+                        //Put the files in the right place
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/passion_recommended_tunning.package"), (myDocumentsPath + "/Library/passion_recommended_tunning.package"));
+                        File.Move((myDocumentsPath + "/!DL-TmpCache/tagger_recommended_tunning.package"), (myDocumentsPath + "/Library/tagger_recommended_tunning.package"));
+
+                        //Return a success response
+                        return new string[] { "success", (startParams[0]) };
+                    }
+                    catch (Exception ex)
+                    {
+                        //Return a error response
+                        return new string[] { "error", (startParams[0]) };
+                    }
+
+                    //Finish the thread...
+                    return new string[] { "none", (startParams[0]) };
+                };
+                asyncTask.onDoneTask_RunMainThread += (callerWindow, backgroundResult) =>
+                {
+                    //Get the instantiated patch item in list and thread response
+                    PatchItem instantiatedPatchItemInList = ((MainWindow)callerWindow).instantiatedPatchItems[(int.Parse(backgroundResult[1]))];
+                    string threadTaskResponse = backgroundResult[0];
+
+                    //If have a response of success, inform it
+                    if (threadTaskResponse == "success")
+                    {
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallSuccess").Replace("%name%", GetStringApplicationResource("launcher_patch12_title"))), ToastType.Success);
+                        launcherPrefs.loadedData.patchRecommendedMods = true;
+                        launcherPrefs.Save();
+                    }
+
+                    //If have a response different from success, inform error
+                    if (threadTaskResponse != "success")
+                        ShowToast((GetStringApplicationResource("launcher_patches_statusInstallError").Replace("%name%", GetStringApplicationResource("launcher_patch12_title"))), ToastType.Error);
+
+                    //Update the UI
+                    if (launcherPrefs.loadedData.patchRecommendedMods == true)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.Installed);
+                    if (launcherPrefs.loadedData.patchRecommendedMods == false)
+                        instantiatedPatchItemInList.SetPatchStatus(PatchItem.PatchStatus.NotInstalled);
+
+                    //Remove the task from queue
+                    RemoveTask("patch_recommendedTunning");
                 };
                 asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
             }
@@ -7901,6 +8100,7 @@ namespace TS3_Dream_Launcher
                 newItem.SetModCategory(modItem.category);
                 newItem.SetAuthor(modItem.author);
                 newItem.SetDescription(modItem.description_enUS, modItem.description_ptBR);
+                newItem.SetGuide(modItem.setupGuide_enUS, modItem.setupGuide_ptBR);
                 newItem.SetRequiredEPs(modItem.requiredEps);
                 newItem.SetRequiredRecommendedModsFiles(modItem.requiredRecommendedModFiles);
                 newItem.SetRequiredPatchModsFiles(modItem.requiredPatchModFiles);

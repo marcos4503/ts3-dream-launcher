@@ -1,0 +1,25 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TS3_Dream_Launcher"
+        xmlns:BeautyButton="clr-namespace:TS3_Dream_Launcher.Controls.BeautyButton" x:Class="TS3_Dream_Launcher.WindowModSetupGuide"
+        mc:Ignorable="d"
+        Title="Place Holder" WindowStyle="ToolWindow" Icon="/Resources/icon-32x.png" ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="600" Height="720">
+
+        <ScrollViewer Margin="0,0,0,0">
+            <Grid Margin="0,0,0,0" VerticalAlignment="Top">
+                <Grid Height="64" VerticalAlignment="Top">
+                    <Image VerticalAlignment="Top" Source="/Resources/wallpaper-4.png" Stretch="UniformToFill" StretchDirection="Both" Margin="0,-100,0,0"/>
+                </Grid>
+                <StackPanel VerticalAlignment="Top" Margin="48,80,48,48">
+                    <TextBlock x:Name="guideTitle" TextWrapping="Wrap" Text="Place Holder" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="16" Margin="0,0,0,8" TextAlignment="Center"/>
+                    <TextBlock x:Name="guideContent" TextWrapping="Wrap" Text="Place Holder" FontWeight="Normal" VerticalAlignment="Top" TextAlignment="Justify"/>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+    </Grid>
+</Window>

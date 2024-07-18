@@ -124,6 +124,8 @@
     <system:String x:Key="launcher_patch10_description">This Patch prohibits The Sims 3 from connecting to the internet. This avoids delays in the game due to web requests, downloads of hundreds of unwanted files and even increases game performance and reduces RAM consumption in many cases. This patch will work even better if you disable "Online Notifications" and "Shop Mode". REQUIRES Windows Firewall enabled to work.</system:String>
     <system:String x:Key="launcher_patch11_title">Better Story Progression Patch</system:String>
     <system:String x:Key="launcher_patch11_description">This patch will add "NRaas - Story Progression" to your game, completely replacing the standard story progression imposed by EA. Thanks to this Patch, the unplayed sims in your city will now live more interesting lives in more realistic ways. They will marry other Sims, buy furniture or cars, change jobs, have personalities, improve skills and much, much more. Your game's population and story progression settings will still be respected even with this patch installed. This patch also installs "NRaas - Second Image" which will bring more Sim information in game notifications. The mods included in this Patch are already pre-configured for the best gameplay and performance experience. This Patch will provide you with a better gaming experience if you play with Sims lifespan in "Long" mode.</system:String>
+    <system:String x:Key="launcher_patch12_title">Tuning Patch for Recommended Mods</system:String>
+    <system:String x:Key="launcher_patch12_description">This Patch only downloads and makes ready for use, Tuning files that can be imported by some mods, containing settings recommended by Dream Launcher. When installing this Patch, by itself, it will not do anything in your game, however, when installing a mod supported by this Patch, in your game, you will have the option of being able to import a Tuning recommended by Dream Launcher, through the settings of the such a mod. Currently, only the "NRaas - Tagger" and "TwilightStorm - Passion" mods are supported by this Patch.</system:String>
 
     <!-- Screen 6: Launcher - Settings -->
     <system:String x:Key="launcher_settings_save">SAVE</system:String>
@@ -245,13 +247,17 @@ turned off. Leave it on.
     </system:String>
     <system:String x:Key="launcher_settings_graphics_highDetailLots">High Detail Lots</system:String>
     <system:String x:Key="launcher_settings_graphics_highDetailLotsHelp" xml:space="preserve">
-This option sets how many Lots around your Sim will have high rendering detail. With higher values
-in this option, your game will display more houses in high detail (as if your Sim was close to them),
-however, it will consume more resources, including RAM.
+This option sets how many Lots around your Sim will have high rendering detail. With higher values ​​in
+this option, your game will display more houses in high detail around you (as if your Sim was close to
+them), however, it will consume more resources, including RAM.
 
 
-RECOMMENDED: As during Gameplay, you will spend 95% of your time focused on one lot at a time
-(even if your Sims are spread across the city), it is recommended to leave this option at 1 Lot.
+RECOMMENDED: Set a value that is no greater than 5. You will need to test the setting that performs best,
+testing with your game world and taking your hardware into consideration. Keep in mind that if your 
+camera spends more time in the same place, lower values ​​may cause the game to have to load high-detail 
+squares more often when you move, and that higher values ​​load squares less often when you move. move, as 
+the surrounding squares will be loaded just waiting for you to see them. Generally, loading and unloading
+houses causes a slight bottleneck in the game. Generally values ​​between 1 and 4 are ok for most people.
     </system:String>
     <system:String x:Key="launcher_settings_graphics_reflections">Reflection Quality</system:String>
     <system:String x:Key="launcher_settings_graphics_reflectionsHelp" xml:space="preserve">
@@ -696,6 +702,8 @@ If this parameter is active, active family members will not be able to become ce
     <system:String x:Key="launcher_mods_addNewTab">Add New</system:String>
     <system:String x:Key="launcher_mods_addNewTab_recommended">RECOMMENDED</system:String>
     <system:String x:Key="launcher_mods_addNewTab_recommendedAddError">Unable to add the Mod. The "7-Zip" Tool must be installed on the Dream Launcher. Please install it from the "Tools" page.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_recommendedGuideWindowTitle">Dream Launcher - Recommended Mod Setup Guide</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_recommendedGuideWindowTopicTitle">Setup Guide for Mod %modName%</system:String>
     <system:String x:Key="launcher_mods_addNewTab_custom">CUSTOM</system:String>
     <system:String x:Key="launcher_mods_addNewTab_customAddError">Unable to add. The "Sims3Pack CLI Extractor" Tool must be installed on the Dream Launcher. Please install it from the "Tools" page.</system:String>
     <system:String x:Key="launcher_mods_addNewTab_custom_message">Select the category in which you want the Mod to appear and then click the button below to select a "package" or "sims3pack" file from a The Sims 3 Mod to be installed.</system:String>
@@ -703,6 +711,7 @@ If this parameter is active, active family members will not be able to become ce
     <system:String x:Key="launcher_mods_addNewTab_recommended_loadError">Unable to load recommended Mods library. Please check your Internet connection and try again later.</system:String>
     <system:String x:Key="launcher_mods_addNewTab_openPage">Open Mod Page</system:String>
     <system:String x:Key="launcher_mods_addNewTab_problemIcon">This Mod cannot be installed...</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_guideIcon">This Mod has a detailed Instruction Guide to configure it manually, or use it, In-Game! Click here to view!</system:String>
     <system:String x:Key="launcher_mods_addNewTab_modErrorTitle">Mod Unavailable</system:String>
     <system:String x:Key="launcher_mods_addNewTab_modErrorText">This Mod cannot be installed in your game because of the reasons below...</system:String>
     <system:String x:Key="launcher_mods_addNewTab_modErrorReason1">Your game does not have all the Expansion Packs required by the Mod.</system:String>

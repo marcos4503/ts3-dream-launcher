@@ -58,6 +58,8 @@ namespace TS3_Dream_Launcher.Scripts
         public string author = "";
         public string description_enUS = "";
         public string description_ptBR = "";
+        public string setupGuide_enUS = "";
+        public string setupGuide_ptBR = "";
         public int[] requiredEps = new int[0];
         public string[] requiredRecommendedModFiles = new string[0];
         public string[] requiredPatchModFiles = new string[0];

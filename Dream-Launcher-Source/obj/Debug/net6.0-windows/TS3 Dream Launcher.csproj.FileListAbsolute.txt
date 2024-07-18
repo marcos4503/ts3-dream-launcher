@@ -146,3 +146,5 @@ D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\LocalToolItem.baml
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\ModToMergeItem.g.cs
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\ModToMergeItem.baml
+D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\WindowModSetupGuide.g.cs
+D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\WindowModSetupGuide.baml

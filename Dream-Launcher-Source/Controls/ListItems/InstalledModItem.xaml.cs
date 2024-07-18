@@ -427,6 +427,12 @@ namespace TS3_Dream_Launcher.Controls.ListItems
                 exportOption.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_exportModsOfMerge");
                 exportOption.Click += (s, e) => { ExportModsOfMergeTo(); };
                 moreButton.ContextMenu.Items.Add(exportOption);
+
+                //Add copy option
+                MenuItem copyOption = new MenuItem();
+                copyOption.Header = instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modOptions_copy");
+                copyOption.Click += (s, e) => { CopyModOfMergeTo(); };
+                moreButton.ContextMenu.Items.Add(copyOption);
             }
         }
 
@@ -656,6 +662,29 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             //Warn about the export
             MessageBox.Show(instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modExportDiagText"),
                             instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modExportDiagTitle"), MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+    
+        private void CopyModOfMergeTo()
+        {
+            //Prepare the folder selected path
+            string selectedFolderPath = "";
+            //Open folder picker dialog
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            {
+                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK)
+                    selectedFolderPath = dialog.SelectedPath;
+            }
+            //If no folder was selected, cancel
+            if (selectedFolderPath == "")
+                return;
+
+            //Copy the mod to desired folder
+            File.Copy(thisModPath, (selectedFolderPath + "/" + title.Text + ".package"));
+
+            //Warn about the copy
+            MessageBox.Show(instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modCopyDiagText"),
+                            instantiatedByWindow.GetStringApplicationResource("launcher_mods_installedTab_modCopyDiagTitle"), MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
