@@ -1672,6 +1672,20 @@
             "pageUrl": "https://www.loverslab.com/files/file/4353-passion-requires-patch-level-163/",
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-animated-woohoo-passion.zip.001 | https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-animated-woohoo-passion.zip.002"
         },
+        {
+            "name": "Ask If Virgin",
+            "category": "GAMEPLAY",
+            "author": "MonocoDoll",
+            "description_enUS": "Adds a new Virginity check mechanic to the game. Now, all Sims will have permanent modlets, which don't actually change the Sims mood, but tell them whether the Sim is a Virgin or not. These moodlets also show which Sim they had their first time with, as well as recording recent Woohoos. Finally, you can also ask Sims who are friends or romantic interests if they are Virgins.",
+            "description_ptBR": "Adiciona uma nova mecânica de checagem de Virgindade ao jogo. Agora, todos os Sims terão modificadores de humor permanentes, que não alteram de fato o humor dos Sims, mas informam se o Sim é Virgem ou não. Esses modificadores de humor também mostram o Sim com qual ele teve sua primeira vez, além de registrarem Obas-Obas recentes. Por fim, também é possível perguntar a Sims amigos ou interesses românticos, se eles são Virgens.",
+            "setupGuide_enUS": "",
+            "setupGuide_ptBR": "",
+            "requiredEps": [ ],
+            "requiredRecommendedModFiles": [ ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://modthesims.info/d/668622/virginity-ask-if-virgin-mod-revamped-update.html",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-ask-if-virgin.zip"
+        },
 
 
 
