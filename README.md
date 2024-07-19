@@ -8,11 +8,11 @@
 
 This "The Sims 3 Dream Launcher" is a Launcher for The Sims 3 created by Marcos Tomaz, a fan of The Sims. This is a Launcher developed to completely replace the game's original Launcher, developed by EA, in addition to being the "Dream Launcher" for every player who loves The Sims 3, just like me.
 
-Although The Sims 3 is an incredible game, playing it today requires fixing a lot of things here and there, solve compatibility issues or bugs and other things. For example, there is a bug where the game resets all your settings if you update your video card drivers. For those using an Intel 12th CPU or higher, the game won't even open. If you are a gamer who likes to play with mods to deepen the gameplay or change things in the game, then everything becomes 5 times more complicated.
+Although The Sims 3 is an incredible game, playing it today requires fixing a lot of things here and there, solve compatibility issues or bugs and other things. For example, there is a bug where the game resets all your settings if you update your video card drivers. For those using an Intel 12th CPU or higher, the game won't even open. Not to mention all those performance issues and freezes.
 
 Dream Launcher was born with the aim of making the entire process of leaving your The Sims 3 in the most perfect state possible! Dream Launcher takes care of and manages your installation of The Sims 3 automatically, installing, updating and maintaining bug fixes, patches, graphical improvements and optimization, as well as giving you full control over every aspect of your game. See below some of the main features of Dream Launcher...
 
-- Fully supports EN-US and PT-BR languages.
+- Fully supports EN-US and PT-BR languages as display languages.
 - Automatically installs and maintains patches for fixes and enhancements.
 - Fixes game compatibility issue with Intel 12th+ CPUs.
 - Allows you to view your Saves.
@@ -32,7 +32,7 @@ And there are several other functions. Keep reading to find out how to install i
 <br>
 <br>
 <p align="center" style="font-size: 2px;">
-    <b>If you want to use the Dream Launcher in your game, I highly recommend you download and follow the installation instructions from the <a href="https://www.nexusmods.com/thesims3/mods/155" target="_blank">Dream Launcher page on Nexus Mods</a>! There you can also post comments, bug reports, get help, etc.</b>
+    <b>If you want to use the Dream Launcher in your game, I highly recommend you download and follow the installation instructions from the <a href="https://www.nexusmods.com/thesims3/mods/155" target="_blank">Dream Launcher page on Nexus Mods</a>!</b>
 </p>
 
 # To use this Software
@@ -53,20 +53,23 @@ That is all! If you did everything correctly, now, when you click play The Sims 
 
 You need to fulfill some requirements to be able to use this Software...
 
-- The computer may need to have <a href="https://download.visualstudio.microsoft.com/download/pr/81531ad6-afa9-4b61-9d05-6a76dce81123/2885d26c1a58f37176fd7859f8cc80f1/dotnet-sdk-6.0.417-win-x64.exe" target="_blank">.Net 6.0</a> installed in order to run the Software.
-- The computer must be 64-bit.
-- Your The Sims 3 must be of Steam and version "1.67.2.024037".
+- The computer may need to have <a href="https://download.visualstudio.microsoft.com/download/pr/81531ad6-afa9-4b61-9d05-6a76dce81123/2885d26c1a58f37176fd7859f8cc80f1/dotnet-sdk-6.0.417-win-x64.exe" target="_blank">.Net Runtime 6.0</a> installed in order to run the Software.
+- The computer must be 64 bit.
+- Your The Sims 3 must be of Steam and version "1.67.2.024037". (Retail, EA/Origin are not currently supported)
 - Your computer's operating system must be Windows 10 or newer.
 - Your monitor must be Widescreen or Ultrawide.
-- Your computer must have at least 50GB free on drive C and on the drive where The Sims 3 is installed.
-- Not compatible with Launcher created by <a href="https://github.com/LazyDuchess" target="_blank">Lazy Duchess</a>.
-- Not compatible with use of CCMagic tool or The Sims Resource CC Manager.
+- Your computer needs to have at least 5GB free on the C drive and of course, the amount of memory needed to install The Sims 3.
+- Not supported or tested with use of CCMagic tool or The Sims Resource CC Manager.
 
 # Learn everything about this Launcher and The Sims 3!
 
 Would you like to learn everything about this Launcher and The Sims 3, from the basics to how to modify your game, edit furniture, install mods, edit mods, optimization tips, best practices and many other things?
 
 Access <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3118587838" target="_blank">this Steam mega-guide</a> to learn all this and more! Unfortunately, the guide is currently only available in Portuguese (PT-BR), but you can use Google Translate to view it in your language!
+
+# How to uninstall this Software
+
+Uninstalling Dream Launcher can be done in a simple way, returning to the "&lt;game_directory&gt;/Game/Bin" folder, deleting the "Sims3Launcher.exe" file and renaming the old "Sims3Launcher-backup.exe" file back to "Sims3Launcher.exe". Or if you prefer to delete Dream Launcher completely, you can redo the installation steps, but in reverse.
 
 # How to edit this Software
 
