@@ -1,58 +1,63 @@
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]What is Dream Launcher?[/b]
+[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]What is Dream Launcher?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img]
 
-The "Dream Launcher" is a Launcher for The Sims 3. This is a Launcher developed to completely replace the game's original Launcher, developed by EA, in addition to being the "Dream Launcher" for every player who loves The Sims 3, just like me.
+The "Dream Launcher" is a complete Launcher for The Sims 3. This is a Launcher developed to completely replace the game's original Launcher, developed by EA, in addition to being the "Dream Launcher" for every player who loves The Sims 3, just like me!
 
-Although The Sims 3 is an incredible game, playing it today requires fixing a lot of things here and there, solve compatibility issues or bugs and other things. For example, there is a bug where the game resets all your settings if you update your video card drivers. For those using an Intel 12th CPU or higher, the game won't even open. If you are a gamer who likes to play with mods to deepen the gameplay or change things in the game, then everything becomes 5 times more complicated.
+Although The Sims 3 is an incredible game, playing it today requires fixing a lot of things here and there, solve compatibility issues, bugs and other things. As a example, there is a bug where the game resets all your settings if you update your video card drivers. For those using an Intel 12th CPU or higher, the game won't even open. Not to mention all those performance issues and freezes.
 
-Dream Launcher was born with the aim of making the entire process of leaving your The Sims 3 in the most perfect state possible! Dream Launcher takes care of and manages your installation of The Sims 3 automatically, installing, updating and maintaining bug fixes, patches, graphical improvements and optimization, as well as giving you full control over every aspect of your game.
+The Dream Launcher was born with the aim of making the entire process of leaving your The Sims 3 in the most perfect state possible! Dream Launcher takes care of and manages your installation of The Sims 3 automatically, installing, updating and maintaining bug fixes, patches, graphical improvements and optimization, as well as giving you full control over every aspect of your game.
 
-The goal of Dream Launcher is simple. You install your game clean. After that, all you need to do is install Dream Launcher. And that! With the Dream Launcher installed, The Sims 3 default Launcher will no longer open, but the Dream Launcher will. And with Dream Launcher you will NO longer need to mess with any game files, or spend hours on end installing patches, testing things, etc. You can have your game in the best possible state and ready to play in a few minutes and with a few clicks! Furthermore, Dream Launcher works as a ONE-STOP CENTER where you can do everything you want with your game. ENOUGH OF SUFFERING! :D
+The goal of Dream Launcher is simple. You install your game clean. After that, all you need to do is install Dream Launcher. And that! With the Dream Launcher installed, The Sims 3 default Launcher will no longer open, but the Dream Launcher will. And with Dream Launcher you will NO longer need to mess with any game files, or spend hours on end installing patches, testing things, etc. You can have your game in the best possible state and ready to play in a few minutes and with a few clicks! Dream Launcher works as a ONE-STOP CENTER where you can do everything you want with your game. ENOUGH OF SUFFERING! :D
 
-[u]See below some of the main features of Dream Launcher...[/u]
+
+
+
+[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]Some of the Main Features of Dream Launcher[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img]
 
 [list]
-[*] The Launcher is completely user-friendly, with tips for all sides and an intuitive interface.
-[*] Clear your Save Games directly from the Launcher, in a configurable way.
+[*] Completely user-friendly, with tips for all sides, an intuitive interface and highly configurable.
+[*] Install Mods RELIABLE and SIMPLY way, with Dream Launcher Mod Installer, an installer that allows you to install "package" or "sims3pack" files easily, and on top of that, it analyzes your entire "Mods" folder whenever you install a new Mod, to ensure that the new Mod will not conflict with the Mods already installed.
+[*] Manage all your installed Mods easily! Open them in S3PE, edit CAS Parts, rename, delete, categorize, merge, unmerge, etc. ALL inside the Launcher.
+[*] Clean up your Save Games directly from the Launcher, in a configurable way.
 [*] Backup, export, delete or restore Save Games easily.
-[*] Manage and view your exports and media such as Screenshots and Videos.
-[*] Install Custom Worlds 100% easily.
-[*] View all installed Custom Worlds and easily manage them.
-[*] Clear and/or monitor all types of game Cache, quickly and easily.
-[*] View and manage Logs sent by the "NRaas - Error Trap" mod easily (if it is installed).
-[*] Install all the "must-have" Patches for The Sims 3 easily. No more dealing with manipulating game files manually.
+[*] Install and manage Custom Worlds 100% easily in your game.
+[*] Install all the "must-have" Patches and Contents for The Sims 3, easily. No more dealing with manipulating game files manually.
 [*] Things like the "Mods" folder, graphical improvements, route optimizations, bug fixes and more can be easily installed through Patches!
-[*] Launcher detects if you use an Intel 12+ CPU and asks you if you would like to install "Alder Lake Patcher" automatically.
-[*] Install Mods RELIABLE and SIMPLY way, with Launcher Mod Installer. An installer that allows you to install "package" or "sims3pack" files easily, and on top of that, it analyzes your entire "Mods" folder whenever you install a new Mod, to ensure that the new Mod will not conflict with the Mods already installed.
-[*] Manage all your installed Mods easily (including merge or unmerge)! Open them in S3PE, edit CAS Parts, rename, delete, categorize, etc. ALL inside the Launcher.
-[*] Install well-known tools such as "S3PE", "Notepad++", "Delphy Dashboard", "Easy STBL Manager" and etc. as Plugins. Once installed, you can access them whenever you want, and the Launcher can also use them!
-[*] Configure Launcher easily.
-[*] Manage and change ANY game settings, just through the Launcher. No more bug that makes you lose your settings when updating your Driver!
-[*] Configure unique things through the Launcher, such as FPS limiting, borderless windowed mode, Overlay that displays your FPS and RAM consumption within the game, and much more.
-[*] View installed Expansion Packs and Stuff Packs.
-[*] Easily view all notifications sent by Launcher through history.
-[*] See maintenance and optimization tips, directly from the Launcher.
+[*] Configure unique things through the Launcher, such as FPS limiting, Borderless Windowed mode, Overlay that displays your FPS and RAM consumption within the game, and much more.
 [*] Launcher monitors your game's health, patches, fixes, etc. and will notify you if it detects anything wrong.
+[*] Clear and/or monitor all types of game Cache, quickly and easily.
+[*] See Maintenance and Optimization tips, directly from the Launcher, to maintain the best possible performance in your game, without having to search for tips on the Internet.
+[*] Manage and change ANY game settings, just through the Launcher. No more bug that makes you lose your settings when updating your Driver!
+[*] Manage and view your exports and media such as Screenshots and Videos.
+[*] View and manage Logs sent by the "NRaas - Error Trap" mod easily (if it is installed).
+[*] Launcher detects if you use an Intel 12+ CPU and asks you if you would like to install "Alder Lake Patcher" automatically.
+[*] Easily view all notifications sent by Launcher through history.
+[*] View installed Expansion Packs and Stuff Packs.
+[*] Install well-known tools such as "S3PE", "Notepad++", "Delphy Dashboard", "Easy STBL Manager" and etc. as Plugins. Once installed, you can access them whenever you want, and the Launcher can also use them!
 [*] Since everything you need can be done within the Launcher, the risk of errors and inconsistencies is basically eliminated.
 [*] The list goes on...
 [/list]
+And of course, the most important thing! Launch the game easily through the Dream Launcher! :D
 
-And of course, the most important thing! Launch the game easily through the Dream Launcher! HeHeHe :D
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]What do I need to use Dream Launcher?[/b]
+
+
+[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]What do I need to use Dream Launcher?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img]
 
 Well. There are some prerequisites and conditions for you to use Dream Launcher in your game. See them all below.
 
 [list]
-[*] Only compatible with The Sims 3 on Steam (v1.67.2.XXXX).
-[*] Is required [url=https://download.visualstudio.microsoft.com/download/pr/81531ad6-afa9-4b61-9d05-6a76dce81123/2885d26c1a58f37176fd7859f8cc80f1/dotnet-sdk-6.0.417-win-x64.exe].NET 6.0[/url] installed on your computer.
-[*] The computer must be 64-bit.
-[*] Your computer's operating system must be Windows 10 or newer.
+[*] Only compatible with The Sims 3 of Steam (v1.67.2.XXXX). (Retail, EA/Origin are not currently supported)
+[*] Is required [url=https://download.visualstudio.microsoft.com/download/pr/81531ad6-afa9-4b61-9d05-6a76dce81123/2885d26c1a58f37176fd7859f8cc80f1/dotnet-sdk-6.0.417-win-x64.exe].NET Runtime 6.0[/url] installed on your computer.
+[*] The computer must be 64 bit.
+[*] Your computer operating system must be Windows 10 or newer.
 [*] Your monitor must be Widescreen or Ultrawide.
-[*] Your computer must have at least 50GB free on drive C and on the drive where The Sims 3 is installed.
-[*] Not compatible with use of CCMagic tool or The Sims Resource CC Manager.
+[*] Your computer needs to have at least 5GB free on the C drive and of course, the amount of memory needed to install The Sims 3.
+[*] Not supported or tested with use of CCMagic tool or The Sims Resource CC Manager.
 [/list]
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]How to install Dream Launcher?[/b]
+
+
+[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]How to install Dream Launcher?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img]
 
 The installation process is very simple and easy! Except for the first step, but look... It will be so worth it! :)
 
@@ -67,32 +72,56 @@ The installation process is very simple and easy! Except for the first step, but
 [*] [b]8.[/b] That is all!
 [/list]
 
-If you did everything correctly, now, when you click play The Sims 3 on Steam, the Dream Launcher will open, instead of the standard EA Launcher. The game hours should continue to be counted and everything should work normally. Just enjoy! :)
+If you did everything correctly, now, when you click play The Sims 3 on Steam, the Dream Launcher will open, instead of the standard EA Launcher. The game hours should continue to be counted, perfectly, and everything should work normally. Just enjoy! :)
 
 [b]NOTE:[/b] After installing Dream Launcher you should no longer do ANYTHING on your game files. Whether installing patches, Mods or anything similar. NOTHING. Leave these things to do ONLY through Dream Launcher! This will ensure that whatever needs to be done in your game, Dream Launcher will be aware of, and can take care of. Furthermore, basically everything you need to do in your game can be done using Dream Launcher! :)
 
 [b]NOTE:[/b] If you get an ASI Loader related, error 126 on opening The Sims 3, it could mean that your computer is missing DLLs. Be sure to do all installations recommended on the "Patches" page within Dream Launcher.
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]What languages does Dream Launcher support?[/b]
 
-Dream Launcher supports all game languages, so you will be able to play the game in any language you want. However, Dream Launcher only displays its interface in the following languages...
 
+
+[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]What languages does Dream Launcher support?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img]
+
+At the moment, Dream Launcher itself only supports the following languages ​​to be displayed...
 [list]
 [*] English
 [*] Portuguese
 [/list]
+However, you can still configure your game to run in the following languages ​​through the Dream Launcher...
+[list]
+[*] Dansk
+[*] Nederlands
+[*] English - UK
+[*] English - US
+[*] Français
+[*] Italiano
+[*] Português - PT
+[*] Português - BR
+[*] Español - ES
+[*] Español - MX
+[*] Svenska
+[/list]
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]Need help or want to report a problem/bug?[/b]
 
-Please, I ask that you post comments, requests for help, problems or bugs found only here on the Mod page, on Nexus Mods. This way, by centralizing everything, it will be easier for me!
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]Dream Launcher is on GitHub![/b]
+[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]Need help or want to report a problem/bug?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img]
 
-Dream Launcher is a proudly open source project! Feel free to Fork, make suggestions, check the code, compile yourself, or anything else that interests you! Dream Launcher was made using WPF with C#, in Visual Studio.
+If you have any questions, need help, have a problem with the Launcher, would like to submit a comment or suggestion, please do so via the [url=https://github.com/marcos4503/ts3-dream-launcher]Dream Launcher Repository on GitHub[/url]. Centralizing everything related to Launcher on GitHub makes my work easier, and GitHub always notifies me about each new Issue posted. You can post your question, report, problem, suggestion, etc, always through the [url=https://github.com/marcos4503/ts3-dream-launcher/issues]"Issues" tab in the Repository[/url]. Thank you very much!
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/github-icon.png[/img] [url=https://github.com/marcos4503/ts3-dream-launcher]Click here to access Dream Launcher, on GitHub![/url]
+Also, know that Dream Launcher is open source. Feel free to Fork, make suggestions, check the code, compile yourself, or anything else that interests you! Dream Launcher was made using WPF with C#, in Visual Studio.
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]Credits and Special Thanks[/b]
+
+
+
+[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]How to uninstall Dream Launcher?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img]
+
+Uninstalling Dream Launcher can be done in a simple way, returning to the "<game_directory>/Game/Bin" folder, deleting the "Sims3Launcher.exe" file and renaming the old "Sims3Launcher-backup.exe" file back to "Sims3Launcher.exe". Or if you prefer to delete Dream Launcher completely, you can redo the installation steps, but in reverse.
+
+
+
+
+[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]Credits and Special Thanks[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img]
 
 I was very happy with the final result, after 2 and a half months of very hard work and a lot of care. Even though I developed this project alone, it would not have been possible without the people or entities below!
 
@@ -102,5 +131,4 @@ I was very happy with the final result, after 2 and a half months of very hard w
 [*] Peter L Jones - By the S3PI library that allows to edit game files.
 [*] Jacob Kemple - By the Overlay.NET library that allows easy DirectX Overlay renderization.
 [/list]
-
-Created with ❤ by Marcos Tomaz
+Created with ❤ by Marcos Tomaz!
