@@ -1631,6 +1631,20 @@
             "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-woohooer-scoring.zip"
         },
         {
+            "name": "Woohooer - KamaSimtra Module",
+            "category": "GAMEPLAY",
+            "author": "NRaas",
+            "description_enUS": "This mod improves the game's Woohoo system, bringing greater depth to the system. A new skill is added for Sims, called 'Kama Simtra' which is directly linked to the act of Woohoo. As Sims perform the act, they gain more experience with this skill, and skilled Sims are able to generate more satisfaction in their partners. There are also several challenges linked to this skill, which can be observed in the Sim's 'Skills Diary'. Finally, this mod also brings the possibility of registering as a Woohoo professional and some other social interactions linked to Woohoo.",
+            "description_ptBR": "Este mod melhora o sistema de Oba-Oba do jogo, trazendo maior profundidade para o sistema. É adicionado uma nova habilidade para os Sims, chamada 'Kama Simtra' que é diretamente ligada ao ato de fazer Oba-Oba. Conforme os Sims praticam o ato, eles ganho mais experiência com esta habilidade, e os Sims habilidosos são capazes de gerarem mais satisfação em seus parceiros. Há também diversos desafios ligados a esta habilidade, aos quais podem ser observados no 'Diário de Habilidades' do Sim. Por fim, este mod também traz a possibilidade de se registrar como um profissional de Oba-Oba e algumas outras interações sociais ligadas ao Oba-Oba.",
+            "setupGuide_enUS": "",
+            "setupGuide_ptBR": "",
+            "requiredEps": [ 8 ],
+            "requiredRecommendedModFiles": [ "GAMEPLAY --- NRaas - Woohooer.package" ],
+            "requiredPatchModFiles": [ ],
+            "pageUrl": "https://www.nraas.net/community/Woohooer-KamaSimtra",
+            "downloadUrl": "https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/mod-woohooer-kamasimtra.zip"
+        },
+        {
             "name": "XCAS",
             "category": "GAMEPLAY",
             "author": "CmarNYC",
