@@ -1,0 +1,6 @@
+#This is a Jekyll file to exclude directories to not be uploaded and be live in GitHub Pages of this Repository
+
+exclude: 
+  - "Dream-Launcher-Compiled"
+  - "Dream-Launcher-Source"
+  - "This-Repository"
