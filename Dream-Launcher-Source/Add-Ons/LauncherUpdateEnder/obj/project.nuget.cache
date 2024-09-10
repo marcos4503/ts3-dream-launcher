@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "W6aWX6ok7UJMFH256tBaDR0IySXRAdV4JUt2YvkCt700JnI2uBU5GO/26hmzccn532N3wHhJKChloRkg5TY/zA==",
+  "dgSpecHash": "DmEd8KmcVp8=",
   "success": true,
   "projectFilePath": "D:\\Visual-Studio\\TS3 Dream Launcher\\Add-Ons\\LauncherUpdateEnder\\LauncherUpdateEnder.csproj",
   "expectedPackageFiles": [
@@ -16,5 +16,16 @@
     "C:\\Users\\junio\\.nuget\\packages\\system.text.encoding.codepages\\4.7.1\\system.text.encoding.codepages.4.7.1.nupkg.sha512",
     "C:\\Users\\junio\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1904",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "O pacote 'System.Drawing.Common' 4.7.0 tem uma crítico vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-rxg9-xrhp-64gj",
+      "libraryId": "System.Drawing.Common",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    }
+  ]
 }

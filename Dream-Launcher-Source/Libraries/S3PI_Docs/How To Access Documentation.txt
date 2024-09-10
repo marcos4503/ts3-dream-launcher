@@ -1,0 +1,3 @@
+A good documentation for S3PI can be found in the Unofficial S3PI Repository on Github!
+
+https://github.com/marcos4503/sims3-package-interface
