@@ -1,4 +1,4 @@
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]What is Dream Launcher?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img]
+[img]https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/highlight-icon.png[/img] [b]What is Dream Launcher?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/highlight-icon.png[/img]
 
 The "Dream Launcher" is a complete Launcher for The Sims 3. This is a Launcher developed to completely replace the game's original Launcher, developed by EA, in addition to being the "Dream Launcher" for every player who loves The Sims 3, just like me!
 
@@ -11,7 +11,7 @@ The goal of Dream Launcher is simple. You install your game clean. After that, a
 
 
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]Some of the Main Features of Dream Launcher[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img]
+[img]https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/highlight-icon.png[/img] [b]Some of the Main Features of Dream Launcher[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/highlight-icon.png[/img]
 
 [list]
 [*] Completely user-friendly, with tips for all sides, an intuitive interface and highly configurable.
@@ -41,7 +41,7 @@ And of course, the most important thing! Launch the game easily through the Drea
 
 
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]What do I need to use Dream Launcher?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img]
+[img]https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/highlight-icon.png[/img] [b]What do I need to use Dream Launcher?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/highlight-icon.png[/img]
 
 Well. There are some prerequisites and conditions for you to use Dream Launcher in your game. See them all below.
 
@@ -57,7 +57,7 @@ Well. There are some prerequisites and conditions for you to use Dream Launcher 
 
 
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]How to install Dream Launcher?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img]
+[img]https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/highlight-icon.png[/img] [b]How to install Dream Launcher?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/highlight-icon.png[/img]
 
 The installation process is very simple and easy! Except for the first step, but look... It will be so worth it! :)
 
@@ -81,7 +81,7 @@ If you did everything correctly, now, when you click play The Sims 3 on Steam, t
 
 
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]What languages does Dream Launcher support?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img]
+[img]https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/highlight-icon.png[/img] [b]What languages does Dream Launcher support?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/highlight-icon.png[/img]
 
 At the moment, Dream Launcher itself only supports the following languages ​​to be displayed...
 [list]
@@ -105,7 +105,7 @@ However, you can still configure your game to run in the following languages ​
 
 
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]Need help or want to report a problem/bug?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img]
+[img]https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/highlight-icon.png[/img] [b]Need help or want to report a problem/bug?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/highlight-icon.png[/img]
 
 If you have any questions, need help, have a problem with the Launcher, would like to submit a comment or suggestion, please do so via the [url=https://github.com/marcos4503/ts3-dream-launcher]Dream Launcher Repository on GitHub[/url]. Centralizing everything related to Launcher on GitHub makes my work easier, and GitHub always notifies me about each new Issue posted. You can post your question, report, problem, suggestion, etc, always through the [url=https://github.com/marcos4503/ts3-dream-launcher/issues]"Issues" tab in the Repository[/url]. Thank you very much!
 
@@ -114,14 +114,14 @@ Also, know that Dream Launcher is open source. Feel free to Fork, make suggestio
 
 
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]How to uninstall Dream Launcher?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img]
+[img]https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/highlight-icon.png[/img] [b]How to uninstall Dream Launcher?[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/highlight-icon.png[/img]
 
 Uninstalling Dream Launcher can be done in a simple way, returning to the "<game_directory>/Game/Bin" folder, deleting the "Sims3Launcher.exe" file and renaming the old "Sims3Launcher-backup.exe" file back to "Sims3Launcher.exe". Or if you prefer to delete Dream Launcher completely, you can redo the installation steps, but in reverse.
 
 
 
 
-[img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img] [b]Credits and Special Thanks[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/This-Repository/highlight-icon.png[/img]
+[img]https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/highlight-icon.png[/img] [b]Credits and Special Thanks[/b] [img]https://marcos4503.github.io/ts3-dream-launcher/Repository-Pages/html-pages/highlight-icon.png[/img]
 
 I was very happy with the final result, after 2 and a half months of very hard work and a lot of care. Even though I developed this project alone, it would not have been possible without the people or entities below!
 
