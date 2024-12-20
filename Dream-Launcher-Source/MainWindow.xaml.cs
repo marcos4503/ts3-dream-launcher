@@ -9608,15 +9608,21 @@ namespace TS3_Dream_Launcher
                 File.WriteAllText((allSaveList[i] + "/!bad-game!.bad"), "BAD GAME!");
 
                 //Rename the save game folder
+                if (Directory.Exists(renamedPath) == true)
+                    Directory.Delete(renamedPath, true);
                 Directory.Move(allSaveList[i], renamedPath);
 
                 //Update the path in the list
-                allSaveList[i] = renamedPath;
+                allSaveList[i] = "skip_this";
             }
 
             //Render all saves
             foreach (string saveFilePath in allSaveList)
             {
+                //If this save path must be skipped, skip this
+                if (saveFilePath == "skip_this")
+                    continue;
+
                 //Draw the item on screen
                 SaveItem newItem = new SaveItem(this, saveFilePath);
                 saveList.Children.Add(newItem);

@@ -40,9 +40,9 @@ D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Debug\net6.0\Dl3DxO
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Debug\net6.0\Dl3DxOverlay.AssemblyInfoInputs.cache
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Debug\net6.0\Dl3DxOverlay.AssemblyInfo.cs
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Debug\net6.0\Dl3DxOverlay.csproj.CoreCompileInputs.cache
-D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Debug\net6.0\Dl3DxOverlay.csproj.CopyComplete
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Debug\net6.0\Dl3DxOverlay.dll
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Debug\net6.0\refint\Dl3DxOverlay.dll
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Debug\net6.0\Dl3DxOverlay.pdb
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Debug\net6.0\Dl3DxOverlay.genruntimeconfig.cache
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Debug\net6.0\ref\Dl3DxOverlay.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Debug\net6.0\Dl3DxOve.35C9C8AE.Up2Date

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mZ5FSmXCXVE=",
+  "dgSpecHash": "wYa1KLR5uWo=",
   "success": true,
   "projectFilePath": "D:\\Visual-Studio\\TS3 Dream Launcher\\TS3 Dream Launcher.csproj",
   "expectedPackageFiles": [
@@ -25,6 +25,16 @@
     "C:\\Users\\junio\\.nuget\\packages\\wpfanimatedgif\\2.0.2\\wpfanimatedgif.2.0.2.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "O pacote 'DotNetZip' 1.16.0 tem uma alta vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-xhg6-9j5j-w4vf",
+      "libraryId": "DotNetZip",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    },
     {
       "code": "NU1904",
       "level": "Warning",

@@ -18,9 +18,9 @@ D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\LauncherUpdateEnder\obj\Release\net6
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\LauncherUpdateEnder\obj\Release\net6.0-windows\LauncherUpdateEnder.AssemblyInfoInputs.cache
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\LauncherUpdateEnder\obj\Release\net6.0-windows\LauncherUpdateEnder.AssemblyInfo.cs
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\LauncherUpdateEnder\obj\Release\net6.0-windows\LauncherUpdateEnder.csproj.CoreCompileInputs.cache
-D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\LauncherUpdateEnder\obj\Release\net6.0-windows\LauncherUpdateEnder.csproj.CopyComplete
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\LauncherUpdateEnder\obj\Release\net6.0-windows\LauncherUpdateEnder.dll
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\LauncherUpdateEnder\obj\Release\net6.0-windows\refint\LauncherUpdateEnder.dll
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\LauncherUpdateEnder\obj\Release\net6.0-windows\LauncherUpdateEnder.pdb
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\LauncherUpdateEnder\obj\Release\net6.0-windows\LauncherUpdateEnder.genruntimeconfig.cache
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\LauncherUpdateEnder\obj\Release\net6.0-windows\ref\LauncherUpdateEnder.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\LauncherUpdateEnder\obj\Release\net6.0-windows\Launcher.000D5422.Up2Date

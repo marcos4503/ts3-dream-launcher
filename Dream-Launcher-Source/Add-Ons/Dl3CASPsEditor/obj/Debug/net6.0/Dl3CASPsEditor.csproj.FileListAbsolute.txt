@@ -108,9 +108,9 @@ D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3C
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.AssemblyInfoInputs.cache
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.AssemblyInfo.cs
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.csproj.CoreCompileInputs.cache
-D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.csproj.CopyComplete
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.dll
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\refint\Dl3CASPsEditor.dll
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.pdb
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPsEditor.genruntimeconfig.cache
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\ref\Dl3CASPsEditor.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3CASPsEditor\obj\Debug\net6.0\Dl3CASPs.635F0FC9.Up2Date

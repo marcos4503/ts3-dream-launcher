@@ -113,7 +113,6 @@ D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\TS3 Dream Launcher.
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\TS3 Dream Launcher.AssemblyInfoInputs.cache
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\TS3 Dream Launcher.AssemblyInfo.cs
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\TS3 Dream Launcher.csproj.CoreCompileInputs.cache
-D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\TS3 Dream Launcher.csproj.CopyComplete
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\TS3 Dream Launcher.dll
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\refint\TS3 Dream Launcher.dll
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\TS3 Dream Launcher.pdb
@@ -148,3 +147,4 @@ D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\ModToMergeItem.baml
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\WindowModSetupGuide.g.cs
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\WindowModSetupGuide.baml
+D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\TS3 Drea.29122275.Up2Date

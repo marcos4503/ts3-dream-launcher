@@ -36,7 +36,6 @@ D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Release\net6.0\Dl3D
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Release\net6.0\Dl3DxOverlay.AssemblyInfoInputs.cache
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Release\net6.0\Dl3DxOverlay.AssemblyInfo.cs
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Release\net6.0\Dl3DxOverlay.csproj.CoreCompileInputs.cache
-D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Release\net6.0\Dl3DxOverlay.csproj.CopyComplete
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Release\net6.0\Dl3DxOverlay.dll
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Release\net6.0\refint\Dl3DxOverlay.dll
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Release\net6.0\Dl3DxOverlay.pdb
@@ -46,3 +45,4 @@ D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\bin\Release\net6.0\Syst
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\bin\Release\net6.0\System.Diagnostics.PerformanceCounter.dll
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\bin\Release\net6.0\System.Security.Cryptography.ProtectedData.dll
 D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\bin\Release\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+D:\Visual-Studio\TS3 Dream Launcher\Add-Ons\Dl3DxOverlay\obj\Release\net6.0\Dl3DxOve.35C9C8AE.Up2Date
