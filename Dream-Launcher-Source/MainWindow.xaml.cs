@@ -9558,6 +9558,7 @@ namespace TS3_Dream_Launcher
 
             //Prepare the list of save files
             List<string> allSaveList = new List<string>();
+            Dictionary<string, int> allUniquesSaveList = new Dictionary<string, int>();
 
             //Fill the list of saves files
             foreach (DirectoryInfo dir in (new DirectoryInfo((myDocumentsPath + "/Saves")).GetDirectories()))
@@ -9589,6 +9590,10 @@ namespace TS3_Dream_Launcher
             //Check each save in list, to check if is a bad save game
             for(int i = 0; i < allSaveList.Count; i++)
             {
+                //Add this save to list of uniques saves
+                if (allUniquesSaveList.ContainsKey(allSaveList[i]) == false)
+                    allUniquesSaveList.Add(allSaveList[i], 0);
+
                 //Get the directory name parts
                 string[] dirNameParts = (new DirectoryInfo(allSaveList[i])).Name.Split(".");
 
@@ -9612,17 +9617,21 @@ namespace TS3_Dream_Launcher
                     Directory.Delete(renamedPath, true);
                 Directory.Move(allSaveList[i], renamedPath);
 
+                //Remove this save to list of uniques saves
+                if (allUniquesSaveList.ContainsKey(allSaveList[i]) == true)
+                    allUniquesSaveList.Remove(allSaveList[i]);
+
                 //Update the path in the list
-                allSaveList[i] = "skip_this";
+                allSaveList[i] = renamedPath.Replace("/", @"\");
+
+                //Add this updated save path to list of uniques saves
+                if (allUniquesSaveList.ContainsKey(allSaveList[i]) == false)
+                    allUniquesSaveList.Add(allSaveList[i], 0);
             }
 
-            //Render all saves
-            foreach (string saveFilePath in allSaveList)
+            //Render all saves (using list of uniques paths, without duplicates)
+            foreach (string saveFilePath in allUniquesSaveList.Keys)
             {
-                //If this save path must be skipped, skip this
-                if (saveFilePath == "skip_this")
-                    continue;
-
                 //Draw the item on screen
                 SaveItem newItem = new SaveItem(this, saveFilePath);
                 saveList.Children.Add(newItem);
@@ -9677,7 +9686,7 @@ namespace TS3_Dream_Launcher
             //Show the content
             saveLoad.Visibility = Visibility.Collapsed;
             saveContent.Visibility = Visibility.Visible;
-            saveCount.Content = GetStringApplicationResource("launcher_save_statusCount").Replace("%n%", allSaveList.Count.ToString());
+            saveCount.Content = GetStringApplicationResource("launcher_save_statusCount").Replace("%n%", allUniquesSaveList.Keys.Count.ToString());
             //Enable the import button
             importSave.Opacity = 0.85f;
             importSave.IsHitTestVisible = true;

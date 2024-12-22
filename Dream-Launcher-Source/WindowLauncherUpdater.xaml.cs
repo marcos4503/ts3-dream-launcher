@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Management;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,6 +57,11 @@ namespace TS3_Dream_Launcher
 
             //Show the title
             statusText.Text = "Preparing Update";
+
+            //Stop all Dl3DxOverlay processes that can be running, even when the game is closed
+            Process dl3DxOverlayProcess = Process.GetProcessesByName("Dl3DxOverlay").FirstOrDefault();
+            if (dl3DxOverlayProcess != null)
+                KillProcessAndChildren(dl3DxOverlayProcess.Id);
 
             //Start the update
             StartUpdate();
@@ -197,6 +203,33 @@ namespace TS3_Dream_Launcher
                     this.Visibility = Visibility.Hidden;
             };
             asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+        }
+
+        //Auxiliar methods
+
+        private void KillProcessAndChildren(int processId)
+        {
+            // Cannot close 'system idle process'.
+            if (processId == 0)
+            {
+                return;
+            }
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher("Select * From Win32_Process Where ParentProcessID=" + processId);
+            ManagementObjectCollection moc = searcher.Get();
+            foreach (ManagementObject mo in moc)
+            {
+                KillProcessAndChildren(Convert.ToInt32(mo["ProcessID"]));
+            }
+            try
+            {
+                Process proc = Process.GetProcessById(processId);
+                if (proc.ProcessName.ToLower().Contains("ts3 dream launcher") == false)   //<--- Ignore if is the process "TS3 Dream Launcher"
+                    proc.Kill();
+            }
+            catch (ArgumentException)
+            {
+                // Process already exited.
+            }
         }
     }
 }

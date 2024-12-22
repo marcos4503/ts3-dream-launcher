@@ -94,7 +94,7 @@ namespace TS3_Dream_Launcher.Controls.ListItems {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TS3 Dream Launcher;V1.4.1;component/controls/listitems/s3pkworlditem.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TS3 Dream Launcher;V1.4.2;component/controls/listitems/s3pkworlditem.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Controls\ListItems\S3PkWorldItem.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
