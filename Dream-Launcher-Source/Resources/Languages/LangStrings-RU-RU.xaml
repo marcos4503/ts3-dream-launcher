@@ -1,0 +1,1349 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Screen 3: Checks -->
+    <system:String x:Key="screen3_checking">Проверка требований...</system:String>
+    <system:String x:Key="screen3_closeButton">ЗАКРЫТЬ</system:String>
+    <system:String x:Key="screen3_checkError1">Произошла ошибка! Похоже, что Dream Launcher не помещен в директорию игры. Пожалуйста, поместите исполняемый файл и все файлы для этого лаунчера в каталог "&lt;game&gt;/Game/Bin".</system:String>
+    <system:String x:Key="screen3_checkError2">Произошла ошибка! Похоже, что у вас установлена не Steam версия The Sims 3! Поддерживаются только Steam версия The Sims 3.</system:String>
+    <system:String x:Key="screen3_checkError3">Произошла ошибка! Dream Launcher не поддерживает эту версию The Sims 3. Поддерживается только версия «1.67.2.024037» (Steam).</system:String>
+
+    <!-- Screen 4: Translate -->
+    <system:String x:Key="screen4_dialogTitle">Вы хотите исправить перевод с европейского португальского (PT-PT) на бразильский португальский (PT-BR)? Если вы не играете на португальском языке, ответ на этот вопрос ни на что не повлияет.</system:String>
+    <system:String x:Key="screen4_dialogY">ДА</system:String>
+    <system:String x:Key="screen4_dialogU">БОЛЬШЕ НЕ СПРАШИВАТЬ</system:String>
+    <system:String x:Key="screen4_dialogN">НЕТ</system:String>
+
+    <!-- Screen 5: Intel Fix -->
+    <system:String x:Key="screen5_dialogText">Похоже, что на вашем компьютере установлен процессор «%CPU%». Процессоры 12-го поколения или более новые могут не поддерживаться игрой. Хотите ли вы применить исправляющий патч прямо сейчас?</system:String>
+    <system:String x:Key="screen5_dialogY">ДА</system:String>
+    <system:String x:Key="screen5_dialogU">БОЛЬШЕ НЕ СПРАШИВАТЬ</system:String>
+    <system:String x:Key="screen5_dialogN">НЕТ</system:String>
+    <system:String x:Key="screen5_Loading">Проверка ресурсов...</system:String>
+
+    <!-- Screen 6: Launcher -->
+    <system:String x:Key="launcher_button_goHome">ГЛАВНАЯ</system:String>
+    <system:String x:Key="launcher_button_goSaves">СОХРАНЕНИЯ</system:String>
+    <system:String x:Key="launcher_button_goExports">ПУБЛИКАЦИИ</system:String>
+    <system:String x:Key="launcher_button_goWorlds">МИРЫ</system:String>
+    <system:String x:Key="launcher_button_goMedia">МЕДИА</system:String>
+    <system:String x:Key="launcher_button_goCache">КЭШ</system:String>
+    <system:String x:Key="launcher_button_goPatches">ПАТЧИ</system:String>
+    <system:String x:Key="launcher_button_goMods">МОДЫ</system:String>
+    <system:String x:Key="launcher_button_goTools">ИНСТРУМЕНТЫ</system:String>
+    <system:String x:Key="launcher_button_goSettings">НАСТРОЙКИ</system:String>
+    <system:String x:Key="launcher_button_goExit">ВЫХОД</system:String>
+    <system:String x:Key="launcher_button_playButton">ИГРАТЬ!</system:String>
+    <system:String x:Key="launcher_button_playingButton">В ИГРЕ</system:String>
+    <system:String x:Key="launcher_taks_readyToPlay">Игра готова!</system:String>
+    <system:String x:Key="launcher_taks_working">Работаем над %n%... задачами(-ей)</system:String>
+    <system:String x:Key="launcher_toast_dismiss">OK</system:String>
+    <system:String x:Key="launcher_launchGameProblem">Не удалось запустить игру. Возникла проблема с запуском. Пожалуйста, попробуйте еще раз.</system:String>
+    <system:String x:Key="launcher_alderLakePatchProblem">Возникла проблема с патчем, поддерживающим процессоры Intel Alder Lake+. Из-за этого ваша игра может не открываться. Резервная копия «TS3W.exe» файла уже создана. </system:String>
+    <system:String x:Key="launcher_alderLakePatchSuccess">Установка патча для поддержки процессоров Intel Alder Lake выполнено успешно!</system:String>
+    <system:String x:Key="launcher_ptptToptbrTranslateProblem">Не удалось применить патч перевода с pt-PT на pt-BR.</system:String>
+    <system:String x:Key="launcher_ptptToptbrTranslateSuccess">Патч перевода с pt-PT на pt-BR был успешно установлен! Измените язык игры на «Португальский» в Steam и в Настройках лаунчера, чтобы увидеть изменения!</system:String>
+    <system:String x:Key="launcher_toastsHistoryTitle">История уведомлений</system:String>
+    <system:String x:Key="launcher_modsMergeTitle">Моды для слияния</system:String>
+    <system:String x:Key="launcher_modsMerge_confirmButton">ОБЪЕДИНИТЬ</system:String>
+    <system:String x:Key="launcher_modsMerge_cancelButton">ОТМЕНИТЬ</system:String>
+    <system:String x:Key="launcher_modsMerge_sizeMessage">Размер</system:String>
+    <system:String x:Key="launcher_toastsHistoryAt">в</system:String>
+    <system:String x:Key="launcher_toastsHistoryEmpty">Здесь пока ничего нет</system:String>
+    <system:String x:Key="launcher_taskCloseWarnTit">Один момент, друг!</system:String>
+    <system:String x:Key="launcher_taskCloseWarnTxt">Dream Launcher сейчас выполняет одну или несколько фоновых задач игры. Выход из лаунчера может серьезно нарушить целостность лаунчера или вашей игры! Вы действительно хотите закрыть лаунчер?</system:String>
+    <system:String x:Key="launcher_documentsNotFound">Не найдена папка The Sims 3 в «Документах». Запустите игру хотя бы раз и перезапустите Dream Launcher, чтобы все функции были доступны.</system:String>
+    <system:String x:Key="launcher_dlc_ep1">EP1 - Мир приключений</system:String>
+    <system:String x:Key="launcher_dlc_ep2">EP2 - Карьера</system:String>
+    <system:String x:Key="launcher_dlc_ep3">EP3 - В сумерках</system:String>
+    <system:String x:Key="launcher_dlc_ep4">EP4 - Все возрасты</system:String>
+    <system:String x:Key="launcher_dlc_ep5">EP5 - Питомцы</system:String>
+    <system:String x:Key="launcher_dlc_ep6">EP6 - Шоу-бизнес</system:String>
+    <system:String x:Key="launcher_dlc_ep7">EP7 - Сверхъестественное</system:String>
+    <system:String x:Key="launcher_dlc_ep8">EP8 - Времена года</system:String>
+    <system:String x:Key="launcher_dlc_ep9">EP9 - Студенческая жизнь</system:String>
+    <system:String x:Key="launcher_dlc_ep10">EP10 - Райские острова</system:String>
+    <system:String x:Key="launcher_dlc_ep11">EP11 - Вперёд в будущее</system:String>
+    <system:String x:Key="launcher_dlc_sp1">SP1 - Современная роскошь</system:String>
+    <system:String x:Key="launcher_dlc_sp2">SP2 - Скоростной режим</system:String>
+    <system:String x:Key="launcher_dlc_sp3">SP3 - Отдых на природе</system:String>
+    <system:String x:Key="launcher_dlc_sp4">SP4 - Городская жизнь</system:String>
+    <system:String x:Key="launcher_dlc_sp5">SP5 - Изысканная спальня</system:String>
+    <system:String x:Key="launcher_dlc_sp6">SP6 - Katy Perry. Сладкие радости</system:String>
+    <system:String x:Key="launcher_dlc_sp7">SP7 - Diesel</system:String>
+    <system:String x:Key="launcher_dlc_sp8">SP8 - 70-е, 80-е, 90-е</system:String>
+    <system:String x:Key="launcher_dlc_sp9">SP9 - Кино</system:String>
+    <system:String x:Key="launcher_linkDonate">Поддержите Dream Launcher!</system:String>
+    <system:String x:Key="launcher_linkGithub">Репозиторий Dream Launcher на GitHub</system:String>
+    <system:String x:Key="launcher_linkSteam">Мега гайд с множеством советов и руководств по лаунчеру в Steam (только на португальском языке)</system:String>
+    <system:String x:Key="launcher_updateNotifier">Вышла %v% версия Dream Launcher. Установите обновление прямо сейчас!</system:String>
+    <system:String x:Key="launcher_updateButton">УСТАНОВИТЬ</system:String>
+    <system:String x:Key="launcher_changelogButton">ЧТО НОВОГО?</system:String>
+    <system:String x:Key="launcher_updateWait">Перед началом процесса обновления дождитесь завершения всех текущих задач.</system:String>
+    <system:String x:Key="launcher_updateError">Невозможно выполнить обновление Dream Launcher. Пожалуйста, проверьте подключение к Интернету и повторите попытку.</system:String>
+    <system:String x:Key="launcher_updateSuccess">Dream Launcher успешно обновлен!</system:String>
+
+    <!-- Screen 6: Launcher - Patches -->
+    <system:String x:Key="launcher_patches_intro">Здесь вы найдете все лучшие патчи/исправления для игры. Все эти патчи можно установить в пару кликов. При установке патчей, Dream Launcher автоматически проверяет целостность файлов.</system:String>
+    <system:String x:Key="launcher_patches_dependencies">Рекомендуемые</system:String>
+    <system:String x:Key="launcher_patches_disclaimer">Обратите внимание, что после установки патча через этот экран его не рекомендуется удалять, однако при необходимости его можно легко переустановить. Если вам действительно нужно удалить патч, есть руководство, которое может вам в этом помочь.</system:String>
+    <system:String x:Key="launcher_patches_disclaimer_button">ДОСТУП</system:String>
+    <system:String x:Key="launcher_patches_install">УСТАНОВИТЬ</system:String>
+    <system:String x:Key="launcher_patches_reInstall">ПЕРЕУСТАНОВИТЬ</system:String>
+    <system:String x:Key="launcher_patches_noActions">НЕДОСТУПНО</system:String>
+    <system:String x:Key="launcher_patches_statusInstalled">Установлено</system:String>
+    <system:String x:Key="launcher_patches_statusInstalledWithProblem">Установлено с проблемой</system:String>
+    <system:String x:Key="launcher_patches_statusNotInstalled">Не установлен</system:String>
+    <system:String x:Key="launcher_patches_statusInstalling">Установка...</system:String>
+    <system:String x:Key="launcher_patches_statusInstallError">Возникла проблема с установкой патча «%name%». Пожалуйста, проверьте подключение к Интернету и правильность установки Dream Launcher. Также убедитесь, что вы не изменили никаких файлов в игре или в папке The Sims 3 в папке «Документы» на вашем компьютере.</system:String>
+    <system:String x:Key="launcher_patches_statusInstallSuccess">Патч «%name%» успешно установлен!</system:String>
+    <system:String x:Key="launcher_patches_restartRequired">Был установлен Core-патч, что требует перезапуска Dream Launcher. Пожалуйста, дождитесь завершения всех текущих заданий (если они есть), а затем нажмите кнопку ниже, чтобы закрыть Dream Launcher.</system:String>
+    <system:String x:Key="launcher_patches_restartRequiredButton">ЗАКРЫТЬ ЛАУНЧЕР</system:String>
+    <system:String x:Key="launcher_patches_problemFound">Возможно, возникла проблема в установленном патче. Проверьте вкладку «Патчи». Переустановка неисправного патча и перезапуск Dream Launcher может устранить проблему.</system:String>
+    <system:String x:Key="launcher_patch0_title">Поддержка Alder Laker+ процессоров</system:String>
+    <system:String x:Key="launcher_patch0_description">Этот патч обновляет файл «TS3W.exe» для поддержки процессоров с новой архитектурой Intel BIG.little (процессоров 12-го поколения или более новых). Патч может быть установлен только в диалоговом окне при запуске лаунчера.</system:String>
+    <system:String x:Key="launcher_patch1_title">Лучшая поддержка перевода от PT-PT к PT-BR</system:String>
+    <system:String x:Key="launcher_patch1_description">Этот патч улучшает поддержку The Sims 3 для тех, кто собирается играть на языке PT-BR, но игра все равно запускается на PT-PT. Этот патч не влияет ни на какой другой язык игры, кроме PT-PT и PT-BR. Патч может быть установлен только в диалоговом окне при запуске лаунчера.</system:String>
+    <system:String x:Key="launcher_patch2_title">Поддержка модов</system:String>
+    <system:String x:Key="launcher_patch2_description">Этот патч добавляет поддержку модов в The Sims 3. Установив патч, вы также сможете устанавливать свои или рекомендуемые моды через вкладку «Моды» в Dream Launcher.</system:String>
+    <system:String x:Key="launcher_patch3_title">Базовая оптимизация</system:String>
+    <system:String x:Key="launcher_patch3_description">Этот патч изменяет некоторые игровые файлы и добавляет в игру несколько оптимизирующих модов. Моды добавлены следующим образом... «NRaas - Master Controller». Этот мод не делает ничего автоматического в игре, однако он добавляет бесконечное количество взаимодействий по управлению в игре, таких как сброс, редактирование или исправление объектов или симов. Добавляет лучшую поддержку для Slider модов и несколько оптимизирующих взаимодействий в игру. Этот мод может быть использован для читерства, но вы сами решаете, как его использовать. «Lazy Duchess - Smooth Patch». Этот мод добавляет в игру несколько уровней оптимизации и улучшает скорость загрузки вещей в игре. «NRaas - GoHere», который добавляет улучшения в систему маршрутизации симов в игре. «Shimrod101 - Memories Disabled». Этот мод отключает все воспоминания (автоматические и ручные) в игре, которые являются постоянным источником проблем с производительностью в игре и раздуванием сохранений. «tuzlakserif232 - Hide EPs Game Icons». Этот мод скрывает иконку расширения в каталоге мебели и одежды. «NRaas - Error Trap». Этот мод исправляет несколько технических ошибок, которые могут возникнуть во время игрового процесса. «NRaas - Overwatch». Этот мод периодически чистит ваш город, удаляя бесполезные объекты и делая игру более плавной. «NRaas - Traffic». Этот мод позволяет настраивать количество автомобилей и маршруты по городу, оптимизируя их. «NRaas - Register». Этот мод добавляет возможность ограничивать типы животных, симов и повяление ролей, чтобы оптимизировать население. И, наконец, «NRaas - Traveler». Этот мод заменяет код путешествий в игре, делая его более оптимизированным. ВСЕ моды в этом патче уже предварительно настроены для наилучшей производительности.</system:String>
+    <system:String x:Key="launcher_patch4_title">Ограничитель кадров</system:String>
+    <system:String x:Key="launcher_patch4_description">Добавляет в игру патч для ограничения FPS, разработанный «GriefReaper». После установки этого патча будет работать опция ограничения FPS в настройках Dream Launcher. В игре используйте чит «fps on», чтобы отслеживать FPS в игре.</system:String>
+    <system:String x:Key="launcher_patch5_title">Поддержка новых процессоров и видеокарт</system:String>
+    <system:String x:Key="launcher_patch5_description">Этот патч обновляет базу данных аппаратного обеспечения игры, чтобы она могла распознавать новые процессоры и видеокарты, выпущенные после 2013/2014 года. Кроме того, патч обновляет файлы настроек запуска игры, чтобы она могла использовать как можно больше аппаратного обеспечения, а также иметь доступ к большей вычислительной мощности в любое время, независимо от настроек. Этот патч также не позволяет игре ограничивать использование вашего оборудования нераспознанного игрой. После установки этого патча запустите игру и перейдите в папку «The Sims 3» в Документах вашего компьютера, затем откройте файл «DeviceConfig.log», чтобы посмотреть, распознает ли игра теперь ваше оборудование.</system:String>
+    <system:String x:Key="launcher_patch6_title">Улучшенное глобальное освещения</system:String>
+    <system:String x:Key="launcher_patch6_description">Патч добавляет моды «Lazy Duchess - Auto Lights Overhaul», «Boring Bones - Fixed Lightning» и «simsi45 - Improved Environmental Shadows». Вместе эти моды добавляют новый уровень глобального и локального освещений игры. Тени стали более красивыми, цвета окружения - более яркими, а свет в комнатах теперь автоматически выключается, если там нет сима. Суммируя все эти моды, можно добиться улучшения графики игры, сделав ее визуально более плавной и красивой.</system:String>
+    <system:String x:Key="launcher_patch7_title">Улучшенные тени</system:String>
+    <system:String x:Key="launcher_patch7_description">Этот патч добавляет в игру «Lazy Duchess - Pixel Shader Framework» и «Lazy Duchess - Shader Tweaks». Благодаря этим патчам тени в игре в становятся приятнее. Стекло будет иметь лучшую прозрачность, пиксели цензуры будут выглядеть качественнее, внутреннее освещение комнат, освещение лиц, волосы на теле симов и многое другое будет выглядеть лучше.</system:String>
+    <system:String x:Key="launcher_patch8_title">Расширенные тени</system:String>
+    <system:String x:Key="launcher_patch8_description">Этот патч добавляет в игру «Lazy Duchess - Shadow Extender». Благодаря этому патчу тени в игре продолжают отображаться даже в режиме городского вида. Чтобы тени отображались, необходимо увеличить качество теней в настройках лаунчера.</system:String>
+    <system:String x:Key="launcher_patch9_title">Оптимизация маршрутов</system:String>
+    <system:String x:Key="launcher_patch9_description">Этот патч добавляет набор модов, которые оптимизируют маршрутизацию симов в игре, уменьшая проблемы с маршрутизацией, улучшая скорость расчета маршрутов и т.д. Добавлены следующие моды: «bluegenjutsu - Faster Loading and Moving of the Elevators», который уменьшает время ожидания лифта в дополнении "В сумерках". «bluegenjutsu - Better Routing for Game Objects», который улучшает маршрутизацию объектов, которые симы не могут пройти. «Twoftmama - Route Fix v9», который улучшает маршрутизацию в целом. «Nukael - No Motive Fail Tantrum or Whining», который убирает анимацию истерики, когда симу нужна помощь, однако дети все равно продолжают закатывать истерики. «stevebo77 - No Route Fail Tantrum», который убирает анимации истерик, когда симы не находят маршрут к месту назначения. И, наконец, «stevebo77 - No Foot Tapping», который убирает анимацию постукивания сима ногой в ожидании маршрута.</system:String>
+    <system:String x:Key="launcher_patch10_title">Удаление онлайн-функций</system:String>
+    <system:String x:Key="launcher_patch10_description">Этот патч запрещает The Sims 3 подключаться к интернету. Это позволяет избежать лагов в игре из-за веб-запросов, загрузки сотен ненужных файлов и даже повысить производительность игры и снизить потребление оперативной памяти во многих случаях. Этот патч будет работать еще лучше, если вы отключите «Онлайн-уведомления» и «Режим магазина». Для работы требуется включенный брандмауэр Windows.</system:String>
+    <system:String x:Key="launcher_patch11_title">Лучшее развитие сюжета</system:String>
+    <system:String x:Key="launcher_patch11_description">Этот патч добавит в вашу игру «NRaas - Story Progression», полностью заменяющий стандартную сюжетную прогрессию от EA. Благодаря этому патчу неиграющие симы в вашем городе теперь будут жить более интересной и реалистичной жизнью. Они будут вступать в брак с другими симами, покупать мебель или машины, менять работу, заводить персонажей, улучшать навыки и многое, многое другое. Настройки населения и сюжетной прогрессии в игре будут сохранены после установки этого патча. Этот патч также устанавливает «NRaas - Second Image», который принесет больше информации о симах в игровых уведомлениях. Моды, включенные в этот патч, уже предварительно настроены для наилучшего геймплея и производительности. Этот патч обеспечит вам лучший игровой опыт, если вы играете с модом "Sims lifespan" в режиме «Долго».</system:String>
+    <system:String x:Key="launcher_patch12_title">Оптимизация рекомендуемых модов</system:String>
+    <system:String x:Key="launcher_patch12_description">Этот патч скачивает и создает готовые файлы оптимальных настроек для некоторых модов. При установке этого патча он не изменяет настройки игры, однако при установке мода, который поддерживает эту оптимизацию, в вашей игре появится возможность импортировать оптимальные настройки, рекомендованные Dream Launcher, в настройках этого мода. На данный момент патч поддерживает только моды «NRaas - Tagger» и «TwilightStorm - Passion».</system:String>
+
+    <!-- Screen 6: Launcher - Settings -->
+    <system:String x:Key="launcher_settings_save">СОХРАНИТЬ</system:String>
+    <system:String x:Key="launcher_settings_tab_launcher">Лаунчер</system:String>
+    <system:String x:Key="launcher_settings_tab_graphics">Графика</system:String>
+    <system:String x:Key="launcher_settings_tab_sound">Звук</system:String>
+    <system:String x:Key="launcher_settings_tab_general">Общие</system:String>
+    <system:String x:Key="launcher_settings_tab_game">Игра</system:String>
+    <system:String x:Key="launcher_settings_tab_video">Видео</system:String>
+    <system:String x:Key="launcher_settings_tab_online">Онлайн</system:String>
+    <system:String x:Key="launcher_settings_tab_environment">Времена года</system:String>
+    <system:String x:Key="launcher_settings_tab_demography">Демография</system:String>
+    <system:String x:Key="launcher_settings_launcher_launcherLangCredit">Русский перевод Dream Launcher был сделан Skelmer</system:String>
+    <system:String x:Key="launcher_settings_launcher_launcherLang">Язык лаунчера</system:String>
+    <system:String x:Key="launcher_settings_launcher_launcherLangHelp" xml:space="preserve">
+Устанавливает язык лаунчера.
+(Для вступления в силу необходимо перезапустить Dream Launcher)
+    </system:String>
+    <system:String x:Key="launcher_settings_launcher_gameLang">Язык игры</system:String>
+    <system:String x:Key="launcher_settings_launcher_gameLangHelp" xml:space="preserve">
+Устанавливает язык игры. Изменения языка может вызвать переименование
+папки The Sims 3 в "Документах". Языки, поддерживаемые Dream Launcher,
+отображаются в этом списке.
+    </system:String>
+    <system:String x:Key="launcher_settings_launcher_gamePriority">Приоритет выполнения игры</system:String>
+    <system:String x:Key="launcher_settings_launcher_gamePriorityHelp" xml:space="preserve">
+Определяет приоритет выполнения процесса The Sims 3. При приоритете выше "Нормального"
+процессу игры отдается больше ресурсов процессора, однако это может привести к проблемам
+с производительностью. Протестируйте игру, прежде чем оставлять самый высокий приоритет.
+        
+- Эта опция может хорошо работать на многоядерных процессорах, таких как Alder Lake+, поскольку
+если игра имеет полный приоритет ресурсов, все равно останутся ресурсы для других программ.
+    </system:String>
+    <system:String x:Key="launcher_settings_launcher_launcherBehaviour">Поведение во время игры</system:String>
+    <system:String x:Key="launcher_settings_launcher_launcherBehaviourHelp" xml:space="preserve">
+Определяет, что должен делать лаунчер во время выполнения The Sims 3.
+    </system:String>
+    <system:String x:Key="launcher_settings_launcher_gameOverlay">Игровой оверлей</system:String>
+    <system:String x:Key="launcher_settings_launcher_gameOverlayHelp" xml:space="preserve">
+Отображает оверлей в игре. В этом оверлее отображается текущий FPS, а также объем
+оперативной памяти, который использует игра (точно так же, как в диспетчере задач).
+    </system:String>
+    <system:String x:Key="launcher_settings_launcher_resetTemplate">Сброс настроек</system:String>
+    <system:String x:Key="launcher_settings_launcher_resetTemplateHelp" xml:space="preserve">
+Если вы недавно обновили свое оборудование (например, сменили процессор или видеокарту) и если при входе в The Sims 3
+настройки игры не совпадают с настройками лаунчера, сброс шаблона настроек может помочь решить проблему.
+
+Прежде чем пробовать этот вариант, убедитесь, что вы хотя бы раз запустили игру.
+    </system:String>
+    <system:String x:Key="launcher_settings_launcher_resetTemplate_dialogTitle">Готово</system:String>
+    <system:String x:Key="launcher_settings_launcher_resetTemplate_dialogText">Сброс настроек завершен. Теперь сохраните их, чтобы применить в игре.</system:String>
+    <system:String x:Key="launcher_settings_graphics_resolution">Разрешение экрана</system:String>
+    <system:String x:Key="launcher_settings_graphics_resolutionHelp" xml:space="preserve">
+Устанавливает разрешение экрана игры.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_resolutionError">Невозможно задать разрешение. Не поддерживается системой.</system:String>
+    <system:String x:Key="launcher_settings_graphics_refreshRate">Частота обновления экрана</system:String>
+    <system:String x:Key="launcher_settings_graphics_refreshRateHelp" xml:space="preserve">
+Устанавливает частоту обновления игры.
+        
+- Эта настройка действует только в том случае, если игра находится в полноэкранном режиме.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_refreshRateError">Невозможно задать частоту обновления экрана. Не поддерживается системой.</system:String>
+    <system:String x:Key="launcher_settings_graphics_maxFps">Максимальная частота кадров</system:String>
+    <system:String x:Key="launcher_settings_graphics_maxFpsHelp" xml:space="preserve">
+Устанавливает максимальное количество кадров в секунду, которое может воспроизводить игра. Помогает в плане
+оптимизации, уменьшая заикания, пропуски кадров, разрыва изображения или внезапные зависания. Кроме того,
+снижает нагрузку на графический процессор.
+        
+- Для работы этой опции требуется установить патч «FPS Limiter» (Ограничитель кадров).
+
+        
+РЕКОМЕНДУЕТСЯ: Ограничить до некоторого значения.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_fullscreen">Режим отображения</system:String>
+    <system:String x:Key="launcher_settings_graphics_fullscreenHelp" xml:space="preserve">
+Определяет режим отображения игры.
+        
+- Для работы режима «Без рамок» требуется патч «Базовая оптимизация».
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_maxTps">Максимальное количество тактов в секунду</system:String>
+    <system:String x:Key="launcher_settings_graphics_maxTpsHelp" xml:space="preserve">
+Определяет скорость обработки логики игры. Чем больше TPS в секунду, тем лучше,
+однако при этом требуется больше ресурсов системы. При значениях более 500 для достижения
+наилучших результатов рекомендуется компьютер с производительностью выше средней.
+        
+- Для работы этой опции требуется установить патч «Базовая оптимизация».
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_debugSp">Отладка Smooth Patch</system:String>
+    <system:String x:Key="launcher_settings_graphics_debugSpHelp" xml:space="preserve">
+Если эта опция включена, Smooth Patch будет отображать диалоговое окно с предупреждением об успешном патче игры.
+        
+- Для работы этой опции требуется установить патч «Базовая оптимизация».
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_objectHiding">Включить скрытие объектов</system:String>
+    <system:String x:Key="launcher_settings_graphics_objectHidingHelp" xml:space="preserve">
+Активация этой опции заставит игру скрывать объекты, которые не видны внутри
+домов или загорожены другими объектами, что снизит потребление ресурсов.
+
+
+РЕКОМЕНДУЕТСЯ: Оставить включенной.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_animSmooth">Включить сглаживание анимации</system:String>
+    <system:String x:Key="launcher_settings_graphics_animSmoothHelp" xml:space="preserve">
+Обеспечивает более плавную работу анимации в игре.
+
+
+РЕКОМЕНДУЕТСЯ: Оставить включенным.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_advanceRender">Включить расширенный рендеринг</system:String>
+    <system:String x:Key="launcher_settings_graphics_advanceRenderHelp" xml:space="preserve">
+Заставляет игру использовать шейдеры версии 2.0 или выше, что позволяет использовать более продвинутые
+и более производительные графические эффекты, снижая нагрузку на процессор и делая игру более красивой.
+
+
+РЕКОМЕНДУЕТСЯ: Поскольку в настоящее время все видеокарты поддерживают эти шейдеры, нет причин
+оставлять эту опцию выключенной. Оставьте ее включенной.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_highDetailLots">Участки с высокой детализацией</system:String>
+    <system:String x:Key="launcher_settings_graphics_highDetailLotsHelp" xml:space="preserve">
+Этот параметр устанавливает, сколько участков вокруг вашего сима будут иметь высокую детализацию рендеринга.
+При больших значениях этой опции игра будет отображать больше участков с высокой детализацией вокруг вас (как
+будто ваш сим находится рядом с ними), однако это будет потреблять больше ресурсов, включая оперативную память.
+
+
+РЕКОМЕНДУЕТСЯ: Установите значение не более 5. Необходимо протестировать настройки, которые будут работать
+лучше всего. Более низкие значения могут привести к тому, что игре придется чаще загружать участки с высокой
+детализацией при перемещении камеры, а при более высоких значениях - реже. В целом, загрузка и выгрука участков
+вызывает небольшие лаги в игре. Как правило, значения от 1 до 4 подходят большинству людей.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_reflections">Качество отражений</system:String>
+    <system:String x:Key="launcher_settings_graphics_reflectionsHelp" xml:space="preserve">
+Определяет качество отражения от воды, предметов, зеркал и других вещей в игре. Более высокие параметры
+качества потребует большей производительности от вашей видеокарты.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_antiAliasing">Сглаживание</system:String>
+    <system:String x:Key="launcher_settings_graphics_antiAlliasingHelp" xml:space="preserve">
+Определяет, будут ли в игре использоваться технологии сглаживания, чтобы уменьшить визуальное искажение
+краев 3D-объектов игры.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_drawDist">Расстояние прорисовки</system:String>
+    <system:String x:Key="launcher_settings_graphics_drawDistHelp" xml:space="preserve">
+Определяет максимальное расстояние, на котором будут отрисовываться 3D-объекты в мире.
+Чем больше расстояние, тем больше объектов появится на экране в режиме просмотра города
+или в обычной игре при взгляде на горизонт.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_visualEffects">Визуальные эффекты</system:String>
+    <system:String x:Key="launcher_settings_graphics_visualEffectsHelp" xml:space="preserve">
+Определяет качество визуальных эффектов игры, таких как взрывы, дождь, дым, огонь и
+другие. При более высоком качестве будет больше частиц, больше эффектов постобработки
+и прочего, поэтому потребуется большая мощность графического процессора.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_lightShadows">Освещение и тени</system:String>
+    <system:String x:Key="launcher_settings_graphics_lightShadowsHelp" xml:space="preserve">
+Устанавливает качество освещения игры, а также качество теней. Тени в реальном времени
+требуют большей вычислительной мощности графики, поэтому, если у вас старое оборудование,
+проверьте, как будет работать игра при более высоких настройках этого параметра.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_textureQuality">Качество текстур</system:String>
+    <system:String x:Key="launcher_settings_graphics_textureQualityHelp" xml:space="preserve">
+Устанавливает качество текстур игры. Более высокие значения этого параметра
+гарантируют более высокую четкость текстур, однако это потребует больше видеопамяти.
+Если её недостаточно, это может негативно сказаться на производительности игры.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_treeDetails">Детализация деревьев</system:String>
+    <system:String x:Key="launcher_settings_graphics_treeDetailsHelp" xml:space="preserve">
+Устанавливает графическое качество игровых деревьев. При более высоких значениях этого
+параметра деревья будут прорисовываться более детально, даже если они находятся на большом
+расстоянии.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_simsDetails">Детализация симов</system:String>
+    <system:String x:Key="launcher_settings_graphics_simsDetailsHelp" xml:space="preserve">
+Устанавливает качество графики симов. При более высоких значениях этого параметра
+симы будут отображаться с большей детализацией, даже если они находятся дальше от камеры,
+а также будут иметь больше визуальных деталей и графических эффектов.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_speakerType">Настройка динамиков</system:String>
+    <system:String x:Key="launcher_settings_graphics_speakerTypeHelp" xml:space="preserve">
+Устанавливает звуковые каналы, которые будут использоваться в соответствии с динамиками
+компьютера. Наиболее распространенный формат - 2.0-канальный стерео.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_focusMute">Приглушение игры при сворачивании</system:String>
+    <system:String x:Key="launcher_settings_graphics_focusMuteHelp" xml:space="preserve">
+Если эта опция включена, звук игры будет отключаться, если она находится вне фокуса или свернута.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_voicesVolume">Громкость голоса</system:String>
+    <system:String x:Key="launcher_settings_graphics_voicesVolumeHelp" xml:space="preserve">
+Устанавливает громкость голосов во время игры.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_fxVolume">Громкость звуковых эффектов</system:String>
+    <system:String x:Key="launcher_settings_graphics_fxVolumeHelp" xml:space="preserve">
+Устанавливает громкость звуковых эффектов игры.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_musicVolume">Громкость музыки</system:String>
+    <system:String x:Key="launcher_settings_graphics_musicVolumeHelp" xml:space="preserve">
+Устанавливает громкость музыки, воспроизводимой в игре.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_ambientVolume">Громкость окружения</system:String>
+    <system:String x:Key="launcher_settings_graphics_ambientVolumeHelp" xml:space="preserve">
+Определяет громкость игрового окружения, например, дождя, птиц, шагов и т.д.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_audioQuality">Качество звука</system:String>
+    <system:String x:Key="launcher_settings_graphics_audioQualityHelp" xml:space="preserve">
+Устанавливает качество звука в игре. Чем выше заданное значение, тем больше используется обработка,
+однако это не должно оказывать негативного влияния на игру, независимо от заданного значения.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_onlineNotifications">Онлайн-уведомления</system:String>
+    <system:String x:Key="launcher_settings_graphics_onlineNotificationsHelp" xml:space="preserve">
+Устанавливает, показывать ли социальные уведомления в игре, если вы вошли в систему под учетной записью The Sims 3.
+
+- РЕКОМЕНДУЕТСЯ: Не оставляйте эту настройку включенной для уменьшения затрат на ресурсы.
+Не рекомендуется играть со своим аккаунтом для экономии ресурсов игры.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_shopMode">Режим магазина</system:String>
+    <system:String x:Key="launcher_settings_graphics_shopModeHelp" xml:space="preserve">
+Определяет, будет ли активирован режим магазина в игре. Режим магазина заставляет
+предметы из интернет-магазина The Sims 3 отображаться в середине каталога игры по умолчанию.
+
+- РЕКОМЕНДУЕТСЯ: отключить, чтобы сэкономить игровые ресурсы.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_edgeScrolling">Прокрутка по краю экрана</system:String>
+    <system:String x:Key="launcher_settings_graphics_edgeScrollingHelp" xml:space="preserve">
+Если эта опция включена, игровая камера будет перемещаться в тот угол экрана, где находится ваш курсор.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_clockFormat">Формат часов</system:String>
+    <system:String x:Key="launcher_settings_graphics_clockFormatHelp" xml:space="preserve">
+Устанавливает формат времени, отображаемого в игре.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_lessons">Включить уроки</system:String>
+    <system:String x:Key="launcher_settings_graphics_lessonsHelp" xml:space="preserve">
+Если активировать эту опцию, в игре появятся подсказки, связанные с тем, что вы делаете в игре,
+например, устраиваете вечеринку. Эти подсказки расскажут вам немного о том, что вы делаете,
+и вы можете воспользоваться ими, и игра покажет вам более подробное руководство по
+соответствующей теме. Даже если вы отключите эту опцию, вы все равно сможете получить
+доступ к учебникам через опции паузы в игре.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_interactiveLoad">Включите интерактивные экраны загрузки</system:String>
+    <system:String x:Key="launcher_settings_graphics_interactiveLoadHelp" xml:space="preserve">
+Если эта опция активирована, в игре появится интерактивный экран загрузки, на котором вы
+можете найти объекты в кадре, чтобы заработать очки.
+
+- РЕКОМЕНДУЕТСЯ: держать эту опцию отключенной. Интерактивный экран загрузки может
+увеличить время загрузки и потреблять больше игровых ресурсов, снижая производительность игры.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_invertCameraH">Инвертирование горизонтального поворота камеры</system:String>
+    <system:String x:Key="launcher_settings_graphics_invertCameraHhelp" xml:space="preserve">
+Инвертирует поворот камеры, когда вы поворачиваете ее с помощью клавиш «&lt;» и «&gt;» или мыши.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_invertCameraV">Инвертирование вертикального поворота камеры</system:String>
+    <system:String x:Key="launcher_settings_graphics_invertCameraVhelp" xml:space="preserve">
+Инвертирует поворот камеры, когда вы поворачиваете ее с помощью клавиш «&lt;» и «&gt;» или мыши.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_memories">Включить воспоминания</system:String>
+    <system:String x:Key="launcher_settings_graphics_memoriesHelp" xml:space="preserve">
+Управляет работой функции «Воспоминания» в игре. Воспоминания - это памятные моменты в
+жизни симов, и каждый раз, когда сим создает новое воспоминание, вы можете получить к
+нему доступ через информационную панель сима. Фотография этого момента также сохраняется
+в вашем сохранении.
+
+- РЕКОМЕНДУЕТСЯ: отключить эту функцию. Функция «Воспоминания» в The Sims 3 является
+серьезной причиной низкой производительности игры, а также быстро раздувает ваш файл сохранения.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespan">Продолжительность жизни</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanHelp" xml:space="preserve">
+Этот параметр определяет продолжительность жизни симов. Точные значения каждой стадии жизни
+определяются в предустановках, и вы можете изменить продолжительность жизни только через эти
+предустановки. Рекомендуется настраивать в зависимости от сложности игры, например, если вы
+установили мод, чтобы сделать игру сложнее, например, зарабатывать меньше денег, то вашим
+симам потребуется больше времени жизни, чтобы они не тратили все время жизни только на работу.
+        
+- РЕКОМЕНДУЕТСЯ: оставьте значение «Долго». Особых причин для этого нет, но в целом это
+лучший выбор для большинства игроков.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanSim">Персонаж</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanSimBaby">Младенец: %d% дн.</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanSimToddler">Малыш: %d% дн.</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanSimChild">Ребенок: %d% дн.</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanSimTeen">Подросток: %d% дн.</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanSimYoungAdult">Молодой: %d% дн.</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanSimAdult">Взрослый: %d% дн.</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanSimElder">Пожилой: %d% дн.</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanCat">Кошка</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanCatKitten">Котенок: %d% дн.</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanCatAdult">Взрослый : %d% дн.</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanCatElder">Пожилой: %d% дн.</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanDog">Собака</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanDogPuppy">Щенок: %d% дн.</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanDogAdult">Взрослый: %d% дн.</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanDogElder">Пожилой: %d% дн.</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanHorse">Лошадь</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanHorseFoal">Жеребенок: %d% дн.</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanHorseAdult">Взрослый: %d% дн.</system:String>
+    <system:String x:Key="launcher_settings_graphics_lifespanHorseElder">Пожилой: %d% дн.</system:String>
+    <system:String x:Key="launcher_settings_graphics_aging">Включить старение</system:String>
+    <system:String x:Key="launcher_settings_graphics_agingHelp" xml:space="preserve">
+Если эта опция включена, симы будут стареть.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_suppressOpportunities">Отключение целей и заданий</system:String>
+    <system:String x:Key="launcher_settings_graphics_suppressOpportunitiesHelp" xml:space="preserve">
+Если эта опция активирована, симы больше не будут получать никаких целей (или заданий)
+в школе, на работе или в повседневной жизни.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_noAutonomy">Отключить свободу воли для сима</system:String>
+    <system:String x:Key="launcher_settings_graphics_noAutonomyHelp" xml:space="preserve">
+Если эта опция активирована, свобода воли будет отключена для сима (человека или питомца),
+активного в данный момент в игре.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_simAutonomy">Уровень свободы воли симов</system:String>
+    <system:String x:Key="launcher_settings_graphics_simAutonomyHelp" xml:space="preserve">
+Устанавливает уровень самостоятельности симов в целом. На низких уровнях симы будут
+автоматически совершать только несколько очень специфических действий. На более
+высоких уровнях у сима будет больше свободы делать то, что он хочет.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_petAutonomy">Уровень свободы воли питомцев</system:String>
+    <system:String x:Key="launcher_settings_graphics_petAutonomyHelp" xml:space="preserve">
+Устанавливает уровень самостоятельности питомцев в целом. На низких уровнях питомцы будут
+автоматически совершать только несколько очень специфических действий. На более
+высоких уровнях у питомцев будет больше свободы делать то, что он хочет.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_seasonSummer">Лето</system:String>
+    <system:String x:Key="launcher_settings_graphics_seasonSummerHelp" xml:space="preserve">
+Определяет, должно ли это время года быть активным и его длительность.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_fallSummer">Осень</system:String>
+    <system:String x:Key="launcher_settings_graphics_fallSummerHelp" xml:space="preserve">
+Определяет, должно ли это время года быть активным и его длительность.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_winterSummer">Зима</system:String>
+    <system:String x:Key="launcher_settings_graphics_winterSummerHelp" xml:space="preserve">
+Определяет, должно ли это время года быть активным и его длительность.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_springSummer">Весна</system:String>
+    <system:String x:Key="launcher_settings_graphics_springSummerHelp" xml:space="preserve">
+Определяет, должно ли это время года быть активным и его длительность.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_temperatureUnit">Единица измерения температуры</system:String>
+    <system:String x:Key="launcher_settings_graphics_temperatureUnitHelp" xml:space="preserve">
+Устанавливает единицу измерения температуры, которая будет использоваться игрой.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_weatherHail">Включить град</system:String>
+    <system:String x:Key="launcher_settings_graphics_weatherHailHelp" xml:space="preserve">
+Активируйте или деактивируйте эту погоду в игре. Обратите внимание, что даже если эта погода
+деактивирована, связанная с ней пора года продолжит работать, если вы ее не отключите.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_weatherRain">Включить дождь</system:String>
+    <system:String x:Key="launcher_settings_graphics_weatherRainHelp" xml:space="preserve">
+Активируйте или деактивируйте эту погоду в игре. Обратите внимание, что даже если эта погода
+деактивирована, связанная с ней пора года продолжит работать, если вы ее не отключите.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_weatherSnow">Включить снег</system:String>
+    <system:String x:Key="launcher_settings_graphics_weatherSnowHelp" xml:space="preserve">
+Активируйте или деактивируйте эту погоду в игре. Обратите внимание, что даже если эта погода
+деактивирована, связанная с ней пора года продолжит работать, если вы ее не отключите.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_weatherFog">Включить туман</system:String>
+    <system:String x:Key="launcher_settings_graphics_weatherFogHelp" xml:space="preserve">
+Активируйте или деактивируйте эту погоду в игре. Обратите внимание, что даже если эта погода
+деактивирована, связанная с ней пора года продолжит работать, если вы ее не отключите.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_lunarCycle">Лунный цикл</system:String>
+    <system:String x:Key="launcher_settings_graphics_lunarCycleHelp" xml:space="preserve">
+Определяет, как лунный цикл будет работать в течение всех дней.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_environmentWarn">ВНИМАНИЕ: новые настройки «Времена года» и «Погода» могут не применяться к существующим сохранениям. В этом случае вам нужно будет выполнить те же настройки в существующих сохранениях, а затем сохранить игру.</system:String>
+    <system:String x:Key="launcher_settings_graphics_enableProgression">Развитие сюжета</system:String>
+    <system:String x:Key="launcher_settings_graphics_enableProgressionHelp" xml:space="preserve">
+Если эта опция активирована, другие симы, которыми вы не играете, будут
+продолжать жить своей обычной жизнью: жениться, получать повышение,
+переезжать и т.д. Это делает игру более живой и интересной.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_vampires">Включить вампиров</system:String>
+    <system:String x:Key="launcher_settings_graphics_vampiresHelp" xml:space="preserve">
+Включает или выключает этот тип сима в развитии сюжета. Если тип сима отключен,
+новые симы этого типа не будут появляться по мере развития сюжета.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_werewolves">Включить оборотней</system:String>
+    <system:String x:Key="launcher_settings_graphics_werewolvesHelp" xml:space="preserve">
+Включает или выключает этот тип сима в развитии сюжета. Если тип сима отключен,
+новые симы этого типа не будут появляться по мере развития сюжета.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_pets">Включить питомцев</system:String>
+    <system:String x:Key="launcher_settings_graphics_petsHelp" xml:space="preserve">
+Включает или выключает этот тип сима в развитии сюжета. Если тип сима отключен,
+новые симы этого типа не будут появляться по мере развития сюжета.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_celebrities">Включить знаменитостей</system:String>
+    <system:String x:Key="launcher_settings_graphics_celebritiesHelp" xml:space="preserve">
+Включает или выключает этот тип сима в развитии сюжета. Если тип сима отключен,
+новые симы этого типа не будут появляться по мере развития сюжета.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_fairies">Включить фей</system:String>
+    <system:String x:Key="launcher_settings_graphics_fairiesHelp" xml:space="preserve">
+Включает или выключает этот тип сима в развитии сюжета. Если тип сима отключен,
+новые симы этого типа не будут появляться по мере развития сюжета.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_witches">Включить ведьм</system:String>
+    <system:String x:Key="launcher_settings_graphics_witchesHelp" xml:space="preserve">
+Включает или выключает этот тип сима в развитии сюжета. Если тип сима отключен,
+новые симы этого типа не будут появляться по мере развития сюжета.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_horses">Включить лошадей</system:String>
+    <system:String x:Key="launcher_settings_graphics_horsesHelp" xml:space="preserve">
+Включает или выключает этот тип сима в развитии сюжета. Если тип сима отключен,
+новые симы этого типа не будут появляться по мере развития сюжета.
+    </system:String>
+    <system:String x:Key="launcher_settings_graphics_celebritiesSystem">Отключить систему знаменитостей для активной семьи</system:String>
+    <system:String x:Key="launcher_settings_graphics_celebritiesSystemHelp" xml:space="preserve">
+Если этот параметр активен, активные члены семьи не смогут стать знаменитостями.
+    </system:String>
+
+    <!-- Screen 6: Launcher - Cache -->
+    <system:String x:Key="launcher_cache_clearButton">ОЧИСТИТЬ</system:String>
+    <system:String x:Key="launcher_cache_seeLogsButton">СМ. ЖУРНАЛ</system:String>
+    <system:String x:Key="launcher_cache_cacheWarn">Здесь вы найдете все типы кэша, созданные Dream Launcher или The Sims 3, и сможете очистить их в пару кликов. Рекомендуется переодически заглядывать на эту страницу и очищать весь кэш игры.</system:String>
+    <system:String x:Key="launcher_cache_newErrorLogMsg">Во время игры произошла ошибка, и мод "Error Trap" сохранил подробности в журнале ошибок. Посетите страницу «Кэш», чтобы прочитать журнал и узнать, была ли ошибка уже исправлена "Error Trap" или вам придется исправлять ее вручную в игре.</system:String>
+    <system:String x:Key="launcher_cache_item0atitle">Журнал Error Trap</system:String>
+    <system:String x:Key="launcher_cache_item0adescription">Содержит файлы журналов ошибок, найденных модом Error Trap (ошибки возникших во время игры). Error Trap исправляет большинство ошибок автоматически, но всегда важно, чтобы вы периодически читали журналы ошибок, чтобы определить, что может быть не так в вашем сохранении игры, и, соответственно, исправить это. Если вам не понятна ошибка в журнале, поищите ее в Интернете.</system:String>
+    <system:String x:Key="launcher_cache_item0title">Кэш лаунчера</system:String>
+    <system:String x:Key="launcher_cache_item0description">Все временные файлы, созданные Dream Launcher. Они могут быть удалены без каких-либо проблем.</system:String>
+    <system:String x:Key="launcher_cache_item1title">Кэш редактора персонажей</system:String>
+    <system:String x:Key="launcher_cache_item1description">Содержит временные файлы редактора создания персонажей.</system:String>
+    <system:String x:Key="launcher_cache_item2title">Кэш объектов</system:String>
+    <system:String x:Key="launcher_cache_item2description">Содержит файлы кэша, относящиеся к объектам, которые появляются в режиме покупки и строительства.</system:String>
+    <system:String x:Key="launcher_cache_item3title">Кэш скриптов</system:String>
+    <system:String x:Key="launcher_cache_item3description">Содержит файлы кэша, относящиеся к модам, использующим программные коды.</system:String>
+    <system:String x:Key="launcher_cache_item4title">Кэш симов</system:String>
+    <system:String x:Key="launcher_cache_item4description">Содержит файлы кэша, связанные с обликами симов.</system:String>
+    <system:String x:Key="launcher_cache_item5title">Кэш онлайн-функций</system:String>
+    <system:String x:Key="launcher_cache_item5description">Содержит файлы кэша, связанные с функцией входа в аккаунт The Sims 3.</system:String>
+    <system:String x:Key="launcher_cache_item6title">Кэш хранилища</system:String>
+    <system:String x:Key="launcher_cache_item6description">Содержит файлы кэша, связанные с оригинальным лаунчером, такие как «dcc.ent», «missingdeps.idx», «Downloads», «SigsCache», «SavedSims» и «IGACache».</system:String>
+    <system:String x:Key="launcher_cache_item7title">Кэш эскизов</system:String>
+    <system:String x:Key="launcher_cache_item7description">Содержит файлы кэша, связанные с эскизами/миниатюрами редактора создания персонажа и режимом магазина.</system:String>
+    <system:String x:Key="launcher_cache_item8title">Кэш миров</system:String>
+    <system:String x:Key="launcher_cache_item8description">Содержит файлы кэша, связанные с инструментом Создания городка и новыми игровыми мирами.</system:String>
+    <system:String x:Key="launcher_cache_logsViewerMsg">Это все найденные лог-файлы (журналы), созданные Error Trap во время игры. Если журнал показывает, что проблема не была решена, важно попытаться исправить ее в игре.</system:String>
+    <system:String x:Key="launcher_cache_logsViewerEmpty">Журналов пока нет</system:String>
+    <system:String x:Key="launcher_cache_logsViewerTitle">Просмотр журналов</system:String>
+    <system:String x:Key="launcher_cache_logsViewerLoad">Загрузка...</system:String>
+    <system:String x:Key="launcher_cache_logsViewerCounter">%n% всего</system:String>
+    <system:String x:Key="launcher_cache_logsViewerOpen">ОТКРЫТЬ</system:String>
+    <system:String x:Key="launcher_cache_logsViewerOpenError">Невозможно открыть журнал. Должен быть установлен инструмент «Notepad++» в Dream Launcher. Пожалуйста, установите его со страницы «Инструменты».</system:String>
+
+    <!-- Screen 6: Launcher - Tools -->
+    <system:String x:Key="launcher_tools_msg">Инструменты, перечисленные здесь, рекомендуется использовать только игрокам с более продвинутыми техническими знаниями. Эти инструменты используются для проверки, моддинга, настройки игры, добавления новых предметов и многого другого. Используйте их с осторожностью.</system:String>
+    <system:String x:Key="launcher_tools_createdBy">Автор: %name%</system:String>
+    <system:String x:Key="launcher_tools_install">УСТАНОВИТЬ</system:String>
+    <system:String x:Key="launcher_tools_open">ОТКРЫТЬ</system:String>
+    <system:String x:Key="launcher_tools_running">ЗАГРУЗКА</system:String>
+    <system:String x:Key="launcher_tools_installError">Возникла проблема с установкой запрашиваемого инструмента. Пожалуйста, проверьте подключение к Интернету.</system:String>
+    <system:String x:Key="launcher_tools_s3peTitle">S3 Package Editor</system:String>
+    <system:String x:Key="launcher_tools_s3peInformation">Требования: .Net Framework 4.0</system:String>
+    <system:String x:Key="launcher_tools_s3peDescription">Создавайте, просматривайте, редактируйте или объединяйте файлы Package The Sims 3. В основном используется для моддинга и редактирования файлов Package.</system:String>
+    <system:String x:Key="launcher_tools_nppTitle">Notepad++</system:String>
+    <system:String x:Key="launcher_tools_nppInformation">Требования: нет</system:String>
+    <system:String x:Key="launcher_tools_nppDescription">Один из самых известных текстовых редакторов. Используется в лаунчере для просмотра текстовых файлов.</system:String>
+    <system:String x:Key="launcher_tools_s3ocTitle">S3 Object Cloner</system:String>
+    <system:String x:Key="launcher_tools_s3ocInformation">Требования: .Net Framework 4.0</system:String>
+    <system:String x:Key="launcher_tools_s3ocDescription">Просмотр или редактирование файлов Package The Sims 3, содержащих мебель или предметы, доступные в режиме покупки. Изменяйте цены, описания, категории и многое другое.</system:String>
+    <system:String x:Key="launcher_tools_dshTitle">Dashboard</system:String>
+    <system:String x:Key="launcher_tools_dshInformation">Требования: .Net Framework 3.5</system:String>
+    <system:String x:Key="launcher_tools_dshDescription">Сканирует папку Mods и выявляет конфликты между модами (отображается оранжевым цветом), поврежденные моды (отображается красным цветом) или дубликаты модов (отображается желтым цветом).</system:String>
+    <system:String x:Key="launcher_tools_eseTitle">Easy STBL Manager</system:String>
+    <system:String x:Key="launcher_tools_eseInformation">Требования: .Net Framework 3.5</system:String>
+    <system:String x:Key="launcher_tools_eseDescription">Легкое редактирование файлов STBL - файлы, содержащие текст и часто встречающиеся в файлах Package The Sims 3.</system:String>
+    <system:String x:Key="launcher_tools_pkgTitle">Package Viewer</system:String>
+    <system:String x:Key="launcher_tools_pkgInformation">Требования: нет</system:String>
+    <system:String x:Key="launcher_tools_pkgDescription">Сканирует папку Mods и позволяет просматривать эскизы/миниатюры, которые в ней присутствуют, а также отображает поврежденные моды.</system:String>
+    <system:String x:Key="launcher_tools_s3miTitle">Sims3Pack Multi Installer</system:String>
+    <system:String x:Key="launcher_tools_s3miInformation">Требования: .NET Framework 2.0</system:String>
+    <system:String x:Key="launcher_tools_s3miDescription">Распаковывает все файлы «Package», находящиеся в файле «sims3pack», в папку назначения.</system:String>
+    <system:String x:Key="launcher_tools_szipTitle">7-Zip</system:String>
+    <system:String x:Key="launcher_tools_szipInformation">Требования: нет</system:String>
+    <system:String x:Key="launcher_tools_szipDescription">Один из лучших и наиболее известных инструментов для работы со сжатыми файлами или пакетами.</system:String>
+    <system:String x:Key="launcher_tools_s3ceTitle">Sims3Pack CLI Extractor</system:String>
+    <system:String x:Key="launcher_tools_s3ceInformation">Требования: .NET Framework 2.0</system:String>
+    <system:String x:Key="launcher_tools_s3ceDescription">Позволяет извлекать файлы «package» из «sims3pack» через CLI. Позволяет лаунчеру интерпретировать файлы «sims3pack».</system:String>
+    <system:String x:Key="launcher_tools_caspeTitle">CASPs Editor</system:String>
+    <system:String x:Key="launcher_tools_caspeInformation">Требования: .NET 6.0</system:String>
+    <system:String x:Key="launcher_tools_caspeDescription">Позволяет редактировать параметры одежды (CAS Parts), которые находятся в файлах «Package». Это редактирование осуществляется через CLI. Dream Launcher использует этот инструмент для пользовательского интерфейса.</system:String>
+    <system:String x:Key="launcher_tools_ogLauncherTitle">Стандартный Launcher</system:String>
+    <system:String x:Key="launcher_tools_ogLauncherInformation">Требования: нет</system:String>
+    <system:String x:Key="launcher_tools_ogLauncherDescription">Позволяет получить доступ к оригинальному лаунчеру The Sims 3. ВНИМАНИЕ: Доступ к оригинальному лаунчеру рекомендуется только для выполнения операций, связанных с официальным магазином EA Store или службой обмена. Если вы вошли в оригинальный лаунчер, очистите все кэши перед запуском игры.</system:String>
+
+    <!-- Screen 6: Launcher - Mods -->
+    <system:String x:Key="launcher_mods_message">Отсюда вы можете управлять всеми модами или пользовательским контентом, установленными в вашей игре. Вы также можете установить новые моды/контент, рекомендованные Dream Launcher, на вкладке «Рекомендуемые» или установить свои собственные моды/контент, загруженные вами, на вкладке «Пользовательские».</system:String>
+    <system:String x:Key="launcher_mods_installedTab">Установлено</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_all">ВСЕ</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_contents">КОНТЕНТ</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_graphics">ГРАФИКА</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_sounds">ЗВУКИ</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_fixes">ФИКСЫ</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_gameplay">ГЕЙМПЛЕЙ</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_sliders">ПОЛЗУНКИ</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_others">ДРУГОЕ</system:String>
+    <system:String x:Key="launcher_mods_installedTab_cat_patches">ОТ ПАТЧЕЙ</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modLibSize">Размер папки</system:String>
+    <system:String x:Key="launcher_mods_installedTab_noMods">Нет модов в этой категории или соответствующих запросу!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modsSearchResult">Найдено %n% модов, соответствующих запросу</system:String>
+    <system:String x:Key="launcher_mods_installedTab_search">Введите для поиска...</system:String>
+    <system:String x:Key="launcher_mods_installedTab_recommendedStar">Этот мод был установлен из библиотеки рекомендованных модов Dream Launcher!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_patchGear">Этот мод был установлен из библиотеки патчей Dream Launcher. Не рекомендуется изменять что-либо!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_customWorld">Этот мод был установлен как зависимость от пользовательского мира. Не рекомендуется изменять что-либо!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_mergedResult">Этот мод является результатом слияния двух или более модов с помощью Dream Launcher!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modDeleteDiagTitle">Удалить мод?</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modDeleteDiagText">Имейте в виду, что если это мод, содержащий скрипты, то сохраненные игры, в которых использовался этот мод, могут столкнуться с серьезными проблемами. Отменить действие удаления невозможно. Вы хотите продолжить?</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_rename">Переименовать</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_revertMerge">Отменить слияние</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_exportModsOfMerge">Экспорт в</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameField">Название мода</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameButton">ГОТОВО</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameErrorTitle">Ошибка</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameErrorText">Введенное имя недействительно. Пожалуйста, укажите правильное имя.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameBusyTitle">Ошибка</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameBusyText">Сейчас переименование невозможно. В Dream Launcher выполняется одна или несколько задач.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_empty">Имя не может быть пустым.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_long">Имя может содержать не более 80 символов.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_exists">Уже есть мод с таким названием.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_hyphen">Имя может содержать не более 1 дефиса.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_chars">Имя может содержать только буквы, цифры, дефис, пробелы и символы подчеркивания.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_fchar">Первый символ не может быть пробелом.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_lchar">Последний символ не может быть пробелом.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_same">Имя осталось прежним. Введите другое имя или закройте это окно для отмены!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_renameInvalid_reservSymbol">Имя не может содержать символов, зарезервированных лаунчером.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_copy">Копировать в</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_s3pe">Открыть в S3PE</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_s3pe_notInstalled">Невозможно открыть мод в S3PE. Инструмент не был установлен в Dream Launcher. Пожалуйста, установите его через страницу «Инструменты».</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_s3oc">Открыть в S3OC</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_s3oc_notInstalled">Невозможно открыть мод в S3OC. Инструмент не был установлен в Dream Launcher. Пожалуйста, установите его через страницу «Инструменты».</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_caspsEditor">Открыть в CASPs Editor</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_casps_notInstalled">Невозможно открыть мод в CASPs Editor. Инструмент не был установлен в Dream Launcher. Пожалуйста, установите его через страницу «Инструменты».</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_addToMerge">Добавить к слиянию</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_addToMerge_notMergeableError">Желаемый мод не может быть объединен, так как содержит ресурсы, которые не рекомендуется объединять!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_addToMerge_notSameCategoryError">Нужный мод не находится в той же категории модов, из которой был начат список, поэтому он не может быть добавлен в этот список слияния!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_addToMerge_alreadyAddedError">Нужный мод уже добавлен в список слияния!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_addToMerge_merging">Объединение модов</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_addToMerge_mergingSuccess">Слияние модов было успешно завершено. Все моды были объединены в мод под названием «%s%»!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_addToMerge_mergingError">Возникла проблема с объединением модов из списка!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_revertMerge_dialogTitle">Отменить слияние?</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_revertMerge_dialogText">Слияние модов будет отменено. Вы можете повторить его в любое время, если захотите. Продолжить?</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_revertMerge_reverting">Отмена слияния модов</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_revertMerge_revertingSuccess">Слияние модов было успешно отменено!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modOptions_revertMerge_revertingError">Возникла проблема с отменой слияния модов!</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modCopyDiagTitle">Готово</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modCopyDiagText">Мод был скопирован в выбранную папку.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modExportDiagTitle">Готово</system:String>
+    <system:String x:Key="launcher_mods_installedTab_modExportDiagText">Моды, содержащиеся в этом слиянии, были экспортированы в выбранную папку.</system:String>
+    <system:String x:Key="launcher_mods_deleteUnrecognized">Файл «%file%», находящийся в папке «Mods», не распознавался Dream Launcher'ом и был удален во избежание сбоев в работе лаунчера и функций игры. Важно, чтобы в папку «Mods» вашей игры не вносились изменения вручную, любые изменения должны производиться только через Dream Launcher.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_busyTitle">Ошибка</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_busyText">Вы не можете закрыть CASPs Editor сейчас. CASPs Editor сейчас читает или сохраняет пакет. Пожалуйста, дождитесь завершения текущей задачи, прежде чем закрывать ее.</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_emptyMsg">В этом Package не обнаружено Parts CAS</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_saveButton">СОХРАНИТЬ</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipMale">Доступно для мужчин</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipFemale">Доступно для женщин</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipToddler">Доступно для малышей</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipChild">Доступно для ребенка</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipTeen">Доступно для подростков</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipYoungAdult">Доступно для молодых</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipAdult">Доступно для взрослых</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipElder">Доступно для пожилых</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipCanges">Модифицированный</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipValidForRandom">Разрешить случайность (другие симы и горожане)?</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_tooltipValidForMaternity">Разрешить для беременных?</system:String>
+    <system:String x:Key="launcher_mods_installedTab_caspe_saved">Изменения, внесенные в мод, были успешно применены.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab">Добавить</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_recommended">РЕКОМЕНДУЕМОЕ</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_recommendedAddError">Невозможно добавить мод. Инструмент «7-Zip» должен быть установлен в Dream Launcher. Пожалуйста, установите его со страницы «Инструменты».</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_recommendedGuideWindowTitle">Dream Launcher - Рекомендуемое руководство по установке мода</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_recommendedGuideWindowTopicTitle">Руководство по настройке мода %modName%</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_custom">ПОЛЬЗОВАТЕЛЬСКИЕ</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_customAddError">Невозможно добавить. Инструмент «Sims3Pack CLI Extractor» должен быть установлен в Dream Launcher. Пожалуйста, установите его со страницы «Инструменты».</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_custom_message">Выберите категорию, в которой вы хотите видеть мод, а затем нажмите на кнопку ниже, чтобы выбрать файл «package» или «sims3pack» из мода The Sims 3 для установки.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_custom_button">ВЫБРАТЬ МОД...</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_recommended_loadError">Невозможно загрузить рекомендуемую библиотеку модов. Пожалуйста, проверьте подключение к Интернету и повторите попытку позже.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_openPage">Открыть страницу модов</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_problemIcon">Этот мод не может быть установлен...</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_guideIcon">Этот мод имеет подробную инструкцию, чтобы настроить его вручную или использовать его в игре! Нажмите здесь, чтобы посмотреть!</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modErrorTitle">Мод недоступен</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modErrorText">Этот мод не может быть установлен в вашу игру по причинам, указанным ниже...</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modErrorReason1">В вашей игре отсутствуют все пакеты расширений, требуемые модом.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modErrorReason2">Рекомендуемый мод «%mod%» не установлен.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modErrorReason3">Мод «%mod%» не установлен. Установите патч, добавляющий этот мод, чтобы устранить проблему.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_s3pPreModInstaller_title">Dream Launcher - Просмотрщик Sims3Pack</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_s3pPreModInstaller_promptQuitErrorTitle">Ошибка</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_s3pPreModInstaller_promptQuitErrorText">Дождитесь завершения извлечения Sims3Pack и выйдите из игры.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_s3pPreModInstaller_extracting">Чтение Sims3Pack</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_s3pPreModInstaller_pkgListEmpty">Ничего не найдено!</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_s3pPreModInstaller_pkgListTip">Все эти файлы были «пакетными» и находились внутри вашего «sims3pack». Теперь вы можете установить каждый из них по отдельности.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_s3pPreModInstaller_install">УСТАНОВИТЬ</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_s3pPreModInstaller_installed">УСТАНОВЛЕНО</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_title">Dream Launcher - Установщик модов</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_promptText">Мод, представленный ниже, будет установлен в вашу игру. После начала установки прерывать ее НЕЛЬЗЯ, так как это может привести к установке поврежденного мода в вашу игру. Вы хотите продолжить установку?</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_promptYes">ДА</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_promptNo">НЕТ</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_promptQuitErrorTitle">Ошибка</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_promptQuitErrorText">Перед выходом дождитесь завершения установки мода.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installTitle">Установка</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installTypeR">Рекомендуемая</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installTypeC">Выборочная</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep1Title">Загрузка мода</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep1TxtDownload">Скачивание</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep1TxtDownloadError">Невозможно загрузить мод</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep1TxtExtract">Извлечение пакета</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep1TxtExtractError0">Невозможно извлечь мод</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep1TxtExtractError1">Невозможно найти извлеченный пакет</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep1TxtLoad">Загрузка</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep1TxtLoadError">Невозможно загрузить мод</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep2Title">Проверка</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep2TxtValidating">Проверка «%pack%"</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep2TxtValidatingError">Неверный файл пакета модов</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep3Title">Проверка на конфликты</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep3TitleS0">Запуск</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep3TitleS1">Сбор ресурсов</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep3TitleS2">Анализ. На данный момент найдено %n% конфликтов.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep3TitleS3">Найдено %n% ресурсов, которые конфликтуют с уже установленными модами</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep3TxtError">Этот мод конфликтует с одним или несколькими уже установленными модами</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep3CopyTitle">Скопировано</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep3CopyText">HEX-код конфликтующего ресурса был скопирован в буфер обмена.</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep4Title">Установка</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep4Txt">Завершение установки</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installStep4TxtError">Уже установлен мод с таким названием</system:String>
+    <system:String x:Key="launcher_mods_addNewTab_modInstaller_installFinish">Мод успешно установлен!</system:String>
+
+    <!-- Screen 6: Launcher - Media -->
+    <system:String x:Key="launcher_media_noMediaFound">Не было создано никаких медиафайлов</system:String>
+    <system:String x:Key="launcher_media_cut">Переместить выбранные медиафайлы в...</system:String>
+    <system:String x:Key="launcher_media_copy">Копировать выбранные медиафайлы в...</system:String>
+    <system:String x:Key="launcher_media_delete">Удалить выбранные медиафайлы</system:String>
+    <system:String x:Key="launcher_media_statusLoad">Загрузка</system:String>
+    <system:String x:Key="launcher_media_statusCount">%n% элементов</system:String>
+    <system:String x:Key="launcher_media_statusCountWithSelecion">%n% всего, %s% выбрано</system:String>
+    <system:String x:Key="launcher_media_deleteConfirmTitle">Подтверждение</system:String>
+    <system:String x:Key="launcher_media_deleteConfirmText">Вы уверены, что хотите удалить выбранные медиафайлы?</system:String>
+    <system:String x:Key="launcher_media_copyDoneTitle">Копирование завершено</system:String>
+    <system:String x:Key="launcher_media_copyDoneText">Выбранные медиафайлы были успешно скопированы в выбранную папку!</system:String>
+    <system:String x:Key="launcher_media_cutDoneTitle">Перемещение завершено</system:String>
+    <system:String x:Key="launcher_media_cutDoneText">Выбранные медиафайлы были успешно перемещены в выбранную папку!</system:String>
+
+    <!-- Screen 6: Launcher - Worlds -->
+    <system:String x:Key="launcher_world_optionsTooltip">Другие варианты...</system:String>
+    <system:String x:Key="launcher_world_optionsHelp">Получить помощь</system:String>
+    <system:String x:Key="launcher_world_addNewButton">ДОБАВИТЬ НОВЫЙ МИР</system:String>
+    <system:String x:Key="launcher_world_customAddError">Невозможно добавить. Инструмент «Sims3Pack CLI Extractor» должен быть установлен в Dream Launcher. Пожалуйста, установите его со страницы «Инструменты».</system:String>
+    <system:String x:Key="launcher_world_customAddErrorPatch">Невозможно добавить. В вашей игре должен быть установлен патч «Поддержка модов». Установите его со страницы «Патчи».</system:String>
+    <system:String x:Key="launcher_world_helpTitle">Dream Launcher - Помощь по пользовательским мирам</system:String>
+    <system:String x:Key="launcher_world_help_topic1Title" xml:space="preserve">Что нужно знать перед установкой пользовательских миров?</system:String>
+    <system:String x:Key="launcher_world_help_topic1Text" xml:space="preserve">
+Вам нужно помнить о нескольких вещах. Во-первых, вы должны загрузить файлы «sims3pack». Эти файлы представляют собой тип архива, внутри которого содержатся файлы «package». Dream Launcher может устанавливать пользовательские миры только из файлов «sims3pack».
+
+Не скачивайте файлы CAW (из Create A World). Вы должны скачать обычный мир, а именно файл «sims3pack». Файлы CAW предназначены для редактирования, чтобы можно было использовать Create a World для редактирования этих миров, в то время как файлы «sims3pack» содержат миры, готовые к игре.
+
+Еще один важный совет - обращайте внимание на производительность миров. Когда вы найдете понравившийся мир, попробуйте поискать его в Интернете, чтобы узнать, нет ли у него проблем с производительностью или маршрутизацией, или таких вещей, как несовместимость с установленными модами. Если на странице загрузки мира есть раздел комментариев, посмотрите, не было ли у кого-нибудь проблем с этим миром.
+        
+Наконец, важно также обратить внимание на зависимости, которые требует каждый пользовательский мир. Некоторые миры потребуют от вас установки некоторых дополнений или каталогов, или даже определенных модов или участков. Важно, чтобы вы обратили внимание на эти детали и убедились, что ваша игра соответствует требованиям, прежде чем устанавливать конкретный пользовательский мир.
+    </system:String>
+    <system:String x:Key="launcher_world_help_topic2Title" xml:space="preserve">Где можно найти пользовательские миры для загрузки?</system:String>
+    <system:String x:Key="launcher_world_help_topic2Text" xml:space="preserve">
+Существует несколько сайтов, предлагающих скачать пользовательские миры. Кнопки ниже содержат ссылки на основные и самые надежные сайты для скачивания миров, уже в формате «sims3pack». Наслаждайтесь!
+    </system:String>
+    <system:String x:Key="launcher_world_help_topic3Title" xml:space="preserve">Могу ли я увидеть миры, которые не были установлены Dream Launcher'ом?</system:String>
+    <system:String x:Key="launcher_world_help_topic3Text" xml:space="preserve">
+К сожалению, нет. Dream Launcher перечисляет только те пользовательские миры, которые были установлены через него.
+    </system:String>
+    <system:String x:Key="launcher_world_help_topic4Title" xml:space="preserve">Как правильно переустановить мир?</system:String>
+    <system:String x:Key="launcher_world_help_topic4Text" xml:space="preserve">
+Во-первых, убедитесь, что у вас все еще есть файл «sims3pack» мира, который нужно переустановить. Затем посмотрите на название мира, который установлен в данный момент, в списке Dream Launcher. Куда-нибудь запишите название мира. После этого удалите мир через Dream Launcher.
+
+Теперь установите мир снова, используя его оригинальный файл «sims3pack». Перед завершением установки дайте миру то же имя, что и раньше.
+    </system:String>
+    <system:String x:Key="launcher_world_help_topic5Title" xml:space="preserve">Что делать при игре в пользовательском мире без населения? Нужно ли его заселять?</system:String>
+    <system:String x:Key="launcher_world_help_topic5Text" xml:space="preserve">
+Часто бывает, что в некоторых пользовательских мирах нет населения, а все жилые дома пустуют. Имейте в виду, что если в вашей игре активирована сюжетная прогрессия, игра автоматически сгенерирует симов, которые заселят ваш город.
+        
+Хотя процесс генерации симов не происходит мгновенно, некоторые симы будут созданы почти мгновенно в мире с нулевым населением, не ограничивающимся только активной семьей. К таким симам, которые генерируются почти мгновенно, относятся симы-служащие и симы-работники, а также симы для каждой работы или школьного здания. После этого игра будет постепенно порождать все больше симов в городе по мере того, как вы будете играть.
+
+Если вы установили патч Базовой оптимизации и патч Лучшее развитие сюжета Dream Launcher'а, то в вашей игре есть NRaas Master Controller и NRaas Story Progression. С помощью Master Controller вы можете получать отчеты демографической статистики по вашему городу, а Story Progression, уже настроен для лучшей оптимизации и иммиграции симов, которые, в свою очередь, будут постепенно заселять ваш город!
+
+Если вам все еще кажется, что в вашем городе не появляется новых симов, то с помощью Story Progression (Лучшее развитие сюжета), установленного патча в лаунчере, вы можете принудительно иммигрировать несколько семей. Для этого нажмите на ратушу, затем "NRaas" > "Story Progression" > "General Options" > "Option: Lots" > "Options: Immigration/Emigration". Теперь нажмите «Quick Immigration», а затем введите количество семей, которые вы хотите иммигрировать в ваш город. Story Progression будет иммигрировать новые семьи каждые 5/10 минут, пока указанное вами число не уменьшится до нуля или пока в городе не закончится подходящее жилье, в зависимости от того, что наступит раньше. Каждый раз, когда в ваш город иммигрирует новый сим/семья, Story Progression будет отправлять вам уведомление.
+    </system:String>
+    <system:String x:Key="launcher_world_help_topic6Title" xml:space="preserve">Поддерживает ли Dream Launcher установку пользовательских миров из официального магазина EA Store/службы обмена?</system:String>
+    <system:String x:Key="launcher_world_help_topic6Text" xml:space="preserve">
+К сожалению, нет. Dream Launcher поддерживает установку только пользовательских миров, созданных пользователями с помощью инструмента EA «Create A World» и в формате «sims3pack». Если вам нужно установить пользовательский мир из службы обмена или из официального магазина EA Store, вам придется использовать оригинальный лаунчер The Sims 3, который можно легко найти на странице «Инструменты» Dream Launcher.
+    </system:String>
+    <system:String x:Key="launcher_world_emptyWorlds">Пользовательские миры не установлены</system:String>
+    <system:String x:Key="launcher_world_problemFound">В файлах одного или нескольких пользовательских миров были обнаружены проблемы. Рекомендуется переустановить эти миры. Зайдите на страницу «Миры», чтобы проверить, с какими из них возникли проблемы.</system:String>
+    <system:String x:Key="launcher_world_unintallButton">Удалить</system:String>
+    <system:String x:Key="launcher_world_unintallDialogTitle">Удаление мира</system:String>
+    <system:String x:Key="launcher_world_unintallDialogText">Пользовательский мир будет удален, и вы больше не сможете видеть его в игре. Если в нем есть вложенные элементы (например, участки, моды и другие), они также будут удалены. Вы уверены, что хотите продолжить?</system:String>
+    <system:String x:Key="launcher_world_install_exitFail0Title">Ошибка</system:String>
+    <system:String x:Key="launcher_world_install_exitFail0Text">Невозможно выйти, пока идет извлечение. Перед выходом дождитесь завершения текущей задачи.</system:String>
+    <system:String x:Key="launcher_world_install_exitFail1Title">Ошибка</system:String>
+    <system:String x:Key="launcher_world_install_exitFail1Text">Невозможно выйти, пока идет установка. Перед выходом дождитесь завершения текущей задачи.</system:String>
+    <system:String x:Key="launcher_world_install_title">Dream Launcher - Установщик миров</system:String>
+    <system:String x:Key="launcher_world_install_extractingTitle">Чтение Sims3Pack</system:String>
+    <system:String x:Key="launcher_world_install_worldName">Название</system:String>
+    <system:String x:Key="launcher_world_install_pickThumbTooltip">Выберите миниатюру...</system:String>
+    <system:String x:Key="launcher_world_install_metaTitle">Метаданные мира</system:String>
+    <system:String x:Key="launcher_world_install_filesTitle">Файлы для установки</system:String>
+    <system:String x:Key="launcher_world_install_tipText">Программа установки обнаружила файл мира автоматически. Однако вы должны проверить, что это правильный файл, а также, если есть другие файлы, отметить, куда они будут помещены, используя список выше. Если вам нужно установить файлы участков, симов или семей, добавьте их перед завершением установки.</system:String>
+    <system:String x:Key="launcher_world_install_installButton">УСТАНОВИТЬ</system:String>
+    <system:String x:Key="launcher_world_install_installEmptyTitle">Упс!</system:String>
+    <system:String x:Key="launcher_world_install_installEmptyText">Похоже, что файл «sims3pack» пуст. Установить его не получится.</system:String>
+    <system:String x:Key="launcher_world_install_currentTypeNone" xml:space="preserve">
+Текущий тип: Нет
+(Будет игнорирован)
+        
+Нажмите, чтобы изменить!
+    </system:String>
+    <system:String x:Key="launcher_world_install_currentTypeWorld" xml:space="preserve">
+Текущий тип: Мир
+(Будет установлен как файл Мира)
+        
+Нажмите, чтобы изменить!
+    </system:String>
+    <system:String x:Key="launcher_world_install_currentTypeMod" xml:space="preserve">
+Текущий тип: Мод
+(Будет установлен как файл зависимости/мод для этого мира)
+        
+Нажмите, чтобы изменить!
+    </system:String>
+    <system:String x:Key="launcher_world_install_currentTypeLibrary" xml:space="preserve">
+Текущий тип: Библиотека
+(Будет установлен как зависимый участок/сим для этого мира)
+        
+Нажмите, чтобы изменить!
+    </system:String>
+    <system:String x:Key="launcher_world_install_setTypeNone">Тип: Нет</system:String>
+    <system:String x:Key="launcher_world_install_setTypeWorld">Тип: Мир</system:String>
+    <system:String x:Key="launcher_world_install_setTypeMod">Тип: Мод</system:String>
+    <system:String x:Key="launcher_world_install_setTypeLibrary">Тип: Библиотека</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameEmpty">Имя не может быть пустым.</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameLong">Имя может содержать не более 64 символов.</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameLetters">Имя может содержать только буквы от A до Z и пробелы.</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameSpace">В имени может быть только 1 пробел, но не двойные пробелы.</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameSpaceFirst">Имя не может начинаться или заканчиваться пробелом.</system:String>
+    <system:String x:Key="launcher_world_install_invalidNameExists">Уже есть установленный пользовательский мир с таким названием.</system:String>
+    <system:String x:Key="launcher_world_install_invalidImageTitle">Ошибка</system:String>
+    <system:String x:Key="launcher_world_install_invalidImageText">Недопустимое изображение. Изображение должно быть квадратным (одинаковую ширину и высоту в пикселях).</system:String>
+    <system:String x:Key="launcher_world_install_installErrorTitle">Ошибка при установке</system:String>
+    <system:String x:Key="launcher_world_install_installErrorTextNameError">Имя мира недопустимо.</system:String>
+    <system:String x:Key="launcher_world_install_installErrorTextTooManyWorlds">Может существовать не более 1 файла типа «Мир» (World).</system:String>
+    <system:String x:Key="launcher_world_install_installErrorTextTooLessWorlds">Должен существовать как минимум 1 файл типа «Мир» (World).</system:String>
+    <system:String x:Key="launcher_world_install_installError">Произошла неизвестная ошибка при установке пользовательского мира. Если он появился в списке миров, пожалуйста, удалите его и попробуйте установить снова.</system:String>
+    <system:String x:Key="launcher_world_install_attachTooltip">Добавить вложение...</system:String>
+    <system:String x:Key="launcher_world_install_attachErrorTitle">Ошибка</system:String>
+    <system:String x:Key="launcher_world_install_attachErrorText">Файл, который вы пытаетесь прикрепить к этой установке мира, уже был прикреплен.</system:String>
+    <system:String x:Key="launcher_world_attachCountTooltip">В этом мире есть вложения, такие как участки или симы!</system:String>
+
+    <!-- Screen 6: Launcher - Exports -->
+    <system:String x:Key="launcher_export_importTooltip">Импорт Package</system:String>
+    <system:String x:Key="launcher_export_copyTooltip">Копировать выбранное в...</system:String>
+    <system:String x:Key="launcher_export_deleteTooltip">Удалить выбранное</system:String>
+    <system:String x:Key="launcher_export_emptyWarn">Экспорты не были обнаружены. Экспорты создаются в игре, при экспорте или публикации контента</system:String>
+    <system:String x:Key="launcher_export_statusLoading">Загрузка</system:String>
+    <system:String x:Key="launcher_export_statusCount">%n% элементов</system:String>
+    <system:String x:Key="launcher_export_statusCountWithSelecion">%n% всего, %s% выбрано</system:String>
+    <system:String x:Key="launcher_export_importErrorTitle">Ошибка</system:String>
+    <system:String x:Key="launcher_export_importErrorText">Файл экспорта с тем же именем, что и файл, который вы пытаетесь импортировать в экспорт, уже существует.</system:String>
+    <system:String x:Key="launcher_export_copyDoneTitle">Копирование завершено</system:String>
+    <system:String x:Key="launcher_export_copyDoneText">Выбранный экспорт был успешно скопирован в выбранную папку!</system:String>
+    <system:String x:Key="launcher_export_deleteConfirmTitle">Подтверждение</system:String>
+    <system:String x:Key="launcher_export_deleteConfirmText">Вы уверены, что хотите удалить выбранные экспорты?</system:String>
+
+    <!-- Screen 6: Launcher - Saves -->
+    <system:String x:Key="launcher_save_importTooltip">Импорт сохранения игры</system:String>
+    <system:String x:Key="launcher_save_noSaveFound">Нет созданных сохранений</system:String>
+    <system:String x:Key="launcher_save_statusLoading">Загрузка</system:String>
+    <system:String x:Key="launcher_save_statusCount">%n% элементов</system:String>
+    <system:String x:Key="launcher_save_importError0Title">Ошибка</system:String>
+    <system:String x:Key="launcher_save_importError0Text">Выбранная папка не является папкой сохранения игры.</system:String>
+    <system:String x:Key="launcher_save_importError1Title">Ошибка</system:String>
+    <system:String x:Key="launcher_save_importError1Text">Уже существует сохранение с таким именем.</system:String>
+    <system:String x:Key="launcher_save_importError2Title">Ошибка</system:String>
+    <system:String x:Key="launcher_save_importError2Text">Импортируемая папка сохранения игры должна находиться на диске "C:\".</system:String>
+    <system:String x:Key="launcher_save_unknownEdit">Неизвестно</system:String>
+    <system:String x:Key="launcher_save_lastEdit">%d% в %h%</system:String>
+    <system:String x:Key="launcher_save_lastEditToday">Сегодня</system:String>
+    <system:String x:Key="launcher_save_saveWorldTooltip">Городок</system:String>
+    <system:String x:Key="launcher_save_unknownWorld">Неизвестно</system:String>
+    <system:String x:Key="launcher_save_lastEditTooltip">Последнее редактирование</system:String>
+    <system:String x:Key="launcher_save_totalSizeTooltip">Размер</system:String>
+    <system:String x:Key="launcher_save_lastVaultTooltip">Последнее сохранение в хранилище</system:String>
+    <system:String x:Key="launcher_save_moreVault">Хранилище</system:String>
+    <system:String x:Key="launcher_save_moreVaultSave">Сделать копию</system:String>
+    <system:String x:Key="launcher_save_moreVaultRestore">Восстановить копию</system:String>
+    <system:String x:Key="launcher_save_moreBackup">Бэкап</system:String>
+    <system:String x:Key="launcher_save_moreBackupExport">Экспорт последнего автосохранения</system:String>
+    <system:String x:Key="launcher_save_lastVaultEmpty">Нет копий в хранилище</system:String>
+    <system:String x:Key="launcher_save_lastVaultDate">%d% в %h%</system:String>
+    <system:String x:Key="launcher_save_vaultSavingCopy">Сохранение копии «%s%» в хранилище</system:String>
+    <system:String x:Key="launcher_save_vaultSavingCopySuccess">Копия «%s%» была успешно сохранена в хранилище. Если в хранилище уже была копия этого сохранения, старая копия была заменена текущей.</system:String>
+    <system:String x:Key="launcher_save_vaultSavingCopyError">Возникла проблема с сохранением копии «%s%» в хранилище.</system:String>
+    <system:String x:Key="launcher_save_vaultRestoreDiagTitle">Подтверждение</system:String>
+    <system:String x:Key="launcher_save_vaultRestoreDiagText">Восстановление копии из хранилища заменит текущее сохранение игры. ЭТО ДЕЙСТВИЕ НЕЛЬЗЯ ОТМЕНИТЬ. Вы хотите продолжить?</system:String>
+    <system:String x:Key="launcher_save_vaultRestoringCopy">Восстановление копии сохранения «%s%» из хранилища</system:String>
+    <system:String x:Key="launcher_save_vaultRestoringCopySuccess">Копия сохранения «%s%» была успешно восстановлена из хранилища!</system:String>
+    <system:String x:Key="launcher_save_vaultRestoringCopyError">Возникла проблема с восстановлением копии сохранения «%s%» из хранилища.</system:String>
+    <system:String x:Key="launcher_save_copyTo">Копировать в</system:String>
+    <system:String x:Key="launcher_save_copyToErrorTitle">Ошибка</system:String>
+    <system:String x:Key="launcher_save_copyToErrorText">Папка с именем сохранения игры уже существует в выбранном месте.</system:String>
+    <system:String x:Key="launcher_save_copyToDoneTitle">Копирование завершено</system:String>
+    <system:String x:Key="launcher_save_copyToDoneText">Сохраненная игра была скопирована в выбранное место.</system:String>
+    <system:String x:Key="launcher_save_delete">Удалить</system:String>
+    <system:String x:Key="launcher_save_deleteDiagTitle">Подтверждение</system:String>
+    <system:String x:Key="launcher_save_deleteDiagText">Сохраненная игра «%s%» будет удалена. ЭТО ДЕЙСТВИЕ НЕЛЬЗЯ ОТМЕНИТЬ. Вы уверены, что хотите продолжить?</system:String>
+    <system:String x:Key="launcher_save_badGameDetected">Обнаружен один или несколько поврежденных файлов сохранения игры. Проверьте страницу «Сохранения» для получения дополнительной информации.</system:String>
+    <system:String x:Key="launcher_save_badGameTip" xml:space="preserve">
+Этот файл сохранения игры поврежден. Возникли проблемы с его сохранением или
+очисткой. С этим мало что можно сделать, но вы можете попробовать одно из
+нижеперечисленных действий...
+        
+1. Восстановите копию этого сохранения из хранилища, если оно было создано.
+
+ИЛИ
+
+2. Экспортируйте автосохранение (бэкап) куда-нибудь на компьютер. Удалите
+сохранение игры, а затем импортируйте обратно ранее экспортированное
+автосохранение. Это заменит проблемную игру с сохранением на резервную копию,
+автоматически созданную игрой.
+    </system:String>
+    <system:String x:Key="launcher_save_backupExportDiagTitle">Экспорт резервных копий</system:String>
+    <system:String x:Key="launcher_save_backupExportDiagText">Автоматическая резервная копия - это не то же самое, что копия, сохраненная в хранилище. Автоматическая резервная копия вашего сохранения создается автоматически при каждом использовании опции «Сохранить» в игре. Последняя автоматическая резервная копия была создана §§%d%§§ Хотите ли вы продолжить экспортировать эту автоматическую резервную копию в какое-либо место на вашем компьютере?</system:String>
+    <system:String x:Key="launcher_save_backupExportErrorTitle">Ошибка</system:String>
+    <system:String x:Key="launcher_save_backupExportErrorText">Папка с таким именем сохранения игры уже существует в выбранном месте.</system:String>
+    <system:String x:Key="launcher_save_backupExportDoneTitle">Экспорт завершен</system:String>
+    <system:String x:Key="launcher_save_backupExportDoneText">Резервная копия сохранения игры была скопирована в выбранное место.</system:String>
+    <system:String x:Key="launcher_save_clean">Очистка</system:String>
+    <system:String x:Key="launcher_save_cleanExitErrorTitle">Ошибка</system:String>
+    <system:String x:Key="launcher_save_cleanExitErrorText">Вы не сможете выйти, пока не завершится текущее задание по очистке. Пожалуйста, дождитесь завершения задачи перед выходом.</system:String>
+    <system:String x:Key="launcher_save_clean_title">Dream Launcher - Очистка сохранения</system:String>
+    <system:String x:Key="launcher_save_clean_box">Параметры очистки</system:String>
+    <system:String x:Key="launcher_save_clean_snapsAndThumbs">Очистка миниатюр и эскизов</system:String>
+    <system:String x:Key="launcher_save_clean_snapsAndThumbsHelp" xml:space="preserve">
+Игра генерирует небольшие уменьшенные изображения симов в игре, по одному
+изображению на каждое выражение лица, эмоцию, настроение и тому подобные
+элементы. Когда игре это нужно, она генерирует все больше и больше файлов,
+однако они никогда не удаляются из сохранения игры, и хотя это небольшие файлы,
+со временем они занимают много места. Очистка этих файлов совершенно безопасна,
+так как игра генерирует новые, когда ей это нужно.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_memsPhotosPaint">Очистка воспоминаний, фотографий с камеры и картины</system:String>
+    <system:String x:Key="launcher_save_clean_memsPhotosPaintHelp" xml:space="preserve">
+Позволит очистить фотографии с камеры, скриншоты из воспоминаний, картины с
+натюрмортом, а также портреты и пейзажи. Игра накапливает эти изображения,
+создавая их дубликаты при сохранении, и даже если вы продадите свои фотографии
+или картины, удалите воспоминания (если они у вас включены), все равно все
+останется в сохраненной игре. Это связано с тем, что EA относится к сохраненным
+играм так, как будто они являются базой данных, из которой никогда ничего
+нельзя удалить. Что еще хуже, все эти изображения дублируются, когда ваш сим
+путешествует в другой мир или возвращается домой.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_seasonsCards">Очистка фотографий поздравительной открытки «Времена года»</system:String>
+    <system:String x:Key="launcher_save_clean_seasonsCardsHelp" xml:space="preserve">
+Это позволит очистить сохраненные фотографии, используемые в открытках «Времена
+года». Как уже говорилось выше, игра только накапливает эти изображения, и со
+временем они могут стать причиной проблем.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_promPhotos">Очистка фотографий с выпускного</system:String>
+    <system:String x:Key="launcher_save_clean_promPhotosHelp" xml:space="preserve">
+Очистит сохраненные фотографии, сделанные на выпускном. Как уже говорилось
+выше, игра только накапливает эти изображения, и со временем они могут стать
+причиной проблем.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_cabinPhotos">Очистка фотографий из фотобудки</system:String>
+    <system:String x:Key="launcher_save_clean_cabinPhotosHelp" xml:space="preserve">
+Это позволит очистить сохраненные фотографии, сделанные в фотобудках. Как
+уже говорилось выше, игра только накапливает эти изображения, и со временем
+они могут вызвать проблемы.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_worldHelp" xml:space="preserve">
+Эта очистка не должна вызвать проблем для вашего сохранения, но она вернет
+этот мир в состояние по умолчанию и удалит отношения, которые ваши симы имеют
+с симами из этого мира, или, если ваши симы имеют какой-либо тип отношений с
+симами из этого мира, симы из этого мира будут удалены из вашего семейного
+дерева. В общем, очищайте эти данные, только если вам не важен этот мир
+или вы провели в нем мало времени.
+    </system:String>
+    <system:String x:Key="launcher_save_clean_shangSimla">Очистка данных городка Шанг-Симла</system:String>
+    <system:String x:Key="launcher_save_clean_champsLesSims">Очистка данных городка Шам ле Сим</system:String>
+    <system:String x:Key="launcher_save_clean_alSimhara">Очистка данных городка Аль-Симара</system:String>
+    <system:String x:Key="launcher_save_clean_simsUniversity">Очистка данных городкa Университет Sims</system:String>
+    <system:String x:Key="launcher_save_clean_oasisLanding">Очистка данных городкa Оазис приземления</system:String>
+    <system:String x:Key="launcher_save_clean_tipText">Перед очисткой инструмент автоматически обновит резервную копию сохранения игры. Очистка не окажет негативного влияния на ваши сохранения, но имейте в виду, что после очистки сохранения игра может работать медленнее в течение первых нескольких минут, пока она восстанавливает необходимые ресурсы.</system:String>
+    <system:String x:Key="launcher_save_clean_clearButton">ОЧИСТИТЬ</system:String>
+    <system:String x:Key="launcher_save_clean_clearError">Возникла проблема с очисткой сохранения «%s%». Чтобы отменить эту очистку, экспортируйте последнюю сохраненную автоматическую резервную копию, удалите сохранение, в котором возникли проблемы, а затем импортируйте последнюю автоматическую резервную копию.</system:String>
+    <system:String x:Key="launcher_save_clean_clearSuccess">Очистка сохранения игры «%s%» успешно завершена! Общий размер сохранения уменьшился с %b% до %a%.</system:String>
+
+    
+    
+    
+    
+    <!-- Screen 6: Launcher - Performance Tips -->
+    <system:String x:Key="launcher_home_performanceTip_Tab">Советы по производительности</system:String>
+    <system:String x:Key="launcher_home_performanceTip_Title">Советы по улучшению игровой производительности</system:String>
+    <system:String x:Key="launcher_home_performanceTip_0" xml:space="preserve">
+Настройки игры§
+Настройте свою игру в соответствии с рекомендациями Dream Launcher для повышения производительности. На странице «Настройки» вы можете навести курсор мыши на значок
+вопросительного знака, чтобы просмотреть рекомендации. Соблюдение всех рекомендуемых настроек обеспечит наилучшие параметры для вашей игры!
+\b\b
+Кроме того, настройки игры должны выполняться только через Dream Launcher.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_1" xml:space="preserve">
+Используйте Overwatch по усмотрению§
+Если вы установили патч Базовой оптимизации Dream Launcher, в вашей игре появится Overwatch. Overwatch будет уведомлять вас, когда обнаружит сима с проблемами маршрутизации,
+например, «Сегодня у сима возникли проблемы с выходом из дома». Когда вы увидите это уведомление, найдите сима, у которого возникли проблемы, используя режим «Редактировать город», а затем попытайтесь
+выяснить, в чем может быть причина проблемы. Обычно это такие объекты, как мебель, мешающая симу найти маршрут между собой и точкой назначения, и тому подобные вещи.
+\b\b
+Вы также можете использовать Master Controller для сброса участков, починки сломанных предметов и сброса объектов, с которыми могут возникнуть проблемы. По умолчанию Overwatch
+установленный в патчах Dream Launcher, не будет автоматически сбрасывать проблемных симов. Таким образом, у вас будет время найти сима и получить более точные сведения о том, что может быть причиной проблемы.
+\b\b
+Рекомендуется по возможности решать проблемы с маршрутизацией симов в вашем городе, так как эти проблемы могут вызвать лаги в игре. Если вы предпочитаете
+сброс всех симов в городе, вы можете использовать чит «resetsim *» (без кавычек) или Master Controller, устанавливаемый патчами Dream Launcher.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_2" xml:space="preserve">
+Избегайте игры в Исла Парадисо§
+К сожалению, этот город, добавленный в 10 дополнении, имеет ряд проблем с оптимизацией и маршрутизацией, из-за чего игра в нем доставляет немало хлопот, вызывая лаги и зависания.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_3" xml:space="preserve">
+Избегайте модификации города§
+Не изменяйте свой город, добавляя новые жилые и коммерческие участки, удаляя существующие участки и т.п. Выполнение этих операций может привести к изменению
+маршрутной сетки вашего города, а поскольку EA не очень хорошо оптимизировала игру, эти изменения маршрутной сетки могут привести к увеличению лагов в вашей
+игре, в зависимости от мира и случая. В общем, используйте только существующие участки в городе, насколько это возможно.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_4" xml:space="preserve">
+Играйте с отключенными воспоминаниями§
+The Sims 3 Memories привносит в игру серьезные проблемы с оптимизацией. Если вы установили патчи Dream Launcher, то в вашей игре уже есть мод, который принудительно отключает
+воспоминаний, но чтобы убедиться в этом, поиграйте с выключенной настройкой «Включить воспоминания».
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_5" xml:space="preserve">
+Используйте SSD§
+Рекомендуется устанавливать операционную систему на SSD, а не на HDD. Также, если это возможно, оставьте The Sims 3 установленной на SSD. The Sims 3 - игра,
+которая интенсивно работает с данными ввода-вывода и может значительно выиграть от использования более быстрых накопителей, таких как SSD.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_6" xml:space="preserve">
+Избегайте посещения будущего§
+Если вам не очень интересно исследовать будущее, не отправляйтесь в Будущее (Оазис приземления). Это может предотвратить некоторые проблемы с оптимизацией и, как следствие, лаги.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_7" xml:space="preserve">
+Больше школ!§
+В вашем городе много детей школьного возраста и подростков? Подумайте о том, чтобы добавить одну или несколько дополнительных школ, чтобы избежать переполненности
+на входе и невозможности симов попасть внутрь. Это позволит избежать проблем с переполненностью и, как следствие, с маршрутизацией, которая приведет к лагам в вашей игре.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_8" xml:space="preserve">
+Успокойте свой антивирус§
+Игра постоянно создает, читает и записывает файлы в папке «Документы» на вашем компьютере. Если на вашем компьютере установлен только «Microsoft Windows Defender»,
+добавьте папку «Documents/Electronic Arts/The Sims 3» в список исключений, чтобы антивирус не сканировал файлы, созданные в этой папке, что может улучшить производительность вашей игры.
+\b\b
+Если у вас есть другие сторонние антивирусы, по возможности проделайте ту же процедуру для них, поскольку другие антивирусы могут быть еще более агрессивными, чем Windows Defender.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_9" xml:space="preserve">
+Выход из игры перед загрузкой другого сохранения§
+Всегда выходите из игры полностью на рабочий стол и перезапускайте ее перед загрузкой другого сохранения или началом новой игры, а не просто возвращайтесь в главное меню.
+The Sims 3 не очень эффективно освобождает память, используемую предыдущим городом, и это не только может привести к ошибке сохранения 12, но и загружает данные из файла
+предыдущего города, что приводит к постоянному раздуванию вашего сохранения и может привести к повреждению файла сохранения.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_10" xml:space="preserve">
+Избегайте лифтов в общественных местах§
+Лифты могут вызывать лаги, особенно на общественных участках.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_11" xml:space="preserve">
+Опасные читы§
+Чит «buydebug» может привести к различным проблемам, если вы оставите его активным, пока ваши симы путешествуют, или если вы выйдете из игры. Поэтому не держите его активным в таких ситуациях.
+\b\b
+Чит «moveobjects on» может привести к различным проблемам, особенно с маршрутизацией, поэтому не рекомендуется включать его во время игры. При попытке разместить окно или дверь, попробуйтеиспользовать клавишу ALT для размещения объектов.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_12" xml:space="preserve">
+Избегайте играть в очень больших или переполненных городах§
+Такие города, как Бриджпорт, могут вызывать проблемы с производительностью из-за плотности застройки, которая способствует большему количеству существующих симов и участков, которые нужно смоделировать или загрузить в память. Предпочтите города среднего или малого размера, например, пригородные города или города с небольшим количеством зданий.
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_13" xml:space="preserve">
+Избегайте установки «исправленных» версий оригинальных миров EA§
+Во многих случаях «исправленные» версии оригинальных миров, созданные EA, могут принести больше проблем, чем они пытаются исправить: проблемы с маршрутизацией, поломка
+некоторых предметов, таких как участки или транспортные средства и т.д. Эти миры также могут иметь проблемы несовместимости с модами, которые исправляют проблемы с
+маршрутизацией, так как эти «исправленные» версии миров изменяют некоторые вещи. Dream Launcher с помощью патчей уже установил несколько исправлений маршрутизации,
+которые очень помогают вашей игре. Но если вам интересно играть в разных мирах, без проблем с маршрутизацией и тому подобных вещей, подумайте о поиске пользовательских
+миров в Интернете и установке их через Dream Launcher!
+    </system:String>
+    <system:String x:Key="launcher_home_performanceTip_14" xml:space="preserve">
+Сохраняйте игру, используя «Сохранить как»§
+Если у вас есть привычка регулярно сохранять копию игры в хранилище Dream Launcher, то вы можете просто использовать «Сохранить», но все же рекомендуется периодически (например, раз в 3 недели) использовать «Сохранить как» с новым именем (например: «Город (1)»), чтобы создать чистое сохранение, а затем удалить старое.
+\b\b
+Хорошая привычка - регулярно сохранять копию своего сохранения в хранилище, потому что если что-то пойдет не так с вашим сохранением, вы сможете восстановить его по существующей копии в хранилище.
+Если вы очень дорожите своим сохранением, рекомендуется даже периодически копировать его в какое-нибудь место на компьютере с помощью Dream Launcher, а затем сохранять копии в безопасном месте,
+например в резервной копии или облаке.
+    </system:String>
+
+    
+    
+    
+    
+    <!-- Screen 6: Launcher - Maintenance Tips -->
+    <system:String x:Key="launcher_home_maintenanceTip_Tab">Советы по поддержанию работоспособности</system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_Title">Советы по регулярному поддержанию вашей игры</system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_0" xml:space="preserve">
+Держите под контролем количество настраиваемого контента§.
+Будьте осторожны с количеством контента, такого как одежда, предметы, мебель и другие подобные объекты, которые вы устанавливаете в свою игру.
+Обычно хорошим верхним пределом для пользовательского контента является 3,0 ГБ для папки «Mods». В Dream Launcher размер папки «Mods» отображается на странице «Моды».
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_1" xml:space="preserve">
+Объединяйте пользовательский контент§
+Вы только что загрузили множество одежды, мебели и других видов контента? Что ж. Объедините все это! Слияние - это не что иное, как объединение нескольких «пакетных»
+файлов в один единственный «пакетный» файл. Слияние файлов помогает значительно сократить время загрузки игры. Не следует объединять файлы модов, содержащих скрипты
+или ползунки. Если вы не знаете, как это сделать, нажмите на иконку «Steam» в Dream Launcher, чтобы получить доступ к мега-руководству и научиться этому.
+\b\b
+ПРИМЕЧАНИЕ: Начиная с версии 1.3.0, Dream Launcher способен объединять моды совершенно безопасным и простым способом. Чтобы произвести слияние, просто перейдите в
+раздел «Установленные моды», а затем нажмите на значок с тремя точками возле любого мода, чтобы начать. Слияние недоступно для модов, установленных из Рекомендованного
+магазина модов, или модов, установленных через патчи, так как эти моды уже полностью оптимизированы и объединяются по мере необходимости. Наконец, после слияния
+вы можете в любой момент легко отменить его.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_2" xml:space="preserve">
+Регулярно очищайте сохранения игры§
+Иногда размер файла сохранения может немного выходить из-под контроля (больше 200-300 Мб), что приводит к долгой загрузке. Это можно исправить, удалив некоторые ресурсы
+из файла сохранения, то есть очистив его. Иногда игра генерирует несколько ресурсов для одного события, например, фотографии с камеры, воспоминания и т. д., но используется
+только один из них. Что касается неиспользованных ресурсов, то игра сохранит их в сохранения игры как мусор. Кроме того, если вы когда-нибудь отправляли своих симов в
+путешествие, копируются не только ресурсы воспоминаний, но и фотографии с камеры, и такие объекты, как картины, находящиеся в инвентаре симов. Игра будет использовать новые
+копии в качестве ресурсов для отображения на экране. Что касается старых, то игра не удалит их, а оставит в сохранении. Поэтому необходимо регулярно очищать сохранения.
+\b\b
+В Dream Launcher на странице «Сохранения» вы можете нажать на значок с тремя точками вашего сохранения, а затем на «Очистить», чтобы очистить ваше сохранение очень простым и быстрым способом.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_3" xml:space="preserve">
+Обращайте внимание на журналы ошибок§
+Если вы установили патчи Dream Launcher, в вашей игре появится Error Trap. Он будет отправлять вам уведомление во время игры, когда обнаружит ошибку, возникшую во время игры. Dream Launcher также всегда будет уведомлять вас, когда обнаружит новые журналы ошибок. Вы можете просмотреть их на странице «Кэш».
+\b\b
+Очень важно, чтобы вы просматривали каждый новый журнал, поскольку Error Trap хоть автоматически и исправляет большинство ошибок, но некоторые из них он исправить не в состоянии.
+Вы должны просматривать каждый новый журнал и, если ошибка не была исправлена, вы должны исправить ее, обычно путем сброса объектов, симов или участков. Если вы не понимаете, что написано в журнале ошибок, попробуйте поискать помощь в Google или в интернете в целом.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_4" xml:space="preserve">
+Регулярно очищайте инвентарь§
+По мере того как проходит время в вашей игре, симы накапливают предметы в своих инвентарях. После нескольких недель игры очень легко получить сотни предметов,
+валяющихся по всему городу.
+Если вы установили патчи Dream Launcher, в вашей игре будет доступен мод Master Controller, и вы сможете легко очистить инвентарь всех городских симов.
+Для этого просто нажмите на ратушу, а затем на «NRaas > Master Controller > City > Object Stats». Затем отметьте « Inventory» и нажмите «Ok», затем отметьте
+«All» и снова нажмите «Ok». В игре появится окно подтверждения, в котором вас спросят, действительно ли вы хотите очистить предметы. Просто подтвердите. Если
+вы нажмете на участок семьи и проделаете те же действия, вы увидите только предметы, принадлежащие семье, которой принадлежит участок.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_5" xml:space="preserve">
+Очищайте весь город§.
+Если вы установили патчи Dream Launcher, то в вашей игре появится Master Controller. С его помощью вы сможете сбросить весь город, включая всех симов, участки,
+объекты и другие вещи. Рекомендуется сбрасывать весь город не реже, чем раз в 4 игровые недели. Это поможет сделать игру более плавной, удалить заброшенные
+объекты, такие как автомобили, сбросить сломанные вещи и т.п., что может привести к улучшению производительности вашей игры.
+\b\b
+Сброс города никак не повлияет на ваш прогресс. Чтобы сбросить, нажмите на ратушу, а затем на «NRaas > Master Controller > Town > Reset All». Затем просто
+подтвердите. Игра на несколько мгновений зависнет, но вскоре вернется в нормальное состояние.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_6" xml:space="preserve">
+Регулярно очищайте временные и кэш-файлы§.
+В процессе игры создаются временные и кэш-файлы. Очистка кэша и временных файлов может положительно сказаться на производительности, а иногда и решить проблемы.
+Очищайте кэш и временные файлы регулярно, а также после установки нового мода, пользовательского контента или пользовательского мира. В Dream Launcher вы можете
+очистить все типы временных и кэш-файлов, перейдя на страницу лаунчера «Кэш».
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_7" xml:space="preserve">
+Позаботьтесь об инвентаре ваших активных симов§
+Старайтесь не держать слишком много предметов в инвентаре активных симов. Большое количество предметов в инвентаре может привести к задержке в игре.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_8" xml:space="preserve">
+Сохраняйтесь в режиме просмотра города§
+Перед сохранением игры всегда переключайтесь в режим просмотра города. В этом режиме игра использует меньше оперативной памяти, что может снизить вероятность
+возникновения ошибок или проблем с сохранением, особенно если ваша игра уже близка к пределу использования оперативной памяти.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_9" xml:space="preserve">
+Проверяйте использования оперативной памяти в игре§
+The Sims 3 - это игра на 32-битной архитектуре. Поэтому у него есть серьезное ограничение на количество ресурсов, которые он может использовать на компьютере. В
+основном это означает, что The Sims 3 может использовать не более ~3,5 ГБ установленной оперативной памяти. Поэтому во время игры проверьте, не приблизилась ли
+ваша игра к этому пределу. Если ваша игра приближается к ~1800 МБ, это значит, что пора сохранить игру, закрыть The Sims 3, а затем открыть ее снова, пока не
+возникли проблемы с падением или ошибкой сохранения. Dream Launcher отображает счетчик использования оперативной памяти в игре, если включена опция Оверлей.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_10" xml:space="preserve">
+Проверяйте статистику населения§
+Время от времени поглядывайте на население вашего города. Если вы обнаружите, что оно сильно увеличилось, а игра стала больше лагать, удалите из города
+неактуальных симов или семьи. Если вы установили патчи Dream Launcher, в вашей игре появится Master Controller. Чтобы получить статистику по населению города,
+нажмите на ратушу, затем «NRaas > Master Controller > Demographics > Population», а затем нажмите на «X». В игре появится краткий отчет с подробной информацией о
+жителях вашего города.
+\b\b
+Если вы хотите удалить некоторых симов из города, вы можете воспользоваться редактором города в игре, а также Master Controller. Для этого нажмите на ратушу,
+затем нажмите «NRaas > Master Controller > City > Annihilation». Выберите категорию симов и нажмите «Ок». Затем из появившегося списка симов выберите одного или
+нескольких симов, которых вы хотите удалить из города, и нажмите «Ок». Положительной стороной использования Master Controller является то, что вы можете
+просматривать даже служебных или бездомных симов.
+\b\b
+Чтобы было проще разобраться в типах симов...\b\b
+- Обслуживающие симы: это симы, которые не живут в городе в буквальном смысле (попадают в категорию «Бездомные»), а лишь оказывают услуги, такие как механики, почтальоны и т.д.\b
+- Ролевые симы: эти симы не живут в городе в буквальном смысле (попадают в категорию «Бездомные»), а лишь выполняют функции, например, пианистов, библиотекарей, татуировщиков и т.д.\b
+- Обычные симы: Это симы, которые живут в городе, будь то неактивные симы или их активная семья.
+\b\b
+Если вы хотите еще больше ограничить количество симов, которые могут разместиться в городе, вы можете изменить конфигурацию пустых жилых участков, чтобы
+«заблокировать» их. Для этого перейдите в режим редактирования города, затем нажмите на иконку пустого жилого участка. Затем в открывшемся окне нажмите на
+«Изменить тип участка». Переключитесь на «Общественный» и «Запрещенные для посещения». Таким образом, игра поймет, что такой участок или дом не может быть
+заселен, а значит, у нее будет меньше соблазна добавлять в город новые семьи.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_11" xml:space="preserve">
+Регулируйте население мертвецов§
+Со временем в вашей игре рождаются симы, другие умирают. Со временем количество умерших симов накапливается. Симы, умершие в неактивных семьях, автоматически
+попадают в городской Мавзолей. Активные симы превращаются в урны или надгробия. Проблема в том, что со временем мертвые симы могут раздуть ваш файл сохранения
+или вызвать проблемы с лагами из-за того, что их призраки будут появляться во время игрового процесса. Поэтому время от времени стоит проводить чистку, чтобы все
+работало наилучшим образом.
+\b\b
+Прежде чем мы начнем, знайте, что на кладбище вашего города должен быть мавзолей. Если его нет, войдите в режим редактирования города и измените кладбище так,
+чтобы на нем появился Мавзолей. Рекомендуется делать это в начале игры, но если вы играете уже некоторое время и с помощью «Редактирования города» перемещаете
+что-либо на кладбище, то существующие могилы исчезнут. Поэтому вам лучше купить участок, а затем внести эти изменения, чтобы сохранить существующие могилы.
+Возможно, вам придется использовать чит «buydebug on», чтобы найти Мавзолей для покупки. Чит «buydebug on» будет работать, только если активна функция
+«testingcheatsenabled true». Не забудьте отключить «buydebug» после завершения игры, используя «buydebug off».
+\b\b
+Прежде всего нужно убедиться, что все мертвые имеют надгробия или урны. Для этого нажмите на ратушу, затем «NRaas > Master Controller > Bury the Dead». После
+этого, если есть умершие симы без связанных с ними надгробий или урн, урны или надгробия будут созданы и храниться в городском Мавзолее.
+\b\b
+Теперь осталось убедиться, что все существующие в городе урны и надгробия хранятся в городском Мавзолее. Нажмите на ратушу, затем «NRaas > Master Controller >
+Sim > Basic > Find Grave», теперь выберите мертвого сима, урна или надгробие которого, как вы подозреваете, не хранится в городском Мавзолее, затем нажмите «Ок».
+Если урна уже находится в Мавзолее или в инвентаре сима или объекта, игра спросит вас, хотите ли вы перенести урну или надгробие в свой инвентарь, решайте сами.
+Если могила или урна мертвого сима находится в мире, на открытом пространстве, камера переместится на это место.
+\b\b
+Если урна или надгробие находятся на общественном участке, например на кладбище, вам нужно сделать следующее... Щелкните на месте, где находится могила или урна
+на участке. Нажмите кнопку «NRaas > Master Controller: > Radius Add To Inventory», затем введите "9" и нажмите "Ok". В списке появится несколько предметов,
+расположенных рядом с местом, на которое вы нажали, так что вы можете выбрать один и перенести его в инвентарь вашего сима. Вы должны выбрать надгробие, название
+которого должно быть похоже на «Objects.UrnstoneHuman», а затем нажмите «Ok». После этого появится меню, в котором будут показаны все урны. Некоторые урны или
+надгробия не имеют симов, связанных с ними, и находятся там только для украшения, поэтому вам нужно получить надгробие или урну с именем сима, которого вы ищете.
+Как только это будет сделано, просто нажмите «Ок» и подтвердите следующее окно подтверждения. Надгробие будет помещено в семейный инвентарь, затем вы можете
+войти в режим покупки, поместить его на свой участок и в инвентарь активного сима. О том, что с ним делать, расскажем ниже.
+\b\b
+Если урна или надгробие находится на участке неактивного сима, все будет немного проще. Щелкните по участку, на котором находится урна, затем нажмите «Nraas >
+Master Controller > Make Active». После этого семья, владеющая участком, станет вашей активной семьей. Теперь просто найдите урну или надгробие и поместите их в
+инвентарь вашего активного сима. Если вы не хотите сделать семью, владеющую участком, активной, чтобы получить урну или надгробие, то нажмите на участок в месте,
+близком к тому, где, по вашему мнению, находится урна. Затем нажмите «NRaas > Master Controller: > Radius Add To Inventory», затем введите "9" и нажмите "Ok". В
+списке появится несколько коллекционных предметов, расположенных рядом с местом, на которое вы нажали, так что вы можете выбрать один из них и перенести в
+инвентарь вашего сима. Вы должны выбрать предмет надгробия, название которого должно быть похоже на «Objects.UrnstoneHuman», а затем нажмите «Ok». Как только это
+будет сделано, следующие шаги будут такими же, как и при взятии урны или надгробия с общественного участка, как описано в параграфе выше...
+\b\b
+Как только урна или надгробие окажутся у вас в руках, пришло время поместить их в Мавзолей. Для этого нажмите на ратушу, затем «NRaas > Master Controller > City
+> Manage the Dead». Теперь просто перенесите надгробия и урны в инвентарь Мавзолея. Если перенести артефакты не получается, вы можете перейти на участок
+кладбища, щелкнуть на Мавзолее, затем «NRaas > Master Controller: XXX Family Mausoleum... > Transfer To», а затем просто выберите все урны и надгробия в
+инвентаре вашего сима и нажмите «Ok». Вот и все!
+\b\b
+Просто небольшое дополнение. Для вашей семьи также полезно поместить надгробные плиты или урны ваших умерших симов в Мавзолей. Если вы хотите, чтобы один или два
+призрака продолжали появляться, поместите несколько надгробий за пределами Мавзолея, а если вы хотите, чтобы призраки не появлялись, держите все внутри Мавзолея.
+\b\b
+БОНУС: если вы долгое время играли в одну и ту же игру с сохранением, возможно, в ваших интересах удалить неактуальных мертвых симов. В этом случае просто
+нажмите на ратушу, затем нажмите «NRaas > Master Controller > City > Annihilation > Dead» и нажмите «Ok». В открывшемся списке выберите симов, которых вы хотите
+убрать. Теперь нажмите «Ok».
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_12" xml:space="preserve">
+Обратите внимание на количество предметов на вашем участке§
+Если на вашем активном участке тысячи объектов, стоит проявить минимализм и попытаться уменьшить их количество до более реалистичного. Тысячи объектов на
+активном участке могут вызвать лаги. Зависит от каждого конкретного случая, поэтому, если вы испытываете лаги, попробуйте выбрать участок с меньшим количеством
+объектов.
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_13" xml:space="preserve">
+Избавьтесь от ЛЛАМЫ!§
+Ray Atomic Molecular Arranger или ЛЛАМА - это телефонная будка, которая телепортирует симов. Проблема в том, что ЛЛАМА вызывают проблемы с маршрутизацией и лаги
+в игре, поэтому проверьте, есть ли они в вашем городе, и если есть, удалите их все.
+\b\b
+Если вы установили патчи Dream Launcher, в вашей игре появится Master Controller. Чтобы удалить все ЛЛАМЫ из города, нажмите на ратушу, затем нажмите «NRaas >
+Master Controller > City > Object Statistics», выберите «No Inventory» и нажмите «Ok». В появившемся списке подождите, пока все предметы загрузятся. Это может
+занять некоторое время. Список уже отсортирован по алфавиту, поэтому ищите предмет под названием «Object.Miscellaneous.AncientPortal» (красный значок телефонной
+будки). Если вы его не найдете, то, скорее всего, в вашем городе его нет, но если есть, то выделите его и нажмите «Ok», в следующем окне отметьте опцию «All» и
+нажмите «Ok».
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_14" xml:space="preserve">
+Оставляйте мало спавнеров в городке или удаляйте их полностью§
+Прежде чем мы поймем, почему спавнеры могут быть проблемой, нам нужно понять, что они делают в игре. Спавнеры - это невидимые сущности (или объекты) в The Sims
+3, которые позволяют объектам коллекционирования, таким как семена, камни, драгоценные камни, металлы, жуки, рыбы и места раскопок. спавнеры обычно располагаются
+в нескольких местах в любом мире, и каждый из них имеет шанс создать объект определенного типа (или нескольких типов).
+\b\b
+Дело в том, что спавнеры могут быть ОЧЕНЬ проблемными для вашей игры, порождая ошибки и лаги. Кроме того, если вам нужно что-то, что появляется из спавнера
+(например, определенная рыба), вы всегда можете найти другой способ получить это. Например, с помощью собак можно найти драгоценные камни и металлы, не
+разыскивая их в спавнерах, разбросанных по всей местности в мире. Поскольку спавнеры являются проблемными и создают проблемы с производительностью, рекомендуется
+удалить спавнеры из города, или, по крайней мере, большинство. Существует также стратегия: удалить ВСЕ спавнеры из города, а затем вручную добавить несколько
+спавнеров повсеместно, чтобы они не так сильно влияли на производительность, как если бы в городе оставались ВСЕ первоначальные спавнеры.
+\b\b
+Поскольку спавнеры невидимы, нам нужно использовать некоторые читы, чтобы их увидеть. Чтобы увидеть спавнеров, вам нужно активировать чит «buydebug on», но он
+будет работать только в том случае, если активен чит «testingcheatsenabled true». Активировав эти читы в режиме просмотра города, вам нужно будет только
+отредактировать участок, и тогда все существующие спавнеры на этом участке появятся в виде белых квадратиков. Если вы нажмете на каждый из них, вы сможете
+переместить их, а также увидеть их названия, чтобы узнать, к какому типу относится спавнер. Если вы хотите удалить спавнер, просто продайте его. Не забудьте
+отключить «buydebug off», когда закончите.
+\b\b
+Если вы хотите быстро и легко удалить все спавнеры из города, то, если вы установили патчи Dream Launcher, у вас в игре будет Master Controller. Для этого
+щелкните по ратуше, затем в «NRaas > Master Controller > City > Object Stats». В открывшемся окне отметьте «Location» и «No Inventory», затем нажмите «Ok».
+Появится список с различными объектами в городе, загрузка всех элементов может занять несколько минут, поэтому подождите. Когда все загрузится, отметьте все
+объекты, название которых начинается с «Objects.Spawners.XXXX», или только те спавнеры, которые вы хотите удалить (рыбные спавнеры имеют название, начинающееся с
+«Objects.Fishing.FishingSpawnerXXX»). Затем нажмите «Ok». В следующем открывшемся окне отметьте «All» и нажмите «Ok». После этого просто подтвердите. Возможно,
+потребуется повторить эту процедуру через несколько недель игры.
+\b\b
+Если вы решили удалить все спавнеры, а вам нужно место для спавна чего-то определенного (например, мелких существ), то вы можете разместить спавнер для нужного
+предмета в том месте, которое вам нужно! Чтобы сделать это, активируйте чит «buydebug on» и войдите в режим редактирования нужного участка. Переключитесь в режим
+покупки. Затем снова активируйте чит «buydebug on». Над интерфейсом покупки в магазине появится иконка знака вопроса. Нажмите на неё. Во вкладках категорий,
+которые появятся горизонтально, найдите «Spawners». Здесь вы найдете много и много спавнеров, которые можно подобрать и разместить на участке. Например, «спавнер
+жука Геркулеса». Спавнеры обычно имеют иконку белой коробки, большой или маленькой.
+\b\b
+Еще одна вещь! Чтобы избежать читерства, не ставьте спавнеры, которых обычно нет в вашем городе! ;)
+    </system:String>
+    <system:String x:Key="launcher_home_maintenanceTip_15" xml:space="preserve">
+Переезд в новый город§
+Если вы постоянно поддерживаете свой город оптимизированным и играете уже некоторое время, но все еще чувствуете, что в игре наблюдаются лаги, которых раньше не
+было, в качестве последнего средства вы можете проверить возможность миграции своей семьи в чистый и новый город. Мигрировать можно, сохранив свое семейное древо
+и отношения с другими симами. Для этого мы будем использовать мод «Porter», поэтому НЕ используйте родную опцию игры «Переехать в новый город».
+\b\b
+Прежде чем начать, убедитесь, что в вашей игре установлен мод «Porter». Его можно найти на странице «Моды» Dream Launcher, во вкладке «Рекомендуемые», в разделе
+«Другие». Кроме того, не пытайтесь выполнить следующие действия в режиме редактирования города, только в обычном режиме игры.
+\b\b
+Сначала поставьте игру на паузу. Затем щелкните на крыше дома вашей семьи. Теперь нажмите на «NRaas > Porter... > Pack». В открывшемся окне выберите свою
+активную семью и другие семьи, которые вы хотели бы "упаковать" и поддерживать с ними отношения. Если вы хотите сохранить семейные древа, важно, чтобы на этом
+шаге вы выбрали семьи, которые умерли и которые имеют отношение к симам, которых вы упаковываете. Теперь нажмите «Ok». В открывшемся списке отметьте «All» и
+снова нажмите «Ok». Дайте пакету название и нажмите «Ok». Теперь просто подождите. После завершения экспорта полностью закройте игру, кроме Dream Launcher.
+\b\b
+Откройте The Sims 3 снова и начните новую игру в нужном мире. Выберите любого сима и поместите его в дом, чтобы начать игру с самого начала. Теперь нажмите на
+крышу пустого дома, нажмите «NRaas > Porter... > Unpack». В открывшемся окне выберите ТОЛЬКО тот пакет, который имеет название, указанное вами ранее, и нажмите
+«Ok». Семьи, содержащиеся в пакете, будут импортированы в город. Дополнительные семьи получат свои дома, а умершие симы будут автоматически добавлены в Мавзолей.
+\b\b
+Вы можете войти в режим «Редактирование города», чтобы найти свою семью и сделать ее активной уже сейчас. Если вы предпочитаете активировать семью быстрее, вы
+можете использовать Master Controller. Для этого нажмите на ратушу, затем «NRaas > Master Controller > Home > Make Active». В открывшемся окне найдите дом с
+именем вашей семьи и нажмите на него.
+\b\b
+Вот и все! Но если после импорта вы обнаружите, что семья имеет неправильное имя (фамилию), вы можете использовать Master Controller, чтобы изменить имя
+(фамилию) семьи. Для этого нажмите на крышу дома семьи, затем на «NRaas > Master Controller > Change Name» в открывшемся окне введите фамилию, которая должна
+быть у членов семьи, и нажмите «Ok». Вы можете навести курсор на члена семьи сима, чтобы увидеть его фамилию, а затем дать такую же фамилию этому члену семьи.
+\b\b
+ВНИМАНИЕ: включение в экспорт большого количества семей может привести к тому, что в игре закончится память и она выдаст ошибку при экспорте. Поэтому, если вы
+хотите экспортировать несколько семей из города в рамках одного пакета, чтобы сохранить отношения, необходимо проверить максимальное количество семей, которые
+можно экспортировать.
+    </system:String>
+
+</ResourceDictionary>

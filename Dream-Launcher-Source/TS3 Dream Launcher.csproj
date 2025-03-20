@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Resources\icon-32x.ico</ApplicationIcon>
-    <AssemblyVersion>1.4.2</AssemblyVersion>
+    <AssemblyVersion>1.5.0</AssemblyVersion>
     <FileVersion></FileVersion>
     <UseWindowsForms>True</UseWindowsForms>
   </PropertyGroup>
@@ -122,8 +122,10 @@
     <None Remove="Resources\icon-64x.png" />
     <None Remove="Resources\import-export.png" />
     <None Remove="Resources\info-icon.png" />
+    <None Remove="Resources\lamp-tip.png" />
     <None Remove="Resources\lang-en-us.png" />
     <None Remove="Resources\lang-pt-br.png" />
+    <None Remove="Resources\lang-ru-ru.png" />
     <None Remove="Resources\link-donate.png" />
     <None Remove="Resources\link-github.png" />
     <None Remove="Resources\link-steam.png" />
@@ -347,8 +349,10 @@
     <Resource Include="Resources\icon-64x.png" />
     <Resource Include="Resources\import-export.png" />
     <Resource Include="Resources\info-icon.png" />
+    <Resource Include="Resources\lamp-tip.png" />
     <Resource Include="Resources\lang-en-us.png" />
     <Resource Include="Resources\lang-pt-br.png" />
+    <Resource Include="Resources\lang-ru-ru.png" />
     <Resource Include="Resources\link-donate.png" />
     <Resource Include="Resources\link-github.png" />
     <Resource Include="Resources\link-steam.png" />

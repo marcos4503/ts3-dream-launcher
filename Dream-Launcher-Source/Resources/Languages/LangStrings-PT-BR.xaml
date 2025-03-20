@@ -88,6 +88,8 @@
     <!-- Screen 6: Launcher - Patches -->
     <system:String x:Key="launcher_patches_intro">Aqui você encontra todos os melhores Patches/Ajustes para o jogo. Todos esses Patches podem ser aplicados com poucos cliques. Sempre que um Patch é aplicado ao jogo, o Dream Launcher irá verificar sua integridade automaticamente para garantir o melhor estado de tudo!</system:String>
     <system:String x:Key="launcher_patches_dependencies">Instalações Recomendadas</system:String>
+    <system:String x:Key="launcher_patches_disclaimer">Note que uma vez que um Patch é instalado através dessa tela, não é recomendado que ele seja desinstalado, porém, ele pode ser facilmente re-instalado se você precisar. Se de qualquer forma, você precisar desinstalar um Patch, há um guia pra te ajudar nisso.</system:String>
+    <system:String x:Key="launcher_patches_disclaimer_button">ACESSAR GUIA</system:String>
     <system:String x:Key="launcher_patches_install">INSTALAR</system:String>
     <system:String x:Key="launcher_patches_reInstall">RE-INSTALAR</system:String>
     <system:String x:Key="launcher_patches_noActions">SEM AÇÕES</system:String>
@@ -138,6 +140,7 @@
     <system:String x:Key="launcher_settings_tab_online">Online</system:String>
     <system:String x:Key="launcher_settings_tab_environment">Ambiente</system:String>
     <system:String x:Key="launcher_settings_tab_demography">Demografia</system:String>
+    <system:String x:Key="launcher_settings_launcher_launcherLangCredit">A Tradução para Português Brasileiro do Dream Launcher, foi feita por Marcos Tomaz</system:String>
     <system:String x:Key="launcher_settings_launcher_launcherLang">Idioma do Launcher</system:String>
     <system:String x:Key="launcher_settings_launcher_launcherLangHelp" xml:space="preserve">
 Define o idioma de exibição do Launcher apenas.

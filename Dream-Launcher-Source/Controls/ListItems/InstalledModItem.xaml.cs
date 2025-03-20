@@ -112,7 +112,7 @@ namespace TS3_Dream_Launcher.Controls.ListItems
             {
                 //Prepare the title to show and real title
                 string titleToShow = "#ERROR-UNKNOWN-PATCH-MOD#";
-                string realModFileName = System.IO.Path.GetFileNameWithoutExtension(thisModPath);
+                string realModFileName = System.IO.Path.GetFileNameWithoutExtension(thisModPath).Replace(".package", "").Replace(".PACKAGE", "");
                 //Prepare the dictionary
                 Dictionary<string, string> humanReadableDictionary = GetPatchesModsToHumanReadableNamesDictionary();
                 //Get the title from dictionary

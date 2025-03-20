@@ -252,6 +252,15 @@
                         </Grid>
                         <Label Content="Português" Height="26" HorizontalContentAlignment="Center" Padding="0,0,0,0" VerticalContentAlignment="Center"/>
                     </StackPanel>
+                    <StackPanel Width="80" Margin="64,0,0,0">
+                        <Grid Width="80" Height="80">
+                            <Button x:Name="langSelectRuRu" Margin="0,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                                <Image Source="/Resources/lang-ru-ru.png" />
+                            </Button>
+                            <Image x:Name="langCheckRuRu" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="32" Height="32" Source="/Resources/check.png"/>
+                        </Grid>
+                        <Label Content="Русский" Height="26" HorizontalContentAlignment="Center" Padding="0,0,0,0" VerticalContentAlignment="Center"/>
+                    </StackPanel>
                 </StackPanel>
                 <BeautyButton:BeautyButton x:Name="langSave" Content="SAVE" HoverBackground="#FF00BF0C" Width="212" Height="34" FontFamily="{DynamicResource TheSimsSansSc}" Margin="0,128,0,0" FontSize="16" Background="#FF00A00A" BorderBrush="#FF0F5800" Foreground="White"/>
             </StackPanel>
@@ -300,7 +309,7 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
-        <Grid x:Name="s6_launcher" Visibility="Visible">
+        <Grid x:Name="s6_launcher">
             <Image Source="/Resources/neighborhood.png"/>
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Height="644">
@@ -371,7 +380,7 @@
                             <Label x:Name="pageTitle" Content="Place Holder" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="{DynamicResource TheSimsSansSc}" Foreground="White" FontSize="20" FontWeight="Bold"/>
                         </Border>
                         <Grid x:Name="pagesContent" Margin="4,36,4,4">
-                            <Grid x:Name="pageHome" Margin="0,0,0,0" Visibility="Visible" ClipToBounds="True">
+                            <Grid x:Name="pageHome" Margin="0,0,0,0" ClipToBounds="True">
                                 <Border x:Name="playWallpaper" BorderThickness="0,0,0,0" CornerRadius="0,0,8,8">
                                     <Border.Background>
                                         <ImageBrush Stretch="UniformToFill" ImageSource="/Resources/wallpaper-0.png">
@@ -634,6 +643,30 @@
                                                 </StackPanel>
                                             </Grid>
                                         </Border>
+                                        <Border BorderBrush="#FFC8C8C8" BorderThickness="1" CornerRadius="8,8,8,8" Margin="0,8,0,0">
+                                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="8,8,8,8">
+                                                <StackPanel VerticalAlignment="Top" Margin="0,0,0,0">
+                                                    <Grid VerticalAlignment="Top">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="24"/>
+                                                            <ColumnDefinition Width="8"/>
+                                                            <ColumnDefinition/>
+                                                            <ColumnDefinition Width="8"/>
+                                                            <ColumnDefinition Width="148"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid Width="24" Height="24" Grid.RowSpan="1">
+                                                            <Image Source="Resources\lamp-tip.png"/>
+                                                        </Grid>
+                                                        <Grid Grid.Column="2" VerticalAlignment="Top">
+                                                            <TextBlock TextWrapping="Wrap" Text="{DynamicResource launcher_patches_disclaimer}"/>
+                                                        </Grid>
+                                                        <Grid Grid.Column="4">
+                                                            <BeautyButton:BeautyButton x:Name="patchUninstallGuideBtn" HoverBackground="#FF3C3C3C" FontFamily="{DynamicResource TheSimsSansSc}" Background="#FF191919" BorderBrush="Black" Foreground="White" Cursor="Hand" Visibility="Visible" Content="{DynamicResource launcher_patches_disclaimer_button}" VerticalAlignment="Center" Height="24"/>
+                                                        </Grid>
+                                                    </Grid>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
                                     </StackPanel>
                                 </ScrollViewer>
                                 <Rectangle Height="0.5" VerticalAlignment="Bottom" Margin="0,0,0,32" StrokeThickness="0" Fill="Gray"/>
@@ -766,6 +799,7 @@
                                                         <ComboBox x:Name="set_LauncherLang" Width="300" DockPanel.Dock="Right" Height="26" VerticalContentAlignment="Center" SelectedIndex="0">
                                                             <ComboBoxItem Content="English"/>
                                                             <ComboBoxItem Content="Português Brasileiro"/>
+                                                            <ComboBoxItem Content="Русский"/>
                                                         </ComboBox>
                                                     </DockPanel>
                                                     <DockPanel LastChildFill="False" Margin="0,16,0,0">
@@ -784,6 +818,19 @@
                                                             <ComboBoxItem Content="Español - ES"/>
                                                             <ComboBoxItem Content="Español - MX"/>
                                                             <ComboBoxItem Content="Svenska"/>
+                                                            <ComboBoxItem Content="简体中文"/>
+                                                            <ComboBoxItem Content="繁體中文"/>
+                                                            <ComboBoxItem Content="Čeština"/>
+                                                            <ComboBoxItem Content="Suomalainen"/>
+                                                            <ComboBoxItem Content="Deutsch"/>
+                                                            <ComboBoxItem Content="ελληνικά"/>
+                                                            <ComboBoxItem Content="Magyar"/>
+                                                            <ComboBoxItem Content="日本語"/>
+                                                            <ComboBoxItem Content="한국인"/>
+                                                            <ComboBoxItem Content="Norsk"/>
+                                                            <ComboBoxItem Content="Polski"/>
+                                                            <ComboBoxItem Content="Русский"/>
+                                                            <ComboBoxItem Content="แบบไทย"/>
                                                         </ComboBox>
                                                     </DockPanel>
                                                     <DockPanel LastChildFill="False" Margin="0,16,0,0">
@@ -818,6 +865,7 @@
                                                     </DockPanel>
                                                 </StackPanel>
                                             </ScrollViewer>
+                                            <TextBlock TextWrapping="Wrap" Text="{DynamicResource launcher_settings_launcher_launcherLangCredit}" TextAlignment="Center" MaxWidth="512" Margin="0,0,0,16" VerticalAlignment="Bottom" Foreground="#FF909090"/>
                                         </Grid>
                                     </TabItem>
                                     <TabItem Header="{DynamicResource launcher_settings_tab_graphics}">
@@ -1111,6 +1159,10 @@
                                                             <ComboBoxItem Content="Normal"/>
                                                             <ComboBoxItem Content="Long"/>
                                                             <ComboBoxItem Content="Epic"/>
+                                                            <ComboBoxItem Content="Long With Normal First And Third Age"/>
+                                                            <ComboBoxItem Content="Epic With Normal First And Third Age"/>
+                                                            <ComboBoxItem Content="Long Only For Adults"/>
+                                                            <ComboBoxItem Content="Epic Only For Adults"/>
                                                         </ComboBox>
                                                     </DockPanel>
                                                     <Grid Height="156" Margin="0,8,0,0">
@@ -1205,6 +1257,9 @@
                                                             <ComboBoxItem Content="Off"/>
                                                             <ComboBoxItem Content="7 Days"/>
                                                             <ComboBoxItem Content="14 Days"/>
+                                                            <ComboBoxItem Content="21 Days"/>
+                                                            <ComboBoxItem Content="28 Days"/>
+                                                            <ComboBoxItem Content="4 Days"/>
                                                         </ComboBox>
                                                     </DockPanel>
                                                     <DockPanel LastChildFill="False" Margin="0,16,0,0">
@@ -1214,6 +1269,9 @@
                                                             <ComboBoxItem Content="Off"/>
                                                             <ComboBoxItem Content="7 Days"/>
                                                             <ComboBoxItem Content="14 Days"/>
+                                                            <ComboBoxItem Content="21 Days"/>
+                                                            <ComboBoxItem Content="28 Days"/>
+                                                            <ComboBoxItem Content="4 Days"/>
                                                         </ComboBox>
                                                     </DockPanel>
                                                     <DockPanel LastChildFill="False" Margin="0,16,0,0">
@@ -1223,6 +1281,9 @@
                                                             <ComboBoxItem Content="Off"/>
                                                             <ComboBoxItem Content="7 Days"/>
                                                             <ComboBoxItem Content="14 Days"/>
+                                                            <ComboBoxItem Content="21 Days"/>
+                                                            <ComboBoxItem Content="28 Days"/>
+                                                            <ComboBoxItem Content="4 Days"/>
                                                         </ComboBox>
                                                     </DockPanel>
                                                     <DockPanel LastChildFill="False" Margin="0,16,0,0">
@@ -1232,6 +1293,9 @@
                                                             <ComboBoxItem Content="Off"/>
                                                             <ComboBoxItem Content="7 Days"/>
                                                             <ComboBoxItem Content="14 Days"/>
+                                                            <ComboBoxItem Content="21 Days"/>
+                                                            <ComboBoxItem Content="28 Days"/>
+                                                            <ComboBoxItem Content="4 Days"/>
                                                         </ComboBox>
                                                     </DockPanel>
                                                     <DockPanel LastChildFill="False" Margin="0,16,0,0">
@@ -1474,6 +1538,7 @@
             </StackPanel>
         </Grid>
         <Grid x:Name="interactionBlocker" Background="Black" Opacity="0.75" Visibility="Collapsed"/>
+        <Grid/>
 
     </Grid>
 </Window>

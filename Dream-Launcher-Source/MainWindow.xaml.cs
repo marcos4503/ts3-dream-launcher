@@ -275,6 +275,7 @@ namespace TS3_Dream_Launcher
             //Prepare the screen
             langCheckEnUs.Visibility = Visibility.Collapsed;
             langCheckPtBR.Visibility = Visibility.Collapsed;
+            langCheckRuRu.Visibility = Visibility.Collapsed;
             langSave.IsEnabled = false;
 
             //Prepare the callback for buttons
@@ -283,6 +284,7 @@ namespace TS3_Dream_Launcher
                 langSave.Content = "SAVE";
                 langCheckEnUs.Visibility = Visibility.Visible;
                 langCheckPtBR.Visibility = Visibility.Collapsed;
+                langCheckRuRu.Visibility = Visibility.Collapsed;
                 langSave.IsEnabled = true;
             };
             langSelectPtBr.Click += (s, e) => {
@@ -290,6 +292,15 @@ namespace TS3_Dream_Launcher
                 langSave.Content = "SALVAR";
                 langCheckEnUs.Visibility = Visibility.Collapsed;
                 langCheckPtBR.Visibility = Visibility.Visible;
+                langCheckRuRu.Visibility = Visibility.Collapsed;
+                langSave.IsEnabled = true;
+            };
+            langSelectRuRu.Click += (s, e) => {
+                langSelectTitle.Content = "Пожалуйста, выберите язык для лаунчера!";
+                langSave.Content = "ГОТОВЫЙ";
+                langCheckEnUs.Visibility = Visibility.Collapsed;
+                langCheckPtBR.Visibility = Visibility.Collapsed;
+                langCheckRuRu.Visibility = Visibility.Visible;
                 langSave.IsEnabled = true;
             };
 
@@ -306,6 +317,8 @@ namespace TS3_Dream_Launcher
                     launcherPrefs.loadedData.launcherLang = "en-us";
                 if (langCheckPtBR.Visibility == Visibility.Visible)
                     launcherPrefs.loadedData.launcherLang = "pt-br";
+                if (langCheckRuRu.Visibility == Visibility.Visible)
+                    launcherPrefs.loadedData.launcherLang = "ru-ru";
                 launcherPrefs.Save();
             };
         }
@@ -338,6 +351,9 @@ namespace TS3_Dream_Launcher
                     break;
                 case "pt-br":
                     resourceDictionary.Source = new Uri("..\\Resources\\Languages\\LangStrings-PT-BR.xaml", UriKind.Relative);
+                    break;
+                case "ru-ru":
+                    resourceDictionary.Source = new Uri("..\\Resources\\Languages\\LangStrings-RU-RU.xaml", UriKind.Relative);
                     break;
             }
             this.Resources.MergedDictionaries.Add(resourceDictionary);
@@ -1342,6 +1358,7 @@ namespace TS3_Dream_Launcher
             instVsc2013x64.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe", UseShellExecute = true }); });
             instVsc2022x86.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://aka.ms/vs/17/release/vc_redist.x86.exe", UseShellExecute = true }); });
             instVsc2022x64.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://aka.ms/vs/17/release/vc_redist.x64.exe", UseShellExecute = true }); });
+            patchUninstallGuideBtn.Click += ((s, e) => { System.Diagnostics.Process.Start(new ProcessStartInfo { FileName = "https://github.com/marcos4503/ts3-dream-launcher/blob/c494567effee02271c68f5cd9cbc331557098496/This-Repository/uninstalling-patches-guide.md", UseShellExecute = true }); });
 
             //Instantiate all patch items
             InstantiateEachPatchItemAndCheckIntegrityOfInstalleds();
@@ -4320,7 +4337,7 @@ namespace TS3_Dream_Launcher
             //If "da-DK"
             if (launcherPrefs.loadedData.gameLang == "da-DK")
             {
-                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/Sims 3");
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/The Sims 3");
                 if (File.Exists((targetFolderPath + "/Options.ini")) == true)
                     path = targetFolderPath;
             }
@@ -4383,7 +4400,7 @@ namespace TS3_Dream_Launcher
             //If "es-MX"
             if (launcherPrefs.loadedData.gameLang == "es-MX")
             {
-                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/Los Sims 3");
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/The Sims 3");
                 if (File.Exists((targetFolderPath + "/Options.ini")) == true)
                     path = targetFolderPath;
             }
@@ -4391,6 +4408,97 @@ namespace TS3_Dream_Launcher
             if (launcherPrefs.loadedData.gameLang == "sv-SE")
             {
                 string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/The Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "zh-CN"
+            if (launcherPrefs.loadedData.gameLang == "zh-CN")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/模拟人生3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "zh-TW"
+            if (launcherPrefs.loadedData.gameLang == "zh-TW")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/模擬市民3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "cs-CZ"
+            if (launcherPrefs.loadedData.gameLang == "cs-CZ")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/The Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "fi-FI"
+            if (launcherPrefs.loadedData.gameLang == "fi-FI")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/The Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "de-DE"
+            if (launcherPrefs.loadedData.gameLang == "de-DE")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/Die Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "el-GR"
+            if (launcherPrefs.loadedData.gameLang == "el-GR")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/The Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "hu-HU"
+            if (launcherPrefs.loadedData.gameLang == "hu-HU")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/The Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "ja-JP"
+            if (launcherPrefs.loadedData.gameLang == "ja-JP")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/ザ･シムズ３");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "ko-KR"
+            if (launcherPrefs.loadedData.gameLang == "ko-KR")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/심즈 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "no-NO"
+            if (launcherPrefs.loadedData.gameLang == "no-NO")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/The Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "pl-PL"
+            if (launcherPrefs.loadedData.gameLang == "pl-PL")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/The Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "ru-RU"
+            if (launcherPrefs.loadedData.gameLang == "ru-RU")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/The Sims 3");
+                if (File.Exists((targetFolderPath + "/Options.ini")) == true)
+                    path = targetFolderPath;
+            }
+            //If "th-TH"
+            if (launcherPrefs.loadedData.gameLang == "th-TH")
+            {
+                string targetFolderPath = (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Electronic Arts/เดอะซิมส์ 3");
                 if (File.Exists((targetFolderPath + "/Options.ini")) == true)
                     path = targetFolderPath;
             }
@@ -4541,7 +4649,7 @@ namespace TS3_Dream_Launcher
                 Process process = new Process();
                 process.StartInfo.FileName = System.IO.Path.Combine(workingDirectory, "Dl3DxOverlay.exe");
                 process.StartInfo.WorkingDirectory = workingDirectory;
-                process.StartInfo.Arguments = ("\"TS3W\" " + ((launcherPrefs.loadedData.gameOverlay == 1) ? "0" : "1") + " 1800");
+                process.StartInfo.Arguments = ("\"TS3W\" " + ((launcherPrefs.loadedData.gameOverlay == 1) ? "0" : "1") + " 1950");
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.CreateNoWindow = true;  //<- Hide the process window
                 process.StartInfo.RedirectStandardOutput = true;
@@ -4733,6 +4841,8 @@ namespace TS3_Dream_Launcher
                 set_LauncherLang.SelectedIndex = 0;
             if (launcherPrefs.loadedData.launcherLang == "pt-br")
                 set_LauncherLang.SelectedIndex = 1;
+            if (launcherPrefs.loadedData.launcherLang == "ru-ru")
+                set_LauncherLang.SelectedIndex = 2;
             //*** set_GameLang
             if (launcherPrefs.loadedData.gameLang == "undefined")
                 set_GameLang.SelectedIndex = 0;
@@ -4758,6 +4868,32 @@ namespace TS3_Dream_Launcher
                 set_GameLang.SelectedIndex = 10;
             if (launcherPrefs.loadedData.gameLang == "sv-SE")
                 set_GameLang.SelectedIndex = 11;
+            if (launcherPrefs.loadedData.gameLang == "zh-CN")
+                set_GameLang.SelectedIndex = 12;
+            if (launcherPrefs.loadedData.gameLang == "zh-TW")
+                set_GameLang.SelectedIndex = 13;
+            if (launcherPrefs.loadedData.gameLang == "cs-CZ")
+                set_GameLang.SelectedIndex = 14;
+            if (launcherPrefs.loadedData.gameLang == "fi-FI")
+                set_GameLang.SelectedIndex = 15;
+            if (launcherPrefs.loadedData.gameLang == "de-DE")
+                set_GameLang.SelectedIndex = 16;
+            if (launcherPrefs.loadedData.gameLang == "el-GR")
+                set_GameLang.SelectedIndex = 17;
+            if (launcherPrefs.loadedData.gameLang == "hu-HU")
+                set_GameLang.SelectedIndex = 18;
+            if (launcherPrefs.loadedData.gameLang == "ja-JP")
+                set_GameLang.SelectedIndex = 19;
+            if (launcherPrefs.loadedData.gameLang == "ko-KR")
+                set_GameLang.SelectedIndex = 20;
+            if (launcherPrefs.loadedData.gameLang == "no-NO")
+                set_GameLang.SelectedIndex = 21;
+            if (launcherPrefs.loadedData.gameLang == "pl-PL")
+                set_GameLang.SelectedIndex = 22;
+            if (launcherPrefs.loadedData.gameLang == "ru-RU")
+                set_GameLang.SelectedIndex = 23;
+            if (launcherPrefs.loadedData.gameLang == "th-TH")
+                set_GameLang.SelectedIndex = 24;
             //*** set_priority
             set_priority.SelectedIndex = launcherPrefs.loadedData.gamePriority;
             //*** set_launcherBehaviour
@@ -4949,6 +5085,8 @@ namespace TS3_Dream_Launcher
                 launcherPrefs.loadedData.launcherLang = "en-us";
             if (set_LauncherLang.SelectedIndex == 1)
                 launcherPrefs.loadedData.launcherLang = "pt-br";
+            if (set_LauncherLang.SelectedIndex == 2)
+                launcherPrefs.loadedData.launcherLang = "ru-ru";
             //*** set_GameLang
             if (set_GameLang.SelectedIndex == 0)
                 launcherPrefs.loadedData.gameLang = "undefined";
@@ -4974,6 +5112,32 @@ namespace TS3_Dream_Launcher
                 launcherPrefs.loadedData.gameLang = "es-MX";
             if (set_GameLang.SelectedIndex == 11)
                 launcherPrefs.loadedData.gameLang = "sv-SE";
+            if (set_GameLang.SelectedIndex == 12)
+                launcherPrefs.loadedData.gameLang = "zh-CN";
+            if (set_GameLang.SelectedIndex == 13)
+                launcherPrefs.loadedData.gameLang = "zh-TW";
+            if (set_GameLang.SelectedIndex == 14)
+                launcherPrefs.loadedData.gameLang = "cs-CZ";
+            if (set_GameLang.SelectedIndex == 15)
+                launcherPrefs.loadedData.gameLang = "fi-FI";
+            if (set_GameLang.SelectedIndex == 16)
+                launcherPrefs.loadedData.gameLang = "de-DE";
+            if (set_GameLang.SelectedIndex == 17)
+                launcherPrefs.loadedData.gameLang = "el-GR";
+            if (set_GameLang.SelectedIndex == 18)
+                launcherPrefs.loadedData.gameLang = "hu-HU";
+            if (set_GameLang.SelectedIndex == 19)
+                launcherPrefs.loadedData.gameLang = "ja-JP";
+            if (set_GameLang.SelectedIndex == 20)
+                launcherPrefs.loadedData.gameLang = "ko-KR";
+            if (set_GameLang.SelectedIndex == 21)
+                launcherPrefs.loadedData.gameLang = "no-NO";
+            if (set_GameLang.SelectedIndex == 22)
+                launcherPrefs.loadedData.gameLang = "pl-PL";
+            if (set_GameLang.SelectedIndex == 23)
+                launcherPrefs.loadedData.gameLang = "ru-RU";
+            if (set_GameLang.SelectedIndex == 24)
+                launcherPrefs.loadedData.gameLang = "th-TH";
             //*** set_priority
             launcherPrefs.loadedData.gamePriority = set_priority.SelectedIndex;
             //*** set_launcherBehaviour
@@ -5597,6 +5761,106 @@ namespace TS3_Dream_Launcher
                     optionsIni.UpdateValue("agingstagelengthhorseadult", "450");
                     optionsIni.UpdateValue("agingstagelengthhorseelder", "158");
                 }
+                if (launcherSettings.loadedData.simsLifespan == 5)
+                {
+                    //Long
+                    optionsIni.UpdateValue("aginginterval", "3");
+                    //Sim
+                    optionsIni.UpdateValue("agingstagelengthbaby", "5");
+                    optionsIni.UpdateValue("agingstagelengthtoddler", "9");
+                    optionsIni.UpdateValue("agingstagelengthchild", "14");
+                    optionsIni.UpdateValue("agingstagelengthteen", "20");
+                    optionsIni.UpdateValue("agingstagelengthyoungadult", "90");
+                    optionsIni.UpdateValue("agingstagelengthadult", "90");
+                    optionsIni.UpdateValue("agingstagelengthelder", "20");
+                    //Dog
+                    optionsIni.UpdateValue("agingstagelengthpuppy", "8");
+                    optionsIni.UpdateValue("agingstagelengthdogadult", "108");
+                    optionsIni.UpdateValue("agingstagelengthdogelder", "14");
+                    //Cat
+                    optionsIni.UpdateValue("agingstagelengthkitten", "8");
+                    optionsIni.UpdateValue("agingstagelengthcatadult", "120");
+                    optionsIni.UpdateValue("agingstagelengthcatelder", "15");
+                    //Horse
+                    optionsIni.UpdateValue("agingstagelengthfoal", "10");
+                    optionsIni.UpdateValue("agingstagelengthhorseadult", "150");
+                    optionsIni.UpdateValue("agingstagelengthhorseelder", "18");
+                }
+                if (launcherSettings.loadedData.simsLifespan == 6)
+                {
+                    //Epic
+                    optionsIni.UpdateValue("aginginterval", "4");
+                    //Sim
+                    optionsIni.UpdateValue("agingstagelengthbaby", "5");
+                    optionsIni.UpdateValue("agingstagelengthtoddler", "9");
+                    optionsIni.UpdateValue("agingstagelengthchild", "14");
+                    optionsIni.UpdateValue("agingstagelengthteen", "20");
+                    optionsIni.UpdateValue("agingstagelengthyoungadult", "200");
+                    optionsIni.UpdateValue("agingstagelengthadult", "230");
+                    optionsIni.UpdateValue("agingstagelengthelder", "20");
+                    //Dog
+                    optionsIni.UpdateValue("agingstagelengthpuppy", "8");
+                    optionsIni.UpdateValue("agingstagelengthdogadult", "382");
+                    optionsIni.UpdateValue("agingstagelengthdogelder", "14");
+                    //Cat
+                    optionsIni.UpdateValue("agingstagelengthkitten", "8");
+                    optionsIni.UpdateValue("agingstagelengthcatadult", "398");
+                    optionsIni.UpdateValue("agingstagelengthcatelder", "15");
+                    //Horse
+                    optionsIni.UpdateValue("agingstagelengthfoal", "10");
+                    optionsIni.UpdateValue("agingstagelengthhorseadult", "450");
+                    optionsIni.UpdateValue("agingstagelengthhorseelder", "18");
+                }
+                if (launcherSettings.loadedData.simsLifespan == 7)
+                {
+                    //Long
+                    optionsIni.UpdateValue("aginginterval", "3");
+                    //Sim
+                    optionsIni.UpdateValue("agingstagelengthbaby", "5");
+                    optionsIni.UpdateValue("agingstagelengthtoddler", "9");
+                    optionsIni.UpdateValue("agingstagelengthchild", "14");
+                    optionsIni.UpdateValue("agingstagelengthteen", "20");
+                    optionsIni.UpdateValue("agingstagelengthyoungadult", "25");
+                    optionsIni.UpdateValue("agingstagelengthadult", "90");
+                    optionsIni.UpdateValue("agingstagelengthelder", "20");
+                    //Dog
+                    optionsIni.UpdateValue("agingstagelengthpuppy", "8");
+                    optionsIni.UpdateValue("agingstagelengthdogadult", "108");
+                    optionsIni.UpdateValue("agingstagelengthdogelder", "14");
+                    //Cat
+                    optionsIni.UpdateValue("agingstagelengthkitten", "8");
+                    optionsIni.UpdateValue("agingstagelengthcatadult", "120");
+                    optionsIni.UpdateValue("agingstagelengthcatelder", "15");
+                    //Horse
+                    optionsIni.UpdateValue("agingstagelengthfoal", "10");
+                    optionsIni.UpdateValue("agingstagelengthhorseadult", "150");
+                    optionsIni.UpdateValue("agingstagelengthhorseelder", "18");
+                }
+                if (launcherSettings.loadedData.simsLifespan == 8)
+                {
+                    //Epic
+                    optionsIni.UpdateValue("aginginterval", "4");
+                    //Sim
+                    optionsIni.UpdateValue("agingstagelengthbaby", "5");
+                    optionsIni.UpdateValue("agingstagelengthtoddler", "9");
+                    optionsIni.UpdateValue("agingstagelengthchild", "14");
+                    optionsIni.UpdateValue("agingstagelengthteen", "20");
+                    optionsIni.UpdateValue("agingstagelengthyoungadult", "25");
+                    optionsIni.UpdateValue("agingstagelengthadult", "230");
+                    optionsIni.UpdateValue("agingstagelengthelder", "20");
+                    //Dog
+                    optionsIni.UpdateValue("agingstagelengthpuppy", "8");
+                    optionsIni.UpdateValue("agingstagelengthdogadult", "382");
+                    optionsIni.UpdateValue("agingstagelengthdogelder", "14");
+                    //Cat
+                    optionsIni.UpdateValue("agingstagelengthkitten", "8");
+                    optionsIni.UpdateValue("agingstagelengthcatadult", "398");
+                    optionsIni.UpdateValue("agingstagelengthcatelder", "15");
+                    //Horse
+                    optionsIni.UpdateValue("agingstagelengthfoal", "10");
+                    optionsIni.UpdateValue("agingstagelengthhorseadult", "450");
+                    optionsIni.UpdateValue("agingstagelengthhorseelder", "18");
+                }
                 //*** set_aging
                 if (launcherSettings.loadedData.aging == false)
                     optionsIni.UpdateValue("enableaging", "0");
@@ -5667,6 +5931,21 @@ namespace TS3_Dream_Launcher
                     optionsIni.UpdateValue("summerenabled", "1");
                     optionsIni.UpdateValue("summerlength", "14");
                 }
+                if (launcherSettings.loadedData.summerSeason == 3)
+                {
+                    optionsIni.UpdateValue("summerenabled", "1");
+                    optionsIni.UpdateValue("summerlength", "21");
+                }
+                if (launcherSettings.loadedData.summerSeason == 4)
+                {
+                    optionsIni.UpdateValue("summerenabled", "1");
+                    optionsIni.UpdateValue("summerlength", "28");
+                }
+                if (launcherSettings.loadedData.summerSeason == 5)
+                {
+                    optionsIni.UpdateValue("summerenabled", "1");
+                    optionsIni.UpdateValue("summerlength", "4");
+                }
                 //*** set_winterSeason
                 if (launcherSettings.loadedData.winterSeason == 0)
                 {
@@ -5682,6 +5961,21 @@ namespace TS3_Dream_Launcher
                 {
                     optionsIni.UpdateValue("winterenabled", "1");
                     optionsIni.UpdateValue("winterlength", "14");
+                }
+                if (launcherSettings.loadedData.winterSeason == 3)
+                {
+                    optionsIni.UpdateValue("winterenabled", "1");
+                    optionsIni.UpdateValue("winterlength", "21");
+                }
+                if (launcherSettings.loadedData.winterSeason == 4)
+                {
+                    optionsIni.UpdateValue("winterenabled", "1");
+                    optionsIni.UpdateValue("winterlength", "28");
+                }
+                if (launcherSettings.loadedData.winterSeason == 5)
+                {
+                    optionsIni.UpdateValue("winterenabled", "1");
+                    optionsIni.UpdateValue("winterlength", "4");
                 }
                 //*** set_fallSeason
                 if (launcherSettings.loadedData.fallSeason == 0)
@@ -5699,6 +5993,21 @@ namespace TS3_Dream_Launcher
                     optionsIni.UpdateValue("fallenabled", "1");
                     optionsIni.UpdateValue("falllength", "14");
                 }
+                if (launcherSettings.loadedData.fallSeason == 3)
+                {
+                    optionsIni.UpdateValue("fallenabled", "1");
+                    optionsIni.UpdateValue("falllength", "21");
+                }
+                if (launcherSettings.loadedData.fallSeason == 4)
+                {
+                    optionsIni.UpdateValue("fallenabled", "1");
+                    optionsIni.UpdateValue("falllength", "28");
+                }
+                if (launcherSettings.loadedData.fallSeason == 5)
+                {
+                    optionsIni.UpdateValue("fallenabled", "1");
+                    optionsIni.UpdateValue("falllength", "4");
+                }
                 //*** set_springSeason
                 if (launcherSettings.loadedData.springSeason == 0)
                 {
@@ -5714,6 +6023,21 @@ namespace TS3_Dream_Launcher
                 {
                     optionsIni.UpdateValue("springenabled", "1");
                     optionsIni.UpdateValue("springlength", "14");
+                }
+                if (launcherSettings.loadedData.springSeason == 3)
+                {
+                    optionsIni.UpdateValue("springenabled", "1");
+                    optionsIni.UpdateValue("springlength", "21");
+                }
+                if (launcherSettings.loadedData.springSeason == 4)
+                {
+                    optionsIni.UpdateValue("springenabled", "1");
+                    optionsIni.UpdateValue("springlength", "28");
+                }
+                if (launcherSettings.loadedData.springSeason == 5)
+                {
+                    optionsIni.UpdateValue("springenabled", "1");
+                    optionsIni.UpdateValue("springlength", "4");
                 }
                 //*** set_tempUnit
                 if (launcherSettings.loadedData.temperatureUnit == 0)
@@ -6154,6 +6478,106 @@ namespace TS3_Dream_Launcher
                 horseFoal = "98";
                 horseAdult = "450";
                 horseElder = "158";
+            }
+
+            //Long With Normal First And Third Age
+            if (lifespanSelected == 5)
+            {
+                //Sim
+                simBaby = "5";
+                simToddler = "9";
+                simChild = "14";
+                simTeen = "20";
+                simYoungAdult = "90";
+                simAdult = "90";
+                simElder = "20";
+                //Dog
+                dogPuppy = "8";
+                dogAdult = "108";
+                dogElder = "14";
+                //Cat
+                catKitten = "8";
+                catAdult = "120";
+                catElder = "15";
+                //Horse
+                horseFoal = "10";
+                horseAdult = "150";
+                horseElder = "18";
+            }
+
+            //Epic With Normal First And Third Age
+            if (lifespanSelected == 6)
+            {
+                //Sim
+                simBaby = "5";
+                simToddler = "9";
+                simChild = "14";
+                simTeen = "20";
+                simYoungAdult = "200";
+                simAdult = "230";
+                simElder = "20";
+                //Dog
+                dogPuppy = "8";
+                dogAdult = "382";
+                dogElder = "14";
+                //Cat
+                catKitten = "8";
+                catAdult = "398";
+                catElder = "15";
+                //Horse
+                horseFoal = "10";
+                horseAdult = "450";
+                horseElder = "18";
+            }
+
+            //Long Only For Adults
+            if (lifespanSelected == 7)
+            {
+                //Sim
+                simBaby = "5";
+                simToddler = "9";
+                simChild = "14";
+                simTeen = "20";
+                simYoungAdult = "25";
+                simAdult = "90";
+                simElder = "20";
+                //Dog
+                dogPuppy = "8";
+                dogAdult = "108";
+                dogElder = "14";
+                //Cat
+                catKitten = "8";
+                catAdult = "120";
+                catElder = "15";
+                //Horse
+                horseFoal = "10";
+                horseAdult = "150";
+                horseElder = "18";
+            }
+
+            //Epic Only For Adults
+            if (lifespanSelected == 8)
+            {
+                //Sim
+                simBaby = "5";
+                simToddler = "9";
+                simChild = "14";
+                simTeen = "20";
+                simYoungAdult = "25";
+                simAdult = "230";
+                simElder = "20";
+                //Dog
+                dogPuppy = "8";
+                dogAdult = "382";
+                dogElder = "14";
+                //Cat
+                catKitten = "8";
+                catAdult = "398";
+                catElder = "15";
+                //Horse
+                horseFoal = "10";
+                horseAdult = "450";
+                horseElder = "18";
             }
 
             //Show it on texts...

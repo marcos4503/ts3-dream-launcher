@@ -148,3 +148,4 @@ D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Controls\ListItems\
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\WindowModSetupGuide.g.cs
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\WindowModSetupGuide.baml
 D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\TS3 Drea.29122275.Up2Date
+D:\Visual-Studio\TS3 Dream Launcher\obj\Debug\net6.0-windows\Resources\Languages\LangStrings-RU-RU.baml
