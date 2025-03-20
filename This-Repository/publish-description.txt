@@ -87,6 +87,7 @@ At the moment, Dream Launcher itself only supports the following languages ​�
 [list]
 [*] English
 [*] Portuguese
+[*] Russian
 [/list]
 However, you can still configure your game to run in the following languages ​​through the Dream Launcher...
 [list]
@@ -101,6 +102,19 @@ However, you can still configure your game to run in the following languages ​
 [*] Español - ES
 [*] Español - MX
 [*] Svenska
+[*] 简体中文
+[*] 繁體中文
+[*] Čeština
+[*] Suomalainen
+[*] Deutsch
+[*] ελληνικά
+[*] Magyar
+[*] 日本語
+[*] 한국인
+[*] Norsk
+[*] Polski
+[*] Русский
+[*] แบบไทย
 [/list]
 
 
