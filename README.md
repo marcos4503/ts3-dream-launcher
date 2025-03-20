@@ -12,7 +12,7 @@ Although The Sims 3 is an incredible game, playing it today requires fixing a lo
 
 Dream Launcher was born with the aim of making the entire process of leaving your The Sims 3 in the most perfect state possible! Dream Launcher takes care of and manages your installation of The Sims 3 automatically, installing, updating and maintaining bug fixes, patches, graphical improvements and optimization, as well as giving you full control over every aspect of your game. See below some of the main features of Dream Launcher...
 
-- Fully supports EN-US and PT-BR languages as display languages.
+- Fully supports EN-US, PT-BR and RU-RU languages as display languages.
 - Automatically installs and maintains patches for fixes and enhancements.
 - Fixes game compatibility issue with Intel 12th+ CPUs.
 - Allows you to view your Saves.
