@@ -155,6 +155,8 @@ namespace TS3_Dream_Launcher.Controls.ListItems
                 description.Text = enDescription;
             if (instantiatedByWindow.launcherPrefs.loadedData.launcherLang == "pt-br")
                 description.Text = brDescription;
+            if (instantiatedByWindow.launcherPrefs.loadedData.launcherLang == "ru-ru")
+                description.Text = enDescription;
         }
 
         public void SetGuide(string enGuide, string brGuide)
@@ -165,6 +167,8 @@ namespace TS3_Dream_Launcher.Controls.ListItems
                 guideString = enGuide;
             if (instantiatedByWindow.launcherPrefs.loadedData.launcherLang == "pt-br")
                 guideString = brGuide;
+            if (instantiatedByWindow.launcherPrefs.loadedData.launcherLang == "ru-ru")
+                guideString = enGuide;
         }
 
         public void SetRequiredEPs(int[] requiredEps)

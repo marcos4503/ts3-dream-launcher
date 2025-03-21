@@ -128,7 +128,7 @@ namespace TS3_Dream_Launcher.Controls.ListItems {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TS3 Dream Launcher;V1.5.0;component/controls/listitems/patchitem.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TS3 Dream Launcher;V1.5.1;component/controls/listitems/patchitem.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Controls\ListItems\PatchItem.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -91,7 +91,7 @@
     <system:String x:Key="launcher_patches_disclaimer">Обратите внимание, что после установки патча через этот экран его не рекомендуется удалять, однако при необходимости его можно легко переустановить. Если вам действительно нужно удалить патч, есть руководство, которое может вам в этом помочь.</system:String>
     <system:String x:Key="launcher_patches_disclaimer_button">ДОСТУП</system:String>
     <system:String x:Key="launcher_patches_install">УСТАНОВИТЬ</system:String>
-    <system:String x:Key="launcher_patches_reInstall">ПЕРЕУСТАНОВИТЬ</system:String>
+    <system:String x:Key="launcher_patches_reInstall">переустановить</system:String>
     <system:String x:Key="launcher_patches_noActions">НЕДОСТУПНО</system:String>
     <system:String x:Key="launcher_patches_statusInstalled">Установлено</system:String>
     <system:String x:Key="launcher_patches_statusInstalledWithProblem">Установлено с проблемой</system:String>
