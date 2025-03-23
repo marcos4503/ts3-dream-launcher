@@ -71,7 +71,7 @@ namespace TS3_Dream_Launcher {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TS3 Dream Launcher;V1.5.1;component/windowmodsetupguide.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TS3 Dream Launcher;V1.6.0;component/windowmodsetupguide.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\WindowModSetupGuide.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
