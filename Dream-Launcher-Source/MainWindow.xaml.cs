@@ -747,6 +747,9 @@ namespace TS3_Dream_Launcher
             s5_intelFix.Visibility = Visibility.Collapsed;
             s6_launcher.Visibility = Visibility.Visible;
 
+            //Start the Sims3LauncherUriRequests monitor
+            Coroutine.Start(Sims3LauncherUriRequestsMonitor());
+
             //Disable all red dots notifications
             DisableAllRedDotsNotifications();
 
@@ -1020,6 +1023,62 @@ namespace TS3_Dream_Launcher
             //Check if have a new update and warn if was updated
             CheckUpdates();
             WarnIfLauncherWasSuccessfullyUpdated();
+        }
+
+        private IEnumerator Sims3LauncherUriRequestsMonitor()
+        {
+            //Prepare the delay of the loop
+            WaitForSeconds monitorInterval = new WaitForSeconds(5.0);
+
+            //Create a loop
+            while (true)
+            {
+                //Wait time before continue
+                yield return monitorInterval;
+
+                //If have tasks runing, cancel
+                if (GetRunningTasksCount() > 0)
+                    continue;
+
+                //If exists a Sims3LauncherUriRequest, process it
+                if (File.Exists((Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Sims3StoreUriRequest.s3dl")) == true)
+                {
+                    //Get request content
+                    string requestContent = File.ReadAllText((Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Sims3StoreUriRequest.s3dl"));
+
+                    //Start the original Sims3Launcher.exe
+                    Process newProcess = new Process();
+                    newProcess.StartInfo.FileName = System.IO.Path.Combine(new string[] { Directory.GetCurrentDirectory(), "Sims3LauncherW.exe" });
+                    newProcess.StartInfo.Arguments = ("\"" + requestContent + "\"");
+                    newProcess.StartInfo.WorkingDirectory = System.IO.Path.Combine(Directory.GetCurrentDirectory());
+                    newProcess.Start();
+
+                    //Add the task to queue
+                    AddTask("Sims3LauncherW.exe_URI_Request_Processing_Running", "Running tool.");
+                    //Block the interaction with the interface
+                    SetInteractionBlockerEnabled(true);
+
+                    //Wait the process to finish
+                    while (true)
+                    {
+                        //If the process was finished, break the loop
+                        if (newProcess.HasExited == true)
+                            break;
+
+                        //Wait time before next interaction
+                        yield return monitorInterval;
+                    }
+
+                    //Remove the task from queue
+                    RemoveTask("Sims3LauncherW.exe_URI_Request_Processing_Running");
+                    //Unblock the interaction with the interface
+                    SetInteractionBlockerEnabled(false);
+
+                    //Delete the request and continue to next interaction
+                    File.Delete((Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Sims3StoreUriRequest.s3dl"));
+                    continue;
+                }
+            }
         }
 
         //Tasks manager

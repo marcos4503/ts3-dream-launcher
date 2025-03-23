@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -35,6 +36,21 @@ namespace Sims3Launcher
 
         public MainWindow()
         {
+            //Process initialization arguments, if have
+            bool isLaunchedBySims3Store = ProcessPossibleCliArguments(Environment.GetCommandLineArgs());
+            //If the program was launched by The Sims 3 store, e.g., in Browser (store.thesims3.com), then warn the user and cancel this...
+            if (isLaunchedBySims3Store == true)
+            {
+                //Warn to user
+                MessageBox.Show("Everything ready!\n\nThe request will be processed soon by Dream Launcher. Please open Dream Launcher if it is not open.", "Done", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                //Stop the execution of this instance
+                System.Windows.Application.Current.Shutdown();
+
+                //Cancel the execution
+                return;
+            }
+
             //Check if have another process of the launcher already opened. If have, cancel this...
             string processName = Process.GetCurrentProcess().ProcessName;
             Process[] processes = Process.GetProcessesByName(processName);
@@ -111,6 +127,37 @@ namespace Sims3Launcher
                 ShutdownApplication();
             };
             asyncTask.Execute(AsyncTaskSimplified.ExecutionMode.NewDefaultThread);
+        }
+
+        private bool ProcessPossibleCliArguments(string[] cliArgs)
+        {
+            //If not have elements, cancel
+            if (cliArgs == null || cliArgs.Length == 0)
+                return false;
+
+            //Prepare the value to return
+            bool toReturn = false;
+
+            //Debug the CLI Args found
+            StringBuilder receivedCliArgs = new StringBuilder();
+            receivedCliArgs.Append("Received CLI Arguments...");
+            for (int i = 0; i < cliArgs.Length; i++)
+                receivedCliArgs.Append(("\nElement " + i + ": \"" + cliArgs[i] + "\""));
+            string receivedCliArgsInfoString = receivedCliArgs.ToString();
+            Debug.WriteLine(receivedCliArgsInfoString);
+
+            //If is a The Sims 3 Store URI Request...
+            if (cliArgs.Length == 2 && receivedCliArgsInfoString.Contains("sims3://") == true)
+            {
+                //Store the request file, to Dream Launcher check it
+                File.WriteAllText((Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Sims3StoreUriRequest.s3dl"), cliArgs[1]);
+
+                //Warn that this open of the "Sims3Launcher.exe" was by the Sims 3 Store
+                toReturn = true;
+            }
+
+            //Return the result
+            return toReturn;
         }
 
         private void ShutdownApplication()
